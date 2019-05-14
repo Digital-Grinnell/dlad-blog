@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+## Initialize demo Hugo site
+
+# Console colors
+red='\033[0;91m'
+green='\033[0;32m'
+yellow='\033[1;33m'
+NC='\033[0m'
+echo-green () { echo -e "${green}$1${NC}"; }
+echo-yellow () { echo -e "${yellow}$1${NC}"; }
+
+# Abort if anything fails
+set -e
+
+# URL where compiled static site will be available
+STATIC_URL="http://static.${VIRTUAL_HOST}"
+
+# --------------------- RUNTIME --------------------
+
+cd "$PROJECT_ROOT"
+
+# Reset everything as usual
+fin project reset -f
+
+# Cleanup everything except '.' '..' '.docksal'
+echo-yellow "${red}WARNING: ${yellow}Removing ALL changes to current project in 5 seconds. Press Ctrl-C to cancel..."
+sleep 5
+ls -1a | grep -v "\.$" | grep -v '.docksal' | grep -v "README\.md" | xargs rm -rf
+
+# Create new hugo site
+echo-green "Initializing new hugo site..."
+fin exec "hugo new site . --force"
+
+# Create a test post
+fin exec hugo new posts/my-first-post.md
+fin exec hugo undraft content/posts/my-first-post.md
+fin exec 'echo -e "Hello, Hugo on Docksal!" >> "content/posts/my-first-post.md"'
+
+# Download a theme
+echo-green "Downloading a theme..."
+sleep 1
+fin exec git init 
+fin exec git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
+
+# Enable theme
+echo 'theme = "ananke"' >> config.toml
+
+# Compile static site
+echo-green "Compiling a static site..."
+fin exec hugo --baseURL "${STATIC_URL}"
+
+# Done
+sleep 1
+echo
+echo-green "Done!"
+echo -e "  Open ${yellow}${STATIC_URL}${NC}"
+echo -e "  To develop a Hugo site with real-time updates use ${yellow}fin develop${NC} (see README.md for details)"
+echo
+echo -e "  Read more about Hugo on https://gohugo.io/getting-started/quick-start/"

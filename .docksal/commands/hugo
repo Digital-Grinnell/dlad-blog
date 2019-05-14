@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+## Run Hugo commands <accepts params>
+##
+## See 'fin hugo help' for details
+
+fin exec hugo "$@"

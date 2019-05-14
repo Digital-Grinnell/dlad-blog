@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+## Compile a static site from Hugo sources
+##
+## Parameters:
+##  $1 - baseURL to feed to Hugo command (defaults to  static.$VIRTUAL_HOST)
+
+STATIC_URL="${1:-http://static.${VIRTUAL_HOST}}"
+
+fin exec hugo --baseURL "${STATIC_URL}"

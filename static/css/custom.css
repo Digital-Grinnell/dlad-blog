@@ -1,0 +1,50 @@
+.site-header {
+  height: 210px !important;
+  display: block !important;
+  color: black;
+}
+
+.site-header div {
+  display: block;
+  height: 210px;
+}
+
+.site-header h2 {
+  font-size: 25px;
+  position: relative;
+  top: 150px;
+}
+
+.transparent-layer {
+  background-color: rgba(34, 34, 34, 0);
+}
+
+div.original {
+  background-color: rgba(255, 255, 128, .25);
+  padding: 1em 2em !important;
+}
+
+a {
+  color: #e32a14cc;
+}
+
+.post h2 {
+  margin-top: 1.5em;
+}
+
+code {
+  background-color: rgb(34, 34, 34, 0.1);
+  padding: 0 0.1em;
+}
+
+.author {
+  width: 20%;
+}
+
+.content {
+  width: 65%;
+}
+
+.profile-image {
+  max-width: 150px;
+}

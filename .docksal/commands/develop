@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+## Start Hugo server for real-time development
+##
+## See https://gohugo.io/commands/hugo_server/ for details
+
+yellow='\033[1;33m'
+NC='\033[0m'
+
+echo -e "Server will be available at: ${yellow}http://$VIRTUAL_HOST${NC}"
+
+cd "$PROJECT_ROOT"
+fin exec hugo server -D --bind 0.0.0.0 --baseURL "http://$VIRTUAL_HOST" --appendPort=false 
