@@ -31,10 +31,15 @@ So the trick appears to be coding the "image" in raw HTML, with a download optio
     </embed>
 </object>
 
-But in the case of a Github hosted PDF, that also does not work... I get a `Blocked by Content Security Policy` error for the PDF portion of the page.  So what next?  Reverting back to _Markdown_ syntax referencing a .png file instead:
+But in the case of a Github hosted PDF, that also does not work as I get a `Blocked by Content Security Policy` error for the PDF portion of the page, or at best, my browser is unable to display the PDF so I see the line/paragraph above this one.
+
+So what next?  I reverting back to _Markdown_ syntax referencing a _.png_ copy of the diagram instead of the PDF:
 
 ![Workflow](https://github.com/McFateM/docker-bootstrap/raw/master/docker-bootstrap-Diagram.png "Mark's docker-bootstrap Workflow")
 
-That appears to work nicely!  Enjoy.
+That appears to work nicely!  Two things to note...
+
+- Be sure you reference the "raw" copy of the diagram from Github, not the "blob" that's displayed on the repo's Github page.
+- I used [draw.io](https://draw.io) to create and export this diagram.  When I export it as a _.png_ I have to be sure to include a 20 pixel "border", otherwise my image has no margins and looks really bad in a browser with a dark page background.
 
 And that's a wrap.  Until next time...
