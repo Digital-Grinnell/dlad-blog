@@ -48,3 +48,7 @@ code {
 .profile-image {
   max-width: 150px;
 }
+
+.container {
+  padding: 10px 0 0;
+}
