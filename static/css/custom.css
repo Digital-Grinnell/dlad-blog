@@ -52,3 +52,8 @@ code {
 .container {
   padding: 10px 0 0;
 }
+
+.post {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+}
