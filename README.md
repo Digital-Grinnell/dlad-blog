@@ -23,6 +23,20 @@ docker container run -d --name ${NAME} \
 
 My `docker-bootstrap` [workflow diagram](https://github.com/McFateM/docker-bootstrap/blob/master/docker-bootstrap%20Diagram.pdf), exported as a PDF, just happens to use this blog as an example!
 
+# Updating This Blog
+
+The process of adding a post, or any addition/change, to this blog is pretty straightforward...
+
+```
+cd ~/Projects/blogs-McFateM
+docker image build -t new-img .
+docker login
+docker tag new-img mcfatem/blogs-mcfatem:latest
+docker push mcfatem/blogs-mcfatem:latest
+```
+
+Watchtower should *automagically* take care of the rest!
+
 # Juan Treminio's Original README.md <a name="original-Juan"></a>
 
 For several years this blog was generated using the PHP static site generator
