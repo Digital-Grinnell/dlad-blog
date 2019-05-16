@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+## Changed name to .init and adding an exit here so this does not destroy the site I've built.
 
 ## Initialize demo Hugo site
 
@@ -12,6 +13,10 @@ echo-yellow () { echo -e "${yellow}$1${NC}"; }
 
 # Abort if anything fails
 set -e
+
+## Disabled...
+echo-yellow "${red}ATTENTION! ${yellow}This script is disabled to avoid destroying the project."
+exit
 
 # URL where compiled static site will be available
 STATIC_URL="http://static.${VIRTUAL_HOST}"
@@ -40,7 +45,7 @@ fin exec 'echo -e "Hello, Hugo on Docksal!" >> "content/posts/my-first-post.md"'
 # Download a theme
 echo-green "Downloading a theme..."
 sleep 1
-fin exec git init 
+fin exec git init
 fin exec git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke
 
 # Enable theme
