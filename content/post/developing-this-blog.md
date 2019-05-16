@@ -1,5 +1,5 @@
 ---
-date: 2019-05-16T13:37:20-06:00
+date: 2019-05-16T13:38:27-06:00
 title: Developing This Blog
 ---
 
