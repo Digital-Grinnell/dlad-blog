@@ -1,3 +1,10 @@
+#body img .blog-banner {
+  margin: 0 auto 1em;
+}
+
+
+# Old stuff below
+
 .site-header {
   height: 210px !important;
   display: block !important;
