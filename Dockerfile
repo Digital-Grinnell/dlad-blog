@@ -41,8 +41,8 @@ RUN minify --recursive --verbose \
 ##
 
 FROM nginx:alpine
-#COPY --from=2 /data/public /usr/share/nginx/html
-LABEL maintainer Mark A. McFate <mcfatem@grinnell.edu>
-COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=2 /data/public /var/www/site
-WORKDIR /var/www/site
+COPY --from=2 /data/public /usr/share/nginx/html
+#LABEL maintainer Mark A. McFate <mcfatem@grinnell.edu>
+#COPY ./conf/default.conf /etc/nginx/conf.d/default.conf
+#COPY --from=2 /data/public /var/www/site
+#WORKDIR /var/www/site
