@@ -37,6 +37,11 @@ docker push mcfatem/blogs-mcfatem:latest
 
 Watchtower should *automagically* take care of the rest!
 
+# Adding the Theme as a Submodule
+```
+git submodule add -f https://github.com/digitalcraftsman/hugo-minimalist-theme.git themes/hugo-minimalist-theme
+```
+
 # Juan Treminio's Original README.md <a name="original-Juan"></a>
 
 For several years this blog was generated using the PHP static site generator
