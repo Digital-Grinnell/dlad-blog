@@ -1,6 +1,9 @@
 ---
-date: 2019-05-16T13:38:27-06:00
 title: Developing This Blog
+draft: false
+
+
+date: 2019-05-20T07:25:32-06:00
 ---
 
 I realized today that I previously documented how to "begin" a blog like this using [Docksal](https://docksal.io) to assist, but I failed to remind myself how to make structural/programming changes to it now that it is well-established.  Since I'd like to add [BleveSearch](https://blevesearch.com/) to this blog, and similar sites, I need to make some "structural" changes, and I want to do so locally before pushing them to production.  
