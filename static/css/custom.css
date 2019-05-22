@@ -81,13 +81,13 @@ h1 {
 }
 
 .main-menu {
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid whitesmoke;
   padding: 10px 0;
 }
 
 .author-block {
   width: 100%;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid whitesmoke;
   padding: 10px 0;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
@@ -113,11 +113,15 @@ h1 {
 
 .search-form {
   width: auto;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid whitesmoke;
   padding: 20px 0;
   margin: 10px 0;
 }
 
 div.search-field-title {
   margin-top: 10px;
+}
+
+.site-rev {
+  font-size: 0.75em;
 }

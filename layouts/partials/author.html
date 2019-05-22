@@ -2,10 +2,13 @@
 
   <div class="author-block">
     <img class="profile-image" src="{{ .Site.Params.avatar | absURL }}" alt="{{ .Site.Params.site_author }}" />
-    <p class="name">{{ .Site.Data.l10n.author.by }}
-    <strong>{{ .Site.Params.site_author }}</strong></p>
-    <p class="address">{{ .Site.Params.location }}</p>
-    <p class="link"></p>
+    <p class="site-rev">{{ .Site.LastChange.Format "2006-Jan-2 15:04 MST" }}<br/>{{ if .Site.Params.site_rev }}Rev. {{ .Site.Params.site_rev }}{{ end }}</p>
+
+    <div class="name">{{ .Site.Data.l10n.author.by }}
+    <strong>{{ .Site.Params.site_author }}</strong></div>
+    <div class="address">{{ .Site.Params.location }}</div>
+    <div class="link"><a href="mailto:{{ .Site.Params.site_author_address }}">{{ .Site.Params.site_author_email }}</a></div>
+    <br/>
     <ul class="social">
       {{ partial "social" . }}
     </ul>

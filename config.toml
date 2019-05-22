@@ -3,7 +3,7 @@ baseurl = "https://static.grinnell.edu/blogs/McFateM"
 languageCode = "en-us"
 title = "Mark's Blog @ Static.Grinnell.edu"
 # Define how many pages appear per site
-paginate = 10
+paginate = 5
 # Enable comments powered by Disqus by entering your disqus shortname
 #disqusShortname = "spf13"
 # Enable gogle analytics by entering your tracking code
@@ -11,7 +11,9 @@ googleAnalytics = ""
 theme = "hugo-minimalist-theme"
 
 [params]
+    site_rev = "1.5"
     site_author = "Mark A. McFate"
+    site_author_email = "digital@grinnell.edu"
     site_description = "Mark's first Hugo site, a blog, at the new Static.Grinnell.edu."
     location = "Grinnell College Libraries"
     # Link custom assets relative to /static
