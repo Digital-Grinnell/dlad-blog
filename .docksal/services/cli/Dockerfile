@@ -1,6 +1,10 @@
 # Use a stock Docksal image as the base
 FROM docksal/cli:2.1-php7.1
 
-## Install hugo 0.55.6
-RUN wget -q https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_0.55.6_Linux-64bit.deb -O /tmp/hugo.deb \
-    && dpkg -i /tmp/hugo.deb
+ARG HUGO_VERSION="0.55.6"
+
+## Install hugo 0.55.6 extended (important!)
+RUN wget -q https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.deb -O /tmp/hugo.deb \
+  && dpkg -i /tmp/hugo.deb
+
+# Exception: hugo: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.21' not found (required by hugo)
