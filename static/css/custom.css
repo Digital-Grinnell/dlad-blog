@@ -39,6 +39,7 @@ code {
 
 .author {
   width: 20%;
+  margin: 0;
 }
 
 .content {
@@ -50,12 +51,12 @@ code {
 }
 
 .container {
-  padding: 10px 0 0;
+  padding: 10px;
 }
 
 .post {
-  margin-bottom: 30px;
-  padding-bottom: 30px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .post-info {
@@ -64,4 +65,63 @@ code {
 
 h1 {
   margin: 0.67em 0 0.25em 0;
+}
+
+
+.content {
+  width: 70%;
+}
+
+.sidebar {
+  width: auto;
+  margin: 0 10px;
+  text-align: center;
+  display: block;
+  float: left;
+}
+
+.main-menu {
+  border-bottom: 1px solid whitesmoke;
+  padding: 10px 0;
+}
+
+.author-block {
+  width: 100%;
+  border-bottom: 1px solid whitesmoke;
+  padding: 10px 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  text-align: center;
+  float: left;
+  margin-bottom: 15px;
+}
+
+.author-block ul.social {
+  list-style: none;
+  display: inline;
+  padding: 0;
+}
+
+.author-block ul.social li {
+  display: inline;
+}
+
+.author-block ul.social li a {
+  padding: 5px;
+  font-size: 20px;
+}
+
+.search-form {
+  width: auto;
+  border-bottom: 1px solid whitesmoke;
+  padding: 20px 0;
+  margin: 10px 0;
+}
+
+div.search-field-title {
+  margin-top: 10px;
+}
+
+.site-rev {
+  font-size: 0.75em;
 }
