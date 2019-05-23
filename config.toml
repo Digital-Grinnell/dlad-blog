@@ -3,13 +3,19 @@ baseurl = "https://static.grinnell.edu/blogs/McFateM"
 
 title = "The Grinnell College Digital Library Application Developer's Blog"
 #themesDir = "../.."
-#themesDir = "themes"
-theme = "m10c"
-paginate = 5
+themesDir = "themes"
+theme = ["hugo-search-fuse-js", "m10c"]
+paginate = 10
 
 [params]
+  site_rev = "1.5"
   author = "Mark A. McFate"
+  author_email = "digital@grinnell.edu"
+  location = "Grinnell College Libraries"
   description = "Mark's first Hugo site, a blog, at the new Static.Grinnell.edu."
+  #custom_js  = ["js/search.js"]
+  copyright = "The views and opinions expressed on individual web pages are strictly those of their authors and are not official statements of Grinnell College."
+
   [[params.social]]
     name = "github"
     url = "https://github.com/McFateM"
@@ -90,6 +96,3 @@ paginate = 5
 #   github    = "McFateM"
 #   gplus     = ""
 #
-# [outputs]
-#   # Added 19-May-2019 per https://gist.github.com/eddiewebb/735feb48f50f0ddd65ae5606a1cb41ae
-#   home = ["HTML", "RSS", "JSON"]

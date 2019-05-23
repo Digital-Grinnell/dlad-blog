@@ -2,8 +2,8 @@ FROM alpine/git
 COPY . /data
 WORKDIR /data
 RUN rm -rf themes/*
-#RUN git clone https://github.com/digitalcraftsman/hugo-minimalist-theme.git themes/hugo-minimalist-theme
 RUN git clone https://github.com/vaga/hugo-theme-m10c.git themes/m10c
+RUN git clone https://github.com/kaushalmodi/hugo-search-fuse-js.git themes/hugo-search-fuse-js
 
 ##
 

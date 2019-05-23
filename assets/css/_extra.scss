@@ -1,10 +1,53 @@
 // This IS the place to override project-specific CSS.
 // This file was duplicated from the placeholder file: themes/m10c/assets/css/_extra.scss
 
-h1 {
-  line-height: 1.25;
+h1, h2 {
+  line-height: 1.2;
+}
+
+.app-header {
+  width: 25%;
 }
 
 .app-header-avatar {
-    border: .5rem solid #000000;
+  border: .5rem solid #000000;
+}
+
+.page-item.active .page-link {
+  color: #DA291C;
+}
+
+header {
+  height: 100%;
+  display: flex;                     /* defines flexbox */
+  flex-direction: column;            /* top to bottom */
+  justify-content: space-between;    /* first item at start, last at end */
+}
+
+.copyright {
+  font-size: 0.75em;
+  line-height: 1;
+  text-align: center;
+}
+
+.site-rev {
+  font-size: 0.75em;
+  color: black;
+  line-height: 1;
+}
+
+.site-description {
+  color: black;
+  line-height: 1;
+}
+
+.app-header-avatar {
+  max-width: 10rem;
+  max-height: 10rem;
+  border-radius: 100%;
+  border: .25rem solid #000;
+}
+
+div.search-form {
+  margin-bottom: 1em;
 }

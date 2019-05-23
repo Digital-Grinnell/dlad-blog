@@ -1,12 +1,11 @@
 ---
 title: "Help!"
-date: 2019-05-19T17:31:16-07:00
+date: 2019-05-22T17:39:22-07:00
 layout: "single"
 aliases:
   - help
   - add-this-page
   - add-a-page-to-the-site
-menu: "main"
 ---
 
 ![hugo logo](/img/hugo-logo.png)

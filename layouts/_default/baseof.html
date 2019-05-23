@@ -1,0 +1,83 @@
+<!-- This file is an override of themes/m10c/layouts/_default/baseof.html -->
+<!-- It defines the basis of every page -->
+
+<!doctype html>
+<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+  <head>
+
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} // {{ .Site.Title }}{{ end }}</title>
+    <meta charset="utf-8" />
+    {{ hugo.Generator }}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="{{ .Site.Params.author | default "John Doe" }}" />
+    <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
+    {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | resources.ToCSS | resources.Minify | resources.Fingerprint -}}
+    <link rel="stylesheet" href="{{ $style.Permalink }}" />
+
+    <!-- MAM adding pull of custom_js for search capability. 19-May-2019 ->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.0/fuse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
+    {{ range .Site.Params.custom_js }}
+    <script src="{{ . | absURL }}"></script>
+    {{ end }}
+    <!- ...end of 19-May-2019 addition -->
+
+    {{ template "_internal/google_analytics.html" . }}
+    {{ template "_internal/twitter_cards.html" . }}
+    {{ template "_internal/opengraph.html" . }}
+
+  </head>
+
+  <body>
+
+    <!-- The page header, or sidebar, depending on device size -->
+    <header class="app-header">
+
+      <!-- The Search form
+      <div class="search-form">
+        <section class="resume-section p-3 p-lg-5 d-flex flex-column">
+          <div class="my-auto">
+            <div class="search-field-title">Search:</div>
+            <form action="{{ "search" | relURL }}">
+              <input id="search-query" name="s"/>
+            </form>
+          </div>
+        </section>
+      </div>
+    -->
+
+      <a href="{{ .Site.BaseURL }}"><img class="app-header-avatar" src="{{ "avatar.jpg" | relURL }}" alt="{{ .Site.Params.author | default "John Doe" }}" /></a>
+      <h2>{{ .Site.Title }}</h2>
+
+      <div class="author-block">
+        <p class="site-rev">{{ .Site.LastChange.Format "2006-Jan-2 15:04 MST" }}{{ if .Site.Params.site_rev }}   Rev. {{ .Site.Params.site_rev }}{{ end }}</p>
+
+        <div class="name">by
+        <strong>{{ .Site.Params.author }}</strong></div>
+        <div class="address">{{ .Site.Params.location }}</div>
+        <div class="link"><a href="mailto:{{ .Site.Params.site_author_address }}">{{ .Site.Params.site_author_email }}</a></div>
+        <br/>
+      </div>
+
+      <p class="site-description">{{ .Site.Params.description | default "Please provide a site params.description!" }}</p>
+      <div class="app-header-social">
+        {{ range .Site.Params.social }}
+          <a target="_blank" href="{{ .url }}">{{ partial "icon.html" (dict "ctx" $ "name" .name ) }}</a>
+        {{ end }}
+      </div>
+      <p class="copyright">{{ .Site.Params.copyright | default "You should add a site params.copyright!" }}</p>
+    </header>
+
+    <!-- The page body, no matter the device size -->
+    <main class="app-container">
+      {{ block "main" . }}
+        {{ .Content }}
+      {{ end }}
+    </main>
+
+    {{ block "footer" . }}{{ end }}
+    
+  </body>
+
+</html>
