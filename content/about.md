@@ -1,7 +1,8 @@
 ---
-title: "About Me"
-date: 2019-05-19T17:31:16-07:00
-menu: "main"
+title: About Me
+date: 2019-05-23T11:41:36-07:00
+type: page
+layout: single
 ---
 
 ![hugo logo](/img/hugo-logo.png)

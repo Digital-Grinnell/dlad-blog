@@ -20,7 +20,7 @@ services:
       - io.docksal.project-root=${PROJECT_ROOT}
       - io.docksal.virtual-port=1313
     # Add custom image
-    image: docksal/cli:hugo-0.51
+    image: docksal/cli:hugo-0.55.6
     build: services/cli
     expose:
       - 1313

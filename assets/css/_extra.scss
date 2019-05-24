@@ -1,0 +1,78 @@
+// This IS the place to override project-specific CSS.
+// This file was duplicated from the placeholder file: themes/m10c/assets/css/_extra.scss
+
+h1, h2 {
+  line-height: 1.2;
+}
+
+.app-header {
+  //  width: 25%;       # Don't do this!  It screws up responsive behavior!
+  padding: 1.5em 2em;
+}
+
+.app-header-avatar {
+  border: .5rem solid #000000;
+}
+
+.page-item.active .page-link {
+  color: #DA291C;
+}
+
+header {
+  height: 100%;
+  display: flex;                     /* defines flexbox */
+  flex-direction: column;            /* top to bottom */
+  justify-content: space-between;    /* first item at start, last at end */
+}
+
+.copyright {
+  font-size: 0.75em;
+  line-height: 1;
+  text-align: center;
+}
+
+.site-rev {
+  font-size: 0.75em;
+  color: black;
+  line-height: 1;
+}
+
+.site-description {
+  color: black;
+  line-height: 1;
+}
+
+.app-header-avatar {
+  max-width: 10rem;
+  max-height: 10rem;
+  border-radius: 100%;
+  border: .25rem solid #000;
+}
+
+// div.search-form {
+//   margin-bottom: 1em;
+// }
+
+.app-container {
+  max-width: 65rem;
+  margin-left: 20rem;
+}
+
+.summary {
+  color: $lightest-color;
+}
+
+.breadcrumbs {
+  font-size: 0.8rem;
+  color: $darkest-color;
+  border-bottom: 1px solid $darkest-color;
+}
+
+.sidebar-nav > a {
+  border-right: 1px solid #000;
+  padding: 0 10px 0 5px;
+}
+
+.sidebar-nav > a:last-child {
+  border-right: 0;
+}
