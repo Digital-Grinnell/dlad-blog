@@ -51,7 +51,10 @@
       <h2>{{ .Site.Title }}</h2>
 
       <div class="author-block">
-        <p class="site-rev">{{ .Site.LastChange.Format "2006-Jan-2 15:04 MST" }}{{ if .Site.Params.site_rev }}   Rev. {{ .Site.Params.site_rev }}{{ end }}</p>
+
+        <!-- <p class="site-rev">{{ .Site.LastChange.Format "2006-Jan-2 15:04 MST" }}{{ if .Site.Params.site_rev }}   Rev. {{ .Site.Params.site_rev }}{{ end }}</p> -->
+
+        <p class="site-rev">{{ .Site.LastChange.Format "2006-Jan-2 15:04 MST" }}{{ if .Site.Params.build }} &nbsp;&nbsp;&nbsp; Build {{ .Site.Params.build }}{{ end }}</p>
 
         <div class="name">by
         <strong>{{ .Site.Params.author }}</strong></div>
@@ -59,6 +62,13 @@
         <div class="link"><a href="mailto:{{ .Site.Params.site_author_address }}">{{ .Site.Params.site_author_email }}</a></div>
         <br/>
       </div>
+
+      <nav class="sidebar-nav">
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+        <a class="sidebar-nav-item{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+        {{ end }}
+      </nav>
 
       <p class="site-description">{{ .Site.Params.description | default "Please provide a site params.description!" }}</p>
       <div class="app-header-social">
@@ -71,13 +81,14 @@
 
     <!-- The page body, no matter the device size -->
     <main class="app-container">
+      {{ partial "breadcrumbs.html" . }}
       {{ block "main" . }}
         {{ .Content }}
       {{ end }}
     </main>
 
     {{ block "footer" . }}{{ end }}
-    
+
   </body>
 
 </html>
