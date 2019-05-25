@@ -37,9 +37,13 @@ docker push mcfatem/blogs-mcfatem:latest
 
 Watchtower should *automagically* take care of the rest!
 
-# Adding the Theme as a Submodule
+# Adding the Theme (and Theme Component) as Submodules
+
+The blog now uses TWO themes, one main and one "theme component" to aid in search.  The component theme is a fork of my own, created to remedy one issue I bumped into with HTML escape codes in returned search results.  Clone these two themes, or pull them in as submodules if you like:
 ```
-git submodule add -f https://github.com/digitalcraftsman/hugo-minimalist-theme.git themes/hugo-minimalist-theme
+git submodule add -f https://github.com/vaga/hugo-theme-m10c.git themes/m10c
+git submodule add -f https://github.com/SummittDweller/hugo-search-fuse-js.git themes/hugo-search-fuse-js
+
 ```
 
 # Juan Treminio's Original README.md <a name="original-Juan"></a>
