@@ -37,6 +37,23 @@ docker push mcfatem/blogs-mcfatem:latest
 
 Watchtower should *automagically* take care of the rest!
 
+# An Even Easier Update
+
+Not long ago I added the _Atom Shell Commands_ package to my _Atom_ config, added a command named **Push a Static Update**, and pointed that command at the _push_update.sh_ script that is now part of this project.  That _bash_ script, does just a few things, and it reads like this:
+
+```bash
+#!/bin/bash
+cd ~/Projects/blogs-McFateM
+perl -i.bak -lpe 'BEGIN { sub inc { my ($num) = @_; ++$num } } s/(build = )(\d+)/$1 . (inc($2))/eg' config.toml
+docker image build -t blog-update .
+docker login
+docker tag blog-update mcfatem/blogs-mcfatem:latest
+docker push mcfatem/blogs-mcfatem:latest
+```
+The `perl...` line runs a text substitution that opens the project's `config.toml` file, parses it looking for a string that matches `build = ` followed by an integer.  The substitution increments that interger by one and puts the result back into an updated `config.toml` file.  The result is eventually the `Build 14`, or whatever number, that you see in the blog's page header/sidebar.  
+
+The rest of the _push_update.sh_ script is responsible for building a new docker image, logging in to _Docker Hub_, tagging the new image as the `:latest` version of _blogs-mcfatem_, and pushing that new tagged image to my _Docker Hub_ account where _Watchtower_ can do its thing. 
+
 # Adding the Theme (and Theme Component) as Submodules
 
 The blog now uses TWO themes, one main and one "theme component" to aid in search.  The component theme is a fork of my own, created to remedy one issue I bumped into with HTML escape codes in returned search results.  Clone these two themes, or pull them in as submodules if you like:
