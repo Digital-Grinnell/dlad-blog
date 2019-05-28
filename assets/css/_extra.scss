@@ -1,6 +1,15 @@
 // This IS the place to override project-specific CSS.
 // This file was duplicated from the placeholder file: themes/m10c/assets/css/_extra.scss
 
+// This section reserved for "shortcode" definitions.
+
+div.original {
+  background-color: rgba(255, 255, 128, .25);
+  padding: 1em 2em !important;
+}
+
+// The rest of the custom CSS is here.
+
 h1, h2 {
   line-height: 1.2;
 }
