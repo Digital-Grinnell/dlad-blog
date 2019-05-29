@@ -3,6 +3,8 @@
   {{ $.Scratch.Add "path" .Site.BaseURL }}
   <a href="{{ .Site.BaseURL }}">Home</a>
   {{ range $index, $element := split $url "/" }}
+    <!-- {{ printf "%#v" $index }}
+    {{ printf "%#v" $element }} -->
     {{ $.Scratch.Add "path" $element }}
     {{ if ne $element "" }}
       &bullet; <a href='{{ strings.TrimRight "/" ($.Scratch.Get "path") }}/'>{{ humanize . }}</a>
