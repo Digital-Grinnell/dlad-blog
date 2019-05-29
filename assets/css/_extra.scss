@@ -64,7 +64,7 @@ header {
 
 .app-container {
   max-width: 65rem;
-  margin-left: 20rem;
+  // margin-left: 20rem;       Nope! Screws up responsive display!
 }
 
 .summary {
