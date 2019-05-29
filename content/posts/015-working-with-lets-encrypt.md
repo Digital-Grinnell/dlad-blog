@@ -1,5 +1,5 @@
 ---
-date: 2019-05-29T07:36:36-06:00
+date: 2019-05-29T07:39:35-06:00
 title: Working with Let's Encrypt to Generate Certs
 ---
 
