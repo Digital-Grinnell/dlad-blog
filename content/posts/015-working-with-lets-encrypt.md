@@ -1,5 +1,5 @@
 ---
-date: 2019-05-28T21:05:57-06:00
+date: 2019-05-29T07:36:36-06:00
 title: Working with Let's Encrypt to Generate Certs
 ---
 
@@ -43,6 +43,8 @@ Simple.  But in the case of _VAF_ it doesn't work, yet, with my workflow. If you
         mcfatem/vaf
       ```   
 
+Part of the problem here, I believe, is that I'm using a _Traefik_ container built from "scratch", so there's no shell in the image, which means I can't open a terminal inside the container to see what's happening.  
+
 ### Exactly when is each cert generated?
 
 That is the question I'm struggling with.  It would seem impossible for certs to be generated in Step 1 when we haven't even identified what an individual site's URL will be yet.  Still, all of the _ACME_ parameters that control cert creation, including the specification of `acme.caserver` are specified in Step 1 as part of the _Traefik_ configuration.  
@@ -62,6 +64,8 @@ docker container run -d --name ${NAME} \
 
 I'm going to put this last notion to the test now.  Wish me luck, and I'll report back here in a few minutes.
 
-### Nope.  Still don't have a trusted cert for _VAF_.
+### Nope.  Still don't have a trusted cert for _VAF_.  
+
+Next step I believe is to wipe the server clean, pull an `:alpine` image of _Traefik_ (so I can shell in and see more detail), then try to rebuild it all piece-by-piece.
 
 And that's a wrap.  Until next time...
