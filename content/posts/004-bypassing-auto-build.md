@@ -1,5 +1,5 @@
 ---
-date: 2018-11-29T14:25:00-06:00
+date: 2018-11-29
 title: Bypassing Docker Hub Auto-Build
 ---
 
@@ -25,6 +25,6 @@ A little explanation of the commands...
 - `docker push...` - This command pushes the newly renamed image to your Docker Hub repository, and tags the image as `:latest`.  This last part, the '*latest*' tag, is important because early on we set *Traefik* up on our production server to look for images tagged as '*latest*'.  If you give your image a different tag, it won't work properly.
 {{% /original %}}
 
-Assuming all of the above worked properly, I should now have a fresh Docker 'image' of this blog tagged as `:latest` in Docker Hub and waiting to be deployed.  What's still *hella* cool about this whole process is that **Watchtower is still watching** and is NOT dependent upon auto-build.  So, within a few minutes of my `docker push...` command my **live** blog is *automagically* updated! 
+Assuming all of the above worked properly, I should now have a fresh Docker 'image' of this blog tagged as `:latest` in Docker Hub and waiting to be deployed.  What's still *hella* cool about this whole process is that **Watchtower is still watching** and is NOT dependent upon auto-build.  So, within a few minutes of my `docker push...` command my **live** blog is *automagically* updated!
 
 And that's a wrap.  Until next time...
