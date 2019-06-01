@@ -1,5 +1,5 @@
 ---
-date: 2019-05-31T21:14:45-06:00
+date: 2019-05-31T21:21:32-06:00
 title: Drupal Flyover Camp 2019
 ---
 
@@ -9,7 +9,7 @@ My favorite presentation of the day was [Visual Regression Testing with Backstop
 
 David Needham's presentation also included some live command line work and I was also impressed with his terminal and environment.  David used [iTerm2](https://www.iterm2.com/index.html) as a replacment for the standard Mac "Terminal" app, and combined that with [Z shell or 'zsh'](https://en.wikipedia.org/wiki/Z_shell#Oh_My_Zsh) instead of 'bash'.  I have since started using both and am finding lots of nice features that I believe will help me in my work.  I've adopted the [bira](https://github.com/robbyrussell/oh-my-zsh/wiki/themes#bira) theme for 'zsh' and am loving it.  David also shared a [gist](https://gist.github.com/davidneedham/4014378) with some nice 'bash' profile improvements.
 
-From David's presentation I was also encouraged to learn now to launch [Atom](https://atom.io/) from the command line.  That simple change is [documented here](https://www.google.com/search?client=firefox-b-1-d&q=launch+atom+from+the+command+line).  
+From David's presentation I was also encouraged to learn how to launch [Atom](https://atom.io/) from the command line.  That simple change is [documented here](https://www.google.com/search?client=firefox-b-1-d&q=launch+atom+from+the+command+line).  
 
 I also attended the session titled [Bringing Sanity to Your Git Workflow](https://www.flyovercamp.org/schedule/bringing-sanity-your-git-flow) and picked up on a couple of gems from presenter [Josh Fabean](https://www.drupal.org/u/joshfabean).  
 
@@ -17,6 +17,6 @@ The first of Josh's gems was `git add -p` or `--patch`, an option that lets you 
 
 The second gem is this [visualizing-git online tool](https://git-school.github.io/visualizing-git/).  Check it out.
 
-Camp day number 2 is coming up tomorrow.  If I pick up more gems I'll be sure to update this post too. 
+Camp day number 2 is coming up tomorrow.  If I pick up more gems I'll be sure to update this post too.
 
 And that's a wrap.  Until next time...
