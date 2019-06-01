@@ -52,14 +52,14 @@ docker push mcfatem/blogs-mcfatem:latest
 ```
 The `perl...` line runs a text substitution that opens the project's `config.toml` file, parses it looking for a string that matches `build = ` followed by an integer.  The substitution increments that interger by one and puts the result back into an updated `config.toml` file.  The result is eventually the `Build 14`, or whatever number, that you see in the blog's page header/sidebar.  
 
-The rest of the _push_update.sh_ script is responsible for building a new docker image, logging in to _Docker Hub_, tagging the new image as the `:latest` version of _blogs-mcfatem_, and pushing that new tagged image to my _Docker Hub_ account where _Watchtower_ can do its thing. 
+The rest of the _push_update.sh_ script is responsible for building a new docker image, logging in to _Docker Hub_, tagging the new image as the `:latest` version of _blogs-mcfatem_, and pushing that new tagged image to my _Docker Hub_ account where _Watchtower_ can do its thing.
 
 # Adding the Theme (and Theme Component) as Submodules
 
 The blog now uses TWO themes, one main and one "theme component" to aid in search.  The component theme is a fork of my own, created to remedy one issue I bumped into with HTML escape codes in returned search results.  Clone these two themes, or pull them in as submodules if you like:
 ```
 git submodule add -f https://github.com/vaga/hugo-theme-m10c.git themes/m10c
-git submodule add -f https://github.com/SummittDweller/hugo-search-fuse-js.git themes/hugo-search-fuse-js
+git submodule add -f https://github.com/kaushalmodi/hugo-search-fuse-js.git themes/hugo-search-fuse-js
 
 ```
 
