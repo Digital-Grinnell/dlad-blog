@@ -11,7 +11,7 @@ summaryLength = 40    # default is 70 words
 #relativeURLs = "true"
 
 [params]
-  build = 27                     # this value is auto-incremened using 'perl' in push-update.sh
+  build = 28                     # this value is auto-incremened using 'perl' in push-update.sh
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
