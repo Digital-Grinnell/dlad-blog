@@ -1,9 +1,11 @@
 ---
-date: 2019-05-31T21:21:32-06:00
+date: 2019-06-01T11:23:42-06:00
 title: Drupal Flyover Camp 2019
 ---
 
-Today I attended the first day of [Drupal Flyover Camp 2019](https://www.flyovercamp.org/) at UMKC in Kansas City, MO.  I picked up on a few tricks and tools that I thought I'd mention here, just so I don't forget some of the details.
+The last couple days I attended [Drupal Flyover Camp 2019](https://www.flyovercamp.org/) at UMKC in Kansas City, MO.  I picked up on a few tricks and tools that I thought I'd mention here, just so I don't forget some of the details.
+
+### Friday - Day 1
 
 My favorite presentation of the day was [Visual Regression Testing with BackstopJS](http://visual-regression.davidneedham.me) by [David Needham](https://twitter.com/davidneedham). There's some cool tech here that I think could be very useful with things like [Digital Grinnell](https://digital.grinnell.edu), [Rootstalk](https://rootstalk.grinnell.edu), and even [this blog](https://static.grinnell.edu/blogs/McFateM).
 
@@ -17,6 +19,10 @@ The first of Josh's gems was `git add -p` or `--patch`, an option that lets you 
 
 The second gem is this [visualizing-git online tool](https://git-school.github.io/visualizing-git/).  Check it out.
 
-Camp day number 2 is coming up tomorrow.  If I pick up more gems I'll be sure to update this post too.
+### Saturday - Day 2
+
+[Jeff Geerling's](https://www.jeffgeerling.com/) presentation of [Everything I Know About Kubernetes I Learned from a Cluster of Raspberry Pis](https://www.flyovercamp.org/schedule/everything-i-know-about-kubernetes-i-learned-cluster-raspberry-pis) was both informative and entertaining.  Great stuff.  I was especially pleased to see that Jeff still relies on [Ansible](https://www.ansiblefordevops.com/) as his "golden hammer".  I think I will revisit his book and get back in the habit of using _Ansible_.  I also recommend keeping an eye on [Jeff's blog](https://www.jeffgeerling.com/blog) and [projects list](https://www.jeffgeerling.com/projects).
+
+[Tess Flynn, aka 'socketwench'](https://twitter.com/socketwench?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor) conducted another high-energy presentation, this time it was [Dr. Upal is In: Healthcheck Your Site!](https://socketwench.github.io/healthcheck-your-site/#/).  From this presentation I'll follow-up with a look at the details of the [Site Audit Module](drupal.org/project/site_audit), the [Healthcheck Module](drupal.org/project/healthcheck), and [Hacked!](https://www.drupal.org/project/hacked).  
 
 And that's a wrap.  Until next time...
