@@ -5,7 +5,7 @@ type: page
 layout: single
 ---
 
-I am DevOps and I love Hugo.  ![hugo logo](/static/img/hugo-logo.png)
+I am DevOps and I love Hugo... in spite of the fact that the logo colors clash with my blog theme.  ![hugo logo](https://static.grinnell.edu/blogs/McFateM/img/hugo-logo.png)
 
 ## More About Me
 

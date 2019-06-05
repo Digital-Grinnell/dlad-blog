@@ -13,7 +13,7 @@ disqusShortname = "digital-library-applications-developer-blog"
 #relativeURLs = "true"
 
 [params]
-  build = 31                     # this value is auto-incremened using 'perl' in push-update.sh
+  build = 33                     # this value is auto-incremened using 'perl' in push-update.sh
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
