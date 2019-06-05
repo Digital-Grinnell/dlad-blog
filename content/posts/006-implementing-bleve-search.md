@@ -1,5 +1,5 @@
 ---
-date: 2019-05-14T16:05:00-06:00
+date: 2019-05-14
 title: Bleve Search - Note to Self
 ---
 

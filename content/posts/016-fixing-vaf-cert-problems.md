@@ -1,5 +1,5 @@
 ---
-date: 2019-05-29T15:21:37-06:00
+date: 2019-05-29
 title: Fixing the VAF Cert Problem
 ---
 

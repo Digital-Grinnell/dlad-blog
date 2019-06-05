@@ -1,14 +1,12 @@
 ---
 title: About Me
-date: 2019-05-23T11:41:36-07:00
+date: 2019-05-23
 type: page
 layout: single
 ---
 
-![hugo logo](/img/hugo-logo.png)
+I am DevOps and I love Hugo.  ![hugo logo](/static/img/hugo-logo.png)
 
-I am DevOps and I love Hugo.
+## More About Me
 
-## More about me
-
-Ok, so my official title at Grinnell College is **Digital Library Applications Developer**.
+What more do you need to know?  Ok, so my official title at Grinnell College is actually **Digital Library Applications Developer**.

@@ -1,5 +1,5 @@
 ---
-date: 2019-05-15T10:17:57-06:00
+date: 2019-05-15
 title: docker-bootstrap Workflow
 ---
 

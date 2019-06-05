@@ -1,5 +1,5 @@
 ---
-date: 2019-06-01T12:10:33-06:00
+date: 2019-06-01
 title: Drupal Flyover Camp 2019
 ---
 

@@ -1,5 +1,5 @@
 ---
-date: 2019-05-25T04:52:24-06:00
+date: 2019-05-25
 title: Updates to Atom and Themes
 ---
 

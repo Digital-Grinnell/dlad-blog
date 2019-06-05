@@ -1,5 +1,5 @@
 ---
-date: 2019-05-16T13:42:43-06:00
+date: 2019-05-16
 title: Updating This Blog with Atom
 ---
 

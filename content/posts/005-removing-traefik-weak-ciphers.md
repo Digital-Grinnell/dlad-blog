@@ -1,5 +1,5 @@
 ---
-date: 2019-05-10T10:05:00-06:00
+date: 2019-05-10
 title: Removing Traefik's Weak Cipher Suites
 ---
 

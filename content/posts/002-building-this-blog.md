@@ -1,5 +1,5 @@
 ---
-date: 2018-11-19T10:05:00-07:00
+date: 2018-11-19
 title: Building this Blog with Hugo, Docker, Docksal, and More
 ---
 

@@ -1,5 +1,5 @@
 ---
-date: 2019-05-15T19:39:57-06:00
+date: 2019-05-15
 title: Testing SSL Vulnerabilities
 ---
 

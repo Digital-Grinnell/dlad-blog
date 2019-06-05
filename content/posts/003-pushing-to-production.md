@@ -1,5 +1,5 @@
 ---
-date: 2018-11-20T10:05:00-06:00
+date: 2018-11-20
 title: Pushing This Blog to Production
 ---
 
