@@ -7,6 +7,7 @@ themesDir = "themes"
 theme = ["hugo-search-fuse-js", "m10c"]
 paginate = 10
 summaryLength = 40    # default is 70 words
+googleAnalytics = "UA-131150861-2"
 
 #relativeURLs = "true"
 
