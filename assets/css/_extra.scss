@@ -93,3 +93,12 @@ a {
 pre code {
   font-size: 0.9em;
 }
+
+th, td {
+  border: 1px solid gray;
+  padding: 1em;
+}
+
+th {
+  padding-bottom: 0.5em;
+}
