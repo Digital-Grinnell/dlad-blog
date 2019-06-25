@@ -1,7 +1,7 @@
 ---
 title: "Lessons Learned: Vacationing In Europe"
-date: 2019-06-25T08:59:34-07:00
-draft: true
+date: 2019-06-25T09:04:16-07:00
+draft: false
 tags:
     - vacation
     - Europe
