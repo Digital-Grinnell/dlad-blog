@@ -1,7 +1,11 @@
 ---
-title: Lessons Learned: Vacationing In Europe
-date: 2019-06-25T08:40:41-07:00
+title: Lessons Learned\: Vacationing In Europe
+date: 2019-06-25T08:57:07-07:00
 draft: true
+tags:
+    - vacation
+    - Europe
+    - travel
 ---
 
 I just returned from 12-days of vacation and travel that took me unexpectedly to Paris and northern Finland, and as-expected to Norway (nearly all of it), and Iceland (expected, but not as promised).  Since this is a professional blog I won't elaborate here, but look for my "personal" blog to publish soon.  I will briefly comment on two things:
