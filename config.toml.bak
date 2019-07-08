@@ -10,10 +10,14 @@ summaryLength = 40    # default is 70 words
 googleAnalytics = "UA-131150861-2"
 disqusShortname = "digital-library-applications-developer-blog"
 
+## BlackFriday is Hugo's markdown rendering engine.
+[blackfriday]
+  smartypants = false
+
 #relativeURLs = "true"
 
 [params]
-  build = 53                     # this value is auto-incremened using 'perl' in push-update.sh
+  build = 62                     # this value is auto-incremened using 'perl' in push-update.sh
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"

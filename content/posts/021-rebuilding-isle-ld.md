@@ -1,10 +1,10 @@
 ---
 title: Rebuilding ISLE-ld (for Local Development)
-date: 2019-07-05T19:38:37-07:00
+date: 2019-07-08T14:37:08-07:00
 draft: false
 ---
 
-This post is intended to chronicle my efforts to build a new ISLE v1.1.2 `local development` instance of Digital.Grinnell on my work-issued iMac, `MA8660`.  
+This post is intended to chronicle my efforts to build a new ISLE v1.1.2 `local development` instance of Digital.Grinnell on my work-issued iMac, `MA8660`, and MacBook Air, `MA7053`.  
 
 ## Goal Statement
 The goal of this project is to spin up a pristine, local Islandora stack using a fork of [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) at https://github.com/DigitalGrinnell/ISLE, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu.
@@ -45,7 +45,7 @@ I've already got two forks of the [Islandora Collaboration Group's ISLE project]
 Not much to tell you here.  I followed the guidance mentioned above and it worked nicely. Almost too painless to be true?  We shall see.  In any case, there's now an up-to-date fork of https://github.com/Islandora-Collaboration-Group/ISLE in https://github.com/DigitalGrinnell/ISLE.
 
 ## Cloning to Local
-Next step, I believe is to clone the updated fork to `MA8660`, make a new `ld` branch there, and begin building.  The following command stream captures all of that...
+Next step, I believe is to clone the updated fork to `MA8660` (and/or `MA7053`), make a new `ld` branch there, and begin building.  The following command stream captures all of that...
 ```
 ╭─markmcfate@ma8660 ~/Projects ‹ruby-2.3.0›
 ╰─$ git clone https://github.com/DigitalGrinnell/ISLE
@@ -94,11 +94,11 @@ drwxr-xr-x  15 markmcfate  staff   480B Jul  3 15:12 ..
 ```
 
 ## Cleaning Up
-I typically use the following command stream to clean up any Docker cruft before I begin anew...  
+I typically use the following command stream to clean up any Docker cruft before I begin anew.  Note: Uncomment the third line ONLY if you want to delete images and download new ones.  If you do, be patient, it could take several minutes depending on connection speed.
 
 | Workstation Commands |
 | --- |
-| docker stop $(docker ps -q) <br/> docker rm -v $(docker ps -qa) <br/> docker image rm $(docker image ls -q) <br/> docker system prune --force |
+| docker stop $(docker ps -q) <br/> docker rm -v $(docker ps -qa) <br/># docker image rm $(docker image ls -q) <br/> docker system prune --force |
 
 ## Launching the Stack
 Moving to [Step 2](https://github.com/DigitalGrinnell/ISLE/blob/ld/docs/install/install-demo.md#step-2-launch-process) in the install [documentation](https://github.com/DigitalGrinnell/ISLE/blob/master/docs/install/install-demo.md) (with all the "pull" details removed) produced [this gist](https://gist.github.com/McFateM/1f45be46a5105f2fb2a9031034612722).
@@ -184,6 +184,11 @@ From the `https://digital.grinnell.edu` (production) site...
 
   - Login as `System Admin`
   - From the `Development` menu (on the right) select `Clear Cache`
+  - On the home page (https://digital.grinnell.edu), scroll to the bottom of the right-hand column.
+  - Use the `Quick Backup` dialog, with all the defaults, to create and download a fresh backup.
+
+Alternatively, you could...
+
   - Navigate to https://digital.grinnell.edu/admin/config/system/backup_migrate/export/advanced
   - In the `Load Settings` box select `Default Settings w/ Users`
   - Click `Backup now` to backup the site
@@ -230,14 +235,13 @@ Project maillog (7.x-1.0-alpha1) downloaded to /var/www/html/sites/all/modules/c
 Project r4032login (7.x-1.8) downloaded to /var/www/html/sites/all/modules/contrib/r4032login.   [success]
 Project smtp (7.x-1.7) downloaded to /var/www/html/sites/all/modules/contrib/smtp.   [success]
 Project views_bootstrap (7.x-3.2) downloaded to /var/www/html/sites/all/modules/contrib/views_bootstrap.   [success]
-Project field_group (7.x-1.6) downloaded to /var/www/html/sites/all/modules/contrib/field_group.   [success]
 root@9bec4edd3964:/var/www/html/sites/default# drush cc all
   ...numerous lines of output removed for clarity...
 'all' cache was cleared.
 ```
 | Apache Container Commands* |
 | --- |
-| cd /var/www/html/sites/default <br/> drush dl masquerade announcements email git_deploy maillog r4032login smtp views_bootstrap field_group <br/> drush cc all |
+| cd /var/www/html/sites/default <br/> drush dl masquerade announcements email git_deploy maillog r4032login smtp views_bootstrap <br/> drush cc all |
 
 Visiting the [site](https://isle.localdomain) again shows that all of the *Drupal* missing modules are happy now, but there are still a number of *Islandora* bits missing. After removing any redundant messages I was left with:
 
@@ -390,7 +394,34 @@ So the [site](https://isle.localdomain) is still issuing a few annoying warnings
 
 | Apache Container Commands* |
 | --- |
-| cd /var/www/html/sites/default <br/> drush -y dis islandora_binary_object islandora_pdfjs_reader <br/> drush sqlq "DELETE from system where name = 'islandora_binary_object' AND type = 'module';" <br/> drush sqlq "DELETE FROM system WHERE name = 'islandora_pdfjs_reader' AND type = 'module';" <br/> drush cc all |
+| cd /var/www/html/sites/default <br/> drush -y dis islandora_binary_object islandora_pdfjs_reader <br/> drush sqlq "DELETE FROM system WHERE name = 'islandora_binary_object' AND type = 'module';" <br/> drush sqlq "DELETE FROM system WHERE name = 'islandora_pdfjs_reader' AND type = 'module';" <br/> drush cc all |
+
+# Building ISLE-DG-Essentials
+The remaining critical step here involves packaging all of the customization of underlying services like FEDORA, FEDORAGSearch, and Solr, that exist for _Digital Grinnell_.  All of the necessary customization is already in play on _DGDocker1_, where ISLE is currently running in production. My approach to this step was to:
+
+1) Make a local clone of https://github.com/DigitalGrinnell/RepositoryX.git as `~/Projects/ISLE-DG-Essentials`.
+2) Checkout the `ISLE-ld` branch of this new clone; that's the branch that holds all my work from early 2019.
+3) Remove _git_ from control of the new cloned repository.  This should leave just the latest `ISLE-ld` work in place.
+4) Make a new, empty, private _Github_ project at https://github.com/McFateM/ISLE-DG-Essentials.
+5) Push the local clone to the new _Github_ repo for long-term development and deployment.
+6) Update the `README.md` document in the new repo to reflect proper use of the project.
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects |
+| git clone https://github.com/DigitalGrinnell/RepositoryX.git ISLE-DG-Essentials |
+| cd ISLE-DG-ESSENTIALS |
+| git checkout ISLE-ld |
+| rm -fr .git |
+| git init |
+| git remote add origin https://github.com/McFateM/ISLE-DG-Essentials.git |
+| git add -A |
+| git commit -m "First commit (from old DigitalGrinnell/RepositoryX repo)" |
+| git push -u origin master |
+
+| Important! |
+| --- |
+| See https://github.com/McFateM/ISLE-DG-Essentials/blob/master/README.md for much more detail. |
 
 
 
