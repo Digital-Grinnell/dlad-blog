@@ -1,6 +1,6 @@
 ---
 title: Rebuilding ISLE-ld (for Local Development)
-date: 2019-07-08T14:37:08-07:00
+date: 2019-07-08T14:44:55-07:00
 draft: false
 ---
 
@@ -399,25 +399,16 @@ So the [site](https://isle.localdomain) is still issuing a few annoying warnings
 # Building ISLE-DG-Essentials
 The remaining critical step here involves packaging all of the customization of underlying services like FEDORA, FEDORAGSearch, and Solr, that exist for _Digital Grinnell_.  All of the necessary customization is already in play on _DGDocker1_, where ISLE is currently running in production. My approach to this step was to:
 
-1) Make a local clone of https://github.com/DigitalGrinnell/RepositoryX.git as `~/Projects/ISLE-DG-Essentials`.
-2) Checkout the `ISLE-ld` branch of this new clone; that's the branch that holds all my work from early 2019.
-3) Remove _git_ from control of the new cloned repository.  This should leave just the latest `ISLE-ld` work in place.
-4) Make a new, empty, private _Github_ project at https://github.com/McFateM/ISLE-DG-Essentials.
-5) Push the local clone to the new _Github_ repo for long-term development and deployment.
-6) Update the `README.md` document in the new repo to reflect proper use of the project.
+  1) Make a local clone of https://github.com/DigitalGrinnell/RepositoryX.git as `~/Projects/ISLE-DG-Essentials`.
+  2) Checkout the `ISLE-ld` branch of this new clone; that's the branch that holds all my work from early 2019.
+  3) Remove _git_ from control of the new cloned repository.  This should leave just the latest `ISLE-ld` work in place.
+  4) Make a new, empty, private _Github_ project at https://github.com/McFateM/ISLE-DG-Essentials.
+  5) Push the local clone to the new _Github_ repo for long-term development and deployment.
+  6) Update the `README.md` document in the new repo to reflect proper use of the project.
 
 | Workstation Commands |
 | --- |
-| cd ~/Projects |
-| git clone https://github.com/DigitalGrinnell/RepositoryX.git ISLE-DG-Essentials |
-| cd ISLE-DG-ESSENTIALS |
-| git checkout ISLE-ld |
-| rm -fr .git |
-| git init |
-| git remote add origin https://github.com/McFateM/ISLE-DG-Essentials.git |
-| git add -A |
-| git commit -m "First commit (from old DigitalGrinnell/RepositoryX repo)" |
-| git push -u origin master |
+| cd ~/Projects <br/> git clone https://github.com/DigitalGrinnell/RepositoryX.git ISLE-DG-Essentials <br/> cd ISLE-DG-ESSENTIALS <br/> git checkout ISLE-ld <br/> rm -fr .git <br/> git init <br/> git remote add origin https://github.com/McFateM/ISLE-DG-Essentials.git <br/> git add -A <br/> git commit -m "First commit (from old DigitalGrinnell/RepositoryX repo)" <br/> git push -u origin master |
 
 | Important! |
 | --- |
