@@ -1,6 +1,6 @@
 ---
 title: Rebuilding ISLE-ld (for Local Development)
-date: 2019-07-08T14:55:13-07:00
+date: 2019-07-09T12:01:39-07:00
 draft: false
 ---
 
@@ -405,7 +405,7 @@ The remaining critical step here involves packaging all of the customization of 
   4. Make a new, empty, private _Github_ project at https://github.com/McFateM/ISLE-DG-Essentials.  
   5. Push the local clone to the new _Github_ repo for long-term development and deployment.  
   6. Update the `README.md` document in the new repo to reflect proper use of the project.  
-  
+
 | Workstation Commands |
 | --- |
 | cd ~/Projects <br/> git clone https://github.com/DigitalGrinnell/RepositoryX.git ISLE-DG-Essentials <br/> cd ISLE-DG-ESSENTIALS <br/> git checkout ISLE-ld <br/> rm -fr .git <br/> git init <br/> git remote add origin https://github.com/McFateM/ISLE-DG-Essentials.git <br/> git add -A <br/> git commit -m "First commit (from old DigitalGrinnell/RepositoryX repo)" <br/> git push -u origin master |
@@ -414,6 +414,41 @@ The remaining critical step here involves packaging all of the customization of 
 | --- |
 | See https://github.com/McFateM/ISLE-DG-Essentials/blob/master/README.md for much more detail. |
 
+# Connecting to FEDORA
+
+## Insert the DG-FEDORA USB Stick
+
+To restore the *Fedora* repository from a previous build just insert the USB stick labeled `DG-FEDORA`.  On a Mac the USB stick should automatically mount as `/Volumes/DG-FEDORA`, and our `docker-compose.override.yml` file should connect this folder to our *Fedora* container to serve as our object repository.
+
+## Re-Index DG-FEDORA and Solr
+
+To re-index the *Fedora* repository on the aforementioned USB stick, follow the documented guidance at:
+https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/
+
+Specifics of my `isle.localdomain` include...
+
+### Shutdown FEDORA Method 1
+
+  Open a browser and navigate to http://isle.localdomain:8081/manager/html
+    User: `admin`
+    Password: `isle_admin`
+
+### Reindex FEDORA RI (1 of 3)
+
+Shell into the *Fedora* container:
+
+  ```bash
+  docker exec -it isle-fedora-ld bash
+  cd /usr/local/fedora/server/bin
+  ```
+
+### Reindex SQL Database (2 of 3)
+
+The *MySQL* `root` password is: `ild_mysqlrt_2018`.
+
+### Reindex Solr (3 of 3)
+
+The *FGSAdmin* password is: `ild_fgs_admin_2018`
 
 
 And that's a wrap.  Until next time...
