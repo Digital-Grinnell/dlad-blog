@@ -1,6 +1,6 @@
 ---
 title: Rebuilding ISLE-ld (for Local Development)
-date: 2019-07-10T08:26:12-07:00
+date: 2019-07-10T08:30:07-07:00
 draft: false
 ---
 
@@ -440,9 +440,7 @@ In this command `-u` modifies the status of the mounted filesystem, and `-w` mou
 
 ## Re-Index DG-FEDORA and Solr
 To re-index the *Fedora* repository on the aforementioned USB stick, follow the documented guidance at:
-https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/
-
-Specifics of my `isle.localdomain` include...
+https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/.
 
 ### Shutdown FEDORA Using Method 2
 You must stop the _FEDORA_ and _FGSearch_ services before proceeding with re-index operations.  Proceed as directed in [the document](https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/), `Shutdown FEDORA Method 2` with username `admin` and a password of `isle_admin`.
