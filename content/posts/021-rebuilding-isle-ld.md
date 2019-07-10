@@ -1,6 +1,6 @@
 ---
 title: Rebuilding ISLE-ld (for Local Development)
-date: 2019-07-10T06:41:38-07:00
+date: 2019-07-10T08:26:12-07:00
 draft: false
 ---
 
@@ -444,13 +444,8 @@ https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/
 
 Specifics of my `isle.localdomain` include...
 
-### Shutdown FEDORA Method 1
-  Open a browser and navigate to http://isle.localdomain:8081/manager/html  
-    User: `admin`  
-    Password: `isle_admin`  
-
-### Reindex FEDORA RI (1 of 3)
-Shell into the _FEDORA_ container and issue the _FEDORA_ commands documented here.
+### Shutdown FEDORA Using Method 2
+You must stop the _FEDORA_ and _FGSearch_ services before proceeding with re-index operations.  Proceed as directed in [the document](https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/), `Shutdown FEDORA Method 2` with username `admin` and a password of `isle_admin`.
 
 | Workstation Commands |
 | --- |
@@ -458,13 +453,57 @@ Shell into the _FEDORA_ container and issue the _FEDORA_ commands documented her
 
 | _FEDORA_ Container Commands |
 | --- |  
-| cd /usr/local/fedora/server/bin <br/> |
+| wget "http://admin:isle_admin:8080/manager/text/stop?path=/fedora" -O - -q |
+
+### Reindex FEDORA RI (1 of 3)
+Proceed as directed in [the document](https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/), step 1 of 3.  Shell into the _FEDORA_ container and issue the _FEDORA_ commands documented here.
+
+| Workstation Commands |
+| --- |
+| docker exec -it isle-fedora-ld bash |
+
+| _FEDORA_ Container Commands |
+| --- |  
+| cd /usr/local/fedora/server/bin <br/> /bin/sh fedora-rebuild.sh -r org.fcrepo.server.resourceIndex.ResourceIndexRebuilder > /usr/local/tomcat/logs/fedora_ri.log 2>&1 |
+
+Note: Remove the `2>&1` suffix if you want to allow all warning and error messages to display immediately on-screen.
 
 ### Reindex SQL Database (2 of 3)
 Proceed as directed in [the document](https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/), step 2 of 3.  The _MySQL_ `root` password is: `ild_mysqlrt_2018`.
 
+| _FEDORA_ Container Commands |
+| --- |  
+| mysql -h mysql -u root -pild_mysqlrt_2018 |
+
+| _MySQL_ Prompt Commands |
+| --- |  
+| use fedora3; <br/> show tables; <br/> truncate table dcDates; <br/> truncate table doFields; <br/> truncate table doRegistry; <br/> truncate table fcrepoRebuildStatus; <br/> truncate table modelDeploymentMap; <br/> truncate table pidGen; <br/> exit |
+
+| _FEDORA_ Container Commands |
+| --- |  
+| cd /usr/local/fedora/server/bin <br/> /bin/sh fedora-rebuild.sh -r org.fcrepo.server.resourceIndex.ResourceIndexRebuilder > /usr/local/tomcat/logs/fedora_ri.log 2>&1 |
+
+The last command block is indeed a repeat of step 1.  It rebuilds the index after a number of tables have been truncated in _FEDORA_'s _MySQL_ database.
+
 ### Reindex Solr (3 of 3)
-Proceed as directed in [the document](https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/), step 3 of 3.  The `fgsAdmin` password is: `ild_fgs_admin_2018`
+
+| Important! |
+| --- |
+| Although it is NOT documented (as of July 10, 2019) you **must restart _FEDORA_ prior to running these commands! |
+
+| _FEDORA_ Container Commands |
+| --- |  
+| wget "http://admin:isle_admin:8080/manager/text/start?path=/fedora" -O - -q |
+
+Now, proceed as directed in [the document](https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/), step 3 of 3.  The `fgsAdmin` password is: `ild_fgs_admin_2018`
+
+| Workstation Commands |
+| --- |
+| docker exec -it isle-fedora-ld bash |
+
+| _FEDORA_ Container Commands |
+| --- |  
+| cd /usr/local/tomcat/webapps/fedoragsearch/client <br/> /bin/sh runRESTClient.sh localhost:8080 updateIndex fromFoxmlFiles |
 
 
 And that's a wrap.  Until next time...
