@@ -1,6 +1,6 @@
 ---
 title: Rebuilding ISLE-ld (for Local Development)
-date: 2019-07-09T12:01:39-07:00
+date: 2019-07-10T06:41:38-07:00
 draft: false
 ---
 
@@ -414,41 +414,57 @@ The remaining critical step here involves packaging all of the customization of 
 | --- |
 | See https://github.com/McFateM/ISLE-DG-Essentials/blob/master/README.md for much more detail. |
 
+# Spinning up isle.localdomain
+I put an updated copy of `docker-compose.override.yml` into the `ld` branch of my new [ISLE repo](https://github.com/McFateM/ISLE) so all that's needed now is to visit the local clone of that project, bring it down, and back up again like so:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects/ISLE <br/> git checkout ld <br/> docker-compose stop <br/> docker-compose up -d |
+
+It may take a few minutes for the site to come up.  Be patient and after a short break (5 minutes?) visit https://isle.localdomain to see the new site.
+
 # Connecting to FEDORA
+The aforementioned `docker-compose.override.yml` file in the `ld` branch of my https://github.com/McFateM/ISLE project includes 3 lines that direct _FEDORA_ and _FGSearch_ to use the mounted and pre-configured `/Volumes/DG-FEDORA` USB stick for object storage. The commands and process required to use the USB stick are presented here.
 
 ## Insert the DG-FEDORA USB Stick
+To restore the *Fedora* repository from a previous build just insert the USB stick labeled `DG-FEDORA`.  On a Mac the USB stick should automatically mount as `/Volumes/DG-FEDORA`, and our `docker-compose.override.yml` file should connect this folder to our *Fedora* container to serve as our object repository.  However, by default the USB stick will be mounted `read-only`, and that won't work nicely.  
 
-To restore the *Fedora* repository from a previous build just insert the USB stick labeled `DG-FEDORA`.  On a Mac the USB stick should automatically mount as `/Volumes/DG-FEDORA`, and our `docker-compose.override.yml` file should connect this folder to our *Fedora* container to serve as our object repository.
+## Re-Mount the `DG-FEDORA` Stick as Read-Write
+To make the `DG-FEDORA` stick writable do this:
+
+| Workstation Commands |
+| --- |
+| sudo mount -u -w /Volumes/DG-FEDORA |
+
+In this command `-u` modifies the status of the mounted filesystem, and `-w` mounts the filesystem as read-write.  The next steps will follow a documented process to re-index everything as needed.
 
 ## Re-Index DG-FEDORA and Solr
-
 To re-index the *Fedora* repository on the aforementioned USB stick, follow the documented guidance at:
 https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/
 
 Specifics of my `isle.localdomain` include...
 
 ### Shutdown FEDORA Method 1
-
-  Open a browser and navigate to http://isle.localdomain:8081/manager/html
-    User: `admin`
-    Password: `isle_admin`
+  Open a browser and navigate to http://isle.localdomain:8081/manager/html  
+    User: `admin`  
+    Password: `isle_admin`  
 
 ### Reindex FEDORA RI (1 of 3)
+Shell into the _FEDORA_ container and issue the _FEDORA_ commands documented here.
 
-Shell into the *Fedora* container:
+| Workstation Commands |
+| --- |
+| docker exec -it isle-fedora-ld bash |
 
-  ```bash
-  docker exec -it isle-fedora-ld bash
-  cd /usr/local/fedora/server/bin
-  ```
+| _FEDORA_ Container Commands |
+| --- |  
+| cd /usr/local/fedora/server/bin <br/> |
 
 ### Reindex SQL Database (2 of 3)
-
-The *MySQL* `root` password is: `ild_mysqlrt_2018`.
+Proceed as directed in [the document](https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/), step 2 of 3.  The _MySQL_ `root` password is: `ild_mysqlrt_2018`.
 
 ### Reindex Solr (3 of 3)
-
-The *FGSAdmin* password is: `ild_fgs_admin_2018`
+Proceed as directed in [the document](https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/), step 3 of 3.  The `fgsAdmin` password is: `ild_fgs_admin_2018`
 
 
 And that's a wrap.  Until next time...
