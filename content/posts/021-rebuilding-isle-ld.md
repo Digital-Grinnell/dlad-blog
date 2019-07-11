@@ -1,6 +1,6 @@
 ---
 title: Rebuilding ISLE-ld (for Local Development)
-date: 2019-07-10T08:30:07-07:00
+date: 2019-07-11T10:26:25-07:00
 draft: false
 ---
 
@@ -438,6 +438,15 @@ To make the `DG-FEDORA` stick writable do this:
 
 In this command `-u` modifies the status of the mounted filesystem, and `-w` mounts the filesystem as read-write.  The next steps will follow a documented process to re-index everything as needed.
 
+Note that even with this change you will still get the following error when trying to update the _FEDORA_ `Resource Index` (RI):
+
+```
+Rebuilding...
+java.lang.UnsupportedOperationException: This MulgaraConnector is read-only!
+```
+
+To get around this problem, permanently, I've modified the `docker-compose.override.yml` file to keep the `RI` off of the USB stick.  Not convenient, but apparently necessary.
+
 ## Re-Index DG-FEDORA and Solr
 To re-index the *Fedora* repository on the aforementioned USB stick, follow the documented guidance at:
 https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/.
@@ -503,5 +512,44 @@ Now, proceed as directed in [the document](https://islandora-collaboration-group
 | --- |  
 | cd /usr/local/tomcat/webapps/fedoragsearch/client <br/> /bin/sh runRESTClient.sh localhost:8080 updateIndex fromFoxmlFiles |
 
+## Check Your Status
+At this point in the process I had a working local ISLE instance that looks and behaves almost exactly like _Digital.Grinnell_.  That's great!  But not perfect.  8^(  I also noted that there were NO oral history objects in my portable _FEDORA_ repository yet, and when I tried to add one I got a host of warnings.  So, I decided to pay a visit to https://isle.localdomain/admin/reports/status, the _Drupal_ site status report.  That report did flag a host of issues, mostly related to my `private file system`.  The full report is captured in [this gist](https://gist.github.com/McFateM/c5ea76f38c06971df32dcdaf90d61b45).
+
+To correct the most pressing problem, the lack of a `private file system`, try this:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects/ISLE <br/> docker exec -it isle-apache-ld bash |  
+
+| Apache Container Commands |
+| --- |
+| cd /var/www <br/> mkdir private <br/> chown islandora:www-data private <br/> chmod 774 private <br/> cd /var/www/html/sites/default <br/> drush cc all |
+
+Now revisit http://isle.localdomain/admin/reports/status and refresh your browser to see if this has fixed one or more issues.  In my case, multiple issues were resolved by taking this action.  However, one critical issue remained:
+```
+Error - Database updates -	Out of date
+Some modules have database schema updates to install. You should run the database update script immediately.
+```
+
+I opened the [database update script](https://isle.localdomain/update.php?op=info) in my browser and used it to run all pending updates, 7 of them.  I then returned to the site's [home page](http://isle.localdomain) and used the `Clear Cache` link in the right-hand margin (under the `Development` menu heading) to refresh the cache.  Then I re-visited the [status report](http://isle.localdomain/admin/reports/status) for one more check.  Only the inconsequential `Glip Library` and `HTTP request status` warnings remain.
+
+## Ingest an Oral History with Transcription
+My `DG-FEDORA` USB stick is still read/write mounted at `/Volumes/DG-FEDORA` so I put a copy of one transcribed oral history interview package (an entire directory of files) titled `Lynne_Simcox_64` on the stick.  Ingest of this content went something like this:
+
+  - Open https://isle.localdomain/islandora/object/grinnell:alumni-oral-histories/manage
+  - Click the `Add an object to this Collection` link
+  - I entered minimal metadata (only the `Title` is required) and clicked `Next`
+  - At the `Video or Audio` prompt I browsed and selected the `Lynne_Simcox_64.MP3` file in `/Volumes/DG-FEDORA/Lynne_Simcox_64`, then clicked `Upload`
+  - Under the `Trasncript file` prompt I browsed and selected `Lynne_Simcox_64_transcript.xml` from the same directory and clicked `Upload`
+  - Finally, I clicked `Ingest` and waited for a couple of minutes for the magic to happen
+
+What I got in the end were these messages:
+
+```
+    Derivatives successfully created.
+    "Lynne Simcox '64" (ID: grinnell:25497) has been ingested.
+```
+
+...plus an ominous message stating: ` This transcript is still being processed for display.`  That's the "error" I am trying to debug/eliminate now, but since that debugging is not part of a "normal" spin-up of _ISLE_, I'm going to document it in a future blog post (starting minutes from now).
 
 And that's a wrap.  Until next time...
