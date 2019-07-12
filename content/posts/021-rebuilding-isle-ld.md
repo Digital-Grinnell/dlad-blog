@@ -1,6 +1,6 @@
 ---
 title: Rebuilding ISLE-ld (for Local Development)
-date: 2019-07-11T10:26:25-07:00
+date: 2019-07-11T10:29:16-07:00
 draft: false
 ---
 
@@ -41,7 +41,7 @@ root@9bec4edd3964:/var/www/html#
 ## A Bit of History
 I've already got two forks of the [Islandora Collaboration Group's ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) and cannot practically create another.  So, the first step in my process is to bring one of the [forks](https://github.com/Islandora-Collaboration-Group/ISLE) in-sync with the upstream `master`.  I'm going to attempt doing this via my web browser using the guidance documented in [Syncing your fork to the original repository via the browser](https://github.com/KirstieJane/STEMMRoleModels/wiki/Syncing-your-fork-to-the-original-repository-via-the-browser).  Wish me luck.
 
-## Syncing my Fork
+## Syncing My Fork
 Not much to tell you here.  I followed the guidance mentioned above and it worked nicely. Almost too painless to be true?  We shall see.  In any case, there's now an up-to-date fork of https://github.com/Islandora-Collaboration-Group/ISLE in https://github.com/DigitalGrinnell/ISLE.
 
 ## Cloning to Local
