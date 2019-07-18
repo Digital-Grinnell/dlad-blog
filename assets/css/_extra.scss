@@ -10,6 +10,11 @@ div.original {
 
 // The rest of the custom CSS is here.
 
+html {
+  line-height: 1.25;   // replaces old value of 1.6 ...too much
+  font-weight: lighter;
+}
+
 h1, h2 {
   line-height: 1.2;
 }
