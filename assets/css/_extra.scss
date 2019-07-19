@@ -1,6 +1,18 @@
 // This IS the place to override project-specific CSS.
 // This file was duplicated from the placeholder file: themes/m10c/assets/css/_extra.scss
 
+// So my Atom SASS compiler doesn't know about Hugo site params so I've pulled the following color
+// definitions from config.toml forward...
+
+  // darkestColor shows in the header/sidebar background.
+  $darkest-color: #DA291C;
+  // darkColor is the page/content background.
+  $dark-color: #000000;
+  $primary-color: #ffffff;
+  // lightColor is used with text in the body
+  $light-color: #FBEED8;
+  $lightest-color: #d3d3d3;
+
 // This section reserved for "shortcode" definitions.
 
 div.original {
