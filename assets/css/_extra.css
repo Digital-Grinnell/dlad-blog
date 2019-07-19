@@ -1,0 +1,67 @@
+/*
+Error: Undefined variable: "$lightest-color".
+        on line 76 of /Users/markmcfate/Projects/blogs-McFateM/assets/css/_extra.scss
+
+71:   max-width: 65rem;
+72:   // margin-left: 20rem;       Nope! Screws up responsive display!
+73: }
+74: 
+75: .summary {
+76:   color: $lightest-color;
+77: }
+78: 
+79: .breadcrumbs {
+80:   font-size: 0.8rem;
+81:   color: $darkest-color;
+
+Backtrace:
+/Users/markmcfate/Projects/blogs-McFateM/assets/css/_extra.scss:76
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/script/tree/variable.rb:49:in `_perform'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/script/tree/node.rb:58:in `perform'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:397:in `visit_prop'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `block in with_base'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `with_base'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `visit'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:433:in `block (2 levels) in visit_rule'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:433:in `map'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:433:in `block in visit_rule'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:431:in `visit_rule'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `block in with_base'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:115:in `with_frame'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/stack.rb:79:in `with_base'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:160:in `visit'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `map'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:168:in `visit_children'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:188:in `visit_root'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/base.rb:36:in `visit'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:159:in `visit'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/root_node.rb:36:in `css_tree'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:381:in `_render_with_sourcemap'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/engine.rb:298:in `render_with_sourcemap'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:391:in `run'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/exec/sass_scss.rb:63:in `process_result'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/exec/base.rb:52:in `parse'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/lib/sass/exec/base.rb:19:in `parse!'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/gems/sass-3.4.22/bin/sass:13:in `<top (required)>'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/bin/sass:23:in `load'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/bin/sass:23:in `<main>'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/bin/ruby_executable_hooks:15:in `eval'
+/Users/markmcfate/.rvm/gems/ruby-2.3.0/bin/ruby_executable_hooks:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$lightest-color\".\A         on line 76 of /Users/markmcfate/Projects/blogs-McFateM/assets/css/_extra.scss\A \A 71:   max-width: 65rem;\A 72:   // margin-left: 20rem;       Nope! Screws up responsive display!\A 73: }\A 74: \A 75: .summary {\A 76:   color: $lightest-color;\A 77: }\A 78: \A 79: .breadcrumbs {\A 80:   font-size: 0.8rem;\A 81:   color: $darkest-color;"; }
