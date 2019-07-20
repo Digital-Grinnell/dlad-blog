@@ -2,6 +2,12 @@
 title: "Missing Oral History Transcripts in DG - Fixed"
 date: 2019-07-19T13:09:54
 draft: false
+tags:
+    - Solr config
+    - FedoraGSearch config
+    - XSLT
+    - Oral Histories
+    - ISLE
 ---
 
 I recently constructed a new, local/development instance of _ISLE_ (see [my previous post](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/)) largely in order to debug a mystery in _Digital.Grinnell_'s display of oral histories.  My _Trello_ card for the issue reads:
@@ -14,7 +20,7 @@ In case you're not already familiar with these projects, they both represent "st
 
 The crux of my problem is that these repos use very long _Java_/_Tomcat_ paths, and the most significant of these is `/usr/local/fedora/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/`.  However, in a standard _ISLE_ instace the equivalent path must be `/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/`.  See the difference?  The _ISLE_ path does NOT include a `../fedora/..` subdirectory like the _Discovery Garden_ paths do.
 
-Unfortunately, when I updated my _FGSearch_ and _Solr_ configs earlier this year I missed some, but not all, of these `../fedora/..` directory references during a "mamnual" compare and merge process, and that made things like oral histories go afoul, and without much warning.  
+Unfortunately, when I updated my _FGSearch_ and _Solr_ configs earlier this year I missed some, but not all, of these `../fedora/..` directory references during a "manual" compare and merge process, and that made things like oral histories go afoul, and without much warning.  
 
 My solution to this problem going forward is the creation of [this new public repository](https://github.com/DigitalGrinnell/FgsIndex).  The repo's description in _GitHub_ describes is:
 

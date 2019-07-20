@@ -3,6 +3,10 @@ title: Compiling SCSS (SASS) for This Blog
 date: 2019-07-19
 draft: false
 emoji: true
+tags:
+    - SASS
+    - .scss
+    - emoji
 ---
 
 While working on another post I finally made the decision to improve the appearance of this blog a bit, and unfortunately I'd forgotten exactly how to do that.  Even more unfortunate, I never blogged about the process so I had to "discover" the details all over again. :cry: This post is intended to remedy that.

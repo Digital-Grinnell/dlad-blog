@@ -2,6 +2,12 @@
 title: Debugging ISLE-ld (Local Development) in PHPStorm
 date: 2019-07-12
 draft: false
+tags:
+    - docker-compose
+    - override
+    - ISLE
+    - XDebug
+    - PHPStorm
 ---
 
 # Debugging ISLE on a Mac
