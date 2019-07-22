@@ -1,6 +1,6 @@
 ---
 title: Replace OSX Terminal with iTerm2 for SSH
-date: 2019-07-22T11:58
+date: 2019-07-22
 draft: false
 emoji: true
 tags:
