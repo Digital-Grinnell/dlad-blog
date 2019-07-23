@@ -8,7 +8,7 @@ tags:
     - ssh
 ---
 
-My memory isn't what it used to be, but I have this blog. :smile: So when I realized the my primary work machine, an iMac, had not been configured with _iTerm2_ as its default terminal for `ssh`, I went looking for the solution...again.  Found it [here](https://www.iterm2.com/faq.html)!  
+My memory isn't what it used to be, but I have this blog. :smile: So when I realized that my primary work machine, an iMac, had not been configured with _iTerm2_ as its default terminal for `ssh`, I went looking for the solution...again.  Found it [here](https://www.iterm2.com/faq.html)!  
 
 The trick is to open _iTerm2_ and follow these two simple steps...
 
