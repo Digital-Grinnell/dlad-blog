@@ -1,6 +1,6 @@
 ---
 title: PDF Ingest in Digital.Grinnell
-date: 2019-07-23T13:29:38-07:00
+date: 2019-07-23T14:24:28-07:00
 draft: false
 emoji: true
 tags:
