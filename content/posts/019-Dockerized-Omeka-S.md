@@ -1,6 +1,6 @@
 ---
 title: A Dockerized Omeka-S for Development and Staging
-date: 2019-06-10T08:52:15-07:00
+date: 2019-06-10
 ---
 My fork of the [dodeeric/omeka-s-docker](https://github.com/dodeeric/omeka-s-docker) project can be found at [McFateM/omeka-s-docker](https://github.com/McFateM/omeka-s-docker), and it introduces a new `docker-compose.yml` file for spinning [Omeka-S](https://omeka.org/s/) up on any Dockerized server, and a Docksal `.docksal` directory to enable local development using `fin up`.
 
@@ -33,7 +33,7 @@ Project URL: http://omeka-s-docker.docksal:8080
 ```
 However, that statement is not entirely accurate in the case of Omeka-S.  The correct address will NOT require the `:8080` suffix.  So, the target address should be:
 ```
-http://omeka-s-docker.docksal:8080
+http://omeka-s-docker.docksal
 ```
 
 You should be able to start (`fin up`) and stop (`fin down`) this local project as often as needed.  Any data you add to Omeka in this mode should persist as long as you don't remove the Omeka container or reset Docker entirely.
