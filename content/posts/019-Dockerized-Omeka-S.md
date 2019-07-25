@@ -2,6 +2,10 @@
 title: A Dockerized Omeka-S for Development and Staging
 date: 2019-06-10
 ---
+| Update: 24-July-2019 |
+| --- |
+| The Docksal process outlined here is NOT working reliably.  See [this new post](https://static.grinnell.edu/blogs/McFateM/posts/030-dockerized-omeka-s-starting-over/) for updated info. |
+
 My fork of the [dodeeric/omeka-s-docker](https://github.com/dodeeric/omeka-s-docker) project can be found at [McFateM/omeka-s-docker](https://github.com/McFateM/omeka-s-docker), and it introduces a new `docker-compose.yml` file for spinning [Omeka-S](https://omeka.org/s/) up on any Dockerized server, and a Docksal `.docksal` directory to enable local development using `fin up`.
 
 | Note |

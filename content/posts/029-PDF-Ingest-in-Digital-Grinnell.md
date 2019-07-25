@@ -1,6 +1,6 @@
 ---
 title: PDF Ingest in Digital.Grinnell
-date: 2019-07-23T14:24:28-07:00
+date: 2019-07-24T16:56:44-07:00
 draft: false
 emoji: true
 tags:
@@ -10,7 +10,7 @@ tags:
     - FULL_TEXT
 ---
 
-A set of 21 PDF objects were ingested into _Digital.Grinnell's_ _Faculty Scholarship_ collection using [IMI](https://github.com/DigitalGrinnell/islandora_multi_importer) on 22-July-2019; unfortunately none of these PDFs contained OCR (optical character recognition) or "text recognition" data, so none of them generated a valid _FULL_TEXT_ datastream.  _FULL_TEXT_ datastreams are required to make PDF, and similar text content, searchable and discoverable in _Digital.Grinnell_.
+A set of 21 PDF objects were ingested into _Digital.Grinnell's_ _Faculty Scholarship_ collection using [IMI](https://github.com/DigitalGrinnell/islandora_multi_importer) on 22-July-2019; unfortunately none of these PDFs contained OCR (optical character recognition) or "text recognition" data, so none of them generated a valid FULL\_TEXT datastream.  FULL\_TEXT datastreams are required to make PDF, and similar text content, searchable and discoverable in _Digital.Grinnell_.
 
 In order to confirm that the lack of OCR was in fact the problem, I ran a little test on https://digital.grinnell.edu/islandora/object/grinnell:26702, one of the 21 objects.  
 
@@ -30,10 +30,10 @@ In my test I...
   - clicked `replace` in the `OBJ` datastream line,
   - then uploaded the new PDF file to _Digital.Grinnell_.
 
-Once the upload was complete the system automatically generated new derivatives for the object which now has a valid FULL_TEXT datastream, so this should make the content searchable and discoverable.
+Once the upload was complete the system automatically generated new derivatives for the object which now has a valid FULL\_TEXT datastream, so this should make the content searchable and discoverable.
 
 \*Note that if I had multiple PDFs to process I believe I could have selected the `In Multiple Files` option to save some time and OCR several PDFs in one operation.
 
-The lesson-to-be-learned here is to... `always run "Text Recognition" on a PDF BEFORE it is ingested into _Digital.Grinnell_.`  But, if you forget, this procedure in the hands of any _Digital.Grinnell_ admin, can save the day!  :smile:
+The lesson-to-be-learned here is to... `always run "Text Recognition" on a PDF BEFORE it is ingested into Digital.Grinnell.`  But, if you forget, this procedure in the hands of any _Digital.Grinnell_ admin, can save the day!  :smile:
 
 And that's a wrap.  Until next time...
