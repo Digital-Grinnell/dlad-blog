@@ -1,6 +1,6 @@
 ---
 title: "Dockerized Omeka-S: Starting Over"
-date: 2019-07-25T09:36:17-05:00
+date: 2019-07-25T09:54:49-05:00
 ---
 I've created a new fork of [dodeeric/omeka-s-docker](https://github.com/dodeeric/omeka-s-docker) at [DigitalGrinnell/omeka-s-docker](https://github.com/DigitalGrinnell/omeka-s-docker), and it introduces a new `docker-compose.yml` file for spinning [Omeka-S](https://omeka.org/s/) up locally, but WITHOUT Docksal (due to problems with the integration originally documented [here](https://static.grinnell.edu/blogs/McFateM/posts/019-dockerized-omeka-s/)).
 
@@ -80,7 +80,7 @@ Per the [documentation](https://docs.docksal.io/stack/extend-images/#docker-file
 # So that we wouldn't need to update this every time new version of Docksal cli releases
 FROM docksal/cli:2-php7.2
 ```
-In `./.docksal/docksal.env` I also changed the DOCROOT to `/var/www/html`.
+Also, in `./.docksal/docksal.env` I changed the DOCROOT to `/var/www/html`.
 
 Trying `fin up`...
 
