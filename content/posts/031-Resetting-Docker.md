@@ -1,9 +1,10 @@
 ---
 title: Resetting Docker
-date: 2019-07-25T09:53:15-05:00
+date: 2019-07-27
+lastmod: 2019-07-31T13:53:28-05:00
 tags:
   - Docker
-  - Reset
+  - reset
   - prune
 ---
 ## This command snippet needs a blog post of its own!
