@@ -1,7 +1,7 @@
 ---
 title: Resetting Docker
-date: 2019-07-27
-lastmod: 2019-07-31T13:53:28-05:00
+publishdate: 2019-07-27
+lastmod: 2019-07-31T13:59:46-05:00
 tags:
   - Docker
   - reset
