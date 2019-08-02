@@ -3,12 +3,18 @@
   <article>
     <h1>{{ .Title }}</h1>
     <ul class="posts-list">
-      {{ range $index, $element := $paginator.Pages }}
+      {{ range $index, $element := $paginator.Pages.ByLastmod.Reverse }}
         <li class="posts-list-item">
           <a class="posts-list-item-title" href="{{ .Permalink }}">{{ .Title }}</a>
           <span class="posts-list-item-description">
+            {{ $pub := .PublishDate.AddDate 0 0 1 }}
+            {{ $mod := .Lastmod }}
             {{ partial "icon.html" (dict "ctx" $ "name" "clock") }} {{ .ReadingTime }} min read -
-            Published: {{ .PublishDate.Format "Jan 2, 2006" }} - Modified: {{ .Page.Lastmod.Format "Jan 2, 2006 15:04" }}<br/>
+            {{ .PublishDate.Format "Jan 2, 2006" }}
+            {{ if $mod.After $pub }}
+              &nbsp;&nbsp;|&nbsp;&nbsp;Updated: {{ .Lastmod.Format "Jan 2, 2006 - 15:04" }}
+            {{ end }}
+            <br/>
             <span class="summary">{{ htmlUnescape .Summary }} ...</span>
           </span>
         </li>

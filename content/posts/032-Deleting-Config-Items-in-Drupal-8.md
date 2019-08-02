@@ -1,7 +1,7 @@
 ---
 title: Deleting Config Items in Drupal 8
 publishdate: 2019-07-30
-lastmod: 2019-07-31T22:52:21-05:00
+lastmod: 2019-07-31T22:53:06-05:00
 tags:
   - Drupal
   - config
