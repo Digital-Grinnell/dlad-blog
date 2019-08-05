@@ -1,25 +1,32 @@
 div.original {
   background-color: rgba(255, 255, 128, 0.25);
-  padding: 1em 2em !important; }
+  padding: 1em 2em !important;
+}
 
 html {
   line-height: 1.25;
-  font-weight: lighter; }
+  font-weight: lighter;
+}
 
 strong {
-  color: #dcff07; }
+  color: #dcff07;
+}
 
 h1, h2 {
-  line-height: 1.2; }
+  line-height: 1.2;
+}
 
 .app-header {
-  padding: 1.5em 2em; }
+  padding: 1.5em 2em;
+}
 
 .app-header-avatar {
-  border: .5rem solid #000000; }
+  border: 0.5rem solid #000000;
+}
 
 .page-item.active .page-link {
-  color: #DA291C; }
+  color: #DA291C;
+}
 
 header {
   height: 100%;
@@ -28,60 +35,73 @@ header {
   flex-direction: column;
   /* top to bottom */
   justify-content: space-between;
-  /* first item at start, last at end */ }
+  /* first item at start, last at end */
+}
 
 .copyright {
   font-size: 0.75em;
   line-height: 1;
-  text-align: center; }
+  text-align: center;
+}
 
 .site-rev {
   font-size: 0.75em;
   color: black;
-  line-height: 1; }
+  line-height: 1;
+}
 
 .site-description {
   color: black;
-  line-height: 1; }
+  line-height: 1;
+}
 
 .app-header-avatar {
   max-width: 10rem;
   max-height: 10rem;
   border-radius: 100%;
-  border: .25rem solid #000; }
+  border: 0.25rem solid #000;
+}
 
 .app-container {
-  max-width: 65rem; }
+  max-width: 65rem;
+}
 
 .summary {
-  color: #d3d3d3; }
+  color: #d3d3d3;
+}
 
 .breadcrumbs {
   font-size: 0.8rem;
   color: #DA291C;
-  border-bottom: 1px solid #DA291C; }
+  border-bottom: 1px solid #DA291C;
+}
 
 .sidebar-nav > a {
   border-right: 1px solid #000;
-  padding: 0 10px 0 5px; }
+  padding: 0 10px 0 5px;
+}
 
 .sidebar-nav > a:last-child {
-  border-right: 0; }
+  border-right: 0;
+}
 
 a {
-  color: #f09393; }
+  color: #f09393;
+}
 
 code {
-  font-family: helvetica; }
-
-pre code {
-  font-size: 0.75em; }
+  font-family: helvetica;
+  font-size: 95%;
+  color: #ce785d;
+}
 
 th, td {
   border: 1px solid gray;
-  padding: 1em; }
+  padding: 1em;
+}
 
 th {
-  padding-bottom: 0.5em; }
+  padding-bottom: 0.5em;
+}
 
 /*# sourceMappingURL=_extra.css.map */
