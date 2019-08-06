@@ -125,3 +125,9 @@ th, td {
 th {
   padding-bottom: 0.5em;
 }
+
+.post-content pre {
+  border-left: 1px solid rgba(255,255,255,.8);
+  padding-left: 1em;
+  margin-left: 10px;
+}
