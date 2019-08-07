@@ -1,7 +1,7 @@
 ---
 title: Building ISLE 1.2.0 (ld) for Local Development
 publishDate: 2019-08-05
-lastmod: 2019-08-05T13:27:41-07:00
+lastmod: 2019-08-07T09:43:25-07:00
 draft: false
 tags:
   - ISLE
@@ -75,16 +75,16 @@ origin	https://github.com/DigitalGrinnell/ISLE.git (fetch)
 origin	https://github.com/DigitalGrinnell/ISLE.git (push)
 ```
 
-## Step 3: Edit the `.env` File to change to the Local Environment
+## Step 3: Edit the `.env` File to Change to the Local Environment
 Followed to the letter.
 
-## Step 4: Create new users and passwords by editing `local.env`
+## Step 4: Create New Users and Passwords by Editing `local.env`
 Followed to the letter.
 
-## Step 5: Create new self-signed certs for your project
+## Step 5: Create New Self-signed Certs for Your Project
 Followed to the letter.  **Suggestion - It's not clear here that the certs are generated into `./config/proxy/ssl-certs` since the `./config/` prefix is NOT documented.  This is especially misleading since we are working in `./scripts/proxy/ssl-certs` at the time!**
 
-## Step 6: Download the ISLE images
+## Step 6: Download the ISLE Images
 Followed to the letter.
 
 ## Step 7. Launch Process
@@ -92,10 +92,12 @@ Followed to the letter.  **Suggestion - To determine when the process is finishe
 ```
 docker logs isle-apache-ld
 ```
-When complete this log dump should end with something like:
+When complete this log dump should end with a line something like this:
 ```
 [%timestamp%] [core:notice] [pid %%%] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
 ```
+
+## Step 8. Run Islandora / Drupal Site Install Script
 
 <!-- This is the end of the NEW document.  What follows is from the old document...
 
