@@ -1,16 +1,19 @@
 ---
 title: Building ISLE 1.2.0 (ld) for Local Development
 publishDate: 2019-08-05
-lastmod: 2019-08-07T09:43:25-07:00
+lastmod: 2019-08-09T16:36:50-05:00
 draft: false
+emoji: true
 tags:
   - ISLE
+  - v1.2.0
+  - local
 ---
 
-This post, a follow-up to [a previous post](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) is intended to chronicle my efforts to build a new ISLE v1.2.0 `local development` instance of Digital.Grinnell on my work-issued iMac, `MA8660`, and simultaneously on the library's new Dell laptop, `9890`.  
+This post, a follow-up to [a previous post](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) is intended to chronicle my efforts to build a new ISLE v1.2.0 `ld`, or `local development`, instance of Digital.Grinnell on my work-issued MacBook, `ma7053`.  
 
 ## Goal Statement
-The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) at https://github.com/DigitalGrinnell/ISLE, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu.
+The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) at https://github.com/DigitalGrinnell/dg-isle, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu.
 
 ## Using This Document
 There are just a couple of notes regarding this document that I'd like to pass along to make it more useful.
@@ -32,17 +35,159 @@ There are just a couple of notes regarding this document that I'd like to pass a
 ## Opening a Shell in the Apache Container
 This is something I find myself doing quite often during ISLE configuration, so here's a reminder of how I generally do this...
 ```
-╭─markmcfate@ma8660 ~/Projects/ISLE ‹ruby-2.3.0› ‹ld*›
+╭─markmcfate@ma7053 ~/Projects/dg-isle ‹ruby-2.3.0› ‹ld*›
 ╰─$ docker exec -it isle-apache-ld bash
 root@9bec4edd3964:/# cd /var/www/html
 root@9bec4edd3964:/var/www/html#
 ```
 | Workstation Commands |
 | --- |
-| cd ~/Projects/ISLE <br/> docker exec -it isle-apache-ld bash |
+| cd ~/Projects/dg-isle <br/> docker exec -it isle-apache-ld bash |
+
+# Installing per Born Digital's install-local-new.md
+This is first-and-foremost a `local development` copy of ISLE, but with considerable Digital Grinnell customization, so I'm following the process outlined in the project's `./docs/install/install-local-new.md`.  References to `Step X` that follow refer to corresponding sections of https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md.  Each section or "Step" listed below is also a link back to the corresponding section of the canonical document.
+
+## [Step 1: Edit the `/etc/hosts` File](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-1-edit-etchosts-file)
+
+In this step I found it necessary to be very diligent about editing my `/etc/hosts` file, even though I've done this a thousand times (and that's not exaggerated).  Why?  Because every time I update `Docker Desktop for Mac`, the hideous thing adds a new `127.0.0.1` entry to the bottom of my `/etc/hosts` file, effectively overriding my own additions.
+
+## [Step 2: Setup Git for the ISLE Project](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-2-setup-git-for-the-isle-project)
+
+I choose **dg** as my value for `yourprojectnamehere`, and since this step calls for creation of two **private** repos, I made mine:
+
+  - https://github.com/McFateM/dg-isle
+  - https://github.com/McFateM/dg-islandora
+
+Then I cloned the empty https://github.com/McFateM/dg-isle to `ma7053` and activated the `ISLE-v1.2.0-dev` branch like so:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects <br/> git clone https://github.com/McFateM/dg-isle.git <br/> cd dg-isle |
+
+Next, I had to deviate from the documentation just a bit.  The docs call for creating an `icg-upstream` remote for the new local repo, then doing `git fetch icg-upstream`. However, in my case I needed to create an alternate "upstream" remote, fetch from it, and ultimately work with the `ISLE-v1.2.0-dev` branch of it, like so:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects/dg-isle <br/> git remote add icg-upstream https://github.com/Islandora-Collaboration-Group/ISLE.git <br/> git remote add bd-upstream https://github.com/Born-Digital-US/ISLE.git <br/> git fetch bd-upstream <br/> git checkout -b ISLE-v1.2.0-dev <br/>  git pull bd-upstream ISLE-v1.2.0-dev <br/> git push -u origin ISLE-v1.2.0-dev <br/> atom . |
+
+The final command in that sequence simply opened a copy of the local `ISLE-v1.2.0-dev` project files in my [Atom](https://atom.io) editor.
+
+## [Step 3: Edit the `.env` File to Change to the Local Environment](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-3-edit-the-env-file-to-change-to-the-local-environment)
+
+Since this is a short-lived, local, development project, I have no reservations about sharing this with you.  So, as instructed I modified `.env` to read as follows:
+
+```
+#### Activated ISLE environment
+# To use an environment other than the default Demo, please change values below
+# from the default Demo to one of the following: Local, Test, Staging or Production
+# For more information, consult https://islandora-collaboration-group.github.io/ISLE/install/install-environments/
+
+COMPOSE_PROJECT_NAME=dg_local
+BASE_DOMAIN=dg.localdomain
+CONTAINER_SHORT_ID=ld
+COMPOSE_FILE=docker-compose.local.yml
+```
+
+## [Step 4: Create New Users and Passwords by Editing `local.env`](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-4-create-new-users-and-passwords-by-editing-localenv)
+
+No secrets here either... a copy of [my customized `local.env` file in this gist](https://gist.github.com/McFateM/7af92bb51a239d1a36df06a4fa629a94).  
+
+The `install-local-new.md` document is deserving of a couple comment here:
+
+  - I like this document so much better now that config file line number references have been PURGED and replaced with contextual references.  :smile:
+  - Hint: If you do as I did, and use [Atom](https://atom.io) or some other handy editor of your choice, when you edit these files it's easy to let auto-complete do the typing for you, and that's really nice when you have to repeat long strings, like a 26-character password, or a 45-character hash salt. :grin:
+
+One change that I would still like to see... be consistent and change the headings in `install-local-new.md` to "Title Case", as I have done in this blog post.
+
+## [Step 5: Create New Self-signed Certs for Your Project](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-5-create-new-self-signed-certs-for-your-project)
+
+As before, no secrets here, so there's a copy of [my customized `local.sh` file in this gist](https://gist.github.com/McFateM/c5def81467d2dfc9c378c4637a690104).  
+
+## [Step 6: Download the ISLE Images](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-6-download-the-isle-images)
+
+Only comment here is that **you must navigate to your project folder, like `cd ~/Projects/dg-isle`, before you do** `docker-compose pull`.  The command will not work properly in any other directory!
+
+## [Step 7: Launch Process](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-7-launch-process)
+
+Same comment here as above, **you must navigate to your project folder, like `cd ~/Projects/dg-isle`, before you do** `docker-compose up -d`.  The command will not work properly in any other directory!
+
+## [Step 8: Run Islandora / Drupal Site Install Script](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-8-run-islandora--drupal-site-install-script)
+
+Ok, fingers crossed for good luck. :v:  I left `docker-compose.local.yml` just as it was, right out of the box, and did almost as instructed:
+
+```
+time docker exec -it isle-apache-ld bash /utility-scripts/isle_drupal_build_tools/isle_islandora_installer.sh
+```
+
+Note the addition of the `time` command out front; that was put there to record how long this process takes.  My `time` results... `0.22s user 0.31s system 0% cpu 28:01.00 total`.
+
+## [Step 9: Test the Site](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-9-test-the-site)
+
+Woot!  It works! :sparkles::thumbsup::sparkles: No funky errors this time.
+
+For the record (remember, no secrets here) my admin username and password for the site are: `administrator` and `twentysixalphacharactersnow`.  
+
+## [Step 10: Ingest Sample Objects](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-10-ingest-sample-objects)
+
+I followed the instructions to-the-letter and ended up populating my local repository with 2 basic images, 1 large image, 1 video, and 1 PDF.  All of the objects ingested and behaved as-expected.
+
+Next, I added the `Islandora Simple Search` block as instructed, and ran some search tests.  :ballot_box_with_check: It works!
+
+## [Step 11: Check-in the Newly Created Drupal / Islandora Site Code to a Git Repository](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-11-check-in-the-newly-created-drupal--islandora-site-code-into-a-git-repository)
+
+OK, I have to admit this "step" was confusing at first, but it works and seems to make sense now that I've completed it.  I'll spare you the output details, because there was a LOT of it, but here is the exact command sequence I used...
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects/dg-isle <br/> git checkout -b ISLE-v1.2.0-dev <br/> cd data/apache/html <br/> git init <br/> git add . <br/> git commit -m "Created new dg.localdomain site" <br/> git remote add origin https://github.com/McFateM/dg-islandora.git <br/> git push -u origin master |
+
+## Something Missing Here?
+
+Step 11 is essentially the end of the `install-local-new.md` process, but it left me with a local ISLE project, namely `~/Projects/dg-isle`, with the following Git status and remotes...
+
+```
+╭─markmcfate@ma7053 ~/Projects/dg-isle ‹ruby-2.3.0› ‹ISLE-v1.2.0-dev*›
+╰─$ git status
+On branch ISLE-v1.2.0-dev
+Your branch is up to date with 'origin/ISLE-v1.2.0-dev'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   .env
+	modified:   config/apache/settings_php/settings.local.php
+	modified:   config/proxy/traefik.local.toml
+	modified:   local.env
+	modified:   scripts/proxy/ssl-certs/local.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	config/proxy/ssl-certs/dg.localdomain.key
+	config/proxy/ssl-certs/dg.localdomain.pem
+
+no changes added to commit (use "git add" and/or "git commit -a")
+╭─markmcfate@ma7053 ~/Projects/dg-isle ‹ruby-2.3.0› ‹ISLE-v1.2.0-dev*›
+╰─$ git remote -v
+bd-upstream	https://github.com/Born-Digital-US/ISLE.git (fetch)
+bd-upstream	https://github.com/Born-Digital-US/ISLE.git (push)
+icg-upstream	https://github.com/Islandora-Collaboration-Group/ISLE.git (fetch)
+icg-upstream	https://github.com/Islandora-Collaboration-Group/ISLE.git (push)
+origin	https://github.com/McFateM/dg-isle.git (fetch)
+origin	https://github.com/McFateM/dg-isle.git (push)
+```
+
+This is a local ISLE with no secrets, so wouldn't it be prudent to add all of these changes (`git add -A`), commit them (`git commit -m "Completed install-local-new process"`), and push them to `origin` (`git push origin ISLE-v1.2.0-dev`)?
+
+I hope that was the right thing to do, because I just did it.  :heavy_exclamation_mark:
+
+<!-- This is the end of the NEW document.  What follows is from the old document...
+
+<br/> git checkout -b ISLE-v1.2.0-dev
 
 ## A Bit of History
-I've already got two forks of the [Islandora Collaboration Group's ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) so it's not practical to create another wihtout some changes.  So, the first step in my process is rename my [old fork](https://github.com/DigitalGrinnell/ISLE) to it's new identity: https://github.com/DigitalGrinnell/ISLE-Deprecated-Fork, and clone that to `~/Projects/ISLE-Deprecated-Fork` on `MA8660` for safe-keeping.  I also renamed my existing `~/Projects/ISLE` folder on `MA8660` to `~/Projects/ISLE-Archived-0805` to get it out of the way.
+I've already got two forks of the [Islandora Collaboration Group's ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) so it's not practical to create another withtout some changes.  So, the first step in my process is rename my [old fork](https://github.com/DigitalGrinnell/ISLE) to it's new identity: https://github.com/DigitalGrinnell/ISLE-Deprecated-Fork, and clone that to `~/Projects/ISLE-Deprecated-Fork` on `MA8660` for safe-keeping.  I also renamed my existing `~/Projects/ISLE` folder on `MA8660` to `~/Projects/ISLE-Archived-0805` to get it out of the way.
 
 ## Creating a New Fork
 I subsequently deleted https://github.com/DigitalGrinnell/ISLE-Deprecated-Fork so that I could make a fresh new fork, this time from https://github.com/Born-Digital-US/ISLE, where the `ISLE-v1.2.0-dev` branch can be found, to https://github.com/Born-Digital-US/ISLE.  This is the code and documentation that I'll be working from now.
@@ -99,7 +244,6 @@ When complete this log dump should end with a line something like this:
 
 ## Step 8. Run Islandora / Drupal Site Install Script
 
-<!-- This is the end of the NEW document.  What follows is from the old document...
 
 I typically use the following command stream to clean up any Docker cruft before I begin anew.  Note: Uncomment the third line ONLY if you want to delete images and download new ones.  If you do, be patient, it could take several minutes depending on connection speed.
 
