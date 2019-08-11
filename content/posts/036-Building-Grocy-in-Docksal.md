@@ -1,7 +1,7 @@
 ---
 title: "Building Grocy in Docksal"
 publishDate: 2019-08-08
-lastmod: 2019-08-11T08:31:45-05:00
+lastmod: 2019-08-11T08:34:34-05:00
 tags:
   - Grocy
   - Docker
