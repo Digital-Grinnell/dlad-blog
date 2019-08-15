@@ -1,7 +1,7 @@
 blog/master---
 title: Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development
 publishDate: 2019-08-13
-lastmod: 2019-08-14T18:20:04-05:00
+lastmod: 2019-08-14T23:01:40-05:00
 draft: false
 emojiEnable: true
 tags:
@@ -102,33 +102,7 @@ So, no significant differences here. Yay!
 
 Next, I compared the two files, one-at-a-time, using `Atom` and its `Split Diff` package.  There were very few differences in `foxmToSolr.xslt` so it was easy to merge. I took the significant differences in the `prod` copy and merged them into the `ld` copy.  I did the same with `schema.xml`, but it was an entirely different beast.  There were 34 sections of differences, and in many cases it was not clear if our existing customizations should be merged. As a result, **the changes I made in `schema.xml`, and some I did NOT make, will need to be carefully re-evaluated as this local migrate "test" proceeds**.
 
-**Now things get confusing**...
-
-I followed the documented "diff and merge" process with:
-
-| Workstation Commands |
-| --- |
-| cd ~/Projects/ISLE <br/> git checkout -b diff-and-merge-customizations <br/> mkdir -p config/solr <br/> cp -f diff-and-merge-customizations/ld/schema.xml config/solr/. <br/> mkdir -p config/fedora/gsearch <br/> cp -fr diff-and-merge-customizations/ld/islandora_transforms config/fedora/gsearch/. <br/> cp -f diff-and-merge-customizations/ld/foxmlToSolr.xslt config/fedora/gsearch/ |
-
-Next, I returned to `Atom` and used it to edit my `docker-compose.local.yml` file as instructed, with additions to the `solr` and `fedora` volumes sections like so:
-
-```
-solr:
-  ...
-  volumes:
-    - isle-solr-data:/usr/local/solr
-    - ./config/solr/schema.xml:/usr/local/solr/collection1/conf/schema.xml
-```
-
-```
-fedora:
-  ...
-  volumes:
-    ...
-    - isle-fedora-XACML:/usr/local/fedora/data/fedora-xacml-policies
-    - ./config/fedora/gsearch/islandora_transforms:/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms
-    - ./config/fedora/gsearch/foxmlToSolr.xslt:/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt
-```
+At this point I've saved my "merged" customizations in `~/diff-and-merge-customizations/ld` until `Step 2a`, below.
 
 Phew, that was a lot of Step 0!
 
@@ -137,13 +111,37 @@ Easy peasy, relatively speaking.  :smile:
 
 ## [Step 2: Setup Git for the ISLE Project](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-migrate.md#step-2-setup-git-for-the-isle-project)
 
-I have to confess, I'm already confused reading this.  In the first bullet there's a statement: "create this new empty git repositories" followed by a single sub-bullet, _i_.  Is there going to be more than one empty repository, because I can't find _ii_ anywhere?
+OK, I already have two private Github repositories...
+  - https://gitubh.com/McFateM/dg-isle for my customized copy of the ISLE project, and
+  - https://github.com/McFateM/dg-islandora for my customized copy of the Drupal and Islandora code.
 
-In any case, I think I've already satisified the reqiurements of `Step 2` with [my `dg-isle` project repository from `install-local-new.md`](https://github.com/McFateM/dg-isle).
+However, in my case neither of these repositories is "complete" because they are products of the `install-local-new.md` process, so my focus in this step will be to get these two repos in line with the Git workflow that's being established.
+
+Regarding the `dg-isle` repo...
+
+  - I cloned it to my local workstation and set things up as directed with:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects <br/> git clone https://github.com/McFateM/dg-isle.git <br/> cd dg-isle <br/> git remote add icg-upstream https://github.com/Islandora-Collaboration-Group/ISLE.git <br/> git fetch icg-upstream <br/> git pull icg-upstream master <br/> git push -u origin master |
+
+## [Step 2a: Add Customizations from `Step 0`](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-migrate.md#step-2a-add-customizations-from-step-0)
+
+Before executing the documented commands I elected to create a new branch in my local `dg-isle` repo, so my workflow was this:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects/dg-isle <br/> git checkoput -b solr-and-gsearch-customizations <br/> mkdir -p ./config/solr <br/> mkdir -p ./config/fedora/gsearch <br/> cp -f ~/diff-and-merge-customizations/ld/schema.xml ./config/solr/ <br/> cp -f ~/diff-and-merge-customizations/ld/foxmlToSolr.xslt ./config/fedora/gsearch/ <br/> cp -fr ~/diff-and-merge-customizations/ld/islandora_transforms ./config/fedora/gsearch/ |
+
+Next, I edited `docker-compose.local.yml` as prescribed, and then saved it all like so:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects/dg-isle <br/> git checkout solr-and-gsearch-customizations <br/> git add -A <br/> git commit -m "Customizations from Step 2a" <br/> git push --set-upstream origin solr-and-gsearch-customizations |
 
 ## [Step 3. `git clone` the Production Drupal Site Code](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-migrate.md#step-3-git-clone-the-production-drupal-site-code)
 
-OK, having just read this section I think I see what the "missing" _ii_ reference in `Step 2` needs to be. This step assumes that I already have an Islandora/Drupal code repository with all my customization in it, I don't, but I know what's needed and how to get there.  That repo, in my case, is https://github.com/McFateM/dg-islandora, but my copy isn't complete yet.
+OK, this section will deal with my Islandora/Drupal code repository with all my customization in it, in my case that's https://github.com/McFateM/dg-islandora, but my copy isn't complete yet.
 
 ...be right back...
 
