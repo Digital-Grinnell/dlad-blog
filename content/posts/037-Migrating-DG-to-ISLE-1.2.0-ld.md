@@ -1,7 +1,7 @@
 blog/master---
 title: Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development
 publishDate: 2019-08-13
-lastmod: 2019-08-14T16:53:57-05:00
+lastmod: 2019-08-14T18:20:04-05:00
 draft: false
 emojiEnable: true
 tags:
@@ -17,7 +17,7 @@ This post is a follow-up to [previous post 034](https://static.grinnell.edu/blog
 The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) at https://github.com/DigitalGrinnell/dg-isle, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu.
 {{% /original %}}
 
-As before, this effort will involve an `ld`, or `local development`, instance of Digital.Grinnell on my work-issued Mac Mini, `ma8066`. Unlike my previous work, this instance will follow the guidance of a different document, specifically [`install-local-migrate.md`](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.2.0/docs/install/install-local-migrate.md).
+As before, this effort will involve an `ld`, or `local development`, instance of Digital.Grinnell on one of my Mac workstations. Unlike my previous work, this instance will follow the guidance of a different document, specifically [`install-local-migrate.md`](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.2.0/docs/install/install-local-migrate.md).
 
 # Fork Synchronization
 Before beginning this process I need to get my Github environment updated by synchronizing my ISLE fork with the canonical copy.  I followed [this workflow](https://gist.github.com/CristinaSolana/1885435) to do so, like this:
@@ -28,8 +28,8 @@ Before beginning this process I need to get my Github environment updated by syn
 
 Nice!  In case you haven't seen it before, the last command in that sequence, `atom .`, simply opens my `Atom` editor to the new local instance of the `ISLE` project.
 
-# Installing per ISLE's `install-local-migratrion.md`
-This is first-and-foremost a `local development` copy of ISLE, but with considerable Digital Grinnell customization, so I'm following the process outlined in the project's `./docs/install/install-local-migration.md`.  References to `Step X` that follow refer to corresponding sections of https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md.  Each section or "Step" listed below is also a link back to the corresponding section of the canonical document.
+# Installing per ISLE's `install-local-migrate.md`
+This is first-and-foremost a `local development` copy of ISLE, but with considerable Digital Grinnell customization, so I'm following the process outlined in the project's `./docs/install/install-local-migrate.md`.  References to `Step X` that follow refer to corresponding sections of https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md.  Each section or "Step" listed below is also a link back to the corresponding section of the canonical document.
 
 ## [Step 0: Copy Production Data to Your Local](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#step-0-copy-production-data-to-your-local)
 
