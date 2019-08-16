@@ -1,7 +1,7 @@
 blog/master---
 title: Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development
 publishDate: 2019-08-13
-lastmod: 2019-08-14T23:01:40-05:00
+lastmod: 2019-08-16T10:40:15-05:00
 draft: false
 emojiEnable: true
 tags:
@@ -141,9 +141,11 @@ Next, I edited `docker-compose.local.yml` as prescribed, and then saved it all l
 
 ## [Step 3. `git clone` the Production Drupal Site Code](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-migrate.md#step-3-git-clone-the-production-drupal-site-code)
 
-OK, this section will deal with my Islandora/Drupal code repository with all my customization in it, in my case that's https://github.com/McFateM/dg-islandora, but my copy isn't complete yet.
+OK, this section will deal with my Islandora/Drupal code repository with all my customization in it, in my case that's https://github.com/McFateM/dg-islandora, but my copy isn't complete yet, so...
 
-...be right back...
+# Post 038 - Building My `dg-islandora` Code Repository
+
+I'm creating a new blog post that will become [038-Building-My-`dg-islandora`-Code-Repository](https://static.grinnell.edu/blogs/McFateM/posts/038-building-my-dg-islandora-code-repository/).  It will combine elements of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) with [post 034](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) to create a "customized" local ISLE v1.2.0 instance with features of Digital.Grinnell.   
 
 <!-- The old post 034 info is below...
 
