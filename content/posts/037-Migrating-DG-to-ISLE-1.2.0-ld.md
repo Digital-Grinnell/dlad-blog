@@ -1,7 +1,7 @@
-blog/master---
+---
 title: Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development
 publishDate: 2019-08-13
-lastmod: 2019-08-16T10:44:34-05:00
+lastmod: 2019-08-16T10:51:41-05:00
 draft: false
 emojiEnable: true
 tags:
