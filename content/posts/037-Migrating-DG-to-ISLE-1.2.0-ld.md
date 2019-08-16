@@ -1,7 +1,7 @@
 blog/master---
 title: Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development
 publishDate: 2019-08-13
-lastmod: 2019-08-16T10:42:47-05:00
+lastmod: 2019-08-16T10:44:34-05:00
 draft: false
 emojiEnable: true
 tags:
@@ -147,7 +147,7 @@ OK, this section will deal with my Islandora/Drupal code repository with all my 
 
 I'm creating a new blog post that will become [038-Building-My-`dg-islandora`-Code-Repository](https://static.grinnell.edu/blogs/McFateM/posts/038-building-my-dg-islandora-code-repository/).  It will combine elements of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) with [post 034](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) to create a "customized" local ISLE v1.2.0 instance with features of Digital.Grinnell.
 
-Once that proces is complete, I'll return here to continue `Step 3`.  Until then...
+Once that process is complete, I'll return here to continue `Step 3`.  Until then...
 
 <!-- The old post 034 info is below...
 
