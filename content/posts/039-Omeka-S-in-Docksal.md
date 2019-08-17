@@ -1,27 +1,97 @@
 ---
-title: "Dockerized Omeka-S: Starting Over"
-publishDate: 2019-07-25
-lastmod: 2019-08-17T07:35:09-05:00
+title: Omeka-S in Docksal
+publishDate: 2019-08-17
+lastmod: 2019-08-17T11:14:41-05:00
 tags:
   - Omeka-S
-  - Docker
   - Docksal
   - fin
-  - docker-compose
 ---
 
-| Attention! |
+Please pay no attention to the [Docksal](https://docksal.io) portions of my previous [Omeka-S](https://omeka.org/ss) blog [post 030](https://static.grinnell.edu/blogs/McFateM/posts/030-dockerized-omeka-s-starting-over/)... it is fatally flawed! It doesn't "properly" build an Omeka-S environment in Docksal, but that is what this post will attempt to do.
+
+As mentioned in earlier posts, I've created a fork of [dodeeric/omeka-s-docker](https://github.com/dodeeric/omeka-s-docker) at [DigitalGrinnell/omeka-s-docker](https://github.com/DigitalGrinnell/omeka-s-docker), and I'll be working in a new `docksal-proper` branch of that work here.
+
+## Proper "Docksal-ization"
+In this post I'm going to try to do this "properly", by following the guidance that's specific to the [Configuration: Dockerfile](https://docs.docksal.io/stack/extend-images/#docker-file) portion of the Docksal documentation.  Essentially I'm going to "borrow" the key elements of the [dodeeric/omeka-s-docker Dockerfile](https://github.com/dodeeric/omeka-s-docker/blob/master/Dockerfile) and integrate them into Docksal's `cli` service in similar fashion to [this example](https://docs.docksal.io/stack/extend-images/#docker-file).
+
+## Creating a New `cli` Dockerfile
+The first, and most significant, step in this process was to do as the documentation says and create a new `Dockerfile` to "extend" `cli`.  I did this like so:
+
+| Workstation Commands |
 | --- |
-| The Docksal portion of this discussion DOES NOT WORK PROPERLY or CONSISTENTLY.  Don't use this with Docksal (`fin` commands).  Have a look at [post 039](https://static.grinnell.edu/blogs/McFateM/posts/039-omeka-s-in-docksal/) instead! |
+| cd ~/Projects/omeka-s-docker; <br/> git checkout -b docksal-proper <br/> mkdir -p .docksal/services/cli <br/> cp -f Dockerfile ./docksal/services/cli/Dockerfile <br/> atom . |
 
-I've created a new fork of [dodeeric/omeka-s-docker](https://github.com/dodeeric/omeka-s-docker) at [DigitalGrinnell/omeka-s-docker](https://github.com/DigitalGrinnell/omeka-s-docker), and it introduces a new `docker-compose.yml` file for spinning [Omeka-S](https://omeka.org/s/) up locally, but WITHOUT Docksal (due to problems with the integration originally documented [here](https://static.grinnell.edu/blogs/McFateM/posts/019-dockerized-omeka-s/)).
+In case you haven't seen me do this before, that last `atom .` command simply opens the entire project directory in my [Atom](https://atom.io) editing environment.  Slick.  Next step was to edit my new `Dockerfile` and experiment with it a bit.  At the very top of the file I made one essential change, replacing this:
 
-System requirements for local development of this project currently include:
+```
+FROM php:apache
 
-- [Docker (Community Edition)](https://docs.docker.com/install/)
-- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+# Omeka-S web publishing platform for digital heritage collections (https://omeka.org/s/)
+# Initial maintainer: Oldrich Vykydal (o1da) - Klokan Technologies GmbH  
+MAINTAINER Eric Dodemont <eric.dodemont@skynet.be>
+```
+...with this:
+```
+FROM docksal/cli:2-php7.2
+# FROM php:apache
 
-## Local Development and Testing
+# Omeka-S web publishing platform for digital heritage collections (https://omeka.org/s/)
+# Initial maintainer: Oldrich Vykydal (o1da) - Klokan Technologies GmbH  
+# Dockerized by: Eric Dodemont <eric.dodemont@skynet.be>
+MAINTAINER Mark McFate <mcfatem@grinnell.edu>
+```
+
+I let the rest of the `Dockerfile` stand as-is, just to see what will, or will not, happen.  Since the project already has a `.docksal/docksal.yml` with a history of changes, I moved that to a new `.docksal/out-of-the-way/` directory just to get a fresh start, like so:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects/omeka-s-docker; <br/> git checkout docksal-proper <br/> mkdir -p .docksal/out-of-the-way <br/> mv -f ./.docksal/docksal.yml .docksal/out-of-the-way/ |
+
+## First Launch
+Let's see what happens... `fin up`!
+
+The outcome was not too bad, not too bad at all.  From the `fin up` output I gleaned this significant (?) info:
+
+```
+Pulling db (docksal/mysql:5.6-1.4)...
+Pulling cli (docksal/cli:2.6-php7.2)...
+
+Creating omeka-s-docker_cli_1 ... done
+Creating omeka-s-docker_db_1  ... done
+Creating omeka-s-docker_web_1 ... done
+```
+I'm not sure if those versions of things will work, but they should not be hard to upgrade if necessary.  I am *encouraged* by the fact that we have only the 3 "standard" Docksal containers running, with no mysterious "extras".  :smile:
+
+When I visited the prompted address in my browser, the `install` script came right up, but produced this output:
+
+```
+Some installation requirements were not satisfied.
+
+    "/var/www/html/files" is not a writable directory.
+    An exception occured in driver: SQLSTATE[HY000] [1045] Access denied for user 'omeka'@'192.168.160.2' (using password: YES)
+```
+
+I'm not surprised by that first issue... and it should be easy to resolve.  The 2nd issue I have seen before, and I think all that's needed are some proper database username and password settings; that can happen in the `docksal.yml` file.
+
+## Second Launch
+So, based on that first experience let's bring back the lean `docksal.yml` file from the old `docksal` branch with just database credentials in it.  
+
+
+So, I think the reported `"/var/www/html/files" is not a writable directory` message is because the new `Dockerfile` does this:
+
+```
+...
+&& rm -Rf /var/www/html/files/ \
+&& ln -s /var/www/html/volume/files/ /var/www/html/files \
+...
+```
+This basically blows away the "default" `files` directory and replaces it with a symbolic link, so the directory that it links to has to exist, and it exists as part of the `omeka:` Docker volume created above.
+
+Let's see if this will fly... `fin up`!
+
+
+<!--
 
 If your workstation is able to run the aforementioned required components then the following steps can be used to launch and develop a local instance.  Assuming your workstation is Linux or a Mac, you'll need to edit your `/etc/hosts` with an editor of your choice, and `sudo` privileges might be required.  For me this was...
 
@@ -156,3 +226,5 @@ Then a new `fin up` and http://omeka-s-docker.docksal successfully **opened the 
 I'm pushing the latest changes to the `docksal` branch of https://github.com/DigitalGrinnell/omeka-s-docker NOW!
 
 NOT a wrap.  As Arnold Schwarzenegger would say: "I'll be back!"
+
+-->
