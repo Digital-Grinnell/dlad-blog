@@ -22,6 +22,14 @@ div.original {
 
 // The rest of the custom CSS is here.
 
+table {
+  margin-top: 5px;
+}
+
+.post-meta {
+  line-height: 1.5em;
+}
+
 html {
   line-height: 1.25;   // replaces old value of 1.6 ...too much
   font-weight: lighter;

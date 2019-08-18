@@ -1,7 +1,7 @@
 ---
 title: "Dockerized Omeka-S: Starting Over"
 publishDate: 2019-07-25
-lastmod: 2019-08-18T12:51:21-05:00
+lastmod: 2019-08-18T15:43:48-05:00
 tags:
   - Omeka-S
   - Docker
@@ -10,7 +10,7 @@ tags:
 
 | Attention! |
 | --- |
-| The Docksal portion of this discussion DOES NOT WORK PROPERLY so I've hidden it from public view.  Don't use this project with Docksal (`fin` commands) until further notice! |
+| The Docksal portion of this discussion DOES NOT WORK PROPERLY so I've hidden it from public view.  **Don't use this project with Docksal (`fin` commands) until further notice!** |
 
 I've created a new fork of [dodeeric/omeka-s-docker](https://github.com/dodeeric/omeka-s-docker) at [DigitalGrinnell/omeka-s-docker](https://github.com/DigitalGrinnell/omeka-s-docker), and it introduces a new `docker-compose.yml` file for spinning [Omeka-S](https://omeka.org/s/) up locally, but WITHOUT Docksal (due to problems with the integration originally documented [here](https://static.grinnell.edu/blogs/McFateM/posts/019-dockerized-omeka-s/)).
 
