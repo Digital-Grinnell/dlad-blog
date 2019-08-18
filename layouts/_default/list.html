@@ -1,5 +1,5 @@
 {{ define "main" }}
-  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts") }}
+  {{ $paginator := .Paginate (where .Data.Pages "Type" "posts").ByLastmod.Reverse }}
   <article>
     <h1>{{ .Title }}</h1>
     <ul class="posts-list">
