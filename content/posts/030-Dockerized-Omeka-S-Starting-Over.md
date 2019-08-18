@@ -1,18 +1,16 @@
 ---
 title: "Dockerized Omeka-S: Starting Over"
 publishDate: 2019-07-25
-lastmod: 2019-08-17T07:35:09-05:00
+lastmod: 2019-08-18T12:51:21-05:00
 tags:
   - Omeka-S
   - Docker
-  - Docksal
-  - fin
   - docker-compose
 ---
 
 | Attention! |
 | --- |
-| The Docksal portion of this discussion DOES NOT WORK PROPERLY or CONSISTENTLY.  Don't use this with Docksal (`fin` commands).  Have a look at [post 039](https://static.grinnell.edu/blogs/McFateM/posts/039-omeka-s-in-docksal/) instead! |
+| The Docksal portion of this discussion DOES NOT WORK PROPERLY so I've hidden it from public view.  Don't use this project with Docksal (`fin` commands) until further notice! |
 
 I've created a new fork of [dodeeric/omeka-s-docker](https://github.com/dodeeric/omeka-s-docker) at [DigitalGrinnell/omeka-s-docker](https://github.com/DigitalGrinnell/omeka-s-docker), and it introduces a new `docker-compose.yml` file for spinning [Omeka-S](https://omeka.org/s/) up locally, but WITHOUT Docksal (due to problems with the integration originally documented [here](https://static.grinnell.edu/blogs/McFateM/posts/019-dockerized-omeka-s/)).
 
@@ -46,6 +44,114 @@ docker-compose up -d
 ```
 
 The `docker-compose up -d` command in this sequence should launch the project locally.  Once it is complete you should be able to open any browser and visit `http://omeka.localdomain` to work with Omeka-S, or `http://pma.localdomain` if you want PHPMyAdmin.
+
+## Adding Solr
+We don't need `gramps` in our configuration, but we do need `Solr`, so first step is to modify your `/etc/hosts` file entry to look like this:
+```
+### For omeka-s-docker
+127.0.0.1    localhost omeka.localdomain pma.localdomain solr.localdomain
+```
+`Solr` can easily be added to the current stack with some simple changes/additions in the `docker-compose.yml` file.  I gleaned my changes largely from the `Using Docker Compose` example at https://docs.docker.com/samples/library/solr/.
+
+## A New Branch
+Next, we should create a new branch of our repo to work in, and since `Docksal` won't be a part of the new work I'm going to take a bold step and remove it from the branch, like so:
+```
+cd ~/Projects/omeka-s-docker
+git checkout master                 # This is just a precaution
+git checkout -b master-with-solr
+rm -fr .docksal
+atom .
+```
+
+The new `docker-compose.yml` section for `Solr` looks like this:
+
+```
+  ## Adding solr per `Using Docker Compose` example at https://docs.docker.com/samples/library/solr/
+  solr:
+    image: solr
+    restart: always
+    networks:
+      - network1
+    # ports:           # MAM: `ports` is not required since we have traefik.port mapped to Solr's 8983 below.
+    #   - "8983:8983"
+    volumes:
+      - solr-data:/opt/solr/server/solr/mycores
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - mycore
+    labels:
+      - "traefik.backend=solr"
+      - "traefik.port=8983"
+      - "traefik.frontend.rule=Host:solr.localdomain"
+```
+
+## Removing Gramps
+I did a `docker-compose up -d` and see that this stack, complete with `Solr`, appears to be working nicely now.  So I'm taking steps to remove all references to `Gramps`, which is no longer needed here.  That leaves us with these comments and explanatory text gleaned from the top of the new `docker-compose.yml` file:
+
+```
+## This is a modified copy of dodeeric's original docker-compose-traefik.yml with
+## localhost addresses of:
+##
+##   - omeka.localdomain
+##   - pma.localdomain
+##   - solr.localdomain
+##
+## Note that you can also see the Traefik dashboard at http://omeka.localdomain:8080
+##
+## These addresses need to be defined/enabled locally with an entry in /etc/hosts of:
+##
+##    ### For omeka-s-docker
+##    127.0.0.1    localhost omeka.localdomain pma.localdomain solr.localdomain
+##
+```
+
+## Customizing the Image and Rebuilding
+Time to add the `centerrow-master` theme changes held in https://github.com/DigitalGrinnell/centerrow.  So, I created a new .zip file from the aforementioned repo, and saved that to my local project as `centerrow-master.zip`, then I modified the project's `Dockerfile` to pull this .zip in place of the `centerrow-v1.4.0.zip` copy. To take advantage of that change I needed to build a new Docker image and employ it going forward.  After making changes to the `Dockerfile` and `docker-compose.yml` files, the command history was:
+
+```bash
+cd ~/Projects/omeka-s-docker
+git checkout master-with-solr
+sudo docker image build -t mcfatem/omeka-s:aug18 .
+sudo docker image tag mcfatem/omeka-s:aug18 mcfatem/omeka-s:latest
+sudo docker login --username=mcfatem
+sudo docker image push mcfatem/omeka-s:aug18
+sudo docker image push mcfatem/omeka-s:latest
+```
+
+The `docker-compose.yml` change was from this:
+```
+omeka:
+  ...
+  image: dodeeric/omeka-s:latest
+```
+...to this:
+```
+omeka:
+  ...
+  image: mcfatem/omeka-s:latest
+```
+
+After these changes/additions my `docker-compose up -d` appears to work properly making all of the following local sites available:
+
+  - http://omeka.localdomain/         <-- Omeka-S installer
+  - http://omeka.localdomain:8080     <-- Traefik dashboard
+  - http://pma.localdomain/           <-- PHPMyAdmin
+  - http://solr.localdomain           <-- Solr admin
+
+## Adding WMI Data
+An `omeka.sql` file dumped from Grinnell's Omeka-Classic `World Music Instruments` collection is now available in the project root.  Since this file might contain sensitive data it's also listed in the project's .gitignore file so that it will not be saved in Github, at least not yet.
+
+There are a few ways to get our Omeka-S instance populated with data like this, perhaps the most popular is to mount the .sql file into the database container's `/docker-entrypoint-initdb.d/` directory. I could not get this to work, probably because we've already mounted a Docker volume named `mariadb` in that container.  No matter, I found a slick one-liner [in this gist](https://gist.github.com/zburgermeiszter/89a41467c80327c0bb550a2c7077d747) that does the trick.  My version of the command was:
+
+```
+╭─mark@Marks-Mac-Mini ~/Projects/omeka-s-docker ‹master-with-solr*›
+╰─$ docker exec -i omeka-s-docker_mariadb_1 /bin/bash -c "export TERM=xterm && mysql -uomeka -pomeka omeka" < omeka.sql  
+```
+
+Looks like it worked, but I've got some chores to do (a little voice is telling me to clean the garage) so until later... That's a (temporary) wrap.
+
+<!--
 
 ## Capturing the Configuration
 So, having successfully started my new, local Omeka-S stack with `docker-compose up -d`, I wanted to visit the primary container and capture all of the pristine Omeka-S config and code.  The project does NOT map the document root to a persistent directory on the host, so to capture it I did this:
@@ -156,3 +262,5 @@ Then a new `fin up` and http://omeka-s-docker.docksal successfully **opened the 
 I'm pushing the latest changes to the `docksal` branch of https://github.com/DigitalGrinnell/omeka-s-docker NOW!
 
 NOT a wrap.  As Arnold Schwarzenegger would say: "I'll be back!"
+
+-->

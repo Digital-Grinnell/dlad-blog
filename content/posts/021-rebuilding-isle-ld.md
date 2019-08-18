@@ -1,6 +1,6 @@
 ---
 title: Rebuilding ISLE-ld (for Local Development)
-date: 2019-07-11T10:29:16-07:00
+date: 2019-08-18T05:40:03-07:00
 draft: false
 ---
 
