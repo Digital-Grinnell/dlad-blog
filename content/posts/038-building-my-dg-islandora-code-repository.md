@@ -1,7 +1,7 @@
 ---
 title: Building My `dg-islandora` Code Repository
 publishDate: 2019-08-16
-lastmod: 2019-08-16T12:18:45-05:00
+lastmod: 2019-08-18T21:54:23-05:00
 draft: false
 emoji: true
 tags:
@@ -12,11 +12,12 @@ tags:
   - code repository
 ---
 
-As promised in [post 037](https://static.grinnell.edu/blogs/McFateM/posts/037-migrating-dg-to-isle-1.2.0-ld/), this post combines elements of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) with [post 034](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) to create a "customized" local ISLE v1.2.0 instance with features of Digital.Grinnell.  The real purpose of this endeavor is to create a properly populated [Digital.Grinnell custom code repository](https://github.com/DigitalGrinnell/dg-isle) featuring ISLE v1.2.0 code.
+As promised in [post 037](https://static.grinnell.edu/blogs/McFateM/posts/037-migrating-dg-to-isle-1.2.0-ld/), this post combines elements of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) with [post 034](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.2.0-ld/) to create a "customized" local ISLE v1.2.0 instance with features of Digital.Grinnell.  The real purpose of this endeavor is to create a properly populated [Digital.Grinnell custom code repository](https://github.com/DigitalGrinnell/dg-islandora) featuring ISLE v1.2.0 code.
+
+<!--
 
 # Installing per install-local-new.md
 My goal requires first that I build `local development` copy of ISLE v1.2.0 so I will start by following the process outlined in the ISLE project's [./docs/install/install-local-new.md](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-new.md). Only those steps/actions that deviate from what's documented in [post 034](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) are posted here.
-
 
 
 ## [Step 1: Edit the `/etc/hosts` File](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-1-edit-etchosts-file)
