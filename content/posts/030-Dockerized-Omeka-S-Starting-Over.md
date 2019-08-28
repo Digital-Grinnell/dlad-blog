@@ -1,7 +1,7 @@
 ---
 title: "Dockerized Omeka-S: Starting Over"
 publishDate: 2019-07-25
-lastmod: 2019-08-18T16:59:45-05:00
+lastmod: 2019-08-21T13:10:20-05:00
 tags:
   - Omeka-S
   - Docker
@@ -149,7 +149,31 @@ There are a few ways to get our Omeka-S instance populated with data like this, 
 ╰─$ docker exec -i omeka-s-docker_mariadb_1 /bin/bash -c "export TERM=xterm && mysql -uomeka -pomeka omeka" < omeka.sql  
 ```
 
-Looks like it worked, but I've got some chores to do (a little voice is telling me to clean the garage) so until later... That's a (temporary) wrap.
+## Image Updates
+Since wrapping up the previous posting I've made some additional changes to this branch.  Specifically, my Omeka-S image has been upgraded to version 2.0.1, and I corrected the path that the `centerrow-master` theme gets unpacked into (it was `centerrow-master` but needs to be just `centerrow`).  I also added some necessary packages to the `omeka` service Dockerfile in order to support `Solr`.
+
+Having made these changes I repeated the Docker image build process from above like so:
+
+```
+cd ~/Projects/omeka-s-docker
+git checkout master-with-solr
+sudo docker image build -t mcfatem/omeka-s:august .
+sudo docker image tag mcfatem/omeka-s:august mcfatem/omeka-s:latest
+sudo docker login --username=mcfatem
+sudo docker image push mcfatem/omeka-s:august
+sudo docker image push mcfatem/omeka-s:latest
+```
+The `omeka` service portion of `docker-compose.yml` is still pulling and using `mcfatem/omeka-s:latest` from Docker Hub.
+
+## Retrieving WMI Content or "Files"
+The following is a reminder to myself... to retrieve the `/var/www/html/files` data from the `World Musical Instruments` (WMI) collection, try this on your host:
+
+```
+╭─markmcfate@ma8660 ~/Projects/omeka-s-docker ‹ruby-2.3.0› ‹master-with-solr*›
+╰─$ rsync -aruvi vagrant@omeka1.grinnell.edu:/var/www/html/MusicalInstruments/files/. files/ --verbose
+╭─markmcfate@ma8660 ~/Projects/omeka-s-docker ‹ruby-2.3.0› ‹master-with-solr*›
+╰─$ docker cp ./files/. omeka-s-docker_omeka_1:/var/www/html/files/
+```
 
 <!--
 
