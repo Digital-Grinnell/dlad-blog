@@ -1,7 +1,7 @@
 ---
 title: "Dockerized Omeka-S: Starting Over"
 publishDate: 2019-07-25
-lastmod: 2019-08-21T13:10:20-05:00
+lastmod: 2019-09-03T15:14:12-05:00
 tags:
   - Omeka-S
   - Docker
@@ -140,13 +140,30 @@ After these changes/additions my `docker-compose up -d` appears to work properly
   - http://solr.localdomain           <-- Solr admin
 
 ## Adding WMI Data
-An `omeka.sql` file dumped from Grinnell's Omeka-Classic `World Music Instruments` collection is now available in the project root.  Since this file might contain sensitive data it's also listed in the project's .gitignore file so that it will not be saved in Github, at least not yet.
+A `wmi.sql` file dumped from Grinnell's Omeka-Classic `World Music Instruments` collection is now available in the project root.  The file was dumped by opening an SSH session on Grinnell's __omeka1__ server (`ssh vagrant@omeka1.grinnell.edu`) and running the following commands there:
+
+```
+cd /var/www/html/WorldMusicInstruments
+mysqldump -h localhost -u wMIAdmin -p wmi > wmi.sql
+rsync -aruvi wmi.sql markmcfate@132.161.249.239:/Users/markmcfate/Projects/omeka-s-docker/wmi.sql --progress
+```
+
+Unfortunately, this dump was HUGE, like 1.2 gigabytes!  So, I elected to try again but without the voluminous "_sessions_" table data, like so:
+
+```
+cd /var/www/html/WorldMusicInstruments
+mysqldump -u wMIAdmin -p -h localhost wmi --ignore-table=database.sessions > ./wmi-dump.sql \
+  && mysqldump -u wMIAdmin -p -h localhost -d wmi sessions >> ./wmi-dump.sql
+rsync -aruvi wmi-dump.sql markmcfate@132.161.249.239:/Users/markmcfate/Projects/omeka-s-docker/wmi-dump.sql --progress
+```
+
+That did the trick.  Now the _wmi-dump.sql_ file is only 7.8 megabytes in size.
 
 There are a few ways to get our Omeka-S instance populated with data like this, perhaps the most popular is to mount the .sql file into the database container's `/docker-entrypoint-initdb.d/` directory. I could not get this to work, probably because we've already mounted a Docker volume named `mariadb` in that container.  No matter, I found a slick one-liner [in this gist](https://gist.github.com/zburgermeiszter/89a41467c80327c0bb550a2c7077d747) that does the trick.  My version of the command was:
 
 ```
 ╭─mark@Marks-Mac-Mini ~/Projects/omeka-s-docker ‹master-with-solr*›
-╰─$ docker exec -i omeka-s-docker_mariadb_1 /bin/bash -c "export TERM=xterm && mysql -uomeka -pomeka omeka" < omeka.sql  
+╰─$ docker exec -i omeka-s-docker_mariadb_1 /bin/bash -c "export TERM=xterm && mysql -uomeka -pomeka omeka" < wmi.sql  
 ```
 
 ## Image Updates
@@ -175,116 +192,4 @@ The following is a reminder to myself... to retrieve the `/var/www/html/files` d
 ╰─$ docker cp ./files/. omeka-s-docker_omeka_1:/var/www/html/files/
 ```
 
-<!--
-
-## Capturing the Configuration
-So, having successfully started my new, local Omeka-S stack with `docker-compose up -d`, I wanted to visit the primary container and capture all of the pristine Omeka-S config and code.  The project does NOT map the document root to a persistent directory on the host, so to capture it I did this:
-
-| Workstation Commands |
-| --- |
-| cd ~/Projects/omeka-s-docker; <br/> mkdir html; <br/> docker cp omeka-s-docker_omeka_1:/var/www/html/. ./html/ |
-
-The last command above, `docker cp...`, is the key.  It copies the established docroot, '/var/www/html', from inside the Omeka container, out to the new `./html` directory on host.
-
-## Adding a Custom Docksal Configuration
-Having successfully captured a pristine Omeka-S docroot, I executed a `fin config generate` command on the host from my `~/Projects/omeka-s-docker` project directory.  The result was this:
-```
-╭─mark@Marks-Air.grinnell.edu ~/Projects/omeka-s-docker  ‹docksal*›
-╰─➤  fin config generate
-DOCROOT has been detected as html. Is that correct? [y/n]: y
-Configuration was generated. You can start it with fin project start
-```
-Following the prompted suggestion, I then executed `fin project start` and the stack did come alive.  However, when I visit http://omeka-s-docker.docksal I get an "Internal Server Error" page, probably because my database config isn't right yet?  I subsequently did `fin logs` at my command prompt and got back...
-
-```
-╭─mark@Marks-Air.grinnell.edu ~/Projects/omeka-s-docker  ‹docksal*›
-╰─➤  fin logs
-Attaching to omeka-s-docker_web_1, omeka-s-docker_cli_1, omeka-s-docker_db_1
-web_1  | Configuring Apache2 environment variables...
-web_1  | [Thu Jul 25 15:45:58.407927 2019] [ssl:warn] [pid 1:tid 140419333643144] AH01909: web:443:0 server certificate does NOT include an ID which matches the server name
-web_1  | [Thu Jul 25 15:45:58.417368 2019] [ssl:warn] [pid 1:tid 140419333643144] AH01909: web:443:0 server certificate does NOT include an ID which matches the server name
-web_1  | [Thu Jul 25 15:45:58.419233 2019] [mpm_event:notice] [pid 1:tid 140419333643144] AH00489: Apache/2.4.35 (Unix) LibreSSL/2.6.5 configured -- resuming normal operations
-web_1  | [Thu Jul 25 15:45:58.419345 2019] [core:notice] [pid 1:tid 140419333643144] AH00094: Command line: 'httpd -D FOREGROUND'
-web_1  | [Thu Jul 25 15:49:00.969960 2019] [core:alert] [pid 10:tid 140419332627176] [client 172.24.0.5:35076] /var/www/html/.htaccess: Invalid command 'php_value', perhaps misspelled or defined by a module not included in the server configuration
-web_1  | 172.24.0.5 - - [25/Jul/2019:15:49:00 +0000] "GET / HTTP/1.1" 500 528
-web_1  | [Thu Jul 25 15:49:01.222289 2019] [core:alert] [pid 8:tid 140419332156136] [client 172.24.0.5:35078] /var/www/html/.htaccess: Invalid command 'php_value', perhaps misspelled or defined by a module not included in the server configuration
-web_1  | 172.24.0.5 - - [25/Jul/2019:15:49:01 +0000] "GET /favicon.ico HTTP/1.1" 500 528
-web_1  | [Thu Jul 25 15:49:18.852967 2019] [core:alert] [pid 10:tid 140419332721384] [client 172.24.0.5:35082] /var/www/html/.htaccess: Invalid command 'php_value', perhaps misspelled or defined by a module not included in the server configuration
-web_1  | 172.24.0.5 - - [25/Jul/2019:15:49:18 +0000] "GET /install HTTP/1.1" 500 528
-web_1  | [Thu Jul 25 15:58:27.745096 2019] [core:alert] [pid 10:tid 140419332344552] [client 172.24.0.5:35086] /var/www/html/.htaccess: Invalid command 'php_value', perhaps misspelled or defined by a module not included in the server configuration
-web_1  | 172.24.0.5 - - [25/Jul/2019:15:58:27 +0000] "GET / HTTP/1.1" 500 528
-web_1  | [Thu Jul 25 16:48:15.623872 2019] [core:alert] [pid 8:tid 140419332061928] [client 172.24.0.5:35090] /var/www/html/.htaccess: Invalid command 'php_value', perhaps misspelled or defined by a module not included in the server configuration
-web_1  | 172.24.0.5 - - [25/Jul/2019:16:48:15 +0000] "GET / HTTP/1.1" 500 528
-cli_1  | 2019-07-25 15:45:56 | Updating docker user uid/gid to 501/20 to match the host user uid/gid...
-cli_1  | 2019-07-25 15:45:58 | Resetting permissions on /home/docker and /var/www...
-cli_1  | 2019-07-25 15:45:58 | Preliminary initialization completed.
-cli_1  | 2019-07-25 15:45:58 | Passing execution to: supervisord
-cli_1  | 2019-07-25 15:46:00,068 CRIT Supervisor running as root (no user in config file)
-cli_1  | 2019-07-25 15:46:00,069 INFO Included extra file "/etc/supervisor/conf.d/supervisord.conf" during parsing
-cli_1  | 2019-07-25 15:46:00,107 INFO RPC interface 'supervisor' initialized
-cli_1  | 2019-07-25 15:46:00,107 CRIT Server 'unix_http_server' running without any HTTP authentication checking
-cli_1  | 2019-07-25 15:46:00,108 INFO supervisord started with pid 1
-cli_1  | 2019-07-25 15:46:01,111 INFO spawned: 'cron' with pid 29
-cli_1  | 2019-07-25 15:46:01,115 INFO spawned: 'sshd' with pid 30
-cli_1  | 2019-07-25 15:46:01,118 INFO spawned: 'php-fpm' with pid 31
-cli_1  | 2019-07-25 15:46:01,918 DEBG fd 16 closed, stopped monitoring <POutputDispatcher at 140451264069856 for <Subprocess at 140451264308792 with name php-fpm in state STARTING> (stdout)>
-cli_1  | 2019-07-25 15:46:01,951 DEBG 'php-fpm' stderr output:
-cli_1  | [25-Jul-2019 15:46:01] NOTICE: fpm is running, pid 31
-cli_1  |
-cli_1  | 2019-07-25 15:46:01,953 DEBG 'php-fpm' stderr output:
-cli_1  | [25-Jul-2019 15:46:01] NOTICE: ready to handle connections
-cli_1  |
-cli_1  | 2019-07-25 15:46:02,955 INFO success: cron entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-cli_1  | 2019-07-25 15:46:02,955 INFO success: sshd entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-cli_1  | 2019-07-25 15:46:02,955 INFO success: php-fpm entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
-db_1   | Running init scripts in /docker-entrypoint.d/ as root...
-db_1   | Including custom configuration from /var/www/.docksal/etc/mysql/my.cnf
-db_1   | 2019-07-25 15:45:57 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see documentation for more details).
-db_1   | 2019-07-25 15:45:57 0 [Note] mysqld (mysqld 5.6.43) starting as process 1 ...
-db_1   | 2019-07-25 15:45:57 1 [Note] Plugin 'FEDERATED' is disabled.
-db_1   | 2019-07-25 15:45:57 1 [Note] InnoDB: Using atomics to ref count buffer pool pages
-db_1   | 2019-07-25 15:45:57 1 [Note] InnoDB: The InnoDB memory heap is disabled
-db_1   | 2019-07-25 15:45:57 1 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
-db_1   | 2019-07-25 15:45:57 1 [Note] InnoDB: Memory barrier is not used
-db_1   | 2019-07-25 15:45:57 1 [Note] InnoDB: Compressed tables use zlib 1.2.11
-db_1   | 2019-07-25 15:45:57 1 [Note] InnoDB: Using Linux native AIO
-db_1   | 2019-07-25 15:45:57 1 [Note] InnoDB: Using CPU crc32 instructions
-db_1   | 2019-07-25 15:45:57 1 [Note] InnoDB: Initializing buffer pool, size = 256.0M
-db_1   | 2019-07-25 15:45:57 1 [Note] InnoDB: Completed initialization of buffer pool
-db_1   | 2019-07-25 15:45:57 1 [Note] InnoDB: Highest supported file format is Barracuda.
-db_1   | 2019-07-25 15:45:57 1 [Note] InnoDB: 128 rollback segment(s) are active.
-db_1   | 2019-07-25 15:45:57 1 [Note] InnoDB: Waiting for purge to start
-db_1   | 2019-07-25 15:45:57 1 [Note] InnoDB: 5.6.43 started; log sequence number 1626143
-db_1   | 2019-07-25 15:45:57 1 [Note] Server hostname (bind-address): '*'; port: 3306
-db_1   | 2019-07-25 15:45:57 1 [Note] IPv6 is available.
-db_1   | 2019-07-25 15:45:57 1 [Note]   - '::' resolves to '::';
-db_1   | 2019-07-25 15:45:57 1 [Note] Server socket created on IP: '::'.
-db_1   | 2019-07-25 15:45:57 1 [Warning] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
-db_1   | 2019-07-25 15:45:57 1 [Warning] 'proxies_priv' entry '@ root@db' ignored in --skip-name-resolve mode.
-db_1   | 2019-07-25 15:45:58 1 [Note] Event Scheduler: Loaded 0 events
-db_1   | 2019-07-25 15:45:58 1 [Note] mysqld: ready for connections.
-db_1   | Version: '5.6.43'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server (GPL)
-```  
-
-The `web_1... Invalid command 'php_value'` looks odd so I opened the `./html/.htaccess` file on the host and commented out the last two lines (where the `php_value` statements were). I was also concerned that this configuration doesn't specify any database name or credentials, so following [this documentation](https://docs.docksal.io/stack/extend-images/#extend-docksal.yml) I added to `./.docksal/docksal.yml` in the project directory so that it now has  the following initial content:
-
-```
-version: "2.1"
-
-services:
-  db:
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: omeka
-      MYSQL_USER: omeka
-      MYSQL_PASSWORD: omeka
-```
-
-Then a new `fin up` and http://omeka-s-docker.docksal successfully **opened the Omeka install page!**  
-
-# Woot!
-I'm pushing the latest changes to the `docksal` branch of https://github.com/DigitalGrinnell/omeka-s-docker NOW!
-
-NOT a wrap.  As Arnold Schwarzenegger would say: "I'll be back!"
-
--->
+And that's a wrap...for now.
