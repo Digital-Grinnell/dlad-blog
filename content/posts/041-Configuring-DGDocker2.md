@@ -1,7 +1,7 @@
 ---
 title: "Configuring DGDocker2"
 publishdate: 2019-09-03
-lastmod: 2019-09-04T15:35:08-05:00
+lastmod: 2019-09-04T15:49:31-05:00
 draft: false
 tags:
   - Digital.Grinnell
@@ -51,9 +51,12 @@ docker stop $(docker ps -q); docker rm -v $(docker ps -qa); docker image rm -f $
 ```
 
 ## Deploying a Stand-Alone _Traefik_ Reverse-Proxy
+
 There are at least a dozen ways to do this, and I really don't want to reinvent the wheel here, so I searched the web for some of the latest info and settled on [this post from DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-use-traefik-as-a-reverse-proxy-for-docker-containers-on-centos-7).  It's current, I like _DigitalOcean's_ approach in general, and it appears to be well-documented.
 
 Perhaps the best of _Traefik_'s qualities is its ability to support additional services/containers using labels.  Let's roll with that.  The plan here is to turn _dgdocker2_ into the home for many _Omeka-S_ instances with the server answering to https://omeka-s.grinnell.edu.
+
+## One-Time/Preliminary Stuff
 
 I'm starting now with a "clean", Docker-ready node in _dgdocker2_.  From a terminal/shell opened as _root_ on _dgdocker2_ we need some preliminary stuff:
 
@@ -114,6 +117,10 @@ network = "web"
 ```
 
 Note:  The 11 lines, including "minVerson" and "cipherSuites" definitions, which appear in the "[entryPoints.https.tls]" section above were lifted from ["Removing Traefik's Weak Cipher Suites"](https://static.grinnell.edu/blogs/McFateM/posts/005-removing-traefik-weak-ciphers/).
+
+The "preliminary" steps above, and the creation of the _traefik.toml_ file should NOT be repeated, they are good-to-go!
+
+## Launching _Traefik_
 
 ```
 # Clean up first!
