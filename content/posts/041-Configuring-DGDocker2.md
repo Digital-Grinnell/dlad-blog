@@ -1,7 +1,7 @@
 ---
 title: "Configuring DGDocker2"
 publishdate: 2019-09-03
-lastmod: 2019-09-04T17:00:57-05:00
+lastmod: 2019-09-04T17:11:51-05:00
 draft: false
 tags:
   - Digital.Grinnell
@@ -208,17 +208,24 @@ services:
 The [Portainer](https://www.portainer.io) configuration that I like to use was derived from the _docker-compose.demo.yml_ file in the [ISLE](https://github.com/Islandora-Collaboration-Group/ISLE) project, and it typically looks something like this:
 
 ```
-version: '3.7'
+version: "3"
 
 #### docker-compose up -d
+
+networks:
+  web:
+    external: true    ## Connect to the existing "web" network!
+  internal:
+    external: false
 
 services:
   portainer2:     ## Renamed to avoid conflicts on systems/servers with portainer already running.
     image: portainer/portainer
     container_name: portainer2
-    command: -H unix:///var/run/docker.sock --no-auth
-#   networks:
-#     - web
+    command: -H unix:///var/run/docker.sock --no-auth   ## Swap this out with an auth challenge for security!
+    networks:
+      - web
+      - internal
     ports:
       - "9010:9000"     ## Remapped to avoid conflicts on systems/servers with portainer already running.
     volumes:
@@ -226,12 +233,9 @@ services:
       - portainer-data:/data
     labels:
       - traefik.port=9000
-      - traefik.docker.network=web
+      - traefik.docker.network=web     ## Another critical reference to the "web" network
       - traefik.enable=true
       - "traefik.frontend.rule=Host:portainer2.grinnell.edu;"
-
-networks:
-  web:
 
 volumes:
   portainer-data:
