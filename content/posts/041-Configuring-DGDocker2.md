@@ -1,7 +1,7 @@
 ---
 title: "Configuring DGDocker2"
 publishdate: 2019-09-03
-lastmod: 2019-09-04T15:49:31-05:00
+lastmod: 2019-09-04T17:00:57-05:00
 draft: false
 tags:
   - Digital.Grinnell
@@ -151,7 +151,91 @@ docker run -d \
 
 Ok, let's see what we've got...
 
-**Eureka!**  https://traefik2.grinnell.edu returns an _admin_ login prompt for my new _Traefik_ instance at https://traefik2.grinnell.edu/dashboard/, as promised, and it's complete with a green lock icon indicating that we have a valid TLS cert for it. Presumably this _Traefik_ will have NO weak ciphers or vulnerabilities.  _Note to self: **Test this!**_
+**Eureka!**  https://traefik2.grinnell.edu returns an _admin_ login prompt for my new _Traefik_ instance at https://traefik2.grinnell.edu/dashboard/, as promised, and it's complete with a green lock icon indicating that we have a valid TLS cert for it. Presumably this _Traefik_ will have NO weak ciphers or vulnerabilities.  _Note to self: **Test this assumption!**_
+
+## Let's Add Portainer
+
+In addition to the _Treafik_ dashboard, I like having [Portainer](https://www.portainer.io) available to help with stack management too.  So, let's add that using _docker-compose_ and an appropriately modified version of the guidance provided in [Step 3 - Registering Containers with Traefik](https://www.digitalocean.com/community/tutorials/how-to-use-traefik-as-a-reverse-proxy-for-docker-containers-on-centos-7#step-3-registering-containers-with-traefik).
+
+The aforementioned guidance wants us to create a new project directory (optional: we could use the _/opt/traefik_ directory we already have) and populate it with a _docker-compose.yml_ file with contents like this:
+
+```
+version: "3"
+
+networks:            # This "networks" section is key.  "web" refers to our already-running Docker network
+  web:
+    external: true
+  internal:
+    external: false
+
+services:
+  blog:
+    image: wordpress:4.9.8-apache
+    environment:
+      WORDPRESS_DB_PASSWORD:
+    labels:
+      - traefik.backend=blog
+      - traefik.frontend.rule=Host:blog.your_domain
+      - traefik.docker.network=web
+      - traefik.port=80
+    networks:
+      - internal
+      - web
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD:
+    networks:
+      - internal
+    labels:
+      - traefik.enable=false
+  adminer:
+    image: adminer:4.6.3-standalone
+    labels:
+      - traefik.backend=adminer
+      - traefik.frontend.rule=Host:db-admin.your_domain
+      - traefik.docker.network=web
+      - traefik.port=8080
+    networks:
+      - internal
+      - web
+    depends_on:
+      - mysql
+```
+
+The [Portainer](https://www.portainer.io) configuration that I like to use was derived from the _docker-compose.demo.yml_ file in the [ISLE](https://github.com/Islandora-Collaboration-Group/ISLE) project, and it typically looks something like this:
+
+```
+version: '3.7'
+
+#### docker-compose up -d
+
+services:
+  portainer2:     ## Renamed to avoid conflicts on systems/servers with portainer already running.
+    image: portainer/portainer
+    container_name: portainer2
+    command: -H unix:///var/run/docker.sock --no-auth
+#   networks:
+#     - web
+    ports:
+      - "9010:9000"     ## Remapped to avoid conflicts on systems/servers with portainer already running.
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer-data:/data
+    labels:
+      - traefik.port=9000
+      - traefik.docker.network=web
+      - traefik.enable=true
+      - "traefik.frontend.rule=Host:portainer2.grinnell.edu;"
+
+networks:
+  web:
+
+volumes:
+  portainer-data:
+```
 
 <!--
 
