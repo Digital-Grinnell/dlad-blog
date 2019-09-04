@@ -1,7 +1,7 @@
 ---
 title: "Configuring DGDocker2"
 publishdate: 2019-09-03
-lastmod: 2019-09-03T16:20:05-05:00
+lastmod: 2019-09-04T09:07:50-05:00
 draft: false
 tags:
   - Digital.Grinnell
@@ -60,18 +60,20 @@ The information following each address is the status or page returned when I tri
 The https://omeka-s.grinnell.edu target is experimental, and soon-to-be-replaced with our new _Omeka-S_.  Consequently, the only properly configured service on this node is _OHScribe_, and the _Traefik_ container is properly configured to serve it as well as the experimental _Omeka-S_ instance.  All of the other containers/services should be removed, and the new _Omeka-S_ with _WMI_ configured to work with the existing _Traefik_.
 
 Since nearly all of the containers/services running on _dgdocker2_ are broken or obsolete, I'm going to remove them all and clean up the node using this sequence:
+
 ```
 docker stop $(docker ps -q)
 docker rm -v $(docker ps -qa)
 docker image rm $(docker image ls -q)
 docker system prune --force
 ```
+
 ## Deploying a Stand-Alone _Traefik_ Reverse-Proxy
-There are at least a dozen ways to do this, and I really don't want to reinvent the wheel here, so I searched the web for some of the latest info and settled on [this post](https://jonnev.se/traefik-with-docker-and-lets-encrypt/).  It's current, I like the approach, and it appears to be well-documented.  
+There are at least a dozen ways to do this, and I really don't want to reinvent the wheel here, so I searched the web for some of the latest info and settled on [this post](https://jasonraimondi.com/posts/docker-compose-traefik-lets-encrypt/).  It's current, I like the approach, and it appears to be well-documented... complete with a working example in [this GitHub repo](https://github.com/jasonraimondi/docker-compose-traefik-example/tree/master/lets-encrypt-example).
 
 Perhaps the best of _Traefik_'s qualities is its ability to support additional services/containers using labels.  Let's roll with that.
 
-I'm starting now with a "clean", Docker-ready node in _dgdocker2_.  From a terminal/shell opened as _root_ on _dgdocker2_, I follow [Jon Neverland's](https://jonnev.se/) advice like so:
+I'm starting now with a "clean", Docker-ready node in _dgdocker2_.  From a terminal/shell opened as _root_ on _dgdocker2_, I'll fork and clone [Jason Raimondi's example](https://github.com/jasonraimondi/docker-compose-traefik-example/tree/master/lets-encrypt-example) and make some necessary modifications, like so:
 
 ```
 docker network create web
