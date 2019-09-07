@@ -1,14 +1,14 @@
 ---
 title: "Configuring DGDocker2"
 publishdate: 2019-09-03
-lastmod: 2019-09-04T17:11:51-05:00
+lastmod: 2019-09-07T08:29:24-05:00
 draft: false
 tags:
-  - Digital.Grinnell
   - Docker
   - Traefik
-  - configuration
+  - Portainer
   - Omeka-S
+  - traefik.frontend.rule
 ---
 
 My mission today is to successfully migrate the images/containers/services chronicled in [post 030, "Dockerized Omeka-S: Starting Over"](https://static.grinnell.edu/blogs/McFateM/posts/030-dockerized-omeka-s-starting-over/) to Docker-ready node _dgdocker2_ without compromising any of the services that already run there.
@@ -43,7 +43,7 @@ Grinnell's DNS is configured with the following addresses pointed to _dgdocker2_
 
 The information following each address is the status or page returned when I tried opening each on 3-September-2019.
 
-The https://omeka-s.grinnell.edu target is experimental, and soon-to-be-replaced with our new _Omeka-S_.  Consequently, the only properly configured service on this node is _OHScribe_, and the _Traefik_ container is properly configured to serve it as well as the experimental _Omeka-S_ instance.  All of the other containers/services should be removed, and the new _Omeka-S_ with _WMI_ configured to work with the existing _Traefik_.
+The https://omeka-s.grinnell.edu on _dgdocker2_ is experimental (at least it was in August 2019) and soon-to-be-replaced with our new _Omeka-S_.  Consequently, the only properly configured service on this node is _OHScribe_, and the _Traefik_ container is properly configured to serve it as well as the experimental _Omeka-S_ instance.  All of the other containers/services should be removed, and the new _Omeka-S_ with _WMI_ configured to work with the existing _Traefik_.
 
 Since nearly all of the containers/services running on _dgdocker2_ are broken or obsolete, I'm going to remove them all and clean up the node using this sequence as a copy/paste one-liner...
 ```
@@ -71,6 +71,14 @@ The _traefik.toml_ file should look like this:
 
 ```
 defaultEntryPoints = ["http", "https"]
+
+# CA server to use
+# Uncomment the line to run on the staging Let's Encrypt server
+# Leave comment to go to prod
+#
+# Optional
+#
+caServer = "https://acme-staging.api.letsencrypt.org/directory"
 
 [entryPoints]
   [entryPoints.dashboard]
@@ -153,7 +161,7 @@ Ok, let's see what we've got...
 
 **Eureka!**  https://traefik2.grinnell.edu returns an _admin_ login prompt for my new _Traefik_ instance at https://traefik2.grinnell.edu/dashboard/, as promised, and it's complete with a green lock icon indicating that we have a valid TLS cert for it. Presumably this _Traefik_ will have NO weak ciphers or vulnerabilities.  _Note to self: **Test this assumption!**_
 
-## Let's Add Portainer
+## Let's Add _Portainer_
 
 In addition to the _Treafik_ dashboard, I like having [Portainer](https://www.portainer.io) available to help with stack management too.  So, let's add that using _docker-compose_ and an appropriately modified version of the guidance provided in [Step 3 - Registering Containers with Traefik](https://www.digitalocean.com/community/tutorials/how-to-use-traefik-as-a-reverse-proxy-for-docker-containers-on-centos-7#step-3-registering-containers-with-traefik).
 
@@ -241,44 +249,168 @@ volumes:
   portainer-data:
 ```
 
-<!--
-
-## One More Baby Step
-
-Now I'm going to try adding a _WhoAmI_ container to see if I can get it to respond properly at the server's canonical address, https://dgdocker2.grinnell.edu.  I'm using the guidance posted at https://docs.traefik.io/v2.0/getting-started/quick-start/ and the [Traefik Detects New Services and Creates the Route for You](https://docs.traefik.io/v2.0/getting-started/quick-start#traefik-detects-new-services-and-creates-the-route-for-you) section in particular.  Edits to _docker-compose.yml_ leave us with:
+I built this content into a new _/opt/portainer/docker-compose.yml_ file and subsequently launched _Portainer_ like so:
 
 ```
-version: '3.2'
+cd /opt/portainer
+docker-compose up -d
+```
 
+Visiting https://portainer2.grinnell.edu in my browser shows that it works and has a valid TLS cert too!
+
+## Securing _Portainer_ Auth
+
+The previous outcome is great, but there are at least 3 issues that need to be dealt with.  The first issue is _Portainer_ authentication.  My initial spin of _Portainer_, above, is an "unprotected" instance.  Anyone can currently visit https://portainer2.grinnell.edu and see what the stack looks like there.  Not good.  The culprit is the last line shown in this snippet from our _docker-compose.yml_ file:
+
+```
 services:
-  traefik:
-    restart: unless-stopped
-    image: traefik
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./traefik/traefik.toml:/etc/traefik/traefik.toml:ro
-      - ./traefik/acme:/etc/traefik/acme
-    ports:
-     - "80:80"
-     - "443:443"
-     - "8080:8080"
-
-  app:
-    restart: unless-stopped
-    image: nginx:latest
-    labels:
-      - "traefik.enable=true"
-      - "traefik.port=80"
-      ### - "traefik.frontend.rule=Host:127.0.0.1,my-awesome-site.dev"
-      - "traefik.frontend.rule=Host:omeka-s.grinnell.edu"
-
-  whoami:
-    # A container that exposes an API to show its IP address
-    image: containous/whoami
-    labels:
-      ### - "traefik.http.routers.whoami.rule=Host(`whoami.docker.localhost`)"
-      - traefik.frontend.rule=Host:dgdocker2.grinnell.edu
+  portainer2:
+    ...
+    command: -H unix:///var/run/docker.sock --no-auth  
 ```
--->
 
-And that's a ~~wrap~~ good place for a break!  More to come, after the break, of course.  :smile:
+The remedy is to preserve the indentation, that's critical in a .yml file, but change that line to read:
+
+```
+    command: --admin-password "$$2y$$05$$pJEzHJBzfoYYS7/hGAedcOP8XdsqNXE7j.LHFBVjueASOqOvvjGOy" -H unix:///var/run/docker.sock
+```
+
+The hash following "--admin-password" is one I generated for my own use with a `htpasswd -nb admin...` command as documented in [Step 1 — Configuring and Running Traefik](https://www.digitalocean.com/community/tutorials/how-to-use-traefik-as-a-reverse-proxy-for-docker-containers-on-centos-7#step-1-configuring-and-running-traefik).  Important: Note that in this instance every single dollar sign ($) is DOUBLED and the hash appears in double quotes!
+
+Visiting https://portainer2.grinnell.edu again and this time the _Portainer_ interface is behind an authentication login pop-up.  Nice!
+
+## Switching to Subdirectory Addressing
+
+Now we have https://traefik2.grinnell.edu and https://portainer2.grinnell.edu both working properly on _dgdocker2_ in what I call a "sub-second-top" domain name structure. I so named this structure because it follows the convention documented in [The Parts of a URL: A Short & Sweet Guide](https://blog.hubspot.com/marketing/parts-url).  That blog post identifies the parts of a URL as:
+
+  `scheme`://`subdomain`.`second-level`.`top-level`/`subdirectory`
+
+In case you didn't pick up on it, the "2" at the end of each subdomain reflects the fact that the server, or host, is named _dgdocker**2**_.
+
+While these addresses are fine, they require considerable coordination with the folks who manage our DNS names; I enlisted their help months ago to "create" the two addresses we now have. To avoid having to coordinate every change I'd like to change things up and identify this server, and the services that run on it, to the world in a form like:
+
+  - https://omeka-s.grinnell.edu/something
+
+This implies that _Traefik_ should respond at https://omeka-s.grinnell.edu/traefik, and _Portainer_ at https://omeka-s.grinnell.edu/portainer.  Likewise, our first _Omeka-S_ site, _World Music Instruments_, or _WMI_, should respond at https://omeka-s.grinnell.edu/wmi.
+
+I've already asked our DNS managers to make https://omeka-s.grinnell.edu resolve to our _dgdocker2_ host, so all that's necessary now is a change in some of our _Traefik_ labels to specify a different URL structure.  Specifically, we need to change the expression in our  _docker-compose.yml_ "traefik.frontend.rule" label from this:
+
+    - "traefik.frontend.rule=Host:portainer2.grinnell.edu;"
+
+...to this set of configuration labels:
+
+    - "traefik.frontend.rule=PathPrefixStrip:/portainer"
+    - "traefik.frontend.redirect.regex=^(.*)/portainer$$"
+    - "traefik.frontend.redirect.replacement=$$1/portainer/"
+    - "traefik.frontend.rule=PathPrefix:/portainer;ReplacePathRegex: ^/portainer/(.*) /$$1"
+
+This nice example was taken verbatim from [Using labels in docker-compose.yml](https://docs.traefik.io/user-guide/examples#using-labels-in-docker-compose-yml).  After editing these changes into _/opt/portainer/docker-compose.yml_ I did a new `cd /opt/portainer; docker-compose up -d` and...
+
+Now, visiting https://omeka-s.grinnell.edu/portainer brings my authentication-protected _Portainer_ interface up as planned.  However, my TLS cert for this domain is not valid yet.  Hmmm, wonder why that is?  In any case... this is progress!  
+
+## Moving _Traefik_ to a Subdirectory
+
+I'm going to make the same kind of changes for _Traefik_ now, but this time the modifications are to the `docker run...` command that I use to launch it.  Some trial, and lots of errors, lead me to this new `docker run...` command syntax:
+
+```
+docker run -d \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v $PWD/traefik.toml:/traefik.toml \
+  -v $PWD/acme.json:/acme.json \
+  -p 80:80 \
+  -p 443:443 \
+  -l traefik.frontend.rule=PathPrefixStrip:/traefik \
+  -l traefik.frontend.redirect.regex='^(.*)/traefik$' \
+  -l traefik.frontend.redirect.replacement=$1/traefik/ \
+  -l traefik.port=8080 \
+  --network web \
+  --name traefik \
+  traefik:1.7.14-alpine
+```
+
+Unfortunately, just like _Portainer_, my new _Traefik_ address failed to get a valid TLS cert.  :frowning:  
+
+## Who Am I
+
+Everything on the _dgdocker2_ server responds to a "subdirectory" address now and there's nothing registered at https://omeka-s.grinnell.edu.  To help eliminate the possibility that this is a problem I'm going to try adding a [WhoAmI](https://en.wikipedia.org/wiki/Whoami) service, at the aforementioned address, using the configuration documented in [this simple and straightforward repo](https://github.com/lukasnellen/dc-whoami).
+
+```
+# Create a home on dgdocker2 for the project... if one does not already exist
+cd /opt
+git clone https://github.com/lukasnellen/dc-whoami.git whoami
+cd /opt/whoami
+# Edit the docker-compose.yml file as needed
+nano docker-compose.yml    # see completed edits below
+```
+
+Continuing after edits to _/opt/whoami/docker-compose.yml_...
+
+```
+docker-compose --log-level DEBUG up -d
+```
+
+Now, if I visit https://omeka-s.grinnell.edu I can see that the _WhoAmI_ is working, but again, it does not have a valid cert.  :frowning:
+
+## Investigating Invalid Certs
+
+In an attempt to determine why my certs are not valid, I found [Debugging Let's Encrypt Errors, Sometimes It's Not Your Fault](https://nickjanetakis.com/blog/debugging-lets-encrypt-errors-sometimes-its-not-your-fault). From my workstation I tried some of the suggestions in the post and got these results:
+
+```
+╭─mark@Marks-Mac-Mini ~/Projects/blogs-McFateM ‹master*›
+╰─$ host omeka-s.grinnell.edu
+omeka-s.grinnell.edu has address 132.161.132.143
+╭─mark@Marks-Mac-Mini ~/Projects/blogs-McFateM ‹master*›
+╰─$ host omeka-s.grinnell.edu 8.8.8.8
+Using domain server:
+Name: 8.8.8.8
+Address: 8.8.8.8#53
+Aliases:
+
+omeka-s.grinnell.edu has address 132.161.132.143
+╭─mark@Marks-Mac-Mini ~/Projects/blogs-McFateM ‹master*›
+╰─$ curl -k https://omeka-s.grinnell.edu
+Hostname: 67c6f570dc5b
+IP: 127.0.0.1
+IP: 192.168.80.3
+IP: 192.168.96.2
+GET / HTTP/1.1
+Host: omeka-s.grinnell.edu
+User-Agent: curl/7.54.0
+Accept: */*
+Accept-Encoding: gzip
+X-Forwarded-For: 173.18.136.80
+X-Forwarded-Host: omeka-s.grinnell.edu
+X-Forwarded-Port: 443
+X-Forwarded-Proto: https
+X-Forwarded-Server: 34e5bc377410
+X-Real-Ip: 173.18.136.80
+```
+
+These results make me believe that our DNS entries are NOT the problem.  That leaves me believing that I've probably hit a _Let's Encrypt_ rate limit.  :frowning:  So, moving on, I'm going to accept the invalid certs and just try to get _Omeka-S_ up and running.
+
+## Who Am I
+
+That didn't help with the invalid certs issue. So, now I'm thinking the problem here is that nothing is registered at https://omeka-s.grinnell.edu; everything lives in subdirectory paths "below" that subdomain.  Based on that hunch, I'm going to try adding a [WhoAmI](https://en.wikipedia.org/wiki/Whoami) service, at the aforementioned address, using the configuration documented in [this simple and straightforward repo](https://github.com/lukasnellen/dc-whoami).
+
+```
+# Create a home on dgdocker2 for the project... if one does not already exist
+cd /opt
+git clone https://github.com/lukasnellen/dc-whoami.git whoami
+cd /opt/whoami
+# Edit the docker-compose.yml file as needed
+nano docker-compose.yml    # see completed edits below
+```
+
+Continuing after edits to _/opt/whoami/docker-compose.yml_...
+
+```
+docker-compose --log-level DEBUG up -d
+```
+
+Now, if I visit https://omeka-s.grinnell.edu I can see that the _WhoAmI_ is working, but again, it does not have a valid cert.
+
+## Capture As a Project
+
+I like the direction this server setup has taken, apart from the invalid certs issue :frowning:, so I'm taking steps to formally "capture" this setup. I will chronicle that process in [042 My dockerized-server Config](https://static.grinnell.edu/blogs/McFateM/posts/042-my-dockerized-server-config/).
+
+And that's a wrap... until next time.
