@@ -1,7 +1,7 @@
 ---
 title: "Configuring DGDocker2"
 publishdate: 2019-09-03
-lastmod: 2019-09-07T08:29:24-05:00
+lastmod: 2019-09-08T09:28:27-05:00
 draft: false
 tags:
   - Docker
@@ -411,6 +411,11 @@ Now, if I visit https://omeka-s.grinnell.edu I can see that the _WhoAmI_ is work
 
 ## Capture As a Project
 
-I like the direction this server setup has taken, apart from the invalid certs issue :frowning:, so I'm taking steps to formally "capture" this setup. I will chronicle that process in [042 My dockerized-server Config](https://static.grinnell.edu/blogs/McFateM/posts/042-my-dockerized-server-config/).
+I like the direction this server setup has taken, apart from the invalid certs issue :frowning:, so I'm taking steps to formally "capture" this setup. I will chronicle that process in [My dockerized-server Config](https://static.grinnell.edu/blogs/McFateM/posts/042-my-dockerized-server-config/).
+
+## Back to _Omeka-S_ Configuration
+
+Having wrapped up [My dockerized-server Config](https://static.grinnell.edu/blogs/McFateM/posts/042-my-dockerized-server-config/), I'm back to finally get _Omeka-S_ configured on _dgdocker2_.
+
 
 And that's a wrap... until next time.

@@ -1,7 +1,7 @@
 ---
 title: "My dockerized-server Config"
 publishdate: 2019-09-07
-lastmod: 2019-09-07T11:04:18-05:00
+lastmod: 2019-09-08T09:26:32-05:00
 draft: false
 tags:
   - Docker
@@ -150,5 +150,9 @@ git commit -m "Initial commit"
 git remote add origin https://github.com/McFateM/dockerized-server.git
 git push -u origin master
 ```
+
+## Back to [Configuring DGDocker2](https://static.grinnell.edu/blogs/McFateM/posts/041-configuring-dgdocker2)
+
+At this point you might return to [Configuring DGDocker2](https://static.grinnell.edu/blogs/McFateM/posts/041-configuring-dgdocker2#back-to-omeka-s-configuration) where I'll finally add _Omeka-S_ to _dgdocker2_.
 
 And that's a wrap... until next time.  :smile:
