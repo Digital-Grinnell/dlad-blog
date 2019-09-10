@@ -1,7 +1,7 @@
 ---
 title: "Configuring DGDocker2"
 publishdate: 2019-09-03
-lastmod: 2019-09-08T09:28:27-05:00
+lastmod: 2019-09-10T10:08:41-05:00
 draft: false
 tags:
   - Docker
@@ -415,7 +415,32 @@ I like the direction this server setup has taken, apart from the invalid certs i
 
 ## Back to _Omeka-S_ Configuration
 
-Having wrapped up [My dockerized-server Config](https://static.grinnell.edu/blogs/McFateM/posts/042-my-dockerized-server-config/), I'm back to finally get _Omeka-S_ configured on _dgdocker2_.
+Having wrapped up [My dockerized-server Config](https://static.grinnell.edu/blogs/McFateM/posts/042-my-dockerized-server-config/), I'm back to finally get _Omeka-S_ configured on _dgdocker2_.  Unfortunately, while configuring this final spin of _Omeka-S_ I ran short on time and failed to document every step.  However, the outcome is working nicely at _dgdocker2:/opt_ and is captured in a new _GitHub_ repo at [McFateM/omeka-s-dgdocker2](https://github.com/McFateM/omeka-s-dgdocker2).
 
+This repo includes:
+
+  - A _dockerized-server_ component where _Traefik_, _Portainer_ and _Who Am I_ are configured;
+  - A _solr_ component _Solr_ is configured;
+  - An _omeka-s-docker_ component where _Omeka-S_, _MariaDB_, and _PHPMyAdmin_ (PMA) are configured;
+  - A _docker-reset.sh_ script that can be used to reset the host's _Docker_; and
+  - A _launch-stack.sh_ script that can be used to reset _Docker_ and then re-start the entire stack.
+
+## Persistence
+
+As currently configured, the stack maintains persistent _Omeka_ site data in a _Docker_ volume (NOT a "bind mount", but a named volume managed by _Docker_). There is a comment line in the _docker-reset.sh_ that can be enabled to wipe the aforementioned volume clean; use it with extreme caution!  There's also a comment line in _omeka-s-docker/docker-compose.yml_ that can be enabled to re-initialize the _omeka_ database with a backup of the original _World Music Instruments_ site on server _omeka1_.  
+
+## Addressing
+
+As currently configured, the stack includes the following services and addresses:
+
+| Service | Address | Note |
+| --- | --- | --- |
+| _Traefik_ dashboard | https://traefik2.grinnell.edu | Requires authentication |
+| _Portainer_ dashboard | https://omeka-s.grinnell.edu/portainer/  | Requires authentication |
+| _Who Am I_ | https://omeka-s.grinnell.edu/who-am-i |   |
+| _Solr_ administration | https://portainer2.grinnell.edu | Temporary. Requires authentication |
+| _MariaDB_ administration | None | See ./pma/ below |
+| _PHPMyAdmin_ | https://omeka-s.grinnell.edu/pma/ | Trailing slash is REQUIRED |
+| _Omeka-S_ | https://omeka-s.grinnell.edu |   |
 
 And that's a wrap... until next time.
