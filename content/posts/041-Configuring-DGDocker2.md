@@ -1,7 +1,7 @@
 ---
 title: "Configuring DGDocker2"
 publishdate: 2019-09-03
-lastmod: 2019-09-10T10:08:41-05:00
+lastmod: 2019-09-10T10:13:52-05:00
 draft: false
 tags:
   - Docker
@@ -429,9 +429,9 @@ This repo includes:
 
 As currently configured, the stack maintains persistent _Omeka_ site data in a _Docker_ volume (NOT a "bind mount", but a named volume managed by _Docker_). There is a comment line in the _docker-reset.sh_ that can be enabled to wipe the aforementioned volume clean; use it with extreme caution!  There's also a comment line in _omeka-s-docker/docker-compose.yml_ that can be enabled to re-initialize the _omeka_ database with a backup of the original _World Music Instruments_ site on server _omeka1_.  
 
-## Addressing
+## Launch and Addressing
 
-As currently configured, the stack includes the following services and addresses:
+I did a `git clone https://github.com/DigitalGrinnell/omeka-s-dgdocker2 /opt` and then `source /opt/launch-stack.sh` from a _root_ terminal/shell on _dgdocker2_. The result is this working set of services and addresses:
 
 | Service | Address | Note |
 | --- | --- | --- |
