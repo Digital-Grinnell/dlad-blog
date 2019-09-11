@@ -1,7 +1,7 @@
 ---
 title: "Configuring DGDocker2"
 publishdate: 2019-09-03
-lastmod: 2019-09-10T10:13:52-05:00
+lastmod: 2019-09-11T10:53:22-05:00
 draft: false
 tags:
   - Docker
@@ -442,5 +442,25 @@ I did a `git clone https://github.com/DigitalGrinnell/omeka-s-dgdocker2 /opt` an
 | _MariaDB_ administration | None | See ./pma/ below |
 | _PHPMyAdmin_ | https://omeka-s.grinnell.edu/pma/ | Trailing slash is REQUIRED |
 | _Omeka-S_ | https://omeka-s.grinnell.edu |   |
+
+## Addressing Update
+
+Today, 11-Sep-2019, I got word that my DNS requests for subdomain names _solr2.grinnell.edu_ and _pma2.grinnell.edu_ were completed.  So this morning I made necessary changes to _dgdocker2:/opt/omeka-s-docker/docker-compose.yml_ and did a new `docker-compose up -d` in that directory.  It worked, and I didn't even have to take the stack down and restart it!
+
+So, we now have this updated, and final, addressing scheme:
+
+| Service | Address | Note |
+| --- | --- | --- |
+| _Traefik_ dashboard | https://traefik2.grinnell.edu | Requires authentication |
+| _Portainer_ dashboard | https://omeka-s.grinnell.edu/portainer/  | Requires authentication |
+| _Who Am I_ | https://omeka-s.grinnell.edu/who-am-i |   |
+| _Solr_ administration | https://solr2.grinnell.edu | No longer temporary |
+| _MariaDB_ administration | None | See _pma2.grinnell.edu_ below |
+| _PHPMyAdmin_ | https://pma2.grinnell.edu | No longer temporary.  Behaving properly |
+| _Omeka-S_ | https://omeka-s.grinnell.edu |   |
+
+## Now with Valid Certs!
+
+Earlier in this process we learned that _Solr_ won't work properly without a **valid** TLS certificate, not a temporary one.  So I was forced to move our certificate authority server spec from _Let's Encrypt_ "stagging" back to "production" (see the _./dockerized-server/data/traefik.toml_ file for details).  Fortunately, when I ran our addressing update (see section above) the production certs obtained from _Let's Encrypt_ were valid this time.  Woot!  I guess that means that our recent rate-limit induced ban had expired?  It also means I can now close the books on this project.  Double woot!   
 
 And that's a wrap... until next time.
