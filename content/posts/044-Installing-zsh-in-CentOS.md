@@ -1,7 +1,7 @@
 ---
-title: "Installing _zsh_ in CentOS"
+title: Installing ZSH in CentOS
 publishdate: 2019-09-16
-lastmod: 2019-09-16T10:09:39-05:00
+lastmod: 2019-09-17T11:56:49-05:00
 draft: false
 tags:
   - zsh
