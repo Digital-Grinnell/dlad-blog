@@ -1,7 +1,7 @@
 ---
 title: "Digital.Grinnell's IMI Workflow"
 publishdate: 2019-08-21
-lastmod: 2019-09-16T22:09:46-05:00
+lastmod: 2019-09-16T22:11:35-05:00
 draft: false
 tags:
   - Digital.Grinnell
