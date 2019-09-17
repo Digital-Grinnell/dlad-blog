@@ -1,7 +1,7 @@
 ---
 title: "Digital.Grinnell's IMI Workflow"
 publishdate: 2019-08-21
-lastmod: 2019-09-16T14:42:32-05:00
+lastmod: 2019-09-16T22:09:46-05:00
 draft: false
 tags:
   - Digital.Grinnell
@@ -18,13 +18,13 @@ Also, while updating this post I found this gem... [Diagrams in Documentation (M
 This post is an addition to the discussion in [post 028, Mounting //Storage for IMI Ingest in Digital.Grinnell ](https://static.grinnell.edu/blogs/McFateM/posts/028-mounting-storage-for-imi-ingest-in-digital-grinnell/) which was written largely to remind me how the //Storage mount works. :confused:  Unlike [post 028](https://static.grinnell.edu/blogs/McFateM/posts/028-mounting-storage-for-imi-ingest-in-digital-grinnell/), this post is meant for myself AND for others at Grinnell College who prepare digital objects for ingest via IMI. For those individuals... it's not necessary that you understand all of this, but it you choose to read-on, I hope you find this information helpful.
 
 ## IMI Process Overview
-At its core, IMI is a CSV ingest batch tool, but at Grinnell we use it almost exclusively with `Google Sheets` rather than actual `.csv` files. We do this largely so that each batch of objects we ingest, or modify, can have one (or more if necessary) **shared** data files... with emphasis on **shared**.  Also, since IMI supports direct use of `Google Sheets` we are able to ingest objects without having to create and juggle multiple copies or revisions of `.csv` files which can be difficult to track and effectively manage.
+At its core, IMI is a CSV ingest batch tool, but at Grinnell we use it almost exclusively with _Google Sheets_ rather than actual `.csv` files. We do this largely so that each batch of objects we ingest, or modify, can have one (or more if necessary) **shared** data files... with emphasis on **shared**.  Also, since IMI supports direct use of _Google Sheets_ we are able to ingest objects without having to create and juggle multiple copies or revisions of `.csv` files which can be difficult to track and effectively manage.
 
-Here at Grinnell we also have a single metadata template and metadata "form" so we don't have to maintain a different template or form for each content type or `cModel`.  Instead, we maintain a "master" Google Sheet or workbook that gets "cloned" for each set of objects that we ingest.  The "master", [Digital_Grinnell_MODS_Master](https://docs.google.com/spreadsheets/d/1G_pQgKJwtgBZYDAHcMC7dCTOnwexIYGHjarHPFKaAOg/edit#gid=1910204194), workbook is shared with a small group of Grinnell College staff who are responsible for it's use and maintenance.  
+Here at Grinnell we also have a single metadata template and metadata "form" so we don't have to maintain a different template or form for each content type or `cModel`.  Instead, we maintain a "master" Google Sheet or workbook that gets "cloned" for each set of objects that we ingest.  The "master", [Digital_Grinnell_MODS_Master](https://docs.google.com/spreadsheets/d/1G_pQgKJwtgBZYDAHcMC7dCTOnwexIYGHjarHPFKaAOg/edit#gid=1910204194) workbook is shared with a small group of Grinnell College staff who are responsible for it's use and maintenance.  
 
 The workflow is perhaps best explained with a (rather complex and busy) diagram:
 
-  ![IMI Workflow Diagram](./img/IMI-Workflow-Diagram.png)
+  ![IMI Workflow Diagram](https://digital.grinnell.edu/islandora/object/grinnell%3A26883/datastream/OBJ/view)
 
 ## Tabs or Worksheets
 The "master" workbook features four "tabs" or worksheets:
