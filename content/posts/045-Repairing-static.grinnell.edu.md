@@ -1,7 +1,7 @@
 ---
-title: "Repairing _static.grinnell.edu_"
+title: Repairing Static.Grinnell.edu
 publishdate: 2019-09-17
-lastmod: 2019-09-17T11:49:24-05:00
+lastmod: 2019-09-17T11:54:52-05:00
 draft: false
 tags:
   - static
