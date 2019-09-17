@@ -1,7 +1,7 @@
 ---
 title: "Repairing _static.grinnell.edu_"
 publishdate: 2019-09-17
-lastmod: 2019-09-17T10:56:32-05:00
+lastmod: 2019-09-17T11:49:24-05:00
 draft: false
 tags:
   - static
@@ -71,10 +71,27 @@ It worked!  The addition of the `:alpine` version specification for the image di
 
 This change did alter the network config a bit though. After the restart the bridge network created here was named _opt\_webgateway_, not _traefik\_webgateway_, as it was before. Consequently, to restart the supported services on this host I ran these command sequences.
 
+To restart the _static.grinnell.edu_ landing page site (https://static.grinnell.edu):
+
+```bash
+NAME=static-landing-page
+HOST=static.grinnell.edu
+IMAGE="mcfatem/static-landing"
+docker container run -d --name ${NAME} \
+    --label traefik.backend=${NAME} \
+    --label traefik.docker.network=opt_webgateway \
+    --label "traefik.frontend.rule=Host:${HOST}" \
+    --label traefik.port=80 \
+    --label com.centurylinklabs.watchtower.enable=true \
+    --network opt_webgateway \
+    --restart always \
+    ${IMAGE}
+```
+
 To restart the _VAF_ site (https://vaf.grinnell.edu):
 
 ```bash
-╰─$ NAME=vaf
+NAME=vaf
 HOST=vaf.grinnell.edu
 IMAGE="mcfatem/vaf"
 docker container run -d --name ${NAME} \
