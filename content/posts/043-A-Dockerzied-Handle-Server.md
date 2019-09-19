@@ -1,7 +1,7 @@
 ---
 title: "A Dockerized 'Handle' Server"
 publishdate: 2019-09-10
-lastmod: 2019-09-10T13:59:54-05:00
+lastmod: 2019-09-19T15:14:28-05:00
 draft: false
 tags:
   - Docker
@@ -14,159 +14,34 @@ Today's quest... to build a new [Handle.net](http://www.handle.net) server for _
 
 My old friend and server (or should that be servant?), _digital7_, used to be the home of [Digital.Grinnell](https://digital.grinnell.edu) in [Islandora v7](https://islandora.ca), before [Docker](https://en.wikipedia.org/wiki/Docker_(software)) and [ISLE](https://github.com/Islandora-Collaboration-Group/ISLE) came along. It's an [Ubuntu 14.04.5 LTS](https://ubuntu.com/) server, and in addition to hosting _Digital.Grinnell_, it also used to host our _HANDLE.NET_ server.  Hmmm...
 
-Opening server ports around here is not too difficult, but sometimes it can take ...forever. Presumably, good ol' _digital7_ already has all the right ports open for _HANDLE.NET_.  Hmmm...  I wonder if I can do an in-place upgrade of _digital7_ to _Ubuntu 18.04 LTS_, add _Docker_, and make it a home for _HANDLE.NET_ again?  Worth a shot I suppose; I hate to see ANYTHING go to waste!
+I tried valiantly to upgrade old _digital7_ from the OS on up, but failed.  In the end, _digital7_ was retired, and its IP address assigned to a new _CentOS 7_ server named _DGDocker3_.  So, I'll be making a new home for _HANDLE.NET_ services on _DGDocker1_, instead.
 
 ## Port Status
 
-The next step in my quest was to check some ports on ol' _digital7_, so I found [**you** get signal's Port Forwarding Tester](https://www.yougetsignal.com/tools/open-ports/), entered the IP address assigned to _digital7_, and then tested the two ports that _HANDLE.NET_ demands. Woot! The necessary ports are OPEN!  Note that I also checked these ports on a couple other servers and confirmed that they are NOT open. _digital7_'s destiny is at-hand!
+The next step in my quest was to check some ports on _DGDocker1_, so I found [**you** get signal's Port Forwarding Tester](https://www.yougetsignal.com/tools/open-ports/), entered the IP address assigned to the host and then tested the two ports that _HANDLE.NET_ demands. Rats! Neither was open, so I dispatched a help desk ticket to open them up.  About a week later... they're open.
 
+## docker-handle
 
-And that's a ~~wrap~~ good place for a break... until I return, shortly.  :smile:
+I took my fork of the aforementioned [datacite/docker-handle](https://github.com/datacite/docker-handle) for a spin on _DGDocker1_, but honestly, it looks like a train wreck. I could not fathom how to make it work since most of the _.env_ variables documented in the _README.md_ file don't seem to do anything in the configuration. :confused: I also found https://github.com/horizon-institute/handle.net-server-docker but it's a _Handle_ v8 instance, and I'm aiming for v9.
 
-<!---
-This post picks up from where [Configuring DGDocker2](https://static.grinnell.edu/blogs/McFateM/posts/041-configuring-dgdocker2) left off. In it I will establish a workflow to setup a "Dockerized" server complete with _Traefik_, _Portainer_, and _Who Am I_. It should be relatively easy to add additional non-static services to any server that is initially configured using this package.  For "static" servers have a look at post [008 docker-bootstrap Workflow ](https://static.grinnell.edu/blogs/McFateM/posts/008-docker-bootstrap-workflow/).
+## A Quick Solution
 
-## Capture As a Project
-
-Picking up from the end of [Configuring DGDocker2](https://static.grinnell.edu/blogs/McFateM/posts/041-configuring-dgdocker2), my first step on the _dgdocker2_ server was to move everything into a single subdirectory of _/opt_; I called the new directory _dockerized-server_, like so:
+So, on 18-Sep-2019 I set out to install a non-Dockerized _Handle_ server on _DGDocker1_. Installation followed the standard guidance found in [Technical Manual, Handle.Net Version 9](http://hdl.handle.net/20.1000/113) and my instance now lives in _/hs/handle-9.2.0_ and _/hs/svr_1_ on the _DGDocker1_ host. In order to make my _iduH_ tools work, I had to modify the _/opt/ISLE/docker-compose.yml_ file so that it contains the following additional volume bind-mount:
 
 ```
-mkdir -p /opt/dockerized-server
-mv -f /opt/traefik /opt/dockerized-server/traefik
-mv -f /opt/portainer /opt/dockerized-server/portainer
-mv -f /opt/whoami /opt/dockerized-server/whoami
+   # Next line added 19-Sep-2019 so that batch jobs for the HANDLE server at the host's /hs directory can run properly.
+   - /hs:/hs
+That line maps the host's /hs folder into the isle-apache-dg container as the same path, enabling Handle batch and other commands to run within the container itself.
 ```
 
-Then, I built a new _/opt/dockerized-server/docker-compose.yml_ file to launch _Traefik_, _Portainer_, and _WhoAmI_.
+After these additions I tweaked the _iduH_ command parameters found in [idu_constants.inc](https://github.com/DigitalGrinnell/idu/blob/master/idu_constants.inc), then I opened a shell into the _Apache_ container on _DGDocker1_ via `docker exec -it isle-apache-dg bash`, and did:
 
 ```
-version: "3"
-
-#### docker-compose up -d
-
-services:
-
-  traefik:
-    image: traefik:1.7.14-alpine
-    command: --configFile=/traefik.toml
-    container_name: traefik
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /opt/dockerized-server/data/traefik.toml:/traefik.toml
-      - /opt/dockerized-server/data/acme.json:/acme.json
-    networks:
-      - web
-    labels:
-      - traefik.enable=true
-      - "traefik.frontend.rule=Host:traefik2.grinnell.edu"
-#      - "traefik.frontend.rule=PathPrefixStrip:/traefik"
-#      - "traefik.frontend.redirect.regex=^(.*)/traefik$$"
-#      - "traefik.frontend.redirect.replacement=$$1/traefik/"
-#      - "traefik.frontend.rule=PathPrefix:/traefik;ReplacePathRegex: ^/traefik/(.*) /$$1"
-      - traefik.port=8080
-
-  portainer:
-    image: portainer/portainer
-    container_name: portainer
-    command: --admin-password "$$2y$$05$$pJEzHJBzfoYYS7/hGAedcOP8XdsqNXE7j.LHFBVjueASOqOvvjGOy" -H unix:///var/run/docker.sock
-    # command: -H unix:///var/run/docker.sock --no-auth
-    networks:
-      - web
-      - internal
-    ports:
-      - "9010:9000"     ## Remapped to avoid conflicts on systems/servers with portainer already running.
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer-data:/data
-    labels:
-      - traefik.port=9000
-      - traefik.docker.network=web
-      - traefik.enable=true
-      - "traefik.frontend.rule=PathPrefixStrip:/portainer"
-      - "traefik.frontend.redirect.regex=^(.*)/portainer$$"
-      - "traefik.frontend.redirect.replacement=$$1/portainer/"
-      - "traefik.frontend.rule=PathPrefix:/portainer;ReplacePathRegex: ^/portainer/(.*) /$$1"
-
-  whoami:
-    image: emilevauge/whoami
-    labels:
-      - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:omeka-s.grinnell.edu"
-      - "traefik.frontend.passHostHeader=true"
-      - "traefik.frontend.headers.SSLRedirect=true"
-    networks:
-      - web
-      - internal
-
-networks:
-  web:
-    external: true
-  internal:
-    external: false
-
-volumes:
-  portainer-data:
-
+cd /var/www/html/sites/default
+drush -u 1 iduH grinnell:2-5000 MODIFY; drush -u 1 iduF grinnell:2-5000 SelfTransform --reorder
+# Repeat drush... for other PID ranges
 ```
 
-### Use the _Let's Encrypt_ Staging Server
+It worked!  Note that in some instances a command of the form `drush -u 1 iduH grinnell:2-5000 CREATE` was necessary instead of "MODIFY".
 
-To avoid additional rate-limit issues with _Let's Encrypt_, I'm going to switch to using their "staging" server.  That requires the addition of this snippet to our _/opt/dockerized-server/traefik/traefik.toml_ file:
-
-```
-# CA server to use
-# Uncomment the line to run on the staging Let's Encrypt server
-# Leave comment to go to prod
-#
-# Optional
-#
-caServer = "https://acme-staging.api.letsencrypt.org/directory"
-```
-
-## A Fresh Start
-
-Now, all that's required to spin up the new server with the aforementioned parts, in this case on _dgdocker2_, is a command sequence like this:
-
-```
-# Clean up first!
-docker stop $(docker ps -q); docker rm -v $(docker ps -qa); docker image rm -f $(docker image ls -q); docker system prune --force;
-# Navigate into the project
-cd /opt/dockerized-server
-# Launch
-docker network create web
-docker-compose --log-level DEBUG up -d
-
-```
-
-## A Quick Test
-
-Since the above command sequence produced no errors, it's time to test what we have. The expectation is that our three services should now be running on _dgdocker2_, and they should respond in any web browser at the addresses shown here:
-
-  - _Traefik_ dashboard - https://traefik2.grinnell.edu
-  - _Portainer_ dashboard - https://omeka-s.grinnell.edu/portainer
-  - _Who Am I_ info dump - https://omeka-s.grinnell.edu
-
-**Confirmed!**  All of the above are working properly, albeit with invalid/temporary certs (due to _Let's Encrypt_ rate limiting).
-
-## Pushing to GitHub
-
-No project is complete these days without a _GitHub_ component (or something very similar).  So, my next step was to create a new _GitHub_ repository at https://github.com/DigitalGrinnell/dockerized-server, and push the contents of my _dgdocker2:/opt/dockerized-server_ directory to it, like so:
-
-```
-git init
-git add -A
-git commit -m "Initial commit"
-git remote add origin https://github.com/McFateM/dockerized-server.git
-git push -u origin master
-```
-
-## Back to [Configuring DGDocker2](https://static.grinnell.edu/blogs/McFateM/posts/041-configuring-dgdocker2)
-
-At this point you might return to [Configuring DGDocker2](https://static.grinnell.edu/blogs/McFateM/posts/041-configuring-dgdocker2#back-to-omeka-s-configuration) where I'll finally add _Omeka-S_ to _dgdocker2_.
-
-And that's a wrap... until next time.  :smile:
--->
+And that's a ~~wrap~~ good place for a break... until I return to formally "Dockerize" this effort.  :smile:
