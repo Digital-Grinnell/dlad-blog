@@ -1,7 +1,7 @@
 ---
 title: "DG-FEDORA: A Portable FEDORA Repository"
 publishdate: 2019-09-16
-lastmod: 2019-09-26T08:35:23-05:00
+lastmod: 2019-09-26T21:50:17-05:00
 draft: false
 tags:
   - DG-FEDORA
@@ -79,6 +79,14 @@ To successfully use _DG-FEDORA_ your system will need to meet the following prer
 
 In MacOSX you simply have to plug the _DG-FEDORA_ USB stick into an available USB port on your Mac workstation.  After a few seconds the USB stick will be automatically mounted as _/Volumes/DG-FEDORA_, and the _/Volumes_ directory is automatically "shared" with _Docker_.
 
+### Make DG-FEDORA Writable
+
+In MacOSX, open a terminal and use the following command to make _DG-FEDORA_ writable, so that you can save newly ingested objects and updates to existing objects:
+
+  - `sudo mount -u -w /Volumes/DG-FEDORA`
+
+## Not Using MacOSX?  
+
 If your workstation is not a Mac, you will need to insert the USB stick and take appropriate steps to:
 
   - Mount the stick with read/write permissions as _/Volumes/DG-FEDORA_.
@@ -89,22 +97,29 @@ If your workstation is not a Mac, you will need to insert the USB stick and take
 Navigate to your _ISLE_ project directory and execute the following operations:
 
   - Shut down _ISLE_ if it is running.  Example: `cd ~/pathto/ISLE; docker-compose down`.  These commands will do no harm if _ISLE_ is not currently running.
-  - Copy necessary files from _DG-FEDORA_ to your project.  Example: `cd /Volumes/DG-FEDORA; cp -f .env docker-compose.DG-FEDORA.yml ~/pathto/ISLE/.`
+  - Copy two files from _DG-FEDORA_ to your local project.  Example: `cd /Volumes/DG-FEDORA; cp -f .env docker-compose.DG-FEDORA.yml ~/pathto/ISLE/.`
   - Edit the new _ISLE_ project _.env_ file according to directions within the file.  Example: `nano ~/pathto/ISLE/.env`.  The objective is to select the appropriate "demo" or "local" environment as needed.
   - Navigate to your project directory and restart the stack.  Example: `cd ~/pathto/ISLE; docker-compose up -d`.
   - Wait until the stack has started, open your browser and visit your site at https://isle.localdomain (demo) or https://yourprojectnamehere.localdomain (local).
 
-### Re-Index _FEDORA_
+### Rebuild _FEDORA_'s _resourceIndex_
 
-  - Re-index your _FEDORA_ _resourceIndex_ like so: `docker exec -it isle-apache-ld bash; cd utility_scripts; ./rebuildFedora.sh`.  See _./docs/install/install-production-migrate.md#reindex-fedora-ri--fedora-sql-database-23_ for additional details.
+Rebuild your _FEDORA_ _resourceIndex_ using the steps documented in [Step 17: On Remote Production - Re-Index Fedora & Solr](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v.1.3.0-dev/docs/install/install-production-migrate.md#step-17-on-remote-production---re-index-fedora--solr).
 
-### Re-Index _Solr_
+  - Open a terminal in the _isle-fedora-ld_ container, `docker exec -it isle-fedora-ld bash`, and then run `cd utility-scripts/; ./rebuildFedora.sh`.
 
-  - Re-index your _Solr_ instance from the same terminal session launched in the step above (or repeat `docker exec -it isle-apache-ld bash; cd utility_scripts;`) like so: `./updateSolrIndex.sh`.  See _./docs/install/install-production-migrate.md#reindex-fedora-ri--fedora-sql-database-23_ for additional details.
+### Rebuild the _Solr_ Index
 
-### Confirm Your Work
+Once the previous rebuild process is complete, you should rebuild your _Solr_ search index using the remaining steps documented in [Step 17: On Remote Production - Re-Index Fedora & Solr](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v.1.3.0-dev/docs/install/install-production-migrate.md#step-17-on-remote-production---re-index-fedora--solr).
+
+  - Open a terminal in the _isle-fedora-ld_ container, `docker exec -it isle-fedora-ld bash` (or using the terminal opened in the previous step), and then run `cd utility-scripts/; ./updateSolrIndex.sh`.
+
+This rebuilding process may take a few minutes.  Proceed to the check your work after some minutes have passed.
+
+### Check Your Work
 
   - Visit the repository home page at https://isle.localdomain/islandora/object/islandora:root (demo) or https://yourprojectnamehere.localdomain/islandora/object/islandora:root (local).  You should see new collections on the first page of your display.  
+  - Follow the install documentation for enabling the _Islandora Simple Search_ block and test _Solr_ by searching for a term like "Ley".
 
 # Feedback is Welcome
 
