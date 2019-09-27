@@ -1,7 +1,7 @@
 ---
 title: "Granular ISLE Customization: Series Guidelines"
 publishdate: 2019-09-27
-lastmod: 2019-09-27T09:43:56-05:00
+lastmod: 2019-09-27T09:47:20-05:00
 draft: false
 tags:
   - granular
@@ -48,7 +48,7 @@ root@9bec4edd3964:/var/www/html#
 
 That's all we need in terms of guidelines.  I hope you find the series useful!  
 
-Posts in the _Granular ISLE Customiazation_ series include:
+Posts in the _Granular ISLE Customization_ series include:
 
 | Title | Synopsis |
 | --- | --- |
