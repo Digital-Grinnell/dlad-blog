@@ -1,7 +1,7 @@
 ---
 title: "DG-FEDORA: A Portable FEDORA Repository"
 publishdate: 2019-09-16
-lastmod: 2019-09-26T21:50:17-05:00
+lastmod: 2019-09-27T11:07:13-05:00
 draft: false
 tags:
   - DG-FEDORA
@@ -47,15 +47,27 @@ In the file above note that I've commented out the original definition of _COMPO
 version: '3.7'
 
 #### docker-compose up -d;
-## Demo Environment - Used for exploring a full sandboxed ISLE system with an un-themed Islandora / Drupal site.
+## Local Environment - Used for Drupal site development, more extensive metadata, Solr and Fedora development work on a local laptop or workstation
 ## Updated 2019-09 - Release 1.3.0-dev (@ 1.3.0-dev)
 
 services:
+
+  # Bind-mount the datastreamStore and objectStore directories in /Volumes/DG-FEDORA (the USB stick)
+  #  into the FEDORA container to become our FEDORA datastream and object store directories.  FEDORA digital
+  #  live in these directories, so this effectively puts your FEDORA repository on the DG-FEDORA stick.
 
   fedora:
     volumes:
       - /Volumes/DG-FEDORA/datastreamStore:/usr/local/fedora/data/datastreamStore
       - /Volumes/DG-FEDORA/objectStore:/usr/local/fedora/data/objectStore
+
+  # Bind-mount the /Volumes/DG-FEDORA/Storage directory tree in the Apache container. This bind-mount to /mnt/storage
+  #  is usefule with IMI, the Islandora Multi-Importer when a local* file fetch hook is defined, as it is in the DG7
+  #  custom module.
+
+  apache:
+    volumes:
+      - /Volumes/DG-FEDORA/Storage:/mnt/storage
 ```
 
 Simple. It's just a repeat of the original _docker-compose.demo.yml_ file with only the necessary "overrides" included.
