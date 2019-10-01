@@ -1,7 +1,7 @@
 ---
 title: "Granular ISLE Customization: Installing IMI"
 publishdate: 2019-09-27
-lastmod: 2019-09-30T20:53:02-05:00
+lastmod: 2019-09-30T21:11:35-05:00
 draft: false
 tags:
   - granular
@@ -37,8 +37,8 @@ This part is easy. To install the aforementioned _Twig_ template, or any _IMI_ t
 
   - Copy the entire contents of [this Gist](https://gist.github.com/c88a37f116dcb71564fe4639e10af73f), or any suitable _Twig_ template, to your paste buffer.
   - In your web browser, visit the `/multi_importer#overlay=admin/islandora` address of your _Islandora_ instance, https://public.localdomain/multi_importer#overlay=admin/islandora, for example.
-  - Choose `Multi Importer Twig templates` or the `/multi_importer#overlay=admin/islandora/twigtemplates` in your _Islandora_ instance.
-  - Choose `New Twig template` or the `/multi_importer#overlay=admin/islandora/twigtemplates/create`.
+  - Choose `Multi Importer Twig templates` or `/multi_importer#overlay=admin/islandora/twigtemplates` in your _Islandora_ instance.
+  - Choose `New Twig template` or `/multi_importer#overlay=admin/islandora/twigtemplates/create`.
   - Paste the text of your _Twig_ template into the available `Twig Template Input` window pane.
   - At the bottom of the form, enter a descriptive name for your template.  In my case the name is `Digital_Grinnell_MODS_Master.twig Revision 14`.
   - Click `Save Template`.
