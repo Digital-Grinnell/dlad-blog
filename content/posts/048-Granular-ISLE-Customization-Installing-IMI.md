@@ -1,7 +1,7 @@
 ---
 title: "Granular ISLE Customization: Installing IMI"
 publishdate: 2019-09-27
-lastmod: 2019-09-27T09:49:31-05:00
+lastmod: 2019-09-30T20:53:02-05:00
 draft: false
 tags:
   - granular
@@ -9,6 +9,7 @@ tags:
   - ISLE
   - Islandora Multi-Importer
   - IMI
+  - Twig
 ---
 
 | Granular ISLE Customization |
@@ -25,5 +26,23 @@ It's important that we take this step BEFORE other customizations, otherwise the
 | Apache Container Commands* |
 | --- |
 | cd /var/www/html/sites/all/modules/islandora <br/> git clone https://github.com/mnylc/islandora_multi_importer.git <br/> chown -R islandora:www-data * <br/> cd islandora_multi_importer <br/> composer install <br/> drush -y en islandora_multi_importer <br/> |
+
+## Bonus: A Robust _Twig_ Template for _MODS_
+In my opinion, _IMI_'s greatest strength is the way it leverages [Twig](https://twig.symfony.com/) templates to translate CSV (comma-separated value) data into viable [MODS](http://www.loc.gov/standards/mods/) metadata.  And the real beauty in _Twig_ is what you can do with it once you understand how it works.
+
+While an exhaustive explanation of _Twig_ is beyond the scope of this post, I can provide what I believe is a very robust _Twig_ example, created specifically for _MODS_ and _IMI_ at _Grinnell College_.  This is the template that currently drives ingest into [Digital.Grinnell.edu](https://digital.grinnell.edu/).  The template includes extensive comments up-front, and the current, revision 14, version is included [in this Gist](https://gist.github.com/c88a37f116dcb71564fe4639e10af73f).
+
+## Installing the Template
+This part is easy. To install the aforementioned _Twig_ template, or any _IMI_ template follow these simple steps:
+
+  - Copy the entire contents of [this Gist](https://gist.github.com/c88a37f116dcb71564fe4639e10af73f), or any suitable _Twig_ template, to your paste buffer.
+  - In your web browser, visit the `/multi_importer#overlay=admin/islandora` address of your _Islandora_ instance, https://public.localdomain/multi_importer#overlay=admin/islandora, for example.
+  - Choose `Multi Importer Twig templates` or the `/multi_importer#overlay=admin/islandora/twigtemplates` in your _Islandora_ instance.
+  - Choose `New Twig template` or the `/multi_importer#overlay=admin/islandora/twigtemplates/create`.
+  - Paste the text of your _Twig_ template into the available `Twig Template Input` window pane.
+  - At the bottom of the form, enter a descriptive name for your template.  In my case the name is `Digital_Grinnell_MODS_Master.twig Revision 14`.
+  - Click `Save Template`.
+
+Your _Twig_ template is now ready for use.  Enjoy!
 
 And that's a wrap.  Until next time...
