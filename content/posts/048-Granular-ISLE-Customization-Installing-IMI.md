@@ -1,7 +1,7 @@
 ---
 title: "Granular ISLE Customization: Installing IMI"
 publishdate: 2019-09-27
-lastmod: 2019-09-30T21:11:35-05:00
+lastmod: 2019-10-04T12:26:27-05:00
 draft: false
 tags:
   - granular
@@ -26,6 +26,15 @@ It's important that we take this step BEFORE other customizations, otherwise the
 | Apache Container Commands* |
 | --- |
 | cd /var/www/html/sites/all/modules/islandora <br/> git clone https://github.com/mnylc/islandora_multi_importer.git <br/> chown -R islandora:www-data * <br/> cd islandora_multi_importer <br/> composer install <br/> drush -y en islandora_multi_importer <br/> |
+
+## An Alternative IMI Installation
+The commands documented above will pull the "master" branch of the canonical _IMI_ from _mnylc_, but if you'd like to take another of my features for a spin, try installing my fork (sync'd with the _mnylc_ master on 04-Oct-2019), like so:
+
+| Apache Container Commands* |
+| --- |
+| cd /var/www/html/sites/all/modules/islandora <br/> git clone https://github.com/DigitalGrinnell/islandora_multi_importer.git <br/> chown -R islandora:www-data * <br/> cd islandora_multi_importer <br/>  git checkout Issue-15 <br/> composer install <br/> drush -y en islandora_multi_importer <br/> |
+
+The feature that's unique to this fork and branch is mentioned briefly in [project "Issue" number 15](https://github.com/mnylc/islandora_multi_importer/issues/15#issuecomment-318190438).
 
 ## Bonus: A Robust _Twig_ Template for _MODS_
 In my opinion, _IMI_'s greatest strength is the way it leverages [Twig](https://twig.symfony.com/) templates to translate CSV (comma-separated value) data into viable [MODS](http://www.loc.gov/standards/mods/) metadata.  And the real beauty in _Twig_ is what you can do with it once you understand how it works.
