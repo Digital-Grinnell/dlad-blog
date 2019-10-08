@@ -1,7 +1,7 @@
 ---
 title: "DG-FEDORA: A Portable FEDORA Repository"
 publishdate: 2019-09-16
-lastmod: 2019-10-08T09:51:46-05:00
+lastmod: 2019-10-08T10:04:21-05:00
 draft: false
 tags:
   - DG-FEDORA
