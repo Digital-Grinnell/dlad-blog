@@ -1,7 +1,7 @@
 ---
 title: "DG-FEDORA: A Portable FEDORA Repository"
 publishdate: 2019-09-16
-lastmod: 2019-09-27T11:07:13-05:00
+lastmod: 2019-10-08T09:51:46-05:00
 draft: false
 tags:
   - DG-FEDORA
@@ -118,13 +118,13 @@ Navigate to your _ISLE_ project directory and execute the following operations:
 
 Rebuild your _FEDORA_ _resourceIndex_ using the steps documented in [Step 17: On Remote Production - Re-Index Fedora & Solr](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v.1.3.0-dev/docs/install/install-production-migrate.md#step-17-on-remote-production---re-index-fedora--solr).
 
-  - Open a terminal in the _isle-fedora-ld_ container, `docker exec -it isle-fedora-ld bash`, and then run `cd utility-scripts/; ./rebuildFedora.sh`.
+  - Open a terminal in the _isle-fedora-ld_ container, `docker exec -it isle-fedora-ld bash`, and then run `cd utility_scripts/; ./rebuildFedora.sh`.
 
 ### Rebuild the _Solr_ Index
 
 Once the previous rebuild process is complete, you should rebuild your _Solr_ search index using the remaining steps documented in [Step 17: On Remote Production - Re-Index Fedora & Solr](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v.1.3.0-dev/docs/install/install-production-migrate.md#step-17-on-remote-production---re-index-fedora--solr).
 
-  - Open a terminal in the _isle-fedora-ld_ container, `docker exec -it isle-fedora-ld bash` (or using the terminal opened in the previous step), and then run `cd utility-scripts/; ./updateSolrIndex.sh`.
+  - Open a terminal in the _isle-fedora-ld_ container, `docker exec -it isle-fedora-ld bash` (or using the terminal opened in the previous step), and then run `cd utility_scripts/; ./updateSolrIndex.sh`.
 
 This rebuilding process may take a few minutes.  Proceed to the check your work after some minutes have passed.
 
