@@ -1,7 +1,7 @@
 ---
 title: Migrating Digital.Grinnell (DG) to ISLE 1.3.0 (ld) for Local Development
 publishDate: 2019-10-29
-lastmod: 2019-10-31T11:29:28-05:00
+lastmod: 2019-11-01T09:57:55-05:00
 draft: false
 emojiEnable: true
 tags:
@@ -57,15 +57,15 @@ For this process I already have a workflow in place, and it's a little different
   - Visit my production site at https://digital.grinnell.edu.
   - Login as the `System Admin`, that's `User 1` or the super-user in Drupal terms.
   - The home page at https://digital.grinnell.edu provides, in the right-hand menu bar, a `Management` menu with a first option to `Clear cache`.  Click it.
-  - The home page also provides a `Quick Backup` block where the default options do a great job of backing up only what's needed.  Accept all defaults and click the `Backup Now` button.  This feature takes the site offline, makes and downloads a backup of the database (in my case it created `digital.grinnell.edu-2019-08-13T15-51-20.mysql`), and brings the site back online..."automagically".  
+  - The home page also provides a `Quick Backup` block where the default options do a great job of backing up only what's needed.  Accept all defaults and click the `Backup Now` button.  This feature takes the site offline, makes and downloads a backup of the database (in my case it created `digital.grinnell.edu-2019-10-31T14-07-37.mysql`), and brings the site back online..."automagically".  
 
 ### [Fedora Hash Size (Conditional)](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#fedora-hash-size-conditional)
 
 I found this section a little confusing, which I assume means that it does not apply to Digital.Grinnell.  Moving on.
 
-### [Solr Schema & Islandora Transforms](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#solr-schema--islandora-transforms)
+### [Solr Schema & Islandora Transforms](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#solr-schema-and-islandora-transforms)
 
-This section definitely applies to Digital.Grinnell! :blush: Since I recently completed spin-up of a "Demo" ISLE using `install-local-new.md`, and since this is "not my first rodeo", I choose to take the "advanced" path here and will "[diff & merge current production customization edits into ISLE configs](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.2.0/docs/install/install-local-migrate.md#advanced---diff--merge-current-production-customization-edits-into-isle-configs)".  Wish me luck.  :four_leaf_clover:
+This section definitely applies to Digital.Grinnell! :blush: Since I recently completed spin-up of a "Demo" ISLE using `install-local-new.md`, and since this is "not my first rodeo", I choose to take the "advanced" path here and will "[diff & merge current production customization edits into ISLE configs](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#strategy-3-advanced---diff-and-merge-current-production-customization-edits-into-isle-configs)".  Wish me luck.  :four_leaf_clover:
 
 To begin this portion of the process I created a new `~/diff-and-merge-customizations` directory structure and with https://isle.localdomain running the `Demo`, I copied files from it like so:
 
@@ -88,9 +88,9 @@ This left me with a local `~/diff-and-merge-customizations` directory with sub-d
 The command and output from the first `diff` of the `islandora_transforms` was:
 
 ```
-╭─markmcfate@ma8660 ~
-╰─$ cd ~/diff-and-merge-customization/ld
-╭─markmcfate@ma8660 ~/diff-and-merge-customization/ld
+╭─digital@MA6879 ~
+╰─$ cd ~/diff-and-merge-customizations/ld
+╭─digital@MA6879 ~/diff-and-merge-customizations/ld
 ╰─$ diff -r islandora_transforms ../prod/islandora_transforms   1 ↵
 Only in islandora_transforms: .git
 diff -r islandora_transforms/WORKFLOW_to_solr.xslt ../prod/islandora_transforms/WORKFLOW_to_solr.xslt
@@ -112,11 +112,11 @@ Phew, that was a lot of Step 0!
 ## [Step 1: Edit `/etc/hosts` File](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-migrate.md#step-1-edit-etchosts-file)
 Easy peasy, relatively speaking.  :smile:
 
-## [Step 2: Setup Git for the ISLE Project](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-migrate.md#step-2-setup-git-for-the-isle-project)
+## [Step 2: Setup Git for the ISLE Project](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#step-2-setup-git-project-repositories)
 
 OK, I already have two private Github repositories...
-  - https://gitubh.com/McFateM/dg-isle for my customized copy of the ISLE project, and
-  - https://github.com/McFateM/dg-islandora for my customized copy of the Drupal and Islandora code.
+  - https://gitubh.com/Digital-Grinnell/dg-isle for my customized copy of the ISLE project, and
+  - https://github.com/Digital-Grinnell/dg-islandora for my customized copy of the Drupal and Islandora code.
 
 However, in my case neither of these repositories is "complete" because they are products of the `install-local-new.md` process, so my focus in this step will be to get these two repos in line with the Git workflow that's being established.
 
@@ -126,15 +126,15 @@ Regarding the `dg-isle` repo...
 
 | Workstation Commands |
 | --- |
-| cd ~/Projects <br/> git clone https://github.com/McFateM/dg-isle.git <br/> cd dg-isle <br/> git remote add icg-upstream https://github.com/Islandora-Collaboration-Group/ISLE.git <br/> git fetch icg-upstream <br/> git pull icg-upstream master <br/> git push -u origin master |
+| cd ~/Projects <br/> git clone https://github.com/Digital-Grinnell/dg-isle.git <br/> cd dg-isle <br/> git remote add icg-upstream https://github.com/Islandora-Collaboration-Group/ISLE.git <br/> git fetch icg-upstream <br/> git pull icg-upstream master <br/> git push -u origin master |
 
-## [Step 2a: Add Customizations from `Step 0`](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-migrate.md#step-2a-add-customizations-from-step-0)
+## [Step 2a: Add Customizations from `Step 0`](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#step-2a-add-customizations-from-step-0-to-the-git-workflow)
 
 Before executing the documented commands I elected to create a new branch in my local `dg-isle` repo, so my workflow was this:
 
 | Workstation Commands |
 | --- |
-| cd ~/Projects/dg-isle <br/> git checkoput -b solr-and-gsearch-customizations <br/> mkdir -p ./config/solr <br/> mkdir -p ./config/fedora/gsearch <br/> cp -f ~/diff-and-merge-customizations/ld/schema.xml ./config/solr/ <br/> cp -f ~/diff-and-merge-customizations/ld/foxmlToSolr.xslt ./config/fedora/gsearch/ <br/> cp -fr ~/diff-and-merge-customizations/ld/islandora_transforms ./config/fedora/gsearch/ |
+| cd ~/Projects/dg-isle <br/> git checkout -b solr-and-gsearch-customizations <br/> mkdir -p ./config/solr <br/> mkdir -p ./config/fedora/gsearch <br/> cp -f ~/diff-and-merge-customizations/ld/schema.xml ./config/solr/ <br/> cp -f ~/diff-and-merge-customizations/ld/foxmlToSolr.xslt ./config/fedora/gsearch/ <br/> cp -fr ~/diff-and-merge-customizations/ld/islandora_transforms ./config/fedora/gsearch/ |
 
 Next, I edited `docker-compose.local.yml` as prescribed, and then saved it all like so:
 
