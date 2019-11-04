@@ -1,7 +1,7 @@
 ---
 title: Migrating Digital.Grinnell (DG) to ISLE 1.3.0 (ld) for Local Development
 publishDate: 2019-10-29
-lastmod: 2019-11-01T09:57:55-05:00
+lastmod: 2019-11-03T22:17:44-05:00
 draft: false
 emojiEnable: true
 tags:
@@ -142,15 +142,136 @@ Next, I edited `docker-compose.local.yml` as prescribed, and then saved it all l
 | --- |
 | cd ~/Projects/dg-isle <br/> git checkout solr-and-gsearch-customizations <br/> git add -A <br/> git commit -m "Customizations from Step 2a" <br/> git push --set-upstream origin solr-and-gsearch-customizations |
 
-## [Step 3. `git clone` the Production Drupal Site Code](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-migrate.md#step-3-git-clone-the-production-drupal-site-code)
+## [Step 3: Git Clone the Production Islandora Drupal Site Code](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#step-3-git-clone-the-production-islandora-drupal-site-code)
 
-OK, this section will deal with my Islandora/Drupal code repository with all my customization in it, in my case that's https://github.com/McFateM/dg-islandora, but my copy isn't complete yet, so...
+OK, this section will deal with my Islandora/Drupal code repository with all my customization in it, in my case that's https://github.com/Digital-Grinnell/dg-islandora, but my copy isn't complete yet, so...
 
 # Post 038 - Building My `dg-islandora` Code Repository
 
-I'm creating a new blog post that will become [038-Building-My-`dg-islandora`-Code-Repository](https://static.grinnell.edu/blogs/McFateM/posts/038-building-my-dg-islandora-code-repository/).  It will combine elements of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) with [post 034](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) to create a "customized" local ISLE v1.2.0 instance with features of Digital.Grinnell.
+Earlier I created blog post [038-Building-My-`dg-islandora`-Code-Repository](https://static.grinnell.edu/blogs/McFateM/posts/038-building-my-dg-islandora-code-repository/).  It combined elements of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) with [post 034](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) to create a "customized" local ISLE v1.2.0 instance with features of Digital.Grinnell.
 
-Once that process is complete, I'll return here to continue `Step 3`.  Until then...
+The product of all that work is the [Digital-Grinnell/dg-islandora](https://github.com/Digital-Grinnell/dg-islandora) **private** GitHub repo.
+
+I followed the procedure outline in [Step 3: Git Clone the Production Islandora Drupal Site Code](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#step-3-git-clone-the-production-islandora-drupal-site-code) with my [Digital-Grinnell/dg-islandora](https://github.com/Digital-Grinnell/dg-islandora) **private** repo like so:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects <br/> git clone https://github.com/Digital-Grinnell/dg-islandora.git <br/> cd dg-islandora <br/> atom .|
+
+Again, the final `atom .` command opened my newly cloned project in **Atom** to simplify editing.  I followed the guidance of **Step 3** to update my `docker-compose.local.yml` as directed.  This concludes **Step 3**; moving on.
+
+## [Step 4: Edit the ".env" File to Change to the Local Environment](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#step-4-edit-the-env-file-to-change-to-the-local-environment)
+
+I simply confirmed the suggested edits to my `.env` file using the **Atom** editing session opened above.
+
+## [Step 5: Create New Users and Passwords by Editing "local.env" File](https://github.com/McFateM/ISLE/blob/master/docs/install/install-local-migrate.md#step-5-create-new-users-and-passwords-by-editing-localenv-file)
+
+Since this is "local" I'll keep no secrets here.  I set all the variable passwords, and hashes to "password", and "thisisalengthyhashstring", respectively, as permitted.  All other variables, like usernames and more, I set to "local".  Note that I left the original "# Replace..." strings intact, but made sure to push each one to a new line.
+
+There's a copy of my complete customized `local.env` file [in this gist](https://gist.github.com/0d32653fd0718b0efabaffff9023742f).  
+
+
+## [Step 6: Create New Self-Signed Certs for Your Project](https://github.com/McFateM/ISLE/blob/clarify-install-local-migrate/docs/install/install-local-migrate.md#step-6-create-new-self-signed-certs-for-your-project)
+
+Simply followed the instructions to-the-letter.
+
+## [Step 7: Download the ISLE Images](https://github.com/McFateM/ISLE/blob/clarify-install-local-migrate/docs/install/install-local-migrate.md#step-7-download-the-isle-images)
+
+Simply followed the instructions to-the-letter.
+
+## [Step 8: Launch Process](https://github.com/McFateM/ISLE/blob/clarify-install-local-migrate/docs/install/install-local-migrate.md#step-8-launch-process)
+
+Simply followed the instructions to-the-letter.
+
+## [Step 9: Import the Production MySQL Drupal Database](https://github.com/McFateM/ISLE/blob/clarify-install-local-migrate/docs/install/install-local-migrate.md#step-9-import-the-production-mysql-drupal-database)
+
+In this step, employing _Method B: Use the Command Line_, I returned to the `DGDocker1` production database, `digital.grinnell.edu-2019-10-31T14-07-37.mysql.gz`, saved in the [Drupal Site Database](#drupal-site-database) section of this document.
+
+First, I unzipped the aforementioned database archive using my MacBook's `Archive Utility` to produce `digital.grinnell.edu-2019-10-31T14-07-37.mysql` on my workstation desktop.  The full path to this file was `/Users/digital/Desktop/digital.grinnell.edu-2019-10-31T14-07-37.mysql`.  Then, on my workstation and in the _MySQL_ container:
+
+| Workstation Commands |
+| --- |
+| docker cp /Users/digital/Desktop/digital.grinnell.edu-2019-10-31T14-07-37.mysql isle-mysql-ld:/database.mysql <br/> docker exec -it isle-mysql-ld bash |
+
+| MySQL Container Commands |
+| --- |
+| mysql -u local -p local < database.mysql <br/> exit |
+
+## [Step 10: Run Islandora Drupal Site Scripts](https://github.com/McFateM/ISLE/blob/clarify-install-local-migrate/docs/install/install-local-migrate.md#step-10-run-islandora-drupal-site-scripts)
+
+Following the provided guidance yielded a set of workstation commands like this:
+
+| Workstation Commands |
+| --- |
+| docker cp scripts/apache/migration_site_vsets.sh isle-apache-ld:/var/www/html/migration_site_vsets.sh <br/> docker exec -it isle-apache-ld bash -c "chmod +x /var/www/html/migration_site_vsets.sh" <br/> docker exec -it isle-apache-ld bash -c "cd /var/www/html && ./migration_site_vsets.sh" <br/> docker cp scripts/apache/install_solution_packs.sh isle-apache-ld:/var/www/html/install_solution_packs.sh <br/> docker exec -it isle-apache-ld bash -c "chmod +x /var/www/html/install_solution_packs.sh" <br/> docker exec -it isle-apache-ld bash -c "cd /var/www/html && ./install_solution_packs.sh" |
+
+Output from the `migration_site_vsets.sh` command:
+
+```
+The following module is missing from the file system: <em class="placeholder">masquerade</em>. For information about how to fix this, see <a                  [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">announcements</em>. For information about how to fix this, see <a               [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">backup_migrate</em>. For information about how to fix this, see <a              [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following theme is missing from the file system: <em class="placeholder">bootstrap</em>. For information about how to fix this, see <a                    [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">dg7</em>. For information about how to fix this, see <a                         [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following theme is missing from the file system: <em class="placeholder">digital_grinnell_bootstrap</em>. For information about how to fix this, see <a   [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">email</em>. For information about how to fix this, see <a                       [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">git_deploy</em>. For information about how to fix this, see <a                  [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">idu</em>. For information about how to fix this, see <a                         [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">ihc</em>. For information about how to fix this, see <a                         [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_binary_object</em>. For information about how to fix this, see <a     [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_collection_search</em>. For information about how to fix this, see <a [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_google_scholar</em>. For information about how to fix this, see <a    [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_mods_display</em>. For information about how to fix this, see <a      [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_multi_importer</em>. For information about how to fix this, see <a    [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_oralhistories</em>. For information about how to fix this, see <a     [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_pdfjs_reader</em>. For information about how to fix this, see <a      [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_solr_collection_view</em>. For information about how to fix this, see [warning]
+<a href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">ldap_servers</em>. For information about how to fix this, see <a                [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">maillog</em>. For information about how to fix this, see <a                     [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">phpexcel</em>. For information about how to fix this, see <a                    [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">r4032login</em>. For information about how to fix this, see <a                  [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">smtp</em>. For information about how to fix this, see <a                        [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">transcripts_ui</em>. For information about how to fix this, see <a              [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">views_bootstrap</em>. For information about how to fix this, see <a             [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">field_group</em>. For information about how to fix this, see <a                 [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+WD php: PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'local.users' doesn't exist: SELECT base.uid AS uid, base.name AS name,       [error]
+base.pass AS pass, base.mail AS mail, base.theme AS theme, base.signature AS signature, base.signature_format AS signature_format, base.created AS created,
+base.access AS access, base.login AS login, base.status AS status, base.timezone AS timezone, base.language AS language, base.picture AS picture, base.init AS
+init, base.data AS data
+FROM
+{users} base
+WHERE  (base.uid IN  (:db_condition_placeholder_0)) ; Array
+(
+    [:db_condition_placeholder_0] => 1
+)
+ in DrupalDefaultEntityController->load() (line 198 of /var/www/html/includes/entity.inc).
+ ```
 
 <!-- The old post 034 info is below...
 
