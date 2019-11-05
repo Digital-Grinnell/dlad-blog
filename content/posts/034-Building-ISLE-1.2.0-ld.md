@@ -1,19 +1,19 @@
 ---
-title: Building ISLE 1.2.0 (ld) for Local Development
+title: Building ISLE 1.3.0 (ld) for Local Development
 publishDate: 2019-08-05
-lastmod: 2019-08-09T16:36:50-05:00
+lastmod: 2019-11-05T10:50:16-05:00
 draft: false
 emoji: true
 tags:
   - ISLE
-  - v1.2.0
+  - ISLE-1.3.0
   - local
 ---
 
-This post, a follow-up to [a previous post](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) is intended to chronicle my efforts to build a new ISLE v1.2.0 `ld`, or `local development`, instance of Digital.Grinnell on my work-issued MacBook, `ma7053`.  
+This post, an updated (the original was written in August 2019 for ISLE-1.2.0) follow-up to [a previous post](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) is intended to chronicle my efforts to build a new ~ISLE v1.2.0~ ISLE-1.3.0, _ld_, or _local development_, instance of Digital.Grinnell on my work-issued MacBook, _ma7053_.  
 
 ## Goal Statement
-The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) at https://github.com/DigitalGrinnell/dg-isle, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu.
+The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) at https://github.com/Digital-Grinnell/dg-isle, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu.
 
 ## Using This Document
 There are just a couple of notes regarding this document that I'd like to pass along to make it more useful.
@@ -42,37 +42,43 @@ root@9bec4edd3964:/var/www/html#
 ```
 | Workstation Commands |
 | --- |
-| cd ~/Projects/dg-isle <br/> docker exec -it isle-apache-ld bash |
+| cd ~/Projects/ISLE <br/> docker exec -it isle-apache-ld bash |
 
-# Installing per Born Digital's install-local-new.md
-This is first-and-foremost a `local development` copy of ISLE, but with considerable Digital Grinnell customization, so I'm following the process outlined in the project's `./docs/install/install-local-new.md`.  References to `Step X` that follow refer to corresponding sections of https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md.  Each section or "Step" listed below is also a link back to the corresponding section of the canonical document.
+# Installing per [install-local-new.md](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md)
 
-## [Step 1: Edit the `/etc/hosts` File](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-1-edit-etchosts-file)
+This is first-and-foremost a _local development_ copy of _ISLE_, but with considerable _Digital.Grinnell_ customization, so I'm following the process outlined in the project's _./docs/install/install-local-new.md_. References to _Step X_ that follow refer to corresponding sections of [install-local-new.md](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md).  Each section or "Step" listed below is also a link back to the corresponding section of the canonical document.
 
-In this step I found it necessary to be very diligent about editing my `/etc/hosts` file, even though I've done this a thousand times (and that's not exaggerated).  Why?  Because every time I update `Docker Desktop for Mac`, the hideous thing adds a new `127.0.0.1` entry to the bottom of my `/etc/hosts` file, effectively overriding my own additions.
+## [Step 1: Choose a Project Name](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-1-choose-a-project-name)
 
-## [Step 2: Setup Git for the ISLE Project](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-2-setup-git-for-the-isle-project)
+I choose a very short and simple name, __dg__, as my value for _yourprojectnamehere_.
 
-I choose **dg** as my value for `yourprojectnamehere`, and since this step calls for creation of two **private** repos, I made mine:
+## [Step 1.5: Edit "/etc/hosts" File](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-15-edit-etchosts-file)
 
-  - https://github.com/McFateM/dg-isle
-  - https://github.com/McFateM/dg-islandora
+In this step I found it necessary to be very diligent about editing my _/etc/hosts_ file, even though I've done this a thousand times (and that's not exaggerated).  Why?  Because every time I update _Docker Desktop for Mac_, the hideous thing adds a new _127.0.0.1_ entry to the bottom of my _/etc/hosts_ file, effectively overriding my own additions.
 
-Then I cloned the empty https://github.com/McFateM/dg-isle to `ma7053` and activated the `ISLE-v1.2.0-dev` branch like so:
+The critical line in _/etc/hosts_ now reads:
+```
+127.0.0.1    localhost dg.localdomain admin.dg.localdomain images.dg.localdomain portainer.dg.localdomain
+```
+
+And there's no comment, and no active `127.0.0.1...` lines later in the file!
+
+## [Step 2: Setup Git Project Repositories](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-2-setup-git-project-repositories)
+
+Since I choose **dg** as my value for `yourprojectnamehere`, and since this step calls for creation of two **private** repos, I logged in to _Github_ as "Digital-Grinnell" and created:
+
+  - https://github.com/Digital-Grinnell/dg-isle
+  - https://github.com/Digital-Grinnell/dg-islandora
+
+Then I cloned the empty https://github.com/Digital-Grinnell/dg-isle to _ma7053_ and made the prescribed additions like so:
 
 | Workstation Commands |
 | --- |
-| cd ~/Projects <br/> git clone https://github.com/McFateM/dg-isle.git <br/> cd dg-isle |
+| cd ~/Projects <br/> git clone https://github.com/Digital-Grinnell/dg-isle <br/> cd dg-isle <br/> git remote add icg-upstream https://github.com/Islandora-Collaboration-Group/ISLE.git <br/> git remote -v <br/> git fetch icg-upstream <br/> git pull icg-upstream master <br/> git push -u origin master <br/> atom . |
 
-Next, I had to deviate from the documentation just a bit.  The docs call for creating an `icg-upstream` remote for the new local repo, then doing `git fetch icg-upstream`. However, in my case I needed to create an alternate "upstream" remote, fetch from it, and ultimately work with the `ISLE-v1.2.0-dev` branch of it, like so:
+The final command in that sequence simply opened a copy of the local _dg-isle_ project files in my [Atom](https://atom.io) editor.
 
-| Workstation Commands |
-| --- |
-| cd ~/Projects/dg-isle <br/> git remote add icg-upstream https://github.com/Islandora-Collaboration-Group/ISLE.git <br/> git remote add bd-upstream https://github.com/Born-Digital-US/ISLE.git <br/> git fetch bd-upstream <br/> git checkout -b ISLE-v1.2.0-dev <br/>  git pull bd-upstream ISLE-v1.2.0-dev <br/> git push -u origin ISLE-v1.2.0-dev <br/> atom . |
-
-The final command in that sequence simply opened a copy of the local `ISLE-v1.2.0-dev` project files in my [Atom](https://atom.io) editor.
-
-## [Step 3: Edit the `.env` File to Change to the Local Environment](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-3-edit-the-env-file-to-change-to-the-local-environment)
+## [Step 3: Edit the ".env" File to Point to the Local Environment](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-3-edit-the-env-file-to-point-to-the-local-environment)
 
 Since this is a short-lived, local, development project, I have no reservations about sharing this with you.  So, as instructed I modified `.env` to read as follows:
 
@@ -88,44 +94,63 @@ CONTAINER_SHORT_ID=ld
 COMPOSE_FILE=docker-compose.local.yml
 ```
 
-## [Step 4: Create New Users and Passwords by Editing `local.env`](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-4-create-new-users-and-passwords-by-editing-localenv)
+## [Step 4: Create New Users and Passwords by Editing "local.env" File](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-4-create-new-users-and-passwords-by-editing-localenv-file)
 
-No secrets here either... a copy of [my customized `local.env` file in this gist](https://gist.github.com/McFateM/7af92bb51a239d1a36df06a4fa629a94).  
+No secrets here either... Since this is a _local_ instance of _ISLE_, I set the following:
 
-The `install-local-new.md` document is deserving of a couple comment here:
+| Item(s) | My Value |
+| --- | --- |
+| All site, user, and database names | **local** |
+| All passwords | **password** |
+| All hashes | **thisisalengthyhash** |
 
-  - I like this document so much better now that config file line number references have been PURGED and replaced with contextual references.  :smile:
-  - Hint: If you do as I did, and use [Atom](https://atom.io) or some other handy editor of your choice, when you edit these files it's easy to let auto-complete do the typing for you, and that's really nice when you have to repeat long strings, like a 26-character password, or a 45-character hash salt. :grin:
+Also note that I kept all of the original _# Replace this..._ comments by pushing them to the line below.  A copy of my customized _local.env_ file can be found [in this gist](https://gist.github.com/Digital-Grinnell/8449b99fb55d26531b139f3202b33bdd).  
 
-One change that I would still like to see... be consistent and change the headings in `install-local-new.md` to "Title Case", as I have done in this blog post.
+## [Step 5: Create New Self-Signed Certs for Your Project](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-5-create-new-self-signed-certs-for-your-project)
 
-## [Step 5: Create New Self-signed Certs for Your Project](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-5-create-new-self-signed-certs-for-your-project)
+As before, no secrets here, so there's a copy of my customized _local.sh_ file [in this gist](https://gist.github.com/Digital-Grinnell/6135109fd87c7e6b8cd4847a86227cb9) and my _traefik.local.toml_ file [in this gist](https://gist.github.com/Digital-Grinnell/c931d07b74e67eaa26d6aa090c1fb0df).
 
-As before, no secrets here, so there's a copy of [my customized `local.sh` file in this gist](https://gist.github.com/McFateM/c5def81467d2dfc9c378c4637a690104).  
+Certs were generated as prescribed.  All is well.
 
-## [Step 6: Download the ISLE Images](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-6-download-the-isle-images)
+## [Step 6: Download the ISLE Images](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-6-download-the-isle-images)
 
-Only comment here is that **you must navigate to your project folder, like `cd ~/Projects/dg-isle`, before you do** `docker-compose pull`.  The command will not work properly in any other directory!
+Only comment here is that **you must navigate to your project folder, like `cd ~/Projects/dg-isle`, before you do** `docker-compose pull`.  The command will not work properly in any other directory!  
 
-## [Step 7: Launch Process](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-7-launch-process)
+I used the command `time docker-compose pull` so:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects/dg-isle <br/> time docker-compose pull |
+
+And my download time was: `docker-compose pull  3.95s user 0.89s system 2% cpu 3:21.16 total`.
+
+## [Step 7: Launch Process](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-7-launch-process)
 
 Same comment here as above, **you must navigate to your project folder, like `cd ~/Projects/dg-isle`, before you do** `docker-compose up -d`.  The command will not work properly in any other directory!
 
-## [Step 8: Run Islandora / Drupal Site Install Script](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-8-run-islandora--drupal-site-install-script)
+| Workstation Commands |
+| --- |
+| cd ~/Projects/dg-isle; <br/> time docker-compose up -d; <br/> sleep 300; <br/> docker ps; <br/> docker ps -a |
+
+And my launch time was: `docker-compose up -d  1.45s user 0.34s system 14% cpu 12.546 total`.  Elapsed time was, of course, on the order of 6 minutes.
+
+## [Step 8: Run Islandora Drupal Site Install Script](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-8-run-islandora-drupal-site-install-script)
 
 Ok, fingers crossed for good luck. :v:  I left `docker-compose.local.yml` just as it was, right out of the box, and did almost as instructed:
 
-```
-time docker exec -it isle-apache-ld bash /utility-scripts/isle_drupal_build_tools/isle_islandora_installer.sh
-```
+| Workstation Commands |
+| --- |
+| cd ~/Projects/dg-isle; <br/> time docker exec -it isle-apache-ld bash -c "cd /utility-scripts/isle_drupal_build_tools && ./isle_islandora_installer.sh" |
 
-Note the addition of the `time` command out front; that was put there to record how long this process takes.  My `time` results... `0.22s user 0.31s system 0% cpu 28:01.00 total`.
+Note the addition of the `time` command out front; that was put there to record how long this process takes.  My `time...` results: `docker exec -it isle-apache-ld bash -c   0.21s user 0.15s system 0% cpu 31:07.34 total`.
 
-## [Step 9: Test the Site](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-9-test-the-site)
+# -- Work suspended here at 08:58 --
+
+## [Step 9: Test the Site](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-9-test-the-site)
 
 Woot!  It works! :sparkles::thumbsup::sparkles: No funky errors this time.
 
-For the record (remember, no secrets here) my admin username and password for the site are: `administrator` and `twentysixalphacharactersnow`.  
+For the record (remember, no secrets here) my admin username and password for the site are: `local` and `password`.  Pretty sneaky, eh?  And the address is https://dg.localdomain.
 
 ## [Step 10: Ingest Sample Objects](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-10-ingest-sample-objects)
 
