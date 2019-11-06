@@ -1,7 +1,7 @@
 ---
 title: Building ISLE 1.3.0 (ld) for Local Development
 publishDate: 2019-08-05
-lastmod: 2019-11-05T20:37:58-05:00
+lastmod: 2019-11-05T20:38:47-05:00
 draft: false
 emoji: true
 tags:
