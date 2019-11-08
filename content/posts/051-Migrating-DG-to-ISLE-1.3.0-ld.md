@@ -1,57 +1,285 @@
 ---
-title: Building ISLE 1.2.0 (ld) for Local Development
-publishDate: 2019-08-05
-lastmod: 2019-08-09T16:36:50-05:00
+title: Migrating Digital.Grinnell (DG) to ISLE 1.3.0 (ld) for Local Development
+publishDate: 2019-10-29
+lastmod: 2019-11-03T22:17:44-05:00
 draft: false
-emoji: true
+emojiEnable: true
 tags:
   - ISLE
-  - v1.2.0
+  - v1.3.0
   - local
+  - migration
 ---
 
-This post, a follow-up to [a previous post](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) is intended to chronicle my efforts to build a new ISLE v1.2.0 `ld`, or `local development`, instance of Digital.Grinnell on my work-issued MacBook, `ma7053`.  
+This is a follow-up to previous posts 034, [Building ISLE 1.2.0 (ld)](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.2.0-ld/) and 037, [Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development](https://static.grinnell.edu/blogs/McFateM/posts/037-migrating-dg-to-isle-1.2.0-ld/) where I successfully completed a "local" build of ISLE v1.2.0 and subsequently started "customization" of that local instance.  So, this post's intent is to complete the goal stated in [Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development](https://static.grinnell.edu/blogs/McFateM/posts/037-migrating-dg-to-isle-1.2.0-ld/), but for [ISLE 1.3.0](https://github.com/Islandora-Collaboration-Group/ISLE/tree/master), specifically to:
 
-## Goal Statement
-The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) at https://github.com/DigitalGrinnell/dg-isle, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu.
+{{% original %}}
+The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) at https://github.com/Digital-Grinnell/dg-isle, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu.
+{{% /original %}}
 
-## Using This Document
-There are just a couple of notes regarding this document that I'd like to pass along to make it more useful.
+As before, this effort will involve an `ld`, or `local development`, instance of Digital.Grinnell on one of my Mac workstations. Unlike my previous work, this instance will follow the guidance of a different document, specifically [`install-local-migrate.md`](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-migrate.md).
 
-  - **Gists** - You will find a few places in this post where I generated a [gist](https://help.github.com/en/articles/creating-gists) to take the place of lengthy command output.  Instead of a long stream of text you'll find a simple [link to a gist](https://gist.github.com/McFateM/98d09fdcc29f88ac88bf7b3cbfb8324d) like this.
+# Host: MA6879
+For portability, and longevity, this work is being conducted on **MA6879**, the "student" Mac Mini that normally resides in my office on campus.
 
-  - **Workstation Commands** - There are lots of places in this document where I've captured a series of command lines along with output from those commands in block text.  Generally speaking, after each such block you will find a **Workstation Commands** table that can be used to conveniently copy and paste the necessary commands directly into your workstation. The tables look something like this:
+# Fork Synchronization
+Before beginning this process I need to get my Github environment updated by synchronizing my ISLE fork with the canonical copy.  I followed [this workflow](https://gist.github.com/CristinaSolana/1885435) to do so, like this:
 
 | Workstation Commands |
 | --- |
-| cd ~/Projects <br/> git clone https://github.com/DigitalGrinnell/ISLE <br/> cd ISLE <br/> git checkout -b ld |
+| cd ~/Projects <br/> git clone https://github.com/McFateM/ISLE.git <br/> cd ISLE <br/> git remote add upstream https://github.com/Islandora-Collaboration-Group/ISLE.git <br/> git fetch upstream <br/> git pull upstream master <br/> git push origin <br/> atom . |
 
-  - **Apache Container Commands** - Similar to `Workstation Commands`, a tabulated list of commands may appear with a heading of **Apache Container Commands**. \*Commands in such tables can be copied and pasted into your command line terminal, but ONLY after you have opened a shell into the _Apache_ container. The asterisk (\*) at the end of the table heading is there to remind you of this! See the [next section](#opening-a-shell-in-the-apache-container) of this document for additional details. These tables looks something like this:
+Nice!  In case you haven't seen it before, the last command in that sequence, `atom .`, simply opens my `Atom` editor to the new local instance of the `ISLE` project.
 
-| Apache Container Commands* |
+# Installing per ISLE's `install-local-migrate.md`
+This is first-and-foremost a `local development` copy of ISLE, but with considerable _Digital.Grinnell_ customization, so I'm following the process outlined in the project's `./docs/install/install-local-migrate.md`.  References to `Step X` that follow refer to corresponding sections of https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md.  Each section or "Step" listed below is also a link back to the corresponding section of the canonical document.
+
+## [Step 0: Copy Production Data to Your Personal Computer](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#step-0-copy-production-data-to-your-personal-computer)
+
+### [Drupal Site Files and Code](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#drupal-site-database)
+
+Per the aforementioned guidance, I did this...
+
+Opened a `zsh` shell (terminal) on Digital.Grinnell production node `DGDocker1` as user `islandora` using `iTerm2` at `ssh://islandora@dgdocker1.grinnell.edu`.  Then, in that shell on the `DGDocker1` host I did:
+
+| DGDocker1 Commands |
 | --- |
-| cd /var/www/html/sites/all/modules/contrib <br/> drush dl backup_migrate <br/> drush -y en backup_migrate |
+| cd ~ <br/> mkdir -p migration-copy/var/www/html/sites/default/files <br/> cd migration-copy </br> docker cp isle-apache-dg:/var/www/html/sites/default/files/. var/www/html/sites/default/files/ |
 
-## Opening a Shell in the Apache Container
-This is something I find myself doing quite often during ISLE configuration, so here's a reminder of how I generally do this...
-```
-╭─markmcfate@ma7053 ~/Projects/dg-isle ‹ruby-2.3.0› ‹ld*›
-╰─$ docker exec -it isle-apache-ld bash
-root@9bec4edd3964:/# cd /var/www/html
-root@9bec4edd3964:/var/www/html#
-```
+Note that the `-p` option on `mkdir` is critical, it will create all, or part of, the entire directory tree as-specified, if it does not already exist.  The final command, `docker cp...`, subsequently takes advantage of this new directory tree and copies all of the Drupal `.../default/files` from the production container to a similar directory on the host, `DGDocker1` in this case.
+
+For the 2nd bullet item in this step, I've identified that my Drupal/Islandora customizations should eventually reside in the private repo that is https://github.com/Digital-Grinnell/dg-islandora.
+
+### [Drupal Site Database](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#drupal-site-database)
+
+For this process I already have a workflow in place, and it's a little different than what's documented.  So here's what I did:
+
+  - Visit my production site at https://digital.grinnell.edu.
+  - Login as the `System Admin`, that's `User 1` or the super-user in Drupal terms.
+  - The home page at https://digital.grinnell.edu provides, in the right-hand menu bar, a `Management` menu with a first option to `Clear cache`.  Click it.
+  - The home page also provides a `Quick Backup` block where the default options do a great job of backing up only what's needed.  Accept all defaults and click the `Backup Now` button.  This feature takes the site offline, makes and downloads a backup of the database (in my case it created `digital.grinnell.edu-2019-10-31T14-07-37.mysql`), and brings the site back online..."automagically".  
+
+### [Fedora Hash Size (Conditional)](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#fedora-hash-size-conditional)
+
+I found this section a little confusing, which I assume means that it does not apply to Digital.Grinnell.  Moving on.
+
+### [Solr Schema & Islandora Transforms](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#solr-schema-and-islandora-transforms)
+
+This section definitely applies to Digital.Grinnell! :blush: Since I recently completed spin-up of a "Demo" ISLE using `install-local-new.md`, and since this is "not my first rodeo", I choose to take the "advanced" path here and will "[diff & merge current production customization edits into ISLE configs](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#strategy-3-advanced---diff-and-merge-current-production-customization-edits-into-isle-configs)".  Wish me luck.  :four_leaf_clover:
+
+To begin this portion of the process I created a new `~/diff-and-merge-customizations` directory structure and with https://isle.localdomain running the `Demo`, I copied files from it like so:
+
 | Workstation Commands |
 | --- |
-| cd ~/Projects/dg-isle <br/> docker exec -it isle-apache-ld bash |
+| mkdir -p ~/diff-and-merge-customizations/ld <br/> mkdir -p ~/diff-and-merge-customizations/prod <br/> cd ~/diff-and-merge-customizations/ld <br/> docker cp isle-solr-ld:/usr/local/solr/collection1/conf/schema.xml schema.xml <br/> docker cp isle-fedora-ld:/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt foxmlToSolr.xslt <br/> docker cp isle-fedora-ld:/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms islandora_transforms |
 
-# Installing per Born Digital's install-local-new.md
-This is first-and-foremost a `local development` copy of ISLE, but with considerable Digital Grinnell customization, so I'm following the process outlined in the project's `./docs/install/install-local-new.md`.  References to `Step X` that follow refer to corresponding sections of https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md.  Each section or "Step" listed below is also a link back to the corresponding section of the canonical document.
+I subsequently pulled the three diff targets from my production instance of ISLE using these commands on `DGDocker1`, followed by another set on my workstation:
 
-## [Step 1: Edit the `/etc/hosts` File](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-1-edit-etchosts-file)
+| DGDocker1 Commands |
+| --- |
+| mkdir -p ~/migration-copy/solr <br/> mkdir -p migration-copy/fedora <br/> cd migration-copy/solr <br/> docker cp isle-solr-dg:/usr/local/solr/collection1/conf/schema.xml . <br/> cd ../fedora <br/> docker cp isle-fedora-dg:/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt . <br/> docker cp isle-fedora-dg:/usr/local/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms islandora_transforms |
+
+| Workstation Commands |
+| --- |
+| cd ~/diff-and-merge-customizations/prod <br/> rsync -aruvi islandora@dgdocker1.grinnell.edu:migration-copy/solr/. . <br/> rsync -aruvi islandora@dgdocker1.grinnell.edu:migration-copy/fedora/. . |
+
+This left me with a local `~/diff-and-merge-customizations` directory with sub-dirs `ld` and `prod`. The diff-and-merge operation subsequently compared the contents of these two sub-dirs, merging the differences from `prod` into the corresponding files found in `ld`.  I did both the `diff` and merge operations using `Atom`.
+
+The command and output from the first `diff` of the `islandora_transforms` was:
+
+```
+╭─digital@MA6879 ~
+╰─$ cd ~/diff-and-merge-customizations/ld
+╭─digital@MA6879 ~/diff-and-merge-customizations/ld
+╰─$ diff -r islandora_transforms ../prod/islandora_transforms   1 ↵
+Only in islandora_transforms: .git
+diff -r islandora_transforms/WORKFLOW_to_solr.xslt ../prod/islandora_transforms/WORKFLOW_to_solr.xslt
+95c95
+</xsl:stylesheet>
+\ No newline at end of file
+---
+</xsl:stylesheet>
+```
+
+So, no significant differences here. Yay!
+
+Next, I compared the two files, one-at-a-time, using `Atom` and its `Split Diff` package.  There were very few differences in `foxmToSolr.xslt` so it was easy to merge. I took the significant differences in the `prod` copy and merged them into the `ld` copy.  I did the same with `schema.xml`, but it was an entirely different beast.  There were 34 sections of differences, and in many cases it was not clear if our existing customizations should be merged. As a result, **the changes I made in `schema.xml`, and some I did NOT make, will need to be carefully re-evaluated as this local migrate "test" proceeds**.
+
+At this point I've saved my "merged" customizations in `~/diff-and-merge-customizations/ld` until `Step 2a`, below.
+
+Phew, that was a lot of Step 0!
+
+## [Step 1: Edit `/etc/hosts` File](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-migrate.md#step-1-edit-etchosts-file)
+Easy peasy, relatively speaking.  :smile:
+
+## [Step 2: Setup Git for the ISLE Project](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#step-2-setup-git-project-repositories)
+
+OK, I already have two private Github repositories...
+  - https://gitubh.com/Digital-Grinnell/dg-isle for my customized copy of the ISLE project, and
+  - https://github.com/Digital-Grinnell/dg-islandora for my customized copy of the Drupal and Islandora code.
+
+However, in my case neither of these repositories is "complete" because they are products of the `install-local-new.md` process, so my focus in this step will be to get these two repos in line with the Git workflow that's being established.
+
+Regarding the `dg-isle` repo...
+
+  - I cloned it to my local workstation and set things up as directed with:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects <br/> git clone https://github.com/Digital-Grinnell/dg-isle.git <br/> cd dg-isle <br/> git remote add icg-upstream https://github.com/Islandora-Collaboration-Group/ISLE.git <br/> git fetch icg-upstream <br/> git pull icg-upstream master <br/> git push -u origin master |
+
+## [Step 2a: Add Customizations from `Step 0`](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#step-2a-add-customizations-from-step-0-to-the-git-workflow)
+
+Before executing the documented commands I elected to create a new branch in my local `dg-isle` repo, so my workflow was this:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects/dg-isle <br/> git checkout -b solr-and-gsearch-customizations <br/> mkdir -p ./config/solr <br/> mkdir -p ./config/fedora/gsearch <br/> cp -f ~/diff-and-merge-customizations/ld/schema.xml ./config/solr/ <br/> cp -f ~/diff-and-merge-customizations/ld/foxmlToSolr.xslt ./config/fedora/gsearch/ <br/> cp -fr ~/diff-and-merge-customizations/ld/islandora_transforms ./config/fedora/gsearch/ |
+
+Next, I edited `docker-compose.local.yml` as prescribed, and then saved it all like so:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects/dg-isle <br/> git checkout solr-and-gsearch-customizations <br/> git add -A <br/> git commit -m "Customizations from Step 2a" <br/> git push --set-upstream origin solr-and-gsearch-customizations |
+
+## [Step 3: Git Clone the Production Islandora Drupal Site Code](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#step-3-git-clone-the-production-islandora-drupal-site-code)
+
+OK, this section will deal with my Islandora/Drupal code repository with all my customization in it, in my case that's https://github.com/Digital-Grinnell/dg-islandora, but my copy isn't complete yet, so...
+
+# Post 038 - Building My `dg-islandora` Code Repository
+
+Earlier I created blog post [038-Building-My-`dg-islandora`-Code-Repository](https://static.grinnell.edu/blogs/McFateM/posts/038-building-my-dg-islandora-code-repository/).  It combined elements of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) with [post 034](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) to create a "customized" local ISLE v1.2.0 instance with features of Digital.Grinnell.
+
+The product of all that work is the [Digital-Grinnell/dg-islandora](https://github.com/Digital-Grinnell/dg-islandora) **private** GitHub repo.
+
+I followed the procedure outline in [Step 3: Git Clone the Production Islandora Drupal Site Code](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#step-3-git-clone-the-production-islandora-drupal-site-code) with my [Digital-Grinnell/dg-islandora](https://github.com/Digital-Grinnell/dg-islandora) **private** repo like so:
+
+| Workstation Commands |
+| --- |
+| cd ~/Projects <br/> git clone https://github.com/Digital-Grinnell/dg-islandora.git <br/> cd dg-islandora <br/> atom .|
+
+Again, the final `atom .` command opened my newly cloned project in **Atom** to simplify editing.  I followed the guidance of **Step 3** to update my `docker-compose.local.yml` as directed.  This concludes **Step 3**; moving on.
+
+## [Step 4: Edit the ".env" File to Change to the Local Environment](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#step-4-edit-the-env-file-to-change-to-the-local-environment)
+
+I simply confirmed the suggested edits to my `.env` file using the **Atom** editing session opened above.
+
+## [Step 5: Create New Users and Passwords by Editing "local.env" File](https://github.com/McFateM/ISLE/blob/master/docs/install/install-local-migrate.md#step-5-create-new-users-and-passwords-by-editing-localenv-file)
+
+Since this is "local" I'll keep no secrets here.  I set all the variable passwords, and hashes to "password", and "thisisalengthyhashstring", respectively, as permitted.  All other variables, like usernames and more, I set to "local".  Note that I left the original "# Replace..." strings intact, but made sure to push each one to a new line.
+
+There's a copy of my complete customized `local.env` file [in this gist](https://gist.github.com/0d32653fd0718b0efabaffff9023742f).  
+
+
+## [Step 6: Create New Self-Signed Certs for Your Project](https://github.com/McFateM/ISLE/blob/clarify-install-local-migrate/docs/install/install-local-migrate.md#step-6-create-new-self-signed-certs-for-your-project)
+
+Simply followed the instructions to-the-letter.
+
+## [Step 7: Download the ISLE Images](https://github.com/McFateM/ISLE/blob/clarify-install-local-migrate/docs/install/install-local-migrate.md#step-7-download-the-isle-images)
+
+Simply followed the instructions to-the-letter.
+
+## [Step 8: Launch Process](https://github.com/McFateM/ISLE/blob/clarify-install-local-migrate/docs/install/install-local-migrate.md#step-8-launch-process)
+
+Simply followed the instructions to-the-letter.
+
+## [Step 9: Import the Production MySQL Drupal Database](https://github.com/McFateM/ISLE/blob/clarify-install-local-migrate/docs/install/install-local-migrate.md#step-9-import-the-production-mysql-drupal-database)
+
+In this step, employing _Method B: Use the Command Line_, I returned to the `DGDocker1` production database, `digital.grinnell.edu-2019-10-31T14-07-37.mysql.gz`, saved in the [Drupal Site Database](#drupal-site-database) section of this document.
+
+First, I unzipped the aforementioned database archive using my MacBook's `Archive Utility` to produce `digital.grinnell.edu-2019-10-31T14-07-37.mysql` on my workstation desktop.  The full path to this file was `/Users/digital/Desktop/digital.grinnell.edu-2019-10-31T14-07-37.mysql`.  Then, on my workstation and in the _MySQL_ container:
+
+| Workstation Commands |
+| --- |
+| docker cp /Users/digital/Desktop/digital.grinnell.edu-2019-10-31T14-07-37.mysql isle-mysql-ld:/database.mysql <br/> docker exec -it isle-mysql-ld bash |
+
+| MySQL Container Commands |
+| --- |
+| mysql -u local -p local < database.mysql <br/> exit |
+
+## [Step 10: Run Islandora Drupal Site Scripts](https://github.com/McFateM/ISLE/blob/clarify-install-local-migrate/docs/install/install-local-migrate.md#step-10-run-islandora-drupal-site-scripts)
+
+Following the provided guidance yielded a set of workstation commands like this:
+
+| Workstation Commands |
+| --- |
+| docker cp scripts/apache/migration_site_vsets.sh isle-apache-ld:/var/www/html/migration_site_vsets.sh <br/> docker exec -it isle-apache-ld bash -c "chmod +x /var/www/html/migration_site_vsets.sh" <br/> docker exec -it isle-apache-ld bash -c "cd /var/www/html && ./migration_site_vsets.sh" <br/> docker cp scripts/apache/install_solution_packs.sh isle-apache-ld:/var/www/html/install_solution_packs.sh <br/> docker exec -it isle-apache-ld bash -c "chmod +x /var/www/html/install_solution_packs.sh" <br/> docker exec -it isle-apache-ld bash -c "cd /var/www/html && ./install_solution_packs.sh" |
+
+Output from the `migration_site_vsets.sh` command:
+
+```
+The following module is missing from the file system: <em class="placeholder">masquerade</em>. For information about how to fix this, see <a                  [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">announcements</em>. For information about how to fix this, see <a               [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">backup_migrate</em>. For information about how to fix this, see <a              [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following theme is missing from the file system: <em class="placeholder">bootstrap</em>. For information about how to fix this, see <a                    [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">dg7</em>. For information about how to fix this, see <a                         [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following theme is missing from the file system: <em class="placeholder">digital_grinnell_bootstrap</em>. For information about how to fix this, see <a   [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">email</em>. For information about how to fix this, see <a                       [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">git_deploy</em>. For information about how to fix this, see <a                  [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">idu</em>. For information about how to fix this, see <a                         [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">ihc</em>. For information about how to fix this, see <a                         [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_binary_object</em>. For information about how to fix this, see <a     [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_collection_search</em>. For information about how to fix this, see <a [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_google_scholar</em>. For information about how to fix this, see <a    [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_mods_display</em>. For information about how to fix this, see <a      [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_multi_importer</em>. For information about how to fix this, see <a    [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_oralhistories</em>. For information about how to fix this, see <a     [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_pdfjs_reader</em>. For information about how to fix this, see <a      [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_solr_collection_view</em>. For information about how to fix this, see [warning]
+<a href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">ldap_servers</em>. For information about how to fix this, see <a                [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">maillog</em>. For information about how to fix this, see <a                     [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">phpexcel</em>. For information about how to fix this, see <a                    [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">r4032login</em>. For information about how to fix this, see <a                  [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">smtp</em>. For information about how to fix this, see <a                        [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">transcripts_ui</em>. For information about how to fix this, see <a              [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">views_bootstrap</em>. For information about how to fix this, see <a             [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">field_group</em>. For information about how to fix this, see <a                 [warning]
+href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+WD php: PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'local.users' doesn't exist: SELECT base.uid AS uid, base.name AS name,       [error]
+base.pass AS pass, base.mail AS mail, base.theme AS theme, base.signature AS signature, base.signature_format AS signature_format, base.created AS created,
+base.access AS access, base.login AS login, base.status AS status, base.timezone AS timezone, base.language AS language, base.picture AS picture, base.init AS
+init, base.data AS data
+FROM
+{users} base
+WHERE  (base.uid IN  (:db_condition_placeholder_0)) ; Array
+(
+    [:db_condition_placeholder_0] => 1
+)
+ in DrupalDefaultEntityController->load() (line 198 of /var/www/html/includes/entity.inc).
+ ```
+
+<!-- The old post 034 info is below...
+
+## [Step 1: Edit the `/etc/hosts` File](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-new.md#step-1-edit-etchosts-file)
 
 In this step I found it necessary to be very diligent about editing my `/etc/hosts` file, even though I've done this a thousand times (and that's not exaggerated).  Why?  Because every time I update `Docker Desktop for Mac`, the hideous thing adds a new `127.0.0.1` entry to the bottom of my `/etc/hosts` file, effectively overriding my own additions.
 
-## [Step 2: Setup Git for the ISLE Project](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-2-setup-git-for-the-isle-project)
+## [Step 2: Setup Git for the ISLE Project](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-new.md#step-2-setup-git-for-the-isle-project)
 
 I choose **dg** as my value for `yourprojectnamehere`, and since this step calls for creation of two **private** repos, I made mine:
 
@@ -72,7 +300,7 @@ Next, I had to deviate from the documentation just a bit.  The docs call for cre
 
 The final command in that sequence simply opened a copy of the local `ISLE-v1.2.0-dev` project files in my [Atom](https://atom.io) editor.
 
-## [Step 3: Edit the `.env` File to Change to the Local Environment](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-3-edit-the-env-file-to-change-to-the-local-environment)
+## [Step 3: Edit the `.env` File to Change to the Local Environment](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-new.md#step-3-edit-the-env-file-to-change-to-the-local-environment)
 
 Since this is a short-lived, local, development project, I have no reservations about sharing this with you.  So, as instructed I modified `.env` to read as follows:
 
@@ -88,7 +316,7 @@ CONTAINER_SHORT_ID=ld
 COMPOSE_FILE=docker-compose.local.yml
 ```
 
-## [Step 4: Create New Users and Passwords by Editing `local.env`](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-4-create-new-users-and-passwords-by-editing-localenv)
+## [Step 4: Create New Users and Passwords by Editing `local.env`](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-new.md#step-4-create-new-users-and-passwords-by-editing-localenv)
 
 No secrets here either... a copy of [my customized `local.env` file in this gist](https://gist.github.com/McFateM/7af92bb51a239d1a36df06a4fa629a94).  
 
@@ -99,19 +327,19 @@ The `install-local-new.md` document is deserving of a couple comment here:
 
 One change that I would still like to see... be consistent and change the headings in `install-local-new.md` to "Title Case", as I have done in this blog post.
 
-## [Step 5: Create New Self-signed Certs for Your Project](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-5-create-new-self-signed-certs-for-your-project)
+## [Step 5: Create New Self-signed Certs for Your Project](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-new.md#step-5-create-new-self-signed-certs-for-your-project)
 
 As before, no secrets here, so there's a copy of [my customized `local.sh` file in this gist](https://gist.github.com/McFateM/c5def81467d2dfc9c378c4637a690104).  
 
-## [Step 6: Download the ISLE Images](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-6-download-the-isle-images)
+## [Step 6: Download the ISLE Images](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-new.md#step-6-download-the-isle-images)
 
 Only comment here is that **you must navigate to your project folder, like `cd ~/Projects/dg-isle`, before you do** `docker-compose pull`.  The command will not work properly in any other directory!
 
-## [Step 7: Launch Process](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-7-launch-process)
+## [Step 7: Launch Process](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-new.md#step-7-launch-process)
 
 Same comment here as above, **you must navigate to your project folder, like `cd ~/Projects/dg-isle`, before you do** `docker-compose up -d`.  The command will not work properly in any other directory!
 
-## [Step 8: Run Islandora / Drupal Site Install Script](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-8-run-islandora--drupal-site-install-script)
+## [Step 8: Run Islandora / Drupal Site Install Script](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-new.md#step-8-run-islandora--drupal-site-install-script)
 
 Ok, fingers crossed for good luck. :v:  I left `docker-compose.local.yml` just as it was, right out of the box, and did almost as instructed:
 
@@ -121,19 +349,19 @@ time docker exec -it isle-apache-ld bash /utility-scripts/isle_drupal_build_tool
 
 Note the addition of the `time` command out front; that was put there to record how long this process takes.  My `time` results... `0.22s user 0.31s system 0% cpu 28:01.00 total`.
 
-## [Step 9: Test the Site](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-9-test-the-site)
+## [Step 9: Test the Site](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-new.md#step-9-test-the-site)
 
 Woot!  It works! :sparkles::thumbsup::sparkles: No funky errors this time.
 
 For the record (remember, no secrets here) my admin username and password for the site are: `administrator` and `twentysixalphacharactersnow`.  
 
-## [Step 10: Ingest Sample Objects](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-10-ingest-sample-objects)
+## [Step 10: Ingest Sample Objects](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-new.md#step-10-ingest-sample-objects)
 
 I followed the instructions to-the-letter and ended up populating my local repository with 2 basic images, 1 large image, 1 video, and 1 PDF.  All of the objects ingested and behaved as-expected.
 
 Next, I added the `Islandora Simple Search` block as instructed, and ran some search tests.  :ballot_box_with_check: It works!
 
-## [Step 11: Check-in the Newly Created Drupal / Islandora Site Code to a Git Repository](https://github.com/Born-Digital-US/ISLE/blob/ISLE-v1.2.0-dev/docs/install/install-local-new.md#step-11-check-in-the-newly-created-drupal--islandora-site-code-into-a-git-repository)
+## [Step 11: Check-in the Newly Created Drupal / Islandora Site Code to a Git Repository](https://github.com/Born-Digital-US/ISLE/blog/master/docs/install/install-local-new.md#step-11-check-in-the-newly-created-drupal--islandora-site-code-into-a-git-repository)
 
 OK, I have to admit this "step" was confusing at first, but it works and seems to make sense now that I've completed it.  I'll spare you the output details, because there was a LOT of it, but here is the exact command sequence I used...
 

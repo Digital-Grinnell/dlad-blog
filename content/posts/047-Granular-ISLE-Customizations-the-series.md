@@ -1,7 +1,7 @@
 ---
 title: "Granular ISLE Customization: Series Guidelines"
 publishdate: 2019-09-27
-lastmod: 2019-09-30T17:06:48-05:00
+lastmod: 2019-11-07T22:34:28-05:00
 draft: false
 tags:
   - granular
@@ -54,4 +54,5 @@ Posts in the _Granular ISLE Customization_ series include:
 | --- | --- |
 | [Granular ISLE Customization: Series Guidelines](https://static.grinnell.edu/blogs/McFateM/posts/047-granular-isle-customization-series-guidelines) | This document. |
 | [Granular ISLE Customization: Installing IMI](https://static.grinnell.edu/blogs/McFateM/posts/048-granular-isle-customization-installing-imi) | Instructions for installing IMI, the Islandora Multi-Importer module, and a robust sample of TWIG templating. |
-| [Granular ISLE Customization: Implementing IMI Hooks](https://static.grinnell.edu/blogs/McFateM/posts/049-granular-isle-customization-implementing-imi-hooks/) | Guidance to build your own IMI hook implementations to improve the Islandora Multi-Importer. |
+| [Granular ISLE Customization: Implementing IMI Hooks](https://static.grinnell.edu/blogs/McFateM/posts/049-granular-isle-customization-implementing-imi-hooks/) | Guidance to build your own IMI hook implementations to improve the Islandora Multi-
+| [Granular ISLE Customization: Installing the DG Theme](https://static.grinnell.edu/blogs/McFateM/posts/052-granular-isle-customization-installing-the-dg-theme/) | Guidance to install and configure the [digital_grinnell_bootstrap](https://github.com/DigitalGrinnell/digital_grinnell_bootstrap) theme. |

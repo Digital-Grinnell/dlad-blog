@@ -1,23 +1,23 @@
 ---
 title: Building My `dg-islandora` Code Repository
 publishDate: 2019-08-16
-lastmod: 2019-08-19T14:20:06-05:00
+lastmod: 2019-11-05T21:00:57-05:00
 draft: false
 emoji: true
 tags:
   - ISLE
-  - v1.2.0
+  - v1.3.0
   - git
   - dg-islandora
   - code repository
 ---
 
-As promised in [post 037](https://static.grinnell.edu/blogs/McFateM/posts/037-migrating-dg-to-isle-1.2.0-ld/), this post combines elements of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) with [post 034](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.2.0-ld/) to create a "customized" local ISLE v1.2.0 instance with features of Digital.Grinnell.  The real purpose of this endeavor is to create a properly populated [Digital.Grinnell custom code repository](https://github.com/DigitalGrinnell/dg-islandora) featuring ISLE v1.2.0 code.
+As promised in [post 037](https://static.grinnell.edu/blogs/McFateM/posts/037-migrating-dg-to-isle-1.2.0-ld/), this post combines elements of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) with [updated post 034](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.3.0-ld/) to create a "customized" local ISLE instance with features of Digital.Grinnell. In this November 2019 update I'm building the repository on my MacBook _ma7053_ using ISLE-1.3.0. The target of this endeavor will be a properly populated [Digital.Grinnell custom Islandora code repository](https://github.com/Digital-Grinnell/dg-islandora) featuring ISLE-1.3.0 code.
 
 ## Process Overview
 I believe the process I need to engage here can be outlined like this:
 
-  1. Repeat [post 034](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.2.0-ld/) through [Step 9](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.2.0-ld/#step-9-test-the-site). Assuming a successful test...
+  1. Repeat or follow-up on [post 034](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.3.0-ld/). Assuming a successful test of the site produced in that post, the next steps will include...
 
   2. Move to [post 21](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) and complete the following steps, in order:
 
@@ -29,27 +29,59 @@ I believe the process I need to engage here can be outlined like this:
     - [Installing the Missing Islandora/Custom Bits](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#installing-the-missing-islandora-custom-bits)
     - [Temporarily Eliminate Warnings](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#temporarily-eliminate-warnings)  
 
+Note: Many of these steps should be moved to new, and existing, [Granular ISLE Customization: Series Guidelines](https://static.grinnell.edu/blogs/McFateM/posts/047-granular-isle-customizations-the-series/) posts.
 
-  3. Continue with [post 034, step 11](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.2.0-ld/#step-11-check-in-the-newly-created-drupal-islandora-site-code-to-a-git-repository).
+  3. Repeat a process similar to [Step 11: Check-In the Newly Created Islandora Drupal Site Code Into Your Git Repository](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-11-check-in-the-newly-created-islandora-drupal-site-code-into-is-git-repository), with an aim of updating the [dg-islandora](https://github.com/Digital-Grinnell/dg-islandora) repository.  
+
+# -- Breaking here for DrupalCorn Camp on 5-Nov-2019
+
+The remainder of this document is hidden from public view pending a substantial update.
+
+<!--
 
 # Sections That Follow May be Temporarily Out-of-Order
 
 ## Clone to Local
-I started by following the `Cloning to Local` guidance in [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#clone-to-local).
+I started by following the `Cloning to Local` guidance in [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#clone-to-local).  The commands and output were like so:
+
+```
+╭─markmcfate@ma7053 ~/Projects/ISLE ‹ruby-2.3.0› ‹master*›
+╰─$ git remote -v
+origin	https://github.com/Islandora-Collaboration-Group/ISLE.git (fetch)
+origin	https://github.com/Islandora-Collaboration-Group/ISLE.git (push)
+╭─markmcfate@ma7053 ~/Projects/ISLE ‹ruby-2.3.0› ‹master*›
+╰─$ git pull
+remote: Enumerating objects: 14, done.
+remote: Counting objects: 100% (14/14), done.
+remote: Total 28 (delta 13), reused 14 (delta 13), pack-reused 14
+Unpacking objects: 100% (28/28), done.
+From https://github.com/Islandora-Collaboration-Group/ISLE
+   cb56d788..879de85c  master             -> origin/master
+ * [new branch]        ISLE-1.3.0         -> origin/ISLE-1.3.0
+ * [new branch]        behat-url-change   -> origin/behat-url-change
+ * [new tag]           ISLE-1.3.0-release -> ISLE-1.3.0-release
+Updating cb56d788..879de85c
+Fast-forward
+╭─markmcfate@ma7053 ~/Projects/ISLE ‹ruby-2.3.0› ‹master*›
+╰─$ git checkout ISLE-1.3.0
+D	config/apache/settings_php/settings.local.php
+Branch 'ISLE-1.3.0' set up to track remote branch 'ISLE-1.3.0' from 'origin'.
+Switched to a new branch 'ISLE-1.3.0'
+```
 
 ## Cleaning Up
 Next, I ran my usual `Docker clean-up` commands from `Cleaning Up` in [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#cleaning-up).  Specifically...
 
 ```
-╭─markmcfate@ma8660 ~/Projects/ISLE ‹ruby-2.3.0› ‹ld›
+╭─markmcfate@ma7053 ~/Projects/ISLE ‹ruby-2.3.0› ‹ISLE-1.3.0*›
 ╰─$ docker stop $(docker ps -q)
 docker rm -v $(docker ps -qa)
-docker image rm $(docker image ls -q)
+docker image rm $(docker image ls -q) --force
 docker system prune --force
 ```
 
 ## Launching the Stack
-I started it all up as document in `Launching the Stack` from [post 021]((https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#launching-the-stack). While that was spinning up I took a look at my workstation's `/etc/hosts` file, and made sure I had the following in control:
+I started it all up as documented in `Launching the Stack` from [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#launching-the-stack). While that was spinning up I took a look at my workstation's `/etc/hosts` file, and made sure I had the following in control:
 
 ```
 ## For ISLE ld
@@ -94,3 +126,5 @@ drush cc all
 ```
 
 The rest of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld) beginning with the [`Building ISLE-DG-Essentials` section](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#building-isle-dg-essentials) is geared more to the creation of a `dg-isle` configuration repository, and is not  relevant to my goal of building a `dg-islandora` code repository.  So, this is where I depart from [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld) in favor of [post 034](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.2.0-ld/).
+
+-->
