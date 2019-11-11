@@ -1,7 +1,7 @@
 ---
 title: ISLE Automated Testing
 publishDate: 2019-10-27
-lastmod: 2019-10-27T21:03:52-05:00
+lastmod: 2019-11-11T17:55:03-05:00
 draft: false
 ---
 
