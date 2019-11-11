@@ -1,7 +1,7 @@
 ---
 title: "Granular ISLE Customization: Installing the DG Theme"
 publishdate: 2019-11-07
-lastmod: 2019-11-07T22:48:41-05:00
+lastmod: 2019-11-11T17:43:42-05:00
 draft: false
 tags:
   - granular
@@ -24,7 +24,10 @@ The install and config process was simply this stream of commands entered direct
 
 | Apache Container Commands* |
 | --- |
-| cd /var/www/html/sites/all/themes <br/> git clone https://github.com/drupalprojects/bootstrap.git <br/> chown -R islandora:www-data * <br/> cd bootstrap <br/> git checkout 7.x-3.x <br/> drush -y en bootstrap <br/> mkdir -p /var/www/html/sites/default/themes <br/> cd /var/www/html/sites/default/themes <br/> git clone https://github.com/DigitalGrinnell/digital_grinnell_bootstrap.git <br/> chown -R islandora:www-data * <br/> cd digital_grinnell_bootstrap <br/> drush -y pm-enable digital_grinnell_bootstrap <br/> drush vset theme_default digital_grinnell_bootstrap |
+| cd /var/www/html/sites/all/themes <br/> git submodule add https://github.com/drupalprojects/bootstrap.git <br/> chown -R islandora:www-data * <br/> cd bootstrap <br/> git checkout 7.x-3.x <br/> drush -y en bootstrap <br/> mkdir -p /var/www/html/sites/default/themes <br/> cd /var/www/html/sites/default/themes <br/> git sbumodule add https://github.com/DigitalGrinnell/digital_grinnell_bootstrap.git <br/> chown -R islandora:www-data * <br/> cd digital_grinnell_bootstrap <br/> drush -y pm-enable digital_grinnell_bootstrap <br/> drush vset theme_default digital_grinnell_bootstrap |
+
+## Using `git submodule` Rather Than `git clone`
+My original rendition of the above command script used `git clone...` commands where you new see `git submodule add...` commands.  I changed that practice because `git clone` inside of a _Git_ repo leads to problems rather quickly.  If this approach works I will probably continue it with all other customizations to my _ISLE_ instances.
 
 ## Tweaking the Local Site
 Success! The theme is in place and active on my [dg.localdomain](https://dg.localdomain) local site.  Just one more tweak here...
