@@ -8,21 +8,33 @@
 
         <li class="posts-list-item">
           {{ if eq .Type "onetabs" }}
-            <a class="onetabs-list-item-title" href="{{ .Permalink }}">{{ printf "OneTab: %s" .Title }}</a>
+            <article class="onetab">
+              <!-- <p> -->
+                → <a target="_blank" rel="remote-article" href="{{ .Params.externalurl }}">{{ printf "OneTab: %s" .Title }}</a> <!-- <a href="{{ .Permalink }}"></a> -->
+                <!-- <span class="postmeta"> -->
+                <span class="posts-list-item-description">
+                  &nbsp;&nbsp;&nbsp;&nbsp;Updated: {{ .Lastmod.Format "Monday, 02 Jan 2006 15:04:05" }}
+                  {{ if isSet .Params "hostname" }}
+                    from {{ .Params.hostname }}
+                  {{ end }}
+                </span>
+              <!-- </p> -->
+            </article>
+            <!-- <a class="onetabs-list-item-title" href="{{ .Permalink }}">{{ printf "OneTab: %s" .Title }}</a> -->
           {{ else }}
-            <a class="posts-list-item-title" href="{{ .Permalink }}">{{ .Title }}</a>
+            <a target="_blank" class="posts-list-item-title" href="{{ .Permalink }}">{{ .Title }}</a>
+            <span class="posts-list-item-description">
+              {{ $pub := .PublishDate.AddDate 0 0 1 }}
+              {{ $mod := .Lastmod }}
+              {{ partial "icon.html" (dict "ctx" $ "name" "clock") }} {{ .ReadingTime }} min read -
+              {{ .PublishDate.Format "Jan 2, 2006" }}
+              {{ if $mod.After $pub }}
+                &nbsp;&nbsp;|&nbsp;&nbsp;Updated: {{ .Lastmod.Format "Jan 2, 2006 - 15:04" }}
+              {{ end }}
+              <br/>
+              <span class="summary">{{ htmlUnescape .Summary }} ...</span>
+            </span>
           {{ end }}
-          <span class="posts-list-item-description">
-            {{ $pub := .PublishDate.AddDate 0 0 1 }}
-            {{ $mod := .Lastmod }}
-            {{ partial "icon.html" (dict "ctx" $ "name" "clock") }} {{ .ReadingTime }} min read -
-            {{ .PublishDate.Format "Jan 2, 2006" }}
-            {{ if $mod.After $pub }}
-              &nbsp;&nbsp;|&nbsp;&nbsp;Updated: {{ .Lastmod.Format "Jan 2, 2006 - 15:04" }}
-            {{ end }}
-            <br/>
-            <span class="summary">{{ htmlUnescape .Summary }} ...</span>
-          </span>
         </li>
       {{ end }}
     </ul>
