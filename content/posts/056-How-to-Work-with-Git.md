@@ -1,7 +1,7 @@
 ---
 title: How to Work with Git
 publishDate: 2019-11-19
-lastmod: 2019-11-20T14:57:20-05:00
+lastmod: 2019-11-20T15:33:19-05:00
 draft: false
 emojiEnable: true
 tags:
@@ -39,9 +39,9 @@ tags:
 1. Always _fork_ the repo (repository) you are working on.
 
   - This is accomplished by logging into your _GitHub_ account and selecting __Fork__ near the top right of the repo's page.
-    - Navigate your browser to the _GitHub_ project you wish to work on. Example: https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools
-    - Click the __Fork__ button near the top right of the repo's _GitHub_ page.
-    - This will either create a new fork in your own _GitHub_ account, or prompt you to choose an account if you have more than one. In either case, make a note of where the fork is created! In this document we'll reference your fork's URI as `upstream`. Example: https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools  
+      - Navigate your browser to the _GitHub_ project you wish to work on. Example: https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools
+      - Click the __Fork__ button near the top right of the repo's _GitHub_ page.
+     - This will either create a new fork in your own _GitHub_ account, or prompt you to choose an account if you have more than one. In either case, make a note of where the fork is created! In this document we'll reference your fork's URI as `upstream`. Example: https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools  
 
 
 2. Clone your fork down to your local machine.
@@ -58,43 +58,52 @@ tags:
   - From this repo, NOT your fork or local clone, click on the __Clone__ button and copy the _https_ URI to your clipboard.
   - In terminal/shell/powershell/cmd enter `git remote add upstream <paste from clipboard>`.
 
+
 | Make certain your `master` branches are even with the original/canonical `master` |
 | --- |
 
 4. STOP! Get up-to-date before you do anything, fetch your remotes so your local clone has the most recent commits.
+
   - Change into the directory (`cd`) with the files you cloned.
   - In terminal/shell/powershell/cmd enter `git fetch --all`.
 
 
 5. Checkout and pull the `upsteam master` to your local `master` branch.
+
   - Checkout your master: `git checkout master`
   - Pull the `upstream` master into yours so your local is up-to-date: `git pull upstream master`
   - Push your local `master` branch BACK to your fork in _GitHub_.  
-    - If all is well and your `git pull...` resulted in a fast-forward or "Already up to date.", then: `git push origin master`
-    - If your `git pull...` did not fast-forward and a merge message appeared, then there were differences in your branches. Never work on `master`.
+      - If all is well and your `git pull...` resulted in a fast-forward or "Already up to date.", then: `git push origin master`
+      - If your `git pull...` did not fast-forward and a merge message appeared, then there were differences in your branches. Never work on `master`.
 
-| Create a topic/fix/enhancement/document branch for your work, and have at! |
+
+| Create an _issue_ and a topic/fix/enhancement/document _branch_ for your work, and have at! |
 | --- |
 
-6. Create an "Issue" for your work:
-  - Navigate your browser to the original/canonical _GitHub_ project you wish to work on. Example: https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools
-  - Find and open the `Issues` tab (it's icon is an exclamation point in a circle) near the top of the page.
-  - Look through the list of ALL issues, both `Open` and `Closed`, for any mention of the problem you wish to solve.
-    - If you find an existing Issue, study it and determine if you can add your work to the existing issue.
-    - If not, click `New issue` to create one and describe the problem you will be attacking.
-  - Your new, or existing, issue will be assigned a sequential number that you should reference in subsequent steps.    
+6. Create an _issue_ for your work.
 
-7. Create your branch and check it out:
-  - Create a branch with: `git branch <helpful and identifying name>`.  Example: `git branch fix-nodequeue-error`
-  - Checkout your new branch with `git checkout <helpful and identifying name>`. Example: `git checkout fix-nodequeue-error`
+  - Navigate your browser to the original/canonical _GitHub_ project you wish to work on. Example: https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools
+  - Find and open the `Issues` tab (its icon is an exclamation point in a circle) near the top of the page.
+  - Look through the list of all issues, both `Open` and `Closed`, for any mention of the problem you wish to solve.
+      - If you find an existing issue, study it and determine if you can add your work to the existing issue.
+      - If an appropriate existing issue is not found, click `New issue` to create one and describe the problem you will be attacking.
+  - Take note of the new, or existing, sequential number assigned to your issue.  In subsequent steps you should refer to your issue using its number (Example: #20) in references like these examples:  `#20`, `issue-20`.
+
+
+7. Create your branch and check it out.
+
+  - Create a branch with: `git branch <helpful and identifying name>`.  Example: `git branch issue-20`
+  - Checkout your new branch with `git checkout <helpful and identifying name>`. Example: `git checkout issue-20`
 
 
 8. Start your work and commit locally, aka "save your work", at times (probably more than once) that feel logical.
-   - Create logical checkpoints (i.e., commits) when you feel you've finished on a particular "part" of your work. Example: You've just created a new file and added some stubbed content: Commit it!
-     - Commits are references in your work and can be helpful if you need to go back to an earlier version of your work, sort of like an "undo" command. By committing regularly, you give yourself utmost flexibility and it's a good practice/habit.
+
+  - Create logical checkpoints (i.e., commits) when you feel you've finished on a particular "part" of your work. Example: You've just created a new file and added some stubbed content: Commit it!
+      - Commits are references in your work and can be helpful if you need to go back to an earlier version of your work, sort of like an "undo" command. By committing regularly, you give yourself utmost flexibility and it's a good practice/habit.
 
 
 9. Creating commits.
+
    - In terminal/shell/powershell/cmd enter `git status` to see a list of files changed, added, and removed.
    - Use `git add <file>` or `git rm <file>` to stage (add or remove) files from your commit. If you want to add all files to the commit you may shorthand it with `git add -A`; the `-A` flag is short for "All".
    - Create your commit after files are staged: `git commit`. Enter a commit message that is helpful for you and us! Helpful hint: Always write in the present tense: "Update <somefile.ext> to include all of the appropriate modules."
@@ -103,7 +112,9 @@ tags:
 | Finalizing and preparing for a pull request (PR) |
 | --- |
 
+
 10. Pushing back to `origin` will update your fork in _GitHub_.
+
    - After your final commit and feel you're ready to PR back to the project: `git push origin <name-of-your-branch>`.
    - Visit your forked _GitHub_ repo and switch branches to your new branch.
    - Select `New pull request` (top-left) and tell _GitHub_, if it isn't already, to compare against remote branches. Select the original/canonical master first, then your repo and branch.
