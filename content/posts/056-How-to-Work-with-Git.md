@@ -1,7 +1,7 @@
 ---
 title: How to Work with Git
 publishDate: 2019-11-19
-lastmod: 2019-11-19T20:51:04-05:00
+lastmod: 2019-11-19T21:48:25-05:00
 draft: false
 emojiEnable: true
 tags:
@@ -29,13 +29,14 @@ tags:
 | The terms `original`, `canonical`, and `upstream` are also used in this post to describe the _GitHub_ repository at the root of the project being managed. |
 
 
-### Configuration: In most cases you will do Steps 1-3 only once! If you move to a new machine execute Steps 2-3 only.
+| Configuration: In most cases you will do Steps 1-3 only once! If you move to a new machine execute Steps 2-3 only. |
+| --- |
+| Only "fork" once! Do not repeat Step 1 if you've already forked the original/canonical repo. |
+| Only "clone" once! Do not repeat Step 2 if you already have a local clone of your fork. |
+| Only add this remote once! Do not perform this step if your local repo already has an `upstream` remote. |
 
 
 1. Always _fork_ the repo (repository) you are working on.
-
-  | Only "fork" once! Do not perform this step if you've already forked the original/canonical repo. |
-  | --- |
 
   - This is accomplished by logging into your _GitHub_ account and selecting __Fork__ near the top right of the repo's page.
     - Navigate your browser to the _GitHub_ project you wish to work on. Example: https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools
@@ -44,8 +45,6 @@ tags:
 
 
 2. Clone your fork down to your local machine.
-  | Only "clone" once! Do not perform this step if you already have a local clone of your fork. |
-  | --- |
 
   - Navigate your browser to the fork.  Example: https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools
   - Click on the __Clone__ button to copy the fork's URI to your clipboard.
@@ -54,14 +53,13 @@ tags:
 
 
 3. Before you start working, add an `upstream` pointer to the original/canonical repo that you forked.
-  | Only add this remote once! Do not perform this step if your local repo already has an `upstream` remote. |
-  | --- |
 
   - Navigate your browser back to the original/canonical _GitHub_ project. Example: https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools
   - From this repo, NOT your fork or local clone, click on the __Clone__ button and copy the _https_ URI to your clipboard.
   - In terminal/shell/powershell/cmd enter `git remote add upstream <paste from clipboard>`.
 
-### Make certain your `master` branches are even with the original/canonical `master`
+| Make certain your `master` branches are even with the original/canonical `master` |
+| --- |
 
 4. STOP! Get up-to-date before you do anything, fetch your remotes so your local clone has the most recent commits.
   - Change into the directory (`cd`) with the files you cloned.
@@ -75,7 +73,8 @@ tags:
     - If all is well and your `git pull...` resulted in a fast-forward or "Already up to date.", then: `git push origin master`
     - If your `git pull...` did not fast-forward and a merge message appeared, then there were differences in your branches. Never work on `master`.
 
-### Create a topic/fix/enhancement/document branch for your work, and have at!
+| Create a topic/fix/enhancement/document branch for your work, and have at! |
+| --- |
 
 6. Create your branch and check it out:
   - Create a branch with: `git branch <helpful and identifying name>`.  Example: `git branch fix-nodequeue-error`
@@ -93,7 +92,8 @@ tags:
    - Create your commit after files are staged: `git commit`. Enter a commit message that is helpful for you and us! Helpful hint: Always write in the present tense: "Update <somefile.ext> to include all of the appropriate modules."
    - Continue your work, going through _this step_ as many times as needed.
 
-### Finalizing and preparing for a pull request (PR).
+| Finalizing and preparing for a pull request (PR) |
+| --- |
 
 9. Pushing back to `origin` will update your fork in _GitHub_.
    - After your final commit and feel you're ready to PR back to the project: `git push origin <name-of-your-branch>`.
