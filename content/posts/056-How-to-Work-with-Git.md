@@ -1,7 +1,7 @@
 ---
 title: How to Work with Git
 publishDate: 2019-11-19
-lastmod: 2019-11-19T21:48:25-05:00
+lastmod: 2019-11-20T14:57:20-05:00
 draft: false
 emojiEnable: true
 tags:
@@ -76,17 +76,25 @@ tags:
 | Create a topic/fix/enhancement/document branch for your work, and have at! |
 | --- |
 
-6. Create your branch and check it out:
+6. Create an "Issue" for your work:
+  - Navigate your browser to the original/canonical _GitHub_ project you wish to work on. Example: https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools
+  - Find and open the `Issues` tab (it's icon is an exclamation point in a circle) near the top of the page.
+  - Look through the list of ALL issues, both `Open` and `Closed`, for any mention of the problem you wish to solve.
+    - If you find an existing Issue, study it and determine if you can add your work to the existing issue.
+    - If not, click `New issue` to create one and describe the problem you will be attacking.
+  - Your new, or existing, issue will be assigned a sequential number that you should reference in subsequent steps.    
+
+7. Create your branch and check it out:
   - Create a branch with: `git branch <helpful and identifying name>`.  Example: `git branch fix-nodequeue-error`
   - Checkout your new branch with `git checkout <helpful and identifying name>`. Example: `git checkout fix-nodequeue-error`
 
 
-7. Start your work and commit locally, aka "save your work", at times (probably more than once) that feel logical.
+8. Start your work and commit locally, aka "save your work", at times (probably more than once) that feel logical.
    - Create logical checkpoints (i.e., commits) when you feel you've finished on a particular "part" of your work. Example: You've just created a new file and added some stubbed content: Commit it!
      - Commits are references in your work and can be helpful if you need to go back to an earlier version of your work, sort of like an "undo" command. By committing regularly, you give yourself utmost flexibility and it's a good practice/habit.
 
 
-8. Creating commits.
+9. Creating commits.
    - In terminal/shell/powershell/cmd enter `git status` to see a list of files changed, added, and removed.
    - Use `git add <file>` or `git rm <file>` to stage (add or remove) files from your commit. If you want to add all files to the commit you may shorthand it with `git add -A`; the `-A` flag is short for "All".
    - Create your commit after files are staged: `git commit`. Enter a commit message that is helpful for you and us! Helpful hint: Always write in the present tense: "Update <somefile.ext> to include all of the appropriate modules."
@@ -95,13 +103,13 @@ tags:
 | Finalizing and preparing for a pull request (PR) |
 | --- |
 
-9. Pushing back to `origin` will update your fork in _GitHub_.
+10. Pushing back to `origin` will update your fork in _GitHub_.
    - After your final commit and feel you're ready to PR back to the project: `git push origin <name-of-your-branch>`.
    - Visit your forked _GitHub_ repo and switch branches to your new branch.
    - Select `New pull request` (top-left) and tell _GitHub_, if it isn't already, to compare against remote branches. Select the original/canonical master first, then your repo and branch.
 
 
-10. Create the pull request (PR) and send it.
+11. Create the pull request (PR) and send it.
     - Enter a description of what your commits do as a whole.
     - How should this be tested?
     - Who should be notified? @mention them if you know.
