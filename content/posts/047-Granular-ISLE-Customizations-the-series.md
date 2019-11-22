@@ -13,12 +13,12 @@ tags:
 
 | Granular ISLE Customization |
 | --- |
-| This post provides guidelines for a series of posts describing [Digital.Grinnell](https://digital.grinnell.edu) customizations to [ISLE](https://github.com/Islandora-Collaboration-Group/ISLE), in a "granular" format... one small customization at a time. |
+| This post provides guidelines for a series of posts describing [Digital.Grinnell](https://digital.grinnell.edu/) customizations to [ISLE](https://github.com/Islandora-Collaboration-Group/ISLE/), in a "granular" format... one small customization at a time. |
 
 # Using the _Granular ISLE Customization_ Posts
 There are just a couple of notes regarding the subject posts that I'd like to pass along to make them more useful.
 
-  - **Gists** - You will find a few places in this series where I generated a [gist](https://help.github.com/en/articles/creating-gists) to take the place of lengthy command output.  Instead of a long stream of text you'll find a simple [link to a gist](https://gist.github.com/McFateM/98d09fdcc29f88ac88bf7b3cbfb8324d) like this.
+  - **Gists** - You will find a few places in this series where I generated a [gist](https://help.github.com/en/articles/creating-gists/) to take the place of lengthy command output.  Instead of a long stream of text you'll find a simple [link to a gist](https://gist.github.com/McFateM/98d09fdcc29f88ac88bf7b3cbfb8324d/) like this.
 
   - **Workstation Commands** - There are lots of places in this series where I've captured a sequence of commands  along with output from those commands in block text.  Generally speaking, after each such block you will find a **Workstation Commands** table that can be used to conveniently copy and paste the necessary commands directly into your workstation. The tables look something like this:
 
@@ -52,7 +52,7 @@ Posts in the _Granular ISLE Customization_ series include:
 
 | Title | Synopsis |
 | --- | --- |
-| [Granular ISLE Customization: Series Guidelines](https://static.grinnell.edu/blogs/McFateM/posts/047-granular-isle-customization-series-guidelines) | This document. |
-| [Granular ISLE Customization: Installing IMI](https://static.grinnell.edu/blogs/McFateM/posts/048-granular-isle-customization-installing-imi) | Instructions for installing IMI, the Islandora Multi-Importer module, and a robust sample of TWIG templating. |
+| [Granular ISLE Customization: Series Guidelines](https://static.grinnell.edu/blogs/McFateM/posts/047-granular-isle-customization-series-guidelines/) | This document. |
+| [Granular ISLE Customization: Installing IMI](https://static.grinnell.edu/blogs/McFateM/posts/048-granular-isle-customization-installing-imi/) | Instructions for installing IMI, the Islandora Multi-Importer module, and a robust sample of TWIG templating. |
 | [Granular ISLE Customization: Implementing IMI Hooks](https://static.grinnell.edu/blogs/McFateM/posts/049-granular-isle-customization-implementing-imi-hooks/) | Guidance to build your own IMI hook implementations to improve the Islandora Multi-
-| [Granular ISLE Customization: Installing the DG Theme](https://static.grinnell.edu/blogs/McFateM/posts/052-granular-isle-customization-installing-the-dg-theme/) | Guidance to install and configure the [digital_grinnell_bootstrap](https://github.com/DigitalGrinnell/digital_grinnell_bootstrap) theme. |
+| [Granular ISLE Customization: Installing the DG Theme](https://static.grinnell.edu/blogs/McFateM/posts/052-granular-isle-customization-installing-the-dg-theme/) | Guidance to install and configure the [digital_grinnell_bootstrap](https://github.com/DigitalGrinnell/digital_grinnell_bootstrap/) theme. |
