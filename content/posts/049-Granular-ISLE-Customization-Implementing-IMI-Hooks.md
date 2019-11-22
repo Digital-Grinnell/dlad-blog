@@ -1,7 +1,7 @@
 ---
 title: "Granular ISLE Customization: Implementing IMI Hooks"
 publishdate: 2019-09-29
-lastmod: 2019-09-29T14:22:26-05:00
+lastmod: 2019-11-21T20:38:30-05:00
 draft: false
 tags:
   - granular
@@ -28,7 +28,7 @@ In this "granular" post I'll introduce two customizations to IMI that implement 
 
 ## Drupal 7 Hooks
 
-See [Understanding the hook system for Drupal modules](https://www.drupal.org/docs/7/creating-custom-modules/understanding-the-hook-system-for-drupal-modules) to better understand what _Drupal v7_ hook functions are, and how they work. If you would like additional assistance with "hooks" do not hesitate to contact the author of this post using [this email link]("mailto:digital@grinnell.edu?subject=Implementing IMI Hooks").
+See [Understanding the hook system for Drupal modules](https://www.drupal.org/docs/7/creating-custom-modules/understanding-the-hook-system-for-drupal-modules) to better understand what _Drupal v7_ hook functions are, and how they work. If you would like additional assistance with "hooks" do not hesitate to contact the author of this post using [this email link](mailto:digital@grinnell.edu?subject=Implementing IMI Hooks).
 
 ## My Implementation Details
 
