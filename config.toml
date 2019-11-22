@@ -15,11 +15,12 @@ enableEmoji = true
 ## BlackFriday is Hugo's markdown rendering engine.
 [blackfriday]
   smartypants = false
+  hrefTargetBlank = true
 
 #relativeURLs = "true"
 
 [params]
-  build = 306                     # this value is auto-incremened using 'perl' in push-update.sh
+  build = 307                     # this value is auto-incremened using 'perl' in push-update.sh
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
