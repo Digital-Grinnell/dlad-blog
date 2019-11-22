@@ -1,7 +1,7 @@
 ---
 title: "Granular ISLE Customization: Series Guidelines"
 publishdate: 2019-09-27
-lastmod: 2019-11-07T22:34:28-05:00
+lastmod: 2019-11-22T15:48:28-05:00
 draft: false
 tags:
   - granular

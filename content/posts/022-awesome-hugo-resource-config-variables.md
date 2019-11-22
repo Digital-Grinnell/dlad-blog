@@ -1,7 +1,7 @@
 ---
 title: Awesome Hugo Resource - Config Variables Summary
 publishdate: 2019-07-08
-lastmod: 2019-11-07T22:34:28-05:00
+lastmod: 2019-11-22T14:34:28-05:00
 draft: false
 tags:
   - Hugo
