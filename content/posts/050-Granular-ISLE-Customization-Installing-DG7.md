@@ -1,7 +1,7 @@
 ---
 title: "Granular ISLE Customization: Installing DG7"
 publishdate: 2019-10-09
-lastmod: 2019-10-10T00:35:28-05:00
+lastmod: 2019-11-25T15:39:50-05:00
 draft: false
 tags:
   - granular
@@ -10,6 +10,11 @@ tags:
   - DG7
   - hooks
 ---
+
+| Warning! |
+| --- |
+| The DG7 module contains code with numerous dependencies, and the most sinister of these is a Grinnell-specific version of the Solr schema. Do NOT attempt to use this module early in a stack-building process, nor outside the Digital.Grinnell environment. |
+
 
 | Granular ISLE Customization |
 | --- |

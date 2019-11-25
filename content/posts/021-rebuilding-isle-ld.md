@@ -1,14 +1,18 @@
 ---
 title: Rebuilding ISLE-ld (for Local Development)
 publishDate: 2019-07-06
-lastmod: 2019-08-18T21:54:03-05:00
+lastmod: 2019-11-25T18:05:34-05:00
 draft: false
+tags:
+  - ISLE
+  - local
+  - development
 ---
 
-This post is intended to chronicle my efforts to build a new ISLE v1.1.2 `local development` instance of Digital.Grinnell on my work-issued iMac, `MA8660`, and MacBook Air, `MA7053`.  
+This post is intended to chronicle my efforts to build a new ISLE v1.3.0 `local development` instance of _Digital.Grinnell_ on my work-issued iMac, `MA8660`, and MacBook Air, `MA7053`.  
 
-## Goal Statement
-The goal of this project is to spin up a pristine, local Islandora stack using a fork of [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) at https://github.com/DigitalGrinnell/ISLE, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu.
+## Goal
+The goal of this project is to spin up a pristine, local Islandora stack using [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE/) at https://github.com/Digital-Grinnell/dg-isle/, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme/) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7/).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu/.
 
 ## Using This Document
 There are just a couple of notes regarding this document that I'd like to pass along to make it more useful.
@@ -127,7 +131,7 @@ It was at this point I discovered a new gem in `iTerm2`:  If you hit `Command + 
 ## Testing the Site
 Moving on to [Step 4 in the documentation](https://github.com/DigitalGrinnell/ISLE/blob/ld/docs/install/install-demo.md#step-4-test-the-site)...
 
-A web browser visit to https://isle.localdomain/ shows that the standard ISLE stack is working, and I was able to successfully login as `isle` with a password of `isle`.  
+A web browser visit to https://dg.localdomain/ shows that the standard ISLE stack is working~, and I was able to successfully login as `isle` with a password of `isle`~.  
 
 ## Installing the DG Theme
 [Step 5 in the documentation](https://github.com/DigitalGrinnell/ISLE/blob/ld/docs/install/install-demo.md#step-4-test-the-site) calls for ingest of some sample objects, but this is where I'm departing from the script since I've done this a number of times before.
@@ -138,9 +142,9 @@ So my focus here turned to installing the [digital_grinnell_bootstrap](https://g
 | --- |
 | cd /var/www/html/sites/all/themes <br/> git clone https://github.com/drupalprojects/bootstrap.git <br/> chown -R islandora:www-data * <br/> cd bootstrap <br/> git checkout 7.x-3.x <br/> drush -y en bootstrap <br/> mkdir -p /var/www/html/sites/default/themes <br/> cd /var/www/html/sites/default/themes <br/> git clone https://github.com/DigitalGrinnell/digital_grinnell_bootstrap.git <br/> chown -R islandora:www-data * <br/> cd digital_grinnell_bootstrap <br/> drush -y pm-enable digital_grinnell_bootstrap <br/> drush vset theme_default digital_grinnell_bootstrap |
 
-Success! The theme is in place and active on my [ISLE.localdomain](https://ISLE.localdomain) site.  Just one more tweak here...
+Success! The theme is in place and active on my [dg.localdomain](https://dg.localdomain/) site.  Just one more tweak here...
 
-I visited https://isle.localdomain/#overlay=admin/appearance/settings/digital_grinnell_bootstrap and made sure ONLY the following boxes are checked:
+I visited https://dg.localdomain/#overlay=admin/appearance/settings/digital_grinnell_bootstrap and made sure ONLY the following boxes are checked:
 
   - Logo
   - Shortcut Icon
@@ -149,9 +153,9 @@ I visited https://isle.localdomain/#overlay=admin/appearance/settings/digital_gr
 
 All other theme settings should be default values and need not be changed.
 
-A visit to [the site](https://isle.localdomain) with a refresh showed that this worked!
+A visit to [the site](https://dg.localdomain/) with a refresh showed that this worked!
 
-Next, I attempted to dump my production Drupal database and restore it to [ISLE.localdomain](https://ISLE.localdomain) as chronicled in the next sections.
+Next, I attempted to dump my production Drupal database and restore it to [dg.localdomain](https://dg.localdomain/) as chronicled in the next sections.
 
 ## Install the Islandora Multi-Importer (IMI)
 It's important that we take this step BEFORE any that follow, otherwise the module will not install properly. The result is captured in [this gist](https://gist.github.com/McFateM/d8e7694032298e0518a88b3370872db8).
@@ -195,15 +199,15 @@ Alternatively, you could...
   - Click `Backup now` to backup the site
   - Click `Save` to save the file to your workstation `Downloads` folder
 
-In the `isle.localdomain` site...
+In the `dg.localdomain` site...
 
-  - Visit https://isle.localdomain/#overlay=admin/config/system/backup_migrate/restore
+  - Visit https://dg.localdomain/#overlay=admin/config/system/backup_migrate/restore
   - Click the `Restore`
   - Select the `Restore from an uploaded file` option
   - Click `Browse` in the `Upload a Backup File`
   - Navigate to your workstation `Downloads` folder and choose the backup file created moments ago
   - Click `Restore now`
-  - Navigate your browser back to `https://isle.localdomain/`
+  - Navigate your browser back to `https://dg.localdomain/`
   - Take note of any warnings or errors that may be present.
 
 ## Restore Results...Lots of Warnings
@@ -242,9 +246,9 @@ root@9bec4edd3964:/var/www/html/sites/default# drush cc all
 ```
 | Apache Container Commands* |
 | --- |
-| cd /var/www/html/sites/default <br/> drush dl masquerade announcements email git_deploy maillog r4032login smtp views_bootstrap <br/> drush cc all |
+| cd /var/www/html/sites/default <br/> drush dl masquerade announcements email git_deploy maillog r4032login smtp views_bootstrap admin_theme google_analytics counter <br/> drush cc all |
 
-Visiting the [site](https://isle.localdomain) again shows that all of the *Drupal* missing modules are happy now, but there are still a number of *Islandora* bits missing. After removing any redundant messages I was left with:
+Visiting the [site](https://dg.localdomain/) again shows that all of the *Drupal* missing modules are happy now, but there are still a number of *Islandora* bits missing. After removing any redundant messages I was left with:
 
 ```
    User warning: The following module is missing from the file system: dg7. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
@@ -388,14 +392,14 @@ root@9bec4edd3964:/var/www/html/sites/all/modules/islandora# chown -R islandora:
 | --- |
 | cd /var/www/html/sites/all/modules/islandora <br/> git clone https://github.com/DigitalGrinnell/dg7.git <br/> git clone https://github.com/DigitalGrinnell/idu.git <br/> # git clone git://github.com/discoverygarden/islandora_binary_object.git <br/> git clone https://github.com/discoverygarden/islandora_collection_search <br/> git clone https://github.com/DigitalGrinnell/islandora_mods_display.git <br/> git clone https://github.com/Islandora-Labs/islandora_solution_pack_oralhistories.git <br/> # git clone git://github.com/nhart/islandora_pdfjs_reader.git <br/> git clone https://github.com/Islandora-Labs/islandora_solr_collection_view.git <br/> chown -R islandora:www-data *<br/> cd /var/www/html/sites/default <br/> drush cc all <br/> |
 
-The last command line above was required to bring ALL of the new modules' ownership into line with everything else in [ISLE.localdomain](https://isle.localdomain).  Also note that two of the lines, for `islandora_binary_object` and `islandora_pdfjs_reader`, are commented out because of known issues with installation of those modules.
+The last command line above was required to bring ALL of the new modules' ownership into line with everything else in [dg.localdomain](https://dg.localdomain/).  Also note that two of the lines, for `islandora_binary_object` and `islandora_pdfjs_reader`, are commented out because of known issues with installation of those modules.
 
 ## Temporarily Eliminate Warnings
-So the [site](https://isle.localdomain) is still issuing a few annoying warnings about missing pieces.  In order to turn them off, for now, just do this:
+So the [site](https://dg.localdomain/) is still issuing a few annoying warnings about missing pieces.  In order to turn them off, for now, just do this:
 
 | Apache Container Commands* |
 | --- |
-| cd /var/www/html/sites/default <br/> drush -y dis islandora_binary_object islandora_pdfjs_reader <br/> drush sqlq "DELETE FROM system WHERE name = 'islandora_binary_object' AND type = 'module';" <br/> drush sqlq "DELETE FROM system WHERE name = 'islandora_pdfjs_reader' AND type = 'module';" <br/> drush cc all |
+| cd /var/www/html/sites/default <br/> drush -y dis islandora_binary_object islandora_pdfjs_reader <br/> drush sqlq "DELETE FROM system WHERE name = 'islandora_binary_object' AND type = 'module';" <br/> drush sqlq "DELETE FROM system WHERE name = 'islandora_pdfjs_reader' AND type = 'module';" <br/> drush sqlq "DELETE FROM system WHERE name = 'islandora_google_scholar' AND type = 'module';" <br/> drush sqlq "DELETE FROM system WHERE name = 'phpexcel' AND type = 'module';" <br/> drush sqlq "DELETE FROM system WHERE name = 'ldap_servers' AND type = 'module';" <br/> drush sqlq "DELETE FROM system WHERE name = 'ihc' AND type = 'module';" <br/> drush cc all |
 
 # Building ISLE-DG-Essentials
 The remaining critical step here involves packaging all of the customization of underlying services like FEDORA, FEDORAGSearch, and Solr, that exist for _Digital Grinnell_.  All of the necessary customization is already in play on _DGDocker1_, where ISLE is currently running in production. My approach to this step was to:
@@ -415,14 +419,14 @@ The remaining critical step here involves packaging all of the customization of 
 | --- |
 | See https://github.com/McFateM/ISLE-DG-Essentials/blob/master/README.md for much more detail. |
 
-# Spinning up isle.localdomain
+# Spinning up dg.localdomain
 I put an updated copy of `docker-compose.override.yml` into the `ld` branch of my new [ISLE repo](https://github.com/McFateM/ISLE) so all that's needed now is to visit the local clone of that project, bring it down, and back up again like so:
 
 | Workstation Commands |
 | --- |
 | cd ~/Projects/ISLE <br/> git checkout ld <br/> docker-compose stop <br/> docker-compose up -d |
 
-It may take a few minutes for the site to come up.  Be patient and after a short break (5 minutes?) visit https://isle.localdomain to see the new site.
+It may take a few minutes for the site to come up.  Be patient and after a short break (5 minutes?) visit https://dg.localdomain to see the new site.
 
 # Connecting to FEDORA
 The aforementioned `docker-compose.override.yml` file in the `ld` branch of my https://github.com/McFateM/ISLE project includes 3 lines that direct _FEDORA_ and _FGSearch_ to use the mounted and pre-configured `/Volumes/DG-FEDORA` USB stick for object storage. The commands and process required to use the USB stick are presented here.
@@ -514,7 +518,7 @@ Now, proceed as directed in [the document](https://islandora-collaboration-group
 | cd /usr/local/tomcat/webapps/fedoragsearch/client <br/> /bin/sh runRESTClient.sh localhost:8080 updateIndex fromFoxmlFiles |
 
 ## Check Your Status
-At this point in the process I had a working local ISLE instance that looks and behaves almost exactly like _Digital.Grinnell_.  That's great!  But not perfect.  8^(  I also noted that there were NO oral history objects in my portable _FEDORA_ repository yet, and when I tried to add one I got a host of warnings.  So, I decided to pay a visit to https://isle.localdomain/admin/reports/status, the _Drupal_ site status report.  That report did flag a host of issues, mostly related to my `private file system`.  The full report is captured in [this gist](https://gist.github.com/McFateM/c5ea76f38c06971df32dcdaf90d61b45).
+At this point in the process I had a working local ISLE instance that looks and behaves almost exactly like _Digital.Grinnell_.  That's great!  But not perfect.  8^(  I also noted that there were NO oral history objects in my portable _FEDORA_ repository yet, and when I tried to add one I got a host of warnings.  So, I decided to pay a visit to https://dg.localdomain/admin/reports/status, the _Drupal_ site status report.  That report did flag a host of issues, mostly related to my `private file system`.  The full report is captured in [this gist](https://gist.github.com/McFateM/c5ea76f38c06971df32dcdaf90d61b45).
 
 To correct the most pressing problem, the lack of a `private file system`, try this:
 
@@ -526,18 +530,18 @@ To correct the most pressing problem, the lack of a `private file system`, try t
 | --- |
 | cd /var/www <br/> mkdir private <br/> chown islandora:www-data private <br/> chmod 774 private <br/> cd /var/www/html/sites/default <br/> drush cc all |
 
-Now revisit http://isle.localdomain/admin/reports/status and refresh your browser to see if this has fixed one or more issues.  In my case, multiple issues were resolved by taking this action.  However, one critical issue remained:
+Now revisit http://dg.localdomain/admin/reports/status and refresh your browser to see if this has fixed one or more issues.  In my case, multiple issues were resolved by taking this action.  However, one critical issue remained:
 ```
 Error - Database updates -	Out of date
 Some modules have database schema updates to install. You should run the database update script immediately.
 ```
 
-I opened the [database update script](https://isle.localdomain/update.php?op=info) in my browser and used it to run all pending updates, 7 of them.  I then returned to the site's [home page](http://isle.localdomain) and used the `Clear Cache` link in the right-hand margin (under the `Development` menu heading) to refresh the cache.  Then I re-visited the [status report](http://isle.localdomain/admin/reports/status) for one more check.  Only the inconsequential `Glip Library` and `HTTP request status` warnings remain.
+I opened the [database update script](https://dg.localdomain/update.php?op=info) in my browser and used it to run all pending updates, 7 of them.  I then returned to the site's [home page](http://dg.localdomain/) and used the `Clear Cache` link in the right-hand margin (under the `Development` menu heading) to refresh the cache.  Then I re-visited the [status report](http://dg.localdomain/admin/reports/status) for one more check.  Only the inconsequential `Glip Library` and `HTTP request status` warnings remain.
 
 ## Ingest an Oral History with Transcription
 My `DG-FEDORA` USB stick is still read/write mounted at `/Volumes/DG-FEDORA` so I put a copy of one transcribed oral history interview package (an entire directory of files) titled `Lynne_Simcox_64` on the stick.  Ingest of this content went something like this:
 
-  - Open https://isle.localdomain/islandora/object/grinnell:alumni-oral-histories/manage
+  - Open https://dg.localdomain/islandora/object/grinnell:alumni-oral-histories/manage
   - Click the `Add an object to this Collection` link
   - I entered minimal metadata (only the `Title` is required) and clicked `Next`
   - At the `Video or Audio` prompt I browsed and selected the `Lynne_Simcox_64.MP3` file in `/Volumes/DG-FEDORA/Lynne_Simcox_64`, then clicked `Upload`
