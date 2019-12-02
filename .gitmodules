@@ -4,6 +4,3 @@
 [submodule "themes/m10c"]
 	path = themes/m10c
 	url = https://github.com/vaga/hugo-theme-m10c.git
-[submodule "themes/hugo-search-fuse-js"]
-	path = themes/hugo-search-fuse-js
-	url = https://github.com/SummittDweller/hugo-search-fuse-js.git

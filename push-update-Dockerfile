@@ -1,7 +1,0 @@
-## push-update-Dockerfile
-## Used execlusively with the push-update.sh script, this Dockerfile builds and pushes an image update
-##   directly from the host's /public directory.
-#
-FROM nginx:alpine
-COPY ./public /usr/share/nginx/html
-LABEL maintainer Mark A. McFate <mcfatem@grinnell.edu>
