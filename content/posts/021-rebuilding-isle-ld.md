@@ -1,15 +1,15 @@
 ---
 title: Rebuilding ISLE-ld (for Local Development)
 publishDate: 2019-07-06
-lastmod: 2019-11-25T18:05:34-05:00
-draft: false
+lastmod: 2019-12-02T09:05:34-05:00
+draft: true
 tags:
   - ISLE
   - local
   - development
 ---
 
-This post is intended to chronicle my efforts to build a new ISLE v1.3.0 `local development` instance of _Digital.Grinnell_ on my work-issued iMac, `MA8660`, and MacBook Air, `MA7053`.  
+This post is intended to chronicle my efforts to build a new ISLE v1.3.0 `local development` instance of _Digital.Grinnell_ on my work-issued iMac, `MA8660`, and MacBook Air, `MA7053`.
 
 ## Goal
 The goal of this project is to spin up a pristine, local Islandora stack using [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE/) at https://github.com/Digital-Grinnell/dg-isle/, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme/) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7/).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu/.
@@ -131,7 +131,7 @@ It was at this point I discovered a new gem in `iTerm2`:  If you hit `Command + 
 ## Testing the Site
 Moving on to [Step 4 in the documentation](https://github.com/DigitalGrinnell/ISLE/blob/ld/docs/install/install-demo.md#step-4-test-the-site)...
 
-A web browser visit to https://dg.localdomain/ shows that the standard ISLE stack is working~, and I was able to successfully login as `isle` with a password of `isle`~.  
+A web browser visit to https://dg.localdomain/ shows that the standard ISLE stack is working~, and I was able to successfully login as `isle` with a password of `isle`~.
 
 ## Installing the DG Theme
 [Step 5 in the documentation](https://github.com/DigitalGrinnell/ISLE/blob/ld/docs/install/install-demo.md#step-4-test-the-site) calls for ingest of some sample objects, but this is where I'm departing from the script since I've done this a number of times before.
@@ -263,7 +263,7 @@ Visiting the [site](https://dg.localdomain/) again shows that all of the *Drupal
    User warning: The following module is missing from the file system: transcripts_ui. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
 ```
 
-Next steps and sections, still working "off-script", will install all of these missing parts.  
+Next steps and sections, still working "off-script", will install all of these missing parts.
 
 ## Installing the Missing Islandora/Custom Bits
 If I recall correctly, all of the missing Islandora and custom modules listed above can be found in the *Apache* container on *DGDocker1*, our production instance of ISLE, at `/var/www/html/sites/all/modules/islandora`.  So I started this process by opening a new shell in the aforementioned container on *DGDocker1* like so:
@@ -404,12 +404,12 @@ So the [site](https://dg.localdomain/) is still issuing a few annoying warnings 
 # Building ISLE-DG-Essentials
 The remaining critical step here involves packaging all of the customization of underlying services like FEDORA, FEDORAGSearch, and Solr, that exist for _Digital Grinnell_.  All of the necessary customization is already in play on _DGDocker1_, where ISLE is currently running in production. My approach to this step was to:
 
-  1. Make a local clone of https://github.com/DigitalGrinnell/RepositoryX.git as `~/Projects/ISLE-DG-Essentials`.  
-  2. Checkout the `ISLE-ld` branch of this new clone; that's the branch that holds all my work from early 2019.  
-  3. Remove _git_ from control of the new cloned repository.  This should leave just the latest `ISLE-ld` work in place.  
-  4. Make a new, empty, private _Github_ project at https://github.com/McFateM/ISLE-DG-Essentials.  
-  5. Push the local clone to the new _Github_ repo for long-term development and deployment.  
-  6. Update the `README.md` document in the new repo to reflect proper use of the project.  
+  1. Make a local clone of https://github.com/DigitalGrinnell/RepositoryX.git as `~/Projects/ISLE-DG-Essentials`.
+  2. Checkout the `ISLE-ld` branch of this new clone; that's the branch that holds all my work from early 2019.
+  3. Remove _git_ from control of the new cloned repository.  This should leave just the latest `ISLE-ld` work in place.
+  4. Make a new, empty, private _Github_ project at https://github.com/McFateM/ISLE-DG-Essentials.
+  5. Push the local clone to the new _Github_ repo for long-term development and deployment.
+  6. Update the `README.md` document in the new repo to reflect proper use of the project.
 
 | Workstation Commands |
 | --- |
@@ -432,7 +432,7 @@ It may take a few minutes for the site to come up.  Be patient and after a short
 The aforementioned `docker-compose.override.yml` file in the `ld` branch of my https://github.com/McFateM/ISLE project includes 3 lines that direct _FEDORA_ and _FGSearch_ to use the mounted and pre-configured `/Volumes/DG-FEDORA` USB stick for object storage. The commands and process required to use the USB stick are presented here.
 
 ## Insert the DG-FEDORA USB Stick
-To restore the *Fedora* repository from a previous build just insert the USB stick labeled `DG-FEDORA`.  On a Mac the USB stick should automatically mount as `/Volumes/DG-FEDORA`, and our `docker-compose.override.yml` file should connect this folder to our *Fedora* container to serve as our object repository.  However, by default the USB stick will be mounted `read-only`, and that won't work nicely.  
+To restore the *Fedora* repository from a previous build just insert the USB stick labeled `DG-FEDORA`.  On a Mac the USB stick should automatically mount as `/Volumes/DG-FEDORA`, and our `docker-compose.override.yml` file should connect this folder to our *Fedora* container to serve as our object repository.  However, by default the USB stick will be mounted `read-only`, and that won't work nicely.
 
 ## Re-Mount the `DG-FEDORA` Stick as Read-Write
 To make the `DG-FEDORA` stick writable do this:
@@ -464,7 +464,7 @@ You must stop the _FEDORA_ and _FGSearch_ services before proceeding with re-ind
 | docker exec -it isle-fedora-ld bash |
 
 | _FEDORA_ Container Commands |
-| --- |  
+| --- |
 | wget "http://admin:isle_admin:8080/manager/text/stop?path=/fedora" -O - -q |
 
 ### Reindex FEDORA RI (1 of 3)
@@ -475,7 +475,7 @@ Proceed as directed in [the document](https://islandora-collaboration-group.gith
 | docker exec -it isle-fedora-ld bash |
 
 | _FEDORA_ Container Commands |
-| --- |  
+| --- |
 | cd /usr/local/fedora/server/bin <br/> /bin/sh fedora-rebuild.sh -r org.fcrepo.server.resourceIndex.ResourceIndexRebuilder > /usr/local/tomcat/logs/fedora_ri.log 2>&1 |
 
 Note: Remove the `2>&1` suffix if you want to allow all warning and error messages to display immediately on-screen.
@@ -484,15 +484,15 @@ Note: Remove the `2>&1` suffix if you want to allow all warning and error messag
 Proceed as directed in [the document](https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/), step 2 of 3.  The _MySQL_ `root` password is: `ild_mysqlrt_2018`.
 
 | _FEDORA_ Container Commands |
-| --- |  
+| --- |
 | mysql -h mysql -u root -pild_mysqlrt_2018 |
 
 | _MySQL_ Prompt Commands |
-| --- |  
+| --- |
 | use fedora3; <br/> show tables; <br/> truncate table dcDates; <br/> truncate table doFields; <br/> truncate table doRegistry; <br/> truncate table fcrepoRebuildStatus; <br/> truncate table modelDeploymentMap; <br/> truncate table pidGen; <br/> exit |
 
 | _FEDORA_ Container Commands |
-| --- |  
+| --- |
 | cd /usr/local/fedora/server/bin <br/> /bin/sh fedora-rebuild.sh -r org.fcrepo.server.resourceIndex.ResourceIndexRebuilder > /usr/local/tomcat/logs/fedora_ri.log 2>&1 |
 
 The last command block is indeed a repeat of step 1.  It rebuilds the index after a number of tables have been truncated in _FEDORA_'s _MySQL_ database.
@@ -504,7 +504,7 @@ The last command block is indeed a repeat of step 1.  It rebuilds the index afte
 | Although it is NOT documented (as of July 10, 2019) you **must restart _FEDORA_ prior to running these commands! |
 
 | _FEDORA_ Container Commands |
-| --- |  
+| --- |
 | wget "http://admin:isle_admin:8080/manager/text/start?path=/fedora" -O - -q |
 
 Now, proceed as directed in [the document](https://islandora-collaboration-group.github.io/ISLE/migrate/reindex-process/), step 3 of 3.  The `fgsAdmin` password is: `ild_fgs_admin_2018`
@@ -514,7 +514,7 @@ Now, proceed as directed in [the document](https://islandora-collaboration-group
 | docker exec -it isle-fedora-ld bash |
 
 | _FEDORA_ Container Commands |
-| --- |  
+| --- |
 | cd /usr/local/tomcat/webapps/fedoragsearch/client <br/> /bin/sh runRESTClient.sh localhost:8080 updateIndex fromFoxmlFiles |
 
 ## Check Your Status
@@ -524,7 +524,7 @@ To correct the most pressing problem, the lack of a `private file system`, try t
 
 | Workstation Commands |
 | --- |
-| cd ~/Projects/ISLE <br/> docker exec -it isle-apache-ld bash |  
+| cd ~/Projects/ISLE <br/> docker exec -it isle-apache-ld bash |
 
 | Apache Container Commands |
 | --- |

@@ -1,7 +1,7 @@
 ---
 title: Rebuilding ISLE-ld (for Local Development)
-publishDate: 2019-07-06
-lastmod: 2019-11-25T18:05:34-05:00
+publishDate: 2019-12-01
+lastmod: 2019-12-02T09:05:34-05:00
 draft: false
 tags:
   - ISLE
@@ -9,7 +9,7 @@ tags:
   - development
 ---
 
-This post is intended to chronicle my efforts to build a new ISLE v1.3.0 `local development` instance of _Digital.Grinnell_ on my work-issued iMac, `MA8660`, and MacBook Air, `MA7053`.
+This post replaces my earlier post 021 with the same title.  It is intended to chronicle my efforts to build a new ISLE v1.3.0 `local development` instance of _Digital.Grinnell_ on my work-issued MacBook Air, `MA7053`.
 
 ## Goal
 The goal of this project is to spin up a pristine, local Islandora stack using [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE/) at https://github.com/Digital-Grinnell/dg-isle/, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme/) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7/).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu/.
@@ -49,11 +49,11 @@ The first step is to clone my fork of _ISLE_, namely [dg-isle](https://github.co
 ## Cleaning Up
 I typically use the following command stream to clean up any _Docker_ cruft before I begin anew.  Note: Uncomment the third line ONLY if you want to delete images and download new ones.  If you do, be patient, it could take several minutes depending on connection speed.
 
-| Workstation Commands |  
-| --- |  
-| docker stop &dollar;(docker ps -q) <br/> docker rm -v &dollar;(docker ps -qa) <br/> # docker image rm &dollar;(docker image ls -q) --force <br/> docker system prune --force |    
+| Workstation Commands |
+| --- |
+| docker stop &dollar;(docker ps -q) <br/> docker rm -v &dollar;(docker ps -qa) <br/> # docker image rm &dollar;(docker image ls -q) --force <br/> docker system prune --force |
 
-## Connecting to FEDORA  
+## Connecting to FEDORA
 
 The `docker-compose.override.yml` file in the `local-dg-fedora` branch of my [dg-isle](https://github.com/Digital-Grinnell/dg-isle) project includes 3 lines that direct _FEDORA_ and _FGSearch_ to use the mounted and pre-configured `/Volumes/DG-FEDORA` USB stick for object storage. The commands and process required to use the USB stick are presented in [post 046, "DG-FEDORA: A Portable Object Repository"](https://static.grinnell.edu/blogs/McFateM/posts/046-dg-fedora-a-portable-object-repository/).
 
@@ -260,7 +260,7 @@ You saw that correctly, I did `drush cc all` twice, just for good measure.  Now,
 At this point the system is still issuing some warnings, and the most annoying is:
 
 ```
-Warning: file_put_contents(private:///.htaccess): failed to open stream: &quot;DrupalPrivateStreamWrapper::stream_open&quot; call failed in file_put_contents() (line 496 of /var/www/html/includes/file.inc). 
+Warning: file_put_contents(private:///.htaccess): failed to open stream: &quot;DrupalPrivateStreamWrapper::stream_open&quot; call failed in file_put_contents() (line 496 of /var/www/html/includes/file.inc).
 ```
 
 A vist in my browser to [https://dg.localdomain/#overlay=admin/reports/status](https://dg.localdomain/#overlay=admin/reports/status) helps to pinpoint the problem... we don't yet have a `private` file system.  Let's create one like so:
@@ -285,5 +285,9 @@ Ok, at this point I believe that I have a good _Drupal_ database, a working _Fed
 4. Try pulling up the [site](https://dg.localdomain/) again.
 
 # Huzzah! It works!
+
+## Final Step...Capture the Working Code in `dg-islandora`
+
+To wrap this up I followed [Step 11 in the install-local-new.md](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-11-check-in-the-newly-created-islandora-drupal-site-code-into-is-git-repository) document to capture the state of my _Islandora/Drupal_ code.  In doing so I created my PRIVATE code repository, [dg-islandora](https://github.com/Digital-Grinnell/dg-islandora).
 
 And that's a wrap.  Until next time...
