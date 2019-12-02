@@ -20,7 +20,7 @@ enableEmoji = true
 #relativeURLs = "true"
 
 [params]
-  build = 313                     # this value is auto-incremened using 'perl' in push-update.sh
+  build = 317                     # this value is auto-incremened using 'perl' in push-update.sh
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
