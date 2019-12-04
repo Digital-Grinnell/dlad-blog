@@ -1,7 +1,7 @@
 ---
 title: Rebuilding ISLE-ld (for Local Development)
 publishDate: 2019-12-01
-lastmod: 2019-12-02T09:05:34-05:00
+lastmod: 2019-12-04T10:57:10-05:00
 draft: false
 tags:
   - ISLE
@@ -86,11 +86,11 @@ A web browser visit to [https://dg.localdomain/](https://dg.localdomain/) shows 
 
 [Step 10 in the documentation](https://github.com/Digital-Grinnell/dg-isle/blob/master/docs/install/install-local-new.md#step-10-ingest-sample-objects) calls for ingest of some sample objects, but this is where I depart from the script since I've done this a number of times before.
 
-So my focus here turned to installing the [digital_grinnell_bootstrap](https://github.com/DigitalGrinnell/digital_grinnell_bootstrap) theme instead.  The process was captured to [this gist](https://gist.github.com/McFateM/516d4d8db0d7190bfed4e14874b358a8).
+So my focus here turned to installing the [digital_grinnell_bootstrap](https://github.com/DigitalGrinnell/digital_grinnell_bootstrap) theme instead.  Initially I did this with a pair of `git clone...` commands, but later in this process I'm tasked with saving my _Islandora / Drupal_ code as-a-whole into a larger _Git_ repository that will include these themes.  Cloning a _Git_ repository inside another can lead to significant workflow problems, so lets use _Git_ `submodules` instead.  
 
 | Apache Container Commands* |
 | --- |
-| cd /var/www/html/sites/all/themes <br/> git clone https://github.com/drupalprojects/bootstrap.git <br/> chown -R islandora:www-data * <br/> cd bootstrap <br/> git checkout 7.x-3.x <br/> drush -y en bootstrap <br/> mkdir -p /var/www/html/sites/default/themes <br/> cd /var/www/html/sites/default/themes <br/> git clone https://github.com/DigitalGrinnell/digital\_grinnell\_bootstrap.git <br/> chown -R islandora:www-data * <br/> cd digital\_grinnell\_bootstrap <br/> drush -y pm-enable digital\_grinnell\_bootstrap <br/> drush vset theme\_default digital\_grinnell\_bootstrap |
+| cd /var/www/html/sites/all/themes <br/> git submodule add -b 7.x-3.x https://github.com/drupalprojects/bootstrap.git <br/> chown -R islandora:www-data * <br/> mkdir -p /var/www/html/sites/default/themes <br/> cd /var/www/html/sites/default/themes <br/> git submodule add https://github.com/DigitalGrinnell/digital\_grinnell\_bootstrap.git <br/> chown -R islandora:www-data * <br/> cd /var/www/html/sites/default <br/> drush -y pm-enable bootstrap digital\_grinnell\_bootstrap <br/> drush vset theme\_default digital\_grinnell\_bootstrap |
 
 Success! The theme is in place and active on my [dg.localdomain](https://dg.localdomain/) site.  Just one more tweak here...
 
@@ -107,11 +107,11 @@ A visit to [the site](https://dg.localdomain/) with a refresh showed that this w
 
 ## Install the Islandora Multi-Importer (IMI)
 
-It's important that we take this step BEFORE any that follow, otherwise the module will not install properly. The result is captured in [this gist](https://gist.github.com/McFateM/d8e7694032298e0518a88b3370872db8).
+It's important that we take this step BEFORE any that follow, otherwise the module will not install properly for reasons unknown.  Note that I'm installing a _Digital.Grinnell_-specific fork of the module here, and the process is this:
 
 | Apache Container Commands* |
 | --- |
-| cd /var/www/html/sites/all/modules/islandora <br/> git clone https://github.com/mnylc/islandora\_multi\_importer.git <br/> chown -R islandora:www-data * <br/> cd islandora\_multi\_importer <br/> composer install <br/> drush -y en islandora\_multi\_importer |
+| cd /var/www/html/sites/all/modules/islandora <br/> git submodule add https://github.com/DigitalGrinnell/islandora\_multi\_importer.git <br/> chown -R islandora:www-data * <br/> cd islandora\_multi\_importer <br/> composer install <br/> drush -y en islandora\_multi\_importer |
 
 ## Install the Missing *Backup and Migrate* Module
 
@@ -237,11 +237,11 @@ origin	https://github.com/Islandora-Labs/islandora_solr_collection_view.git (pus
 
 Note that I did NOT bother with the `islandora_multi_importer` (IMI) directory since I know for a fact that IMI requires installation via *Composer*. I also didn't bother looking for `transcript_ui` because it is a known sub-module of `islandora_solution_pack_oralhistories`.
 
-It looks like all of the others can just be cloned using *git*, like so:
+It looks like all of the others can just be added as _Git_ submodules like so:
 
 | Apache Container Commands* |
 | --- |
-| cd /var/www/html/sites/all/modules/islandora <br/> git clone https://github.com/DigitalGrinnell/dg7.git <br/> git clone https://github.com/DigitalGrinnell/idu.git <br/> # git clone git://github.com/discoverygarden/islandora\_binary\_object.git <br/> git clone https://github.com/discoverygarden/islandora\_collection\_search <br/> git clone https://github.com/DigitalGrinnell/islandora\_mods\_display.git <br/> git clone https://github.com/Islandora-Labs/islandora\_solution\_pack\_oralhistories.git <br/> # git clone git://github.com/nhart/islandora\_pdfjs\_reader.git <br/> git clone https://github.com/Islandora-Labs/islandora\_solr\_collection_view.git <br/> chown -R islandora:www-data * <br/> cd /var/www/html/sites/default <br/> drush cc all |
+| cd /var/www/html/sites/all/modules/islandora <br/> git submodule add https://github.com/DigitalGrinnell/dg7.git <br/> git submodule add https://github.com/DigitalGrinnell/idu.git <br/> # git submodule add git://github.com/discoverygarden/islandora\_binary\_object.git <br/> git submodule add https://github.com/discoverygarden/islandora\_collection\_search <br/> git submodule add https://github.com/DigitalGrinnell/islandora\_mods\_display.git <br/> git submodule add https://github.com/Islandora-Labs/islandora\_solution\_pack\_oralhistories.git <br/> # git submodule add git://github.com/nhart/islandora\_pdfjs\_reader.git <br/> git submodule add https://github.com/Islandora-Labs/islandora\_solr\_collection_view.git <br/> chown -R islandora:www-data * <br/> cd /var/www/html/sites/default <br/> drush cc all |
 
 The `chown` command line above was required to bring ALL of the new modules' ownership into line with everything else in [dg.localdomain](https://dg.localdomain/).  Also note that two of the lines, for `islandora_binary_object` and `islandora_pdfjs_reader`, are commented out because of known issues with installation of those modules.
 
@@ -263,7 +263,7 @@ At this point the system is still issuing some warnings, and the most annoying i
 Warning: file_put_contents(private:///.htaccess): failed to open stream: &quot;DrupalPrivateStreamWrapper::stream_open&quot; call failed in file_put_contents() (line 496 of /var/www/html/includes/file.inc).
 ```
 
-A vist in my browser to [https://dg.localdomain/#overlay=admin/reports/status](https://dg.localdomain/#overlay=admin/reports/status) helps to pinpoint the problem... we don't yet have a `private` file system.  Let's create one like so:
+A visit in my browser to [https://dg.localdomain/#overlay=admin/reports/status](https://dg.localdomain/#overlay=admin/reports/status) helps to pinpoint the problem... we don't yet have a `private` file system.  Let's create one like so:
 
 | Apache Container Commands* |
 | --- |
