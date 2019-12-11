@@ -1,7 +1,7 @@
 ---
 title: "DG-FEDORA: A Portable FEDORA Repository"
 publishdate: 2019-09-16
-lastmod: 2019-10-08T10:04:21-05:00
+lastmod: 2019-12-11T11:18:02-05:00
 draft: false
 tags:
   - DG-FEDORA
@@ -18,11 +18,11 @@ Late last night (don't ask how late it was) I discovered a really slick trick, a
 
 ## History
 
-About a year ago I created a "portable" _FEDORA_ object repository "on a stick", a USB stick.  I call that "stick" _DG-FEDORA_, because it contains a number of sample objects gleaned from [Digital.Grinnell.edu](https://digital.grinnell.edu). Shortly after I created the "stick" I started using a _docker-compose.override.yml_ file (see [Adding and overriding configuration](https://docs.docker.com/compose/extends#adding-and-overriding-configuration) for details) to implement it in some of my _ISLE_ work.  But there were lots of other "customizations" that I also wanted to implement, and over time my _docker-compose.override.yml_ grew too large to be easily maintained...there was just too much stuff to squeeze into a file that was supposed to make life easier for me.
+About a year ago I created a "portable" _FEDORA_ object repository "on a stick", a USB stick.  I call that "stick" _DG-FEDORA_, because it contains a number of sample objects gleaned from [Digital.Grinnell.edu](https://digital.grinnell.edu). Shortly after I created the "stick" I started using a _docker-compose.override.yml_ file (see [Adding and overriding configuration](https://docs.docker.com/compose/extends#adding-and-overriding-configuration) for details) to implement it in some of my _ISLE_ work.  But there were lots of other "customizations" that I also wanted to implement, and over time my _docker-compose.override.yml_ grew too large to be easily maintained...there was just too much stuff to squeeze into a file that was supposed to make life easier.
 
 ## ISLE Details
 
-The _ISLE_ stack now uses a very simple and elegant _.env_ file -- four lines of environment variables, nothing more -- to ultimately control what the _docker-compose_ command does.  The last environment variable in the file is `COMPOSE_FILE`, and I found last evening that this variable can be used to specify "multiple" _.yml_ files to build a stack; and according the _docker-compose_ rules of order and overrides applys. Nirvana!
+The _ISLE_ stack now uses a very simple and elegant _.env_ file -- four lines of environment variables, nothing more -- to ultimately control what the _docker-compose_ command does.  The last environment variable in the file is `COMPOSE_FILE`, and I found that this variable can be used to specify "multiple" _.yml_ files to build a stack; and _docker-compose_ does so using a well-documented and sensible set of rules. Nirvana!
 
 ## The Solution
 
@@ -41,7 +41,7 @@ CONTAINER_SHORT_ID=ld
 COMPOSE_FILE=docker-compose.demo.yml:docker-compose.DG-FEDORA.yml
 ```  
 
-In the file above note that I've commented out the original definition of _COMPOSE_FILE_ and added my own definition which appends a second _.yml_ file reference to the original.  That 2nd file, _docker-compose.DG-FEDORA.yml_ is also provided on the _DG-FEDORA_ USB stick and it reads like this:
+In the file above, note that I've commented out the original definition of _COMPOSE_FILE_ and added my own definition which appends a second _.yml_ file reference to the original.  That 2nd file, _docker-compose.DG-FEDORA.yml_ is also provided on the _DG-FEDORA_ USB stick and it reads like this:
 
 ```
 version: '3.7'
