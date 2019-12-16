@@ -37,4 +37,31 @@ This is apparently a known condition that does no harm, but it can be easily ign
 
 Thank you, [Noah Smith](https://app.slack.com/team/U2ZC9KMCK) for sharing that bit of wisdom!
 
-And that's a wrap.  Until next time...
+## Starting the Stack
+Having cloned the projects to the host as indicated above, we visit our host terminal and...
+
+| Host / DGDockerX Commands |
+| --- |
+| cd /opt/dg-isle <br/> docker-compose up -d <br/> docker logs isle-apache-dg |
+
+The startup will take a couple of minutes, and it does not "signal" when it's done, so that's the reason for the last command above.  You may need to repeat it several times, but you will know the startup is complete when you see the following at the bottom of the log output:
+
+```
+...
+Done setting proper permissions on files and directories
+XDEBUG OFF
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.0.7. Set the 'ServerName' directive globally to suppress this message
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.0.7. Set the 'ServerName' directive globally to suppress this message
+[Mon Dec 16 18:28:44.428224 2019] [mpm_prefork:notice] [pid 67455] AH00163: Apache/2.4.41 (Ubuntu) configured -- resuming normal operations
+[Mon Dec 16 18:28:44.428317 2019] [core:notice] [pid 67455] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
+```
+
+## Some Settings Are Missing
+I found some settings were missing the first time I started the stack like this.  A little research and debugging led me to believe that the not all of the required configuration commands had been executed.  In particular, I found that my large image (TIFF image) viewer wasn't displaying anything at all.   The remedy was to run the required `migration_site_vsets.sh` script, like so from the _Apache_ container...
+
+| Apache Container Commands |
+| --- |
+| cd / <br/> ./utility-scripts/isle_drupal_build_tools/migration_site_vsets.sh |
+
+
+Not quite a wrap.  Be back soon...
