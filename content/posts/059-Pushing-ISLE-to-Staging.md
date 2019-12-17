@@ -57,11 +57,43 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 ```
 
 ## Some Settings Are Missing
-I found some settings were missing the first time I started the stack like this.  A little research and debugging led me to believe that the not all of the required configuration commands had been executed.  In particular, I found that my large image (TIFF image) viewer wasn't displaying anything at all.   The remedy was to run the required `migration_site_vsets.sh` script, like so from the _Apache_ container...
+I found some settings were missing the first time I started the stack like this.  A little research and debugging led me to believe that not all of the required configuration commands had been executed properly.  In particular, I found that my large image (TIFF image) viewer wasn't displaying anything at all, presumably because the database I imported from production was setup to use Adore-Djatoka, not IIIF Cantaloupe. The remedy was to take a snapshot of the server, then run the required `migration_site_vsets.sh` script inside the _Apache_ container.  Unfortunately that didn't work for me at first and I got lots of messages indicating that `Command variable-set needs a higher bootstrap level to run...`. That error basically means that the `drush` commands inside the script need to be run from the appropriate directory so that `drush` can find the site and its database.  So, to run it properly inside the _Apache_ container...
 
 | Apache Container Commands |
 | --- |
-| cd / <br/> ./utility-scripts/isle_drupal_build_tools/migration_site_vsets.sh |
+| cd /var/www/html/sites/default <br/> /utility-scripts/isle_drupal_build_tools/migration_site_vsets.sh |
+
+Note the `cd` command and path before the script is run, and there's no "dot" in front of `/utility-scripts...`.  This time everything worked except for a `phpmailerException` at the end of the run, but that's of no consequence, and to be expected since this is a staging server and has no mail facilities of its own.
+
+A quick visit to [the staging site](https://isle-stage.grinnell.edu]) shows that large images (for example see https://isle-stage.grinnell.edu/islandora/object/grinnell:25511) are working properly.  It sure would be nice to have an automated test to verify that for me, automatically... but we'll address that issue a little later in this post.  :smile:
+
+## Backup the Site Database
+For now, let's just make a backup of the site database for safe-keeping. We can do this by visiting the [site's home page](https://isle-stage.grinnell.edu) and using the `Quick Backup` block at the bottom of the right-hand sidebar and selecting `Backup Destination: Manual Backups Directory`.  This operation makes a backup of the site database and stores it in a pre-determined place... in our case the `docker-compose.staging.yml` configuration file tells us that it's stored somewhere in `/mnt/data/DG-FEDORA/site-public`.  More specifically, this backup is `/mnt/data/DG-FEDORA/site-public/backup_migrate/manual/DigitalGrinnell-2019-12-17T15-03-10.mysql.gz` on the host, `DGDockerX`.
+
+## Missing CModels and No PDF Viewer
+While visiting the site moments ago I noticed two more issues:
+
+  - At https://isle-stage.grinnell.edu/admin/islandora/solution_pack_config/solution_packs the Binary cModel is missing, and
+  - A visit to https://isle-stage.grinnell.edu/islandora/object/grinnell:25500 shows a JPEG image of a single page, but since this object is a multi-page PDF, we are obviously missing our PDF viewer.
+
+So, remember back in the [Installing the Missing Islandora and Custom Modules](https://static.grinnell.edu/blogs/McFateM/posts/058-rebuilding-isle-ld/installing-the-missing-islandora-and-custom-modules) section of [post 058](https://static.grinnell.edu/blogs/McFateM/posts/058-rebuilding-isle-ld/), we commented out the installation of `islandora_binary_object` and `islandora_pdfjs_reader` like so:
+
+```
+cd /var/www/html/sites/all/modules/islandora
+git submodule add https://github.com/DigitalGrinnell/dg7.git
+git submodule add https://github.com/DigitalGrinnell/idu.git
+# git submodule add git://github.com/discoverygarden/islandora_binary_object.git
+git submodule add https://github.com/discoverygarden/islandora_collection_search
+git submodule add https://github.com/DigitalGrinnell/islandora_mods_display.git
+git submodule add https://github.com/Islandora-Labs/islandora_solution_pack_oralhistories.git
+# git submodule add git://github.com/nhart/islandora_pdfjs_reader.git
+git submodule add https://github.com/Islandora-Labs/islandora_solr_collection_view.git
+chown -R islandora:www-data *
+cd /var/www/html/sites/default
+drush cc all
+```
+
+Well, it's evidently time to put them back! So, I'm taking a new snapshot of the server then I will try the two commented out commands from above just to see what they yield now.
 
 
 Not quite a wrap.  Be back soon...
