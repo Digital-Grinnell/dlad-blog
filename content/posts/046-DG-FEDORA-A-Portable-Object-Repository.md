@@ -1,7 +1,7 @@
 ---
 title: "DG-FEDORA: A Portable FEDORA Repository"
 publishdate: 2019-09-16
-lastmod: 2019-12-11T11:18:02-05:00
+lastmod: 2019-12-23T10:43:02-05:00
 draft: false
 tags:
   - DG-FEDORA
@@ -10,6 +10,7 @@ tags:
   - docker-compose
   - override
   - COMPOSE_FILE
+  - re-index
 ---
 
 ## Teaser
@@ -73,6 +74,18 @@ services:
 Simple. It's just a repeat of the original _docker-compose.demo.yml_ file with only the necessary "overrides" included.
 
 The _DG-FEDORA_ USB stick also includes a _README.md_ file and since you don't have a copy of the "stick", I'll share that with you here.
+
+# A Master Copy of _DG-FEDORA_
+
+My _Digital.Grinnell_ staging server, _DGDockerX_ is a networked _CentOS 7_ virtual machine with lots of available storage, but no accessible USB ports, or course...it's a VM after all.  Consequently, it's not practical to maintain all of my "portable" _FEDORA_ data on a USB stick alone. So, on _DGDockerX_ I've created a copy of the _DG-FEDORA_ USB stick at `/mnt/data/DG-FEDORA`, and I've declared it to be copy "zero", so on it there's a `DG-FEDORA-0.md` file proclaiming it to be the "master" copy of _DG-FEDORA_.
+
+It's worth noting, perhaps, that at the time of this writing _DG-FEDORA-0_ contains 126 _FEDORA_ objects.  **Anything less than that number should be considered an incomplete set**.  
+
+The `README.md` file on the `DG-FEDORA-0` **MASTER** volume suggests using a command like this to copy the **MASTER** repository to a mounted `DG-FEDORA` USB stick:
+
+```
+sudo rsync -aruvi --exclude DG-FEDORA-0.md --exclude from-DGDocker1 --exclude site-public islandora@132.161.132.101:/mnt/data/DG-FEDORA/. /Volumes/DG-FEDORA/. --progress
+```
 
 # README.md from DG-FEDORA
 
