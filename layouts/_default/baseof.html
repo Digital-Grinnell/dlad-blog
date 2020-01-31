@@ -54,7 +54,12 @@
 
         <!-- <p class="site-rev">{{ .Site.LastChange.Format "2006-Jan-2 15:04 MST" }}{{ if .Site.Params.site_rev }}   Rev. {{ .Site.Params.site_rev }}{{ end }}</p> -->
 
-        <p class="site-rev">{{ .Site.LastChange.Format "2006-Jan-2 15:04 MST" }}{{ if .Site.Params.build }} &nbsp;&nbsp;&nbsp; Build {{ .Site.Params.build }}{{ end }}</p>
+        <p class="site-rev">
+          {{ if .Site.Params.buildDate }}
+            Compiled: {{ .Site.Params.buildDate }}<br/>
+          {{ end }}
+          Content Updated: {{ .Site.LastChange.Format "2006-Jan-2 15:04 MST" }}
+        </p>
 
         <div class="name">by
         <strong>{{ .Site.Params.author }}</strong></div>

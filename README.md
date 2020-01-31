@@ -1,10 +1,14 @@
 # The Grinnell College Digital Library Application Developer's Blog
 
-This project, my Grinnell College [Digital Library Application Developer's blog](https://static.grinnell.edu/blogs/McFateM/), is a [Docker "Multi-Stage" build](https://docs.docker.com/develop/develop-images/multistage-build/), a single-image application developed using [Docksal](https://docksal.io/) and [Hugo](https://gohugo.io/).  Apart from the use of Docksal, the project is patterned after [Juan Treminio's blog](https://jtreminio.com/) and the text of his [original README.md](#original-Juan) file is included below.  The text of the [original Docksal README.md](#original-Docksal) file is also included.
+This project, my Grinnell College [Digital Library Application Developer's blog](https://static.grinnell.edu/blogs/McFateM/), is no longer a [Docker "Multi-Stage" build](https://docs.docker.com/develop/develop-images/multistage-build/).
+
+  <!---
+  , a single-image application developed using [Docksal](https://docksal.io/) and [Hugo](https://gohugo.io/).  Apart from the use of Docksal, the project is patterned after [Juan Treminio's blog](https://jtreminio.com/) and the text of his [original README.md](#original-Juan) file is included below.  The text of the [original Docksal README.md](#original-Docksal) file is also included.
+  , -->
 
 # Deploying this Blog
 
-This blog is intended to be deployed using my [docker-bootstrap](https://github.com/McFateM/docker-bootstrap) approach, and the command stream used to launch [the blog]( https://static.grinnell.edu/blogs/McFateM/) on Grinnell College's `static.Grinnell.edu` server is:
+This blog is intended to be deployed using my [dockerized-server](https://github.com/McFateM/dockerized-server) approach, and the command stream used to launch [the blog]( https://static.grinnell.edu/blogs/McFateM/) on Grinnell College's `static.Grinnell.edu` server is:
 
 ```
 NAME=blogs-mcfatem
@@ -12,16 +16,19 @@ HOST=static.grinnell.edu
 IMAGE="mcfatem/blogs-mcfatem"
 docker container run -d --name ${NAME} \
     --label traefik.backend=${NAME} \
-    --label traefik.docker.network=traefik_webgateway \
+    --label traefik.docker.network=web \
     --label "traefik.frontend.rule=Host:${HOST};PathPrefixStrip:/blogs/McFateM" \
     --label traefik.port=80 \
     --label com.centurylinklabs.watchtower.enable=true \
-    --network traefik_webgateway \
+    --network web \
     --restart always \
     ${IMAGE}
 ```
 
+<!--
 My `docker-bootstrap` [workflow diagram](https://github.com/McFateM/docker-bootstrap/blob/master/docker-bootstrap%20Diagram.pdf), exported as a PDF, just happens to use this blog as an example!
+
+-->
 
 # Updating This Blog
 

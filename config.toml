@@ -4,7 +4,7 @@ baseURL = "https://static.grinnell.edu/blogs/McFateM/"
 title = "The Grinnell College Digital Library Application Developer's Blog"
 #themesDir = "../.."
 themesDir = "themes"
-theme = ["hugo-search-fuse-js", "m10c"]
+theme = ["hugo-search-fuse-js", "hugo-theme-m10c"]
 paginate = 10
 summaryLength = 40    # default is 70 words
 googleAnalytics = "UA-131150861-2"
@@ -20,7 +20,8 @@ enableEmoji = true
 #relativeURLs = "true"
 
 [params]
-  build = 314                     # this value is auto-incremened using 'perl' in push-update.sh
+  build = 314
+  buildDate = '2020-01-31 11:01'
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
