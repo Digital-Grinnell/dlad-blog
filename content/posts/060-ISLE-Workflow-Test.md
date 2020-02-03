@@ -1,7 +1,7 @@
 ---
 title: ISLE Workflow Test
 publishDate: 2020-01-27
-lastmod: 2020-01-27T15:52:34-05:00
+lastmod: 2020-02-03T16:06:32-06:00
 draft: false
 tags:
   - ISLE
@@ -10,7 +10,7 @@ tags:
   - development
 ---
 
-ISLE v1.3.0 has been running on my staging server, `DGDockerX`, for about 5 weeks now and it seems to be performing as-expected with one exception... when I try to import a batch of objects using IMI, the _Islandora Multi-Importer_, I get the following error:
+ISLE v1.3.0 has been running on my staging server, `DGDockerX`, for about 6 weeks now and it seems to be performing as-expected with one exception... when I try to import a batch of objects using IMI, the _Islandora Multi-Importer_, I get the following error:
 
 ```
 The website encountered an unexpected error. Please try again later.
@@ -27,11 +27,38 @@ GuzzleHttp\Exception\ConnectException: cURL error 6: Could not resolve host: she
 Since I'm not at all sure what's wrong, I feel like I need to rewind my process a bit and try to reproduce the same configuration, and error, on a **local** instance of this ISLE stack.  This post will chronicle the steps I take to do so.
 
 ## Directories
+
 I'll begin by opening a terminal on my workstation/host, `MA8660` as user `mcfatem`.  Then I very carefully (note the use of the `--recursive` flags!) clone the aforementioned projects to the host's `~/GitHub` directory like so:
 
 | Host Commands |
 | --- |
 | cd ~/GitHub <br/> git clone --recursive https://github.com/Digital-Grinnell/dg-isle.git <br/> git clone --recursive https://github.com/Digital-Grinnell/dg-islandora.git <br/> cd dg-isle |
+
+## Launch the **dg.localdomain** Stack
+
+I'm modifying the `.env` file in the `dg-isle` directory so that "local" is my target environment.  Having done that, I will launch the local stack using:
+
+| Host Commands |
+| --- |
+| cd ~/GitHub/dg-isle <br/> git checkout master </br> docker-compose up -d <br/> docker logs -f isle-apache-dg |
+
+The startup will take a couple of minutes, and it does not "signal" when it's done, so that's the reason for the last command above.  The `-f` option will keep the output spooling to your terminal so that you don't have to keep repeating the command over and over again.  You will know the startup is complete when you see something like the following at the bottom of the log output:
+
+```
+...
+Done setting proper permissions on files and directories
+XDEBUG OFF
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.20.0.7. Set the 'ServerName' directive globally to suppress this message
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.20.0.7. Set the 'ServerName' directive globally to suppress this message
+[Mon Feb 03 22:16:46.898249 2020] [mpm_prefork:notice] [pid 12698] AH00163: Apache/2.4.41 (Ubuntu) configured -- resuming normal operations
+[Mon Feb 03 22:16:46.898652 2020] [core:notice] [pid 12698] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND
+```
+
+Press `ctrl-c` to interrupt the `docker logs...` command and get your terminal back.
+
+```
+
+A visit to https://dg.localdomain yields a very incomplete Bartik-themed site, and it looks like we are far from creating a local _Digital.Grinnell_.  So, the next logical step is to backup the database from https://isle-stage.grinnell.edu, and import it here.
 
 <!--
 ## One Useful Git Config Change
@@ -51,29 +78,111 @@ This is apparently a known condition that does no harm, but it can be easily ign
 Thank you, [Noah Smith](https://app.slack.com/team/U2ZC9KMCK) for sharing that bit of wisdom!
 -->
 
-## Starting the Stack
-Having cloned the projects to the host as indicated above, we visit our host terminal and...
+## Backup the Site Database
 
-| Host Commands |
+Let's begin by visiting the [site's home page](https://isle-stage.grinnell.edu) and using the `Quick Backup` block at the bottom of the right-hand sidebar.  Normally I would select a `Backup Destination: Manual Backups Directory` option to save the database backup on the server, but in this case it will be advantageous to have the backup in-hand, locally.  So, I choose `Backup Destination: Download` instead, and the result is in my local `~/Downloads` directory, specifically:
+
+`/Users/markmcfate/Downloads/DigitalGrinnell-2020-02-03T14-33-13.mysql.gz`
+
+## Import the Database Backup Locally
+
+This is as simple as:
+
+  - Opening `https://dg.localdomain` in my browser,
+  - Logging in as a system admin,
+  - Open https://dg.localdomain/node#overlay=admin/module and enable the `Backup and Migrate` module,
+  - Save the configuration change,
+  - Open https://dg.localdomain/node#overlay=admin/config/system/backup_migrate/restore,
+  - `Browse` to the aforementioned database backup `.gz` file, and
+  - Click `Restore now`
+
+## White Screen of Death
+
+Not good, when I visit https://dg.localdomain now I get a dreaded **WSOD**.  So I peek at the _Apache_ container logs using `docker logs isle-apache-ld` and find this:
+
+```
+[Mon Feb 03 20:41:55.684244 2020] [php7:error] [pid 13002] [client 172.20.0.4:43034] PHP Fatal error:  require_once(): Failed opening required '/var/www/html/sites/all/modules/islandora/islandora_multi_importer/vendor/autoload.php' (include_path='.:/usr/share/php') in /var/www/html/sites/all/modules/islandora/islandora_multi_importer/islandora_multi_importer.module on line 19, referer: https://dg.localdomain/admin/config/system/backup_migrate/restore?render=overlay
+172.20.0.4 - - [03/Feb/2020:20:41:52 +0000] "GET /admin/config/system/backup_migrate/restore?render=overlay HTTP/1.1" 500 333 "https://dg.localdomain/admin/config/system/backup_migrate/restore?render=overlay" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:72.0) Gecko/20100101 Firefox/72.0
+```
+
+Bottom line, there are critical issues with IMI, the _Islandora Multi-Importer_, just as there were in staging.  Hmm, what to do now?
+
+## Fixing IMI
+
+I open a terminal into the _Apache_ container and attempt to repair/re-install _IMI_ like so:
+
+| Apache Container Commands |
 | --- |
-| cd ~/GitHub/dg-isle <br/> docker-compose up -d <br/> docker logs -f isle-apache-dg |
+| cd /var/www/html/sites/all/modules/islandora/islandora_multi-importer <br/> git remote -v </br> git status </br> composer install |
 
-The startup will take a couple of minutes, and it does not "signal" when it's done, so that's the reason for the last command above.  The `-f` option will keep the output spooling to your terminal so that you don't have to keep repeating the command over and over again.  You will know the startup is complete when you see something like the following at the bottom of the log output:
+The commands and output from all of this are reflected [in this gist](https://gist.github.com/Digital-Grinnell/554ec36828e0e4f9b8f7c8e499a8221).
+
+## Is It Fixed? Yes, Sort Of
+
+A browser visit to https://dg.localdomain demonstrates that the site is back!  However, the site is currently showing `Operating in maintenance mode. Go online`, and there are multiple warnings indicating:
 
 ```
-...
-Done setting proper permissions on files and directories
-XDEBUG OFF
-AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.20.0.7. Set the 'ServerName' directive globally to suppress this message
-AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.20.0.7. Set the 'ServerName' directive globally to suppress this message
-[Mon Jan 27 22:16:46.898249 2020] [mpm_prefork:notice] [pid 12698] AH00163: Apache/2.4.41 (Ubuntu) configured -- resuming normal operations
-[Mon Jan 27 22:16:46.898652 2020] [core:notice] [pid 12698] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND
+User warning: The following module is missing from the file system: islandora_binary_object.
 ```
 
-Press `ctrl-c` to interrupt the `docker logs...` command and get your terminal back.
+When I click the `Go online` link and complete the operation, the site does indeed respond by showing me an almost-proper home page, complete with numerous collection objects. I says it's "almost-proper" because in addition to the top-level collections, the site is also showing a host of individual objects.  This should NOT be the case, but I can think of a handful of remedies, including:
+
+  - Using the `Development` menu `Clear cache` link to do just what the name says.
+
+Ok, so that actually worked; no need to go farther.
+
+## Will the Same Fixes Work on Staging?
+
+Only one way to find out.  First, I'm going to snapshot the `DGDockerX` staging server.  Done.  Then...
+
+| Apache Container Commands |
+| --- |
+| cd /var/www/html/sites/all/modules/islandora/islandora_multi-importer </br> composer install |
+
+And the output this time says:
+
+```
+root@60ccb7d0ae42:/var/www/html/sites/all/modules/islandora/islandora_multi_importer# composer install
+Loading composer repositories with package information
+Installing dependencies (including require-dev) from lock file
+Nothing to install or update
+Package phpoffice/phpexcel is abandoned, you should avoid using it. Use phpoffice/phpspreadsheet instead.
+Package silex/silex is abandoned, you should avoid using it. Use symfony/flex instead.
+Generating autoload file
+```
+
+So, to fix this I tried, and got back this:
+
+```
+root@60ccb7d0ae42:/var/www/html/sites/all/modules/islandora/islandora_multi_importer# composer install
+Loading composer repositories with package information
+Installing dependencies (including require-dev) from lock file
+Nothing to install or update
+Package phpoffice/phpexcel is abandoned, you should avoid using it. Use phpoffice/phpspreadsheet instead.
+Package silex/silex is abandoned, you should avoid using it. Use symfony/flex instead.
+Generating autoload files
+root@60ccb7d0ae42:/var/www/html/sites/all/modules/islandora/islandora_multi_importer#
+root@60ccb7d0ae42:/var/www/html/sites/all/modules/islandora/islandora_multi_importer#
+root@60ccb7d0ae42:/var/www/html/sites/all/modules/islandora/islandora_multi_importer#
+root@60ccb7d0ae42:/var/www/html/sites/all/modules/islandora/islandora_multi_importer# composer remove phpoffice/phpexcel silex/silex
+Loading composer repositories with package information
+The "https://repo.packagist.org/packages.json" file could not be downloaded: php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution
+failed to open stream: php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution
+https://repo.packagist.org could not be fully loaded, package information was loaded from the local cache and may be out of date
+Updating dependencies (including require-dev)
+
+  [Composer\Downloader\TransportException]
+  The "http://repo.packagist.org/p/cache/taggable-cache%247eb77da84984bd6522fb9e3e91f4f82107555cba862c9f161cd3ff697dcc6f7c.json" file could not be downloaded: php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution
+  failed to open stream: php_network_getaddresses: getaddrinfo failed: Temporary failure in name resolution
+
+remove [--dev] [--no-progress] [--no-update] [--no-scripts] [--update-no-dev] [--update-with-dependencies] [--no-update-with-dependencies] [--ignore-platform-reqs] [-o|--optimize-autoloader] [-a|--classmap-authoritative] [--apcu-autoloader] [--] <packages> (<packages>)...
+```
+
+Next stop... https://isle-stage.summittdweller.com on DigitalOcean?
 
 <!--
-## Some Settings Are Missing
+## Many Settings Are Missing
+
 I found some settings were missing the first time I started the stack like this.  A little research and debugging led me to believe that not all of the required configuration commands had been executed properly.  In particular, I found that my large image (TIFF image) viewer wasn't displaying anything at all, presumably because the database I imported from production was setup to use Adore-Djatoka, not IIIF Cantaloupe. The remedy was to take a snapshot of the server, then run the required `migration_site_vsets.sh` script inside the _Apache_ container.  Unfortunately that didn't work for me at first and I got lots of messages indicating that `Command variable-set needs a higher bootstrap level to run...`. That error basically means that the `drush` commands inside the script need to be run from the appropriate directory so that `drush` can find the site and its database.  So, to run it properly inside the _Apache_ container...
 
 | Apache Container Commands |
@@ -84,8 +193,6 @@ Note the `cd` command and path before the script is run, and there's no "dot" in
 
 A quick visit to [the staging site](https://isle-stage.grinnell.edu]) shows that large images (for example see https://isle-stage.grinnell.edu/islandora/object/grinnell:25511) are working properly.  It sure would be nice to have an automated test to verify that for me, automatically... but we'll address that issue a little later in this post.  :smile:
 
-## Backup the Site Database
-For now, let's just make a backup of the site database for safe-keeping. We can do this by visiting the [site's home page](https://isle-stage.grinnell.edu) and using the `Quick Backup` block at the bottom of the right-hand sidebar and selecting `Backup Destination: Manual Backups Directory`.  This operation makes a backup of the site database and stores it in a pre-determined place... in our case the `docker-compose.staging.yml` configuration file tells us that it's stored somewhere in `/mnt/data/DG-FEDORA/site-public`.  More specifically, this backup is `/mnt/data/DG-FEDORA/site-public/backup_migrate/manual/DigitalGrinnell-2019-12-17T15-03-10.mysql.gz` on the host, `DGDockerX`.
 
 ## Missing CModels and No PDF Viewer
 While visiting the site moments ago I noticed two more issues:
