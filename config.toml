@@ -12,7 +12,12 @@ disqusShortname = "digital-library-applications-developer-blog"
 
 enableEmoji = true
 
-## BlackFriday is Hugo's markdown rendering engine.
+## Override default markdown engine to preserve BlackFriday handling.
+## See https://gohugo.io/getting-started/configuration-markup/#goldmark
+[markup]
+  defaultMarkdownHandler = "blackfriday"
+
+## BlackFriday is Hugo's OLD markdown rendering engine.
 [blackfriday]
   smartypants = false
   hrefTargetBlank = true
@@ -21,7 +26,7 @@ enableEmoji = true
 
 [params]
   build = 314
-  buildDate = '2020-01-31 11:01'
+  buildDate = '2020-02-11 09:34'
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"

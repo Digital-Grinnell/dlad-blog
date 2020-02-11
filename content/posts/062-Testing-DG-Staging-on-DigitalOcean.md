@@ -1,38 +1,34 @@
 ---
-title: ISLE Workflow Test
-publishDate: 2020-01-27
-lastmod: 2020-02-11T09:19:36-06:00
+title: Staging _Digital.Grinnell_ on _DigitalOcean_
+publishDate: 2020-02-11
+lastmod: 2020-02-11T09:34:44-06:00
 draft: false
 tags:
   - ISLE
-  - dg.localdomain
-  - local
+  - Digital.Grinnell
+  - DigitalOcean
   - development
+  - staging
+  - https://staging.summittservices.com
 ---
 
-ISLE v1.3.0 has been running on my staging server, `DGDockerX`, for about 6 weeks now and it seems to be performing as-expected with one exception... when I try to import a batch of objects using IMI, the _Islandora Multi-Importer_, I get the following error:
+ISLE v1.3.0 has been running on my staging server, `DGDockerX`, for about 12 weeks now and it seems to be performing as-expected with one exception... when I try to import a batch of objects using IMI, the _Islandora Multi-Importer_, I get the following error:
 
 ```
 The website encountered an unexpected error. Please try again later.
 ```
 
-An examination of [Recent log messages](https://isle-stage.grinnell.edu/admin/reports/dblog) shows...
-
-```
-GuzzleHttp\Exception\ConnectException: cURL error 6: Could not resolve host: sheets.googleapis.com (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) in GuzzleHttp\Handler\CurlFactory::createRejection() (line 200 of /var/www/html/sites/all/modules/islandora/islandora_multi_importer/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php).
-```
-
-## Engaging the Local Workflow
-
-Since I'm not at all sure what's wrong, I feel like I need to rewind my process a bit and try to reproduce the same configuration, and error, on a **local** instance of this ISLE stack.  This post will chronicle the steps I take to do so.
+Examinations of [Recent log messages](https://isle-stage.grinnell.edu/admin/reports/dblog) seem to point to _DNS_ issues that I'm unable to overcome because I have no control over our _DNS_ records, campus networking, or firewalls. So this post is intended to chronicle steps I'm taking to stand up an instance of [dg-isle](https://github.com/Digital-Grinnell/dg-isle) and [dg-islandora](https://github.com/Digital-Grinnell/dg-islandora) on a "clean" _DigitalOcean_ droplet, namely _summitt-services-droplet-01_, that I have been leasing for the past couple of years.
 
 ## Directories
 
-I'll begin by opening a terminal on my workstation/host, `MA8660` as user `mcfatem`.  Then I very carefully (note the use of the `--recursive` flags!) clone the aforementioned projects to the host's `~/GitHub` directory like so:
+I'll begin by opening a terminal on my workstation/host and subsequently a terminal into the aforementioned droplet where I'll login as user `centos` with a UID=1000.  Once I'm in there I'll attempt to `rsync` the contents of my `DG-FEDORA` directory from `DGDockerX`, my original staging server, to the _DigitalOcean_ droplet/host.  I'll also clone the two aformentioned _GitHub_ repositories to the _DO_ host, like so:
 
-| Host Commands |
+| summitt-services-droplet-01 Host Commands, as user `centos` |
 | --- |
-| cd ~/GitHub <br/> git clone --recursive https://github.com/Digital-Grinnell/dg-isle.git <br/> git clone --recursive https://github.com/Digital-Grinnell/dg-islandora.git <br/> cd dg-isle  |
+| cd /opt <br/> git clone --recursive https://github.com/Digital-Grinnell/dg-isle.git <br/> git clone --recursive https://github.com/Digital-Grinnell/dg-islandora.git <br/> cd dg-isle  |
+
+<!--
 
 ## Launch the **dg.localdomain** Stack
 
@@ -74,7 +70,7 @@ This is apparently a known condition that does no harm, but it can be easily ign
 | cd /opt/dg-isle <br/> git config core.fileMode false |
 
 Thank you, [Noah Smith](https://app.slack.com/team/U2ZC9KMCK) for sharing that bit of wisdom!
--->
+
 
 ## Backup the Site Database
 
@@ -255,4 +251,4 @@ Once again, we will visit the [site's home page](https://isle-stage.grinnell.edu
 
 -->
 
-That's a wrap.  Until next time...
+That's not a wrap.  More about this soon...
