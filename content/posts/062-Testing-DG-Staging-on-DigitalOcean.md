@@ -1,7 +1,7 @@
 ---
 title: Staging Digital.Grinnell (DG) on DigitalOcean (DO)
 publishDate: 2020-02-11
-lastmod: 2020-02-11T09:34:44-06:00
+lastmod: 2020-02-12T15:15:15-06:00
 draft: false
 tags:
   - ISLE
@@ -61,13 +61,15 @@ Note that the above directory and all its contents are owned by `centos:centos`.
 
 Next, I opened a terminal on _summitt-services-droplet-01_, did `cd ~/opt/dg-isle; git checkout staging` and used `sudo nano` to edit files as necessary. The edits have all been saved and pushed back to the `staging` branch of https://GitHub/Digital-Grinnell/dg-isle.
 
+The new `.env` file includes a second "staging" configuration block, the first is commented out, and second block refers to `docker-compose.staging2.yml`, a new file duplicated from `docker-compose.staging.yml`, but with modifications made explicitly for the `summitt-services-droplet-01` server.
+
 ## Launch the Staging.SummittServices.com Stack
 
 Having edited all necessary files, I will launch the `staging` stack using:
 
 | summitt-services-droplet-01 Host Commands, as user `centos` |
 | --- |
-| cd ~/GitHub/dg-isle <br/> git checkout staging </br> docker-compose up -d <br/> docker logs -f isle-apache-dg |
+| cd ~/opt/dg-isle <br/> git checkout staging </br> docker-compose up -d <br/> docker logs -f isle-apache-dg |
 
 The startup will take a couple of minutes, and it does not "signal" when it's done, so that's the reason for the last command above.  The `-f` option will keep the output spooling to your terminal so that you don't have to keep repeating the command over and over again.  You will know the startup is complete when you see something like the following at the bottom of the log output:
 
@@ -97,29 +99,27 @@ I uploaded the database to _summitt-services-droplet-01_ like so:
 
 | Local Workstation Commands |
 | --- |
-| cd ~/Downloads <br/> | rsync -aruvi DigitalGrinnell-2020-02-11T12-46-36.mysql.gz centos@165.227.83.186:/home/centos/ --progress |
+| cd ~/Downloads <br/> rsync -aruvi DigitalGrinnell-2020-02-11T12-46-36.mysql.gz centos@165.227.83.186:/home/centos/ --progress |
 
 Then, in a terminal on _summitt-services-droplet-01_ as user `centos`...
 
 | summitt-services-droplet-01 Host Commands, as user `centos` |
 | --- |
-| cd ~ <br/> gunzip DigitalGrinnell-2020-02-11T12-46-36.mysql.gz <br/> sudo mv -f DigitalGrinnell-2020-02-11T12-46-36.mysql /opt/data/DG.sql |
+| cd ~ <br/> gunzip DigitalGrinnell-2020-02-11T12-46-36.mysql.gz <br/> sudo mv -f DigitalGrinnell-2020-02-11T12-46-36.mysql /mnt/data/DG-FEDORA/DG.sql |
 
 ## Import the Database Backup Locally
 
-This is as simple as:
+Since the site is not working I cannot use `drush` nor `Backup and Migrate` to do this, so I opened a terminal in the _MySQL_ container, namely `isle-mysql-dg` and did this:
 
-  - Opening `https://dg.localdomain` in my browser,
-  - Logging in as a system admin,
-  - Open https://dg.localdomain/node#overlay=admin/module and enable the `Backup and Migrate` module,
-  - Save the configuration change,
-  - Open https://dg.localdomain/node#overlay=admin/config/system/backup_migrate/restore,
-  - `Browse` to the aforementioned database backup `.gz` file, and
-  - Click `Restore now`
+| MySQL Container Commands |
+| --- |
+| mysql -u root -p digital_grinnell <br/> # Supply root MySQL password # <br/> CREATE DATABASE IF NOT EXISTS digital_grinnell; <br/> USE digital_grinnell; <br/> source /temp/DG.sql |
 
 ## White Screen of Death
 
-Not good, when I visit https://dg.localdomain now I get a dreaded **WSOD**.  So I peek at the _Apache_ container logs using `docker logs isle-apache-ld` and find this:
+Not good, when I visit https://staging.summittservices.com now I get a dreaded **WSOD**.  So I peek at the _Apache_ container logs using `docker logs isle-apache-ld` and find this:
+
+<!--
 
 ```
 [Mon Feb 03 20:41:55.684244 2020] [php7:error] [pid 13002] [client 172.20.0.4:43034] PHP Fatal error:  require_once(): Failed opening required '/var/www/html/sites/all/modules/islandora/islandora_multi_importer/vendor/autoload.php' (include_path='.:/usr/share/php') in /var/www/html/sites/all/modules/islandora/islandora_multi_importer/islandora_multi_importer.module on line 19, referer: https://dg.localdomain/admin/config/system/backup_migrate/restore?render=overlay
