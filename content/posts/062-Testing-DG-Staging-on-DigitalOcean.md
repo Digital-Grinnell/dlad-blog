@@ -1,5 +1,5 @@
 ---
-title: Staging _Digital.Grinnell_ on _DigitalOcean_
+title: Staging Digital.Grinnell (DG) on DigitalOcean (DO)
 publishDate: 2020-02-11
 lastmod: 2020-02-11T09:34:44-06:00
 draft: false
@@ -12,31 +12,62 @@ tags:
   - https://staging.summittservices.com
 ---
 
-ISLE v1.3.0 has been running on my staging server, `DGDockerX`, for about 12 weeks now and it seems to be performing as-expected with one exception... when I try to import a batch of objects using IMI, the _Islandora Multi-Importer_, I get the following error:
+ISLE v1.3.0 has been running on my staging server, `DGDockerX`, for months now and it seems to be performing as-expected with one exception... when I try to import a batch of objects using IMI, the _Islandora Multi-Importer_, I get the following error:
 
 ```
 The website encountered an unexpected error. Please try again later.
 ```
 
-Examinations of [Recent log messages](https://isle-stage.grinnell.edu/admin/reports/dblog) seem to point to _DNS_ issues that I'm unable to overcome because I have no control over our _DNS_ records, campus networking, or firewalls. So this post is intended to chronicle steps I'm taking to stand up an instance of [dg-isle](https://github.com/Digital-Grinnell/dg-isle) and [dg-islandora](https://github.com/Digital-Grinnell/dg-islandora) on a "clean" _DigitalOcean_ droplet, namely _summitt-services-droplet-01_, that I have been leasing for the past couple of years.
+Examinations of [Recent log messages](https://isle-stage.grinnell.edu/admin/reports/dblog) seem to point to _DNS_ issues that I'm unable to overcome because I have no control over our _DNS_ records, campus networking, or firewalls. So this post is intended to chronicle steps I'm taking to stand-up an instance of [dg-isle](https://github.com/Digital-Grinnell/dg-isle) and [dg-islandora](https://github.com/Digital-Grinnell/dg-islandora) on a "clean" _DigitalOcean_ droplet, namely _summitt-services-droplet-01_, that I have been leasing for the past couple of years.
 
 ## Directories
 
-I'll begin by opening a terminal on my workstation/host and subsequently a terminal into the aforementioned droplet where I'll login as user `centos` with a UID=1000.  Once I'm in there I'll attempt to `rsync` the contents of my `DG-FEDORA` directory from `DGDockerX`, my original staging server, to the _DigitalOcean_ droplet/host.  I'll also clone the two aformentioned _GitHub_ repositories to the _DO_ host, like so:
+I'll begin by opening a terminal on my workstation/host and subsequently a terminal into the aforementioned droplet where I'll login as user `centos` with a `UID` of `1000`.  Once I'm in there I'll also clone the two aformentioned _GitHub_ repositories to the _DO_ host, like so:
 
 | summitt-services-droplet-01 Host Commands, as user `centos` |
 | --- |
-| cd /opt <br/> git clone --recursive https://github.com/Digital-Grinnell/dg-isle.git <br/> git clone --recursive https://github.com/Digital-Grinnell/dg-islandora.git <br/> cd dg-isle  |
+| cd /home/centos/opt <br/> git clone --recursive https://github.com/Digital-Grinnell/dg-isle.git <br/> git clone --recursive https://github.com/Digital-Grinnell/dg-islandora.git |
 
-<!--
+Next, I'll attempt to `rsync` the contents of my `DG-FEDORA` directory from `DGDockerX` (IP address: `132.161.132.101`), my original staging server, to the aforementioned _DigitalOcean_ droplet/host (public IP address: `165.227.83.186`).
 
-## Launch the **dg.localdomain** Stack
-
-I'm modifying the `.env` file in the `dg-isle` directory so that "local" is my target environment.  Having done that, I will launch the local stack using:
-
-| Host Commands |
+| summitt-services-droplet-01 Host Commands, as user `centos` |
 | --- |
-| cd ~/GitHub/dg-isle <br/> git checkout master </br> docker-compose up -d <br/> docker logs -f isle-apache-dg |
+| mkdir /home/centos/data <br/> sudo mkdir -p /mnt/data/DG-FEDORA <br/> sudo chown -R centos:centos /mnt/data <br/> rsync -aruvi islandora@132.161.132.101:/mnt/data/DG-FEDORA/. /mnt/data/DG-FEDORA/ --progress |
+
+Note that the above `rsync` command **DID NOT WORK**, so I tried reversing the process by opening a VPN connection to _Grinnell College_, opening a terminal on _DGDockerX_, and "pushing" the files to _summitt-services-droplet-01_, but this also FAILED, presumably due to network/communications issues. So, ultimately I used a series of `rsync` commands to "pull" the files to my local workstation, then "push" them out to _summitt-services-droplet-01_.
+
+So, in the end, the contents of `dgdockerx.grinnell.edu:/mnt/data/DG-FEDORA` were copied to `summitt-services-droplet-01:/mnt/data/DG-FEDORA` where the directory looks like this:
+
+```
+drwxrwxr-x.  10 centos centos  275 Feb 11 13:37 .
+drwxrwxrwx.   3 root   root     23 Feb 10 10:19 ..
+drwxrwxrwx. 236 centos centos 4.0K Dec 17 14:53 datastreamStore
+-rwxrwxrwx.   1 centos centos  211 Dec 23 11:15 DG-FEDORA-0.md
+-rwxrwxrwx.   1 centos centos 1.1K Oct  5 09:36 docker-compose.DG-FEDORA.yml
+drwxrwxrwx.   2 centos centos  172 Dec 12 18:21 Extras
+drwxr-xr-x.   3 centos centos   85 Nov 11 14:10 from-DGDocker1
+drwx------.   2 centos centos   28 Dec  1 14:44 .fseventsd
+-rwxrwxrwx.   1 centos centos  11K Oct  4 12:28 local.env
+drwxrwxrwx. 184 centos centos 4.0K Dec 13 12:51 objectStore
+-rwxrwxrwx.   1 centos centos 5.1K Dec 23 11:09 README.md
+drwxrwx---.   2 centos centos    6 Dec 17 14:47 site-public
+drwxrwxrwx.   7 centos centos  131 Oct  9 23:17 Storage
+drwxrwxrwx.   2 centos centos   53 Mar 12  2019 System Volume Information
+```
+
+Note that the above directory and all its contents are owned by `centos:centos`.
+
+## Modifying the Environment (.env)
+
+Next, I opened a terminal on _summitt-services-droplet-01_, did `cd ~/opt/dg-isle; git checkout staging` and used `sudo nano` to edit files as necessary. The edits have all been saved and pushed back to the `staging` branch of https://GitHub/Digital-Grinnell/dg-isle.
+
+## Launch the Staging.SummittServices.com Stack
+
+Having edited all necessary files, I will launch the `staging` stack using:
+
+| summitt-services-droplet-01 Host Commands, as user `centos` |
+| --- |
+| cd ~/GitHub/dg-isle <br/> git checkout staging </br> docker-compose up -d <br/> docker logs -f isle-apache-dg |
 
 The startup will take a couple of minutes, and it does not "signal" when it's done, so that's the reason for the last command above.  The `-f` option will keep the output spooling to your terminal so that you don't have to keep repeating the command over and over again.  You will know the startup is complete when you see something like the following at the bottom of the log output:
 
@@ -44,39 +75,35 @@ The startup will take a couple of minutes, and it does not "signal" when it's do
 ...
 Done setting proper permissions on files and directories
 XDEBUG OFF
-AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.20.0.7. Set the 'ServerName' directive globally to suppress this message
-AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.20.0.7. Set the 'ServerName' directive globally to suppress this message
-[Mon Feb 03 22:16:46.898249 2020] [mpm_prefork:notice] [pid 12698] AH00163: Apache/2.4.41 (Ubuntu) configured -- resuming normal operations
-[Mon Feb 03 22:16:46.898652 2020] [core:notice] [pid 12698] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.16.7. Set the 'ServerName' directive globally to suppress this message
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 192.168.16.7. Set the 'ServerName' directive globally to suppress this message
+[Tue Feb 11 18:32:35.664921 2020] [mpm_prefork:notice] [pid 12683] AH00163: Apache/2.4.41 (Ubuntu) configured -- resuming normal operations
+[Tue Feb 11 18:32:35.665016 2020] [core:notice] [pid 12683] AH00094: Command line: '/usr/sbin/apache2 -D FOREGROUND'
 ```
 
 Press `ctrl-c` to interrupt the `docker logs...` command and get your terminal back.
 
-A visit to https://dg.localdomain yields a very incomplete Bartik-themed site, and it looks like we are far from creating a local _Digital.Grinnell_.  So, the next logical step is to backup the database from https://isle-stage.grinnell.edu, and import it here.
-
-<!--
-## One Useful Git Config Change
-One thing I learned during this process is that all of the `dg-isle` config files that I’ve modified and/or mapped into the containers show up as “modified” when I do a `git status` on the host.  The only apparent “modification” is that these are all owned on the host by `mcfatem:mcfatem`, but prior to spin-up these were owned by `islandora:islandora`.  The files/directories are:
-
-  - `config/apache/settings_php/settings.staging.php`,
-  - `config/fedora/gsearch/foxmlToSolr.xslt`,
-  - `config/fedora/gsearch/islandora_transforms/`, and
-  - `config/solr/schema.xml`
-
-This is apparently a known condition that does no harm, but it can be easily ignored by specifying:
-
-| Host / DGDockerX Commands |
-| --- |
-| cd /opt/dg-isle <br/> git config core.fileMode false |
-
-Thank you, [Noah Smith](https://app.slack.com/team/U2ZC9KMCK) for sharing that bit of wisdom!
-
+A visit to https://staging.summittservices.com yields an SQL error so it looks like we haven't quite created a viable staging instance of _Digital.Grinnell_, yet.  The next logical step is to backup the database from https://isle-stage.grinnell.edu, and import it here.
 
 ## Backup the Site Database
 
-Let's begin by visiting the [site's home page](https://isle-stage.grinnell.edu) and using the `Quick Backup` block at the bottom of the right-hand sidebar.  Normally I would select a `Backup Destination: Manual Backups Directory` option to save the database backup on the server, but in this case it will be advantageous to have the backup in-hand, locally.  So, I choose `Backup Destination: Download` instead, and the result is in my local `~/Downloads` directory, specifically:
+Let's begin by visiting the [original staging site's home page](https://isle-stage.grinnell.edu) (VPN connection may be required) and using the `Quick Backup` block at the bottom of the right-hand sidebar.  Normally I would select a `Backup Destination: Manual Backups Directory` option to save the database backup on the server, but in this case it will be advantageous to have the backup in-hand, locally.  So, I choose `Backup Destination: Download` instead, and the result is in my local `~/Downloads` directory, specifically:
 
-`/Users/markmcfate/Downloads/DigitalGrinnell-2020-02-03T14-33-13.mysql.gz`
+`/Users/mark/Downloads/DigitalGrinnell-2020-02-11T12-46-36.mysql.gz`
+
+## Upload and Import the Database
+
+I uploaded the database to _summitt-services-droplet-01_ like so:
+
+| Local Workstation Commands |
+| --- |
+| cd ~/Downloads <br/> | rsync -aruvi DigitalGrinnell-2020-02-11T12-46-36.mysql.gz centos@165.227.83.186:/home/centos/ --progress |
+
+Then, in a terminal on _summitt-services-droplet-01_ as user `centos`...
+
+| summitt-services-droplet-01 Host Commands, as user `centos` |
+| --- |
+| cd ~ <br/> gunzip DigitalGrinnell-2020-02-11T12-46-36.mysql.gz <br/> sudo mv -f DigitalGrinnell-2020-02-11T12-46-36.mysql /opt/data/DG.sql |
 
 ## Import the Database Backup Locally
 

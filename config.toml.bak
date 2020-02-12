@@ -26,7 +26,7 @@ enableEmoji = true
 
 [params]
   build = 314
-  buildDate = '2020-02-11 09:19'
+  buildDate = '2020-02-11 09:34'
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"

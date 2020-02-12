@@ -32,7 +32,7 @@ I'll begin by opening a terminal on my workstation/host, `MA8660` as user `mcfat
 
 | Host Commands |
 | --- |
-| cd ~/GitHub <br/> git clone --recursive https://github.com/Digital-Grinnell/dg-isle.git <br/> git clone --recursive https://github.com/Digital-Grinnell/dg-islandora.git <br/> cd dg-isle  |
+| cd ~/GitHub<br>git clone --recursive https://github.com/Digital-Grinnell/dg-isle.git<br>git clone --recursive https://github.com/Digital-Grinnell/dg-islandora.git<br>cd dg-isle  |
 
 ## Launch the **dg.localdomain** Stack
 
@@ -40,7 +40,7 @@ I'm modifying the `.env` file in the `dg-isle` directory so that "local" is my t
 
 | Host Commands |
 | --- |
-| cd ~/GitHub/dg-isle <br/> git checkout master </br> docker-compose up -d <br/> docker logs -f isle-apache-dg |
+| cd ~/GitHub/dg-isle <br> git checkout master <br> docker-compose up -d <br> docker logs -f isle-apache-dg |
 
 The startup will take a couple of minutes, and it does not "signal" when it's done, so that's the reason for the last command above.  The `-f` option will keep the output spooling to your terminal so that you don't have to keep repeating the command over and over again.  You will know the startup is complete when you see something like the following at the bottom of the log output:
 
@@ -111,7 +111,7 @@ I open a terminal into the _Apache_ container and attempt to repair/re-install _
 
 | Apache Container Commands |
 | --- |
-| cd /var/www/html/sites/all/modules/islandora/islandora_multi-importer <br/> git remote -v </br> git status </br> composer install |
+| cd /var/www/html/sites/all/modules/islandora/islandora_multi-importer <br> git remote -v <br> git status <br> composer install |
 
 The commands and output from all of this are reflected [in this gist](https://gist.github.com/Digital-Grinnell/554ec36828e0e4f9b8f7c8e499a8221).
 
@@ -135,7 +135,7 @@ Only one way to find out.  First, I'm going to snapshot the `DGDockerX` staging 
 
 | Apache Container Commands |
 | --- |
-| cd /var/www/html/sites/all/modules/islandora/islandora_multi-importer </br> composer install |
+| cd /var/www/html/sites/all/modules/islandora/islandora_multi-importer <br> composer install |
 
 And the output this time says:
 
