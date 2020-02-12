@@ -12,28 +12,17 @@ disqusShortname = "digital-library-applications-developer-blog"
 
 enableEmoji = true
 
-# [markup]
-#     defaultMarkdownHandler = "goldmark"
-#
-#   [markup.goldmark]
-[markup.goldmark.renderer]
-  unsafe = true
-
-# ## Override default markdown engine to preserve BlackFriday handling.
-# ## See https://gohugo.io/getting-started/configuration-markup/#goldmark
-# [markup]
-#   defaultMarkdownHandler = "blackfriday"
-#
-# ## BlackFriday is Hugo's OLD markdown rendering engine.
-# [blackfriday]
-#   smartypants = false
-#   hrefTargetBlank = true
+## Config settings for the new, default "Goldmark" markdown engine
+[markup.goldmark]
+  hrefTargetBlank = true
+  [renderer]
+    unsafe = true
 
 #relativeURLs = "true"
 
 [params]
   build = 314
-  buildDate = '2020-02-11 10:56'
+  buildDate = '2020-02-11 20:40'
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
