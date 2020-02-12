@@ -22,7 +22,7 @@ brew install nano zsh
 chsh -s /bin/zsh mark
 exit   # log back in after this
 echo $SHELL
-brew install wget git
+brew install wget git hugo  # Hugo added just for good measure
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
 cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 source ~/.zshrc
