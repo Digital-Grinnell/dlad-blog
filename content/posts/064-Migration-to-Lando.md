@@ -36,9 +36,11 @@ Receiving objects: 100% (1150/1150), 7.24 MiB | 8.51 MiB/s, done.
 Resolving deltas: 100% (486/486), done.
 ╭─markmcfate@ma8660 ~/GitHub ‹ruby-2.3.0›
 ╰─$ cd wieting-lando
-
+╭─markmcfate@ma8660 ~/GitHub/wieting-lando ‹ruby-2.3.0› ‹master›
+╰─$ lando init
+[1]    6483 killed     lando init
 ```
 
+Whoa, what happened there? `Traps` happened.  The software that GC employs to protect endpoints is blocking execution of `lando`.  So I've filed another ticket to get that resolved...soon, I hope.  :frowning:
 
-
-And that's a wrap... until next time.  :smile:
+And that's...frustrating.  I'll be back.  :smile:
