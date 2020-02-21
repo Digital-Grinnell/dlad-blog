@@ -258,6 +258,11 @@ But this command failed because of two issues:
   - `Cannot start service portainer: driver failed programming external connectivity on endpoint wieting-portainer` - _Portainer_ is already running on this node, we don't need it again!
   - `Cannot start service nginx: driver failed programming external connectivity on endpoint wieting-nginx` - Sure, port 80 is already occupied...we need some _Traefik_ magic here!
 
+First step... remove (comment out) the `portainer` service in `docker-compose.yml`, and bring back the `dashboard` service just to see how it works.  
+
+Next step... add some _Traefik_ labels and port assignments (see `summitt-dweller-DO-docker /opt/omeka-s2/docker-compose.yml` for examples) to our `docker-compose.yml` to aleviate the `nginx` port conflict issues.
+
+# ^^^ Do As He Says ^^^
 
 <!--
 ## Next Step...Ensure That I Can Deploy to `summitt-dweller-DO-docker`
