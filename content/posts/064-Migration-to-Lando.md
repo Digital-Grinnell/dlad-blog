@@ -171,6 +171,95 @@ Woot!
 
 Since there are no secrets in this config, yet, I'm going to push it to _GitHub_.  Specifically... [SummittDweller/wieting-lando](https://github.com/SummittDweller/wieting-lando).
 
+## Restarting Local Development
+
+I'm back at work on the campus of _Grinnell College_ today and am looking to pick up last evening's development here, so I need to "move" my project to a different host, namely _MA8660_.  Let's see if this works...
+
+```
+╭─markmcfate@ma8660 ~/GitHub ‹ruby-2.3.0›
+╰─$ git clone https://github.com/SummittDweller/wieting-lando
+Cloning into 'wieting-lando'...
+remote: Enumerating objects: 30, done.
+remote: Counting objects: 100% (30/30), done.
+remote: Compressing objects: 100% (22/22), done.
+remote: Total 30 (delta 0), reused 30 (delta 0), pack-reused 0
+Unpacking objects: 100% (30/30), done.
+╭─markmcfate@ma8660 ~/GitHub ‹ruby-2.3.0›
+╰─$ cd wieting-lando           
+```
+
+Whoa! The `wieting-lando` directory looks a little empty, probably because I see that my `.gitignore` file ignored alot of stuff. :frowning:  No matter, let's see if we can work some magic...
+
+```
+╭─markmcfate@ma8660 ~/GitHub/wieting-lando ‹ruby-2.3.0› ‹master›
+╰─$ lando composer update
+  ...and the magic happens...
+╭─markmcfate@ma8660 ~/GitHub/wieting-lando ‹ruby-2.3.0› ‹master›
+╰─$ lando start
+Let's get this party started! Starting app..
+  ...more magic...
+Waiting until database service is ready...
+
+BOOMSHAKALAKA!!!
+
+Your app has started up correctly.
+Here are some vitals:
+
+ NAME                  wieting
+ LOCATION              /Users/markmcfate/GitHub/wieting-lando
+ SERVICES              appserver_nginx, appserver, database
+ APPSERVER_NGINX URLS  https://localhost:32773
+                       http://localhost:32774
+                       http://wieting.lndo.site:8000
+                       https://wieting.lndo.site:444
+```
+
+And BOOM, we are ready to install a new site again!
+
+## Switching Gears...Again
+
+I'm turning my attention now to `summitt-dweller-DO-docker` and https://github.com/mogtofu33/docker-compose-drupal(https://github.com/mogtofu33/docker-compose-drupal) which I recently forked to [https://github.com/SummittDweller/docker-compose-drupal](https://github.com/SummittDweller/docker-compose-drupal).
+
+My attempt to get my `wieting-lando` Drupal code up and working at _DigitalOcean_ per the instructions in [Installation and configuration](https://github.com/SummittDweller/docker-compose-drupal#installation-and-configuration) working as `administrator` on `summitt-dweller-DO-docker` looks like this:
+
+```
+╭─administrator@summitt-dweller-DO-docker /opt
+╰─$ git clone https://github.com/SummittDweller/docker-compose-drupal.git
+╭─administrator@summitt-dweller-DO-docker /opt
+╰─$ cd docker-compose-drupal
+╭─administrator@summitt-dweller-DO-docker /opt/docker-compose-drupal ‹master›
+╰─$ git checkout -b wieting
+╭─administrator@summitt-dweller-DO-docker /opt/docker-compose-drupal ‹wieting›
+╰─$ cp docker-compose.tpl.yml docker-compose.yml\ncp default.env .env
+╭─administrator@summitt-dweller-DO-docker /opt/docker-compose-drupal ‹wieting›
+╰─$ nano .env   # to make recommended edits
+╭─administrator@summitt-dweller-DO-docker /opt/docker-compose-drupal ‹wieting›
+╰─$ nano docker-compose.yml   # to make recommended edits
+╭─administrator@summitt-dweller-DO-docker /opt/docker-compose-drupal ‹wieting›
+╰─$ docker-compose config   # to check the config...good to go
+```
+
+Then from `MA8660`...
+
+```
+╭─markmcfate@ma8660 ~/GitHub/wieting-lando ‹ruby-2.3.0› ‹master*›
+╰─$ rsync -aruvi . administrator@104.248.237.235:/opt/docker-compose-drupal/drupal/. --progress
+```
+
+Then back on `summitt-dweller-DO-docker`...
+
+```
+╭─administrator@summitt-dweller-DO-docker /opt/docker-compose-drupal ‹wieting›
+╰─$ docker-compose up --build -d
+```
+
+But this command failed because of two issues:
+
+  - `Cannot start service portainer: driver failed programming external connectivity on endpoint wieting-portainer` - _Portainer_ is already running on this node, we don't need it again!
+  - `Cannot start service nginx: driver failed programming external connectivity on endpoint wieting-nginx` - Sure, port 80 is already occupied...we need some _Traefik_ magic here!
+
+
+<!--
 ## Next Step...Ensure That I Can Deploy to `summitt-dweller-DO-docker`
 
 Taking a look at the aforementioned server indicates 3 services running under a _Traefik_ reverse-proxy that serves [https://Wieting.TamaToledo.net](https://Wieting.TamaToledo.net).  The services are:
@@ -181,7 +270,6 @@ Taking a look at the aforementioned server indicates 3 services running under a 
 
 That looks a lot like what I have locally with _Lando_.  Now if I can find a "production-capable" stack with a similar architecture...  Hmmm, what about https://github.com/mogtofu33/docker-compose-drupal?  I'll have to check that out next.
 
-<!--
 ╭─mark@Marks-Mac-Mini ~/GitHub
 ╰─$ mkdir lando-wieting
 ╭─mark@Marks-Mac-Mini ~/GitHub
