@@ -30,19 +30,42 @@ The first command above lists all the ignored files, and the second one lists al
 
 ### Step 2
 
-I'm going to try installing and using [GnuPG](https://www.gnupg.org/index.html) and the [gpgtar command](https://www.gnupg.org/documentation/manuals/gnupg/gpgtar.html) to create a password-protected (encrypted) compressed _tar_ archive from our list.  First, to capture the list...
+I'm going to try installing and using [GnuPG](https://www.gnupg.org/index.html) and an example command sequence I found in `Solution 2` at [https://stackoverflow.com/questions/35584461/gpg-encryption-and-decryption-of-a-folder-using-command-line](https://stackoverflow.com/questions/35584461/gpg-encryption-and-decryption-of-a-folder-using-command-line)
+
+First, to capture the list...
 
 ```
 git ls-files --others --ignored --exclude-standard > .ignored.list
 ```
 
-Then we _tar_ the list of files with encryption, like so:
+Then we _tar_ the list of files, like so:
 
 ```
-gpgtar --encrypt --files-from .ignored.list --output .secured.ignored.list.tar
+tar czf .ignored.list.tar --files-from .ignored.list
 ```
+
+And finally, we use _GnuPG_ to encrypt the archive, like so:
+
+```
+gpg --encrypt --recipient summitt.dweller@gmail.com .ignored.list.tar
+rm -fr .ignored.list.tar
+```
+
+This process leaves us with `.ignored.list.tar.gpg`, a secure tarball that we can safely store and restore.
+
+
+#### Installing _GnuPG_ Tools
 
 Should work nicely once I get _GnuPG_ installed and configured (see https://blog.ghostinthemachines.com/2015/03/01/how-to-use-gpg-command-line/) on my Mac.  The installation should be as easy as `brew install gnupg`.
+
+  - Completed install of _GnuPG_ as `Mark McFate <mark.mcfate@icloud.com>` on my Mac Mini.  27-Feb-2020
+  - `gpg --gen-key` output is captured in my _KeePass_ vault.
+
+  - Completed install of _GnuPG_ for `administrator` as `Summitt Dweller <summitt.dweller@gmail.com>` on `summitt-dweller-DO-docker`.  27-Feb-2020
+  - Added `rng-tools` per [this very helpful post](https://delightlylinux.wordpress.com/2015/07/01/is-gpg-hanging-when-generating-a-key/)!
+  - `gpg --gen-key` output is captured in my _KeePass_ vault.
+
+
 
 
 And that's a break... I'll be back.  :smile:
