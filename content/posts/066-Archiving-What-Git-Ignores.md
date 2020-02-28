@@ -1,21 +1,24 @@
 ---
 title: Archiving What Git Ignores
 publishdate: 2020-02-26
-lastmod: 2020-02-26T14:32:54-06:00
+lastmod: 2020-02-27T15:14:56-06:00
 draft: false
 tags:
   - GitHub
-  - Git
+  - git
+  - ls-files
   - .gitignore
-  - gzip
   - archive
+  - GnuPG
+  - gpg
 ---
 
 I love _git_ and _GitHub_, and I can certainly appreciate the usefullness of _.gitignore_, but there are times when I'd really like to move an ENTIRE project to a new home.  I have in my head a process that might play out like this...
 
   1. Fetch a list of all the files and directories that _.gitignore_ is ignoring.
   2. Pass that list to a _tar_ or _gzip_ command (maybe two of them) **with encryption** to create a secure, compressed archive.
-  3. Commit the archive to the project repo in _GitHub_.
+  3. Commit the archive to the project repo in _GitHub_, or keep it in a safe place for restoration in the future.
+  4. Navigate in your terminal to a target and restore the archive using the
 
 ### Step 1
 
@@ -32,27 +35,30 @@ The first command above lists all the ignored files, and the second one lists al
 
 I'm going to try installing and using [GnuPG](https://www.gnupg.org/index.html) and an example command sequence I found in `Solution 2` at [https://stackoverflow.com/questions/35584461/gpg-encryption-and-decryption-of-a-folder-using-command-line](https://stackoverflow.com/questions/35584461/gpg-encryption-and-decryption-of-a-folder-using-command-line)
 
-First, to capture the list...
+First, we capture the list of "ignored" files, then we _tar_ it, then apply a _GnuPG_ encryption, then remove the intermediate, unsecure artifact, like so:
 
 ```
-git ls-files --others --ignored --exclude-standard > .ignored.list
+git ls-files --others --ignored --exclude-standard > $(date --iso-8601).ignored.list
+tar czvf $(date --iso-8601).ignored.list.tar.gz --files-from $(date --iso-8601).ignored.list
+gpg --encrypt --recipient summitt.dweller@gmail.com $(date --iso-8601).ignored.list.tar.gz
+rm -fr $(date --iso-8601).ignored.list.tar.gz
 ```
 
-Then we _tar_ the list of files, like so:
+This process leaves us with `<today>.ignored.list.tar.gz.gpg`, a secure tarball that we can safely store and restore.
+
+### Step 3
+
+Not much to elaborate on here... just keep that archive safe.  Unfortunately, in the case of my `wieting-D8-DO` the archive is something north of 270 MB, way too big for _GitHub_.
+
+### Step 4 - Restoring a GPG Archive, As Needed
+
+Copy the `<date>.ignored.list.tar.gz` file to your target/parent directory, presumably the same directory that the files were captured from originally, and run this sequence, substituting the datestamp prefix of the `.gpg` filename in place of `<date>`.
 
 ```
-tar czf .ignored.list.tar --files-from .ignored.list
+gpg --decrypt <date>.ignored.list.tar.gz.gpg > ignored.list.tar.gz
+tar xzvf ignored.list.tar.gz
+rm -f ignored.lists.tar.gz *.ignored.list.tar.gz.gpg
 ```
-
-And finally, we use _GnuPG_ to encrypt the archive, like so:
-
-```
-gpg --encrypt --recipient summitt.dweller@gmail.com .ignored.list.tar
-rm -fr .ignored.list.tar
-```
-
-This process leaves us with `.ignored.list.tar.gpg`, a secure tarball that we can safely store and restore.
-
 
 #### Installing _GnuPG_ Tools
 
@@ -65,7 +71,9 @@ Should work nicely once I get _GnuPG_ installed and configured (see https://blog
   - Added `rng-tools` per [this very helpful post](https://delightlylinux.wordpress.com/2015/07/01/is-gpg-hanging-when-generating-a-key/)!
   - `gpg --gen-key` output is captured in my _KeePass_ vault.
 
+## Does This Really Work?
 
+Why yes, yes it does.  The proof is in the pudding, or in this case, it's in a post I just pushed to my personal blog, specifically: [Updating the Wieting Site in Drupal 8](https://summittdweller.com/blogs/mark/posts/updating-the-wieting-site-in-drupal-8/).  Check it out.
 
 
 And that's a break... I'll be back.  :smile:
