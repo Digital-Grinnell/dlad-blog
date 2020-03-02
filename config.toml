@@ -27,7 +27,7 @@ enableEmoji = true
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
   description = "Mark's first Hugo site, a blog, at the new Static.Grinnell.edu."
-  copyright = "The views and opinions expressed on individual web pages are strictly those of their authors and are not official statements of Grinnell College."
+  copyright = "The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College."
 
   [[params.social]]
     name = "github"
