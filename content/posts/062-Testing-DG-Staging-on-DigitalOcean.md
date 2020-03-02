@@ -1,7 +1,7 @@
 ---
 title: Staging Digital.Grinnell (DG) on DigitalOcean (DO)
 publishDate: 2020-02-11
-lastmod: 2020-02-12T15:15:15-06:00
+lastmod: 2020-03-02T16:13:08-06:00
 draft: false
 tags:
   - ISLE
@@ -117,16 +117,14 @@ Since the site is not working I cannot use `drush` nor `Backup and Migrate` to d
 
 ## White Screen of Death
 
-Not good, when I visit https://staging.summittservices.com now I get a dreaded **WSOD**.  So I peek at the _Apache_ container logs using `docker logs isle-apache-ld` and find this:
-
-<!--
+Sorry, I had to jump to another project for the past couple of weeks, and now that I'm back (March 2, 2020) the situation is not good.  :frowning:  When I visit https://staging.summittservices.com now I get a dreaded **WSOD**.  So I peek at the _Apache_ container logs using `docker logs isle-apache-ld` and find this:
 
 ```
-[Mon Feb 03 20:41:55.684244 2020] [php7:error] [pid 13002] [client 172.20.0.4:43034] PHP Fatal error:  require_once(): Failed opening required '/var/www/html/sites/all/modules/islandora/islandora_multi_importer/vendor/autoload.php' (include_path='.:/usr/share/php') in /var/www/html/sites/all/modules/islandora/islandora_multi_importer/islandora_multi_importer.module on line 19, referer: https://dg.localdomain/admin/config/system/backup_migrate/restore?render=overlay
-172.20.0.4 - - [03/Feb/2020:20:41:52 +0000] "GET /admin/config/system/backup_migrate/restore?render=overlay HTTP/1.1" 500 333 "https://dg.localdomain/admin/config/system/backup_migrate/restore?render=overlay" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:72.0) Gecko/20100101 Firefox/72.0
+[Mon Mar 02 20:35:50.641509 2020] [php7:error] [pid 12676] [client 192.168.176.4:44300] PHP Fatal error:  require_once(): Failed opening required '/var/www/html/sites/all/modules/islandora/islandora_multi_importer/vendor/autoload.php' (include_path='.:/usr/share/php') in /var/www/html/sites/all/modules/islandora/islandora_multi_importer/islandora_multi_importer.module on line 19
+
 ```
 
-Bottom line, there are critical issues with IMI, the _Islandora Multi-Importer_, just as there were in staging.  Hmm, what to do now?
+Bottom line, there are critical issues with IMI, the _Islandora Multi-Importer_, just as there were in staging.  Hmmm, what to do now?
 
 ## Fixing IMI
 
@@ -136,21 +134,64 @@ I open a terminal into the _Apache_ container and attempt to repair/re-install _
 | --- |
 | cd /var/www/html/sites/all/modules/islandora/islandora_multi-importer <br/> git remote -v </br> git status </br> composer install |
 
-The commands and output from all of this are reflected [in this gist](https://gist.github.com/Digital-Grinnell/554ec36828e0e4f9b8f7c8e499a8221).
+The commands and output from all of this are reflected [in this gist](https://gist.github.com/SummittDweller/92673db4c1ef3274822f47666057e7de).
 
-## Is It Fixed? Yes, Sort Of
+Now, a visit to [https://staging.summittservices.com](https://staging.summittservices.com) yields a very welcome "Site under maintenance" page.  That's progress!  Let's take the site out of "maintenance mode" using that same _Apache_ container terminal session, like so:
 
-A browser visit to https://dg.localdomain demonstrates that the site is back!  However, the site is currently showing `Operating in maintenance mode. Go online`, and there are multiple warnings indicating:
+| Apache Container Commands |
+| --- |
+| cd /var/www/html/sites/default<br/> drush vset maintenance_mode 0 |
+
+That worked, but also returned a handful of warnings summarized by these two:
 
 ```
-User warning: The following module is missing from the file system: islandora_binary_object.
+Warning: file_put_contents(private:///.htaccess): failed to open stream: "DrupalPrivateStreamWrapper::stream_open" call failed in file_create_htaccess() (line 496 of /var/www/html/includes/file.inc).
+User warning: The following module is missing from the file system: islandora_binary_object. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
 ```
 
-When I click the `Go online` link and complete the operation, the site does indeed respond by showing me an almost-proper home page, complete with numerous collection objects. I says it's "almost-proper" because in addition to the top-level collections, the site is also showing a host of individual objects.  This should NOT be the case, but I can think of a handful of remedies, including:
+Looks like we have a missing module and at least one file/directory permissions issue.
 
-  - Using the `Development` menu `Clear cache` link to do just what the name says.
+## Addressing "Private" Directory Permissions
 
-Ok, so that actually worked; no need to go farther.
+To address the permissions issue I logged in to the site as "System Admin" and visited [https://staging.summittservices.com/admin/config/media/file-system](https://staging.summittservices.com/admin/config/media/file-system) where I see that our "private" file system path is: `/var/www/private`.
+
+Back to my _Apache_ container terminal to have a look at that...  Aha, `/var/www/private` does indeed exist, but it has ownership and protections inside the container of: `drwxr-xr-x.  2 root      root        6 Feb 10 16:18 private/`.  Let's set the owner and group here to match other directories, specifically: `islandora:www-data`.
+
+| Apache Container Commands |
+| --- |
+| cd /var/www <br/> chown -R islandora:www-data private <br/> cd /var/www/html/sites/default<br/> drush vset maintenance_mode 0 |
+
+Woot!  The permissions warnings are gone.
+
+## Addressing the Missing `islandora_binary_object` Warning
+
+So, remember back in the [Installing the Missing Islandora and Custom Modules](https://static.grinnell.edu/blogs/McFateM/posts/058-rebuilding-isle-ld/installing-the-missing-islandora-and-custom-modules) section of [post 058](https://static.grinnell.edu/blogs/McFateM/posts/058-rebuilding-isle-ld/), we commented out the installation of `islandora_binary_object` like so:
+
+```
+cd /var/www/html/sites/all/modules/islandora
+git submodule add https://github.com/DigitalGrinnell/dg7.git
+git submodule add https://github.com/DigitalGrinnell/idu.git
+# git submodule add git://github.com/discoverygarden/islandora_binary_object.git
+git submodule add https://github.com/discoverygarden/islandora_collection_search
+git submodule add https://github.com/DigitalGrinnell/islandora_mods_display.git
+git submodule add https://github.com/Islandora-Labs/islandora_solution_pack_oralhistories.git
+# git submodule add git://github.com/nhart/islandora_pdfjs_reader.git
+git submodule add https://github.com/Islandora-Labs/islandora_solr_collection_view.git
+chown -R islandora:www-data *
+cd /var/www/html/sites/default
+drush cc all
+```
+
+Well, it's evidently time to put that back!  So, I'm taking a new snapshot of the server then I'll try to solve this mystery.  A little research tells me that the `islandora_binary_object` command above is pointing to the wrong project for _Islandora_ v7 (it points to an _Islandora_ v8 module), so we require some additional configuration on the host, like so:
+
+| Host / summitt-services-droplet-01 Commands |
+| --- |
+| sudo su <br/> cd /opt/dg-islandora <br/> git submodule add https://github.com/Islandora-Labs/islandora_binary_object sites/all/modules/islandora/islandora_binary_object <br/> chown -R islandora:www-data * |
+
+
+
+<!--
+
 
 ## Will the Same Fixes Work on Staging?
 
