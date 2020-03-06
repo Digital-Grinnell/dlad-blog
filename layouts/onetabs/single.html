@@ -1,8 +1,0 @@
-{{ define "main" }}
-<main class="content">
- <article class="onetab">
-   {{ .Content }}
-   <a href='{{ .Permalink }}'><aside class="dates">→ <time datetime="{{ .Date }}" pubdate="">{{ .Date.Format "2006/01/02 3:04 PM" }}</time></aside></a>
- </article>
-</main>
-{{ end }}
