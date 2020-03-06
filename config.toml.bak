@@ -12,17 +12,48 @@ disqusShortname = "digital-library-applications-developer-blog"
 
 enableEmoji = true
 
+
 ## Config settings for the new, default "Goldmark" markdown engine
-[markup.goldmark]
-  hrefTargetBlank = true
-  [renderer]
-    unsafe = true
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark]
+    hrefTargetBlank = true
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.parser]
+      attribute = true
+      autoHeadingID = true
+      autoHeadingIDType = "github"
+    [markup.goldmark.renderer]
+      hardWraps = false
+      unsafe = true
+      xHTML = false
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    style = "monokai"
+    tabWidth = 4
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 2
 
 #relativeURLs = "true"
 
 [params]
   build = 314
-  buildDate = '2020-03-02 16:01'
+  buildDate = '2020-03-05 19:20'
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
