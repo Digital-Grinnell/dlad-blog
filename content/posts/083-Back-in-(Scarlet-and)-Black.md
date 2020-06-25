@@ -1,7 +1,7 @@
 ---
 title: Back in (Scarlet and) Black
 publishdate: 2020-06-25
-lastmod: 2020-06-25T08:39:18-05:00
+lastmod: 2020-06-25T08:39:50-05:00
 draft: false
 tags:
   - Zzo
