@@ -6,12 +6,11 @@ title = "The Grinnell College Digital Library Application Developer's Blog"
 themesDir = "themes"
 theme = ["hugo-search-fuse-js", "hugo-theme-m10c"]
 paginate = 10
-summaryLength = 40    # default is 70 words
+summaryLength = 80    # default is 70 words
 googleAnalytics = "UA-131150861-2"
 disqusShortname = "digital-library-applications-developer-blog"
 
 enableEmoji = true
-
 
 ## Config settings for the new, default "Goldmark" markdown engine
 [markup]
@@ -53,7 +52,7 @@ enableEmoji = true
 
 [params]
   build = 314
-  buildDate = '2020-03-05 19:20'
+  buildDate = '2020-03-05 19:22'
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
