@@ -12,6 +12,11 @@ disqusShortname = "digital-library-applications-developer-blog"
 canonifyURLs = true
 
 enableEmoji = true
+enableGitInfo = true  # makes Lastmod equivalent to git commit date
+
+#[frontmatter]
+#date = ["date", "publishDate", "lastmod"]
+#lastmod = [":git", "lastmod", "date", "publishDate"]
 
 ## Config settings for the new, default "Goldmark" markdown engine
 [markup]
@@ -53,7 +58,7 @@ enableEmoji = true
 
 [params]
   build = 314
-  buildDate = '2020-06-25 15:32'
+  buildDate = '2020-06-30 19:25'
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
@@ -92,7 +97,7 @@ enableEmoji = true
     darkColor = "#000000"
     primaryColor = "#ffffff"
     # lightColor is used with text in the body
-    lightColor = "#FBEED8"
+    lightColor = "#FBEED8;"
     lightestColor = "#d3d3d3"
 
 [menu]
