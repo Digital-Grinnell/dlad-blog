@@ -10,7 +10,7 @@
   $dark-color: #000000;
   $primary-color: #ffffff;
   // lightColor is used with text in the body
-  $light-color: #FBEED8;
+  $light-color: #d2b076; // #FBEED8;
   $lightest-color: #d3d3d3;
 
 // This section reserved for "shortcode" definitions.
@@ -142,4 +142,12 @@ th {
 
 .onetabs-list-item-title {
   color: #dcff07;
+}
+
+.post-meta {
+  color: #bb995f;
+}
+
+span.posts-list-item-description {
+  color: #bb995f;
 }
