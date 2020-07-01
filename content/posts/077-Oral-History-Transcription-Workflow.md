@@ -16,7 +16,7 @@ tags:
 
 ## OHScribe!
 
-https://ohscribe.grinnell.edu   __Note: This link is currently (1-Jun-2020) NOT working, but should be back soon.__
+https://ohscribe.grinnell.edu   __Note: This link was disabled in the spring of 2020, but is working again as of July 1, 2020, on host DGDocker3.__
 
 This is a *Python 3* and *Flask* web application designed to transform oral history transcripts, presumably created using [InqScribe](https://www.inqscribe.com), into XML suitable for ingest into the **[Islandora Oral Histories Solution Pack](https://github.com/Islandora-Labs/islandora_solution_pack_oralhistories)** to populate a TRANSCRIPT datastream and its derivatives.  *Islandora Oral Histories* and the aforementioned solution pack are commonly referred to as **IOH** throughout this document.
 
