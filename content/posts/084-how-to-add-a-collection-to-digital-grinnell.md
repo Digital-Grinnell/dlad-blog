@@ -1,7 +1,7 @@
 ---
 title: How to Add a Collection to Digital.Grinnell
 publishdate: 2020-06-25
-lastmod: 2020-06-25T14:46:24-05:00
+lastmod: 2020-07-05T15:13:37-05:00
 draft: false
 tags:
   - collection
@@ -46,6 +46,16 @@ Glad you asked. For starters, you'll need to have considered the questions posed
 That's really easy... send an [email to digital@grinnell.edu](mailto:digital@grinnell.edu) and ask, politely, please. Honestly, that's what you need to do.
 
 Someday maybe _digital@grinnell.edu_ will take the time to document that part of the process too.  :wink:
+
+## Admin Reminders
+
+So, there are a couple of things that the _Digital.Grinnell_ admins need to remember when adding a collection to the mix:
+
+  - Edit the following source code files in the [dg7 custom module](https://github.com/DigitalGrinnell/dg7) and add the new collection PID as needed to support custom sorting and display.
+    - dg7.module
+    - dg7.views.inc
+    - includes/views/dg7.views.inc:
+  - Perform the steps documented in [Updating DG's Collection Views](/posts/068-updating-dgs-collection-views/) in order to make the new collection display properly.
 
 
 And it's time to do some real work... I'll be back to share more here, someday.  :smile:
