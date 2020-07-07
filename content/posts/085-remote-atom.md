@@ -13,10 +13,7 @@ In the past week I've added the **remote-atom** package, and configuration to ma
 
 | Workstation: MA8660 - Grinnell College iMac |
 | --- |
-| administrator@static |
-| islandora@dgdocker1 |
-| islandora@dgdockerx |
-| mcfatem@dgdocker3 |
+| administrator@static <br/> islandora@dgdocker1 <br/> islandora@dgdockerx <br/> mcfatem@dgdocker3 |
 
 _Note:_ The `~/.ssh/config` file for the settings shown above looks like this:
 
@@ -41,10 +38,7 @@ Host dgdockerx
 
 | Workstation: Mark's Mac Mini - Personal Desktop |
 | --- |
-| cemtos@digitalOcean |
-| mcfatem@dgdocker3 |
-| administrator@static |
-| islandora@dgdocker1 |
+| centos@digitalOcean <br/> mcfatem@dgdocker3 <br/> administrator@static <br/> islandora@dgdocker1 |
 
 
 And that's a wrap.  Until next time...
