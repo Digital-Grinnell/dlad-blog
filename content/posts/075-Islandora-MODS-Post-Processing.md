@@ -37,7 +37,7 @@ Briefly, the initial five steps in this workflow are:
 
 This is an optional, but recommended, step at the end of the workflow, and it is intended for use by a system admin, presumably the same person who executed steps 4 and 5. The process calls for running a new _Drush_ command inside the _Apache_ container on the _Digital.Grinnell_ host.
 
-To process a collection after completion of steps 4 and 5, all that's required is running a `drush islandora_mods_post_processing`. Running that command with the `--help` option produces:
+To process a collection after completion of steps 4 and 5, all that's required is running `drush islandora_mods_post_processing`. Running that command with the `--help` option produces:
 
 ```
 [islandora@dgdocker1 ~]$ docker exec -it isle-apache-dg bash

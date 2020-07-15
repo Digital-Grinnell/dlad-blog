@@ -15,11 +15,11 @@ tags:
   - islandora_mods_post_processing
 ---
 
-> Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new _Drush_ command: _islandora\_mods_post\_processing_, an addition to my previous work in [islandora_mods_via_twig](https://github.com/DigitalGrinnell/islandora_mods_via_twig). See my new post, [Islandora MODS Post Processing](/en/posts/075-islandora-mods-post-processing) for complete details.
+> Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new _Drush_ command: _islandora\_mods_post\_processing_, an addition to my previous work in [islandora_mods_via_twig](https://github.com/DigitalGrinnell/islandora_mods_via_twig). See my new post, [Islandora MODS Post Processing](/posts/075-islandora-mods-post-processing) for complete details.
 
 # A 5-Step Workflow
 
-This document is follow-up, with technical details, to [Exporting, Editing, & Replacing MODS Datastreams](https://dlad.summittdweller.com/en/posts/069-exporting-editing-replacing-mods-datastreams/), post 069, in my blog.  In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 _Grinnell College Libraries_ review of _Digital Grinnell_ MODS metadata.
+This document is follow-up, with technical details, to [Exporting, Editing, & Replacing MODS Datastreams](/posts/069-exporting-editing-replacing-mods-datastreams/), post 069, in my blog.  In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 _Grinnell College Libraries_ review of _Digital Grinnell_ MODS metadata.
 
 Attention: This document uses a shorthand `./` in place of the frequently referenced `//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/` directory.  For example, `./social-justice` is equivalent to the _Social Justice_ collection sub-directory at `//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/social-justice`.
 
@@ -29,7 +29,7 @@ Briefly, the five steps in this workflow are:
 
   2. Execute my _Map-MODS-to-MASTER_ _Python 3_ script on iMac _MA8660_ to create a `mods.tsv` file for each collection, along with associated `grinnell_<PID>_MODS.log` and `grinnell_<PID>_MODS.remainder` files for each object. The resultant `./<collection-PID>/mods.tsv` files are tab-seperated-value (.tsv) files, and they are **key** to this process.
 
-  3. Edit the MODS .tsv files.  Refer [Exporting, Editing, & Replacing MODS Datastreams](https://dlad.summittdweller.com/en/posts/069-exporting-editing-replacing-mods-datastreams/) for details and guidance.
+  3. Edit the MODS .tsv files.  Refer [Exporting, Editing, & Replacing MODS Datastreams](/posts/069-exporting-editing-replacing-mods-datastreams/) for details and guidance.
 
   4. Use `drush islandora_mods_via_twig` in each ready-for-update collection to generate new .xml MODS datastream files. For a specified collection, this command will find and read the `./<collection-PID>/mods-imvt.tsv` and create one `./<collection-PID>/ready-for-datastream-replace/grinnell_<PID>_MODS.xml` file for each object.
 
@@ -127,7 +127,7 @@ It should not be necessary to run this script ever again...NEVER.  However, if i
 
 ## Step 3 - Editing the MODS .tsv Files
 
-Please refer to   Refer to [Exporting, Editing, & Replacing MODS Datastreams](https://dlad.summittdweller.com/en/posts/069-exporting-editing-replacing-mods-datastreams/), post 069 in my blog, for details and guidance.
+Please refer to   Refer to [Exporting, Editing, & Replacing MODS Datastreams](/posts/069-exporting-editing-replacing-mods-datastreams/), post 069 in my blog, for details and guidance.
 
 ## Step 4 - Run `drush islandora_mods_via_twig`
 

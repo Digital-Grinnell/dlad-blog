@@ -14,13 +14,13 @@ tags:
   - islandora_mods_post_processing
 ---
 
-> Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new _Drush_ command: _islandora\_mods_post\_processing_, an addition to my previous work in [islandora_mods_via_twig](https://github.com/DigitalGrinnell/islandora_mods_via_twig). See my new post, [Islandora MODS Post Processing](/en/posts/075-islandora-mods-post-processing) for complete details.
+> Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new _Drush_ command: _islandora\_mods_post\_processing_, an addition to my previous work in [islandora_mods_via_twig](https://github.com/DigitalGrinnell/islandora_mods_via_twig). See my new post, [Islandora MODS Post Processing](/posts/075-islandora-mods-post-processing) for complete details.
 
 The transition to distance learning, social distancing, and more remote work at _Grinnell College_ in the wake of the _COVID-19_ pandemic may afford _GC Libraries_ an opportunity to do some overdue and necessary metadata cleaning in [Digital.Grinnell](https://digital.grinnell.edu).
 
 # A 5-Step Workflow
 
-This turned out to be a much more difficult undertaking than I imagined, but as of mid-April, 2020, I have a 5-step workflow that actually works.  This post will introduce all five steps, but only provides details for Step 3, [Editing a MODS TSV File](#editing-a-modstsv-file), the portion that metadata editors need to be most aware of.  All technical details, as well as steps 1, 2, 4 and 5, will be addressed in [Exporting, Editing, & Replacing MODS Datastreams: Technical Details](https://dlad.summittdweller.com/en/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/).
+This turned out to be a much more difficult undertaking than I imagined, but as of mid-April, 2020, I have a 5-step workflow that actually works.  This post will introduce all five steps, but only provides details for Step 3, [Editing a MODS TSV File](#editing-a-modstsv-file), the portion that metadata editors need to be most aware of.  All technical details, as well as steps 1, 2, 4 and 5, will be addressed in [Exporting, Editing, & Replacing MODS Datastreams: Technical Details](/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/).
 
 Attention: This document uses a shorthand `./` in place of the frequently referenced `//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/` directory.  For example, `./social-justice` is equivalent to the _Social Justice_ collection sub-directory at `//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/social-justice`.
 
@@ -38,7 +38,7 @@ The five steps are:
 
 ##  Editing a mods.tsv File
 
-Creating or editing metadata can be a monumental task, and doing it effectively can demand a wealth of knowledge and experience working with metadata standards and practices. This step in our workflow is easily the most labor-intensive. The goal of this project is largely to present metadata editors with a form, in this case the `mods.tsv` or tab-seperated-value file, to make consistent editing of metadata possible.  In addition to the `mods.tsv` file the workflow will rely on guidance and conventions that are documented in the _Metadata Clean-up_ tab of the [Digital_Grinnell_MODS_Master](https://docs.google.com/spreadsheets/d/1G_pQgKJwtgBZYDAHcMC7dCTOnwexIYGHjarHPFKaAOg/edit#gid=791993009) worksheet.
+Creating or editing metadata can be a monumental task, and doing it effectively can demand a wealth of knowledge and experience working with metadata standards and practices. This step in our workflow is easily the most labor-intensive. The goal of this project is largely to present metadata editors with a form, in this case the `mods.tsv` or tab-seperated-value file, to make consistent editing of metadata possible.  In addition to the `mods.tsv` file the workflow will rely on guidance and conventions that are documented in the _Metadata Clean-up_ tab of the [Digital_Grinnell_MODS_Master](https://docs.google.com/spreadsheets/d/1G_pQgKJwtgBZYDAHcMC7dCTOnwexIYGHjarHPFKaAOg) worksheet.
 
 A metadata editor should focus on only one collection at a time. The suggested practice for working through one collection is as follows:
 
@@ -46,7 +46,7 @@ A metadata editor should focus on only one collection at a time. The suggested p
 
   2. Copy the `mods.tsv` file, preferably to your local workstation, and optionally give it a new name, like `social-justice-mods.tsv`.
 
-  3. Open the _Metadata Clean-up_ tab of the [Digital_Grinnell_MODS_Master](https://docs.google.com/spreadsheets/d/1G_pQgKJwtgBZYDAHcMC7dCTOnwexIYGHjarHPFKaAOg/edit#gid=791993009) worksheet in a browser so that you have guidance available at all times.
+  3. Open the _Metadata Clean-up_ tab of the [Digital_Grinnell_MODS_Master](https://docs.google.com/spreadsheets/d/1G_pQgKJwtgBZYDAHcMC7dCTOnwexIYGHjarHPFKaAOg) worksheet in a browser so that you have guidance available at all times.
 
     - Note that if you find yourself repeating very cumbersome changes while you edit, please consider taking notes in the _Metadata Clean-up_ tab and email [digital@grinnell.edu](mailto://digital.grinnell.edu) with any questions or concerns you may have about the process or the guidance.
 
