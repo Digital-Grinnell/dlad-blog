@@ -15,10 +15,10 @@ echo "Hugo compilation is complete."
 
 ## Build a new Docker image
 echo "Starting docker image build..."
-docker image build -f push-update-Dockerfile --no-cache -t blog-update .
+/usr/local/bin/docker image build -f push-update-Dockerfile --no-cache -t blog-update .
 echo "...docker image build is complete."
 
 ## Tag the new image and push it to Docker Hub
-docker login
-docker tag blog-update mcfatem/blogs-mcfatem:latest
-docker push mcfatem/blogs-mcfatem:latest
+cat ~/mcfatem-docker-login.txt | /usr/local/bin/docker login -u mcfatem --password-stdin
+/usr/local/bin/docker tag blog-update mcfatem/blogs-mcfatem:latest
+/usr/local/bin/docker push mcfatem/blogs-mcfatem:latest

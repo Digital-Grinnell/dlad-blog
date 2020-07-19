@@ -1,8 +1,7 @@
 ---
 title: Scheduled Updates for a Hugo Static Site
 date: 2020-07-18T16:56:04-05:00
-params:
-  author: Mackenzie M.
+author: Mackenzie McFate
 tags:
   - docker
   - Automator

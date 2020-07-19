@@ -16,16 +16,19 @@
           {{ if $mod.After $pub }}
             &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: {{ .Lastmod.Format "Jan 2, 2006 - 15:04" }}
           {{ end }}
-        {{- with .Params.tags -}}
-        <div>
-          {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}
-          {{ range . -}}
-            {{- with $.Site.GetPage (printf "/%s/%s" "tags" . ) -}}
-              <a class="tag" href="{{ .Permalink }}">{{ .Title }}</a>
-            {{- end -}}
+          {{ if $.Param "author" }}
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong>{{ partial "icon.html" (dict "ctx" $ "name" "at-sign") }} {{ $.Param "author" }}</strong>
+          {{ end }}
+          {{- with .Params.tags -}}
+            <div>
+              {{ partial "icon.html" (dict "ctx" $ "name" "tag") }}
+              {{ range . -}}
+                {{- with $.Site.GetPage (printf "/%s/%s" "tags" . ) -}}
+                  <a class="tag" href="{{ .Permalink }}">{{ .Title }}</a>
+                {{- end -}}
+              {{- end -}}
+            </div>
           {{- end -}}
-        </div>
-        {{- end -}}
       </div>
     </header>
     <div class="post-content">
