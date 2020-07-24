@@ -1,6 +1,6 @@
 ---
 title: Islandora MODS Post-Processing
-publishdate: 2020-05-22
+publishdate: 2020-07-24T17:40:22-05:00
 draft: false
 tags:
   - islandora_mods_via_twig
