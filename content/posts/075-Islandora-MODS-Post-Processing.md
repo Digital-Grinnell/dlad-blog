@@ -1,5 +1,5 @@
 ---
-title: "Islandora MODS Post-Processing"
+title: Islandora MODS Post-Processing
 publishdate: 2020-05-22
 draft: false
 tags:
