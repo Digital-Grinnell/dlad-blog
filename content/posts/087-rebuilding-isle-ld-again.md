@@ -289,8 +289,7 @@ docker-compose up -d  0.79s user 0.13s system 12% cpu 7.127 total
 
 Much better!
 
-
-# <-- Progress Marker -->
+<!-- Progress Marker
 
 ## Connecting to FEDORA
 
@@ -530,3 +529,5 @@ Ok, at this point I believe that I have a good _Drupal_ database, a working _Fed
 To wrap this up I followed [Step 11 in the install-local-new.md](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-11-check-in-the-newly-created-islandora-drupal-site-code-into-is-git-repository) document to capture the state of my _Islandora/Drupal_ code.  In doing so I created my PRIVATE code repository, [dg-islandora](https://github.com/Digital-Grinnell/dg-islandora).
 
 And that's a wrap.  Until next time...
+
+-->
