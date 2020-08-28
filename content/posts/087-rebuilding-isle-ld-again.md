@@ -289,6 +289,8 @@ docker-compose up -d  0.79s user 0.13s system 12% cpu 7.127 total
 
 Much better!
 
+# Content Below This Point Has Been Commented Out
+
 <!-- Progress Marker
 
 ## Connecting to FEDORA
