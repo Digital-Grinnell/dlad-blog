@@ -1,5 +1,5 @@
 ---
-title: Synergy with a KM (Keyboard/Mouse) Switch: A Near-Perfect Combination
+title: "Synergy with a KM (Keyboard/Mouse) Switch: A Near-Perfect Combination"
 publishDate: 2020-08-28
 lastmod: 2020-08-28T08:08:38-05:00
 draft: false
@@ -39,13 +39,13 @@ Aside from Universal Clipboard, the litany of things I've tried in the past is f
 
 ## Why Those Things No Longer Work
 
-The real key to my computing environment is the college-owned iMac, it is the most powerful machine I have and the only one that has all the tools I need to do my job. Since it is a college-owned machines it must comply with college IT policy, and for the most part, that's why my previous soltuions have all failed. I understand why the policy is what it is, but there are available workarounds and strategies that I beleive could be successfully used, but nobody has vetted them nor are they willing to spend time doing so. I get that too.
+The real key to my computing environment is the college-owned iMac, it is the most powerful machine I have and the only one that has all the tools I need to do my job. Since it is a college-owned machine it must comply with college IT policy, and for the most part, that's why my previous soltuions have all failed. I understand why the policy is what it is, but there are available workarounds and strategies that I beleive could be successfully used, but nobody has vetted them nor are they willing to spend time doing so. I get that too.
 
 The most frustrating issue for me involves the college VPN which requires use of the [Cisco AnyConnect Secure Mobility Client](https://www.cisco.com/c/en/us/products/security/anyconnect-secure-mobility-client/index.html) configured to the college's specifications and under their control. I connect via VPN quite often and for long periods of time so this is especially painful. When engaged, the Cisco client takes complete control of the iMac's networking such that NONE of my network-dependent resources work. That effectively renders me unable to share ANY resources including my keyboard and mouse, printers, scanners, and external memory devices. Even with my "almost ideal" solution, this issue with loss of connectivity whenever VPN is active remains a big problem, but one that I can now workaround even when things aren't working optimally.
 
 ### The Deal Breaker
 
-The software solutions I've used, Synergy and Sharemouse, are by far the best options; they just work, except when they don't. 😦 When using either solution the VPN issue has always been present, but there are also times when the software just gets wonky. I've never been able to pinpoint all the conditions that cause things to go awry, but believe me, it happesn all the time, every day, sometimes more than once per day. Even worse, when the software fails I'm generally stuck using whatever machine had my keyboard and mouse focus at the time, and the other machine is effectively unreachable. In the past I had to connect a "spare" keyboard and mouse to the "zombie" machine to get control back, then I'd have to restart both machines and reconfigure the whole mess again. Rinse and repeat, daily, or more.
+The software solutions I've used, Synergy and Sharemouse, are by far the best options; they just work, except when they don't. 😦 When using either solution the VPN issue has always been present, but there are also times when the software just gets wonky. I've never been able to pinpoint all the conditions that cause things to go awry, but believe me, it happens all the time, every day, sometimes more than once per day. Even worse, when the software fails I'm generally stuck using whatever machine had my keyboard/mouse focus at the time, and the other machine is effectively unreachable. In the past I had to physically connect a "spare" keyboard and mouse to the "zombie" machine to get control back, then I'd have to restart both machines and reconfigure the whole mess again. Rinse and repeat, daily, or sometimes every few hours.
 
 ## What Works...the Good Part
 
