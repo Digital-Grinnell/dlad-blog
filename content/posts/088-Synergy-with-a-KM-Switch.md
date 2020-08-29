@@ -6,7 +6,6 @@ draft: false
 tags:
   - Synergy
   - KM switch
-  - keyboard/mouse
   - Universal Clipboard
 ---
 
