@@ -1,7 +1,7 @@
 ---
 title: "Local ISLE Installation: Migrate Existing Islandora Site - with Annotations"
 publishDate: 2020-08-31
-lastmod: 2020-09-02T17:34:52-05:00
+lastmod: 2020-09-03T08:47:37-05:00
 draft: false
 tags:
   - ISLE
@@ -724,7 +724,7 @@ docker exec -it isle-apache-ld bash -c   0.04s user 0.02s system 0% cpu 4:05.92 
 <!--- TODO: Add error message and how to proceed (click 'Advanced...') --->
 
 {{% annotation %}}
-<<<<<<<<<< Progress Marker >>>>>>>>>>  
+<<<<<<<<<< Progress Marker >>>>>>>>>>
 I visited [https://dg.localdomain](https://dg.localdomain) on my iMac desktop where the site comes up with no theme and repeats the aforementioned warnings, plus a few new ones, in a new format. The new, complete list of warnings is:
 
 ```
