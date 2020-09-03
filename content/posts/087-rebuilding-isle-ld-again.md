@@ -724,8 +724,7 @@ docker exec -it isle-apache-ld bash -c   0.04s user 0.02s system 0% cpu 4:05.92 
 <!--- TODO: Add error message and how to proceed (click 'Advanced...') --->
 
 {{% annotation %}}
-<<<<<<<<<< Progress Marker >>>>>>>>>>
-I visited [https://dg.localdomain](https://dg.localdomain) on my iMac desktop where the site comes up with no theme and repeats the aforementioned warnings, plus a few new ones, in a new format. The new, complete list of warnings is:
+I visited [https://dg.localdomain](https://dg.localdomain) on my iMac desktop as instructed. The site comes up but with no theme and it repeats the aforementioned warnings, plus a few new ones, in a different format than before (this is a web/html response rather than command-line output). The new, complete list of warnings is:
 
 ```
     User warning: The following module is missing from the file system: antibot. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
@@ -752,6 +751,10 @@ I visited [https://dg.localdomain](https://dg.localdomain) on my iMac desktop wh
 
     * You can also attempt to use login credentials that the Production server would have stored in its database.
 
+{{% annotation %}}
+My production site has the user-login block disabled so in order to attempt to login I had to explicitly visit `https://dg.localdomain/user/login`.  Unfortunately, neither the old nor new credentials worked, so I followed the additional steps below to add the new user to the _Apache_ container.
+{{% /annotation %}}
+
 * If the newly created Drupal login doesn't work then, you'll need to Shell into the Apache container:
 
     * **For Mac/Ubuntu/CentOS/etc:** `docker exec -it your-apache-containername bash`
@@ -770,7 +773,95 @@ I visited [https://dg.localdomain](https://dg.localdomain) on my iMac desktop wh
 
 * Type `exit` to exit the container
 
+{{% annotation %}}
+On my workstation I exeuted the following `docker exec...` command followed by the commands, as documented, inside the _Apache_ container, like so:
+
+```
+docker exec -it isle-apache-ld bash
+cd /var/www/html
+drush user-create admin --mail="digital@grinnell.edu" --password="**obfuscated**"
+drush user-add-role "administrator" admin
+```
+
+Unfortunately, in my case the `drush user...` command returned the following **error**: `There is already a user account with the email digital@grinnell.edu`.  So, I tried using my individual work email, `mcfatem@grinnell.edu`, but that returned a similar error.  Ultimately I elected to use a personal email address so the command sequence became:
+
+```
+docker exec -it isle-apache-ld bash
+cd /var/www/html
+drush user-create admin --mail="mark.mcfate@icloud.com" --password="**obfuscated**"
+drush user-add-role "Administrator" admin
+```
+
+Note that in my case there is no "administrator" role, only "Administrator", **with a capital "A"**. With that change the commands appear to have worked with output as follows:
+
+```
+ User ID       :  1119378
+ User name     :  admin
+ User mail     :  mark.mcfate@icloud.com
+ User roles    :  authenticated user
+ User status   :  active
+
+ Added role Administrator role to admin
+ ```
+{{% /annotation %}}
+
 * Attempt to login again
+
+{{% annotation %}}
+I did as instructed and this time the `admin` login was accepted. The output included all of the previous warnings, plus these:
+
+```
+Notice: Trying to get property of non-object in _theme_load_registry() (line 335 of /var/www/html/includes/theme.inc). =>
+
+    ... (Array, 10 elements)
+    Krumo version 0.2.1a | http://krumo.sourceforge.net
+    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 335
+
+Notice: Trying to get property of non-object in _theme_load_registry() (line 319 of /var/www/html/includes/theme.inc). =>
+
+    ... (Array, 12 elements)
+    Krumo version 0.2.1a | http://krumo.sourceforge.net
+    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 319
+
+Notice: Undefined index: digital_grinnell_bootstrap in theme_get_setting() (line 1440 of /var/www/html/includes/theme.inc). =>
+
+    ... (Array, 9 elements)
+    Krumo version 0.2.1a | http://krumo.sourceforge.net
+    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 1440
+
+Notice: Trying to get property of non-object in theme_get_setting() (line 1477 of /var/www/html/includes/theme.inc). =>
+
+    ... (Array, 9 elements)
+    Krumo version 0.2.1a | http://krumo.sourceforge.net
+    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 1477
+
+Notice: Trying to get property of non-object in theme_get_setting() (line 1487 of /var/www/html/includes/theme.inc). =>
+
+    ... (Array, 9 elements)
+    Krumo version 0.2.1a | http://krumo.sourceforge.net
+    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 1487
+
+Notice: Undefined index: highlighted in include() (line 126 of /var/www/html/modules/system/page.tpl.php). =>
+
+    ... (Array, 9 elements)
+    Krumo version 0.2.1a | http://krumo.sourceforge.net
+    [Click to expand. Double-click to show path.] Called from /var/www/html/modules/system/page.tpl.php, line 126
+
+Notice: Undefined index: sidebar_first in include() (line 138 of /var/www/html/modules/system/page.tpl.php). =>
+
+    ... (Array, 9 elements)
+    Krumo version 0.2.1a | http://krumo.sourceforge.net
+    [Click to expand. Double-click to show path.] Called from /var/www/html/modules/system/page.tpl.php, line 138
+
+Notice: Undefined index: sidebar_second in include() (line 144 of /var/www/html/modules/system/page.tpl.php). =>
+
+    ... (Array, 9 elements)
+    Krumo version 0.2.1a | http://krumo.sourceforge.net
+    [Click to expand. Double-click to show path.] Called from /var/www/html/modules/system/page.tpl.php, line 144
+```
+<<<<<<<<<< Progress Marker >>>>>>>>>>
+
+{{% /annotation %}}
 
 ---
 
