@@ -713,7 +713,6 @@ The aforementioned warnings were repeated several times and the script finished 
 Drush script finished! ...exiting
 docker exec -it isle-apache-ld bash -c   0.04s user 0.02s system 0% cpu 4:05.92 total
 ```
-<<<<<<<<<< Progress Marker >>>>>>>>>>
 {{% /annotation %}}
 
 ---
@@ -723,6 +722,29 @@ docker exec -it isle-apache-ld bash -c   0.04s user 0.02s system 0% cpu 4:05.92 
 * In your web browser, enter this URL: `https://yourprojectnamehere.localdomain`
 
 <!--- TODO: Add error message and how to proceed (click 'Advanced...') --->
+
+{{% annotation %}}
+<<<<<<<<<< Progress Marker >>>>>>>>>>  
+I visited [https://dg.localdomain](https://dg.localdomain) on my iMac desktop where the site comes up with no theme and repeats the aforementioned warnings, plus a few new ones, in a new format. The new, complete list of warnings is:
+
+```
+    User warning: The following module is missing from the file system: antibot. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following module is missing from the file system: dg7. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following module is missing from the file system: idu. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following module is missing from the file system: islandora_binary_object. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following module is missing from the file system: islandora_collection_search. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following module is missing from the file system: islandora_datastream_exporter. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following module is missing from the file system: islandora_datastream_replace. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following module is missing from the file system: islandora_mods_display. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following module is missing from the file system: islandora_mods_via_twig. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following module is missing from the file system: islandora_multi_importer. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following module is missing from the file system: islandora_oralhistories. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following module is missing from the file system: islandora_solr_collection_view. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following module is missing from the file system: islandora_solr_views. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following module is missing from the file system: transcripts_ui. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+    User warning: The following theme is missing from the file system: digital_grinnell_bootstrap. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
+```
+{{% /annotation %}}
 
 * Note: You may see an SSL error warning that the site is unsafe. It is safe, it simply uses "self-signed" SSL certs. Ignore the error and proceed to the site.
 

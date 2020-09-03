@@ -58,7 +58,7 @@ enableGitInfo = true  # makes Lastmod equivalent to git commit date
 
 [params]
   build = 314
-  buildDate = '2020-08-28 21:37'
+  buildDate = '2020-09-02 08:41'
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
