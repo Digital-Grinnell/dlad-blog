@@ -1,7 +1,7 @@
 ---
 title: "Local ISLE Installation: Migrate Existing Islandora Site - with Annotations"
 publishDate: 2020-08-31
-lastmod: 2020-09-02T08:40:36-05:00
+lastmod: 2020-09-02T17:34:52-05:00
 draft: false
 tags:
   - ISLE
@@ -155,15 +155,29 @@ rsync -aruvi islandora@132.161.132.103:/opt/ISLE/persistent/html/sites/default/f
     * Copy this file down to your personal computer.
 
 {{% annotation %}}
-The production instance of _Digital.Grinnell_ has built-in facilities for performing this step and they were used here. When logged in as `System Admin`, the _Digital.Grinnell_ right-hand region of the home page has clickable commands `Clear Cache` in the `Development` block, and a `Quick Backup` block of options and actions.  The `Quick Backup` options I used were all the defaults, specifically:
+Even though the production instance of _Digital.Grinnell_ has built-in facilities for performing this step, I chose to use an easily-repeated command line from an SSH session open on DGDocker1, like so:
 
 ```
-Backup Source: Default Database
-Backup Destination: Download
-Settings Profile: Default Settings
+docker exec -w /var/www/html/sites/default isle-apache-dg drush cc all
+docker exec -it isle-mysql-dg bash
 ```
 
-The `Backup now` button/command subsequently produced the file that I have stored on my iMac in `/Users/markmcfate/Desktop/migration-copy/DigitalGrinnell-2020-08-31T16-04-05.mysql.gz`.
+Then, working inside the _isle-mysql-dg_ container:
+```
+mysqldump -u isle_dg_user -p isle_dg > prod_drupal_site_083120.sql
+exit
+```
+
+Back in the DGDocker1 terminal:
+```
+docker cp isle-mysql-dg:/prod_drupal_site_083120.sql ~/.
+exit
+```
+
+Next, from my desktop terminal this command saved a copy of the exported database in `/Users/markmcfate/Desktop/migration-copy/prod_drupal_site_083120.sql`:
+```
+rsync -aruvi islandora@132.161.132.103:/home/islandora/prod_drupal_site_083120.sql ~/Desktop/migration-copy/prod_drupal_site_083120.sql
+```
 {{% /annotation %}}
 
 ### Fedora Hash Size (Conditional)
@@ -526,10 +540,6 @@ I followed the instructions in this section to-the-letter.
 
 ## Step 9: Import the Production MySQL Drupal Database
 
-{{% annotation %}}
-<<<<<<<<<<< Progress Marker >>>>>>>>>>>>
-{{% /annotation %}}
-
 **Method A: Use a MySQL client with a GUI**
 
 * Configure the client with the following:
@@ -559,6 +569,15 @@ I followed the instructions in this section to-the-letter.
 * This might take a few minutes depending on the size of the file.
 * Type `exit` to exit the container
 
+{{% annotation %}}
+I chose _Method B_ and used the following commands to complete this step:
+```
+docker cp /Users/markmcfate/Desktop/migration-copy/prod_drupal_site_083120.sql isle-mysql-ld:/prod_drupal_site_083120.sql
+docker exec -it isle-mysql-ld bash
+mysql -u admin -p digital_grinnell < prod_drupal_site_083120.sql
+```
+{{% /annotation %}}
+
 ---
 
 ## Step 10: Run Islandora Drupal Site Scripts
@@ -579,6 +598,82 @@ This step will show you how to run the "migration_site_vsets.sh" script on the A
     * **For Mac/Ubuntu/CentOS/etc:** `docker exec -it your-apache-containername bash -c "cd /var/www/html && ./migration_site_vsets.sh"`
     * **For Microsoft Windows:** `winpty docker exec -it your-apache-containername bash -c "cd /var/www/html && ./migration_site_vsets.sh"`
 
+{{% annotation %}}
+I ran the following commands to complete this portion of Step 10:
+```
+docker cp scripts/apache/migration_site_vsets.sh isle-apache-ld:/var/www/html/migration_site_vsets.sh
+docker exec -it isle-apache-ld bash -c "chmod +x /var/www/html/migration_site_vsets.sh"
+time docker exec -it isle-apache-ld bash -c "cd /var/www/html && ./migration_site_vsets.sh"
+```
+
+The script output included several copies of the following warning messages:
+```
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">antibot</em>. For information about how to fix this, see <a
+href="https://www.drupal.org/node/2487215">the documentation page</a>.
+bootstrap.inc:1156
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">dg7</em>. For information about how to fix this, see <a
+href="https://www.drupal.org/node/2487215">the documentation page</a>.
+bootstrap.inc:1156
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">idu</em>. For information about how to fix this, see <a
+href="https://www.drupal.org/node/2487215">the documentation page</a>.
+bootstrap.inc:1156
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">islandora_binary_object</em>. For information about how to fix
+this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>.
+bootstrap.inc:1156
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">islandora_collection_search</em>. For information about how to
+fix this, see <a href="https://www.drupal.org/node/2487215">the documentation
+page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">islandora_datastream_exporter</em>. For information about how to
+fix this, see <a href="https://www.drupal.org/node/2487215">the documentation
+page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">islandora_datastream_replace</em>. For information about how to
+fix this, see <a href="https://www.drupal.org/node/2487215">the documentation
+page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">islandora_mods_display</em>. For information about how to fix
+this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>.
+bootstrap.inc:1156
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">islandora_mods_via_twig</em>. For information about how to fix
+this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>.
+bootstrap.inc:1156
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">islandora_multi_importer</em>. For information about how to fix
+this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>.
+bootstrap.inc:1156
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">islandora_oralhistories</em>. For information about how to fix
+this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>.
+bootstrap.inc:1156
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">islandora_solr_collection_view</em>. For information about how
+to fix this, see <a href="https://www.drupal.org/node/2487215">the documentation
+page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">islandora_solr_views</em>. For information about how to fix
+this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>.
+bootstrap.inc:1156
+The following module is missing from the file system: <em                           [warning]
+class="placeholder">transcripts_ui</em>. For information about how to fix this, see
+<a href="https://www.drupal.org/node/2487215">the documentation page</a>.
+bootstrap.inc:1156
+```
+
+The script finished with:
+```
+'all' cache was cleared.                                                            [success]
+Drush script finished! ...exiting
+docker exec -it isle-apache-ld bash -c   0.07s user 0.07s system 0% cpu 4:14.54 total
+```
+{{% /annotation %}}
+
 **install_solution_packs.sh: installs Islandora solution packs**
 
 Since you've imported an existing Drupal database, you must now reinstall the Islandora solution packs so the Fedora repository will be ready to ingest objects.
@@ -596,14 +691,30 @@ Since you've imported an existing Drupal database, you must now reinstall the Is
     * If the script appears to pause or prompt for "y/n", DO NOT enter any values; the script will automatically answer for you.
 
 | For Microsoft Windows: |
-| :-------------      |
-| You may be prompted by Windows to: |
-| - Share the C drive with Docker.  Click Okay or Allow.|
-| - Enter your username and password. Do this.|
-| - Allow vpnkit.exe to communicate with the network.  Click Okay or Allow (accept default selection).|
-| - If the process seems to halt, check the taskbar for background windows.|
+| --- |
+| You may be prompted by Windows to:
+|  - Share the C drive with Docker.  Click Okay or Allow. |
+|  - Enter your username and password. Do this. |
+|  - Allow vpnkit.exe to communicate with the network.  Click Okay or Allow (accept default selection). |
+|  - If the process seems to halt, check the taskbar for background windows. |
 
 * **Proceed only after this message appears:** "Done. 'all' cache was cleared."
+
+{{% annotation %}}
+I ran the following commands to complete this portion of Step 10:
+```
+docker cp scripts/apache/install_solution_packs.sh isle-apache-ld:/var/www/html/install_solution_packs.sh
+docker exec -it isle-apache-ld bash -c "chmod +x /var/www/html/install_solution_packs.sh"
+time docker exec -it isle-apache-ld bash -c "cd /var/www/html && ./install_solution_packs.sh"
+```
+
+The aforementioned warnings were repeated several times and the script finished with:
+```
+Drush script finished! ...exiting
+docker exec -it isle-apache-ld bash -c   0.04s user 0.02s system 0% cpu 4:05.92 total
+```
+<<<<<<<<<< Progress Marker >>>>>>>>>>
+{{% /annotation %}}
 
 ---
 
