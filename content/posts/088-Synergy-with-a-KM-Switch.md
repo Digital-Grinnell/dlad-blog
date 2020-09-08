@@ -17,7 +17,7 @@ As of this morning my `Synergy` solution stopped working and I could not easily 
 
 The other factor today... now that my GC iMac has a new "assigned identity", I think the old system tag has to be removed from my config because `Synergy` keeps expecting to find that hostname.
 
-So, I've disabled `Synergy` in favor of `Sharemouse` again with intent to let it run for a few days just to see if it behaves any better with my KM switch. I also added `Sharemouse` as a keyword in this post. If things work out, I'll update the rest of this post next week to formally reflect this change.
+So, I've disabled `Synergy` in favor of `Sharemouse`, again, with intent to let it run for a few days just to see if it behaves any better with my KM switch. I also added `Sharemouse` as a keyword in this post. If things work out, I'll update the rest of this post next week to formally reflect this change.
 {{% /boxmd %}}
 
 I think I have finally found (created?) a multi-computer desktop environment that is nearly perfect; it combines [Synergy](https://symless.com/synergy) with a [4-port USB KM switch](https://www.aten.com/us/en/products/usb-&-thunderbolt/peripheral-switches/us424/) that I purchased a few months ago after my other solutions failed, again. The many miserable failures that came before this solution tell a bleak story, but perhaps my telling it here will save others some grief.

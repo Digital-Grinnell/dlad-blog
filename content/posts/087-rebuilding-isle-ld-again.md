@@ -774,7 +774,7 @@ My production site has the user-login block disabled so in order to attempt to l
 * Type `exit` to exit the container
 
 {{% annotation %}}
-On my workstation I exeuted the following `docker exec...` command followed by the commands, as documented, inside the _Apache_ container, like so:
+On my workstation I executed the following `docker exec...` command followed by the documented commands, inside the _Apache_ container, like so:
 
 ```
 docker exec -it isle-apache-ld bash
@@ -859,8 +859,10 @@ Notice: Undefined index: sidebar_second in include() (line 144 of /var/www/html/
     Krumo version 0.2.1a | http://krumo.sourceforge.net
     [Click to expand. Double-click to show path.] Called from /var/www/html/modules/system/page.tpl.php, line 144
 ```
-<<<<<<<<<< Progress Marker >>>>>>>>>>
+{{% /annotation %}}
 
+{{% annotaion %}}
+Please refer to [post 090](https://static.grinnell.edu/blogs/McFateM/posts/090-isle-local-migration-customization/) for details of the customizations I implemented to complete the process of migrating to a new local instance of ISLE, one that looks and behaves exactly like _Digital.Grinnell_. 
 {{% /annotation %}}
 
 ---
