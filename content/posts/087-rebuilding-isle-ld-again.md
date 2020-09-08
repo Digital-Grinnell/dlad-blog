@@ -861,8 +861,8 @@ Notice: Undefined index: sidebar_second in include() (line 144 of /var/www/html/
 ```
 {{% /annotation %}}
 
-{{% annotaion %}}
-Please refer to [post 090](https://static.grinnell.edu/blogs/McFateM/posts/090-isle-local-migration-customization/) for details of the customizations I implemented to complete the process of migrating to a new local instance of ISLE, one that looks and behaves exactly like _Digital.Grinnell_. 
+{{% annotation %}}
+Please refer to [post 090](https://static.grinnell.edu/blogs/McFateM/posts/090-isle-local-migration-customization/) for details of the customizations I implemented to complete the process of migrating to a new local instance of ISLE, one that looks and behaves exactly like _Digital.Grinnell_.
 {{% /annotation %}}
 
 ---
