@@ -1,7 +1,7 @@
 ---
 title: "Local ISLE Installation: Migrate Existing Islandora Site - One-Time Customizations"
 publishDate: 2020-09-07
-lastmod: 2020-09-09T21:57:30-05:00
+lastmod: 2020-09-10T09:03:37-05:00
 draft: false
 tags:
   - ISLE
@@ -122,6 +122,59 @@ On _DGDocker1_ I found a `.git` subdirectory in the `/opt/ISLE/persistent/html/s
 | cd ~/GitHub/dg-islandora <br/> git submodule add https://github.com/DigitalGrinnell/islandora_mods_via_twig.git sites/all/modules/islandora/islandora_mods_via_twig <br/> docker exec -w /var/www/html/sites/default isle-apache-ld drush cc all |
 
 A quick visit to [https://dg.localdomain](https://dg.localdomain) on my local workstation shows the site is working and with **no visible errors or warnings**!  Woot!
+
+### Two Probable Issues
+
+So, it works...maybe. However, I am concerned with a couple of things so I decided to take a peek inside my new local ISLE instance to check. I did indeed find a couple of problems.
+
+#### Permissions and Ownership of "antibot" and "islandora_mods_via_twig"
+
+Inside the _Apache_ container I checked the permissions of my `/var/www/html/sites/all/modules/islandora` directory and found this, abridged for clarity:
+
+```
+drwxr-x--- 10 islandora www-data  320 Sep  9 22:21 islandora_mods_display/
+drwxr-xr-x  8 www-data  www-data  256 Sep 10 03:08 islandora_mods_via_twig/
+drwxr-x--- 20 islandora www-data  640 Sep 10 02:10 islandora_multi_importer/
+```
+
+Likewise, inside `/var/www/html/sites/all/modules/contrib` I found this, also abridged for clarity:
+
+```
+drwxr-x--- 12 islandora www-data  384 Sep  9 22:20 announcements/
+drwxr-xr-x 11 www-data  www-data  352 Jun 11  2018 antibot/
+drwxr-x--- 12 islandora www-data  384 Sep  9 22:20 backup_migrate/
+```
+
+And inside both of those subdirectories I found structures with owner/group and permissions like this:
+
+```
+root@5686019d1a3a:/var/www/html/sites/all/modules/islandora/islandora_mods_via_twig# ll
+total 88
+drwxr-xr-x  8 root      root       256 Sep 10 03:08 ./
+drwxr-x--- 63 islandora www-data  2016 Sep 10 03:08 ../
+-rw-r--r--  1 root      root        88 Sep 10 03:08 .git
+-rwxr-xr-x  1 root      root     16683 Sep 10 03:08 islandora_mods_via_twig.drush.inc*
+-rw-r--r--  1 root      root       265 Sep 10 03:08 islandora_mods_via_twig.info
+-rw-r--r--  1 www-data  www-data    67 Sep 10 03:08 islandora_mods_via_twig.module
+-rw-r--r--  1 root      root     35064 Sep 10 03:08 LICENSE.txt
+-rw-r--r--  1 root      root     17925 Sep 10 03:08 README.md
+```
+
+Not good from an owner/group perspective, but looking OK in terms of permissions? So, the necessary changes I need to make here are ones that were previously performed as part of the `migration_site_vsets.sh` script back in [Step 10: Run Islandora Drupal Site Scripts](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-10-run-islandora-drupal-site-scripts). Specifically, inside the _Apache_ container I need to rerun this command from that script:
+
+| _isle-apache-ld_ Container Commands |
+| --- |
+| `/bin/bash /utility-scripts/isle_drupal_build_tools/drupal/fix-permissions.sh --drupal_path=/var/www/html --drupal_user=islandora --httpd_group=www-data` |
+
+A quick check of the aforementioned directories and files inside the _Apache_ container shows that owner/group and permissions are now as-they-should-be. Yay!
+
+#### Where Have All the Files Gone?
+
+Ok, so I'm showing my age with that sub-title, I know. But it's a valid question, perhaps best summed up in this _Slack_ post of mine:
+
+{{% original %}}
+At https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#drupal-site-files-and-code I made a copy of my production `/var/www/html/sites/default/files` directory anticipating that "You'll move this directory in later steps."   I must have missed something, because I can't find anyplace in the document where I moved those files into my new local instance of ISLE.
+{{% /original %}}
 
 <!--
 
