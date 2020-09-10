@@ -1,7 +1,7 @@
 ---
 title: "Local ISLE Installation: Migrate Existing Islandora Site - One-Time Customizations"
 publishDate: 2020-09-07
-lastmod: 2020-09-10T09:03:37-05:00
+lastmod: 2020-09-10T13:09:38-05:00
 draft: false
 tags:
   - ISLE

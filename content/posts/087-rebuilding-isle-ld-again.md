@@ -1,7 +1,7 @@
 ---
 title: "Local ISLE Installation: Migrate Existing Islandora Site - with Annotations"
 publishDate: 2020-08-31
-lastmod: 2020-09-03T08:47:37-05:00
+lastmod: 2020-09-10T13:09:20-05:00
 draft: false
 tags:
   - ISLE
@@ -598,6 +598,22 @@ I chose _Method B_ and used the following commands to complete this step:
 
 ---
 
+{{% annotation %}}
+Once I completed this entire process, as documented, I was left wondering what to do with the backup copy of my production `/var/www/html/sites/default/files` directory that I created back in [Step 0](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-0-copy-production-data-to-your-personal-computer)? After posting a question to the [isle-support](https://icg-chat.slack.com/archives/CG6HZRWQM) _Slack_ channel about this, I agreed that the handling of that backup directory should be covered here, and I opened an [issue #388 in GitHub](https://github.com/Islandora-Collaboration-Group/ISLE/issues/388) to deal with the documentation. The command sequence I used is documented here.
+
+| Workstation Commands |
+| --- |
+| `docker cp /Users/markmcfate/Desktop/migration-copy/var/www/html/sites/default/files/. isle-apache-ld:/var/www/html/sites/default/files/` |
+
+Since I introduced and executed this annotation _after_ completing the entire process, I found it necessary to repeat a portion of the `migration_site_vsets.sh` script introduced later in the document.  I did this working in the _Apache_ container, like so:
+
+| _isle-apache-ld_ Container Commands |
+| --- |
+| `/bin/bash /utility-scripts/isle_drupal_build_tools/drupal/fix-permissions.sh --drupal_path=/var/www/html --drupal_user=islandora --httpd_group=www-data` <br/> `cd /var/www/html/sites/default` <br/> `drush cc all` |
+{{% /annotation %}}
+
+---
+
 ## Step 10: Run Islandora Drupal Site Scripts
 
 **migration_site_vsets.sh: updates Drupal database settings**
@@ -695,8 +711,8 @@ Changing permissions of all files inside /var/www/html to rw-r-----...
 Changing permissions of files directories in /var/www/html/sites to rwxrwx---...
 Changing permissions of all files inside all files directories in /var/www/html/sites to rw-rw----...
 Changing permissions of all directories inside all files directories in /var/www/html/sites to rwxrwx---...
-find: ‘./*/files’: No such file or directory
-find: ‘./*/files’: No such file or directory
+find: './*/files': No such file or directory
+find: './*/files': No such file or directory
 Done setting proper permissions on files and directories
 Configuring cron job to run every 3 hours
 Running Drupal Cron first time and clearing Drupal Caches.
@@ -713,6 +729,8 @@ persists.
 Drush script finished! ...exiting
 docker exec -w /var/www/html isle-apache-ld ./migration_site_vsets.sh  0.05s user 0.04s system 0% cpu 7:59.50 total
 ```
+
+**Note:** In the above output the two lines that read `find: './*/files': No such file or directory` were present because our _production_ backup copy of `/var/www/html/sites/defaults/files` had not been restored. Completion of that missing portion of `Step 9` should resolve/remove those warnings.
 {{% /annotation %}}
 
 **install_solution_packs.sh: installs Islandora solution packs**
@@ -846,6 +864,16 @@ I did as instructed and this time the `admin` login was accepted. The output inc
 {{% /annotation %}}
 
 ## Step 12: Ingest Sample Objects
+
+{{% annotation %}}
+Since my new local instance of ISLE includes the use of my `DG-FEDORA portable (USB stick) repository`, there was no need for me to execute the steps outlined in this section. Instead, I followed the update guidance provided in [DG-FEDORA: A Portable FEDORA Repository](https://static.grinnell.edu/blogs/McFateM/posts/046-dg-fedora-a-portable-object-repository/).
+
+After following the aforementioned blog post my repository containing more than 120 objects was visible, as expected.
+
+_Digital.Grinnell_'s home page "view" is somewhat complex and requires some attention before it will function properly. Guidance to update/configure the `dg7 Collection View` is provided in [Updating DG's Collection Views](https://static.grinnell.edu/blogs/McFateM/posts/068-updating-dgs-collection-views/) and I followed that guidance to ensure that our new local ISLE instance was behaving properly.
+
+Following this critical update I'm pleased to report that [https://dg.localdomain](https://dg.localdomain) appears to be working perfectly!
+{{% /annotation %}}
 
 It is recommended that end users migrating their sites opt to either import sample objects from their non-ISLE Production Fedora servers or use the following below:
 
