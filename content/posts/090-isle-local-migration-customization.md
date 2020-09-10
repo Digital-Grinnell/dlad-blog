@@ -1,7 +1,7 @@
 ---
-title: "Local ISLE Installation: Migrate Existing Islandora Site - Customizations"
-publishDate: 2020-09-08
-lastmod: 2020-09-08T10:13:59-05:00
+title: "Local ISLE Installation: Migrate Existing Islandora Site - One-Time Customizations"
+publishDate: 2020-09-07
+lastmod: 2020-09-09T21:57:30-05:00
 draft: false
 tags:
   - ISLE
@@ -13,88 +13,23 @@ tags:
 This post is an addendum to earlier [post 087](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again/). It is intended to chronicle my _customization_ efforts, necessary steps that follow the aforementioned document's `Step 11`, to migrate to a `local development` instance of _Digital.Grinnell_ on my work-issued iMac, `MA8660`, currently identified as `MAD25W812UJ1G9`.  Please refer to Steps 0 - 11 in [post 087](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again/) for background info.
 
 ## Goal
-The goal of this project is once again to spin up a local Islandora stack using [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE/) following the guidance of the project's [install-local-migrate](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md) document.  My process will be slightly different than documented since I've already created a pair of private [dg-isle](https://github.com/Digital-Grinnell/dg-isle/) and [dg-islandora](https://github.com/Digital-Grinnell/dg-islandora/) repositories. This workflow will also take steps to introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme/) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7/).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu/.
+The goal of this project is once again to spin up a local Islandora stack using [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE/) following the guidance of the project's [install-local-migrate](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md) document.  My process will be slightly different than documented since I've already created a pair of private [dg-isle](https://github.com/Digital-Grinnell/dg-isle/) and [dg-islandora](https://github.com/Digital-Grinnell/dg-islandora/) repositories.
 
 {{% annotation %}}
 Note that there are no formal "annotations" in this document because everything here is an addendum/annotation to the original [install-local-migrate](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md) document.
 {{% /annotation %}}
 
 ## Outcomes of Step 11
-As part of [Step 11](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-11-test-the-site) I visited [https://dg.localdomain](https://dg.localdomain) on my iMac desktop and found that the site came up but with no theme and it repeats the aforementioned warnings, plus a few new ones, in a different format than before (this is a web/html response rather than command-line output). The new, complete list of warnings was:
+As part of [Step 11](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-11-test-the-site) I visited [https://dg.localdomain](https://dg.localdomain) on my iMac desktop and found that the site came up looking and behaving just as it should, but with two warnings. The complete list of warnings was:
 
 ```
     User warning: The following module is missing from the file system: antibot. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: dg7. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: idu. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_binary_object. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_collection_search. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_datastream_exporter. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_datastream_replace. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_mods_display. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
     User warning: The following module is missing from the file system: islandora_mods_via_twig. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_multi_importer. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_oralhistories. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_solr_collection_view. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_solr_views. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: transcripts_ui. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following theme is missing from the file system: digital_grinnell_bootstrap. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-```
-
-Once I had the site open in my broswer I also took note of these warnings:
-
-```
-Notice: Trying to get property of non-object in _theme_load_registry() (line 335 of /var/www/html/includes/theme.inc). =>
-
-    ... (Array, 10 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 335
-
-Notice: Trying to get property of non-object in _theme_load_registry() (line 319 of /var/www/html/includes/theme.inc). =>
-
-    ... (Array, 12 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 319
-
-Notice: Undefined index: digital_grinnell_bootstrap in theme_get_setting() (line 1440 of /var/www/html/includes/theme.inc). =>
-
-    ... (Array, 9 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 1440
-
-Notice: Trying to get property of non-object in theme_get_setting() (line 1477 of /var/www/html/includes/theme.inc). =>
-
-    ... (Array, 9 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 1477
-
-Notice: Trying to get property of non-object in theme_get_setting() (line 1487 of /var/www/html/includes/theme.inc). =>
-
-    ... (Array, 9 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 1487
-
-Notice: Undefined index: highlighted in include() (line 126 of /var/www/html/modules/system/page.tpl.php). =>
-
-    ... (Array, 9 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/modules/system/page.tpl.php, line 126
-
-Notice: Undefined index: sidebar_first in include() (line 138 of /var/www/html/modules/system/page.tpl.php). =>
-
-    ... (Array, 9 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/modules/system/page.tpl.php, line 138
-
-Notice: Undefined index: sidebar_second in include() (line 144 of /var/www/html/modules/system/page.tpl.php). =>
-
-    ... (Array, 9 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/modules/system/page.tpl.php, line 144
 ```
 
 ## Dealing with Warnings
 
-It was obvious that I needed to resolve all of the aforementioned installation warnings, and they are all an indication of theme and module components that are "missing" from my _dg-islandora_ repository. Remember, in our `docker-compose.local.yml` file we map the following:
+Resolving these warnings would basically involve adding the missing modules to my _dg-islandora_ repository. Remember, in our `docker-compose.local.yml` file we map the following:
 
 ```
 volumes:
@@ -102,46 +37,91 @@ volumes:
   - ../dg-islandora:/var/www/html:cached
 ```
 
-So the task before me was to add these things to _dg-islandora_, and save the changes into the _dg-islandora_ repo for use later on.
+So the task before me was to add these things to _dg-islandora_, and save the changes into the _dg-islandora_ repo for use later on. Looking at my production instance of ISLE on _DGDocker1_, I found that the only missing "contrib" module was `antibot` which currently resides in `/opt/ISLE/persistent/html/sites/all/modules/contrib/antibot`.  The other missing module was part of the "islandora" branch of the module tree, residing in subdirectories of `/opt/ISLE/persistent/html/sites/all/modules/islandora/islandora_mods_via_twig`.
 
-### Addressing the Theme
+### antibot
 
-Because it impacts the theme and site display, I chose to begin with this warning:
-
-```
-User warning: The following theme is missing from the file system: digital_grinnell_bootstrap. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-```
-
-#### Installing the Missing Theme: digital_grinnell_bootstrap
-
-My initial focus here turned to installing the [digital_grinnell_bootstrap](https://github.com/DigitalGrinnell/digital_grinnell_bootstrap).  Initially I did this with a pair of `git clone...` commands, but since I'm adding these to my _Islandora / Drupal_ code repository I will use _Git_ `submodules` instead of `git clone`.
-
-From my workstation, the commands to engage our theme as a submodule were:
+The [antibot](https://www.drupal.org/project/antibot) module currently resides in `/opt/ISLE/persistent/html/sites/all/modules/contrib/antibot` on _DGDocker1_. I was curious what would happen if I opened a terminal into my local _Apache_ container and used `drush pm-download...` to try installing this module. My command sequence on my desktop workstation was this:
 
 | Workstation Commands |
 | --- |
-| cd ~/GitHub/dg-islandora/sites/all <br/> cd ~/GitHub/dg-islandora/data/apache/html/sites/default/themes <br/> git submodule add -f https://github.com/DigitalGrinnell/digital_grinnell_bootstrap.git |
+| docker exec -w /var/www/html/sites/default isle-apache-ld drush pm-download antibot <br/> docker exec -w /var/www/html/sites/default isle-apache-ld drush cc all |
 
-Then inside the _Apache_ container...
+The results were very promising as the first command returned this:
 
-| Apache Container Commands |
+```
+Project antibot (7.x-1.2) downloaded to                                [success]
+/var/www/html/sites/all/modules/contrib/antibot.
+```
+
+The 2nd `drush...` command subsequently returned only one warning  **since the `antibot` warning was gone**!  A peek inside my `dg-islandora` instance on the workstation was also promising. There I found this:
+
+```
+╭─markmcfate@MAD25W812UJ1G9 ~/GitHub/dg-islandora/sites/all/modules/contrib ‹ruby-2.3.0› ‹master*›
+╰─$ ll
+total 0
+drwxr-x---@ 21 markmcfate  staff   672B Sep  1 15:31 admin_menu
+drwxr-x---@  9 markmcfate  staff   288B Sep  1 15:31 admin_theme
+drwxr-x---@ 12 markmcfate  staff   384B Sep  1 15:31 announcements
+drwxr-xr-x  11 markmcfate  staff   352B Jun 10  2018 antibot
+drwxr-x---@ 12 markmcfate  staff   384B Sep  1 15:31 backup_migrate
+...
+```
+
+So it appears that `antibot` was properly downloaded to the correct owner/group, and all that's missing is a proper set of its permissions, although I suspect it will function properly just as it is. A peek inside the new `antibot` directory showed this:
+
+```
+╭─markmcfate@MAD25W812UJ1G9 ~/GitHub/dg-islandora/sites/all/modules/contrib/antibot ‹ruby-2.3.0› ‹master*›
+╰─$ ll
+total 96
+-rw-r--r--  1 markmcfate  staff    18K Nov 16  2016 LICENSE.txt
+-rw-r--r--  1 markmcfate  staff    91B Jun  6  2018 README.txt
+-rw-r--r--  1 markmcfate  staff   1.2K Jun  6  2018 antibot.admin.inc
+-rw-r--r--  1 markmcfate  staff   286B Jun 10  2018 antibot.info
+-rw-r--r--  1 markmcfate  staff   224B Jun  6  2018 antibot.install
+-rw-r--r--  1 markmcfate  staff   5.2K Jun  6  2018 antibot.module
+-rw-r--r--  1 markmcfate  staff   765B Jun  6  2018 antibot.pages.inc
+drwxr-xr-x  3 markmcfate  staff    96B Jun  6  2018 js
+drwxr-xr-x  3 markmcfate  staff    96B Jun  6  2018 templates
+```
+
+A check of the equivalent directories and files on _DGDocker1_ revealed much the same as you can see in the abridged output below.
+
+```
+[islandora@dgdocker1 contrib]$ ll
+total 268
+drwxr-x---.  2 islandora 33 4096 Nov 19  2014 addanother
+drwxr-x---.  3 islandora 33 4096 Dec  6  2010 admin_theme
+drwxr-x---.  5 islandora 33 4096 Apr 14  2018 advanced_help
+drwxr-x---.  2 islandora 33 4096 Jan 20  2015 announcements
+drwxr-xr-x.  4 islandora 33 4096 Jun 10  2018 antibot
+drwxr-x---.  4 islandora 33 4096 Dec 15  2018 backup_migrate
+...
+[islandora@dgdocker1 contrib]$ cd antibot
+[islandora@dgdocker1 antibot]$ ll
+total 48
+-rw-r--r--. 1 islandora 33  1196 Jun  7  2018 antibot.admin.inc
+-rw-r--r--. 1 islandora 33   286 Jun 10  2018 antibot.info
+-rw-r--r--. 1 islandora 33   224 Jun  7  2018 antibot.install
+-rw-r--r--. 1 islandora 33  5370 Jun  7  2018 antibot.module
+-rw-r--r--. 1 islandora 33   765 Jun  7  2018 antibot.pages.inc
+drwxr-xr-x. 2 islandora 33    23 Jun  7  2018 js
+-rw-r--r--. 1 islandora 33 18092 Nov 16  2016 LICENSE.txt
+-rw-r--r--. 1 islandora 33    91 Jun  7  2018 README.txt
+drwxr-xr-x. 2 islandora 33    34 Jun  7  2018 templates
+```
+
+I subsequently logged in to both my production and local instances of ISLE and visited the corresponding `antibot` configuration pages at [https://digital.grinnell.edu/admin/config/system/antibot](https://digital.grinnell.edu/admin/config/system/antibot) and [https://dg.localdomain/islandora/object/islandora%3Aroot#overlay=admin/config/system/antibot](https://dg.localdomain/islandora/object/islandora%3Aroot#overlay=admin/config/system/antibot). The nearly identical pages indicate that my `antibot` configruation, presumably part of my imported production _Drupal_ database, is intact and exactly as it should be.  This was good news indeed!
+
+### islandora_mods_via_twig
+
+On _DGDocker1_ I found a `.git` subdirectory in the `/opt/ISLE/persistent/html/sites/all/modules/islandora/islandora_mods_via_twig` directory indicating that this module should be provisioned using `git`. The module has a `git remote -v` response of `origin https://github.com/DigitalGrinnell/islandora_mods_via_twig.git` so I believe it would be prudent to add it as another git submodule. I did that like so:
+
+| Workstation Commands |
 | --- |
-| cd /var/www/html/sites/default/themes <br/> chown -R islandora:www-data * <br/> cd .. <br/> drush -y pm-enable bootstrap digital_grinnell_bootstrap <br/> drush -y vset theme\default digital_grinnell_bootstrap <br/> drush cc all |
+| cd ~/GitHub/dg-islandora <br/> git submodule add https://github.com/DigitalGrinnell/islandora_mods_via_twig.git sites/all/modules/islandora/islandora_mods_via_twig <br/> docker exec -w /var/www/html/sites/default isle-apache-ld drush cc all |
 
-Success! The theme is in place and active on my [dg.localdomain](https://dg.localdomain/) site.  Just one more tweak here...
-
-I visited [#overlay=admin/appearance/settings/digital\_grinnell\_bootstrap](https://dg.localdomain/#overlay=admin/appearance/settings/digital\_grinnell\_bootstrap) and made sure ONLY the following boxes are checked:
-
-  - Logo
-  - Site slogan
-  - Shortcut icon
-  - Use the default logo
-  - Use the default shortcut icon
-
-All other theme settings should be default values and need not be changed.
-
-A visit to [the site](https://dg.localdomain/) with a refresh showed that this worked!
-
+A quick visit to [https://dg.localdomain](https://dg.localdomain) on my local workstation shows the site is working and with **no visible errors or warnings**!  Woot!
 
 <!--
 

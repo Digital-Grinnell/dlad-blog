@@ -31,27 +31,27 @@ There are just a couple of notes regarding this document that I'd like to pass a
 
 | Workstation Commands |
 | --- |
-| cd ~/GitHub <br/> git clone https://github.com/DigitalGrinnell/ISLE <br/> cd ISLE <br/> git checkout -b ld |
+| `cd ~/GitHub` <br/> `git clone https://github.com/DigitalGrinnell/ISLE` <br/> `cd ISLE` <br/> `git checkout -b ld` |
 
   - **Apache Container Commands** - Similar to `Workstation Commands`, a tabulated list of commands may appear with a heading of **Apache Container Commands**. \*Commands in such tables can be copied and pasted into your command line terminal, but ONLY after you have opened a shell into the _Apache_ container. The asterisk (\*) at the end of the table heading is there to remind you of this! See the [next section](#opening-a-shell-in-the-apache-container) of this document for additional details. These tables looks something like this:
 
 | Apache Container Commands* |
 | --- |
-| cd /var/www/html/sites/all/modules/contrib <br/> drush dl backup_migrate <br/> drush -y en backup_migrate |
+| `cd /var/www/html/sites/all/modules/contrib` <br/> `drush dl backup_migrate` <br/> `drush -y en backup_migrate` |
 
 ## Opening a Shell in the Apache Container
 This is something I find myself doing quite often during ISLE configuration, so here's a reminder of how I generally do this...
 
 | Workstation Commands |
 | --- |
-| docker exec -it isle-apache-ld bash |
+| `docker exec -it isle-apache-ld bash` |
 
 ## Cleaning Up
 I typically use the following command stream to clean up any _Docker_ cruft before I begin anew.  Note: Uncomment the third line ONLY if you want to delete images and download new ones.  If you do, be patient, it could take several minutes depending on connection speed.
 
 | Workstation Commands |
 | --- |
-| docker stop &dollar;(docker ps -q) <br/> docker rm -v &dollar;(docker ps -qa) <br/> # docker image rm &dollar;(docker image ls -q) --force <br/> docker system prune --force |
+| `docker stop $(docker ps -q)` <br/> `docker rm -v $(docker ps -qa)` <br/> `# docker image rm $(docker image ls -q) --force` <br/> `docker system prune --force` |
 
 # Local ISLE Installation: Migrate Existing Islandora Site
 
@@ -124,9 +124,10 @@ Be sure to run a backup of any current non-ISLE systems prior to copying or expo
 
 {{% annotation %}}
 On the production instance of _Digital.Grinnell_ the Apache container's Drupal webroot at `/var/www/html` maps to the host, `DGDocker1` with a static IP address of `132.161.132.103`, at `/opt/ISLE/persistent/html`. So, as directed above, I put a copy of the `/var/www/html/sites/default/files` directory into `~/Desktop/migration-copy` from my iMac like so:
-```
-rsync -aruvi islandora@132.161.132.103:/opt/ISLE/persistent/html/sites/default/files/. ~/Desktop/migration-copy/var/www/html/sites/default/files/ --progress
-```
+
+| Workstation Commands |
+| --- |
+| `rsync -aruvi islandora@132.161.132.103:/opt/ISLE/persistent/html/sites/default/files/. ~/Desktop/migration-copy/var/www/html/sites/default/files/ --progress` |
 {{% /annotation %}}
 
 2. Locate and note the previously existing private Islandora Drupal git repository. {{% annotation %}} https://github.com/Digital-Grinnell/dg-islandora {{% /annotation %}} You'll be cloning this into place once the ISLE project has been cloned in later steps.
@@ -155,29 +156,30 @@ rsync -aruvi islandora@132.161.132.103:/opt/ISLE/persistent/html/sites/default/f
     * Copy this file down to your personal computer.
 
 {{% annotation %}}
-Even though the production instance of _Digital.Grinnell_ has built-in facilities for performing this step, I chose to use an easily-repeated command line from an SSH session open on DGDocker1, like so:
+Even though the production instance of _Digital.Grinnell_ has built-in facilities for performing this step, I chose to use an easily-repeated command line from an SSH session open on _DGDocker1_, like so:
 
-```
-docker exec -w /var/www/html/sites/default isle-apache-dg drush cc all
-docker exec -it isle-mysql-dg bash
-```
+| _DGDocker1_ Commands |
+| --- |
+| `docker exec -w /var/www/html/sites/default isle-apache-dg drush cc all` <br/> `docker exec -it isle-mysql-dg bash` |
 
 Then, working inside the _isle-mysql-dg_ container:
-```
-mysqldump -u isle_dg_user -p isle_dg > prod_drupal_site_083120.sql
-exit
-```
+
+| _isle-mysql-dg_ Container Commands |
+| --- |
+| `mysqldump -u isle_dg_user -p isle_dg > prod_drupal_site_083120.sql` <br/> `exit` |
 
 Back in the DGDocker1 terminal:
-```
-docker cp isle-mysql-dg:/prod_drupal_site_083120.sql ~/.
-exit
-```
+
+| _DGDocker1_ Commands |
+| --- |
+| `docker cp isle-mysql-dg:/prod_drupal_site_083120.sql ~/.` <br/> `exit` |
 
 Next, from my desktop terminal this command saved a copy of the exported database in `/Users/markmcfate/Desktop/migration-copy/prod_drupal_site_083120.sql`:
-```
-rsync -aruvi islandora@132.161.132.103:/home/islandora/prod_drupal_site_083120.sql ~/Desktop/migration-copy/prod_drupal_site_083120.sql
-```
+
+| Workstation Commands |
+| --- |
+| `rsync -aruvi islandora@132.161.132.103:/home/islandora/prod_drupal_site_083120.sql ~/Desktop/migration-copy/prod_drupal_site_083120.sql` |
+
 {{% /annotation %}}
 
 ### Fedora Hash Size (Conditional)
@@ -276,6 +278,10 @@ Checked my `/etc/hosts` file and the necessary edits are in place. To protect th
 
 ## Step 2: Setup Git Project Repositories
 
+{{% annotation %}}
+The prescribed private repositories, [dg-isle](https://github.com/Digital-Grinnell/dg-isle) and [dg-islandora](https://github.com/Digital-Grinnell/dg-islandora), were created long ago in blog posts [051](content/posts/051-Migrating-DG-to-ISLE-1.3.0-ld.md) and [059](content/posts/059-Pushing-ISLE-to-Staging.md).  Adjust accordingly!
+{{% /annotation %}}
+
 You will create two new, empty, private git repositories (if they do not already exist) within your git repository hosting service (e.g [Github](https://github.com), [Bitbucket](https://bitbucket.org/), [Gitlab](https://gitlab.com)). Below, we suggest a naming convention that will clearly distinguish your ISLE code from your Islandora code. It's very important to understand that these are two separate code repositories, and not to confuse them.
 
 * Login to your git repository hosting service.
@@ -341,10 +347,6 @@ origin	https://yourgitproviderhere.com/yourinstitutionhere/yourprojectnamehere-i
 
 You now have the current ISLE project code checked into git as a foundation to make changes on specific to your local and project needs. You'll use this git "icg-upstream" process in the future to pull updates and new releases from the main ISLE project.
 
-{{% annotation %}}
-The prescribed private repositories, [dg-isle](https://github.com/Digital-Grinnell/dg-isle) and [dg-islandora](https://github.com/Digital-Grinnell/dg-islandora), were created long ago in blog posts [051](content/posts/051-Migrating-DG-to-ISLE-1.3.0-ld.md) and [059](content/posts/059-Pushing-ISLE-to-Staging.md).
-{{% /annotation %}}
-
 ---
 
 ### Step 2a: Add Customizations from "Step 0" to the Git Workflow
@@ -399,6 +401,15 @@ _Using the same open terminal:_
     * `cd ..`
     * `git clone https://yourgitproviderhere.com/yourinstitutionhere/yourprojectnamehere-islandora.git`
     * **Example:** The above process created a folder named "yourprojectnamehere-islandora"
+
+{{% annotation %}}
+**Attention:**  _Digital.Grinnell's_ `dg-islandora` repository contains numerous theme and module git **submodules!** It is therefore **absolutely imperative** that the aforementioned `git clone...` command be run with a `--recursive` option, like so:
+
+| Workstation Commands |
+| --- |
+| `cd ~/GitHub/` <br/> `git clone https://github.com/Digital-Grinnell/dg-islandora.git --recursive` |
+{{% /annotation %}}
+
 * Now update the "docker-compose.local.yml" in the `yourprojectnamehere-isle` directory to create a bind-mount to the Islandora Drupal site code:
     * Search for "apache:"
     * Find the sub-section called "volumes:"
@@ -407,10 +418,6 @@ _Using the same open terminal:_
     * Edit the above line to be like this:
         * ` - ../yourprojectnamehere-islandora:/var/www/html:cached`
 * Your Production Islandora site code is now configured to be used in this local setup.
-
-{{% annotation %}}
-I followed the instructions in this section to-the-letter.
-{{% /annotation %}}
 
 ---
 
@@ -517,7 +524,11 @@ As in previous sections, I checked for significant changes to the files involved
     * `docker-compose pull`
 
 {{% annotation %}}
-I followed the instructions in this section to-the-letter.
+I followed the instructions in this section to-the-letter. Specifically...
+
+| Workstation Commands |
+| --- |
+| `cd ~/GitHub/dg-isle` <br/> `docker-compose pull` |
 {{% /annotation %}}
 
 ## Step 8: Launch Process
@@ -535,7 +546,11 @@ I followed the instructions in this section to-the-letter.
       <!---TODO: This could be confusing if (a) there are other, non-ISLE containers, or (b) the isle-varnish container is installed but intentionally not running, or (c) older exited ISLE containers that maybe should be removed. --->
 
 {{% annotation %}}
-I followed the instructions in this section to-the-letter.
+I followed the instructions in this section to-the-letter. Specifically...
+
+| Workstation Commands |
+| --- |
+| `cd ~/GitHub/dg-isle` <br/> `docker-compose up -d` |
 {{% /annotation %}}
 
 ## Step 9: Import the Production MySQL Drupal Database
@@ -571,11 +586,14 @@ I followed the instructions in this section to-the-letter.
 
 {{% annotation %}}
 I chose _Method B_ and used the following commands to complete this step:
-```
-docker cp /Users/markmcfate/Desktop/migration-copy/prod_drupal_site_083120.sql isle-mysql-ld:/prod_drupal_site_083120.sql
-docker exec -it isle-mysql-ld bash
-mysql -u admin -p digital_grinnell < prod_drupal_site_083120.sql
-```
+
+| Workstation Commands |
+| --- |
+| `docker cp /Users/markmcfate/Desktop/migration-copy/prod_drupal_site_083120.sql isle-mysql-ld:/prod_drupal_site_083120.sql` <br/> `docker exec -it isle-mysql-ld bash` |
+
+| _isle-mysql-ld_ Container Commands |
+| --- |
+| `mysql -u admin -p digital_grinnell < prod_drupal_site_083120.sql` |
 {{% /annotation %}}
 
 ---
@@ -599,78 +617,101 @@ This step will show you how to run the "migration_site_vsets.sh" script on the A
     * **For Microsoft Windows:** `winpty docker exec -it your-apache-containername bash -c "cd /var/www/html && ./migration_site_vsets.sh"`
 
 {{% annotation %}}
-I ran the following commands to complete this portion of Step 10:
+Before running the prescribed scripts for this step, I executed the following commands to run a script intended to eliminate some unnecessary warnings:
+
+| _isle-apache-ld_ Container Commands |
+| --- |
+| `cd /var/www/html` <br/> `source Digital-Grinnell-Migration-Mitigation-Script.sh` |
+
+Final output of the `Digital-Grinnell-Migration-Mitigation-Script.sh` script was:
+
 ```
-docker cp scripts/apache/migration_site_vsets.sh isle-apache-ld:/var/www/html/migration_site_vsets.sh
-docker exec -it isle-apache-ld bash -c "chmod +x /var/www/html/migration_site_vsets.sh"
-time docker exec -it isle-apache-ld bash -c "cd /var/www/html && ./migration_site_vsets.sh"
+The following module is missing from the file system: <em class="placeholder">antibot</em>. For information about   [warning]
+how to fix this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em class="placeholder">islandora_mods_via_twig</em>. For     [warning]
+information about how to fix this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>.
+bootstrap.inc:1156
+'all' cache was cleared.
 ```
 
-The script output included several copies of the following warning messages:
+**Attention:**  If the output of the script above yields warnings about missing module `dg7`, and other `islandora_...` modules, then you probably forgot to clone the `dg-islandora` project using the `--recursive` option! If that is the case you should return to [Step 3](#step-3-git-clone-the-production- islandora-drupal-site-code) and take note of the important annotation there.
+
+Next, I ran the following commands to complete this portion of Step 10:
+
+| Workstation Commands |
+| --- |
+| `docker cp scripts/apache/migration_site_vsets.sh isle-apache-ld:/var/www/html/migration_site_vsets.sh` <br/> `docker exec -w /var/www/html isle-apache-ld chmod +x migration_site_vsets.sh` <br/> `time docker exec -w /var/www/html isle-apache-ld ./migration_site_vsets.sh` |
+
+The abridged output of the script is included below.
+
 ```
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">antibot</em>. For information about how to fix this, see <a
-href="https://www.drupal.org/node/2487215">the documentation page</a>.
-bootstrap.inc:1156
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">dg7</em>. For information about how to fix this, see <a
-href="https://www.drupal.org/node/2487215">the documentation page</a>.
-bootstrap.inc:1156
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">idu</em>. For information about how to fix this, see <a
-href="https://www.drupal.org/node/2487215">the documentation page</a>.
-bootstrap.inc:1156
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">islandora_binary_object</em>. For information about how to fix
-this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>.
-bootstrap.inc:1156
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">islandora_collection_search</em>. For information about how to
-fix this, see <a href="https://www.drupal.org/node/2487215">the documentation
+Drush vset of ISLE specific configurations
+The following module is missing from the file system: <em              [warning]
+class="placeholder">antibot</em>. For information about how to fix
+this, see <a href="https://www.drupal.org/node/2487215">the
+documentation page</a>. bootstrap.inc:1156
+The following module is missing from the file system: <em              [warning]
+class="placeholder">islandora_mods_via_twig</em>. For information
+about how to fix this, see <a
+href="https://www.drupal.org/node/2487215">the documentation
 page</a>. bootstrap.inc:1156
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">islandora_datastream_exporter</em>. For information about how to
-fix this, see <a href="https://www.drupal.org/node/2487215">the documentation
-page</a>. bootstrap.inc:1156
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">islandora_datastream_replace</em>. For information about how to
-fix this, see <a href="https://www.drupal.org/node/2487215">the documentation
-page</a>. bootstrap.inc:1156
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">islandora_mods_display</em>. For information about how to fix
-this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>.
-bootstrap.inc:1156
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">islandora_mods_via_twig</em>. For information about how to fix
-this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>.
-bootstrap.inc:1156
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">islandora_multi_importer</em>. For information about how to fix
-this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>.
-bootstrap.inc:1156
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">islandora_oralhistories</em>. For information about how to fix
-this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>.
-bootstrap.inc:1156
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">islandora_solr_collection_view</em>. For information about how
-to fix this, see <a href="https://www.drupal.org/node/2487215">the documentation
-page</a>. bootstrap.inc:1156
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">islandora_solr_views</em>. For information about how to fix
-this, see <a href="https://www.drupal.org/node/2487215">the documentation page</a>.
-bootstrap.inc:1156
-The following module is missing from the file system: <em                           [warning]
-class="placeholder">transcripts_ui</em>. For information about how to fix this, see
-<a href="https://www.drupal.org/node/2487215">the documentation page</a>.
-bootstrap.inc:1156
 ```
 
-The script finished with:
+The two warnings shown above were repeated many times in the original output, but all subsequent instances have been removed from the abridged version shown below. No other changes were made to this output.
+
 ```
-'all' cache was cleared.                                                            [success]
+islandora_base_url was set to "fedora:8080/fedora".                    [success]
+islandora_solr_url was set to "solr:8080/solr".                        [success]
+imagemagick_convert was set to "/usr/local/bin/convert".               [success]
+image_toolkit was set to "imagemagick".                                [success]
+islandora_ocr_tesseract was set to "/usr/bin/tesseract".               [success]
+islandora_batch_java was set to "/usr/bin/java".                       [success]
+islandora_lame_url was set to "/usr/bin/lame".                         [success]
+islandora_paged_content_gs was set to "/usr/bin/gs".                   [success]
+islandora_video_ffmpeg_path was set to "/usr/bin/ffmpeg".              [success]
+islandora_video_ffmpeg2theora_path was set to                          [success]
+"/usr/bin/ffmpeg2theora".
+islandora_use_kakadu was set to FALSE.                                 [success]
+islandora_kakadu_url was set to "/usr/local/bin/kdu_compress".         [success]
+islandora_pdf_path_to_pdftotext was set to "/usr/bin/pdftotext".       [success]
+islandora_fits_executable_path was set to "/usr/local/bin/fits".       [success]
+islandora_openseadragon_iiif_identifier was set to                     [success]
+"[islandora_openseadragon:pid]~[islandora_openseadragon:dsid]~[islandora_openseadragon:token]".
+islandora_openseadragon_iiif_token_header was set to 0.                [success]
+islandora_openseadragon_iiif_url was set to "iiif/2".                  [success]
+islandora_openseadragon_tilesource was set to "iiif".                  [success]
+islandora_internet_archive_bookreader_iiif_identifier was set to       [success]
+"[islandora_iareader:pid]~[islandora_iareader:dsid]~[islandora_iareader:token]".
+islandora_internet_archive_bookreader_iiif_token_header was set to 0.  [success]
+islandora_internet_archive_bookreader_iiif_url was set to "iiif/2".    [success]
+islandora_internet_archive_bookreader_pagesource was set to "iiif".    [success]
+"anonymous user" already has the permission "view fedora repository         [ok]
+objects"
+Running fix-permissions script
+Changing ownership of all contents of /var/www/html:
+ user => islandora 	 group => www-data
+Changing permissions of all directories inside /var/www/html to rwxr-x---...
+Changing permissions of all files inside /var/www/html to rw-r-----...
+Changing permissions of files directories in /var/www/html/sites to rwxrwx---...
+Changing permissions of all files inside all files directories in /var/www/html/sites to rw-rw----...
+Changing permissions of all directories inside all files directories in /var/www/html/sites to rwxrwx---...
+find: ‘./*/files’: No such file or directory
+find: ‘./*/files’: No such file or directory
+Done setting proper permissions on files and directories
+Configuring cron job to run every 3 hours
+Running Drupal Cron first time and clearing Drupal Caches.
+WD smtp: phpmailerException: SMTP Error: Could not connect to SMTP       [error]
+host. in PHPMailer->SmtpConnect() (line 810 of
+/var/www/html/sites/all/modules/contrib/smtp/smtp.phpmailer.inc).
+WD smtp: Error sending e-mail from digital@grinnell.edu to               [error]
+digital@grinnell.edu : SMTP Error: Could not connect to SMTP host.
+WD mail: Error sending e-mail (from digital@grinnell.edu to              [error]
+digital@grinnell.edu).
+Cron run successful.                                                   [success]
+Unable to send e-mail. Contact the site administrator if the problem     [error]
+persists.
 Drush script finished! ...exiting
-docker exec -it isle-apache-ld bash -c   0.07s user 0.07s system 0% cpu 4:14.54 total
+docker exec -w /var/www/html isle-apache-ld ./migration_site_vsets.sh  0.05s user 0.04s system 0% cpu 7:59.50 total
 ```
 {{% /annotation %}}
 
@@ -702,16 +743,28 @@ Since you've imported an existing Drupal database, you must now reinstall the Is
 
 {{% annotation %}}
 I ran the following commands to complete this portion of Step 10:
-```
-docker cp scripts/apache/install_solution_packs.sh isle-apache-ld:/var/www/html/install_solution_packs.sh
-docker exec -it isle-apache-ld bash -c "chmod +x /var/www/html/install_solution_packs.sh"
-time docker exec -it isle-apache-ld bash -c "cd /var/www/html && ./install_solution_packs.sh"
-```
 
-The aforementioned warnings were repeated several times and the script finished with:
+| Workstation Commands |
+| --- |
+| `docker cp scripts/apache/install_solution_packs.sh isle-apache-ld:/var/www/html/install_solution_packs.sh` <br/> `docker exec -w /var/www/html isle-apache-ld chmod +x install_solution_packs.sh` <br/> `time docker exec -w /var/www/html isle-apache-ld ./install_solution_packs.sh` |
+
+The two aforementioned warnings were repeated several times, but have once again been removed from the abridged output for clarity. The abridged output is:
+
 ```
+Installing all Islandora modules
+Resinstalling the Islandora module with Solution Packs
+islandora: Successfully reinstalled. Top-level Collection.              [status]
+Replaced islandora:sp-audioCModel - Islandora Audio Content Model
+Replaced islandora:collectionCModel - Islandora Collection Content Model
+Replaced islandora:sp_basic_image - Islandora Basic Image Content Model
+Replaced islandora:pageCModel - Islandora Page Content Model
+Replaced islandora:bookCModel - Islandora Internet Archive Book Content Model
+Replaced islandora:compoundCModel - Islandora Compound Object Content Model
+Replaced islandora:sp_large_image_cmodel - Islandora Large Image Content Model
+Replaced islandora:sp_pdf - Islandora PDF Content Model
+Replaced islandora:sp_videoCModel - Islandora Video Content Model
 Drush script finished! ...exiting
-docker exec -it isle-apache-ld bash -c   0.04s user 0.02s system 0% cpu 4:05.92 total
+docker exec -w /var/www/html isle-apache-ld ./install_solution_packs.sh  0.03s user 0.02s system 0% cpu 4:31.81 total
 ```
 {{% /annotation %}}
 
@@ -724,25 +777,7 @@ docker exec -it isle-apache-ld bash -c   0.04s user 0.02s system 0% cpu 4:05.92 
 <!--- TODO: Add error message and how to proceed (click 'Advanced...') --->
 
 {{% annotation %}}
-I visited [https://dg.localdomain](https://dg.localdomain) on my iMac desktop as instructed. The site comes up but with no theme and it repeats the aforementioned warnings, plus a few new ones, in a different format than before (this is a web/html response rather than command-line output). The new, complete list of warnings is:
-
-```
-    User warning: The following module is missing from the file system: antibot. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: dg7. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: idu. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_binary_object. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_collection_search. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_datastream_exporter. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_datastream_replace. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_mods_display. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_mods_via_twig. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_multi_importer. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_oralhistories. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_solr_collection_view. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: islandora_solr_views. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following module is missing from the file system: transcripts_ui. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-    User warning: The following theme is missing from the file system: digital_grinnell_bootstrap. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
-```
+I visited [https://dg.localdomain](https://dg.localdomain) on my iMac desktop as instructed. The site comes up with the appropriate theme apparently enabled and working.  The two aforementioned warnings are present in a different format than before (this is a web/html response rather than command-line output), but no other warnings or errors are present!
 {{% /annotation %}}
 
 * Note: You may see an SSL error warning that the site is unsafe. It is safe, it simply uses "self-signed" SSL certs. Ignore the error and proceed to the site.
@@ -752,7 +787,7 @@ I visited [https://dg.localdomain](https://dg.localdomain) on my iMac desktop as
     * You can also attempt to use login credentials that the Production server would have stored in its database.
 
 {{% annotation %}}
-My production site has the user-login block disabled so in order to attempt to login I had to explicitly visit `https://dg.localdomain/user/login`.  Unfortunately, neither the old nor new credentials worked, so I followed the additional steps below to add the new user to the _Apache_ container.
+In order to attempt to login I explicitly visited `https://dg.localdomain/user/login`.  Unfortunately, neither the old nor new credentials worked, so I followed the additional steps below to add the new user to the _Apache_ container.
 {{% /annotation %}}
 
 * If the newly created Drupal login doesn't work then, you'll need to Shell into the Apache container:
@@ -774,98 +809,41 @@ My production site has the user-login block disabled so in order to attempt to l
 * Type `exit` to exit the container
 
 {{% annotation %}}
-On my workstation I executed the following `docker exec...` command followed by the documented commands, inside the _Apache_ container, like so:
+On my workstation I executed the following `docker exec...` commands
+
+| Workstation Commands |
+| --- |
+| `docker exec -w /var/www/html isle-apache-ld drush user-create admin --mail="mark.mcfate@icloud.com" --password="**obfuscated**"` <br/> `docker exec -w /var/www/html isle-apache-ld drush user-add-role "Administrator" admin` |
+
+Note the changes above:
+
+  - In my case, the prefered email address `digital@grinnell.edu` is already assigned to a user, and
+  - There is no "administrator" role, only "Administrator", **with a capital "A"**.
+
+With corresponding changes the commands appear to have worked with output as follows:
 
 ```
-docker exec -it isle-apache-ld bash
-cd /var/www/html
-drush user-create admin --mail="digital@grinnell.edu" --password="**obfuscated**"
-drush user-add-role "administrator" admin
-```
+User ID       :  1119378
+User name     :  admin
+User mail     :  mark.mcfate@icloud.com
+User roles    :  authenticated user
+User status   :  active
 
-Unfortunately, in my case the `drush user...` command returned the following **error**: `There is already a user account with the email digital@grinnell.edu`.  So, I tried using my individual work email, `mcfatem@grinnell.edu`, but that returned a similar error.  Ultimately I elected to use a personal email address so the command sequence became:
-
-```
-docker exec -it isle-apache-ld bash
-cd /var/www/html
-drush user-create admin --mail="mark.mcfate@icloud.com" --password="**obfuscated**"
-drush user-add-role "Administrator" admin
-```
-
-Note that in my case there is no "administrator" role, only "Administrator", **with a capital "A"**. With that change the commands appear to have worked with output as follows:
-
-```
- User ID       :  1119378
- User name     :  admin
- User mail     :  mark.mcfate@icloud.com
- User roles    :  authenticated user
- User status   :  active
-
- Added role Administrator role to admin
+Added role Administrator role to admin
  ```
 {{% /annotation %}}
 
 * Attempt to login again
 
 {{% annotation %}}
-I did as instructed and this time the `admin` login was accepted. The output included all of the previous warnings, plus these:
-
-```
-Notice: Trying to get property of non-object in _theme_load_registry() (line 335 of /var/www/html/includes/theme.inc). =>
-
-    ... (Array, 10 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 335
-
-Notice: Trying to get property of non-object in _theme_load_registry() (line 319 of /var/www/html/includes/theme.inc). =>
-
-    ... (Array, 12 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 319
-
-Notice: Undefined index: digital_grinnell_bootstrap in theme_get_setting() (line 1440 of /var/www/html/includes/theme.inc). =>
-
-    ... (Array, 9 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 1440
-
-Notice: Trying to get property of non-object in theme_get_setting() (line 1477 of /var/www/html/includes/theme.inc). =>
-
-    ... (Array, 9 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 1477
-
-Notice: Trying to get property of non-object in theme_get_setting() (line 1487 of /var/www/html/includes/theme.inc). =>
-
-    ... (Array, 9 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/includes/theme.inc, line 1487
-
-Notice: Undefined index: highlighted in include() (line 126 of /var/www/html/modules/system/page.tpl.php). =>
-
-    ... (Array, 9 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/modules/system/page.tpl.php, line 126
-
-Notice: Undefined index: sidebar_first in include() (line 138 of /var/www/html/modules/system/page.tpl.php). =>
-
-    ... (Array, 9 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/modules/system/page.tpl.php, line 138
-
-Notice: Undefined index: sidebar_second in include() (line 144 of /var/www/html/modules/system/page.tpl.php). =>
-
-    ... (Array, 9 elements)
-    Krumo version 0.2.1a | http://krumo.sourceforge.net
-    [Click to expand. Double-click to show path.] Called from /var/www/html/modules/system/page.tpl.php, line 144
-```
-{{% /annotation %}}
-
-{{% annotation %}}
-Please refer to [post 090](https://static.grinnell.edu/blogs/McFateM/posts/090-isle-local-migration-customization/) for details of the customizations I implemented to complete the process of migrating to a new local instance of ISLE, one that looks and behaves exactly like _Digital.Grinnell_.
+I did as instructed and this time the `admin` login was accepted. The output included both of the aforementioned warnings, but no additional issues were present.
 {{% /annotation %}}
 
 ---
+
+{{% annotation %}}
+**Please refer to [post 090](https://static.grinnell.edu/blogs/McFateM/posts/090-isle-local-migration-customization/) for details of the customizations I implemented to complete the process of migrating to a new local instance of ISLE, one that looks and behaves exactly like _Digital.Grinnell_.**
+{{% /annotation %}}
 
 ## Step 12: Ingest Sample Objects
 

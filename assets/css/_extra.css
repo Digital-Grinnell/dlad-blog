@@ -3,6 +3,11 @@ div.original {
   padding: 1em 2em !important;
 }
 
+div.annotation {
+  background-color: #1f353d;
+  padding: 0.5em 1em !important;
+}
+
 table {
   margin-top: 5px;
 }
@@ -127,6 +132,12 @@ th {
 
 span.posts-list-item-description {
   color: #bb995f;
+}
+
+figcaption h4 {
+  margin: 0;
+  padding: 2px 0 0 10px;
+  font-style: italic;
 }
 
 /*# sourceMappingURL=_extra.css.map */
