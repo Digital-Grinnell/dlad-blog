@@ -12,6 +12,10 @@ tags:
 
 This post is an addendum to earlier [post 087](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again/). It is intended to chronicle my _customization_ efforts, necessary steps that follow the aforementioned document's `Step 11`, to migrate to a `local development` instance of _Digital.Grinnell_ on my work-issued iMac, `MA8660`, currently identified as `MAD25W812UJ1G9`.  Please refer to Steps 0 - 11 in [post 087](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again/) for background info.
 
+{{% boxmd %}}
+Note that it **should NOT be necessary to repeat steps taken in this document**. Pertinent changes made herein were saved into a new `completed-install-local-migrate` branch of my [dg-islandora](https://github.com/Digital-Grinnell/dg-islandora/) project repository, effectively capturing all progress made within.
+{{% /boxmd %}}
+
 ## Goal
 The goal of this project is once again to spin up a local Islandora stack using [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE/) following the guidance of the project's [install-local-migrate](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md) document.  My process will be slightly different than documented since I've already created a pair of private [dg-isle](https://github.com/Digital-Grinnell/dg-isle/) and [dg-islandora](https://github.com/Digital-Grinnell/dg-islandora/) repositories.
 
@@ -119,7 +123,7 @@ On _DGDocker1_ I found a `.git` subdirectory in the `/opt/ISLE/persistent/html/s
 
 | Workstation Commands |
 | --- |
-| cd ~/GitHub/dg-islandora <br/> git submodule add https://github.com/DigitalGrinnell/islandora_mods_via_twig.git sites/all/modules/islandora/islandora_mods_via_twig <br/> docker exec -w /var/www/html/sites/default isle-apache-ld drush cc all |
+| `cd ~/GitHub/dg-islandora` <br/> `git submodule add https://github.com/DigitalGrinnell/islandora_mods_via_twig.git sites/all/modules/islandora/islandora_mods_via_twig` <br/> `docker exec -w /var/www/html/sites/default isle-apache-ld drush cc all` |
 
 A quick visit to [https://dg.localdomain](https://dg.localdomain) on my local workstation shows the site is working and with **no visible errors or warnings**!  Woot!
 
@@ -170,12 +174,76 @@ A quick check of the aforementioned directories and files inside the _Apache_ co
 
 #### Where Have All the Files Gone?
 
-Ok, so I'm showing my age with that sub-title, I know. But it's a valid question, perhaps best summed up in this _Slack_ post of mine:
+Ok, so I'm showing my age with that subtitle, I know. But it's a valid question, perhaps best summed up in this _Slack_ post of mine:
 
 {{% original %}}
 At https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#drupal-site-files-and-code I made a copy of my production `/var/www/html/sites/default/files` directory anticipating that "You'll move this directory in later steps."   I must have missed something, because I can't find anyplace in the document where I moved those files into my new local instance of ISLE.
 {{% /original %}}
 
+The resolution of this issue is now covered in the annotation at the end of [Step 9: Import the Production MySQL Drupal Database](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-9-import-the-production-mysql-drupal-database).
+
+## Next Steps
+
+After completion of everything mentioned in this document, I returned to [Step 12: Ingest Sample Objects](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-12-ingest-sample-objects) but ended my work there differently than suggested. The differences are all covered in one final annotation there.
+
+The `install-local-migrate.md` document subsequently suggests moving on to [Staging ISLE Installation: Migrate Existing Islandora Site](https://static.grinnell.edu/blogs/McFateM/posts/install/install-staging-migrate.md) and I believe I will do just that, probably with production of another annotated document to chronicle my specific experience.  It's worth noting here that other things I considered doing next, but did not, include:
+
+  - Updating my `dg-islandora` repository with all of the changes made thus far.
+    - Note that I did indeed update `dg-islandora`, but not the `master` branch. In my workstation's `~/GitHub/dg-islandora` directory I did this in order to save all changes made thus far into a new `completed-install-local-migrate` branch for safe-keeping.
+
+  ```
+  ╭─markmcfate@MAD25W812UJ1G9 ~/GitHub/dg-islandora ‹ruby-2.3.0› ‹master*›
+  ╰─$ git status
+  On branch master
+  Your branch is up to date with 'origin/master'.
+
+  Changes to be committed:
+    (use "git reset HEAD <file>..." to unstage)
+
+  	modified:   .gitmodules
+  	new file:   html/sites/all/modules/islandora/islandora_mods_via_twig
+  	new file:   sites/all/modules/islandora/islandora_mods_via_twig
+
+  Changes not staged for commit:
+    (use "git add/rm <file>..." to update what will be committed)
+    (use "git checkout -- <file>..." to discard changes in working directory)
+    (commit or discard the untracked or modified content in submodules)
+
+  	modified:   .gitignore
+  	modified:   .gitmodules
+  	deleted:    html/sites/all/modules/islandora/islandora_mods_via_twig
+  	modified:   install_solution_packs.sh
+  	modified:   migration_site_vsets.sh
+  	modified:   sites/all/modules/islandora/dg7 (modified content)
+  	modified:   sites/all/modules/islandora/islandora_mods_display (modified content)
+  	modified:   sites/all/modules/islandora/islandora_mods_via_twig (modified content)
+  	modified:   sites/all/modules/islandora/islandora_multi_importer (modified content)
+  	modified:   sites/all/modules/islandora/islandora_scholar/modules/citeproc/composer.lock
+  	modified:   sites/all/modules/islandora/islandora_solution_pack_oralhistories (modified content)
+
+  Untracked files:
+    (use "git add <file>..." to include in what will be committed)
+
+  	sites/all/modules/contrib/antibot/
+
+  ╭─markmcfate@MAD25W812UJ1G9 ~/GitHub/dg-islandora ‹ruby-2.3.0› ‹master*›
+  ╰─$ git checkout -b completed-install-local-migrate
+    M	.gitignore
+    M	.gitmodules
+    M	install_solution_packs.sh
+    M	migration_site_vsets.sh
+    M	sites/all/modules/islandora/dg7
+    M	sites/all/modules/islandora/islandora_mods_display
+    A	sites/all/modules/islandora/islandora_mods_via_twig
+    M	sites/all/modules/islandora/islandora_multi_importer
+    M	sites/all/modules/islandora/islandora_scholar/modules/citeproc/composer.lock
+    M	sites/all/modules/islandora/islandora_solution_pack_oralhistories
+    Switched to a new branch 'completed-install-local-migrate'
+  ```
+
+  - Updating all of the _Drupal_ contrib and _Islandora_ modules -- I chose not to do this yet because my local instance of ISLE does not have internet access so it's unable to check module update status. So, I'm planning to wait and take this step from my `staging` instance of ISLE.
+  - Install and configure [LASIR](https://github.com/Islandora-Collaboration-Group/LASIR) -- this will also be delayed until after my migration instance is up-to-date and in production.
+  - Configure and engage "new" ISLE features like "Automated Testing" -- this will also be delayed until after my migration instance is up-to-date and in production.
 <!--
 
 ## Cloning to Local
@@ -712,4 +780,4 @@ To wrap this up I followed [Step 11 in the install-local-new.md](https://github.
 
 -->
 
-And that's a good place for a quick break.  I'll be back with more in a minute.
+And that's a wrap.  Until next time...
