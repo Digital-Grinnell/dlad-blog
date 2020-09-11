@@ -1,7 +1,7 @@
 ---
 title: "Local ISLE Installation: Migrate Existing Islandora Site - One-Time Customizations"
 publishDate: 2020-09-07
-lastmod: 2020-09-10T13:09:38-05:00
+lastmod: 2020-09-11T10:18:45-05:00
 draft: false
 tags:
   - ISLE
@@ -186,12 +186,14 @@ The resolution of this issue is now covered in the annotation at the end of [Ste
 
 After completion of everything mentioned in this document, I returned to [Step 12: Ingest Sample Objects](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-12-ingest-sample-objects) but ended my work there differently than suggested. The differences are all covered in one final annotation there.
 
-The `install-local-migrate.md` document subsequently suggests moving on to [Staging ISLE Installation: Migrate Existing Islandora Site](https://static.grinnell.edu/blogs/McFateM/posts/install/install-staging-migrate.md) and I believe I will do just that, probably with production of another annotated document to chronicle my specific experience.  It's worth noting here that other things I considered doing next, but did not, include:
+The `install-local-migrate.md` document subsequently suggests moving on to [Staging ISLE Installation: Migrate Existing Islandora Site](https://static.grinnell.edu/blogs/McFateM/posts/install/install-staging-migrate.md) and I believe I will do just that, probably with production of another annotated document to chronicle my specific experience.
+
+But before I go... I elected to take two more steps here. The first is...
 
   - Updating my `dg-islandora` repository with all of the changes made thus far.
     - Note that I did indeed update `dg-islandora`, but not the `master` branch. In my workstation's `~/GitHub/dg-islandora` directory I did this in order to save all changes made thus far into a new `completed-install-local-migrate` branch for safe-keeping.
 
-  ```
+```
   ╭─markmcfate@MAD25W812UJ1G9 ~/GitHub/dg-islandora ‹ruby-2.3.0› ‹master*›
   ╰─$ git status
   On branch master
@@ -239,9 +241,213 @@ The `install-local-migrate.md` document subsequently suggests moving on to [Stag
     M	sites/all/modules/islandora/islandora_scholar/modules/citeproc/composer.lock
     M	sites/all/modules/islandora/islandora_solution_pack_oralhistories
     Switched to a new branch 'completed-install-local-migrate'
-  ```
+```
 
-  - Updating all of the _Drupal_ contrib and _Islandora_ modules -- I chose not to do this yet because my local instance of ISLE does not have internet access so it's unable to check module update status. So, I'm planning to wait and take this step from my `staging` instance of ISLE.
+I considered trying to update _Drupal_ and its contrib modules from the web interface at https://dg.localdomain/#overlay=admin/modules/update but doing so requires FTP acccess which my local instance does not have.  So, I considered using `drush up` instead, and it appears to be working properly. So, in my workstation I got this:
+
+```
+╭─markmcfate@MAD25W812UJ1G9 ~/GitHub/dg-isle ‹ruby-2.3.0› ‹master*›
+╰─$ docker exec -it isle-apache-ld bash
+root@e34ab55f94aa:/# cd /var/www/html/sites/default/
+root@e34ab55f94aa:/var/www/html/sites/default# drush up
+Update information last refreshed: Thu, 2020-09-10 15:57
+ Name                                           Installed Version  Proposed version  Message
+ Drupal                                         7.67               7.72              SECURITY UPDATE available
+ Views Bulk Operations (views_bulk_operations)  7.x-3.5            7.x-3.6           Update available
+ Backup and Migrate (backup_migrate)            7.x-3.6            7.x-3.9           Update available
+ Colorbox (colorbox)                            7.x-2.13           7.x-2.15          Update available
+ Git Deploy (git_deploy)                        7.x-1.x-dev        7.x-1.3           Update available
+ Maillog / Mail Developer (maillog)             7.x-1.0-alpha1     7.x-1.0-rc1       Update available
+ Views (views)                                  7.x-3.23           7.x-3.24          Update available
+ Webform (webform)                              7.x-4.20           7.x-4.23          SECURITY UPDATE available
+
+
+NOTE: A security update for the Drupal core is available.
+Drupal core will be updated after all of the non-core projects are updated.
+
+Security and code updates will be made to the following projects: Views Bulk Operations (VBO) [views_bulk_operations-7.x-3.6], Backup and Migrate [backup_migrate-7.x-3.9], Colorbox [colorbox-7.x-2.15], Git Deploy [git_deploy-7.x-1.3], Maillog / Mail Developer [maillog-7.x-1.0-rc1], Views (for Drupal 7) [views-7.x-3.24], Webform [webform-7.x-4.23]
+
+Note: A backup of your project will be stored to backups directory if it is not managed by a supported version control system.
+Note: If you have made any modifications to any file that belongs to one of these projects, you will have to migrate those modifications after updating.
+Do you really want to continue with the update process? (y/n): y
+Project views_bulk_operations was updated successfully. Installed version is now 7.x-3.6.
+Backups were saved into the directory                                                                              [ok]
+/root/drush-backups/digital_grinnell/20200910205644/modules/views_bulk_operations.
+Project backup_migrate was updated successfully. Installed version is now 7.x-3.9.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20200910205644/modules/backup_migrate.  [ok]
+Project colorbox was updated successfully. Installed version is now 7.x-2.15.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20200910205644/modules/colorbox.        [ok]
+Project git_deploy was updated successfully. Installed version is now 7.x-1.3.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20200910205644/modules/git_deploy.      [ok]
+Project maillog was updated successfully. Installed version is now 7.x-1.0-rc1.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20200910205644/modules/maillog.         [ok]
+Project views was updated successfully. Installed version is now 7.x-3.24.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20200910205644/modules/views.           [ok]
+Project webform was updated successfully. Installed version is now 7.x-4.23.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20200910205644/modules/webform.         [ok]
+
+Code updates will be made to drupal core.
+WARNING:  Updating core will discard any modifications made to Drupal core files, most noteworthy among these are .htaccess and robots.txt.  If you have made any modifications to these files, please back them up before updating so that you can re-create your modifications in the updated version of the file.
+Note: Updating core can potentially break your site. It is NOT recommended to update production sites without prior testing.
+
+Do you really want to continue? (y/n): y
+Project drupal was updated successfully. Installed version is now 7.72.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20200910205644/drupal.                  [ok]
+require_once(/lib/glip.php): failed to open stream: No such file or directory git_deploy.module:46                 [warning]
+PHP Fatal error:  require_once(): Failed opening required '/lib/glip.php' (include_path='.:/usr/share/php') in /var/www/html/sites/all/modules/contrib/git_deploy/git_deploy.module on line 46
+Drush command terminated abnormally due to an unrecoverable error.                                                 [error]
+Error: require_once(): Failed opening required '/lib/glip.php' (include_path='.:/usr/share/php') in
+/var/www/html/sites/all/modules/contrib/git_deploy/git_deploy.module, line 46
+The external command could not be executed due to an application error.
+```
+
+So, it looks like modules and core were updated successfully?  I'm just not sure what the impact of the warning and `PHP Fatal error` might be. :frowning:
+
+A little investigation suggests that we are missing the [glip library](github.com/halstead/glip.git), so following the guidance in [the `git_deploy` module's `README.txt`](~/GitHub/dg-islandora/sites/all/modules/contrib/git_deploy/README.txt) I did this from my workstation:
+
+```
+╭─markmcfate@MAD25W812UJ1G9 ~/GitHub/dg-islandora/sites/all/libraries ‹ruby-2.3.0› ‹completed-install-local-migrate*›
+╰─$ git clone git://github.com/halstead/glip.git
+   cd glip
+   git checkout 1.1
+Cloning into 'glip'...
+remote: Enumerating objects: 319, done.
+remote: Total 319 (delta 0), reused 0 (delta 0), pack-reused 319
+Receiving objects: 100% (319/319), 101.97 KiB | 593.00 KiB/s, done.
+Resolving deltas: 100% (163/163), done.
+Note: checking out '1.1'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at 79f5472... Implement support for alternates object stores.
+```
+
+Then, taking another shot at `drush up` from my _Apache_ container:
+
+```
+╭─markmcfate@MAD25W812UJ1G9 ~/GitHub/dg-isle ‹ruby-2.3.0› ‹master*›
+╰─$ docker exec -it isle-apache-ld bash
+root@e34ab55f94aa:/# cd /var/www/html/sites/default/
+root@e34ab55f94aa:/var/www/html/sites/default# drush up
+Error while trying to find the common path for enabled extensions of project dg-islandora. Extensions are:         [error]
+announcements, islandora_altmetrics, islandora_badges, islandora_example_simple_text, islandora_image_annotation,
+islandora_oadoi, islandora_scopus, islandora_sync, islandora_sync_field_collection, islandora_sync_relation,
+islandora_webform_ingest, islandora_wos, webform_bonus, webform_digest.
+Update information last refreshed: Thu, 2020-09-10 15:57
+ Name                   Installed Version  Proposed version  Message
+ Bootstrap (bootstrap)  7.x-3.21           7.x-3.26          SECURITY UPDATE available
+
+
+Security updates will be made to the following projects: Bootstrap [bootstrap-7.x-3.26]
+
+Note: A backup of your project will be stored to backups directory if it is not managed by a supported version control system.
+Note: If you have made any modifications to any file that belongs to one of these projects, you will have to migrate those modifications after updating.
+Do you really want to continue with the update process? (y/n): y
+Project bootstrap was updated successfully. Installed version is now 7.x-3.26.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20200910213813/themes/bootstrap.        [ok]
+ System             7083  Add 'jquery-html-prefilter-3.5.0-backport.js' to the 'jquery' library.
+ System             7084  Rebuild JavaScript aggregates to include 'ajax.js' fix for Chrome 83.
+ Backup_migrate     7308  Update profiles table filter field to accommodate larger serialized strings.
+ Backup_migrate     7309  NodeSquirrel support has been removed.
+ Backup_migrate     7310  Disable e-mail destinations.
+ Backup_migrate     7311  Adjust the default performance settings.
+ Git_deploy         7000  Save current location of glip library.
+ Maillog            7100  Rename the 'idmaillog' field to just 'id'.
+ Maillog            7101  Clear the menu cache so the new paths will be picked up.
+ Maillog            7102  Clear the Views cache so the updated admin page will get the new paths.
+ Islandora          7002  Implements hook_update_N().   Removing old variable around changes to ingestDatastream signature.
+                          These changes are complete and deprecation warnings are removed.
+ Islandora_oai      7103  Add support for QDC.
+ Islandora_scholar  7103  Maintain existing RGB colorspace profile configuration.
+ Islandora_scholar  7104  Disable Islandora Google Scholar if it is currently enabled, since logic now lives in Islandora
+                          Scholar
+ Citeproc           7101  Set citeproc version if you are updating.    That way the library used doesn't switch under your
+                          feet, when updating to   the latest version.
+ Islandora_entitie  7100  Add the default description field to the Scholar solr metadata profile.
+ s
+ Islandora_entitie  7200  Print and log a message about potential lost Position data.   @see
+ s                        https:jira.duraspace.orgbrowseISLANDORA-2137
+ Islandora_pdf      7001  Maintain existing RGB colorspace profile configuration.
+ Islandora_pdf      7100  Set and maintain new dUseCIEColor switch variable.
+ Islandora_video    7101  Implements hook_update_N().   Deletes the unused legacy variable islandora_video_retain_original.
+ Islandora_webform  7001  Add webform_workflow state permissions schema to webform table.
+ Islandora_webform  7002  Add draft_access field to webform table.
+ Xml_form_builder   7105  Make title_field not required.   Repeating because hook_schema wasn't updated.
+ Xml_form_builder   7106  Update fields to have not NULL.   Had a syntax error in our schema.
+ Xml_form_builder   7107  Allow null in tranform field.   Previous update was causing issues when the transform was allowed
+                          to be null.
+ Xml_form_elements  7001  Rename the datepicker element as it collides with another element.
+Do you wish to run all pending updates? (y/n): y
+Performed update: backup_migrate_update_7308                                                                       [ok]
+Performed update: backup_migrate_update_7309                                                                       [ok]
+Performed update: maillog_update_7100                                                                              [ok]
+Performed update: xml_form_builder_update_7105                                                                     [ok]
+Performed update: system_update_7083                                                                               [ok]
+Set colorspace configuration to RBG to maintain existing profile.                                                  [ok]
+Performed update: islandora_pdf_update_7001                                                                        [ok]
+No destinations were affected by this change.                                                                      [ok]
+Performed update: backup_migrate_update_7310                                                                       [ok]
+Performed update: xml_form_builder_update_7106                                                                     [ok]
+Performed update: maillog_update_7101                                                                              [ok]
+Performed update: islandora_webform_update_7001                                                                    [ok]
+Set colorspace configuration to RBG to maintain existing profile.                                                  [ok]
+Performed update: islandora_scholar_update_7103                                                                    [ok]
+Performed update: islandora_entities_update_7100                                                                   [ok]
+Performed update: xml_form_builder_update_7107                                                                     [ok]
+Performed update: islandora_webform_update_7002                                                                    [ok]
+Performed update: islandora_video_update_7101                                                                      [ok]
+Performed update: islandora_pdf_update_7100                                                                        [ok]
+Illegal offset type in isset or empty module.inc:280                                                               [warning]
+The Islandora Google Scholar submodule has been removed, and its functionality has been moved into the main        [ok]
+Islandora Scholar module.
+Performed update: islandora_scholar_update_7104                                                                    [ok]
+The original default form used two-word labels in the Position element, but removed spaces in the MADS XML.  This  [ok]
+has been fixed as of 7.x-1.13. When editing existing objects with the new form, older values under Position will
+not be read and will be discarded.  Please consult the <a
+href="https://jira.duraspace.org/browse/ISLANDORA-2137">ticket</a> for further information.
+Performed update: islandora_entities_update_7200                                                                   [ok]
+Performed update: citeproc_update_7101                                                                             [ok]
+Performed update: system_update_7084                                                                               [ok]
+Performed update: islandora_oai_update_7103                                                                        [ok]
+Performed update: islandora_update_7002                                                                            [ok]
+Performed update: maillog_update_7102                                                                              [ok]
+Performed update: git_deploy_update_7000                                                                           [ok]
+Performed update: backup_migrate_update_7311                                                                       [ok]
+Performed update: xml_form_elements_update_7001                                                                    [ok]
+Parsing DG One Form to Rule Them All for datepicker elements.                                                      [ok]
+NodeSquirrel stopped being usable as a backup destination on October 1st, 2019 and ceased operations entirely on   [status]
+November 1st, 2019. Because of this, the NodeSquirrel functionality has been disabled. Please switch to an
+alternate destination if necessary. Please note that the NodeSquirrel configuration itself has not been removed.
+Skipped DG One Form to Rule Them All (201) as no occurrences were found.                                           [status]
+'all' cache was cleared.                                                                                           [success]
+Finished performing updates.                                                                                       [ok]
+```
+
+In spite of the one error, this is looking much better. However, a quick visit to the [local site](https://dg.localdomain) returns a page with LOTS of Javascript errors and so the image tiles that appear on our home page are no longer constrained to any reasonable size. :frowning: Most errors are of the form:
+
+```
+Blocked loading mixed active content "http://dg.localdomain/sites/default/files/css/css_lQaZfjVpwP_oGNqdtWCSpJT1EMqXdMiU84ekLLxQnc4.css"
+```
+
+This was not my first rodeo, so I immediately took a look at file permissions and ownership in the _Apache_ container's `/var/www/html` directory, and it's a mess. Time to run the `fix-permissions.sh` script again...
+
+| _isle-apache-ld_ Container Commands |
+| --- |
+| `/bin/bash /utility-scripts/isle_drupal_build_tools/drupal/fix-permissions.sh --drupal_path=/var/www/html --drupal_user=islandora --httpd_group=www-data` |
+
+And that helped a great deal, but didn't quite bring the site back exactly as it should have been.  Upon detailed examination of the aforementioned error, I recognized an old enemy, a "mixed mode" browser warning.  But I could not recall how I've fixed this in the past, so I turned to [the ICG's #isle-support Slack channel](https://icg-chat.slack.com/archives/CG6HZRWQM) where my hero, [Noah Smith](https://www.linkedin.com/in/noahwsmith/), from [Born-Digital](https://born-digital.com/) immediately came to my rescue, again!
+
+## Next Steps NOT Yet Taken
+It's worth noting here that other things I considered doing next, but did not, include:
+
+  - Updating all of the _Drupal_ contrib and _Islandora_ modules -- this should have gotten done for the contrib modules and _Drupal_ core, but I'm not sure how to best approach this for all of the Islandora modules, so I chose not to do this yet. So, I'm planning to wait and complete this step from my `staging` instance of ISLE.
   - Install and configure [LASIR](https://github.com/Islandora-Collaboration-Group/LASIR) -- this will also be delayed until after my migration instance is up-to-date and in production.
   - Configure and engage "new" ISLE features like "Automated Testing" -- this will also be delayed until after my migration instance is up-to-date and in production.
 <!--
