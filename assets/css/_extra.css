@@ -140,4 +140,8 @@ figcaption h4 {
   font-style: italic;
 }
 
+pre {
+  white-space: pre-line;
+}
+
 /*# sourceMappingURL=_extra.css.map */
