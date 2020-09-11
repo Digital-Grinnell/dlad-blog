@@ -11,7 +11,7 @@ tags:
   - .htaccess
 ---
 
-Last evening, just before the [World Champion Kansas City Chiefs](https://en.wikipedia.org/wiki/Kansas_City_Chiefs) kicked off the NFL's 2020-21 season (I hope the season is healthy all the way into 2021), I attempted to update all the _Drupal_ contrib modules, and core, in my new [local instance of ISLE](https://dg.localdomain) as chronicled in [Next Steps](https://static.grinnell.edu/blogs/McFateM/posts/090-isle-local-migration-customization#next-steps). Ultimately that update process left me with a host of incorrect owner/group/permissions issues in the _Drupal_ code, and I was able to remedy those in short order. But that left me with lots of remaining '[mixed content](https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content)', or 'mixed mode', errors.
+Last evening, just before the [World Champion Kansas City Chiefs](https://en.wikipedia.org/wiki/Kansas_City_Chiefs) kicked off the NFL's 2020-21 season (I hope the season is healthy all the way into 2021), I attempted to update all the _Drupal_ contrib modules, and core, in my new [local instance of ISLE](https://dg.localdomain) as chronicled in the `Next Steps` chapter of [ISLE Local Migration Customization](https://static.grinnell.edu/blogs/McFateM/posts/090-isle-local-migration-customization/). Ultimately that update process left me with a host of incorrect owner/group/permissions issues in the _Drupal_ code, and I was able to remedy those in short order. But that left me with lots of remaining '[mixed content](https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content)', or 'mixed mode', errors.
 
 ## What's a 'Mixed Content' Error?
 
