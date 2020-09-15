@@ -1,7 +1,7 @@
 ---
 title: "Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations"
 publishDate: 2020-09-11
-lastmod: 2020-09-11T20:22:09-05:00
+lastmod: 2020-09-14T23:43:10-05:00
 draft: false
 tags:
   - ISLE
@@ -119,6 +119,10 @@ The instructions that follow below will have either a `On Local` or a `On Remote
 
 ## Step 1: Copy Production Data to Your Local
 
+{{% annotation %}}
+I've made no changes to my production data since it was last copied to my local workstation, therefore I skipped this step.
+{{% /annotation %}}
+
 ### Drupal Site Database
 
 You are repeating this step given that data may have changed on the Production site since creating your local. It is critical that Staging be a mirror or close to exact copy of Production.
@@ -146,6 +150,10 @@ You are repeating this step given that data may have changed on the Production s
 
 ## Step 2: On Local - Shutdown Any Local Containers & Review Local Code
 
+{{% annotation %}}
+I conducted this work from my MacBook where there are no local containers to shut down or review.
+{{% /annotation %}}
+
 * Ensure that your ISLE and Islandora git repositories have all the latest commits and pushes from the development process that took place on your personal computer. If you haven't yet finished, do not proceed until everything is completed.
 
 * Once finished, open a `terminal` (Windows: open `Git Bash`)
@@ -163,10 +171,18 @@ You are repeating this step given that data may have changed on the Production s
         * In many cases the username is already pre-populated. If it doesn't have a comment directing you to change or add a value after the `=`, then don't change it.
     * Once finished, save and close the file.
 
+{{% annotation %}}
+I checked and found no significant differences between my local environment and staging, so I copied the local to staging and changed only the Drupal hash salt value, and the first two comment lines.
+{{% /annotation %}}
+
 * Open the `config/apache/settings_php/settings.staging.php` file.
     * Find the first comment that begins with: `# ISLE Configuration` and follow the commented instructions to edit the database, username and password.
     * Find the second comment that begins with: `# ISLE Configuration` and follow the instructions to edit the Drupal hash salt.
     * Once finished, save and close the file.
+
+{{% annotation %}}
+Once again, I checked and found no significant differences between my local environment and staging, so I copied the local to staging and changed only the Drupal hash salt value, making it match the changes noted above.
+{{% /annotation %}}
 
 ---
 
@@ -183,6 +199,11 @@ You are repeating this step given that data may have changed on the Production s
 
 * Review the your `docker-compose.local.yml` file for custom edits made and copy them to the `docker-compose.staging.yml` file as needed, this can include changes to Fedora GSearch Transforms, Fedora hash size and more.
 
+{{% annotation %}}
+As was the case with my local environment, I've chosen to append a separate _docker-compose_ file, this time named `docker-compose.DG-STAGING.yml`.  This new file configures things so that my FEDORA repository is mounted at `/mnt/data/DG-FEDORA`, rather than on a USB stick named `DG-FEDORA`.
+{{% /annotation %}}
+
+
 ### SSL Certificates
 
 * Depending on your choice of SSL type (Commercial SSL files or the Let's Encrypt service), you'll need to uncomment only one line of the `traefik` services section. There are also inline instructions to this effect in the `docker-compose.staging.yml` file.
@@ -195,9 +216,17 @@ You are repeating this step given that data may have changed on the Production s
 
 * Based on the choice of SSL type made above, you'll need to refer to the `/config/proxy/traefik.staging.toml` file for further configuration instructions.
 
+{{% annotation %}}
+I chose to use `Let's Encrypt for SSL` and configured files accordingly.
+{{% /annotation %}}
+
 ---
 
 ## Step 4A: On Local - (Optional) Changes for "docker-compose.staging.yml"
+
+{{% annotation %}}
+I chose to make none of the optional changes at this time.
+{{% /annotation %}}
 
 This section is for optional changes for the `docker-compose.staging.yml`, end-users do not have feel like they have to make any choices here and can continue to **Step 4** as needed.
 
@@ -230,6 +259,10 @@ The options include PHP settings, Java Memory Allocation, MySQL configuration an
 ---
 
 ## Step 5: On Local Staging - If Using Commercial SSLs
+
+{{% annotation %}}
+I chose to use `Let's Encrypt for SSL` and configured files accordingly.
+{{% /annotation %}}
 
 If you are going to use Let's Encrypt instead, you can skip this step and move onto the next one. There will be additional steps further in this document, to help you configure it.
 
@@ -269,6 +302,75 @@ If you have decided to use Commercial SSL certs supplied to you by your IT team 
     * `git commit -m "Changes for Staging"`
     * `git push origin master`
 
+{{% annotation %}}
+I chose to save my work in a new branch so:
+
+```
+╭─markmcfate@MAC02NX13MG5RP ~/GitHub/dg-isle ‹ruby-2.3.0› ‹completed-install-local-migrate*›
+╰─$ git checkout -b ready-for-staging
+D	antibot
+M	config/apache/settings_php/settings.staging.php
+M	config/proxy/traefik.staging.toml
+M	docker-compose.staging.yml
+D	islandora_mods_via_twig
+M	staging.env
+Switched to a new branch 'ready-for-staging'
+```
+
+Then:
+
+```
+╭─markmcfate@MAC02NX13MG5RP ~/GitHub/dg-isle ‹ruby-2.3.0› ‹ready-for-staging*›
+╰─$ git status
+On branch ready-for-staging
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	deleted:    antibot
+	modified:   config/apache/settings_php/settings.staging.php
+	modified:   config/proxy/traefik.staging.toml
+	modified:   docker-compose.staging.yml
+	deleted:    islandora_mods_via_twig
+	modified:   staging.env
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	docker-compose.DG-STAGING.yml
+	staging.original.env
+
+no changes added to commit (use "git add" and/or "git commit -a")
+╭─markmcfate@MAC02NX13MG5RP ~/GitHub/dg-isle ‹ruby-2.3.0› ‹ready-for-staging*›
+╰─$ git add .
+╭─markmcfate@MAC02NX13MG5RP ~/GitHub/dg-isle ‹ruby-2.3.0› ‹ready-for-staging*›
+╰─$ git commit -m "Ready for staging, maybe"
+[ready-for-staging 870bcd6] Ready for staging, maybe
+ 8 files changed, 423 insertions(+), 60 deletions(-)
+ delete mode 100644 antibot
+ create mode 100644 docker-compose.DG-STAGING.yml
+ delete mode 100644 islandora_mods_via_twig
+ create mode 100644 staging.original.env
+╭─markmcfate@MAC02NX13MG5RP ~/GitHub/dg-isle ‹ruby-2.3.0› ‹ready-for-staging›
+╰─$ git push origin ready-for-staging
+Counting objects: 12, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (12/12), 6.00 KiB | 3.00 MiB/s, done.
+Total 12 (delta 9), reused 0 (delta 0)
+remote: Resolving deltas: 100% (9/9), completed with 8 local objects.
+remote:
+remote: Create a pull request for 'ready-for-staging' on GitHub by visiting:
+remote:      https://github.com/Digital-Grinnell/dg-isle/pull/new/ready-for-staging
+remote:
+To https://github.com/Digital-Grinnell/dg-isle
+ * [new branch]      ready-for-staging -> ready-for-staging
+╭─markmcfate@MAC02NX13MG5RP ~/GitHub/dg-isle ‹ruby-2.3.0› ‹ready-for-staging›
+╰─$
+```
+
+{{% /annotation %}}
+
 ---
 
 ## On Remote Staging - Configure the ISLE Staging Environment Profile for Launch and Usage
@@ -293,7 +395,37 @@ Since the `/opt` directory might not let you do this at first, we suggest the fo
 * Fix the permissions so that the `islandora` user has access.
     * `sudo chown -Rv islandora:islandora /opt/yourprojectnamehere-isle`
 
----
+{{% annotation %}}
+My chosen command sequence and results were:
+
+```
+╭─islandora@dgdockerx ~
+╰─$ git clone https://github.com/Digital-Grinnell/dg-isle
+Cloning into 'dg-isle'...
+Username for 'https://github.com': digital@grinnell.edu
+Password for 'https://digital@grinnell.edu@github.com':
+remote: Enumerating objects: 5103, done.
+remote: Counting objects: 100% (5103/5103), done.
+remote: Compressing objects: 100% (1799/1799), done.
+remote: Total 5103 (delta 3235), reused 5036 (delta 3168), pack-reused 0
+Receiving objects: 100% (5103/5103), 7.23 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (3235/3235), done.
+╭─islandora@dgdockerx ~
+╰─$ sudo mv -f ./dg-isle /opt/dg-isle
+╭─islandora@dgdockerx ~
+╰─$ cd /opt/dg-isle
+╭─islandora@dgdockerx /opt/dg-isle ‹master›
+╰─$ git checkout ready-for-staging
+Branch ready-for-staging set up to track remote branch ready-for-staging from origin.
+Switched to a new branch 'ready-for-staging'
+╭─islandora@dgdockerx /opt/dg-isle ‹ready-for-staging›
+╰─$ sudo chown -Rv islandora:islandora /opt/dg-isle
+ownership of ‘/opt/dg-isle/vagrant/CentOS/Vagrantfile’ retained as islandora:islandora
+ownership of ‘/opt/dg-isle/vagrant/CentOS’ retained as islandora:islandora
+ownership of ‘/opt/dg-isle/vagrant/Ubuntu/Vagrantfile’ retained as islandora:islandora
+...
+```
+{{% /annotation %}}
 
 ## Step 8: On Remote Staging - Create the Appropriate Local Data Paths for Apache, Fedora and Log Data
 
@@ -301,6 +433,18 @@ Since the `/opt` directory might not let you do this at first, we suggest the fo
     * `sudo mkdir -p /opt/data`
 * Change the permissions to the Islandora user.
     * `sudo chown -Rv islandora:islandora /opt/data`
+
+{{% annotation %}}
+My chosen command sequence and results were:
+
+```
+╭─islandora@dgdockerx ~
+╰─$ sudo mkdir -p /opt/data
+╭─islandora@dgdockerx /opt/data
+╰─$ sudo chown -Rv islandora:islandora /opt/data
+ownership of ‘/opt/data’ retained as islandora:islandora
+```
+{{% /annotation %}}
 
 ---
 
@@ -312,6 +456,176 @@ Please clone from your existing Production Islandora git repository.
 
 * Fix the permissions so that the `islandora` user has access.
     * `sudo chown -Rv islandora:islandora /opt/data/apache/html`
+
+{{% annotation %}}
+My chosen command sequence and results were:
+
+```
+╭─islandora@dgdockerx ~
+╰─$ git clone https://github.com/Digital-Grinnell/dg-islandora --recursive
+Cloning into 'dg-islandora'...
+Username for 'https://github.com': digital@grinnell.edu
+Password for 'https://digital@grinnell.edu@github.com':
+remote: Enumerating objects: 598, done.
+remote: Counting objects: 100% (598/598), done.
+remote: Compressing objects: 100% (557/557), done.
+remote: Total 10404 (delta 102), reused 200 (delta 33), pack-reused 9806
+Receiving objects: 100% (10404/10404), 62.94 MiB | 37.71 MiB/s, done.
+Resolving deltas: 100% (2196/2196), done.
+Submodule 'sites/all/modules/islandora/dg7' (https://github.com/DigitalGrinnell/dg7) registered for path 'sites/all/modules/islandora/dg7'
+Submodule 'sites/all/modules/islandora/idu' (https://github.com/DigitalGrinnell/idu) registered for path 'sites/all/modules/islandora/idu'
+Submodule 'sites/all/modules/islandora/islandora_binary_object' (https://github.com/Islandora-Labs/islandora_binary_object) registered for path 'sites/all/modules/islandora/islandora_binary_object'
+Submodule 'sites/all/modules/islandora/islandora_collection_search' (https://github.com/discoverygarden/islandora_collection_search) registered for path 'sites/all/modules/islandora/islandora_collection_search'
+Submodule 'sites/all/modules/islandora/islandora_datastream_exporter' (https://github.com/Islandora-Labs/islandora_datastream_exporter.git) registered for path 'sites/all/modules/islandora/islandora_datastream_exporter'
+Submodule 'sites/all/modules/islandora/islandora_datastream_replace' (https://github.com/DigitalGrinnell/islandora_datastream_replace.git) registered for path 'sites/all/modules/islandora/islandora_datastream_replace'
+Submodule 'sites/all/modules/islandora/islandora_mods_display' (https://github.com/DigitalGrinnell/islandora_mods_display.git) registered for path 'sites/all/modules/islandora/islandora_mods_display'
+Submodule 'sites/all/modules/islandora/islandora_multi_importer' (https://github.com/DigitalGrinnell/islandora_multi_importer) registered for path 'sites/all/modules/islandora/islandora_multi_importer'
+Submodule 'sites/all/modules/islandora/islandora_solr_collection_view' (https://github.com/Islandora-Labs/islandora_solr_collection_view.git) registered for path 'sites/all/modules/islandora/islandora_solr_collection_view'
+Submodule 'sites/all/modules/islandora/islandora_solr_views' (https://github.com/DigitalGrinnell/islandora_solr_views) registered for path 'sites/all/modules/islandora/islandora_solr_views'
+Submodule 'sites/all/modules/islandora/islandora_solution_pack_oralhistories' (https://github.com/Islandora-Labs/islandora_solution_pack_oralhistories.git) registered for path 'sites/all/modules/islandora/islandora_solution_pack_oralhistories'
+Submodule 'sites/all/themes/bootstrap' (https://github.com/drupalprojects/bootstrap.git) registered for path 'sites/all/themes/bootstrap'
+Submodule 'sites/default/themes/digital_grinnell_bootstrap' (https://github.com/DigitalGrinnell/digital_grinnell_bootstrap.git) registered for path 'sites/default/themes/digital_grinnell_bootstrap'
+Cloning into 'sites/all/modules/islandora/dg7'...
+remote: Enumerating objects: 335, done.
+remote: Total 335 (delta 0), reused 0 (delta 0), pack-reused 335
+Receiving objects: 100% (335/335), 201.05 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (203/203), done.
+Submodule path 'sites/all/modules/islandora/dg7': checked out 'f6cca12904d24c57fcc408b93db92893a564e231'
+Cloning into 'sites/all/modules/islandora/idu'...
+remote: Enumerating objects: 21, done.
+remote: Counting objects: 100% (21/21), done.
+remote: Compressing objects: 100% (15/15), done.
+remote: Total 64 (delta 10), reused 16 (delta 6), pack-reused 43
+Unpacking objects: 100% (64/64), done.
+Submodule path 'sites/all/modules/islandora/idu': checked out '0d91bd6e563f2955563649fc9168c4e8e518f45c'
+Cloning into 'sites/all/modules/islandora/islandora_binary_object'...
+remote: Enumerating objects: 353, done.
+remote: Total 353 (delta 0), reused 0 (delta 0), pack-reused 353
+Receiving objects: 100% (353/353), 80.16 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (187/187), done.
+Submodule path 'sites/all/modules/islandora/islandora_binary_object': checked out '53b67d57cf1ca8052910a90006ad0af183a23389'
+Cloning into 'sites/all/modules/islandora/islandora_collection_search'...
+remote: Enumerating objects: 438, done.
+remote: Total 438 (delta 0), reused 0 (delta 0), pack-reused 438
+Receiving objects: 100% (438/438), 83.91 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (209/209), done.
+Submodule path 'sites/all/modules/islandora/islandora_collection_search': checked out '69545bed8d953d71344fee44de39074d88da0f90'
+Cloning into 'sites/all/modules/islandora/islandora_datastream_exporter'...
+remote: Enumerating objects: 80, done.
+remote: Total 80 (delta 0), reused 0 (delta 0), pack-reused 80
+Unpacking objects: 100% (80/80), done.
+Submodule path 'sites/all/modules/islandora/islandora_datastream_exporter': checked out 'b1be7e77fd9f14b72dd1a78130109ce0d9a51fd3'
+Cloning into 'sites/all/modules/islandora/islandora_datastream_replace'...
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 84 (delta 2), reused 6 (delta 2), pack-reused 78
+Unpacking objects: 100% (84/84), done.
+Submodule path 'sites/all/modules/islandora/islandora_datastream_replace': checked out '0e786886d8da2ebc30a89d23654710aaa180cceb'
+Cloning into 'sites/all/modules/islandora/islandora_mods_display'...
+remote: Enumerating objects: 128, done.
+remote: Counting objects: 100% (128/128), done.
+remote: Compressing objects: 100% (80/80), done.
+remote: Total 271 (delta 91), reused 85 (delta 48), pack-reused 143
+Receiving objects: 100% (271/271), 282.28 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (182/182), done.
+Submodule path 'sites/all/modules/islandora/islandora_mods_display': checked out '08249e5a0486c28c698acb7d11db24af5c6ec63c'
+Cloning into 'sites/all/modules/islandora/islandora_multi_importer'...
+remote: Enumerating objects: 978, done.
+remote: Total 978 (delta 0), reused 0 (delta 0), pack-reused 978
+Receiving objects: 100% (978/978), 643.47 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (681/681), done.
+Submodule path 'sites/all/modules/islandora/islandora_multi_importer': checked out '78c06b719287a3c0250e902552ec05f760780b9b'
+Cloning into 'sites/all/modules/islandora/islandora_solr_collection_view'...
+remote: Enumerating objects: 134, done.
+remote: Total 134 (delta 0), reused 0 (delta 0), pack-reused 134
+Receiving objects: 100% (134/134), 31.88 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (72/72), done.
+Submodule path 'sites/all/modules/islandora/islandora_solr_collection_view': checked out 'c4b2f33251e3f46bb3bc4789480a60a8efe5d351'
+Cloning into 'sites/all/modules/islandora/islandora_solr_views'...
+remote: Enumerating objects: 615, done.
+remote: Total 615 (delta 0), reused 0 (delta 0), pack-reused 615
+Receiving objects: 100% (615/615), 174.41 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (354/354), done.
+Submodule path 'sites/all/modules/islandora/islandora_solr_views': checked out '3c17f497a51bc7f5bf90a6bd38e02733b79dca94'
+Cloning into 'sites/all/modules/islandora/islandora_solution_pack_oralhistories'...
+remote: Enumerating objects: 11, done.
+remote: Counting objects: 100% (11/11), done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 3434 (delta 3), reused 2 (delta 0), pack-reused 3423
+Receiving objects: 100% (3434/3434), 11.20 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (1392/1392), done.
+Submodule path 'sites/all/modules/islandora/islandora_solution_pack_oralhistories': checked out '60b84295deb4c7b11fbe5c172e3f815eb78cd942'
+Cloning into 'sites/all/themes/bootstrap'...
+remote: Enumerating objects: 12635, done.
+remote: Total 12635 (delta 0), reused 0 (delta 0), pack-reused 12635
+Receiving objects: 100% (12635/12635), 2.83 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (9255/9255), done.
+Submodule path 'sites/all/themes/bootstrap': checked out 'c050d1d6ae85ef344be85dbf0a4ed9ec68ac32ce'
+Cloning into 'sites/default/themes/digital_grinnell_bootstrap'...
+remote: Enumerating objects: 190, done.
+remote: Total 190 (delta 0), reused 0 (delta 0), pack-reused 190
+Receiving objects: 100% (190/190), 1.08 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (70/70), done.
+Submodule path 'sites/default/themes/digital_grinnell_bootstrap': checked out '22b51ecfb61c7e348e25892e988bcf82d0b1c781'
+╭─islandora@dgdockerx ~
+╰─$ cd dg-islandora
+╭─islandora@dgdockerx ~/dg-islandora ‹master›
+╰─$ git checkout completed-install-local-migrate
+Branch completed-install-local-migrate set up to track remote branch completed-install-local-migrate from origin.
+Switched to a new branch 'completed-install-local-migrate'
+╭─islandora@dgdockerx ~/dg-islandora ‹completed-install-local-migrate›
+╰─$ sudo mkdir -p /opt/data/apache/html
+╭─islandora@dgdockerx ~/dg-islandora ‹completed-install-local-migrate›
+╰─$ sudo chown -Rv islandora:islandora /opt/data/apache/html
+changed ownership of ‘/opt/data/apache/html’ from root:root to islandora:islandora
+╭─islandora@dgdockerx ~/dg-islandora ‹completed-install-local-migrate›
+╰─$ cp -fr . /opt/data/apache/html/
+╭─islandora@dgdockerx ~/dg-islandora ‹completed-install-local-migrate›
+╰─$ cd /opt/data/apache/html
+╭─islandora@dgdockerx /opt/data/apache/html ‹completed-install-local-migrate›
+╰─$ ls -alh            
+total 332K
+drwxr-xr-x. 10 islandora islandora 4.0K Sep 14 23:37 .
+drwxr-xr-x.  3 root      root      4.0K Sep 14 23:30 ..
+-rw-rw-r--.  1 islandora islandora 6.5K Sep 14 23:37 authorize.php
+-rw-rw-r--.  1 islandora islandora 113K Sep 14 23:37 CHANGELOG.txt
+-rw-rw-r--.  1 islandora islandora 1.5K Sep 14 23:37 COPYRIGHT.txt
+-rw-rw-r--.  1 islandora islandora  720 Sep 14 23:37 cron.php
+-rw-rw-r--.  1 islandora islandora 2.2K Sep 14 23:37 Digital-Grinnell-Migration-Mitigation-Script.sh
+-rw-rw-r--.  1 islandora islandora  317 Sep 14 23:37 .editorconfig
+drwxrwxr-x.  9 islandora islandora 4.0K Sep 14 23:39 .git
+-rw-rw-r--.  1 islandora islandora  174 Sep 14 23:37 .gitignore
+-rw-rw-r--.  1 islandora islandora 2.6K Sep 14 23:37 .gitmodules
+-rw-rw-r--.  1 islandora islandora 6.1K Sep 14 23:37 .htaccess
+drwxrwxr-x.  4 islandora islandora 4.0K Sep 14 23:37 includes
+-rw-rw-r--.  1 islandora islandora  529 Sep 14 23:37 index.php
+-rw-rw-r--.  1 islandora islandora 1.7K Sep 14 23:37 INSTALL.mysql.txt
+-rw-rw-r--.  1 islandora islandora 1.9K Sep 14 23:37 INSTALL.pgsql.txt
+-rw-rw-r--.  1 islandora islandora  703 Sep 14 23:37 install.php
+-rw-rw-r--.  1 islandora islandora 1.2K Sep 14 23:37 install_solution_packs.sh
+-rw-rw-r--.  1 islandora islandora 1.3K Sep 14 23:37 INSTALL.sqlite.txt
+-rw-rw-r--.  1 islandora islandora  18K Sep 14 23:37 INSTALL.txt
+-rw-rw-r--.  1 islandora islandora  18K Sep 14 23:37 LICENSE.txt
+-rw-rw-r--.  1 islandora islandora 8.3K Sep 14 23:37 MAINTAINERS.txt
+-rw-rw-r--.  1 islandora islandora 3.5K Sep 14 23:37 migration_site_vsets.sh
+drwxrwxr-x.  6 islandora islandora 4.0K Sep 14 23:37 misc
+drwxrwxr-x. 42 islandora islandora 4.0K Sep 14 23:37 modules
+drwxrwxr-x.  5 islandora islandora 4.0K Sep 14 23:37 profiles
+-rw-rw-r--.  1 islandora islandora  600 Sep 14 23:37 README.md
+-rw-rw-r--.  1 islandora islandora 5.3K Sep 14 23:37 README.txt
+-rw-rw-r--.  1 islandora islandora 2.2K Sep 14 23:37 robots.txt
+drwxrwxr-x.  2 islandora islandora 4.0K Sep 14 23:37 scripts
+drwxrwxr-x.  4 islandora islandora 4.0K Sep 14 23:37 sites
+drwxrwxr-x.  7 islandora islandora 4.0K Sep 14 23:37 themes
+-rw-rw-r--.  1 islandora islandora  20K Sep 14 23:37 update.php
+-rw-rw-r--.  1 islandora islandora 9.9K Sep 14 23:37 UPGRADE.txt
+-rw-rw-r--.  1 islandora islandora 2.2K Sep 14 23:37 web.config
+```
+
+** >>>> Progress Marker <<<< **
+
+{{% /annotation %}}
 
 ---
 
