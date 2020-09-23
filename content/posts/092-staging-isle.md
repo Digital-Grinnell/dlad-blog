@@ -584,7 +584,7 @@ changed ownership of ‘/opt/data/apache/html’ from root:root to islandora:isl
 ╭─islandora@dgdockerx ~/dg-islandora ‹completed-install-local-migrate›
 ╰─$ cd /opt/data/apache/html
 ╭─islandora@dgdockerx /opt/data/apache/html ‹completed-install-local-migrate›
-╰─$ ls -alh            
+╰─$ ls -alh
 total 332K
 drwxr-xr-x. 10 islandora islandora 4.0K Sep 14 23:37 .
 drwxr-xr-x.  3 root      root      4.0K Sep 14 23:30 ..
@@ -622,9 +622,6 @@ drwxrwxr-x.  7 islandora islandora 4.0K Sep 14 23:37 themes
 -rw-rw-r--.  1 islandora islandora 9.9K Sep 14 23:37 UPGRADE.txt
 -rw-rw-r--.  1 islandora islandora 2.2K Sep 14 23:37 web.config
 ```
-
-** >>>> Progress Marker <<<< **
-
 {{% /annotation %}}
 
 ---
@@ -648,6 +645,10 @@ drwxrwxr-x.  7 islandora islandora 4.0K Sep 14 23:37 themes
         * Copy your `/usr/local/fedora/data/objectStore` data to the suggested path of `/opt/data/fedora/objectStore`
             * You may need to change the permissions to `root:root` on the Staging `/opt/data/fedora/objectStore` above after copying so the Fedora container can access properly. Do not do this on your existing Production system please.
 
+{{% annotation %}}
+Since there have been NO changes to my production instance of ISLE since the last backup, and since my configuration is using the aforementioned `DG-STAGING` repository, I have safely skipped this entire step.
+{{% /annotation %}}
+
 ---
 
 ## Step 11: On Remote Staging - If Using Let's Encrypt
@@ -662,6 +663,15 @@ If using Let's Encrypt, please continue to follow this step.
     * This file will be ignored by git and won't cause any errors with checking in code despite the location
     * Do note that you may need to open your firewall briefly to allow the SSL certs to be added to the `acme.json` file. This will be indicated in the following steps.
     * Open your firewall to ports 80, 443 prior to starting up the containers to ensure SSL cert creation.
+
+{{% annotation %}}
+OK, this is where the proverbial $hit hits the fan, so to speak. **Grinnell College ITS will NOT allow both of those last two bullets to happen at the same time.** So, I'm going to try and implement the strategy documented in [Traefik and Acme.sh Instead of DNS-01](https://static.grinnell.edu/blogs/McFateM/posts/079-traefik-and-acme.sh-instead-of-dns-01/) now.  Wish me luck...
+
+This effort is turning out to be such a departure from the process documented here that I'm inclinded to capture it's history, unfolding as I type, in [a new blog post](https://static.grinnell.edu/blogs/McFateM/posts/093-traefik-and-acme.sh-for-DG-staging/).
+
+**>>>> Progress Marker <<<<**
+
+{{% /annotation %}}
 
 ---
 
