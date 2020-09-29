@@ -1,7 +1,7 @@
 ---
 title: "Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations"
 publishDate: 2020-09-11
-lastmod: 2020-09-14T23:43:10-05:00
+lastmod: 2020-09-29T13:58:09-05:00
 draft: false
 tags:
   - ISLE
@@ -668,9 +668,6 @@ If using Let's Encrypt, please continue to follow this step.
 OK, this is where the proverbial $hit hits the fan, so to speak. **Grinnell College ITS will NOT allow both of those last two bullets to happen at the same time.** So, I'm going to try and implement the strategy documented in [Traefik and Acme.sh Instead of DNS-01](https://static.grinnell.edu/blogs/McFateM/posts/079-traefik-and-acme.sh-instead-of-dns-01/) now.  Wish me luck...
 
 This effort is turning out to be such a departure from the process documented here that I'm inclinded to capture it's history, unfolding as I type, in [a new blog post](https://static.grinnell.edu/blogs/McFateM/posts/093-traefik-and-acme.sh-for-DG-staging/).
-
-**>>>> Progress Marker <<<<**
-
 {{% /annotation %}}
 
 ---
@@ -696,6 +693,10 @@ This step is a multi-step, involved process that allows an end-user to make appr
     * Save the file
 
 * For users of ISLE version 1.5 and above, these git instructions below are not needed. The .env file is no longer tracked in git.
+
+{{% annotation %}}
+I performed the operations prescribed above and made necessary edits.  Since I'm working with _ISLE v1.5.1_, I skipped the rest of this section as advised.
+{{% /annotation %}}
 
 * For users of ISLE versions 1.4.2 and below, you will need to continue to follow these instructions until you upgrade.
     * Enter `git status` - You'll now see the following:
@@ -765,6 +766,11 @@ git commit -m "Added the edited .env configuration file for Staging. DO NOT PUSH
 
 **Note:** Prior to starting the launch process, it is recommended that you briefly open your firewall to allow ports 80 and 443 access to the world. You'll only need to keep this open for 3 -5 minutes and then promptly close access once the Let's Encrypt SSL certificates have been generated.
 
+{{% annotation %}}
+Since I am using a different SSL certificate validation process I did NOT follow the advice shared in the note above.  See [blog post 093](https://static.grinnell.edu/blogs/McFateM/posts/093-traefik-and-acme.sh-for-DG-staging/).
+**>>>> Progress Marker <<<<**
+{{% /annotation %}}
+
 * _Using the same open terminal:_
     * `docker-compose up -d`
 
@@ -779,6 +785,30 @@ git commit -m "Added the edited .env configuration file for Staging. DO NOT PUSH
 
 * In your web browser, enter your Staging site URL: `https://yourprojectnamehere.institution.edu`
   * **Note:** You should not see any errors with respect to the SSL certifications, you should see a nice green lock padlock for the site security. If you see a red error or unknown SSL cert provider, you'll need to shut the containers down and review the previous steps taken especially if using Let's Encrypt. You may need to repeat those steps to get rid of the errors.
+
+{{% annotation %}}
+Since my process uses _Let\'s Encrypt_ with a differnt SSL validation than documented, I executed a modified copy of my [restart.sh](https://github.com/McFateM/docker-traefik2-acme-host/blob/master/restart.sh) script BEFORE spinning up my _ISLE_ stack.
+
+That modified copy of `restart.sh` looked like this:
+
+```bash
+#!/bin/bash
+#
+docker network create isle-external
+cd /opt/dg-isle/acme
+docker-compose up -d; docker-compose logs
+docker exec -it acme --issue --dns dns_azure --server https://acme-staging-v02.api.letsencrypt.org/directory -d dgdockerx.grinnell.edu --domain-alias _acme-challenge.leverify.info --key-file /certs/dgdockex.grinnell.edu.key --cert-file /certs/dgdockerx.grinnell.edu.cert --standalone --force
+docker exec -it acme --issue --dns dns_azure --server https://acme-staging-v02.api.letsencrypt.org/directory -d dg-staging.grinnell.edu  --domain-alias _acme-challenge.leverify.info --key-file /certs/dg-staging.grinnell.edu.key --cert-file /certs/dg-staging.grinnell.edu.cert --standalone --force
+#docker exec -it acme --issue --dns dns_azure -d dgdockerx.grinnell.edu --domain-alias _acme-challenge.leverify.info --key-file /certs/dgdockerx.grinnell.edu.key --cert-file /certs/dgdockerx.grinnell.edu.cert --standalone --force
+#docker exec -it acme --issue --dns dns_azure -d dg-staging.grinnell.edu  --domain-alias _acme-challenge.leverify.info --key-file /certs/dg-staging.grinnell.edu.key --cert-file /certs/dg-staging.grinnell.edu.cert --standalone --force
+#
+cd ..
+docker-compose up -d; docker-compose logs
+```
+
+After running `./restart.sh` from the `/opt/dg-isle` directory on _DGDockerX_, I had 8 healthy, running containers including one instance of `neilpang/ache.sh:latest`. A visit to my target address of [https://dg-staging.grinnell.edu](https://dg-staging.grinnell.edu) yielded a "security exception" warning and a white-screen-of-death (WSOD).  That\'s to be expected since my `acme.sh` validation was run against the _Let\'s Encrypt_ "staging" server, not their production server.  The WSOD could also be expected because the _ISLE_ configuration steps documented later in this post had not yet been executed.
+** >>>> Progress Marker <<<< **
+{{% /annotation %}}
 
 ---
 

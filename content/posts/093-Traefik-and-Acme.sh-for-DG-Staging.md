@@ -1,7 +1,7 @@
 ---
 title: "Traefik and Acme.sh for DG-STAGING"
 publishDate: 2020-09-15
-lastmod: 2020-09-23T12:51:23-05:00
+lastmod: 2020-09-28T15:15:56-05:00
 draft: false
 tags:
   - ISLE
@@ -155,8 +155,39 @@ Before attempting to engage the `acme.sh` validation scheme with my staging inst
 
 **I am exceptionally pleased to report that...** `IT` `JUST` `WORKS`.  :exclamation: :grinning: :exclamation: :grinning: :exclamation:
 
-All of the updated files, `sans any .env files needed for complete configuration`, have been pushed back into the [docker-traefik2-acme-host](https://github.com/McFateM/docker-traefik2-acme-host) public repository.  Enjoy.
+All of the updated files, `sans any .env files needed for complete configuration`, have been pushed back into the [docker-traefik2-acme-host](https://github.com/McFateM/docker-traefik2-acme-host) public repository. On September 28, 2020, I also took the liberty of upgrading the aforementioned project to use _Portainer v2.0.0_ as well as _Traefik:latest_ (currently equates to 2.3.0) and _docker-compose 3.3_.  All of those changes have also been pushed back and merged into _master_.  Enjoy.
 
 # Next: Repeat with DG-STAGING (ISLE v1.5.1) at https://dg-staging.grinnell.edu
 
-And that's break time...
+This could be a real challenge because [docker-traefik2-acme-host](https://github.com/McFateM/docker-traefik2-acme-host) uses _Traefik v2_ while _ISLE_ still employ _Traefik v1_. Fortunately, the key component to making this work is the _acme.sh_ script and service, and that should work with any version of _Traefik_. So let's take some baby steps...
+
+## Introduce _acme.sh_ Into ISLE
+
+All that's necessary to introduce _acme.sh_ into _ISLE_ is copying the current `~/host/acme` directory to `/opt/dg-isle/acme`, changing a litte of the configuration there, and invoking the _acme_ service to obtain our certs before we bring up the _ISLE_ stack.  Working on _DGDockerX_ as user _islandora_ I made the copy and edits like so:
+
+```
+cp -f ~/host/destroy.sh /opt/dg-isle/destroy.sh
+cp -f ~/host/restart.sh /opt/dg-isle/restart.sh
+cp -fr ~/host/acme /opt/dg-isle/acme
+cd /opt/dg-isle
+nano /opt/dg-isle/acme/docker-compose.yml
+# In nano I changed all instances of the external network name from 'proxy' to 'isle-external', and our host '../certs:' directory to '../config/proxy/ssl-certs' in order to match ISLE conventions.
+nano /opt/dg-isle/restart.sh
+# In nano I changed the external network name from 'proxy' to 'isle-external' and modified directory names for other portions from `~/host` to `/opt/dg-isle`
+# The next command will use the new `restart.sh` script to launch ISLE
+./restart.sh
+```
+
+<!--
+created the new file, `/opt/dg-isle/docker-compose.TRAEFIK2.yml`, and it reads like this -- complete with comments to explain what's intended to happen:
+
+
+Since the _ISLE_ stack is controlled from a single `docker-compose.staging.yml` file, plus my custom _FEDORA_ repository additions which appear in `docker-compose.DG-STAGING.yml`, I believe the key to this portion of the process will be introducing a new `docker-compose.ACME.yml` file to introduce the  _acme.sh_ service to replace the project's standard _DNS-01_ validation with our new approach. That should be simple enough, but the _acme.sh_ approach uses _Traefik v2_, not _v1_, so we should probably introduce that change first.
+
+## Upgrading `docker-compose.staging.yml` to Traefik v2.0
+
+To do this I'm going to introduce a new `docker-compose.TRAEFIK2.yml` file with override configuration designed to transition our `docker-compose.staging.yml` file to the new version of _Traefik_.  Working on _DGDockerX_ as user _islandora_ I created the new file, `/opt/dg-isle/docker-compose.TRAEFIK2.yml`, and it reads like this -- complete with comments to explain what's intended to happen:
+
+-->
+
+And that's a wrap for this episode. Until next time...
