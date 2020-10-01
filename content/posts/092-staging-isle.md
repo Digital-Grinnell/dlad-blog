@@ -1,7 +1,7 @@
 ---
 title: "Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations"
 publishDate: 2020-09-11
-lastmod: 2020-09-29T13:58:09-05:00
+lastmod: 2020-09-30T14:47:59-05:00
 draft: false
 tags:
   - ISLE
@@ -695,7 +695,7 @@ This step is a multi-step, involved process that allows an end-user to make appr
 * For users of ISLE version 1.5 and above, these git instructions below are not needed. The .env file is no longer tracked in git.
 
 {{% annotation %}}
-I performed the operations prescribed above and made necessary edits.  Since I'm working with _ISLE v1.5.1_, I skipped the rest of this section as advised.
+I performed the operations prescribed above and made necessary edits choosing a _COMPOSE\_PROJECT\_NAME_ of `dgs` and _BASE\_DOMAIN_ of `dg-staging.grinnell.edu`.  Since I'm working with _ISLE v1.5.1_, I skipped the rest of this section as advised.
 {{% /annotation %}}
 
 * For users of ISLE versions 1.4.2 and below, you will need to continue to follow these instructions until you upgrade.
@@ -760,6 +760,10 @@ git commit -m "Added the edited .env configuration file for Staging. DO NOT PUSH
     * `systemctl start docker`
     * `docker-compose pull`
 
+{{% annotation %}}
+I completed this step as documented.
+{{% /annotation %}}
+
 ---
 
 ## Step 14: On Remote Staging - Start Containers
@@ -768,7 +772,6 @@ git commit -m "Added the edited .env configuration file for Staging. DO NOT PUSH
 
 {{% annotation %}}
 Since I am using a different SSL certificate validation process I did NOT follow the advice shared in the note above.  See [blog post 093](https://static.grinnell.edu/blogs/McFateM/posts/093-traefik-and-acme.sh-for-DG-staging/).
-**>>>> Progress Marker <<<<**
 {{% /annotation %}}
 
 * _Using the same open terminal:_
@@ -806,8 +809,11 @@ cd ..
 docker-compose up -d; docker-compose logs
 ```
 
-After running `./restart.sh` from the `/opt/dg-isle` directory on _DGDockerX_, I had 8 healthy, running containers including one instance of `neilpang/ache.sh:latest`. A visit to my target address of [https://dg-staging.grinnell.edu](https://dg-staging.grinnell.edu) yielded a "security exception" warning and a white-screen-of-death (WSOD).  That\'s to be expected since my `acme.sh` validation was run against the _Let\'s Encrypt_ "staging" server, not their production server.  The WSOD could also be expected because the _ISLE_ configuration steps documented later in this post had not yet been executed.
-** >>>> Progress Marker <<<< **
+After running `./restart.sh` from the `/opt/dg-isle` directory on _DGDockerX_, I had 8 healthy, running containers including one instance of `neilpang/ache.sh:latest`. A visit to my target address of [https://dg-staging.grinnell.edu](https://dg-staging.grinnell.edu) yielded a "security exception" warning and a white-screen-of-death (WSOD).  That\'s to be expected since my `acme.sh` validation was run against the _Let\'s Encrypt_ "staging" server, not their "production" server.  The WSOD could also be expected because the _ISLE_ configuration steps documented later in this post had not yet been executed.
+
+Next step... run the `./destory.sh` script on _DGDockerX_ to remove what we just built, edit the `restart.sh` script to engage the _Let\'s Encrypt_ "production" server, and launch the script again.  Then, test [https://dg-staging.grinnell.edu](https://dg-staging.grinnell.edu) just to see if the generated certificate is valid.
+
+My hope of quickly completing that "next" step was dashed by an encounter with _Let\'s Encrypt_ "production" server rate limits.  Those limits are documented nicely at [https://letsencrypt.org/docs/rate-limits/](https://letsencrypt.org/docs/rate-limits/) but I hit the `Duplicate Certificate` limit nonetheless. :frowning:  So it's back to using the _Let\'s Encrypt_ "staging" server and pushing forward as much as possible.
 {{% /annotation %}}
 
 ---
@@ -829,6 +835,13 @@ After running `./restart.sh` from the `/opt/dg-isle` directory on _DGDockerX_, I
     * `docker cp /pathto/prod_drupal_site_082019.sql.gz your-mysql-containername:/prod_drupal_site_082019.sql.gz`
         * Example: `docker cp /c/db_backups/prod_drupal_site_082019.sql.gz isle-mysql-ld:/prod_drupal_site_082019.sql.gz`
     * This might take a few minutes depending on the size of the file.
+
+{{% annotation %}}
+
+
+{{% /annotation %}}
+
+** >>>> Progress Marker <<<< **
 
 * Import the exported Local MySQL database for use in the current Staging Drupal site. Refer to your `staging.env` for the usernames and passwords used below.
     * You can use a MySQL GUI client for this process instead but the command line directions are only included below.
