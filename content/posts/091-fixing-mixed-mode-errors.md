@@ -1,7 +1,7 @@
 ---
 title: Fixing 'Mixed Content' Errors
 publishDate: 2020-09-11
-lastmod: 2020-09-11T12:08:42-05:00
+lastmod: 2020-10-05T09:22:52-05:00
 draft: false
 tags:
   - mixed content
@@ -40,5 +40,13 @@ this should be in there to force HTTPS
 {{% /original %}}
 
 I added that line to the end of `/var/www/html/.htaccess` in my _Apache_ container and revisited [https://dg.localdomain](https://dg.localdomain)... and it worked perfectly!  Kudos and eternal gratitude to Noah and all my heroes at BD and the ICG!
+
+## Born Digital's Script
+
+Noah related to me that at Born Digital they routinely run the following script.
+
+```
+grep -ri 'SetEnvIf X-Forwarded-Proto https HTTPS=on' web/.htaccess || echo \"SetEnvIf X-Forwarded-Proto https HTTPS=on\" | tee -a web/.htaccess
+```
 
 And that's a :smiley: wrap.  Until next time...
