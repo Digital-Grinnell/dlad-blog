@@ -1,7 +1,7 @@
 ---
 title: "Local ISLE Installation: Migrate Existing Islandora Site - One-Time Customizations"
 publishDate: 2020-09-07
-lastmod: 2020-09-11T10:18:45-05:00
+lastmod: 2020-10-05T08:51:04-05:00
 draft: false
 tags:
   - ISLE
@@ -443,6 +443,14 @@ This was not my first rodeo, so I immediately took a look at file permissions an
 | `/bin/bash /utility-scripts/isle_drupal_build_tools/drupal/fix-permissions.sh --drupal_path=/var/www/html --drupal_user=islandora --httpd_group=www-data` |
 
 And that helped a great deal, but didn't quite bring the site back exactly as it should have been.  Upon detailed examination of the aforementioned error, I recognized an old enemy, a "mixed mode" browser warning.  But I could not recall how I've fixed this in the past, so I turned to [the ICG's #isle-support Slack channel](https://icg-chat.slack.com/archives/CG6HZRWQM) where my hero, [Noah Smith](https://www.linkedin.com/in/noahwsmith/), from [Born-Digital](https://born-digital.com/) immediately came to my rescue, again!
+
+### The Mixed Mode Fix
+
+Noah suggested that they routinely run this script to fix "mixed mode" errors.
+
+```
+grep -ri 'SetEnvIf X-Forwarded-Proto https HTTPS=on' web/.htaccess || echo \"SetEnvIf X-Forwarded-Proto https HTTPS=on\" | tee -a web/.htaccess
+```
 
 ## Next Steps NOT Yet Taken
 It's worth noting here that other things I considered doing next, but did not, include:
