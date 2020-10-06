@@ -1,13 +1,17 @@
 ---
 title: "Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations"
 publishDate: 2020-09-11
-lastmod: 2020-09-30T14:47:59-05:00
+lastmod: 2020-10-06T13:45:15-05:00
 draft: false
 tags:
   - ISLE
   - migrate
   - staging
 ---
+
+{{% annotation %}}
+Attention: Take note that annotations stop where my process departed from this script in Step 16. Enter at your own risk beyond the annotation in Step 16!
+{{% /annotation %}}
 
 This post is an addendum to earlier posts [087](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again/) and [090](https://static.grinnell.edu/blogs/McFateM/posts/090-isle-local-migration-customization/). It is intended to chronicle my efforts to migrate to a `staging` instance of _Digital.Grinnell_ on Linux node `DGDockerX.grinnell.edu`. The remainder of this document is an annotated copy of [Staging ISLE Installation: Migrate Existing Islandora Site](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-staging-migrate.md).
 
@@ -667,7 +671,7 @@ If using Let's Encrypt, please continue to follow this step.
 {{% annotation %}}
 OK, this is where the proverbial $hit hits the fan, so to speak. **Grinnell College ITS will NOT allow both of those last two bullets to happen at the same time.** So, I'm going to try and implement the strategy documented in [Traefik and Acme.sh Instead of DNS-01](https://static.grinnell.edu/blogs/McFateM/posts/079-traefik-and-acme.sh-instead-of-dns-01/) now.  Wish me luck...
 
-This effort is turning out to be such a departure from the process documented here that I'm inclinded to capture it's history, unfolding as I type, in [a new blog post](https://static.grinnell.edu/blogs/McFateM/posts/093-traefik-and-acme.sh-for-DG-staging/).
+This effort is turning out to be such a departure from the process documented here that I'm inclined to capture it's history, unfolding as I type, in [a new blog post](https://static.grinnell.edu/blogs/McFateM/posts/093-traefik-and-acme.sh-for-DG-staging/).
 {{% /annotation %}}
 
 ---
@@ -790,7 +794,7 @@ Since I am using a different SSL certificate validation process I did NOT follow
   * **Note:** You should not see any errors with respect to the SSL certifications, you should see a nice green lock padlock for the site security. If you see a red error or unknown SSL cert provider, you'll need to shut the containers down and review the previous steps taken especially if using Let's Encrypt. You may need to repeat those steps to get rid of the errors.
 
 {{% annotation %}}
-Since my process uses _Let\'s Encrypt_ with a differnt SSL validation than documented, I executed a modified copy of my [restart.sh](https://github.com/McFateM/docker-traefik2-acme-host/blob/master/restart.sh) script BEFORE spinning up my _ISLE_ stack.
+Since my process uses _Let\'s Encrypt_ with a different SSL validation than documented, I executed a modified copy of my [restart.sh](https://github.com/McFateM/docker-traefik2-acme-host/blob/master/restart.sh) script BEFORE spinning up my _ISLE_ stack.
 
 That modified copy of `restart.sh` looked like this:
 
@@ -837,11 +841,38 @@ My hope of quickly completing that "next" step was dashed by an encounter with _
     * This might take a few minutes depending on the size of the file.
 
 {{% annotation %}}
+I started this portion of the process from my work iMac, while using a VPN connection, by copying a backup of my production database to _DGDockerX_ like so:
 
+```
+╭─markmcfate@MAD25W812UJ1G9 ~ ‹ruby-2.3.0›
+╰─$ rsync -aruvi /Users/markmcfate/Desktop/migration-copy/prod_drupal_site_083120.sql islandora@dgdockerx.grinnell.edu:/opt/. --progress
+building file list ...
+1 file to consider
+<f+++++++ prod_drupal_site_083120.sql
+   849614936 100%  565.47kB/s    0:24:27 (xfer#1, to-check=0/1)
 
+sent 849718797 bytes  received 42 bytes  577843.48 bytes/sec
+total size is 849614936  speedup is 1.00
+```
+
+Then I copied the SQL file to the correct container and imported it using `mysql`, like so:
+
+```
+╭─islandora@dgdockerx /opt
+╰─$ docker cp /opt/prod_drupal_site_083120.sql isle-mysql-dgs:/prod_drupal_site_083120.sql
+╭─islandora@dgdockerx /opt
+╰─$ docker exec -it isle-mysql-dgs bash
+root@e1e6d5be6de8:/\# mysql -u admin -p digital_grinnell < prod_drupal_site_083120.sql
+Enter password: ***************************
+```
+Next, looking back at my annotations from [Step 9 of Local ISLE Installation: Migrate Existing Islandora Site - with Annotations](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again/) I elected to bring my `./sites/default/files` directory over from production, like so:
+
+```
+╭─markmcfate@MAD25W812UJ1G9 ~ ‹ruby-2.3.0›
+╰─$ rsync -aruvi /Users/markmcfate/Desktop/migration-copy/var islandora@dgdockerx.grinnell.edu:/opt/. --progress
+
+```
 {{% /annotation %}}
-
-** >>>> Progress Marker <<<< **
 
 * Import the exported Local MySQL database for use in the current Staging Drupal site. Refer to your `staging.env` for the usernames and passwords used below.
     * You can use a MySQL GUI client for this process instead but the command line directions are only included below.
@@ -858,6 +889,12 @@ My hope of quickly completing that "next" step was dashed by an encounter with _
 ---
 
 ## Step 16: On Remote Staging - Run ISLE Scripts
+
+{{% annotation %}}
+This step was NOT necessary in my case since all of the modifications made here were already executed in my `local` instance of ISLE, and have been captured in my `dg-isle` and `dg-islandora` repositories.
+
+In lieu of this and subsequent steps, I executed a number of terminal command to work through the remainder of this process. An abridged transcript of those commands and results can be found in [this public gist](https://gist.github.com/Digital-Grinnell/f0d592659008b9c03578e31753f826d4).
+{{% /annotation %}}
 
 **migration_site_vsets.sh: updates Drupal database settings**
 
