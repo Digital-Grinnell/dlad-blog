@@ -21,7 +21,9 @@ These include:
   - [The Static.Grinnell.edu Landing Page](https://static.grinnell.edu), and
   - [VAF](https://vaf.grinnell.edu)
 
-The detailed information provided in this blog post involve _Rootstalk_, but the concepts apply equally to all of the professional and personal sites I've listed.
+{{% box %}}
+The detailed information provided in this blog post involves _Rootstalk_, but the concepts apply equally to all of the professional and personal sites I've listed.
+{{% /box %}}
 
 ## Personal Sites
 These include:
@@ -57,7 +59,7 @@ hugo server
 ```
 
 ### atom .
-The `atom .` command opens the project in my [Atom](https://atom.io) editor which provides many tools and shortcuts to speed development and maintenance. [Atom Basics](https://flight-manual.atom.io/getting-started/sections/atom-basics/) is well worth reading to get you up-to-speed with the powerful editor you now have at your disposal.  
+The `atom .` command opens the project in my [Atom](https://atom.io) editor which provides many tools and shortcuts to speed development and maintenance. [Atom Basics](https://flight-manual.atom.io/getting-started/sections/atom-basics/) is well worth reading to get you up-to-speed with the powerful editor you now have at your disposal.
 
 ### hugo server
 The `hugo server` command compiles and launches a local instance of the site and provides a link, usually [http://localhost:1313](http://localhost:1313/), to that site if there are no errors.  This local site will respond immediately to any changes made and saved in _Atom_.
