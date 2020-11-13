@@ -92,7 +92,8 @@ git push origin post-095
 This `git status`, `git add .`, `git commit...` and `git push...` sequence should become VERY familiar over time.  Since I am currently using this workflow to edit the document you are reading, I'm going to execute these commands now and share the results with you here.
 
 #### git status
-In this example I 
+In this example I previously used the command `git checkout -b post-095-edits` to create a new branch for my work here. I subsequently edited this file, named `095-collaborating-on-hugo-site-development`, and tested then saved my changes.  Now, when I run `git status` I see this:
+
 ```
 
 
