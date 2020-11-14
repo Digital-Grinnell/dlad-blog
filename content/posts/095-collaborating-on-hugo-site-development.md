@@ -22,7 +22,7 @@ These include:
   - [VAF](https://vaf.grinnell.edu)
 
 {{% box %}}
-The detailed information provided in this blog post involves _Rootstalk_, but the concepts apply equally to all of the professional and personal sites I've listed.
+The detailed information provided in this blog post uses _Rootstalk_ and [this blog](https://static.grinnell.edu/blogs/McFateM) as examples, but the concepts apply equally to all of the professional and personal sites I've listed.
 {{% /box %}}
 
 ## Personal Sites
