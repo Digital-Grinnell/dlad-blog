@@ -85,20 +85,115 @@ Assuming you have made proper changes, and tested them locally, you should be re
 ```
 git status
 git add .
+git status
 git commit -m "Mark's edits to post 095"
-git push origin post-095
+git status
+git remote -v
+git push origin post-095-edits
 ```
 
-This `git status`, `git add .`, `git commit...` and `git push...` sequence should become VERY familiar over time.  Since I am currently using this workflow to edit the document you are reading, I'm going to execute these commands now and share the results with you here.
+This `git status`, `git add .`, `git commit...` and `git push...` sequence should become VERY familiar over time.  Since I am currently using this workflow to edit the document you are reading, I'm going to change my "example" project and execute these commands now, sharing the results with you below.
 
 #### git status
 In this example I previously used the command `git checkout -b post-095-edits` to create a new branch for my work here. I subsequently edited this file, named `095-collaborating-on-hugo-site-development`, and tested then saved my changes.  Now, when I run `git status` I see this:
 
 ```
+╭─mark@Marks-Mac-Mini ~/GitHub/blogs-McFateM ‹post-095-edits›
+╰─$ git status
+On branch post-095-edits
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
 
+	modified:   content/posts/095-collaborating-on-hugo-site-development.md
+	modified:   themes/hugo-theme-m10c (modified content)
 
+no changes added to commit (use "git add" and/or "git commit -a")
+```
 
+This command indicates that I'm working in my `post-095-edits` branch, as intended.  It also shows that I've made changes to `content/posts/095-collaborating-on-hugo-site-development.md` as well as to my `themes/hugo-theme-m10c` theme. Finally, it tells me that none of these changes have been "committed" yet. You can't see it here, but the two lines that begin with the word `modified:` appear in my terminal in red; indicating that they are not quite ready to share yet.
 
+#### git add .
+I'm comfortable with changes made to ALL of the files reported as "modified" above, so I want to "stage" ALL of them to be committed, and I do that using `git add .`.  The dot at the end captures ALL of the modified files.  If there were changes that I'm not comfortable with I could be more specific and repeat the path of each file to be committed like so:  `git add content/posts/095-collaborating-on-hugo-site-development.md`.
+
+If all goes as planned, the `git add .` command won't return anything.
+
+#### git status
+Now I can check my progress with another `git status`, like so:
+
+```
+╭─mark@Marks-Mac-Mini ~/GitHub/blogs-McFateM ‹post-095-edits*›
+╰─$ git status
+On branch post-095-edits
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   content/posts/095-collaborating-on-hugo-site-development.md
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+
+	modified:   themes/hugo-theme-m10c (modified content)
+```
+
+This time `git status` is showing me that my `content/posts/095-collaborating-on-hugo-site-development.md` file is "to be committed", and it appears in my terminal in green to indicate that it's "ready to go".  The line that reads `modified:   themes/hugo-theme-m10c (modified content)` still appears in red and is "not staged for commit", and that's OK because I didn't make any necessary changes to that path, the system did, and they don't need to be saved.
+
+So, now we are ready to commit our "staged" changes.
+
+#### git commit -m "Mark's edits to post 095"
+The `git commit` command should always include a short but descriptive "message" following a `-m` flag as you see here:
+
+```
+╭─mark@Marks-Mac-Mini ~/GitHub/blogs-McFateM ‹post-095-edits*›
+╰─$ git commit -m "Mark's edits to post 095"
+[post-095-edits d5e2c50] Mark's edits to post 095
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+ ```
+
+ The output indicates that I changed and am committing just one file, where I inserted two new blocks of text, and deleted another.
+
+#### git remote -v
+The `git remote...` command is not absolutely necesary, but I use it just to confirm where my next `git push` is going to go. The command lists for me all of the "remotes", the project repositories, that are associated with this project.  In this case:
+
+```
+╭─mark@Marks-Mac-Mini ~/GitHub/blogs-McFateM ‹post-095-edits›
+╰─$ git remote -v
+origin	https://github.com/McFateM/blogs-McFateM.git (fetch)
+origin	https://github.com/McFateM/blogs-McFateM.git (push)
+```
+
+This indicates that I have just one remote with an alias of `origin`, and any `git push origin...` or `git fetch origin...` commands will reference this blog's project repository on _GitHub_ at https://github.com/McFateM/blogs-McFateM.git.  This is the same repository that I cloned from earlier using `git clone git clone https://github.com/McFateM/blogs-McFateM.git --recursive`.
+
+#### git push origin post-095-edits
+This `git push` statement will attempt to "push" my committed changes up to the project's `origin` remote, as described above. The results are:
+
+```
+╭─mark@Marks-Mac-Mini ~/GitHub/blogs-McFateM ‹post-095-edits›
+╰─$ git push origin post-095-edits
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 6 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 635 bytes | 635.00 KiB/s, done.
+Total 5 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+remote:
+remote: Create a pull request for 'post-095-edits' on GitHub by visiting:
+remote:      https://github.com/McFateM/blogs-McFateM/pull/new/post-095-edits
+remote:
+To https://github.com/McFateM/blogs-McFateM.git
+ * [new branch]      post-095-edits -> post-095-edits
+```
+
+This `git push...` was a success! The committed changes were pushed to my blog's repository where a new `post-095-edits` branch has been created.
+
+### What's Next?
+As you can see in the output above, the next step in the process is for someone, presumably the project lead, that's me, to create a `pull request` so that the new `post-095-edits` branch of the project can be tested and merged into the `master` branch. In all of my workflows `master` is the branch that is ultimately used in production. Untill a `pull request` is created, tested, and merged, the changes that we just committed will still not be available to the public.
+
+You can learn more about pull-requests, specifically as they apply to _GitHub_ repositories and workflows, at [https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests).
 
 <hr/>
 
