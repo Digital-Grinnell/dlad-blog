@@ -1,6 +1,7 @@
 <!-- This file is an override of themes/m10c/layouts/_default/baseof.html -->
 <!-- It defines the basis of every page -->
 
+
 <!doctype html>
 <html lang="{{ .Site.LanguageCode | default "en-us" }}">
   <head>
@@ -13,15 +14,6 @@
     <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
     {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | resources.ToCSS | resources.Minify | resources.Fingerprint -}}
     <link rel="stylesheet" href="{{ $style.Permalink }}" />
-
-    <!-- MAM adding pull of custom_js for search capability. 19-May-2019 ->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.0/fuse.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
-    {{ range .Site.Params.custom_js }}
-    <script src="{{ . | absURL }}"></script>
-    {{ end }}
-    <!- ...end of 19-May-2019 addition -->
 
     {{ template "_internal/google_analytics.html" . }}
     {{ template "_internal/twitter_cards.html" . }}
