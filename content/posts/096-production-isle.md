@@ -1,7 +1,7 @@
 ---
 title: "Production ISLE Installation: Migrate Existing Islandora Site - with Annotations"
 publishDate: 2020-11-20
-lastmod: 2020-11-22T15:36:42-06:00
+lastmod: 2020-11-23T08:15:24-06:00
 draft: false
 tags:
   - ISLE
@@ -171,6 +171,10 @@ docker cp isle-mysql-dg:prod_drupal_site_112220.sql ~/DG-PROD/data/prod_drupal_s
 
 ## Step 2: On Local - Shutdown Any Local Containers & Review Local Code
 
+{{% annotation %}}
+I found this step to be **UNECESSARY** since my `dg-isle` and `dg-islandora` repositories have already been prepared.  However, see below...
+{{% /annotation %}}
+
 * Ensure that your ISLE and Islandora git repositories have all the latest commits and pushes from the development process that took place on your personal computer. If you haven't yet finished, do not proceed until everything is completed.
 
 * Once finished, open a `terminal` (Windows: open `Git Bash`)
@@ -178,9 +182,7 @@ docker cp isle-mysql-dg:prod_drupal_site_112220.sql ~/DG-PROD/data/prod_drupal_s
     * Shut down any local containers e.g. `docker-compose down`
 
 {{% annotation %}}
-I found this step to be **UNECESSARY** as-written since my `dg-isle` and `dg-islandora` repositories have already been prepared.  
-
-However, I did take this opportunity to `docker-compose down` from `DGDocker1` in the `/opt/ISLE/` directory. Unfortunately, the command was unable to stop the `isle-images-dg` container, and failed to stop any others apart from _Portaioner_. The output was:
+I **did** take this opportunity to `docker-compose down` from `DGDocker1` in the `/opt/ISLE/` directory. Unfortunately, the command was unable to stop the `isle-images-dg` container, and failed to stop any others apart from _Portaioner_. The output was:
 ```
 ERROR: for isle-images-dg  UnixHTTPConnectionPool(host='localhost', port=None): Read timed out. (read timeout=70)
 ERROR: An HTTP request took too long to complete. Retry with --verbose to obtain debug information.
@@ -219,13 +221,29 @@ Having exhausted all reasonable options, I elected to use vCenter to reboot the 
 ```
 sudo rsync -aruvi ~/DG-PROD/. /mnt/storage/DG-PROD/. --progress
 ```
+
+After this I shut down the guest OS on `DGDocker1` using `vCenter`, then restarted it, and the server came back but without running any Docker containers.  So I did `sudo yum update`, then `sudo yum upgrade`, and rebooted.  The server now reports that it is up-to-date and running this:
+
+```
+Server: Docker Engine - Community
+ Engine:
+  Version:          19.03.13
+  API version:      1.40 (minimum version 1.12)
+  Go version:       go1.13.15
+  Git commit:       4484c46d9d
+  Built:            Wed Sep 16 17:02:21 2020
+  OS/Arch:          linux/amd64
+  Experimental:     false
+```
 {{% /annotation %}}
 
-# Progress Marker -- 2020-11-22T15:34:44-06:00
-<!--
 ---
 
 ## Step 3: On Local - Create New Users and Passwords by Editing "production.env"
+
+{{% annotation %}}
+I found this step to be **UNECESSARY** since my `dg-isle` and `dg-islandora` repositories have already been prepared.
+{{% /annotation %}}
 
 * Open the "production.env" file in a text editor.
     * Find each comment that begins with: `# Replace this comment with a ...` and follow the commented instructions to edit the passwords, database and user names.
@@ -239,13 +257,13 @@ sudo rsync -aruvi ~/DG-PROD/. /mnt/storage/DG-PROD/. --progress
     * Find the second comment that begins with: `# ISLE Configuration` and follow the instructions to edit the Drupal hash salt.
     * Once finished, save and close the file.
 
-{{% annotation %}}
-I found this step to be **UNECESSARY** since my `dg-isle` and `dg-islandora` repositories have already been prepared.
-{{% /annotation %}}
-
 ---
 
 ## Step 4: On Local - Review and Edit "docker-compose.production.yml"
+
+{{% annotation %}}
+I found this step to be **UNECESSARY** since my `dg-isle` and `dg-islandora` repositories have already been prepared.
+{{% /annotation %}}
 
 * Review the disks and volumes on your remote Production ISLE Host server to ensure they are of an adequate capacity for your collection needs and match what has been written in the `docker-compose.production.yml` file.
 
@@ -273,6 +291,10 @@ I found this step to be **UNECESSARY** since my `dg-isle` and `dg-islandora` rep
 ---
 
 ## Step 4A: On Local - (Optional) Changes for "docker-compose.production.yml"
+
+{{% annotation %}}
+I found this step to be **UNECESSARY** since my `dg-isle` and `dg-islandora` repositories have already been prepared.
+{{% /annotation %}}
 
 This section is for optional changes for the `docker-compose.production.yml`, end-users do not have feel like they have to make any choices here and can continue to **Step 4** as needed.
 
@@ -307,6 +329,10 @@ The options include PHP settings, Java Memory Allocation, MySQL configuration an
 
 ## Step 5: On Local Production - If Using Commercial SSLs
 
+{{% annotation %}}
+I found this step to be **UNECESSARY** since my `dg-isle` and `dg-islandora` repositories have already been prepared.
+{{% /annotation %}}
+
 If you are going to use Let's Encrypt instead, you can skip this step and move onto the next one. There will be additional steps further in this document, to help you configure it.
 
 If you have decided to use Commercial SSL certs supplied to you by your IT team or appropriate resource, please continue following this step.
@@ -340,6 +366,10 @@ If you have decided to use Commercial SSL certs supplied to you by your IT team 
 
 ## Step 6: On Local - Commit ISLE Code to Git Repository
 
+{{% annotation %}}
+I found this step to be **UNECESSARY** since my `dg-isle` and `dg-islandora` repositories have already been prepared.
+{{% /annotation %}}
+
 * Once you have made all of the appropriate changes to your Production profile. Please note the steps below are suggestions. You might use a different git commit message. Substitute `<changedfileshere>` with the actual file names and paths. You may need to do this repeatedly prior to the commit message.
     * `git add <changedfileshere>`
     * `git commit -m "Changes for Production"`
@@ -369,6 +399,49 @@ Since the `/opt` directory might not let you do this at first, we suggest the fo
 * Fix the permissions so that the `islandora` user has access.
     * `sudo chown -Rv islandora:islandora /opt/yourprojectnamehere-isle`
 
+{{% annotation %}}
+**Important!**
+
+The `/opt/ISLE` directory on `DGDocker1` is already configured to allow the `islandora` user to read, write, and execute, so I moved the existing copy of that directory, as well as the `production_data` directory, to `/opt/.out-of-the-way` and created a new `/opt/ISLE` directory owned by `islandora:islandora`. I will use `/opt/ISLE` as my project "root", in place of `/opt`.
+
+So, I did this...
+
+```
+[islandora@dgdocker1 opt]$ cd /opt/ISLE
+[islandora@dgdocker1 ISLE]$ git clone --recursive https://github.com/Digital-Grinnell/dg-isle
+Cloning into 'dg-isle'...
+Username for 'https://github.com': digital@grinnell.edu
+Password for 'https://digital@grinnell.edu@github.com':
+remote: Enumerating objects: 5172, done.
+remote: Counting objects: 100% (5172/5172), done.
+remote: Compressing objects: 100% (1853/1853), done.
+remote: Total 5172 (delta 3277), reused 5072 (delta 3183), pack-reused 0
+Receiving objects: 100% (5172/5172), 7.25 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (3277/3277), done.
+Submodule 'data/apache/html/sites/all/themes/bootstrap' (https://github.com/drupalprojects/bootstrap.git) registered for path 'data/apache/html/sites/all/themes/bootstrap'
+Submodule 'data/apache/html/sites/all/themes/digital_grinnell_bootstrap' (https://github.com/DigitalGrinnell/digital_grinnell_bootstrap.git) registered for path 'data/apache/html/sites/all/themes/digital_grinnell_bootstrap'
+Submodule 'data/apache/html/sites/default/themes/digital_grinnell_bootstrap' (https://github.com/DigitalGrinnell/digital_grinnell_bootstrap.git) registered for path 'data/apache/html/sites/default/themes/digital_grinnell_bootstrap'
+Cloning into 'data/apache/html/sites/all/themes/bootstrap'...
+remote: Enumerating objects: 12635, done.
+remote: Total 12635 (delta 0), reused 0 (delta 0), pack-reused 12635
+Receiving objects: 100% (12635/12635), 2.83 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (9255/9255), done.
+Submodule path 'data/apache/html/sites/all/themes/bootstrap': checked out 'c050d1d6ae85ef344be85dbf0a4ed9ec68ac32ce'
+Cloning into 'data/apache/html/sites/all/themes/digital_grinnell_bootstrap'...
+remote: Enumerating objects: 190, done.
+remote: Total 190 (delta 0), reused 0 (delta 0), pack-reused 190
+Receiving objects: 100% (190/190), 1.08 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (70/70), done.
+Submodule path 'data/apache/html/sites/all/themes/digital_grinnell_bootstrap': checked out '654a43649a5130fa998d549e4233f9736aa4cca6'
+Cloning into 'data/apache/html/sites/default/themes/digital_grinnell_bootstrap'...
+remote: Enumerating objects: 190, done.
+remote: Total 190 (delta 0), reused 0 (delta 0), pack-reused 190
+Receiving objects: 100% (190/190), 1.08 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (70/70), done.
+Submodule path 'data/apache/html/sites/default/themes/digital_grinnell_bootstrap': checked out '654a43649a5130fa998d549e4233f9736aa4cca6'
+```
+{{% /annotation %}}
+
 ---
 
 ## Step 8: On Remote Production - Create the Appropriate Local Data Paths for Apache, Fedora and Log Data
@@ -377,6 +450,14 @@ Since the `/opt` directory might not let you do this at first, we suggest the fo
     * `sudo mkdir -p /opt/data`
 * Change the permissions to the Islandora user.
   * `sudo chown -Rv islandora:islandora /opt/data`
+
+{{% annotation %}}
+To adjust for my project root at `/opt/ISLE`, I did this instead:
+```
+sudo mkdir -p /opt/ISLE/data
+sudo chown -Rv islandora:islandora /opt/ISLE/data
+```
+{{% /annotation %}}
 
 ---
 
@@ -388,6 +469,135 @@ Please clone from your existing Production Islandora git repository.
 
 * Fix the permissions so that the `islandora` user has access.
     * `sudo chown -Rv islandora:islandora /opt/yourprojectnamehere-islandora`
+
+{{% annotation %}}
+Again, to adjust for my project root, I did this:
+
+```
+[islandora@dgdocker1 ~]$ git clone --recursive https://github.com/Digital-Grinnell/dg-islandora /opt/ISLE/data/apache/html
+Cloning into '/opt/ISLE/data/apache/html'...
+Username for 'https://github.com': digital@grinnell.edu
+Password for 'https://digital@grinnell.edu@github.com':
+remote: Enumerating objects: 646, done.
+remote: Counting objects: 100% (646/646), done.
+remote: Compressing objects: 100% (592/592), done.
+remote: Total 10452 (delta 118), reused 243 (delta 45), pack-reused 9806
+Receiving objects: 100% (10452/10452), 63.00 MiB | 40.34 MiB/s, done.
+Resolving deltas: 100% (2212/2212), done.
+Submodule 'sites/all/libraries/glip' (https://github.com/halstead/glip) registered for path 'sites/all/libraries/glip'
+Submodule 'sites/all/modules/islandora/dg7' (https://github.com/DigitalGrinnell/dg7) registered for path 'sites/all/modules/islandora/dg7'
+Submodule 'sites/all/modules/islandora/idu' (https://github.com/DigitalGrinnell/idu) registered for path 'sites/all/modules/islandora/idu'
+Submodule 'sites/all/modules/islandora/islandora_binary_object' (https://github.com/Islandora-Labs/islandora_binary_object) registered for path 'sites/all/modules/islandora/islandora_binary_object'
+Submodule 'sites/all/modules/islandora/islandora_collection_search' (https://github.com/discoverygarden/islandora_collection_search) registered for path 'sites/all/modules/islandora/islandora_collection_search'
+Submodule 'sites/all/modules/islandora/islandora_datastream_exporter' (https://github.com/Islandora-Labs/islandora_datastream_exporter.git) registered for path 'sites/all/modules/islandora/islandora_datastream_exporter'
+Submodule 'sites/all/modules/islandora/islandora_datastream_replace' (https://github.com/DigitalGrinnell/islandora_datastream_replace.git) registered for path 'sites/all/modules/islandora/islandora_datastream_replace'
+Submodule 'sites/all/modules/islandora/islandora_mods_display' (https://github.com/DigitalGrinnell/islandora_mods_display.git) registered for path 'sites/all/modules/islandora/islandora_mods_display'
+Submodule 'sites/all/modules/islandora/islandora_mods_via_twig' (https://github.com/DigitalGrinnell/islandora_mods_via_twig.git) registered for path 'sites/all/modules/islandora/islandora_mods_via_twig'
+Submodule 'sites/all/modules/islandora/islandora_multi_importer' (https://github.com/DigitalGrinnell/islandora_multi_importer) registered for path 'sites/all/modules/islandora/islandora_multi_importer'
+Submodule 'sites/all/modules/islandora/islandora_solr_collection_view' (https://github.com/Islandora-Labs/islandora_solr_collection_view.git) registered for path 'sites/all/modules/islandora/islandora_solr_collection_view'
+Submodule 'sites/all/modules/islandora/islandora_solr_views' (https://github.com/DigitalGrinnell/islandora_solr_views) registered for path 'sites/all/modules/islandora/islandora_solr_views'
+Submodule 'sites/all/modules/islandora/islandora_solution_pack_oralhistories' (https://github.com/Islandora-Labs/islandora_solution_pack_oralhistories.git) registered for path 'sites/all/modules/islandora/islandora_solution_pack_oralhistories'
+Submodule 'sites/all/themes/bootstrap' (https://github.com/drupalprojects/bootstrap.git) registered for path 'sites/all/themes/bootstrap'
+Submodule 'sites/default/themes/digital_grinnell_bootstrap' (https://github.com/DigitalGrinnell/digital_grinnell_bootstrap.git) registered for path 'sites/default/themes/digital_grinnell_bootstrap'
+Cloning into 'sites/all/libraries/glip'...
+remote: Enumerating objects: 319, done.
+remote: Total 319 (delta 0), reused 0 (delta 0), pack-reused 319
+Receiving objects: 100% (319/319), 101.97 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (163/163), done.
+Submodule path 'sites/all/libraries/glip': checked out '79f5472af4b9261d20f51e92f07d4cca01e83a2c'
+Cloning into 'sites/all/modules/islandora/dg7'...
+remote: Enumerating objects: 335, done.
+remote: Total 335 (delta 0), reused 0 (delta 0), pack-reused 335
+Receiving objects: 100% (335/335), 201.05 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (203/203), done.
+Submodule path 'sites/all/modules/islandora/dg7': checked out 'f6cca12904d24c57fcc408b93db92893a564e231'
+Cloning into 'sites/all/modules/islandora/idu'...
+remote: Enumerating objects: 21, done.
+remote: Counting objects: 100% (21/21), done.
+remote: Compressing objects: 100% (15/15), done.
+remote: Total 64 (delta 10), reused 16 (delta 6), pack-reused 43
+Unpacking objects: 100% (64/64), done.
+Submodule path 'sites/all/modules/islandora/idu': checked out '0d91bd6e563f2955563649fc9168c4e8e518f45c'
+Cloning into 'sites/all/modules/islandora/islandora_binary_object'...
+remote: Enumerating objects: 353, done.
+remote: Total 353 (delta 0), reused 0 (delta 0), pack-reused 353
+Receiving objects: 100% (353/353), 80.16 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (187/187), done.
+Submodule path 'sites/all/modules/islandora/islandora_binary_object': checked out '53b67d57cf1ca8052910a90006ad0af183a23389'
+Cloning into 'sites/all/modules/islandora/islandora_collection_search'...
+remote: Enumerating objects: 438, done.
+remote: Total 438 (delta 0), reused 0 (delta 0), pack-reused 438
+Receiving objects: 100% (438/438), 83.91 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (209/209), done.
+Submodule path 'sites/all/modules/islandora/islandora_collection_search': checked out '69545bed8d953d71344fee44de39074d88da0f90'
+Cloning into 'sites/all/modules/islandora/islandora_datastream_exporter'...
+remote: Enumerating objects: 80, done.
+remote: Total 80 (delta 0), reused 0 (delta 0), pack-reused 80
+Unpacking objects: 100% (80/80), done.
+Submodule path 'sites/all/modules/islandora/islandora_datastream_exporter': checked out 'b1be7e77fd9f14b72dd1a78130109ce0d9a51fd3'
+Cloning into 'sites/all/modules/islandora/islandora_datastream_replace'...
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 84 (delta 2), reused 6 (delta 2), pack-reused 78
+Unpacking objects: 100% (84/84), done.
+Submodule path 'sites/all/modules/islandora/islandora_datastream_replace': checked out '0e786886d8da2ebc30a89d23654710aaa180cceb'
+Cloning into 'sites/all/modules/islandora/islandora_mods_display'...
+remote: Enumerating objects: 128, done.
+remote: Counting objects: 100% (128/128), done.
+remote: Compressing objects: 100% (80/80), done.
+remote: Total 271 (delta 91), reused 85 (delta 48), pack-reused 143
+Receiving objects: 100% (271/271), 282.28 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (182/182), done.
+Submodule path 'sites/all/modules/islandora/islandora_mods_display': checked out '08249e5a0486c28c698acb7d11db24af5c6ec63c'
+Cloning into 'sites/all/modules/islandora/islandora_mods_via_twig'...
+remote: Enumerating objects: 197, done.
+remote: Counting objects: 100% (197/197), done.
+remote: Compressing objects: 100% (137/137), done.
+remote: Total 197 (delta 126), reused 127 (delta 60), pack-reused 0
+Receiving objects: 100% (197/197), 44.94 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (126/126), done.
+Submodule path 'sites/all/modules/islandora/islandora_mods_via_twig': checked out '5cc26c14bd35ce1131f246e3b36657d06be0b126'
+Cloning into 'sites/all/modules/islandora/islandora_multi_importer'...
+remote: Enumerating objects: 978, done.
+remote: Total 978 (delta 0), reused 0 (delta 0), pack-reused 978
+Receiving objects: 100% (978/978), 643.47 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (681/681), done.
+Submodule path 'sites/all/modules/islandora/islandora_multi_importer': checked out '78c06b719287a3c0250e902552ec05f760780b9b'
+Cloning into 'sites/all/modules/islandora/islandora_solr_collection_view'...
+remote: Enumerating objects: 134, done.
+remote: Total 134 (delta 0), reused 0 (delta 0), pack-reused 134
+Receiving objects: 100% (134/134), 31.88 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (72/72), done.
+Submodule path 'sites/all/modules/islandora/islandora_solr_collection_view': checked out 'c4b2f33251e3f46bb3bc4789480a60a8efe5d351'
+Cloning into 'sites/all/modules/islandora/islandora_solr_views'...
+remote: Enumerating objects: 615, done.
+remote: Total 615 (delta 0), reused 0 (delta 0), pack-reused 615
+Receiving objects: 100% (615/615), 174.41 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (354/354), done.
+Submodule path 'sites/all/modules/islandora/islandora_solr_views': checked out '3c17f497a51bc7f5bf90a6bd38e02733b79dca94'
+Cloning into 'sites/all/modules/islandora/islandora_solution_pack_oralhistories'...
+remote: Enumerating objects: 11, done.
+remote: Counting objects: 100% (11/11), done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 3434 (delta 3), reused 2 (delta 0), pack-reused 3423
+Receiving objects: 100% (3434/3434), 11.20 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (1392/1392), done.
+Submodule path 'sites/all/modules/islandora/islandora_solution_pack_oralhistories': checked out '60b84295deb4c7b11fbe5c172e3f815eb78cd942'
+Cloning into 'sites/all/themes/bootstrap'...
+remote: Enumerating objects: 12635, done.
+remote: Total 12635 (delta 0), reused 0 (delta 0), pack-reused 12635
+Receiving objects: 100% (12635/12635), 2.83 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (9255/9255), done.
+Submodule path 'sites/all/themes/bootstrap': checked out 'c050d1d6ae85ef344be85dbf0a4ed9ec68ac32ce'
+Cloning into 'sites/default/themes/digital_grinnell_bootstrap'...
+remote: Enumerating objects: 190, done.
+remote: Total 190 (delta 0), reused 0 (delta 0), pack-reused 190
+Receiving objects: 100% (190/190), 1.08 MiB | 0 bytes/s, done.
+Resolving deltas: 100% (70/70), done.
+Submodule path 'sites/default/themes/digital_grinnell_bootstrap': checked out '22b51ecfb61c7e348e25892e988bcf82d0b1c781'
+```
+{{% /annotation %}}
 
 ---
 
@@ -410,6 +620,15 @@ Please clone from your existing Production Islandora git repository.
         * Copy your `/usr/local/fedora/data/objectStore` data to the suggested path of `/opt/data/fedora/objectStore`
             * You may need to change the permissions to `root:root` on the Production `/opt/data/fedora/objectStore` above after copying so the Fedora container can access properly. Do not do this on your existing Production system please.
 
+{{% annotation %}}
+All I did for this step was:
+```
+[islandora@dgdocker1 ~]$ mkdir -p /opt/ISLE/data/apache/html/sites/default/files
+[islandora@dgdocker1 ~]$ cp -fr ~/DG-PROD/data/files/. /opt/ISLE/data/apache/html/sites/default/files/.
+[islandora@dgdocker1 ~]$ chown -R islandora:islandora /opt/ISLE/data/apache
+```
+{{% /annotation %}}
+
 ---
 
 ## Step 11: On Remote Production - If Using Let's Encrypt
@@ -424,6 +643,14 @@ If using Let's Encrypt, please continue to follow this step.
     * This file will be ignored by git and won't cause any errors with checking in code despite the location
     * Do note that you may need to open your firewall briefly to allow the SSL certs to be added to the `acme.json` file. This will be indicated in the following steps.
     * Open your firewall to ports 80, 443 prior to starting up the containers to ensure SSL cert creation.
+
+{{% annotation %}}
+My IT department will NOT permit me to open port 443, not even for an instant, so I have to handle our existing `acme.json` file differently.  I'm using a backup copy of `acme.json`, like so:
+```
+[islandora@dgdocker1 proxy]$ cp -f /home/islandora/DG-PROD/data/config/proxy/acme.json /opt/ISLE/dg-isle/config/proxy/acme.json
+[islandora@dgdocker1 proxy]$ chmod 400 /opt/ISLE/dg-isle/config/proxy/acme.json
+```
+{{% /annotation %}}
 
 ---
 
@@ -497,6 +724,21 @@ git commit -m "Added the edited .env configuration file for Production. DO NOT P
  1 file changed, 4 insertions(+), 4 deletions(-)
 ```
 
+{{% annotation %}}
+In this section I chose to simply copy `sample.env` to `.env`, and edit using _nano_ to come up with this `.env` file:
+```
+#### Activated ISLE environment
+# To use an environment other than the default Demo, please change values below
+# from the default Demo to one of the following: Local, Test, Staging or Production
+# For more information, consult https://islandora-collaboration-group.github.io/ISLE/install/install-environments/
+
+COMPOSE_PROJECT_NAME=dg
+BASE_DOMAIN=digital.grinnell.edu
+CONTAINER_SHORT_ID=dg
+COMPOSE_FILE=docker-compose.production.yml
+```
+{{% /annotation %}}
+
 ---
 
 ## Step 13: On Remote Production - Download the ISLE Images
@@ -506,6 +748,14 @@ git commit -m "Added the edited .env configuration file for Production. DO NOT P
     * Navigate to the root of your ISLE project
     * `cd ~/opt/yourprojectnamehere`
     * `docker-compose pull`
+
+{{% annotation %}}
+In my case:
+```
+cd /opt/ISLE/dg-isle
+docker-compose pull
+```
+{{% /annotation %}}
 
 ---
 
@@ -527,6 +777,25 @@ git commit -m "Added the edited .env configuration file for Production. DO NOT P
 
 * In your web browser, enter your Production site URL: `https://yourprojectnamehere.institution.edu`
     * **Note:** You should not see any errors with respect to the SSL certifications, you should see a nice green lock padlock for the site security. If you see a red error or unknown SSL cert provider, you'll need to shut the containers down and review the previous steps taken especially if using Let's Encrypt. You may need to repeat those steps to get rid of the errors.
+
+{{% annotation %}}
+In my case, there are still containers from the old stack that have been stopped, but are still hanging around.  Those need to be deleted before this can proceed.  So:
+```
+cd /opt/ISLE/dg-isle
+./destroy.sh
+docker-compose up -d
+```
+
+Note the `destroy.sh` script contains:
+```
+#!/bin/bash
+#
+docker stop $(docker ps -q);
+docker rm -v $(docker ps -qa);
+docker image rm $(docker image ls -q)
+docker system prune --force
+```
+{{% /annotation %}}
 
 ---
 
@@ -556,9 +825,32 @@ git commit -m "Added the edited .env configuration file for Production. DO NOT P
         * This might take a few minutes depending on the size of the file.
         * Type `exit` to exit the container
 
+{{% annotation %}}
+Ok, so my "staging" database is in much better shape than production at this point, so my process was:
+```
+[islandora@dgdocker1 dg-isle]$ docker cp ~/DG-PROD/data/staging_drupal_site_112220.sql isle-mysql-dg:staging.sql
+[islandora@dgdocker1 dg-isle]$ docker exec -it isle-mysql-dg bash
+root@95d316d986a9:/# mysql -u admin -p digital_grinnell < staging.sql
+Enter password:
+root@95d316d986a9:/# exit
+```
+Also, my configuration requires that I run `composer update` for the IMI module, so:
+```
+[islandora@dgdocker1 dg-isle]$ docker exec -w /var/www/html/sites/all/modules/islandora/islandora_multi_importer/ isle-apache-dg composer update
+...output removed for clarity...
+[islandora@dgdocker1 dg-isle]$ docker exec -w /var/www/html/sites/default isle-apache-dg drush cc all
+'all' cache was cleared.
+```
+Once these steps were complete [https://digital.grinnell.edu](https://digital.grinnell.edu) will open, but displays no objects. Next up, I need to rebuild the FEDORA resource and Solr indicies.
+{{% /annotation %}}
+
 ---
 
 ## Step 16: On Remote Production - Run ISLE Scripts
+
+{{% annotation %}}
+I found this step to be **UNECESSARY** since my `dg-isle` and `dg-islandora` repositories have already been prepared.
+{{% /annotation %}}
 
 This step will show you how to run the "migration_site_vsets.sh" script on the Apache container to change Drupal database site settings for ISLE connectivity.
 
@@ -646,6 +938,23 @@ SUCCESS: 38 objects rebuilt.
 OK - Started application at context path [/fedora]
 ```
 
+{{% annotation %}}
+My process here was:
+```
+[islandora@dgdocker1 dg-isle]$ docker exec -w /utility_scripts isle-fedora-dg ./rebuildFedora.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   202    0   202    0     0   1819      0 --:--:-- --:--:-- --:--:--  1819
+Stopping FEDORA.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    51    0    51    0     0     18      0 --:--:--  0:00:02 --:--:--    18
+OK - Stopped application at context path [/fedora]
+Starting the rebuild process in the background. This may take a while depending on your Fedora repository size.
+...
+```
+{{% /annotation %}}
+
 ### Reindex Solr (3/3)
 
 **WARNING** - This reindex process takes the longest of all three, with up to **1-30 or more hours** to complete depending on the size of your Fedora collection. As such, it is recommended starting a screen session prior to running the following command. Learn more about [screen here](https://www.tecmint.com/screen-command-examples-to-manage-linux-terminals/)
@@ -679,6 +988,14 @@ Args
 
 * Type `exit` when finished to exit the container.
 
+{{% annotation %}}
+Like the previous step, my process here was:
+```
+[islandora@dgdocker1 dg-isle]$ docker exec -w /utility_scripts isle-fedora-dg ./updateSolrIndex.sh
+```
+Followed by a few hours of testing and waiting.
+{{% /annotation %}}
+
 ---
 
 ## Step 18: On Remote Production - Review and Test the Drupal Production Site
@@ -692,9 +1009,17 @@ Args
 * You can decide to further QC and review the site as you wish or start to add digital collections and objects.
     * You could also further test using the [Islandora Sample Objects](https://github.com/Islandora-Collaboration-Group/islandora-sample-objects) as you may have done in the previous Local installation.
 
+{{% annotation %}}
+**Eureka! It works.** The site is up and running, with no apparent issues, at [https://digital.grinnell.edu](https://digital.grinnell.edu).
+{{% /annotation %}}
+
 ---
 
 ## Next Steps
+
+{{% annotation %}}
+Here again, I found these "Next Steps" to be **UNECESSARY**.
+{{% /annotation %}}
 
 Once you are ready to deploy your finished Drupal site, you may progress to launching the Production site publicly which could involve the following steps depending on choices made earlier in this document and process:
 
@@ -718,6 +1043,5 @@ Once you are ready to deploy your finished Drupal site, you may progress to laun
 
 ### End of Production ISLE Installation: New Site
 
--->
 
-And that's a...pause.  Until I return, momentarily.
+And that's a wrap. Until next time...
