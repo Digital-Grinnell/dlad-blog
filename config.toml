@@ -7,7 +7,8 @@ themesDir = "themes"
 theme = ["hugo-search-fuse-js", "hugo-theme-m10c"]
 paginate = 10
 summaryLength = 80    # default is 70 words
-googleAnalytics = "UA-131150861-2"
+# googleAnalytics = "UA-131150861-2"
+googleAnalytics = "G-97XSP9G6HJ"
 disqusShortname = "digital-library-applications-developer-blog"
 canonifyURLs = true
 
