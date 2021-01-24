@@ -7,8 +7,7 @@ themesDir = "themes"
 theme = ["hugo-search-fuse-js", "hugo-theme-m10c"]
 paginate = 10
 summaryLength = 80    # default is 70 words
-# googleAnalytics = "UA-131150861-2"
-googleAnalytics = "G-97XSP9G6HJ"
+googleAnalytics = "UA-4766052-14"
 disqusShortname = "digital-library-applications-developer-blog"
 canonifyURLs = true
 
@@ -59,7 +58,7 @@ enableGitInfo = true  # makes Lastmod equivalent to git commit date
 
 [params]
   build = 314
-  # buildDate = '2021-01-11 20:31'
+  # buildDate = '2021-01-12 16:51'
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
