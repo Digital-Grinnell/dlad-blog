@@ -10,7 +10,7 @@ tags:
     - Commit
 ---
 
-I seem to have a never-ending struggle with **git submodules**. Today, I need to add some new features to one of my submodules in a non-ISLE project, but I've elected to post this here because this blog is relatively easy to search. I also feel fortunate to have found [this nice comprehensive resource](https://medium.com/@porteneuve/mastering-git-submodules-34c65e940407) from [Christophe Porteneuve](https://medium.com/@porteneuve).
+I seem to have a never-ending struggle with **git submodules**. Today, I need to add some new features to one of my submodules in a non-ISLE project, but I've elected to post this here because this blog is relatively easy to search. I also feel fortunate to have found [Mastering Git Submodules](https://medium.com/@porteneuve/mastering-git-submodules-34c65e940407) from [Christophe Porteneuve](https://medium.com/@porteneuve).
 
 So, what I need to do now is update some submodule code, commit, and push that change back to its remote. I will also want to subsequentmly update a pair of projects that use the submodule so they are referencing the newest submodule code. 
 
