@@ -10,7 +10,7 @@ tags:
     - inclusive
 ---
 
-In hindsight, this really should have been post number 100 in the blog, or perhaps it should have happened even earlier. In any event it's high-time I made this move and captured the process.  In June 2020 the good folks at GitHub announced that they would begin removing references to _master_ as a small step forward in removing divisive language in tech. The change dictates that the default branch name of future repositories should be **main** in place of _master_. 
+In hindsight, this really should have been post number 100 in the blog, or perhaps it should have happened even earlier. In any event it's high-time I made this move and captured the process.  In June 2020 the good folks at _GitHub_ announced that they would begin removing references to _master_ as a small step forward in removing divisive language in tech. The change dictates that the default branch name of future repositories should be **main** in place of _master_. 
 
 Today, I am dictating that the same should be true for **ALL** of my repositories, old and new alike.  Besides, I find it very confusing to have some defaults using one name while others do not.  To begin this transformation of old to new, I elected to start here with [this blog](https://static.grinnell.edu/blogs/McFateM).
 
