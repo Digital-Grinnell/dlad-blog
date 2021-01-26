@@ -1,15 +1,18 @@
 ---
 title: Remote Atom
+date: 2021-01-26T10:42:36-06:00
 publishdate: 2020-07-01
 draft: false
 tags:
   - Atom
   - remote-atom
+  - ratom
+emoji: true
 ---
 
-Earlier this year I installed and configured the [remote-atom](https://atom.io/packages/remote-atom) package to assist with editing content and code for my [personal blog](https://summittdweller.com/blogs/mark). Naturally, I wrote a [blog post](https://summittdweller.com/blogs/mark/posts/adding-remote-atom-to-my-digitalocean-server/) to document it.
+Earlier this year I installed and configured the [remote-atom](https://atom.io/packages/remote-atom) package to assist with editing content and code for my [personal blog](https://blog.summittdweller.com). Naturally, I wrote a [blog post](https://blog.summittdweller.com/posts/adding-remote-atom-to-my-digitalocean-server/) to document it.
 
-In the past week I've added the **remote-atom** package, and configuration to many of my [Digital.Grinnell](https://digital.grinnell.edu) servers. The installation and configuration was virtually identical to what I described in [Adding remote-atom to my DigitalOcean Server](https://summittdweller.com/blogs/mark/posts/adding-remote-atom-to-my-digitalocean-server/).  Thus far the package and it's configuration have been implemented on the following workstations, both personal and professional, with the following username@server configurations:
+In the past week I've added the **remote-atom** package, and configuration to many of my [Digital.Grinnell](https://digital.grinnell.edu) servers. The installation and configuration was virtually identical to what I described in [Adding remote-atom to my DigitalOcean Server](https://blog.summittdweller.com/posts/adding-remote-atom-to-my-digitalocean-server/).  Thus far the package and it's configuration have been implemented on the following workstations, both personal and professional, with the following username@server configurations:
 
 | Workstation: MA8660 - Grinnell College iMac |
 | --- |
@@ -39,6 +42,10 @@ Host dgdockerx
 | Workstation: Mark's Mac Mini - Personal Desktop |
 | --- |
 | centos@digitalOcean <br/> mcfatem@dgdocker3 <br/> administrator@static <br/> islandora@dgdocker1 |
+
+| Workstation: MA7053 - Grinnell College MacBook Air |
+| --- |
+| administrator@dgadmin |
 
 
 And that's a wrap.  Until next time...

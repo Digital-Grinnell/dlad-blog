@@ -73,7 +73,7 @@ Should work nicely once I get _GnuPG_ installed and configured (see https://blog
 
 ## Does This Really Work?
 
-Why yes, yes it does.  The proof is in the pudding, or in this case, it's in a post I just pushed to my personal blog, specifically: [Updating the Wieting Site in Drupal 8](https://summittdweller.com/blogs/mark/posts/migrating-the-wieting-site-in-drupal-8/).  Check it out.
+Why yes, yes it does.  The proof is in the pudding, or in this case, it's in a post I just pushed to my personal blog, specifically: [Updating the Wieting Site in Drupal 8](https://blog.summittdweller.com/posts//posts/migrating-the-wieting-site-in-drupal-8/).  Check it out.
 
 
 And that's a break... I'll be back.  :smile:
