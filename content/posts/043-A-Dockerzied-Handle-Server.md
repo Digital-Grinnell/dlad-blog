@@ -1,11 +1,13 @@
 ---
 title: "A Dockerized 'Handle' Server"
 publishdate: 2019-09-10
-lastmod: 2019-09-19T15:14:28-05:00
+lastmod: 2020-12-19T16:40:37-06:00
 draft: false
 tags:
   - Docker
   - HANDLE.NET
+  - hdl
+  - restart
 ---
 
 Today's quest... to build a new [Handle.net](http://www.handle.net) server for _Digital.Grinnell_, preferably one that is "Dockerized".  I'm going to start by forking [datacite/docker-handle](https://github.com/datacite/docker-handle), a project that looks promising, and following it along with the documentation in chapter 3 of the [HANDLE.NET (version 9) Technical Manual](http://www.handle.net/tech_manual/HN_Tech_Manual_9.pdf).  The aforementioned fork can now be found in [DigitalGrinnell/docker-handle](https://github.com/DigitalGrinnell/docker-handle).
@@ -43,5 +45,38 @@ drush -u 1 iduH grinnell:2-5000 MODIFY; drush -u 1 iduF grinnell:2-5000 SelfTran
 ```
 
 It worked!  Note that in some instances a command of the form `drush -u 1 iduH grinnell:2-5000 CREATE` was necessary instead of "MODIFY".
+
+## Restarting the Handle Server
+
+Unfortunately, `DGDocker1` sometimes has to be rebooted, and when that is necessary I also have to restart the Handle server using a command sequence (with output) like this, as `root`:
+
+```
+[root@dgdocker1 handle-9.2.0]# pwd
+/hs/handle-9.2.0
+[root@dgdocker1 handle-9.2.0]# ./bin/hdl-server /hs/svr_1
+Handle.Net Server Software version 9.2.0
+Enter the passphrase for this server's authentication private key:
+Note: Your passphrase will be displayed as it is entered
+>>>>> my super secret handle server password here <<<<<
+HTTP handle Request Listener:
+   address: 132.161.132.103
+      port: 8000
+Starting HTTP server...
+TCP handle Request Listener:
+   address: 132.161.132.103
+      port: 2641
+UDP handle Request Listener:
+   address: 132.161.132.103
+      port: 2641
+Starting UDP request handlers...
+Starting TCP request handlers...
+^Z
+[3]+  Stopped                 ./bin/hdl-server /hs/svr_1
+[root@dgdocker1 handle-9.2.0]# bg
+[3]+ ./bin/hdl-server /hs/svr_1 &
+[root@dgdocker1 handle-9.2.0]# exit
+exit
+There are stopped jobs.
+```
 
 And that's a ~~wrap~~ good place for a break... until I return to formally "Dockerize" this effort.  :smile:

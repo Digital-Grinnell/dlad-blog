@@ -29,7 +29,7 @@ The detailed information provided in this blog post uses _Rootstalk_ and [this b
 These include:
 
   - [The SummittDweller.com Landing Page](https://summittdweller.com),
-  - [My Personal Blog](https://summittdweller.com/blogs/mark), and
+  - [My Personal Blog](https://blog.summittdweller.com/posts/), and
   - [The Compass Rose Band](https://compassroseband.net/)
 
 ## Local Development

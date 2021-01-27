@@ -48,9 +48,7 @@
         <!-- <p class="site-rev">{{ .Site.LastChange.Format "2006-Jan-2 15:04 MST" }}{{ if .Site.Params.site_rev }}   Rev. {{ .Site.Params.site_rev }}{{ end }}</p> -->
 
         <p class="site-rev">
-          {{ if .Site.Params.buildDate }}
-            Compiled: {{ .Site.Params.buildDate }}<br/>
-          {{ end }}
+          Compiled: {{ now.Local.Format "Jan 2, 2006 at 3:04pm MST" | markdownify }}<br/>
           Content Updated: {{ .Site.LastChange.Format "2006-Jan-2 15:04 MST" }}
         </p>
 

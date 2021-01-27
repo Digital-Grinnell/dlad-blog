@@ -1,6 +1,7 @@
 ---
 title: "Debugging SSH Login Issues"
 publishdate: 2020-05-06
+date: 2021-01-26T20:15:43-06:00
 draft: false
 tags:
   - ssh
@@ -35,5 +36,25 @@ systemctl start sshd.service
   - Next, using the `islandora` user at `dgdocker1.grinnell.edu` as an example, enter the following to copy the key to the target server:
     - ssh-copy-id -i ~/.ssh/id_rsa islandora@dgdocker1.grinnell.edu
 
+## My `DGAdmin` Experience
+
+Today, January 26, 2021, I set out to configure a new server, namely `dgadmin.grinnell.edu`.  After I'd done all of the above to set the server up for `ssh/pubkey` authentication it still would not work. I subsequently opened a help ticket and my esteemed colleague, Mike Conner, came to my rescue.  Mike's response to my ticket included this:
+
+{{% original %}}
+Is the private key corresponding to the public key in /home/administrator/.ssh/authorized_keys loaded in your ssh-agent?
+You can specify which private key to use for the connection using the -i flag:
+
+  `ssh -i /path/to/id_rsa administrator@dgadmin.grinnell.edu`
+
+You can also debug using the verbose flag in your ssh command:
+
+  `ssh -i /path/to/id_rsa -vvv administrator@dgadmin.grinnell.edu`
+{{% /original %}}
+
+Mike hit the nail on the head, my ssh-agent must have been using a diffeent pubkey.  I executed the command that Mike had suggested and it worked.  Specifically that command was: `ssh -i ~/.ssh/id_rsa -vvv administrator@dgadmin.grinnell.edu`.
+
+### Extras Are No Longer Necessary
+
+After the above command logged me in without a password I ran one more test.  Would I always need to run my `ssh` commands in that form?  No, I found that once I had run that command successfully the ssh-agent remembers the correct pubkey to use so subsequent logins can use just `ssh administrator@dgadmin.grinnell.edu`.
 
 And that's a wrap.  Until next time...
