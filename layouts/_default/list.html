@@ -36,7 +36,7 @@
           <span class="posts-list-item-description">
             {{ $pub := .PublishDate.AddDate 0 0 1 }}
             {{ $mod := .Lastmod }}
-            {{ partial "icon.html" (dict "ctx" $ "name" "clock") }} {{ .ReadingTime }} min read &nbsp;
+            {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}&nbsp;{{ .ReadingTime }} min read &nbsp;
             {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }} {{ .PublishDate.Format "Jan 2, 2006" }}
             {{ if $mod.After $pub }}
               &nbsp;&nbsp;|&nbsp;&nbsp;Updated: {{ .Lastmod.Format "Jan 2, 2006 - 15:04" }}

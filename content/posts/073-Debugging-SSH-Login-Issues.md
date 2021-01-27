@@ -51,12 +51,7 @@ You can also debug using the verbose flag in your ssh command:
   `ssh -i /path/to/id_rsa -vvv administrator@dgadmin.grinnell.edu`
 {{% /original %}}
 
-Mike hit the nail on the head, my ssh-agent must have been using a diffeent pubkey.  I executed the command that Mike had suggested and it worked.  Specifically that command was:
-
-
-```
-ssh -i ~/.ssh/id_rsa -vvv administrator@dgadmin.grinnell.edu
-```
+Mike hit the nail on the head, my ssh-agent must have been using a diffeent pubkey.  I executed the command that Mike had suggested and it worked.  Specifically that command was: `ssh -i ~/.ssh/id_rsa -vvv administrator@dgadmin.grinnell.edu`.
 
 ### Extras Are No Longer Necessary
 
