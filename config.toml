@@ -1,5 +1,5 @@
-# baseURL = "https://static.grinnell.edu/blogs/McFateM/"
-baseURL = "https://blog.grinnell.rocks/"
+baseURL = "https://static.grinnell.edu/blogs/McFateM/"
+# baseURL = "https://blog.grinnell.rocks/"
 
 title = "The Grinnell College Digital Library Application Developer's Blog"
 #themesDir = "../.."
