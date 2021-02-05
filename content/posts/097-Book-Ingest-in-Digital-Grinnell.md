@@ -1,6 +1,6 @@
 ---
 title: Book Ingest in Digital.Grinnell
-date: 2021-02-05T14:58:28-06:00
+date: 2021-02-05T16:12:55-06:00
 publishdate: 2020-11-30
 draft: false
 tags:
@@ -53,6 +53,24 @@ When the `docker cp` command is finished return to your browser and...
 
 Now sit back and watch the magic.
 
+## Incomplete Book... Orphaned pages
+
+Unfortunately, I also have some "broken" books that have a slew of ingested book pages all pointing to the wrong parent.  One of my entries in _Trello_, for the _1962 Cyclone_ relates to one such case:
+
+```
+grinnell:25521 - 25862 [Pages but NO Book!]  Empty book object is grinnell:23747
+```
+
+The problem in the case of `grinnell:23747` is twofold:
+
+  1. That book object has no PDF - This condition can be corrected simply by uploading the appropriate PDF file as a new `PDF` datastream in the book/parent object.
+  2. The pages/children of that book/parent all incorrectly reference `grinnell:25520` as their book/parent - Fortunately, there's an easy fix for this too, see below.
+
+Since `grinnell:25520` never ingested properly all of the pages are effectively "orphans". In the case of the _1962 Cyclone_ I used this command running inside the `isle-apache-dg` container:
+
+```
+root@28eb71ea69bf:/var/www/html/sites/default# drush -u 1 iduF grinnell:25521-25862 ChangeText --find="grinnell:25520" --replace="grinnell:23747" --dsid=RELS-EXT
+```
 
 <!--
 A set of 21 PDF objects were ingested into _Digital.Grinnell's_ _Faculty Scholarship_ collection using [IMI](https://github.com/DigitalGrinnell/islandora_multi_importer) on 22-July-2019; unfortunately none of these PDFs contained OCR (optical character recognition) or "text recognition" data, so none of them generated a valid FULL\_TEXT datastream.  FULL\_TEXT datastreams are required to make PDF, and similar text content, searchable and discoverable in _Digital.Grinnell_.
