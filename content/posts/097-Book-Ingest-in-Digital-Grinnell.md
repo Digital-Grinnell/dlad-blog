@@ -1,16 +1,30 @@
 ---
 title: Book Ingest in Digital.Grinnell
-date: 2020-11-30T10:46:56-06:00
+date: 2021-02-05T14:58:28-06:00
+publishdate: 2020-11-30
 draft: false
-emoji: true
 tags:
     - Book
     - Ingest
     - Workflow
     - Digital.Grinnell
+emoji: true
 ---
 
 It's high-time this was posted to my blog, but the canonical copy of this document can be found in `smb://Storage/LIBRARY/mcfatem/DG-Book-Ingest-Workflow.md`.
+
+## Valid Book Datastream Structure
+
+I want to begin here by showing what I see as a "proper" working book datastream structure in _Digital.Grinnell_.  The image below is a screen grab of the datastreams from the [Grinnell College Yearbook 1961](https://digital.grinnell.edu/islandora/object/grinnell:23749), _DG_ object `grinnell:23749`:
+
+{{% figure title="Valid Book Datastreams" src="/images/post-097/grinnell-23749-datastreams.png" %}}
+
+
+## Creating a Valid Book Structure
+
+One of the biggest problems I have encountered with ingest of books is uploading very large multi-page PDFs.  Fortunately, I've crafted the following procedure for working around that limitation.
+
+### Procedure
 
 On the host workstation (`DGDocker1` in the case of *Digital.Grinnell*) open a command terminal and...
 
