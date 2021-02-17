@@ -1,6 +1,6 @@
 ---
 title: "Everything You Ever Wanted to Know About Digital.Grinnell Entities, but were Afraid to Ask"
-date: 2021-02-17T15:05:49-06:00
+date: 2021-02-17T15:12:28-06:00
 draft: false
 emoji: true
 tags:
@@ -9,6 +9,7 @@ tags:
     - organization
     - event
     - place
+    - profile
     - islandora:entityCModel
     - Islandora Scholar Extended Profiles
     - LASIR
@@ -49,7 +50,7 @@ With the implementation of the [Islandora Scholar Extended Profiles](https://git
 
 New entity objects are of 4 types, with the first two to be implemented immediately, and the remaining two to follow, if/when they are ever needed.
 
-  - `person` - An entity representing a person, typically an author. New entities of this type will be created in the `person:` namespace and they will employ the `islandora:personCModel` content model.
+  - `person` - An entity representing a person, typically an author. New entities of this type will be created in the `profile:` namespace and they will employ the `islandora:personCModel` content model.
   - `organization` - An entity representing an organization, typically a Grinnell College department of study, or similar group. Entities of this type will be created in the `organization:` namespace and will employ the `islandora:organizationCModel` content model.
   - `event` - An entity representing an event, such as a symposium or conference. New entities of this type will be created in the `event:` namespace and they will employ the `islandora:eventCModel` content model.
   - `place` - An entity representing a place, like "Burling Library". New entities of this type will created in the `place:` namespace and they will employ the `islandora:placeCModel` content model.
