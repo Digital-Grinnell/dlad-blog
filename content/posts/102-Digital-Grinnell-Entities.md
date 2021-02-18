@@ -204,9 +204,9 @@ Unfortunately, it's not clear if such a bulk ingest will still work properly wit
 
 ## Suggestions for Profile and Organization Identifiers
 
-It appears that creation and use of "U1" and "U2" identifiers is key to making objects properly associate with profiles, and profiles properly associate with organizations. So, I'd like to suggest that we use a person's Grinnell College email address prefix, the portion before _\@grinnell.edu_, as their identifier.  My identifier, for example, would be _mcfatem_, taken from my college email address which is _mcfatem\@grinnell.edu_.
+It appears that creation and use of "U1" and "U2" identifiers is key to making objects (scholarly works) properly associate with profiles (authors and contributors), and profiles (people) properly associate with organizations (departments, etc.). So, I'd like to suggest that we use a person's Grinnell College email address prefix, the portion before _\@grinnell.edu_, as their identifier.  My identifier, for example, would be _mcfatem_, taken from my college email address which is _mcfatem\@grinnell.edu_.
 
-Unfortunately, I'm not quite sure what to suggest for our organization identifiers.
+Unfortunately, I'm not quite sure what to suggest for our organization identifiers, and we may need to create a policy for handling persons who do not have an _\@grinnell.edu_ address.
  
 
 And that's a wrap.  Until next time, always remember to "Use your entities, Luke".
