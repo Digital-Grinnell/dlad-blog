@@ -58,7 +58,7 @@ New entity objects are of 4 types, with the first two to be implemented immediat
 ## Adding a New Organization to DG
 
   - Login to _Digital.Grinnell_ as an admin.
-  - Visit https://digital.grinnell.edu/islandora/object/islandora%3Aentity_collection/manage/overview/ingest to add a new entity.  
+  - Visit https://digital.grinnell.edu/islandora/object/islandora%3Aentity_collection/manage/overview/ingest to add a new entity.
   - To create a new organization select `New Organization` in the _Select a Content Model to Ingest_ drop-down, and click `Next`.
   - In the _Select a Form_ field choose `Department MADS form` and click `Next`.
   - Fill out the form making sure all required fields (denoted with a red asterisk) are filled in, then click `Ingest` to complete the operation.
@@ -68,7 +68,7 @@ New entity objects are of 4 types, with the first two to be implemented immediat
 ## Adding a New Person/Profile to DG
 
   - Login to _Digital.Grinnell_ as an admin.
-  - Visit https://digital.grinnell.edu/islandora/object/islandora%3Aentity_collection/manage/overview/ingest to add a new entity.  
+  - Visit https://digital.grinnell.edu/islandora/object/islandora%3Aentity_collection/manage/overview/ingest to add a new entity.
   - To create a new profile select `New Person` in the _Select a Content Model to Ingest_ drop-down, and click `Next`.
   - In the _Select a Form_ field choose `Person MADS form` and click `Next`.
   - Fill out the form making sure all required fields (denoted with a red asterisk) are filled in, then click `Ingest` to complete the operation.
@@ -200,5 +200,10 @@ If you would like to contribute to this module, please check out our helpful [Do
 [GPLv3](http://www.gnu.org/licenses/gpl-3.0.txt)
 {{% /original %}}
 
+Unfortunately, it's not clear if such a bulk ingest will still work properly with the new [Islandora Scholar Extended Profiles](https://github.com/Islandora-Collaboration-Group/islandora_scholar_profiles) module in-play?  Also, there's no mention of similar capability for organizations, and it would be nice to have a bulk ingest process that works for both.  So, I'm going to play with "manual" creation of a few entities, a couple organizations and a couple of profiles, and then see if I can determine what it might take to auto-populate both kinds of objects using an [IMI import](https://github.com/mnylc/islandora_multi_importer).
+
+## Suggestions for Profile and Organization Identifiers
+
+It appears that creation and use of "U1" and "U2" identifiers is key to making objects properly associate with profiles, and profiles properly associate with organizations. So, I'd like to suggest that we use a person's Grinnell College email address prefix, the portion before _\@grinnell.edu_, as their identifier.  My identifier, for example, would be _mcfatem_, taken from my college email address which is _mcfatem\@grinnell.edu_. 
 
 And that's a wrap.  Until next time, always remember to "Use your entities, Luke".
