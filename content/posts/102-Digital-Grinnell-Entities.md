@@ -1,6 +1,7 @@
 ---
 title: "Everything You Ever Wanted to Know About Digital.Grinnell Entities, but were Afraid to Ask"
 date: 2021-02-17T15:12:28-06:00
+publishdate: 2021-02-16
 draft: false
 emoji: true
 tags:

@@ -1,6 +1,7 @@
 ---
 title: "Debugging ISLE Local with PHPStorm"
-date: 2021-03-12T10:42:35-06:00
+date: 2021-03-12T18:28:02-06:00
+publishdate: 2021-03-12
 draft: false
 emoji: true
 tags:
@@ -21,7 +22,7 @@ This post is another "How I Did It" account, but the resources I used include so
 
 ## The Resources
 
-There was one key document that I came to reply on: [Turbocharged PHP Development with Xdebug, Docker & PHPStorm](https://dev.to/jump24/turbocharged-php-development-with-xdebug-docker-phpstorm-1n6c), a [dev.to](https://dev.to/) blog post by [James Seconde](https://dev.to/secondej).  Thank you, James!  Excellent work, and thank you for sharing!  
+There was one key document that I came to rely on: [Turbocharged PHP Development with Xdebug, Docker & PHPStorm](https://dev.to/jump24/turbocharged-php-development-with-xdebug-docker-phpstorm-1n6c), a [dev.to](https://dev.to/) blog post by [James Seconde](https://dev.to/secondej).  Thank you, James!  Excellent work, and thank you for sharing!  
 
 The other document that's still open in my browser is [Create a local server configuration](https://www.jetbrains.com/help/phpstorm/creating-local-server-configuration.html), part of _JetBrains'_ documentation suite.  This document is linked in from James' post too.  
 

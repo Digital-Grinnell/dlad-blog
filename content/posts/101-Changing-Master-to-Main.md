@@ -1,6 +1,7 @@
 ---
 title: Changing Master to Main
 date: 2021-01-26T11:04:43-06:00
+publishdate: 2021-01-25
 draft: false
 emoji: true
 tags:
