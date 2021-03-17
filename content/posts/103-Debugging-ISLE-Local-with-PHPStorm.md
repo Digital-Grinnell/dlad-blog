@@ -1,6 +1,6 @@
 ---
 title: "Debugging ISLE Local with PHPStorm"
-date: 2021-03-12T18:28:02-06:00
+date: 2021-03-17T08:39:33-05:00
 publishdate: 2021-03-12
 draft: false
 emoji: true
@@ -10,6 +10,7 @@ tags:
     - ISLE
     - local
     - PHPStorm
+    - drush
 ---
 
 For the past couple of years I've been working in [Digital.Grinnell](https://digital.grinnell.edu) to remove as much "customization" as I can. The effort is coming along, but still, there's a long way to go.  Every now and then I come across a feature that we just can't live without, and it's in times like those that I turn to [PHPStorm](https://www.jetbrains.com/phpstorm/) for development and testing. Unfortunately, I've been operating without _PHPStorm_ in [ISLE](https://github.com/Islandora-Collaboration-Group/ISLE) because I worried that configuring the _PHPStorm_ debugger in a Docker environment would be a time-consuming, tall task.  It **was** tricky, but worry no more!   
@@ -53,7 +54,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ### Contents of Those Files
 
-#### docker-compose.local.yml
+#### docker-compose.local.yml  
 
 In `docker-compose.local.yml` I added only the last line you see below, in the `volumes:` portion of the `apache:` container config.  
 
@@ -66,6 +67,19 @@ apache:
     - ~/ISLE/dg-islandora:/var/www/html:cached
     ...lines removed for clarity...
     - ./xdebug-local.ini:/etc/php/7.1/apache2/conf.d/20-xdebug-local.ini
+```
+
+**Attention!** While the line I added above does work, it's a bit of a brute force approach and is probably not sustainable.  I've found a much better approach is to inject my debug config like so:
+
+```
+apache:
+  image: islandoracollabgroup/isle-apache:1.5.4
+  ...lines removed for clarity...
+  volumes:
+    # Customization: Bind mounting Drupal Code instead of using default Docker volumes for local development with an IDE.
+    - ~/ISLE/dg-islandora:/var/www/html:cached
+    ...lines removed for clarity...
+    - ./xdebug-local.ini:/etc/php/7.1/mods-available/xdebug.ini
 ```
 
 #### local.env and .env
@@ -111,7 +125,7 @@ This is a new file, one not previously found in the _ISLE_ configuration.  James
 Don't use that in _ISLE_!  The **correct** config for _ISLE_ is the line I added to `docker-compose.local.yml` which reads:
 
 ```
-  - ./xdebug-local.ini:/etc/php/7.1/apache2/conf.d/20-xdebug-local.ini
+  - ./xdebug-local.ini:/etc/php/7.1/apache2/mods-available/xdebug.ini
 ```
 
 The `./` prefix in that line dictates that your `xdebug-local.ini` file should be in your project's root directory, the same directory where `docker-compose.local.yml` resides.  In my case that's `~/ISLE/dg-isle`.  
@@ -191,5 +205,38 @@ The final pieces of this puzzle just seem to "magically" fall into place once yo
   - Opened my local _ISLE_ instance, `http://dg.localdomain`, in the browser of my choice, _Firefox_, and clicked `Refresh`.
     The first time I did this with _PHPStorm_ "listening", I was prompted with some "connection" follow-up questions. That happens only once, and the questions are not too difficult to answer.
   - Enjoyed debugging _ISLE_ without a single `var_dump()` or `print_r()` statement!      
+
+## But What About Debugging in Drush?
+
+I have a number of PHP scripts implemented in [drush](https://www.drush.org/latest/) as part of a Drupal module I call [idu](https://github.com/DigitalGrinnell/idu), and I need to be able to debug those too. But the above configuration doesn't work properly with _drush_ commands. So, what's missing?
+
+After considerable searching I found two critical changes were necessary...
+
+### Export the serverName Config
+
+Before making any _drush_-specific configruation changes I was seeing messages like this in _PHPStorm_ when attempting to debug a script:
+
+{{% figure title="Can't Find dg_local Server" src="/images/post-103/No-dg_local.png" %}}
+
+Turns out for _cli_ debugging you have to explicitly "export" the `PHP_IDE_CONFIG` value inside the running container, like so:
+
+```
+root@7793f5d333fd:/var/www/html/sites/default# export PHP_IDE_CONFIG="serverName=dg_local"
+```
+
+But, hold on, that's still not right!  The `dg_local` server isn't what I want for _cli_ debugging.  For that I have a _PHPStorm_ server named `apache` that was automatically created for me.  So the command I need to run in the container is:
+
+```
+root@7793f5d333fd:/var/www/html/sites/default# export PHP_IDE_CONFIG="serverName=apache"
+```
+
+### Don't Use Automatic Breakpoints!
+
+In my configuration, _drush_ lives in my _Apache_ container at `./opt/drush-8.x/vendor/drush/drush/drush`, but the source code I mapped to _PHPStorm_ only includes the directories and file that live in and below `/var/www/html`.  So, if you leave automatic breakpoints turned on in _PHPStorm_ and run _drush_, the debugger will stop in a location that you can't "see", making it nearly impossible to step through your code.
+
+The fix for this is to turn OFF the last two _PHPStorm_ preferences checkboxes you see below. Turning those off will ensure that _PHPStorm_ does not stop execution at the first line inside the _Apache_ containers _drush_ command script. 
+
+{{% figure title="Do NOT Set Automatic Breakpoints" src="/images/post-103/No-auto-breakpoints.png" %}}
+
   
 And that's a wrap.  Until next time, happy debugging! 
