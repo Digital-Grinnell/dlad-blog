@@ -1,6 +1,6 @@
 ---
 title: Remote Atom
-date: 2021-01-26T10:42:36-06:00
+date: 2021-04-14T08:51:46-05:00
 publishdate: 2020-07-01
 draft: false
 tags:
@@ -10,9 +10,9 @@ tags:
 emoji: true
 ---
 
-Earlier this year I installed and configured the [remote-atom](https://atom.io/packages/remote-atom) package to assist with editing content and code for my [personal blog](https://blog.summittdweller.com). Naturally, I wrote a [blog post](https://blog.summittdweller.com/posts/adding-remote-atom-to-my-digitalocean-server/) to document it.
+Earlier this year I installed and configured the [remote-atom](https://atom.io/packages/remote-atom) package to assist with editing content and code for my [personal blog](https://blog.summittdweller.com). Naturally, I wrote a [blog post](https://blog.summittdweller.com/posts/2020/03/adding-remote-atom-to-my-digitalocean-server/) to document it.
 
-In the past week I've added the **remote-atom** package, and configuration to many of my [Digital.Grinnell](https://digital.grinnell.edu) servers. The installation and configuration was virtually identical to what I described in [Adding remote-atom to my DigitalOcean Server](https://blog.summittdweller.com/posts/adding-remote-atom-to-my-digitalocean-server/).  Thus far the package and it's configuration have been implemented on the following workstations, both personal and professional, with the following username@server configurations:
+In the past week I've added the **remote-atom** package, and configuration to many of my [Digital.Grinnell](https://digital.grinnell.edu) servers. The installation and configuration was virtually identical to what I described in [Adding remote-atom to my DigitalOcean Server](https://blog.summittdweller.com/posts/2020/03/adding-remote-atom-to-my-digitalocean-server/).  Thus far the package and it's configuration have been implemented on the following workstations, both personal and professional, with the following username@server configurations:
 
 | Workstation: MA8660 - Grinnell College iMac |
 | --- |
