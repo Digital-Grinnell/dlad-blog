@@ -1,12 +1,11 @@
 ---
-title: "Production ISLE Installation: Migrate Existing Islandora Site - with Annotations"
-publishDate: 2020-11-20
-lastmod: 2020-11-23T08:15:24-06:00
+title: "Updating Digital.Grinnell in ISLE"
+publishDate: 2021-06-22
+lastmod: 2021-06-22T14:56:05-05:00
 draft: false
 tags:
   - ISLE
-  - migrate
-  - production
+  - update
 ---
 
 <!--
