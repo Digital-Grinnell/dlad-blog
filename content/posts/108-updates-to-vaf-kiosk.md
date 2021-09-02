@@ -1,14 +1,14 @@
 ---
 title: "Updates to VAF-Kiosk"
 publishDate: 2021-08-26
-lastmod: 2021-09-02T14:52:15-05:00
+lastmod: 2021-09-02T14:57:42-05:00
 draft: false
 tags:
   - VAF
   - kiosk
   - update
-  - Google
-  - Analytics
+  - Google Analytics
+  - DigitalOcean
 ---
 
 On Thursday, August 26, 2021, updates to a new iPad destined for the VAF (Visualizing Abolition and Freedom) installing in the Grinnell's HSSC were completed.  As of this writing the iPad has not been re-installed, but Facilities Management has been contacted to schedule that event soon.
