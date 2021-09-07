@@ -6,7 +6,8 @@ baseURL = "https://blogs-mcfatem-5odit.ondigitalocean.app"
 title = "The Grinnell College Digital Library Application Developer's Blog"
 #themesDir = "../.."
 themesDir = "themes"
-theme = ["hugo-search-fuse-js", "hugo-theme-m10c"]
+# theme = ["hugo-search-fuse-js", "hugo-theme-m10c"]
+theme = "hugo-theme-m10c"
 paginate = 10
 summaryLength = 80    # default is 70 words
 googleAnalytics = "UA-4766052-14"
@@ -15,6 +16,9 @@ canonifyURLs = true
 
 enableEmoji = true
 enableGitInfo = true  # makes Lastmod equivalent to git commit date
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
 
 #[frontmatter]
 #date = ["date", "publishDate", "lastmod"]
