@@ -1,7 +1,7 @@
 ---
 title: "Moving Static Sites to Azure"
 publishDate: 2021-09-13
-lastmod: 2021-09-14T12:56:32-05:00
+lastmod: 2021-09-14T13:25:20-05:00
 draft: false
 tags:
   - static
@@ -77,7 +77,7 @@ Done.  So, here are the details, again in JSON format:
     "location": "Central US",
     "tags": {},
     "properties": {
-        "defaultHostname": "calm-pebble-024daff10.azurestaticapps.net",
+        "defaultHostname": "polite-mud-0ded7e410.azurestaticapps.net",
         "repositoryUrl": "https://github.com/Digital-Grinnell/dlad-blog",
         "branch": "main",
         "customDomains": [],

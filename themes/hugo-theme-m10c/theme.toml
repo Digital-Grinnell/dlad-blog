@@ -10,8 +10,7 @@ features = [
   "editable colors"
 ]
 min_version = 0.55
-
+ 
 [author]
   name = "vaga"
   homepage = "https://vaga.io"
-
