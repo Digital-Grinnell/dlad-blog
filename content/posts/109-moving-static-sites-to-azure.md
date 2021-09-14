@@ -1,7 +1,7 @@
 ---
 title: "Moving Static Sites to Azure"
 publishDate: 2021-09-13
-lastmod: 2021-09-14T15:55:24-05:00
+lastmod: 2021-09-14T16:33:19-05:00
 draft: false
 tags:
   - static
@@ -112,6 +112,70 @@ Then, in the case of a _Hugo_ static site, after you have identified your projec
 {{% figure title="The Key to Hugo" src="/images/post-109/post-109-azure-hugo.png" %}}
 
 The other "App", "API", and "Output" fields can all be left to the defaults as shown above.
+
+## VAF - Public Facing
+
+This is the `public-facing`, aka `not-the-kiosk` version of _Visualizing Abolition and Freedom_ (VAF).  Note that it is built from the `public-facing` branch of [https://github.com/Digital-Grinnell/vaf](https://github.com/Digital-Grinnell/vaf)!
+
+```
+{
+    "id": "/subscriptions/609af5e3-a5d8-4ff9-968f-6524767a4dbe/resourceGroups/Static.Grinnell.edu-Resources/providers/Microsoft.Web/staticSites/vaf-public-facing",
+    "name": "vaf-public-facing",
+    "type": "Microsoft.Web/staticSites",
+    "location": "Central US",
+    "properties": {
+        "defaultHostname": "victorious-field-065e3d110.azurestaticapps.net",
+        "repositoryUrl": "https://github.com/Digital-Grinnell/vaf",
+        "branch": "public-facing",
+        "customDomains": [],
+        "privateEndpointConnections": [],
+        "stagingEnvironmentPolicy": "Enabled",
+        "allowConfigFileUpdates": true,
+        "contentDistributionEndpoint": "https://content-dm1.infrastructure.azurestaticapps.net",
+        "keyVaultReferenceIdentity": "SystemAssigned",
+        "userProvidedFunctionApps": [],
+        "provider": "GitHub",
+        "enterpriseGradeCdnStatus": "Disabled",
+        "publicNetworkAccess": null
+    },
+    "sku": {
+        "name": "Free",
+        "tier": "Free"
+    }
+}
+```
+
+## VAF - Kiosk Version
+
+This is the `kiosk` version of _Visualizing Abolition and Freedom_ (VAF), not the public-facing internet web site.  Note that it is built from the `main` branch of [https://github.com/Digital-Grinnell/vaf](https://github.com/Digital-Grinnell/vaf)!
+
+```
+{
+    "id": "/subscriptions/609af5e3-a5d8-4ff9-968f-6524767a4dbe/resourceGroups/Static.Grinnell.edu-Resources/providers/Microsoft.Web/staticSites/vaf-kiosk",
+    "name": "vaf-kiosk",
+    "type": "Microsoft.Web/staticSites",
+    "location": "Central US",
+    "properties": {
+        "defaultHostname": "green-beach-045641410.azurestaticapps.net",
+        "repositoryUrl": "https://github.com/Digital-Grinnell/vaf",
+        "branch": "main",
+        "customDomains": [],
+        "privateEndpointConnections": [],
+        "stagingEnvironmentPolicy": "Enabled",
+        "allowConfigFileUpdates": true,
+        "contentDistributionEndpoint": "https://content-dm1.infrastructure.azurestaticapps.net",
+        "keyVaultReferenceIdentity": "SystemAssigned",
+        "userProvidedFunctionApps": [],
+        "provider": "GitHub",
+        "enterpriseGradeCdnStatus": "Disabled",
+        "publicNetworkAccess": null
+    },
+    "sku": {
+        "name": "Free",
+        "tier": "Free"
+    }
+}
+```
 
 ## More To Come
 
