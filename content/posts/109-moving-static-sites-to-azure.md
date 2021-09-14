@@ -1,7 +1,7 @@
 ---
 title: "Moving Static Sites to Azure"
 publishDate: 2021-09-13
-lastmod: 2021-09-14T15:19:26-05:00
+lastmod: 2021-09-14T15:55:24-05:00
 draft: false
 tags:
   - static
@@ -98,6 +98,20 @@ Done.  So, here are the details, again in JSON format:
 ```
 
 Please note the name and location of the _GitHub_ repo this newest edition is built from: [https://github.com/Digital-Grinnell/dlad-blog](https://github.com/Digital-Grinnell/dlad-blog).  This is also a private repository.  The only problem I encountered when I moved my repo to this location was that all my posts inherited new commit dates, and all have the same commit date, so my automatic sorting by commit date (see the `enableGitInfo = true` setting in `config.toml`) went bonkers.  I've since disabled that sort until I can get my repository commit history back to what it was before the move.
+
+### Important Notes!
+
+So, the deployment of my blog took a few iterations that do not all appear here. In my last deployment I found the `key` to making things work the first time, and I captured some screens along the way.
+
+First, in order to create a new `Static Web App` you have to "find" the right form.  Use the search feature to do so, like this:
+
+{{% figure title="Specifying an Azure Static Web App" src="/images/post-109/post-109-azure-static.png" %}}
+
+Then, in the case of a _Hugo_ static site, after you have identified your project repository you need to select _Hugo_ from a list.  Unlike _DigitalOcean_, this is by-no-means "automatic", so be sure you set your `Build Presets` to "Hugo", like so:
+
+{{% figure title="The Key to Hugo" src="/images/post-109/post-109-azure-hugo.png" %}}
+
+The other "App", "API", and "Output" fields can all be left to the defaults as shown above.
 
 ## More To Come
 
