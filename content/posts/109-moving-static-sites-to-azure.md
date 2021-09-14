@@ -1,7 +1,7 @@
 ---
 title: "Moving Static Sites to Azure"
 publishDate: 2021-09-13
-lastmod: 2021-09-14T16:33:19-05:00
+lastmod: 2021-09-14T16:50:02-05:00
 draft: false
 tags:
   - static
@@ -177,8 +177,15 @@ This is the `kiosk` version of _Visualizing Abolition and Freedom_ (VAF), not th
 }
 ```
 
-## More To Come
+## Summary of Aliases
 
-Since this process is showing so much promise, I expect to add additional static sites, including a _Jekyll_ proof-of-concept _CollectionBuilder_ site, soon.  Watch the space above for these additions.
+This table from https://gist.github.com/Digital-Grinnell/707c5c30b2a046e638b1e645a796838d#gistcomment-3893281 might come in handy...
+
+| Site's Azure Address | .grinnell.edu Alias |
+| --- | --- |
+| https://victorious-field-065e3d110.azurestaticapps.net | vaf.grinnell.edu |
+| https://green-beach-045641410.azurestaticapps.net | vaf-kiosk.grinnell.edu |
+| https://ashy-hill-086e62810.azurestaticapps.net | dlad-blog.grinnell.edu |
+| https://victorious-river-0bf860d10.azurestaticapps.net | static.grinnell.edu |  
 
 That's all... for now.
