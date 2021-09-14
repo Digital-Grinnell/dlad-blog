@@ -1,7 +1,7 @@
 ---
 title: "Moving Static Sites to Azure"
 publishDate: 2021-09-13
-lastmod: 2021-09-14T13:25:20-05:00
+lastmod: 2021-09-14T15:19:26-05:00
 draft: false
 tags:
   - static
@@ -75,9 +75,8 @@ Done.  So, here are the details, again in JSON format:
     "name": "dlad-blog",
     "type": "Microsoft.Web/staticSites",
     "location": "Central US",
-    "tags": {},
     "properties": {
-        "defaultHostname": "polite-mud-0ded7e410.azurestaticapps.net",
+        "defaultHostname": "ashy-hill-086e62810.azurestaticapps.net",
         "repositoryUrl": "https://github.com/Digital-Grinnell/dlad-blog",
         "branch": "main",
         "customDomains": [],
