@@ -1,7 +1,7 @@
 ---
 title: "Updating Digital.Grinnell in ISLE"
 publishDate: 2021-06-22
-lastmod: 2021-06-25T13:50:52-05:00
+lastmod: 2021-06-28T13:27:23-05:00
 draft: false
 tags:
   - ISLE
@@ -9,6 +9,7 @@ tags:
   - ratom
   - 52698
   - disable security
+  - public
 ---
 
 {{% annotation %}}
@@ -466,6 +467,13 @@ Next update will be to our production server, _DGDocker1_, where I hope to repea
 
 Please post questions to the public [Islandora ISLE Google group](https://groups.google.com/forum/#!forum/islandora-isle), or subscribe to receive emails.
 
+{{% annotation %}}
+One hiccup in the `production` update...  I encountered this error when trying to initiate an IMI import:
+```
+RuntimeException: Unable to create the cache directory (/var/www/private/ed). in Twig\Cache\FilesystemCache->write() (line 57 of /var/www/html/sites/all/modules/islandora/islandora_multi_importer/vendor/twig/twig/src/Cache/FilesystemCache.php).
+```
+The problem appeared to be ownership of the `/var/www/public` directory in the _Apache_ container.  The `public` folder was owned by `islandora:islandora` so I opened a shell into _Apache_ and did `cd /var/www/; chown -R islandora:www-data public`.  That seems to have fixed the problem nicely.
+{{% /annotation %}}
 
 # End of: Update ISLE to the Latest Release
 
