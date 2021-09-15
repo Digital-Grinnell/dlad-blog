@@ -1,7 +1,7 @@
 ---
 title: "Moving Static Sites to Azure"
 publishDate: 2021-09-13
-lastmod: 2021-09-14T16:50:02-05:00
+lastmod: 2021-09-15T08:11:50-05:00
 draft: false
 tags:
   - static
@@ -177,6 +177,38 @@ This is the `kiosk` version of _Visualizing Abolition and Freedom_ (VAF), not th
 }
 ```
 
+## Rootstalk
+
+Last, but not least, there's _Rootstalk_!  Note that it is built from the `main` branch of a new _GitHub_ repo at [https://github.com/Digital-Grinnell/rootstalk](https://github.com/Digital-Grinnell/rootstalk)!  Note that it should be given a `.grinnell.edu` address of `rootstalk-DEV` for now... I'm not quite ready to make it the public-facing edition of the digital magazine just yet.
+
+```
+{
+    "id": "/subscriptions/609af5e3-a5d8-4ff9-968f-6524767a4dbe/resourceGroups/Static.Grinnell.edu-Resources/providers/Microsoft.Web/staticSites/rootstalk",
+    "name": "rootstalk",
+    "type": "Microsoft.Web/staticSites",
+    "location": "Central US",
+    "properties": {
+        "defaultHostname": "icy-tree-020380010.azurestaticapps.net",
+        "repositoryUrl": "https://github.com/Digital-Grinnell/rootstalk",
+        "branch": "main",
+        "customDomains": [],
+        "privateEndpointConnections": [],
+        "stagingEnvironmentPolicy": "Enabled",
+        "allowConfigFileUpdates": true,
+        "contentDistributionEndpoint": "https://content-dm1.infrastructure.azurestaticapps.net",
+        "keyVaultReferenceIdentity": "SystemAssigned",
+        "userProvidedFunctionApps": [],
+        "provider": "GitHub",
+        "enterpriseGradeCdnStatus": "Disabled",
+        "publicNetworkAccess": null
+    },
+    "sku": {
+        "name": "Free",
+        "tier": "Free"
+    }
+}
+```
+
 ## Summary of Aliases
 
 This table from https://gist.github.com/Digital-Grinnell/707c5c30b2a046e638b1e645a796838d#gistcomment-3893281 might come in handy...
@@ -187,5 +219,6 @@ This table from https://gist.github.com/Digital-Grinnell/707c5c30b2a046e638b1e64
 | https://green-beach-045641410.azurestaticapps.net | vaf-kiosk.grinnell.edu |
 | https://ashy-hill-086e62810.azurestaticapps.net | dlad-blog.grinnell.edu |
 | https://victorious-river-0bf860d10.azurestaticapps.net | static.grinnell.edu |  
+| https://icy-tree-020380010.azurestaticapps.net | rootstalk-DEV.grinnell.edu |
 
 That's all... for now.
