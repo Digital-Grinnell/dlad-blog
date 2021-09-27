@@ -17,7 +17,7 @@ disqusShortname = "digital-library-applications-developer-blog"
 canonifyURLs = true
 
 enableEmoji = true
-enableGitInfo = true  # makes Lastmod equivalent to git commit date
+# enableGitInfo = true  # makes Lastmod equivalent to git commit date
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
