@@ -1,7 +1,7 @@
 ---
 title: "Collaborating on Hugo Site Development"
 publishDate: 2020-11-12
-lastmod: 2021-09-27T13:34:58-05:00
+lastmod: 2021-09-27T13:42:55-05:00
 draft: false
 tags:
   - Hugo

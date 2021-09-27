@@ -1,7 +1,7 @@
 ---
 title: "Moving Static Sites to Azure"
 publishDate: 2021-09-13
-lastmod: 2021-09-15T08:11:50-05:00
+lastmod: 2021-09-15T08:11:50-05:00 
 draft: false
 tags:
   - static
