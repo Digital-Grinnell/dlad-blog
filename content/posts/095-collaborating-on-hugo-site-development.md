@@ -1,7 +1,7 @@
 ---
 title: "Collaborating on Hugo Site Development"
 publishDate: 2020-11-12
-lastmod: 2021-09-27T13:26:41-05:00
+lastmod: 2021-09-27T13:34:58-05:00
 draft: false
 tags:
   - Hugo
@@ -12,7 +12,7 @@ tags:
 ---
 
 {{% box %}}
-I've nearly completed migration of all _Grinnell College Libraries'_ static sites to _Azure_ and I'm updating this post to reflect that move.  Wherever possible I'll strike-through outdated information ~like this~, and replace it with updated info.
+I've nearly completed migration of all _Grinnell College Libraries'_ static sites to _Azure_ and I'm updating this post to reflect that move.  Wherever possible I'll strike-through outdated information <strike>like this</strike>, and replace it with updated info.
 {{% /box %}}
 
 This post will instruct the reader to install necessary tools and engage the workflow I now use to develop and maintain a handful of _Hugo_ static websites. The list of sites now includes both professional, those owned and operated by [Grinnell College](https://grinnell.edu), as well as "personal" sites that I develop, maintain and host myself.
@@ -21,9 +21,9 @@ This post will instruct the reader to install necessary tools and engage the wor
 These include:
 
   - [Rootstalk](https://rootstalk.grinnell.edu),
-  - [This Blog](ashy-hill-086e62810.azurestaticapps.net) ...previously at ~https://static.grinnell.edu/blogs/McFateM~,
-  - [The Static.Grinnell.edu Landing Page](victorious-river-0bf860d10.azurestaticapps.net) ... previously at ~https://static.grinnell.edu~, and
-  - [VAF](victorious-field-065e3d110.azurestaticapps.net) ...previously at ~https://vaf.grinnell.edu~
+  - [This Blog](ashy-hill-086e62810.azurestaticapps.net) ...previously at <strike>https://static.grinnell.edu/blogs/McFateM</strike>,
+  - [The Static.Grinnell.edu Landing Page](victorious-river-0bf860d10.azurestaticapps.net) ... previously at <strike>https://static.grinnell.edu</strike>, and
+  - [VAF](victorious-field-065e3d110.azurestaticapps.net) ...previously at <strike>https://vaf.grinnell.edu</strike>
 
 {{% box %}}
 The detailed information provided in this blog post uses _Rootstalk_ and [this blog](ashy-hill-086e62810.azurestaticapps.net) as examples, but the concepts apply equally to all of the professional and personal sites I've listed.
@@ -56,9 +56,7 @@ My typical workflow for local development, after installation of the above, goes
 ```
 mkdir -p ~/GitHub
 cd ~/GitHub
-~git clone https://github.com/McFateM/rootstalk-static --recursive~
 git clone https://github.com/Digital-Grinnell/rootstalk --recursive
-~cd rootstalk-static~
 cd rootstalk
 git checkout -b <new-branch-name>
 atom .
