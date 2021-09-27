@@ -1,7 +1,7 @@
 ---
 title: "Collaborating on Hugo Site Development"
 publishDate: 2020-11-12
-lastmod: 2020-11-12T15:39:56-06:00
+lastmod: 2021-09-27T13:26:41-05:00
 draft: false
 tags:
   - Hugo
@@ -11,18 +11,22 @@ tags:
   - Rootstalk
 ---
 
+{{% box %}}
+I've nearly completed migration of all _Grinnell College Libraries'_ static sites to _Azure_ and I'm updating this post to reflect that move.  Wherever possible I'll strike-through outdated information ~like this~, and replace it with updated info.
+{{% /box %}}
+
 This post will instruct the reader to install necessary tools and engage the workflow I now use to develop and maintain a handful of _Hugo_ static websites. The list of sites now includes both professional, those owned and operated by [Grinnell College](https://grinnell.edu), as well as "personal" sites that I develop, maintain and host myself.
 
 ## Professional Sites
 These include:
 
   - [Rootstalk](https://rootstalk.grinnell.edu),
-  - [This Blog](https://static.grinnell.edu/blogs/McFateM),
-  - [The Static.Grinnell.edu Landing Page](https://static.grinnell.edu), and
-  - [VAF](https://vaf.grinnell.edu)
+  - [This Blog](ashy-hill-086e62810.azurestaticapps.net) ...previously at ~https://static.grinnell.edu/blogs/McFateM~,
+  - [The Static.Grinnell.edu Landing Page](victorious-river-0bf860d10.azurestaticapps.net) ... previously at ~https://static.grinnell.edu~, and
+  - [VAF](victorious-field-065e3d110.azurestaticapps.net) ...previously at ~https://vaf.grinnell.edu~
 
 {{% box %}}
-The detailed information provided in this blog post uses _Rootstalk_ and [this blog](https://static.grinnell.edu/blogs/McFateM) as examples, but the concepts apply equally to all of the professional and personal sites I've listed.
+The detailed information provided in this blog post uses _Rootstalk_ and [this blog](ashy-hill-086e62810.azurestaticapps.net) as examples, but the concepts apply equally to all of the professional and personal sites I've listed.
 {{% /box %}}
 
 ## Personal Sites
@@ -42,7 +46,7 @@ The workflow which follows will require you to install, or update, the following
 | --- | --- |
 | git | The suggested `Homebrew` instructions lead down an infinite rabbit-hole, so use [https://sourceforge.net/projects/git-osx-installer/](https://sourceforge.net/projects/git-osx-installer/) instead. |
 | atom | See [https://flight-manual.atom.io/getting-started/sections/installing-atom/](https://flight-manual.atom.io/getting-started/sections/installing-atom/) |
-| hugo | The easiest way to install on a Mac is using the [Binary (Cross-platform)](https://gohugo.io/getting-started/installing/#binary-cross-platform) technique.  As of the writing of this post the package of choice for a Mac was named `hugo_extended_0.78.2_macOS-64bit.tar.gz`. Once you have downloaded the `.gz` file, double-click on it to expand the archive.  Then try this command to install it in your $PATH: `sudo cp -f ~/Downloads/hugo_extended_0.78.2_macOS-64bit/hugo /usr/local/bin/hugo`|
+| hugo | The easiest way to install on a Mac is using the [Binary (Cross-platform)](https://gohugo.io/getting-started/installing/#binary-cross-platform) technique.  The latest release can always be found on _GitHub_ in [gohugoio/hugo](https://github.com/gohugoio/hugo/releases). As of the writing of this post the package of choice for a Mac was named `hugo_extended_0.78.2_macOS-64bit.tar.gz`. Once you have downloaded the `.gz` file, double-click on it to expand the archive.  Then try this command to install it in your $PATH: `sudo cp -f ~/Downloads/hugo_extended_0.78.2_macOS-64bit/hugo /usr/local/bin/hugo`|
 
 ### Usual Workflow
 It is recommended that you clone this repository to an OS X workstation where [git](https://git-scm.com), [Atom](https://atom.io), and [Hugo](https://gohugo.io) are installed and running in an up-to-date versions.
@@ -52,8 +56,10 @@ My typical workflow for local development, after installation of the above, goes
 ```
 mkdir -p ~/GitHub
 cd ~/GitHub
-git clone https://github.com/McFateM/rootstalk-static --recursive
-cd rootstalk-static
+~git clone https://github.com/McFateM/rootstalk-static --recursive~
+git clone https://github.com/Digital-Grinnell/rootstalk --recursive
+~cd rootstalk-static~
+cd rootstalk
 git checkout -b <new-branch-name>
 atom .
 hugo server
@@ -62,7 +68,7 @@ hugo server
 #### atom .
 The `atom .` command opens the project in my [Atom](https://atom.io) editor which provides many tools and shortcuts to speed development and maintenance. [Atom Basics](https://flight-manual.atom.io/getting-started/sections/atom-basics/) is well worth reading to get you up-to-speed with the powerful editor you now have at your disposal.
 
-Note that when _Atom_ is installed it should include a command-line shortcut so that the `atom .` command will work; however, if `atom .` will not launch _Atom_ it should be possible to add the necssary command-line option as directed in [this StackOverflow answer](https://stackoverflow.com/a/23666354).
+Note that when _Atom_ is installed it should include a command-line shortcut so that the `atom .` command will work; however, if `atom .` will not launch _Atom_ it should be possible to add the necessary command-line option as directed in [this StackOverflow answer](https://stackoverflow.com/a/23666354).
 
 #### hugo server
 The `hugo server` command compiles and launches a local instance of the site and provides a link, usually [http://localhost:1313](http://localhost:1313/), to that site if there are no errors.  This local site will respond immediately to any changes made and saved in _Atom_.
