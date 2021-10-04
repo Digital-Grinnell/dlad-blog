@@ -1,0 +1,404 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>Moving Static Sites to Azure // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Moving Static Sites to Azure"/>
+<meta name="twitter:description" content="On Thursday, September 9, 2021, I discovered that Azure, Microsoft&rsquo;s offering of host/cloud services for Open Source developers, and a favored partner of Grinnell&rsquo;s IT department, had come up with a Static Web App deployment scheme that allegedly would rival what I&rsquo;ve been using at DigitalOcean. So, I first tried to migrate my very simple Static Landing Page Hugo static site to a new home on Azure. The process wasn&rsquo;t quite as slick and easy as at DigitalOcean, but Azure does nicely leverage GitHub Actions, and the process wasn&rsquo;t too difficult to grasp."/>
+
+    <meta property="og:title" content="Moving Static Sites to Azure" />
+<meta property="og:description" content="On Thursday, September 9, 2021, I discovered that Azure, Microsoft&rsquo;s offering of host/cloud services for Open Source developers, and a favored partner of Grinnell&rsquo;s IT department, had come up with a Static Web App deployment scheme that allegedly would rival what I&rsquo;ve been using at DigitalOcean. So, I first tried to migrate my very simple Static Landing Page Hugo static site to a new home on Azure. The process wasn&rsquo;t quite as slick and easy as at DigitalOcean, but Azure does nicely leverage GitHub Actions, and the process wasn&rsquo;t too difficult to grasp." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/109-moving-static-sites-to-azure/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-09-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-09-15T08:11:50-05:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 4:22pm CDT<br/>
+          Content Updated: 2021-Sep-15 08:11 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu now hosted on GitHub Pages.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/109-moving-static-sites-to-azure/'>109 moving static sites to azure</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Moving Static Sites to Azure</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Sep 13, 2021
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: Sep 15, 2021 - 08:11
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign">
+  <title>at-sign</title>
+  <circle cx="12" cy="12" r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+</svg> Mark A. McFate</strong>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/static/">static</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/azure/">Azure</a></div></div>
+    </header>
+    <div class="post-content">
+      <p>On Thursday, September 9, 2021, I discovered that <a href="https://azure.microsoft.com/en-us/">Azure</a>, Microsoft&rsquo;s offering of host/cloud services for Open Source developers, and a favored partner of Grinnell&rsquo;s IT department, had come up with a <em>Static Web App</em> deployment scheme that allegedly would rival what I&rsquo;ve been using at <em>DigitalOcean</em>. So, I first tried to migrate my very simple <code>Static Landing Page</code> <em>Hugo</em> static site to a new home on <em>Azure</em>.  The process wasn&rsquo;t quite as slick and easy as at <em>DigitalOcean</em>, but <em>Azure</em> does nicely leverage <a href="https://github.com/features/actions">GitHub Actions</a>, and the process wasn&rsquo;t too difficult to grasp.</p>
+<p>As of this writing I&rsquo;m attempting to follow-up by moving my professional blog, formerly <a href="https://static.grinnell.edu/blogs-McFateM/,">https://static.grinnell.edu/blogs-McFateM/,</a> to a new <em>Azure</em> home.</p>
+
+<div class="annotation"><p>Moving my blog turned out to be just as easy as the landing page.  The entire process took just an hour or so.  Some cleanup of hard-coded links and similar data is still pending, but for the most part the experience has been almost as good as what I did at <em>DigitalOcean</em>.</p>
+</div>
+
+<h2 id="my-first-azure-account">My First Azure Account</h2>
+<p>Encouraged by the ITS Department, I registered my first <em>Azure</em> account under my <code>mcfatem@grinnell.edu</code> email address on March 20, 2020.  That account was registered under the college&rsquo;s existing &ldquo;home&rdquo; organization named <code>Grinnell College</code>, also identified as <code>GRINCO.ONMICROSOFT.COM</code>.  Because my first year of &ldquo;free&rdquo; services under that account had long expired, in September 2021 I elected to open a new account as indicated below.</p>
+<h2 id="a-new-azure-account-and-portal">A New Azure Account and Portal</h2>
+<p>Nothing of any consequence was ever created under my <code>mcfatem@grinnell.edu</code> <em>Azure</em> account, the services I needed were not available back in early 2020.  So, that account still exists but has nothing of value in it at this time.</p>
+<p>As mentioned above, on 2021-09-09, I created a new <em>Azure</em> account, also under the <code>Grinnell College</code> organization umbrella.  This account is registered to my <code>digital@grinnell.edu</code> email address. Unlike my earlier account, this one has a <a href="https://portal.azure.com/#home">Portal</a> with some actual content.</p>
+<h2 id="static-landing-page">Static Landing Page</h2>
+<p>The sole occupant, so far, of my <em>Azure</em> <a href="https://portal.azure.com/#home">Portal</a> is named <a href="">static-landing-page</a> and clicking on its link and toggling on the JSON view (a handy feature) shows these details:</p>
+<pre><code>{
+    &quot;id&quot;: &quot;/subscriptions/609af5e3-a5d8-4ff9-968f-6524767a4dbe/resourceGroups/Static.Grinnell.edu-Resources/providers/Microsoft.Web/staticSites/static-landing-page&quot;,
+    &quot;name&quot;: &quot;static-landing-page&quot;,
+    &quot;type&quot;: &quot;Microsoft.Web/staticSites&quot;,
+    &quot;location&quot;: &quot;Central US&quot;,
+    &quot;tags&quot;: {},
+    &quot;properties&quot;: {
+        &quot;defaultHostname&quot;: &quot;victorious-river-0bf860d10.azurestaticapps.net&quot;,
+        &quot;repositoryUrl&quot;: &quot;https://github.com/Digital-Grinnell/static-landing-page&quot;,
+        &quot;branch&quot;: &quot;main&quot;,
+        &quot;customDomains&quot;: [],
+        &quot;privateEndpointConnections&quot;: [],
+        &quot;stagingEnvironmentPolicy&quot;: &quot;Enabled&quot;,
+        &quot;allowConfigFileUpdates&quot;: true,
+        &quot;contentDistributionEndpoint&quot;: &quot;https://content-dm1.infrastructure.azurestaticapps.net&quot;,
+        &quot;keyVaultReferenceIdentity&quot;: &quot;SystemAssigned&quot;,
+        &quot;userProvidedFunctionApps&quot;: [],
+        &quot;provider&quot;: &quot;GitHub&quot;,
+        &quot;enterpriseGradeCdnStatus&quot;: &quot;Disabled&quot;,
+        &quot;publicNetworkAccess&quot;: null
+    },
+    &quot;sku&quot;: {
+        &quot;name&quot;: &quot;Free&quot;,
+        &quot;tier&quot;: &quot;Free&quot;
+    }
+}
+</code></pre><p>As you can see above, this app responds to a canonical URL of <a href="https://victorious-river-0bf860d10.azurestaticapps.net">https://victorious-river-0bf860d10.azurestaticapps.net</a> and its built from a <em>GitHub</em> repo at <a href="https://github.com/Digital-Grinnell/static-landing-page">https://github.com/Digital-Grinnell/static-landing-page</a>.  That is a private repository.</p>
+<p>You may also note that when this JSON structure was dumped the site had NO &ldquo;customDomains&rdquo;.  Before long I hope that ITS can alias our old <code>https://static.grinnell.edu</code> address to point here.</p>
+<h2 id="this-blog-on-azure">This Blog on Azure</h2>
+<p>Next step, posting and hosting this blog in my new <em>Azure</em> account.  As soon as that is done I&rsquo;ll be back here to provide some details&hellip;</p>
+<p>Done.  So, here are the details, again in JSON format:</p>
+<pre><code>{
+    &quot;id&quot;: &quot;/subscriptions/609af5e3-a5d8-4ff9-968f-6524767a4dbe/resourceGroups/Static.Grinnell.edu-Resources/providers/Microsoft.Web/staticSites/dlad-blog&quot;,
+    &quot;name&quot;: &quot;dlad-blog&quot;,
+    &quot;type&quot;: &quot;Microsoft.Web/staticSites&quot;,
+    &quot;location&quot;: &quot;Central US&quot;,
+    &quot;properties&quot;: {
+        &quot;defaultHostname&quot;: &quot;ashy-hill-086e62810.azurestaticapps.net&quot;,
+        &quot;repositoryUrl&quot;: &quot;https://github.com/Digital-Grinnell/dlad-blog&quot;,
+        &quot;branch&quot;: &quot;main&quot;,
+        &quot;customDomains&quot;: [],
+        &quot;privateEndpointConnections&quot;: [],
+        &quot;stagingEnvironmentPolicy&quot;: &quot;Enabled&quot;,
+        &quot;allowConfigFileUpdates&quot;: true,
+        &quot;contentDistributionEndpoint&quot;: &quot;https://content-dm1.infrastructure.azurestaticapps.net&quot;,
+        &quot;keyVaultReferenceIdentity&quot;: &quot;SystemAssigned&quot;,
+        &quot;userProvidedFunctionApps&quot;: [],
+        &quot;provider&quot;: &quot;GitHub&quot;,
+        &quot;enterpriseGradeCdnStatus&quot;: &quot;Disabled&quot;,
+        &quot;publicNetworkAccess&quot;: null
+    },
+    &quot;sku&quot;: {
+        &quot;name&quot;: &quot;Free&quot;,
+        &quot;tier&quot;: &quot;Free&quot;
+    }
+}
+</code></pre><p>Please note the name and location of the <em>GitHub</em> repo this newest edition is built from: <a href="https://github.com/Digital-Grinnell/dlad-blog">https://github.com/Digital-Grinnell/dlad-blog</a>.  This is also a private repository.  The only problem I encountered when I moved my repo to this location was that all my posts inherited new commit dates, and all have the same commit date, so my automatic sorting by commit date (see the <code>enableGitInfo = true</code> setting in <code>config.toml</code>) went bonkers.  I&rsquo;ve since disabled that sort until I can get my repository commit history back to what it was before the move.</p>
+<h3 id="important-notes">Important Notes!</h3>
+<p>So, the deployment of my blog took a few iterations that do not all appear here. In my last deployment I found the <code>key</code> to making things work the first time, and I captured some screens along the way.</p>
+<p>First, in order to create a new <code>Static Web App</code> you have to &ldquo;find&rdquo; the right form.  Use the search feature to do so, like this:</p>
+<link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/hugo-easy-gallery.css" />
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="https://digital-grinnell.github.io/dlad-blog/images/post-109/post-109-azure-static.png" />
+    </div>
+    <a href="https://digital-grinnell.github.io/dlad-blog/images/post-109/post-109-azure-static.png" itemprop="contentUrl"></a>
+      <figcaption><h4>Specifying an Azure Static Web App</h4>
+      </figcaption>
+  </figure>
+</div>
+<p>Then, in the case of a <em>Hugo</em> static site, after you have identified your project repository you need to select <em>Hugo</em> from a list.  Unlike <em>DigitalOcean</em>, this is by-no-means &ldquo;automatic&rdquo;, so be sure you set your <code>Build Presets</code> to &ldquo;Hugo&rdquo;, like so:</p>
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="https://digital-grinnell.github.io/dlad-blog/images/post-109/post-109-azure-hugo.png" />
+    </div>
+    <a href="https://digital-grinnell.github.io/dlad-blog/images/post-109/post-109-azure-hugo.png" itemprop="contentUrl"></a>
+      <figcaption><h4>The Key to Hugo</h4>
+      </figcaption>
+  </figure>
+</div>
+<p>The other &ldquo;App&rdquo;, &ldquo;API&rdquo;, and &ldquo;Output&rdquo; fields can all be left to the defaults as shown above.</p>
+<h2 id="vaf---public-facing">VAF - Public Facing</h2>
+<p>This is the <code>public-facing</code>, aka <code>not-the-kiosk</code> version of <em>Visualizing Abolition and Freedom</em> (VAF).  Note that it is built from the <code>public-facing</code> branch of <a href="https://github.com/Digital-Grinnell/vaf">https://github.com/Digital-Grinnell/vaf</a>!</p>
+<pre><code>{
+    &quot;id&quot;: &quot;/subscriptions/609af5e3-a5d8-4ff9-968f-6524767a4dbe/resourceGroups/Static.Grinnell.edu-Resources/providers/Microsoft.Web/staticSites/vaf-public-facing&quot;,
+    &quot;name&quot;: &quot;vaf-public-facing&quot;,
+    &quot;type&quot;: &quot;Microsoft.Web/staticSites&quot;,
+    &quot;location&quot;: &quot;Central US&quot;,
+    &quot;properties&quot;: {
+        &quot;defaultHostname&quot;: &quot;victorious-field-065e3d110.azurestaticapps.net&quot;,
+        &quot;repositoryUrl&quot;: &quot;https://github.com/Digital-Grinnell/vaf&quot;,
+        &quot;branch&quot;: &quot;public-facing&quot;,
+        &quot;customDomains&quot;: [],
+        &quot;privateEndpointConnections&quot;: [],
+        &quot;stagingEnvironmentPolicy&quot;: &quot;Enabled&quot;,
+        &quot;allowConfigFileUpdates&quot;: true,
+        &quot;contentDistributionEndpoint&quot;: &quot;https://content-dm1.infrastructure.azurestaticapps.net&quot;,
+        &quot;keyVaultReferenceIdentity&quot;: &quot;SystemAssigned&quot;,
+        &quot;userProvidedFunctionApps&quot;: [],
+        &quot;provider&quot;: &quot;GitHub&quot;,
+        &quot;enterpriseGradeCdnStatus&quot;: &quot;Disabled&quot;,
+        &quot;publicNetworkAccess&quot;: null
+    },
+    &quot;sku&quot;: {
+        &quot;name&quot;: &quot;Free&quot;,
+        &quot;tier&quot;: &quot;Free&quot;
+    }
+}
+</code></pre><h2 id="vaf---kiosk-version">VAF - Kiosk Version</h2>
+<p>This is the <code>kiosk</code> version of <em>Visualizing Abolition and Freedom</em> (VAF), not the public-facing internet web site.  Note that it is built from the <code>main</code> branch of <a href="https://github.com/Digital-Grinnell/vaf">https://github.com/Digital-Grinnell/vaf</a>!</p>
+<pre><code>{
+    &quot;id&quot;: &quot;/subscriptions/609af5e3-a5d8-4ff9-968f-6524767a4dbe/resourceGroups/Static.Grinnell.edu-Resources/providers/Microsoft.Web/staticSites/vaf-kiosk&quot;,
+    &quot;name&quot;: &quot;vaf-kiosk&quot;,
+    &quot;type&quot;: &quot;Microsoft.Web/staticSites&quot;,
+    &quot;location&quot;: &quot;Central US&quot;,
+    &quot;properties&quot;: {
+        &quot;defaultHostname&quot;: &quot;green-beach-045641410.azurestaticapps.net&quot;,
+        &quot;repositoryUrl&quot;: &quot;https://github.com/Digital-Grinnell/vaf&quot;,
+        &quot;branch&quot;: &quot;main&quot;,
+        &quot;customDomains&quot;: [],
+        &quot;privateEndpointConnections&quot;: [],
+        &quot;stagingEnvironmentPolicy&quot;: &quot;Enabled&quot;,
+        &quot;allowConfigFileUpdates&quot;: true,
+        &quot;contentDistributionEndpoint&quot;: &quot;https://content-dm1.infrastructure.azurestaticapps.net&quot;,
+        &quot;keyVaultReferenceIdentity&quot;: &quot;SystemAssigned&quot;,
+        &quot;userProvidedFunctionApps&quot;: [],
+        &quot;provider&quot;: &quot;GitHub&quot;,
+        &quot;enterpriseGradeCdnStatus&quot;: &quot;Disabled&quot;,
+        &quot;publicNetworkAccess&quot;: null
+    },
+    &quot;sku&quot;: {
+        &quot;name&quot;: &quot;Free&quot;,
+        &quot;tier&quot;: &quot;Free&quot;
+    }
+}
+</code></pre><h2 id="rootstalk">Rootstalk</h2>
+<p>Last, but not least, there&rsquo;s <em>Rootstalk</em>!  Note that it is built from the <code>main</code> branch of a new <em>GitHub</em> repo at <a href="https://github.com/Digital-Grinnell/rootstalk">https://github.com/Digital-Grinnell/rootstalk</a>!  Note that it should be given a <code>.grinnell.edu</code> address of <code>rootstalk-DEV</code> for now&hellip; I&rsquo;m not quite ready to make it the public-facing edition of the digital magazine just yet.</p>
+<pre><code>{
+    &quot;id&quot;: &quot;/subscriptions/609af5e3-a5d8-4ff9-968f-6524767a4dbe/resourceGroups/Static.Grinnell.edu-Resources/providers/Microsoft.Web/staticSites/rootstalk&quot;,
+    &quot;name&quot;: &quot;rootstalk&quot;,
+    &quot;type&quot;: &quot;Microsoft.Web/staticSites&quot;,
+    &quot;location&quot;: &quot;Central US&quot;,
+    &quot;properties&quot;: {
+        &quot;defaultHostname&quot;: &quot;icy-tree-020380010.azurestaticapps.net&quot;,
+        &quot;repositoryUrl&quot;: &quot;https://github.com/Digital-Grinnell/rootstalk&quot;,
+        &quot;branch&quot;: &quot;main&quot;,
+        &quot;customDomains&quot;: [],
+        &quot;privateEndpointConnections&quot;: [],
+        &quot;stagingEnvironmentPolicy&quot;: &quot;Enabled&quot;,
+        &quot;allowConfigFileUpdates&quot;: true,
+        &quot;contentDistributionEndpoint&quot;: &quot;https://content-dm1.infrastructure.azurestaticapps.net&quot;,
+        &quot;keyVaultReferenceIdentity&quot;: &quot;SystemAssigned&quot;,
+        &quot;userProvidedFunctionApps&quot;: [],
+        &quot;provider&quot;: &quot;GitHub&quot;,
+        &quot;enterpriseGradeCdnStatus&quot;: &quot;Disabled&quot;,
+        &quot;publicNetworkAccess&quot;: null
+    },
+    &quot;sku&quot;: {
+        &quot;name&quot;: &quot;Free&quot;,
+        &quot;tier&quot;: &quot;Free&quot;
+    }
+}
+</code></pre><h2 id="summary-of-aliases">Summary of Aliases</h2>
+<p>This table from <a href="https://gist.github.com/Digital-Grinnell/707c5c30b2a046e638b1e645a796838d#gistcomment-3893281">https://gist.github.com/Digital-Grinnell/707c5c30b2a046e638b1e645a796838d#gistcomment-3893281</a> might come in handy&hellip;</p>
+<table>
+<thead>
+<tr>
+<th>Site&rsquo;s Azure Address</th>
+<th>.grinnell.edu Alias</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://victorious-field-065e3d110.azurestaticapps.net">https://victorious-field-065e3d110.azurestaticapps.net</a></td>
+<td>vaf.grinnell.edu</td>
+</tr>
+<tr>
+<td><a href="https://green-beach-045641410.azurestaticapps.net">https://green-beach-045641410.azurestaticapps.net</a></td>
+<td>vaf-kiosk.grinnell.edu</td>
+</tr>
+<tr>
+<td><a href="https://ashy-hill-086e62810.azurestaticapps.net">https://ashy-hill-086e62810.azurestaticapps.net</a></td>
+<td>dlad-blog.grinnell.edu</td>
+</tr>
+<tr>
+<td><a href="https://victorious-river-0bf860d10.azurestaticapps.net">https://victorious-river-0bf860d10.azurestaticapps.net</a></td>
+<td>static.grinnell.edu</td>
+</tr>
+<tr>
+<td><a href="https://icy-tree-020380010.azurestaticapps.net">https://icy-tree-020380010.azurestaticapps.net</a></td>
+<td>rootstalk-DEV.grinnell.edu</td>
+</tr>
+</tbody>
+</table>
+<p>That&rsquo;s all&hellip; for now.</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

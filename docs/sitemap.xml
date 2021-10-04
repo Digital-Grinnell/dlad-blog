@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://digital-grinnell.github.io/dlad-blog/tags/azure/</loc>
+    <lastmod>2021-09-15T08:11:50-05:00</lastmod>
+  </url><url>
+    <loc>https://digital-grinnell.github.io/dlad-blog/posts/109-moving-static-sites-to-azure/</loc>
+    <lastmod>2021-09-15T08:11:50-05:00</lastmod>
+  </url><url>
+    <loc>https://digital-grinnell.github.io/dlad-blog/tags/static/</loc>
+    <lastmod>2021-09-15T08:11:50-05:00</lastmod>
+  </url><url>
+    <loc>https://digital-grinnell.github.io/dlad-blog/tags/</loc>
+    <lastmod>2021-09-15T08:11:50-05:00</lastmod>
+  </url><url>
+    <loc>https://digital-grinnell.github.io/dlad-blog/</loc>
+    <lastmod>2021-09-15T08:11:50-05:00</lastmod>
+  </url><url>
     <loc>https://digital-grinnell.github.io/dlad-blog/tags/digitalocean/</loc>
     <lastmod>2021-09-02T14:57:56-05:00</lastmod>
   </url><url>
@@ -9,12 +24,6 @@
     <lastmod>2021-09-02T14:57:56-05:00</lastmod>
   </url><url>
     <loc>https://digital-grinnell.github.io/dlad-blog/tags/kiosk/</loc>
-    <lastmod>2021-09-02T14:57:56-05:00</lastmod>
-  </url><url>
-    <loc>https://digital-grinnell.github.io/dlad-blog/tags/</loc>
-    <lastmod>2021-09-02T14:57:56-05:00</lastmod>
-  </url><url>
-    <loc>https://digital-grinnell.github.io/dlad-blog/</loc>
     <lastmod>2021-09-02T14:57:56-05:00</lastmod>
   </url><url>
     <loc>https://digital-grinnell.github.io/dlad-blog/tags/update/</loc>
@@ -759,9 +768,6 @@
     <lastmod>2019-11-22T16:20:01-06:00</lastmod>
   </url><url>
     <loc>https://digital-grinnell.github.io/dlad-blog/posts/045-repairing-static.grinnell.edu/</loc>
-    <lastmod>2019-09-17T11:55:32-05:00</lastmod>
-  </url><url>
-    <loc>https://digital-grinnell.github.io/dlad-blog/tags/static/</loc>
     <lastmod>2019-09-17T11:55:32-05:00</lastmod>
   </url><url>
     <loc>https://digital-grinnell.github.io/dlad-blog/tags/centos/</loc>
