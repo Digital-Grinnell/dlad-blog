@@ -1,0 +1,355 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>Building this Blog with Hugo, Docker, Docksal, and More // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Building this Blog with Hugo, Docker, Docksal, and More"/>
+<meta name="twitter:description" content="In this post I will attempt to chronicle the steps my associates and I took to complete the configuration of static.grinnell.edu, and to eventually create this blog following Juan Treminio&rsquo;s lead. Small portions of Juan&rsquo;s blog post are reproduced here, with permission, so that you can follow along in his work. Those passages appear with a colored background like so:
+&hellip;I will walk you through the complete process of setting up a static website that you can deploy new versions with a simple git push."/>
+
+    <meta property="og:title" content="Building this Blog with Hugo, Docker, Docksal, and More" />
+<meta property="og:description" content="In this post I will attempt to chronicle the steps my associates and I took to complete the configuration of static.grinnell.edu, and to eventually create this blog following Juan Treminio&rsquo;s lead. Small portions of Juan&rsquo;s blog post are reproduced here, with permission, so that you can follow along in his work. Those passages appear with a colored background like so:
+&hellip;I will walk you through the complete process of setting up a static website that you can deploy new versions with a simple git push." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/002-building-this-blog/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-11-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-06-04T21:29:18-05:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 3:22pm CDT<br/>
+          Content Updated: 2021-Sep-2 14:57 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu now hosted on GitHub Pages.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/002-building-this-blog/'>002 building this blog</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Building this Blog with Hugo, Docker, Docksal, and More</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+          11 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+          Nov 19, 2018
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: Jun 4, 2019 - 21:29
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg> Mark A. McFate</strong>
+          </div>
+    </header>
+    <div class="post-content">
+      <p>In this post I will attempt to chronicle the steps my associates and I took to complete the configuration of <code>static.grinnell.edu</code>, and to eventually create this blog following <a href="https://jtreminio.com/">Juan Treminio&rsquo;s</a> lead.  Small portions of Juan&rsquo;s <a href="https://jtreminio.com/blog/setting-up-a-static-site-with-hugo-and-push-to-deploy/">blog post</a> are reproduced here, with permission, so that you can follow along in his work.  Those passages appear with a colored background like so:</p>
+
+<div class="original"><p>&hellip;I will walk you through the complete process of setting up a static
+website that you can deploy new versions with a simple <code>git push</code>.</p>
+<p>Pushing to your repo will trigger an automated build process that will generate
+minified HTML/CSS/JS files, package them in an Nginx image, add a new image to
+<a href="https://hub.docker.com/">Docker Hub</a>, deploy a new container on your host and
+automatically generate and maintain free SSL certificates using
+<a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a>&hellip;</p>
+<p>The only prerequisite is you have Docker installed on your local machine.
+All other dependencies will be in Docker containers.</p>
+</div>
+
+<h2 id="technologies-and-services">Technologies and Services</h2>
+<p>We&rsquo;ve added one tool, <em>Docksal</em>, to Juan&rsquo;s original workflow, so the complete list of technologies and services now includes:</p>
+<ul>
+<li><a href="https://docksal.io/">Docksal</a> for creating and managing a quick-and-easy local environment for development and testing,</li>
+</ul>
+
+<div class="original"><ul>
+<li><a href="https://gohugo.io/">Hugo</a> for static site generator,</li>
+<li><a href="https://www.ansible.com/">Ansible</a> for configuring the server,</li>
+<li><a href="https://www.docker.com/">Docker</a> for containers,</li>
+<li><a href="https://traefik.io/">Traefik</a> for routing traffic to correct container,
+and automatic SSL certificates,</li>
+<li><a href="https://github.com/v2tec/watchtower">Watchtower</a> for keeping latest Docker
+image running on your site.</li>
+<li><a href="https://letsencrypt.org/">Let&rsquo;s Encrypt</a> for free, automated SSL certificate.</li>
+</ul>
+</div>
+
+<h2 id="production-server-configuration---a-simple-one-time-process">Production Server Configuration - A Simple One-Time Process</h2>
+<p>If you have <code>root</code> access to a networked Linux server it can be configured as a production host with a script that Juan has provided.</p>
+
+<div class="original"><p>I have created a
+<a href="https://github.com/jtreminio/docker-bootstrap">simple Ansible-based configuration</a>
+that</p>
+<ul>
+<li>installs Docker,</li>
+<li>opens ports <code>80</code>, <code>443</code> and <code>8080</code> on firewall (optional),</li>
+<li>adds Traefik and configures Let&rsquo;s Encrypt support,</li>
+<li>creates a Watchtower container.</li>
+</ul>
+</div>
+
+<p>It&rsquo;s important to note that Juan&rsquo;s <code>./init</code> script is installed &ldquo;locally&rdquo; on your development host, presumably a desktop or laptop workstation, and it makes changes &lsquo;remotely&rsquo; to your production server.  To install <code>./init</code> just follow the instruction provided in his <a href="https://github.com/jtreminio/docker-bootstrap">docker-bootstrap</a> project.</p>
+<p>I had a <code>sudo</code>-enabled account, but not <code>root</code> access, on my production server so I copied the public SSH key from my laptop to the server&rsquo;s <code>root</code> account so that <code>./init</code> could do it&rsquo;s thing.  It worked wonderfully.</p>
+<p>Juan&rsquo;s blog post explains the individual parts of the process including a sample of the output you should see if things go well.  The process is also idempotent, so you can run it more than once with no ill-effects, and it will only do what&rsquo;s required to get your server configured. A little trial-and-error is all it took for me to get it done, and the errors were never catastrophic nor the trials too stressful.</p>
+<h2 id="next-up-docksal">Next Up&hellip; Docksal</h2>
+<p>This is the point where I suggest we diverge from Juan&rsquo;s workflow, just for a little while.  Install <em>Docksal</em> on your local machine using the instructions provided at <a href="https://docksal.io/">https://docksal.io/</a>.  While you are there, visit the <a href="https://docs.docksal.io">&lsquo;docs&rsquo; pages</a> and take a quick tour of the documentation so you get a sense of what <em>Docksal</em> is, and how to use it.  Pay particular attention to the section dedicated to <a href="https://docs.docksal.io/fin">&lsquo;fin&rsquo;</a>, the command you&rsquo;ll use to do nearly everything.  If you&rsquo;re like me, you won&rsquo;t regret this little side-trip.</p>
+<p>Once <em>Docksal</em> is installed you will find a new, hidden <code>.docksal</code> directory in your &lsquo;home&rsquo; directory; this is where <em>Docksal</em> lives on your machine.</p>
+<p>Now open a local terminal and navigate within to any directory of your choice.  I did this expecting to eventually create a group of static web sites destined for Grinnell&rsquo;s <code>static</code> server, so in my case:</p>
+<pre><code>cd ~
+mkdir static-sites
+cd static-sites
+</code></pre><p>Next, invoke the <em>Docksal</em> <code>fin</code> command in your terminal.  <code>fin</code> with no trailing arguments should produce a &lsquo;help&rsquo; screen that begins something like this:</p>
+<pre><code>Docksal control cli utility v1.79.4
+
+Usage: fin &lt;command&gt;
+
+Management Commands:
+  db &lt;command&gt;             	Manage databases (fin help db)
+  project &lt;command&gt;        	Manage project(s) (fin help project)
+  ssh-key &lt;command&gt;        	Manage SSH keys (fin help ssh-key)
+  system &lt;command&gt;         	Manage Docksal (fin help system)
+
+Commands:
+  bash [service]           	Open shell into service's container. Defaults to cli
+  logs [service]           	Show service logs (e.g., Apache logs, MySQL logs) and Unison logs (fin help logs)
+</code></pre><p>To create your <em>Hugo</em> project using <em>Docksal</em> enter the command: <code>fin project create</code>.  The terminal will prompt you to enter a <em><strong>name</strong></em> for your project.  I choose <code>blogs-McFateM</code> because this blog is intended to be one among many destined for the <code>static</code> server.  Please be sure to remember your project <em><strong>name</strong></em> as we will refer to it often.</p>
+<p>Next, <em>Docksal</em> will present you with a list of zero-configuration project types and it prompts you to select one.  Choose <code>11. Hugo</code> by entering the number eleven and hitting return.  Nothing has actually happened because <em>Docksal</em> gives you an indication of what&rsquo;s about to happen should you choose to proceed.  Enter <code>y</code> to proceed or <code>n</code> to abort.</p>
+<p>If you cleared <em>Docksal</em> to proceed it will spin up a set of containers including:</p>
+<ul>
+<li>a command line interface (CLI) service to respond to <code>fin</code> commands,</li>
+<li>an Apache web service,</li>
+<li>a virtual host (v-host) proxy service,</li>
+<li>a DNS service to resolve web addresses, and</li>
+<li>an SSH-agent to help manage permissions and access to your project.</li>
+</ul>
+<p>Note that if the creation of the DNS and/or SSH-agent services needs elevated privileges you may be prompted by the process to enter your local user&rsquo;s password to authorize them.</p>
+<p>The creation of your new <em>Hugo</em> project also created a new directory with the <em><strong>name</strong></em> you specified, and with its own <code>.docksal</code> subdirectory.  In my case the <code>~/static-sites/blogs-McFateM</code> directory was created along with <code>~/static-sites/blogs-McFateM/.docksal</code>.  This new <code>.docksal</code> subdirectory includes definitions for some new <code>fin</code> commands that are specific to <em>Hugo</em>.</p>
+<p>If all is well, the output of your <code>fin project create</code> command should end with something like this:</p>
+<pre><code>Compiling a static site...
+
+                   | EN  
++------------------+----+
+  Pages            | 10  
+  Paginator pages  |  0  
+  Non-page files   |  0  
+  Static files     |  3  
+  Processed images |  0  
+  Aliases          |  1  
+  Sitemaps         |  1  
+  Cleaned          |  0  
+
+Total in 301 ms
+
+Done!
+  Open http://static.blogs-McFateM.docksal
+  To develop a Hugo site with real-time updates use fin develop (see README.md for details)
+
+  Read more about Hugo on https://gohugo.io/getting-started/quick-start/
+</code></pre><p>There&rsquo;s other useful information included in the output of <code>fin project create</code> so I encourage you to look back at the details.</p>
+<p><code>fin</code> commands always act relative to your current working directory. So if you navigate within your terminal to your new project <em><strong>name</strong></em> folder, the equivalent in my case of <code>cd ~/static-sites/blogs-McFateM</code>, you can launch <em>Hugo</em>-specific &lsquo;custom&rsquo; commands.  Navigate to your new project directory and enter <code>fin</code> with no arguments.  Once again you&rsquo;re presented with a &lsquo;help&rsquo; screen, but this time the output ends with a few &lsquo;custom&rsquo; commands.  They include:</p>
+<pre><code>Custom commands:
+  compile                  	Compile a static site from Hugo sources
+  develop                  	Start Hugo server for real-time development
+  hugo                     	Run Hugo commands &lt;accepts params&gt;
+  init                     	Initialize demo Hugo site
+</code></pre><p><code>fin develop</code> is the command you will use most.  From your project&rsquo;s directory entering <code>fin develop</code> is all it takes to compile your site (<em>Hugo</em> generates static content into a <code>public</code> subdirectory during this process), serve it via a new local DNS entry, and monitor content or configuration changes you make to your site.  <code>fin develop</code> will automatically compile any change you make on-the-fly.</p>
+<p>When you run <code>fin develop</code> you should see something like this:</p>
+<pre><code>Marks-MacBook-Air:blogs-McFateM mark$ fin develop
+Server will be available at: http://blogs-McFateM.docksal
+
+                   | EN  
++------------------+----+
+  Pages            | 22  
+  Paginator pages  |  0  
+  Non-page files   |  0  
+  Static files     | 20  
+  Processed images |  0  
+  Aliases          |  6  
+  Sitemaps         |  1  
+  Cleaned          |  0  
+
+Total in 176 ms
+Watching for changes in /var/www/{content,data,layouts,static,themes}
+Watching for config changes in /var/www/config.toml
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://blogs-McFateM.docksal/ (bind address 0.0.0.0)
+Press Ctrl+C to stop
+
+Change detected, rebuilding site
+2018-11-18 20:43:48.312 +0000
+Source changed &quot;/var/www/content/post/a-blog-is-born.md&quot;: WRITE
+Total in 29 ms
+</code></pre><p>Note that the site address created by <code>fin project create</code> and <code>fin develop</code> are different since the former prepends a subdomain of <code>static</code> to the project name.  As long as the container is running you can use either address, but I recommend using the later address created by <code>fin develop</code> since changes are automatically compiled in that environment, as mentioned below.</p>
+<p>While <code>fin develop</code> is running (note that you must enter <code>Ctrl-C</code> in your terminal to stop it) you can open a tab to the site&rsquo;s address (it appears in your output) in any web browser on your local machine and your site should appear.  If you make a change to the site&rsquo;s content or configuration, and save the change, <code>fin develop</code> should automatically compile the change for you.  Having made a change just return to your site&rsquo;s tab in your browser and click &lsquo;refresh&rsquo;; your change should appear.</p>
+<p>Using these simple steps you can quickly and easily configure, change, test and repeat!  When you want to suspend your work just return to your terminal, enter <code>Ctrl-C</code> if <code>fin develop</code> is still running, then enter <code>fin stop</code>.  The <code>fin stop</code> command will terminate the containers associated with your project, but it won&rsquo;t remove them.</p>
+<p>When you want to resume work on your project just open a terminal, navigate back to your project directory, and enter <code>fin up</code>.  This will rebuild, if necessary, and restart your containers in short order.  Note that <code>fin up</code> will report a local URL that is supposed to open your site; however, that address <strong>may not work</strong> properly.  To get back into development just follow-<em>up</em>, pun intended, with a <code>fin develop</code> command and visit the address that it reports.  Also, don&rsquo;t forget to refresh your browser after each saved change to your content or configuration.</p>
+<h2 id="build-and-test-locally">Build and Test Locally</h2>
+<p><em>Docksal</em> is great for development, but in this case we need something closer to &lsquo;reality&rsquo; to do some &lsquo;real&rsquo; testing before pushing to production.  The process that Juan outlines will ultimately build a lightweight Docker &lsquo;multi-stage&rsquo; image that includes Hugo, Nginx, and your Hugo project.  That Docker image is really what we need to test, and it&rsquo;s not hard to do.</p>
+<p>I encourage you to look at Juan&rsquo;s <a href="https://jtreminio.com/blog/setting-up-a-static-site-with-hugo-and-push-to-deploy/">blog post</a> beginning with this section:</p>
+
+<div class="original"><h3 id="manual-deployment-process-steps">Manual deployment process steps</h3>
+<p>With a single command Hugo takes all your HTML/Markdown content and generates
+static files in <code>/public</code>&hellip;</p>
+</div>
+
+<p>Make sure you run these commands on your local machine, in a terminal opened to your project directory:</p>
+
+<div class="original"><p>docker image build -t hugo-test .<br>
+docker image ls<br>
+docker container run &ndash;rm -it -p 8080:80 hugo-test</p>
+</div>
+
+<p>These commands should produce an image named/tagged <code>hugo-test</code>, and run that image; one that should be <strong>identical</strong> to what you&rsquo;ll eventually push to production.  While the container is running you should be able to visit your project at <a href="http://localhost:8080">http://localhost:8080</a>.</p>
+<h2 id="troubleshooting---my-experience">Troubleshooting - My Experience</h2>
+<p>If the <code>docker image build -t hugo-test .</code> command fails to build an image, as my first attempt did, be sure to look at your <code>config.toml</code> file carefully.  Initially, my <code>config.toml</code> file didn&rsquo;t contain any <code>theme</code> key/value pair, presumably because it came from a &lsquo;sample&rsquo; project that intentionally left the theme definition up to the user.  The <code>docker image build</code> command includes a step that will &lsquo;minify&rsquo; many of the project&rsquo;s parts to reduce overall image size.  If you don&rsquo;t define a theme in your <code>config.toml</code> file minify won&rsquo;t work.</p>
+<p>You may find that setting the right <code>baseurl</code> or <code>baseURL</code> key/value pair in <code>config.toml</code> can be tricky. I find myself changing this value depending on the environment, local or production, that I&rsquo;m targeting.  As I understand it, the proper form for the <code>baseurl</code> value depends on your host, obviously, and your theme. This blog is designed to run from a &lsquo;path&rsquo;, that is to say its address consists of a host (<em>static.grinnell.edu</em>) with a trailing <code>/path</code> like so: <code>https://static.grinnell.edu/blogs/McFateM</code>.  I found that specifying just the <code>/path</code> with NO leading slash in <code>baseurl</code> did the trick, like so:  <code>baseurl = blogs/McFateM</code>.  This form seemed to work well across all hosts&hellip; my local <em>Docksal</em> development instance, the local image created earlier in this section, and in production too.  Your mileage may vary.  If your project loads as simple text, with no theme, or if your front page works but others do not, then your <code>baseurl</code> could be to blame.</p>
+<p>Finally, if you can&rsquo;t spin up your local Docker image at <a href="http://localhost:8080">http://localhost:8080</a>, and you see Docker errors about port conflicts, then something (Nginx servers are notorious for this) on your local machine is probably already listening to port 8080.  Rather than trying to find and fix the source of the problem, simply change the port mapping in your <code>docker container run...</code> command to something like this:  <code>docker container run --rm -it -p 8081:80 hugo-test</code>.  If that&rsquo;s successful you should be able to visit your project site at <a href="http://localhost:8081">http://localhost:8081</a>.</p>
+<h2 id="another-reason-to-buildtest-locally">Another Reason to Build/Test Locally</h2>
+<p>In my next post we&rsquo;ll return largely to <a href="https://jtreminio.com/blog/setting-up-a-static-site-with-hugo-and-push-to-deploy/">Juan Treminio&rsquo;s post</a> to push this blog to production (Yay!) with the help of <a href="https://hub.docker.com/">Docker Hub</a> and automated builds.  However, when I tried setting up an automated build I ran into problems, and I&rsquo;ll discuss them in the upcoming post.  Fortunately, I found that I could push to Docker Hub the <code>hugo-test</code> image created in this section, and bypass the automated build in order to help work out the issues.  More on that in my next post.</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

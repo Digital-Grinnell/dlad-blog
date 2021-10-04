@@ -1,0 +1,242 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>Pushing This Blog to Production // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Pushing This Blog to Production"/>
+<meta name="twitter:description" content="Juan Treminio&rsquo;s blog post does a nice job of covering the steps necessary to engage Watchtower, GitHub, and an automated build configuration in Docker Hub. The entire process can be used to push your initial Hugo project to production, watch for changes in your GitHub project repo, compile the changes, build a new Docker image, and automatically push it to production. Like I said, it&rsquo;s an awesome workflow, and there&rsquo;s no need to repeat much of it here. However, I will provide some insight into issues we encountered, and the solutions we employed."/>
+
+    <meta property="og:title" content="Pushing This Blog to Production" />
+<meta property="og:description" content="Juan Treminio&rsquo;s blog post does a nice job of covering the steps necessary to engage Watchtower, GitHub, and an automated build configuration in Docker Hub. The entire process can be used to push your initial Hugo project to production, watch for changes in your GitHub project repo, compile the changes, build a new Docker image, and automatically push it to production. Like I said, it&rsquo;s an awesome workflow, and there&rsquo;s no need to repeat much of it here. However, I will provide some insight into issues we encountered, and the solutions we employed." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/003-pushing-to-production/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-11-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-06-04T21:29:18-05:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 3:22pm CDT<br/>
+          Content Updated: 2021-Sep-2 14:57 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu now hosted on GitHub Pages.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/003-pushing-to-production/'>003 pushing to production</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Pushing This Blog to Production</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+          4 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+          Nov 20, 2018
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: Jun 4, 2019 - 21:29
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg> Mark A. McFate</strong>
+          </div>
+    </header>
+    <div class="post-content">
+      <p><a href="https://jtreminio.com/blog/setting-up-a-static-site-with-hugo-and-push-to-deploy/">Juan Treminio&rsquo;s blog post</a> does a nice job of covering the steps necessary to engage <a href="https://github.com/v2tec/watchtower">Watchtower</a>, <a href="https://github.com/">GitHub</a>, and an automated build configuration in <a href="https://hub.docker.com/">Docker Hub</a>.  The entire process can be used to push your initial <a href="https://gohugo.io/">Hugo</a> project to production, watch for changes in your GitHub project repo, compile the changes, build a new Docker image, and automatically push it to production.  Like I said, it&rsquo;s an awesome workflow, and there&rsquo;s no need to repeat much of it here.  However, I will provide some insight into issues we encountered, and the solutions we employed.</p>
+<p>Please open <a href="https://jtreminio.com/blog/setting-up-a-static-site-with-hugo-and-push-to-deploy/">Juan&rsquo;s blog post</a> and focus on the section that begins like so:</p>
+
+<div class="original"><h2 id="docker-hub-automated-builds">Docker Hub Automated Builds</h2>
+<p>After you have played around a bit with Hugo, commit any changes you have made
+and push to a public repo on Github.</p>
+</div>
+
+<p>Work your way through the <code>Docker Hub Automated Builds</code> section, and if you run into problems return here and have a look at the last section of this post.</p>
+<h2 id="troubleshooting---my-experience">Troubleshooting - My Experience</h2>
+<p>I honestly had lots of problems creating an automated build of this blog&hellip;</p>
+<p>I was also under a time-crunch to get this blog into production so I found a relatively simple way to do so without engaging automatic builds; I created a new Docker Hub repository and pushed the image created in Juan&rsquo;s <code>Manual deployment process steps</code> to that repository. I started by creating a new Docker Hub repository with the same name as my project, <code>blogs-McFateM</code>.  <strong>An important note: Docker Hub will not accept uppercase letters in repository names, so as you can see above, I converted all uppercase to lowercase</strong>. The result of this step, for me, was an empty <a href="https://hub.docker.com/r/mcfatem/blogs-mcfatem/">https://hub.docker.com/r/mcfatem/blogs-mcfatem/</a>.</p>
+<p>The remaining steps in my &lsquo;<em>emergency-push</em>&rsquo; process were all run from my local machine, with a terminal open to my project directory.  The necessary commands were:</p>
+<pre><code>docker login
+docker tag hugo-test mcfatem/blogs-mcfatem:latest
+docker push mcfatem/blogs-mcfatem:latest
+</code></pre><p>A little explanation of the commands&hellip;</p>
+<ul>
+<li>
+<p><code>docker login</code> - Requests your Docker Hub account credentials so that your terminal session can communicate with Docker Hub.</p>
+</li>
+<li>
+<p><code>docker tag...</code> - Essentially renames your local image, the one created previously as <code>hugo-test</code>, to match your account and project name.  In my case the account is <code>mcfatem</code>, my Docker Hub username, and the project is <code>blogs-McFateM</code>.</p>
+</li>
+<li>
+<p><code>docker push...</code> - This command pushes the newly renamed image to your Docker Hub repository, and tags the image as <code>:latest</code>.  This last part, the &lsquo;<em>latest</em>&rsquo; tag, is important because early on we set <em>Traefik</em> up on our production server to look for images tagged as &lsquo;<em>latest</em>&rsquo;.  If you give your image a different tag, it won&rsquo;t work properly.</p>
+</li>
+</ul>
+<p>If you&rsquo;ve successfully completed the automated build setup, or my &lsquo;<em>emergency-push</em>&rsquo; process, then the next step is to launch your project in production.</p>
+<h2 id="launching-your-project">Launching Your Project</h2>
+<p>You now have a working Docker image resting comfortably in Docker Hub.  This final step will launch your project as a container on your production host. Juan&rsquo;s section covers this nicely.  It begins like so:</p>
+
+<div class="original"><h2 id="starting-your-blog">Starting your blog</h2>
+<p>Once the first build is finished on the Docker Hub we can create the initial
+container for our blog on our server.</p>
+<p>SSH into your server and run the following:</p>
+<pre><code>NAME=jtreminio_com
+HOST=jtreminio.com
+IMAGE=&quot;jtreminio/jtreminio.com&quot;
+docker container run -d --name ${NAME} \
+    --label traefik.backend=${NAME} \
+    --label traefik.docker.network=traefik_webgateway \
+    --label traefik.frontend.rule=Host:${HOST} \
+    --label traefik.port=80 \
+    --label com.centurylinklabs.watchtower.enable=true \
+    --network traefik_webgateway \
+    --restart always \
+    ${IMAGE}
+</code></pre><p>Make sure to change <code>NAME</code>, <code>HOST</code> and <code>IMAGE</code> to your own information!</p>
+</div>
+
+<p>For this blog, I saved the applicable commands <a href="https://gist.github.com/McFateM/b40b3d03e25a552d95b17f175ce82a59">in this gist</a> where there is one notable change, in the <code>traefik.frontend.rule</code> label.  Unlike Juan&rsquo;s command set, my label specifies both a <code>Host</code> and a <code>PathPrefixStrip</code> argument. The <code>PathPrefixStrip:/blogs/McFateM</code> tells <em>Traefik</em> to listen for a &lsquo;complete&rsquo; address with a path prefix, so <code>https://static.grinnell.edu/blogs/McFateM</code>.  The rule sends all such requests to the <code>blogs-mcfatem</code> &lsquo;backend&rsquo; container, and strips the path prefix, <code>/blogs/McFateM</code>, off before doing so.</p>
+<p>And that&rsquo;s a wrap.  Until next time&hellip;</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

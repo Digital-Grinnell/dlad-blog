@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OHScribe on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/ohscribe/</link>
+    <description>Recent content in OHScribe on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 01 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/ohscribe/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Oral History Transcription Workflow</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/077-oral-history-transcription-workflow/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/077-oral-history-transcription-workflow/</guid>
+      <description>Digital.Grinnell features a fair number of transcribed digital oral histories. Most are interviews conducted with Grinnelleans as they return to campus annualy for alumni Reunion or Grinnell&amp;rsquo;s Multicultural Reunion.
+ What follows is largely sharable &amp;ldquo;public&amp;rdquo; content lifted from a &amp;ldquo;private&amp;rdquo; GitHub repository at https://github.com/McFateM/OHScribe, the README.md and WORKFLOW.md files in particular.
+ OHScribe! https://ohscribe.grinnell.edu Note: This link was disabled in the spring of 2020, but is working again as of July 1, 2020, on host DGDocker3.
+This is a Python 3 and Flask web application designed to transform oral history transcripts, presumably created using InqScribe, into XML suitable for ingest into the Islandora Oral Histories Solution Pack to populate a TRANSCRIPT datastream and its derivatives.</description>
+    </item>
+    
+  </channel>
+</rss>

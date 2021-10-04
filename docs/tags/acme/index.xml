@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ACME on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/acme/</link>
+    <description>Recent content in ACME on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 15 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/acme/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Traefik and Acme.sh for DG-STAGING</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</link>
+      <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</guid>
+      <description>This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge and Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations, specifically Step 11 in the later document. It introduces a Digital.Grinnell-specific implementation of the Traefik with Acme.sh.
+Testing with McFateM/docker-traefik2-acme-host I started work on this implementation with a test, by cloning https://github.com/McFateM/docker-traefik2-acme-host and proceeding as directed in the repository&amp;rsquo;s README.md document, as user islandora on node DGDockerX, like so:
+   DGDockerX Host Commands     cd ~  git clone https://github.</description>
+    </item>
+    
+    <item>
+      <title>Host Config: docker-traefik2-acme-host</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</link>
+      <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</guid>
+      <description>This post is celebrating the completion (really, is anything ever complete?) of a new server/host/stack deployment project: docker-traefik2-acme-host. In order to make this post really easy to read, I&amp;rsquo;m going to wrap it up in one bullet&amp;hellip;
+ README.md  Troubleshooting Should you ever encounter an error like the one below, be sure to ask your IT provider if they created the proper CNAME record when creating your DNS entry.
+[Tue Jun 30 20:53:50 UTC 2020] ohscribe.grinnell.edu:Verify error:DNS problem: NXDOMAIN looking up TXT for _acme-challenge.</description>
+    </item>
+    
+    <item>
+      <title>Traefik and Acme.sh Instead of DNS-01</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</guid>
+      <description>This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge. It introduces an alternative to the failed process that was proposed in that earlier post.
+ Note that the following config-specific elements have been replaced below:
+ 6 occurances of ?.grinnell.edu now say example-1.grinnell.edu, and 2 occurances of ?.info now say example-2.info.   New Proposal On June 1 my colleage, Matt, suggested the following&amp;hellip;
+ As much as I would like to resolve the DNS-01 challenge using Traefik alone, I don&amp;rsquo;t believe it will support what we&amp;rsquo;re trying to do here.</description>
+    </item>
+    
+    <item>
+      <title>Simplified Testing of Traefik 2 with ACME DNS-01 Challenge</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</link>
+      <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</guid>
+      <description>This post is a simplified and focused follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge.
+Simplify Today, 19-May-2020, I&amp;rsquo;m going to take a shot at simplifying my testing on dgdocker3.grinnell.edu by removing unnecessary things and consolidating as much as possible to reduce clutter in the logs and get right to the point. I&amp;rsquo;m also going to have a look to see if there are additional logs that can tell give me more detail. Everything used here, and everything that takes place here, will be found in a new directory, /opt/containers/test on DGDocker3.</description>
+    </item>
+    
+    <item>
+      <title>Dockerized Traefik Host Using ACME DNS-01 Challenge</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</guid>
+      <description>This post builds on My dockerized-server Config and attempts to change what was a problematic ACME HTTP-01 or httpChallenge in Traefik and Let&amp;rsquo;s Encrypt to an ACME DNS-01 or dnsChallenge. The problem with the old HTTP-01 or httpChallenge is that it requires the creation of a valid and widely accessible &amp;ldquo;A&amp;rdquo; record in our DNS before the creation of a cert; the record has to be in place so that the Let&amp;rsquo;s Encrypt CA-server can find it to confirm that the request is valid.</description>
+    </item>
+    
+  </channel>
+</rss>

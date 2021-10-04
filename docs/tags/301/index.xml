@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>301 on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/301/</link>
+    <description>Recent content in 301 on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 14 Apr 2021 10:28:31 -0500</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/301/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>301 Redirect in Digital.Grinnell</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/104-301-redirect-in-digital.grinnell/</link>
+      <pubDate>Wed, 14 Apr 2021 10:28:31 -0500</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/104-301-redirect-in-digital.grinnell/</guid>
+      <description>A colleague and I were recently sifting through the Digital.Grinnell logs and came across some recurring 404, &amp;ldquo;page not found&amp;rdquo;, status messages. 404&amp;rsquo;s are not uncommon in DG, but these were particularly troubling because they were requests of the form drupal/fedora/repository/grinnell:162 and drupal/fedora/repository/grinnell:86. That&amp;rsquo;s the old, and by that I mean VERY OLD, like Drupal v6 vintage from 2012 or 2013, form for an object address. All such references were to some of DG&amp;rsquo;s oldest digital objects, too.
+We tried to figure out where such old address references might be coming from, but we struck out.</description>
+    </item>
+    
+  </channel>
+</rss>

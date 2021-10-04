@@ -1,9 +1,11 @@
-baseURL = "https://blogs-mcfatem-5odit.ondigitalocean.app"
+baseURL = "https://digital-grinnell.github.io/dlad-blog/"
+# baseURL = "https://blogs-mcfatem-5odit.ondigitalocean.app"
 # baseURL = "https://blogs-McFateM.grinnell.rocks/"
 # baseURL = "https://static.grinnell.edu/blogs/McFateM/"
 # baseURL = "https://blog.grinnell.rocks/"
 
 title = "The Grinnell College Digital Library Application Developer's Blog"
+publishDir = "docs"
 #themesDir = "../.."
 themesDir = "themes"
 # theme = ["hugo-search-fuse-js", "hugo-theme-m10c"]
@@ -63,12 +65,12 @@ enableGitInfo = true  # makes Lastmod equivalent to git commit date
 #relativeURLs = "true"
 
 [params]
-  build = 314
+  build = 315
   # buildDate = '2021-01-26 10:43'
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
-  description = "Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu now hosted on DigitalOcean."
+  description = "Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu now hosted on GitHub Pages."
   copyright = "The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College."
 
   [[params.social]]

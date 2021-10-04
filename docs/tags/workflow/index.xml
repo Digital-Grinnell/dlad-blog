@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>workflow on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/workflow/</link>
+    <description>Recent content in workflow on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 05 Feb 2021 16:12:55 -0600</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/workflow/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Book Ingest in Digital.Grinnell</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/097-book-ingest-in-digital-grinnell/</link>
+      <pubDate>Fri, 05 Feb 2021 16:12:55 -0600</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/097-book-ingest-in-digital-grinnell/</guid>
+      <description>It&amp;rsquo;s high-time this was posted to my blog, but the canonical copy of this document can be found in smb://Storage/LIBRARY/mcfatem/DG-Book-Ingest-Workflow.md.
+Valid Book Datastream Structure I want to begin here by showing what I see as a &amp;ldquo;proper&amp;rdquo; working book datastream structure in Digital.Grinnell. The image below is a screen grab of the datastreams from the Grinnell College Yearbook 1961, DG object grinnell:23749:
+  Valid Book Datastreams    Creating a Valid Book Structure One of the biggest problems I have encountered with ingest of books is uploading very large multi-page PDFs.</description>
+    </item>
+    
+    <item>
+      <title>Git Submodule Tips</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/100-git-submodule-tips/</link>
+      <pubDate>Wed, 27 Jan 2021 12:10:25 -0600</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/100-git-submodule-tips/</guid>
+      <description>I seem to have a never-ending struggle with git submodules. Today, I need to add some new features to one of my submodules in a non-ISLE project, but I&amp;rsquo;ve elected to post this here because this blog is relatively easy to search. I also feel fortunate to have found Mastering Git Submodules from Christophe Porteneuve.
+So, what I need to do now is update some submodule code, commit, and push that change back to its remote. I will also want to subsequentmly update a pair of projects that use the submodule so they are referencing the newest submodule code.</description>
+    </item>
+    
+    <item>
+      <title>Git Submodule Workflow in ISLE</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/098-git-submodule-workflow-in-isle/</link>
+      <pubDate>Mon, 07 Dec 2020 18:23:02 -0600</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/098-git-submodule-workflow-in-isle/</guid>
+      <description>In the past few days I&amp;rsquo;ve attempted to update the &amp;ldquo;staging&amp;rdquo; copy of Digital.Grinnell at https://dg-staging.grinnell.edu and learned a valuable lesson regarding workflow around Git and submodules. Specifically, I found the following resource to be most helpful:
+ https://intellipaat.com/community/9971/git-update-submodule-to-latest-commit-on-origin  In case that post ever disappers, here&amp;rsquo;s the gist of it&amp;hellip;
+The git submodule update command actually tells git that you simply want your submodules to each check out the commit already mentioned in the index of the superproject.
+If you want to update your submodules to the most recent commit available from their remote, you&amp;rsquo;ll try this directly within the submodules.</description>
+    </item>
+    
+    <item>
+      <title>Oral History Transcription Workflow</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/077-oral-history-transcription-workflow/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/077-oral-history-transcription-workflow/</guid>
+      <description>Digital.Grinnell features a fair number of transcribed digital oral histories. Most are interviews conducted with Grinnelleans as they return to campus annualy for alumni Reunion or Grinnell&amp;rsquo;s Multicultural Reunion.
+ What follows is largely sharable &amp;ldquo;public&amp;rdquo; content lifted from a &amp;ldquo;private&amp;rdquo; GitHub repository at https://github.com/McFateM/OHScribe, the README.md and WORKFLOW.md files in particular.
+ OHScribe! https://ohscribe.grinnell.edu Note: This link was disabled in the spring of 2020, but is working again as of July 1, 2020, on host DGDocker3.
+This is a Python 3 and Flask web application designed to transform oral history transcripts, presumably created using InqScribe, into XML suitable for ingest into the Islandora Oral Histories Solution Pack to populate a TRANSCRIPT datastream and its derivatives.</description>
+    </item>
+    
+    <item>
+      <title>How to Work with Git</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/056-how-to-work-with-git/</link>
+      <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/056-how-to-work-with-git/</guid>
+      <description>Credits: This document is an abstraction of some fine documentation authored and posted by my ICG colleague and friend, David Keiser-Clark.    ICG Git Workflow: How to work with Git    The examples in this document use my work with the Islandora Collaboration Group&amp;rsquo;s (ICG) ISLE-Drupal-Build-Tools repository, as well as my fork and local clone of that repository.       I recommend having a look at the GitHub Glossary for a list of terms used frequently in this post, and many of the referenced documents.</description>
+    </item>
+    
+    <item>
+      <title>Digital.Grinnell&#39;s IMI Workflow</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/040-digital.grinnells-imi-workflow/</link>
+      <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/040-digital.grinnells-imi-workflow/</guid>
+      <description>Note: The abbreviation IMI is used frequently in this post to represent the Islandora Multi-Importer, a CSV-file-driven batch ingest tool used by numerous institutions in the Islandora community.
+Also, while updating this post I found this gem&amp;hellip; Diagrams in Documentation (Markdown Guide).
+This post is an addition to the discussion in post 028, Mounting //Storage for IMI Ingest in Digital.Grinnell  which was written largely to remind me how the //Storage mount works. 😕 Unlike post 028, this post is meant for myself AND for others at Grinnell College who prepare digital objects for ingest via IMI.</description>
+    </item>
+    
+  </channel>
+</rss>

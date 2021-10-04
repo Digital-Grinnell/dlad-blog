@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ssh on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/ssh/</link>
+    <description>Recent content in ssh on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 26 Jan 2021 20:15:43 -0600</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debugging SSH Login Issues</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/073-debugging-ssh-login-issues/</link>
+      <pubDate>Tue, 26 Jan 2021 20:15:43 -0600</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/073-debugging-ssh-login-issues/</guid>
+      <description>Lately my passwordless, SSH logins to all my servers have quit working, at least they seem to have stopped working from the only accessible &amp;ldquo;work&amp;rdquo; workstation that I have at the moment, MA7053. Since our enterprise malware mitigation agent, Traps, is blocking my access to my &amp;ldquo;real&amp;rdquo; workstation, MA8660, this has become more than just a nuisance.
+So here&amp;rsquo;s what I came up with as a process to try and determine exactly where the problems are&amp;hellip;
+To Debug SSHD Issues with Key Logins From a terminal opened in the target (CentOS 7 in this example) server:</description>
+    </item>
+    
+    <item>
+      <title>Replace OSX Terminal with iTerm2 for SSH</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/027-replace-osx-terminal-with-iterm2-for-ssh/</link>
+      <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/027-replace-osx-terminal-with-iterm2-for-ssh/</guid>
+      <description>My memory isn&amp;rsquo;t what it used to be, but I have this blog. 😄 So when I realized that my primary work machine, an iMac, had not been configured with iTerm2 as its default terminal for ssh, I went looking for the solution&amp;hellip;again. Found it here!
+The trick is to open iTerm2 and follow these two simple steps&amp;hellip;
+Q: How do I set iTerm2 as the handler for ssh:// links?
+A: Two steps:
+ Create a new profile called &amp;ldquo;ssh&amp;rdquo;. In the General tab, select the Command: button and enter $$ as the command.</description>
+    </item>
+    
+  </channel>
+</rss>

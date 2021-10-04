@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gists on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/gists/</link>
+    <description>Recent content in gists on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 27 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/gists/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Granular ISLE Customization: Series Guidelines</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/047-granular-isle-customizations-the-series/</link>
+      <pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/047-granular-isle-customizations-the-series/</guid>
+      <description>Granular ISLE Customization     This post provides guidelines for a series of posts describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.    Using the Granular ISLE Customization Posts There are just a couple of notes regarding the subject posts that I&amp;rsquo;d like to pass along to make them more useful.
+  Gists - You will find a few places in this series where I generated a gist to take the place of lengthy command output.</description>
+    </item>
+    
+  </channel>
+</rss>

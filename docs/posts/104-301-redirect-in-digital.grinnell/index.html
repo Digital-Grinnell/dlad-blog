@@ -1,0 +1,230 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>301 Redirect in Digital.Grinnell // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="301 Redirect in Digital.Grinnell"/>
+<meta name="twitter:description" content="A colleague and I were recently sifting through the Digital.Grinnell logs and came across some recurring 404, &ldquo;page not found&rdquo;, status messages. 404&rsquo;s are not uncommon in DG, but these were particularly troubling because they were requests of the form drupal/fedora/repository/grinnell:162 and drupal/fedora/repository/grinnell:86. That&rsquo;s the old, and by that I mean VERY OLD, like Drupal v6 vintage from 2012 or 2013, form for an object address. All such references were to some of DG&rsquo;s oldest digital objects, too.
+We tried to figure out where such old address references might be coming from, but we struck out."/>
+
+    <meta property="og:title" content="301 Redirect in Digital.Grinnell" />
+<meta property="og:description" content="A colleague and I were recently sifting through the Digital.Grinnell logs and came across some recurring 404, &ldquo;page not found&rdquo;, status messages. 404&rsquo;s are not uncommon in DG, but these were particularly troubling because they were requests of the form drupal/fedora/repository/grinnell:162 and drupal/fedora/repository/grinnell:86. That&rsquo;s the old, and by that I mean VERY OLD, like Drupal v6 vintage from 2012 or 2013, form for an object address. All such references were to some of DG&rsquo;s oldest digital objects, too.
+We tried to figure out where such old address references might be coming from, but we struck out." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/104-301-redirect-in-digital.grinnell/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-04-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-04-14T10:29:01-05:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 3:22pm CDT<br/>
+          Content Updated: 2021-Sep-2 14:57 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu now hosted on GitHub Pages.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/104-301-redirect-in-digital.grinnell/'>104 301 redirect in digital.grinnell</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">301 Redirect in Digital.Grinnell</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+          3 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+          Apr 14, 2021
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg> Mark A. McFate</strong>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/301/">301</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/redirect/">Redirect</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/apache/">Apache</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/.htaccess/">.htaccess</a></div></div>
+    </header>
+    <div class="post-content">
+      <p>A colleague and I were recently sifting through the <a href="https://digital.grinnell.edu">Digital.Grinnell</a> logs and came across some recurring 404, &ldquo;page not found&rdquo;, status messages.  404&rsquo;s are not uncommon in <em>DG</em>, but these were particularly troubling because they were requests of the form <code>drupal/fedora/repository/grinnell:162</code> and <code>drupal/fedora/repository/grinnell:86</code>. That&rsquo;s the old, and by that I mean VERY OLD, like <em>Drupal v6</em> vintage from 2012 or 2013, form for an object address. All such references were to some of <em>DG</em>&rsquo;s oldest digital objects, too.</p>
+<p>We tried to figure out where such old address references might be coming from, but we struck out.  I wonder if it&rsquo;s even possible to back-track a request like that given today&rsquo;s <a href="https://www.privacypolicies.com/blog/gdpr-privacy-policy/">GDPR</a> environment and related privacy practices?</p>
+<p>So, in lieu of finding the source of these requests, I did a little research and found <a href="https://www.drupal.org/node/38960">
+Redirecting specific pages to new URLs (301 redirects in Drupal)
+</a>. It didn&rsquo;t take long to implement an <em>Apache</em> redirect rule based on this document, so that&rsquo;s what I did.  I first implemented a new rule in the <code>/var/www/html/.htaccess</code> file on our staging server, <code>https://dg-staging.grinnell.edu</code>, and tested it there. It works nicely, so I pushed the change to production and tested again.  Works well there too!</p>
+<h2 id="the-301-redirect-rule">The 301 Redirect Rule</h2>
+<p>The addition I made, per the aforementioned document are currently lines 115-124 in <a href="https://github.com/Digital-Grinnell/dg-islandora/blob/main/.htaccess">https://github.com/Digital-Grinnell/dg-islandora/blob/main/.htaccess</a>.  Like so:</p>
+<pre><code>RewriteBase /
+
+  ## The following rule lifted from https://www.drupal.org/node/38960
+  ## Implemented in April 2021 in order to redirect old object addresses of the form
+  ##   drupal/fedora/repository/grinnell:182, to a proper equivalent form like
+  ##   islandora/object/grinnell:182
+  ##
+  # custom redirects
+  RewriteRule ^drupal/fedora/repository/(.+)$ https://digital.grinnell.edu/islandora/object/$1 [R=301,L]
+  # end custom redirects
+</code></pre><p>I used an <a href="https://httpd.apache.org/docs/2.4/rewrite/intro.html">Apache mod_rewrite Introduction</a> document to refresh my memory regarding <em>Apache</em> rewrite rules and syntax.</p>
+<p>Note that the <code>RewriteBase /</code> statement was already in the <code>.htaccess</code> file, but it was previously commented out.  I saw no harm in activating it, and the document somewhat suggests it should be turned on, so I removed the comment and added the 9 lines that follow it.</p>
+<h2 id="a-definite-plus">A Definite Plus</h2>
+<p>One of the things I like most about this solution is reflected in a statement lifted from <a href="https://www.drupal.org/node/38960">301 redirects in Drupal)</a>, specifically:</p>
+
+<div class="original"><p>&hellip;301 redirects are considered the best way to handle redirected pages, for they inform search engines to update their databases with the new paths. This way, you should not risk your search engine pagerank or lose site visitors with 404 &ldquo;not found&rdquo; errors.</p>
+</div>
+
+<h2 id="not-great-but-it-works">Not Great, But It Works</h2>
+<p>I say it&rsquo;s not a &ldquo;great&rdquo; rule because it assumes anything passed to <em>DG</em> with <code>drupal/fedora/repository/...</code> in the address should be redirected to <code>https://digital.grinnell.edu/islandora/object/...</code> and that&rsquo;s not explicitly true when I&rsquo;m working with our staging server, but the intent is to fix a condition that should only exist in production, so it will do.  I did try some more advanced substitution (see below), but it didn&rsquo;t work, so I returned to a simple substitution that does work in production.</p>
+<h3 id="advanced-rule-fails">Advanced Rule Fails</h3>
+<p>This rule, <code>RewriteRule ^(.+)/drupal/fedora/repository/(.+)$ $1/islandora/object/$2 [R=301,L]</code>, seemed like a better rule since it doesn&rsquo;t assume the host is <code>https://digital.grinnell.edu</code>, but it doesn&rsquo;t work properly. I&rsquo;m betting some more <code>RewriteCond</code> rules would be required to make it so.</p>
+<h2 id="test-it">Test It?</h2>
+<p>If you&rsquo;d care to test the new rule, just take any of these URLs for a spin in your browser:</p>
+<ul>
+<li><a href="https://digital.grinnell.edu/drupal/fedora/repository/grinnell:86">https://digital.grinnell.edu/drupal/fedora/repository/grinnell:86</a></li>
+<li><a href="https://digital.grinnell.edu/drupal/fedora/repository/grinnell:182">https://digital.grinnell.edu/drupal/fedora/repository/grinnell:182</a></li>
+</ul>
+<p>And that&rsquo;s a wrap.  Until next time, happy redirecting!</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

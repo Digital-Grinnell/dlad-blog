@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rootstalk on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/rootstalk/</link>
+    <description>Recent content in Rootstalk on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 12 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/rootstalk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Collaborating on Hugo Site Development</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/095-collaborating-on-hugo-site-development/</link>
+      <pubDate>Thu, 12 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/095-collaborating-on-hugo-site-development/</guid>
+      <description>This post will instruct the reader to install necessary tools and engage the workflow I now use to develop and maintain a handful of Hugo static websites. The list of sites now includes both professional, those owned and operated by Grinnell College, as well as &amp;ldquo;personal&amp;rdquo; sites that I develop, maintain and host myself.
+Professional Sites These include:
+ Rootstalk, This Blog, The Static.Grinnell.edu Landing Page, and VAF  The detailed information provided in this blog post uses Rootstalk and this blog as examples, but the concepts apply equally to all of the professional and personal sites I&amp;rsquo;ve listed.</description>
+    </item>
+    
+  </channel>
+</rss>

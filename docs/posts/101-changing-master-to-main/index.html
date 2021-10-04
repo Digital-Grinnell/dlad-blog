@@ -1,0 +1,233 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>Changing Master to Main // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Changing Master to Main"/>
+<meta name="twitter:description" content="In hindsight, this really should have been post number 100 in the blog, or perhaps it should have happened even earlier. In any event it&rsquo;s high-time I made this move and captured the process. In June 2020 the good folks at GitHub announced that they would begin removing references to master as a small step forward in removing divisive language in tech. The change dictates that the default branch name of future repositories should be main in place of master."/>
+
+    <meta property="og:title" content="Changing Master to Main" />
+<meta property="og:description" content="In hindsight, this really should have been post number 100 in the blog, or perhaps it should have happened even earlier. In any event it&rsquo;s high-time I made this move and captured the process. In June 2020 the good folks at GitHub announced that they would begin removing references to master as a small step forward in removing divisive language in tech. The change dictates that the default branch name of future repositories should be main in place of master." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/101-changing-master-to-main/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-03-12T18:29:13-06:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 3:22pm CDT<br/>
+          Content Updated: 2021-Sep-2 14:57 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu now hosted on GitHub Pages.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/101-changing-master-to-main/'>101 changing master to main</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Changing Master to Main</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+          2 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+          Jan 25, 2021
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: Mar 12, 2021 - 18:29
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg> Mark A. McFate</strong>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/git/">git</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/master/">master</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/main/">main</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/inclusive/">inclusive</a></div></div>
+    </header>
+    <div class="post-content">
+      <p>In hindsight, this really should have been post number 100 in the blog, or perhaps it should have happened even earlier. In any event it&rsquo;s high-time I made this move and captured the process.  In June 2020 the good folks at <em>GitHub</em> announced that they would begin removing references to <em>master</em> as a small step forward in removing divisive language in tech. The change dictates that the default branch name of future repositories should be <strong>main</strong> in place of <em>master</em>.</p>
+<p>Today, I am dictating that the same should be true for <strong>ALL</strong> of my repositories, old and new alike.  Besides, I find it very confusing to have some defaults using one name while others do not.  To begin this transformation of old to new, I elected to start here with <a href="https://static.grinnell.edu/blogs/McFateM">this blog</a>.</p>
+<h2 id="moving-master-to-main">Moving <code>master</code> to <code>main</code></h2>
+<p>In support of this effort I went looking for sound guidance and found <a href="https://stevenmortimer.com/5-steps-to-change-github-default-branch-from-master-to-main/">5 steps to change GitHub default branch from master to main</a>.  In case that post ever disappears, here are the key elements:</p>
+
+<div class="original"><p>All commands</p>
+<pre><code># Step 1 
+# create main branch locally, taking the history from master
+git branch -m master main
+
+# Step 2 
+# push the new local main branch to the remote repo (GitHub) 
+git push -u origin main
+
+# Step 3
+# switch the current HEAD to the main branch
+git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
+
+# Step 4
+# change the default branch on GitHub to main
+# https://docs.github.com/en/github/administering-a-repository/setting-the-default-branch
+
+# Step 5
+# delete the master branch on the remote
+git push origin --delete master
+</code></pre></div>
+
+<h2 id="if-main-already-exists">If <code>main</code> Already Exists</h2>
+<p>In cases, like this blog, where a <code>main</code> branch already exists, a couple of preemptive steps must be taken.  I found some useful and brief <a href="https://www.freecodecamp.org/news/how-to-delete-a-git-branch-both-locally-and-remotely/">TL;DR version</a> guidance, and here again are the key parts:</p>
+
+<div class="original"><p>TL;DR version</p>
+<pre><code>// delete branch locally
+git branch -d localBranchName
+
+// delete branch remotely
+git push origin --delete remoteBranchName
+</code></pre></div>
+
+<p>And that&rsquo;s a wrap.  Until next time, I hope this encourages others to take similar action.</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

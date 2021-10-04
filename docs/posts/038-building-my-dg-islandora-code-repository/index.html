@@ -1,0 +1,314 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>Building My `dg-islandora` Code Repository // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Building My `dg-islandora` Code Repository"/>
+<meta name="twitter:description" content="As promised in post 037, this post combines elements of post 021 with updated post 034 to create a &ldquo;customized&rdquo; local ISLE instance with features of Digital.Grinnell. In this November 2019 update I&rsquo;m building the repository on my MacBook ma7053 using ISLE-1.3.0. The target of this endeavor will be a properly populated Digital.Grinnell custom Islandora code repository featuring ISLE-1.3.0 code.
+Process Overview I believe the process I need to engage here can be outlined like this:
+  Repeat or follow-up on post 034."/>
+
+    <meta property="og:title" content="Building My `dg-islandora` Code Repository" />
+<meta property="og:description" content="As promised in post 037, this post combines elements of post 021 with updated post 034 to create a &ldquo;customized&rdquo; local ISLE instance with features of Digital.Grinnell. In this November 2019 update I&rsquo;m building the repository on my MacBook ma7053 using ISLE-1.3.0. The target of this endeavor will be a properly populated Digital.Grinnell custom Islandora code repository featuring ISLE-1.3.0 code.
+Process Overview I believe the process I need to engage here can be outlined like this:
+  Repeat or follow-up on post 034." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/038-building-my-dg-islandora-code-repository/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-08-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-11-05T20:02:35-06:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 3:22pm CDT<br/>
+          Content Updated: 2021-Sep-2 14:57 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu now hosted on GitHub Pages.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/038-building-my-dg-islandora-code-repository/'>038 building my dg islandora code repository</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Building My `dg-islandora` Code Repository</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+          4 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+          Aug 16, 2019
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: Nov 5, 2019 - 20:02
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg> Mark A. McFate</strong>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/isle/">ISLE</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/v1.3.0/">v1.3.0</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/git/">git</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/dg-islandora/">dg-islandora</a></div></div>
+    </header>
+    <div class="post-content">
+      <p>As promised in <a href="https://static.grinnell.edu/blogs/McFateM/posts/037-migrating-dg-to-isle-1.2.0-ld/">post 037</a>, this post combines elements of <a href="https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/">post 021</a> with <a href="https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.3.0-ld/">updated post 034</a> to create a &ldquo;customized&rdquo; local ISLE instance with features of Digital.Grinnell. In this November 2019 update I&rsquo;m building the repository on my MacBook <em>ma7053</em> using ISLE-1.3.0. The target of this endeavor will be a properly populated <a href="https://github.com/Digital-Grinnell/dg-islandora">Digital.Grinnell custom Islandora code repository</a> featuring ISLE-1.3.0 code.</p>
+<h2 id="process-overview">Process Overview</h2>
+<p>I believe the process I need to engage here can be outlined like this:</p>
+<ol>
+<li>
+<p>Repeat or follow-up on <a href="https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.3.0-ld/">post 034</a>. Assuming a successful test of the site produced in that post, the next steps will include&hellip;</p>
+</li>
+<li>
+<p>Move to <a href="https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/">post 21</a> and complete the following steps, in order:</p>
+</li>
+</ol>
+<pre><code>- [Installing the DG Theme](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#installing-the-dg-theme)
+- [Install the Islandora Multi-Importer (IMI)](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#install-the-islandora-multi-importer-IMI)
+- [Install the Missing Backup and Migrate Module](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#install-the-missing-backup-and-migrate-module)
+- [Backup and Restore the Database Using Backup and Migrate](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#backup-and-restore-the-database-using-backup-and-migrate)
+- [Restore Results...Lots of Warnings](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#restore-results-lots-of-warnings)
+- [Installing the Missing Islandora/Custom Bits](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#installing-the-missing-islandora-custom-bits)
+- [Temporarily Eliminate Warnings](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#temporarily-eliminate-warnings)  
+</code></pre>
+<p>Note: Many of these steps should be moved to new, and existing, <a href="https://static.grinnell.edu/blogs/McFateM/posts/047-granular-isle-customizations-the-series/">Granular ISLE Customization: Series Guidelines</a> posts.</p>
+<ol start="3">
+<li>Repeat a process similar to <a href="https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-11-check-in-the-newly-created-islandora-drupal-site-code-into-is-git-repository">Step 11: Check-In the Newly Created Islandora Drupal Site Code Into Your Git Repository</a>, with an aim of updating the <a href="https://github.com/Digital-Grinnell/dg-islandora">dg-islandora</a> repository.</li>
+</ol>
+<h1 id="---breaking-here-for-drupalcorn-camp-on-5-nov-2019">&ndash; Breaking here for DrupalCorn Camp on 5-Nov-2019</h1>
+<p>The remainder of this document is hidden from public view pending a substantial update.</p>
+<!--
+
+# Sections That Follow May be Temporarily Out-of-Order
+
+## Clone to Local
+I started by following the `Cloning to Local` guidance in [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#clone-to-local).  The commands and output were like so:
+
+```
+╭─markmcfate@ma7053 ~/Projects/ISLE ‹ruby-2.3.0› ‹master*›
+╰─$ git remote -v
+origin	https://github.com/Islandora-Collaboration-Group/ISLE.git (fetch)
+origin	https://github.com/Islandora-Collaboration-Group/ISLE.git (push)
+╭─markmcfate@ma7053 ~/Projects/ISLE ‹ruby-2.3.0› ‹master*›
+╰─$ git pull
+remote: Enumerating objects: 14, done.
+remote: Counting objects: 100% (14/14), done.
+remote: Total 28 (delta 13), reused 14 (delta 13), pack-reused 14
+Unpacking objects: 100% (28/28), done.
+From https://github.com/Islandora-Collaboration-Group/ISLE
+   cb56d788..879de85c  master             -> origin/master
+ * [new branch]        ISLE-1.3.0         -> origin/ISLE-1.3.0
+ * [new branch]        behat-url-change   -> origin/behat-url-change
+ * [new tag]           ISLE-1.3.0-release -> ISLE-1.3.0-release
+Updating cb56d788..879de85c
+Fast-forward
+╭─markmcfate@ma7053 ~/Projects/ISLE ‹ruby-2.3.0› ‹master*›
+╰─$ git checkout ISLE-1.3.0
+D	config/apache/settings_php/settings.local.php
+Branch 'ISLE-1.3.0' set up to track remote branch 'ISLE-1.3.0' from 'origin'.
+Switched to a new branch 'ISLE-1.3.0'
+```
+
+## Cleaning Up
+Next, I ran my usual `Docker clean-up` commands from `Cleaning Up` in [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#cleaning-up).  Specifically...
+
+```
+╭─markmcfate@ma7053 ~/Projects/ISLE ‹ruby-2.3.0› ‹ISLE-1.3.0*›
+╰─$ docker stop $(docker ps -q)
+docker rm -v $(docker ps -qa)
+docker image rm $(docker image ls -q) --force
+docker system prune --force
+```
+
+## Launching the Stack
+I started it all up as documented in `Launching the Stack` from [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#launching-the-stack). While that was spinning up I took a look at my workstation's `/etc/hosts` file, and made sure I had the following in control:
+
+```
+## For ISLE ld
+127.0.0.1  localhost isle.localdomain admin.isle.localdomain images.isle.localdomain portainer.isle.localdomain
+```
+Just FYI... my `time` to `docker-compose up -d` was:
+```
+docker-compose up -d  1.30s user 0.39s system 1% cpu 2:17.93 total
+```
+## Running the Drupal Installer Script
+Did so exactly as prescribed in the `Running the Drupal Installer Script` portion of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#running-the-drupal-installer-script).
+
+My `time` to complete... `docker exec -it isle-apache-ld bash   0.11s user 0.14s system 0% cpu 6:44.70 total`.  The good news is, after just a couple of minutes the site comes up successfully as `https://isle.localdomain`.  Woot!  Now, time to add my theme and some other features.
+
+## Installing the DG Theme
+Moving on to `Installing the DG Theme` in [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#installing-the-dg-theme) and running the commands verbatim...
+
+Nice!  It's beginning to take shape.
+
+## Install the Islandora Multi-Importer (IMI)
+Next step followed [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#install-the-islandora-multi-importer-imi) to the letter.  It's installed and visible in my `Navigation` menu as it should be.  Moving on...
+
+## Install the Missing Backup and Migrate Module
+I did this just as advertised in [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#install-the-missing-backup-and-migrate-module).
+
+## Backup and Restore the Database Using _Backup and Migrate_
+I used the first backup option, not the "alternative", and then the restore process documented in [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#backup-and-restore-the-database-using-backup-and-migrate). The process created the same "WSOD" as documented in [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#Restore-results-lots-of-warnings), but when I cleared the cache the site returned, with lots of the same warnings as noted before.
+
+I skipped the diagnostic steps presented in [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#installing-the-missing-islandora-custom-bits), but did run the `git clone...` commands specified for the *Apache* container, and that worked nicely.  
+
+## Temporarily Eliminate Warnings
+When it was time to eliminate the remaining warnings I had to add one `drush sqlq...` command (line 5 of 6 below) to the original [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#temporarily-eliminate-warnings) list, so the commands were:
+
+```
+cd /var/www/html/sites/default
+drush -y dis islandora_binary_object islandora_pdfjs_reader
+drush sqlq "DELETE FROM system WHERE name = 'islandora_binary_object' AND type = 'module';"
+drush sqlq "DELETE FROM system WHERE name = 'islandora_pdfjs_reader' AND type = 'module';"
+drush sqlq "DELETE FROM system WHERE name = 'ldap_servers' AND type = 'module';"
+drush cc all
+
+```
+
+The rest of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld) beginning with the [`Building ISLE-DG-Essentials` section](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/#building-isle-dg-essentials) is geared more to the creation of a `dg-isle` configuration repository, and is not  relevant to my goal of building a `dg-islandora` code repository.  So, this is where I depart from [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld) in favor of [post 034](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.2.0-ld/).
+
+-->
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

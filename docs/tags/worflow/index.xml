@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>worflow on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/worflow/</link>
+    <description>Recent content in worflow on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 12 Nov 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/worflow/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DG&#39;s ISLE Git Workflow</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/053-dgs-isle-git-workflow/</link>
+      <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/053-dgs-isle-git-workflow/</guid>
+      <description>For some time now Digital.Grinnell has been using ISLE in production, with an instance that was built from a &amp;ldquo;non-standard&amp;rdquo; workflow, one that was a little different than the Git workflow established in the ISLE install docs. Consequently, DG&amp;rsquo;s situation is a little different than what&amp;rsquo;s documented for ISLE, so my mission here is to describe and execute the steps I&amp;rsquo;m taking to get back into the documented workflow.
+The steps will involve and achieve the following:
+ Establish a working, local instance of my production DG site with an ISLE-1.</description>
+    </item>
+    
+  </channel>
+</rss>

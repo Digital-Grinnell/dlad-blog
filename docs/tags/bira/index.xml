@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bira on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/bira/</link>
+    <description>Recent content in bira on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 12 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/bira/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Installing ZSH in Catalina</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/063-installing-zsh-in-catalina/</link>
+      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/063-installing-zsh-in-catalina/</guid>
+      <description>These days I like to do all my terminal/command-line work in zsh, more specifically, with Oh My ZSH! and the bira theme. This previous post described the process I used on each of my Linux servers, and this post is similar, but written specifically for my Catalina (Macintosh OS X v10.15.x), workstations.
+This is how I installed and configured zsh, and some other goodies, on my student Mac Mini workstation, MA6879&amp;hellip;
+brew update brew install nano zsh chsh -s /bin/zsh mark exit # log back in after this echo $SHELL brew install wget git hugo docker # Docker and Hugo added just for good measure wget https://github.</description>
+    </item>
+    
+    <item>
+      <title>Installing ZSH in CentOS</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/044-installing-zsh-in-centos/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/044-installing-zsh-in-centos/</guid>
+      <description>These days I like to do all my terminal/command-line work in zsh, more specifically, with Oh My ZSH! and the bira theme. So, on my new node dgdocker3, I added nano, zsh, and some other goodies by largely following How to Setup ZSH and Oh-my-zsh on Linux.
+This is how I did it&amp;hellip;
+sudo yum install nano sudo yum install zsh chsh -s /bin/zsh mcfatem exit # log back in after this echo $SHELL sudo yum install wget git wget https://github.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>static on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/static/</link>
+    <description>Recent content in static on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 17 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/static/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Repairing Static.Grinnell.edu</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/045-repairing-static.grinnell.edu/</link>
+      <pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/045-repairing-static.grinnell.edu/</guid>
+      <description>This morning, Tuesday, September 17, 2019, I awoke to find our https://static.grinnell.edu server, and all of the services on it, unreachable via the web. I managed to open a shell on the host and found that the server was up-and-running as expected, but a quick docker ps command indicated that one of the key services on the server, namely Traefik, had stopped and then failed to restart, repeatedly. Traefik is the service that&amp;rsquo;s responsible for routing web traffic on the static host.</description>
+    </item>
+    
+  </channel>
+</rss>

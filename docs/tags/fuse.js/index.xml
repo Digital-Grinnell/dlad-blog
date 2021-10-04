@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fuse.js on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/fuse.js/</link>
+    <description>Recent content in Fuse.js on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 25 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/fuse.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Back in (Scarlet and) Black</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/083-back-in-scarlet-and-black/</link>
+      <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/083-back-in-scarlet-and-black/</guid>
+      <description>Once upon a time this blog had an address of https://static.grinnell.edu/blogs/McFateM and it used a theme called M10c. Well, what was once is once again. If you read my New Blog Style and Features post you can learn a little more of this blog&amp;rsquo;s &amp;ldquo;interim&amp;rdquo; history.
+By the way, if you&amp;rsquo;re reading this post at https://dlad.summittdweller.com, then you&amp;rsquo;re missing out. If you are looking at that old blog you probably see something more like this:
+Please jump to https://static.grinnell.edu/blogs/McFateM and catch up as quick as you can!</description>
+    </item>
+    
+  </channel>
+</rss>

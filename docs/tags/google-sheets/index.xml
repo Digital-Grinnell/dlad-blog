@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Google Sheets on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/google-sheets/</link>
+    <description>Recent content in Google Sheets on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 21 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/google-sheets/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Digital.Grinnell&#39;s IMI Workflow</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/040-digital.grinnells-imi-workflow/</link>
+      <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/040-digital.grinnells-imi-workflow/</guid>
+      <description>Note: The abbreviation IMI is used frequently in this post to represent the Islandora Multi-Importer, a CSV-file-driven batch ingest tool used by numerous institutions in the Islandora community.
+Also, while updating this post I found this gem&amp;hellip; Diagrams in Documentation (Markdown Guide).
+This post is an addition to the discussion in post 028, Mounting //Storage for IMI Ingest in Digital.Grinnell  which was written largely to remind me how the //Storage mount works. 😕 Unlike post 028, this post is meant for myself AND for others at Grinnell College who prepare digital objects for ingest via IMI.</description>
+    </item>
+    
+  </channel>
+</rss>

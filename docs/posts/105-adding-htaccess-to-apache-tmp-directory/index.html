@@ -1,0 +1,207 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>Adding `.htaccess` to Apache Container `/tmp` Directory // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Adding `.htaccess` to Apache Container `/tmp` Directory"/>
+<meta name="twitter:description" content="For some time now we&rsquo;ve had a problem lurking in Digital.Grinnell, when large files are opened for viewing or download one of the DG services makes a temporary copy of the file in the Apache container&rsquo;s /tmp directory. Locally, and in staging I&rsquo;ve debugged the code that is responsible for removing the temporary file once the operation is complete. Running locally or in staging the process does its job, the temporary files get deleted soon after creation, but this never happens in production."/>
+
+    <meta property="og:title" content="Adding `.htaccess` to Apache Container `/tmp` Directory" />
+<meta property="og:description" content="For some time now we&rsquo;ve had a problem lurking in Digital.Grinnell, when large files are opened for viewing or download one of the DG services makes a temporary copy of the file in the Apache container&rsquo;s /tmp directory. Locally, and in staging I&rsquo;ve debugged the code that is responsible for removing the temporary file once the operation is complete. Running locally or in staging the process does its job, the temporary files get deleted soon after creation, but this never happens in production." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/105-adding-htaccess-to-apache-tmp-directory/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-04-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-04-14T15:48:29-05:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 3:22pm CDT<br/>
+          Content Updated: 2021-Sep-2 14:57 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu now hosted on GitHub Pages.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/105-adding-htaccess-to-apache-tmp-directory/'>105 adding htaccess to apache tmp directory</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Adding `.htaccess` to Apache Container `/tmp` Directory</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+          2 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+          Apr 14, 2021
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg> Mark A. McFate</strong>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-link">
+  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+</svg>
+              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/tmp/">tmp</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/temporary/">temporary</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/apache/">Apache</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/.htaccess/">.htaccess</a></div></div>
+    </header>
+    <div class="post-content">
+      <p>For some time now we&rsquo;ve had a problem lurking in <a href="https://digital.grinnell.edu">Digital.Grinnell</a>, when large files are opened for viewing or download one of the <em>DG</em> services makes a temporary copy of the file in the <em>Apache</em> container&rsquo;s <code>/tmp</code> directory.  Locally, and in staging I&rsquo;ve debugged the code that is responsible for removing the temporary file once the operation is complete. Running locally or in staging the process does its job, the temporary files get deleted soon after creation, but this never happens in production.  The result, our root disk on the production server fills up after a few days of use, and the server stops serving content.  Even more sinister, the server doesn&rsquo;t crash and restart &ndash; a condition that would also clear the offending <code>/tmp</code> files &ndash; it doesn&rsquo;t even report a fatal error, it just refuses to serve content, which is really its only function. Very frustrating indeed!</p>
+<p>So I&rsquo;ve set a reminder to bring the <em>DG</em> stack down, gracefully, every few days, and immediately restart it. This works nicely becuase stopping and restarting the stack clears out all temporary files.</p>
+<h2 id="whats-different-about-staging">What&rsquo;s Different About Staging?</h2>
+<p>This afternoon I was poking around in my staging server, <a href="https://dg-staging.grinnell.edu">https://dg-staging.grinnell.edu</a>, and noticed something different in the <em>Apache</em> container&rsquo;s <code>/tmp</code> directory there.  The folder contains a <code>.htaccess</code> file, one that does NOT exist in production.  Hmmm.</p>
+<p>The other <strong>glaring</strong> difference is that in staging the <em>Apache</em> <code>/tmp</code> directory is owned by UID <code>islandora</code>, as is most everything in staging.  In production, however, that directory is owned by <code>root</code>. Hmmmm, very interesting indeed.</p>
+<h2 id="first-attempt-a-new-htaccess-file">First Attempt, a New .htaccess File</h2>
+<p>So my first move was to duplicate the <code>.htaccess</code> file I found in staging and add it to production&rsquo;s <em>Apache</em> <code>/tmp</code> directory.  After watching <em>DG</em> performance for a bit I could see this was having no effect, almost immediately some very large, temporary files started to accumulate.  Rats.</p>
+<h2 id="changing-tmp-ownership">Changing <code>/tmp</code> Ownership</h2>
+<p>Since the permissions on the <code>/tmp</code> directory looked right my next move was to change the ownership of <code>/tmp</code>.  I did that after shelling in to the running <em>Apache</em> container, like so:</p>
+<pre><code>docker exec -it isle-apache-dg bash
+cd /
+ls -alh
+chown -R www-data:www-data tmp
+</code></pre><h2 id="did-that-work">Did That Work?</h2>
+<p>Only 🕰 will tell!  After about 10 minutes time there&rsquo;s no evidence of any temporary files accumulating.  😄</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

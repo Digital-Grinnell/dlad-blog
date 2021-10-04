@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/docker/</link>
+    <description>Recent content in docker on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 15 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Traefik and Acme.sh for DG-STAGING</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</link>
+      <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</guid>
+      <description>This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge and Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations, specifically Step 11 in the later document. It introduces a Digital.Grinnell-specific implementation of the Traefik with Acme.sh.
+Testing with McFateM/docker-traefik2-acme-host I started work on this implementation with a test, by cloning https://github.com/McFateM/docker-traefik2-acme-host and proceeding as directed in the repository&amp;rsquo;s README.md document, as user islandora on node DGDockerX, like so:
+   DGDockerX Host Commands     cd ~  git clone https://github.</description>
+    </item>
+    
+    <item>
+      <title>Scheduled Updates for a Hugo Static Site</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/086-scheduled-updates-for-a-hugo-static-site/</link>
+      <pubDate>Sat, 18 Jul 2020 16:56:04 -0500</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/086-scheduled-updates-for-a-hugo-static-site/</guid>
+      <description>A few months ago I migrated a site, The Compass Rose Band, from Drupal to Hugo for my Uncle. Since then I have been maintaining the site, adding and removing dates, and updating the site about every other week. With the passage of time events on the site &amp;ldquo;automatically&amp;rdquo; move from &amp;ldquo;upcoming&amp;rdquo; to &amp;ldquo;past&amp;rdquo;, but since it is a &amp;ldquo;static&amp;rdquo; site, that only happens when I recompile and rebuild the site. So I needed to automate builds.
+I tried a few different ideas I&amp;rsquo;d heard about, including crontab, but on my Mac desktop I ended up settling on an Automator workflow tied to a Calendar event.</description>
+    </item>
+    
+    <item>
+      <title>Host Config: docker-traefik2-acme-host</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</link>
+      <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</guid>
+      <description>This post is celebrating the completion (really, is anything ever complete?) of a new server/host/stack deployment project: docker-traefik2-acme-host. In order to make this post really easy to read, I&amp;rsquo;m going to wrap it up in one bullet&amp;hellip;
+ README.md  Troubleshooting Should you ever encounter an error like the one below, be sure to ask your IT provider if they created the proper CNAME record when creating your DNS entry.
+[Tue Jun 30 20:53:50 UTC 2020] ohscribe.grinnell.edu:Verify error:DNS problem: NXDOMAIN looking up TXT for _acme-challenge.</description>
+    </item>
+    
+    <item>
+      <title>Traefik and Acme.sh Instead of DNS-01</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</guid>
+      <description>This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge. It introduces an alternative to the failed process that was proposed in that earlier post.
+ Note that the following config-specific elements have been replaced below:
+ 6 occurances of ?.grinnell.edu now say example-1.grinnell.edu, and 2 occurances of ?.info now say example-2.info.   New Proposal On June 1 my colleage, Matt, suggested the following&amp;hellip;
+ As much as I would like to resolve the DNS-01 challenge using Traefik alone, I don&amp;rsquo;t believe it will support what we&amp;rsquo;re trying to do here.</description>
+    </item>
+    
+    <item>
+      <title>Simplified Testing of Traefik 2 with ACME DNS-01 Challenge</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</link>
+      <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</guid>
+      <description>This post is a simplified and focused follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge.
+Simplify Today, 19-May-2020, I&amp;rsquo;m going to take a shot at simplifying my testing on dgdocker3.grinnell.edu by removing unnecessary things and consolidating as much as possible to reduce clutter in the logs and get right to the point. I&amp;rsquo;m also going to have a look to see if there are additional logs that can tell give me more detail. Everything used here, and everything that takes place here, will be found in a new directory, /opt/containers/test on DGDocker3.</description>
+    </item>
+    
+    <item>
+      <title>Dockerized Traefik Host Using ACME DNS-01 Challenge</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</guid>
+      <description>This post builds on My dockerized-server Config and attempts to change what was a problematic ACME HTTP-01 or httpChallenge in Traefik and Let&amp;rsquo;s Encrypt to an ACME DNS-01 or dnsChallenge. The problem with the old HTTP-01 or httpChallenge is that it requires the creation of a valid and widely accessible &amp;ldquo;A&amp;rdquo; record in our DNS before the creation of a cert; the record has to be in place so that the Let&amp;rsquo;s Encrypt CA-server can find it to confirm that the request is valid.</description>
+    </item>
+    
+    <item>
+      <title>A Dockerized &#39;Handle&#39; Server</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/043-a-dockerzied-handle-server/</link>
+      <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/043-a-dockerzied-handle-server/</guid>
+      <description>Today&amp;rsquo;s quest&amp;hellip; to build a new Handle.net server for Digital.Grinnell, preferably one that is &amp;ldquo;Dockerized&amp;rdquo;. I&amp;rsquo;m going to start by forking datacite/docker-handle, a project that looks promising, and following it along with the documentation in chapter 3 of the HANDLE.NET (version 9) Technical Manual. The aforementioned fork can now be found in DigitalGrinnell/docker-handle.
+The digital7 Saga My old friend and server (or should that be servant?), digital7, used to be the home of Digital.Grinnell in Islandora v7, before Docker and ISLE came along.</description>
+    </item>
+    
+    <item>
+      <title>My dockerized-server Config</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/042-my-dockerized-server-config/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/042-my-dockerized-server-config/</guid>
+      <description>This post picks up from where Configuring DGDocker2 left off. In it I will establish a workflow to setup a &amp;ldquo;Dockerized&amp;rdquo; server complete with Traefik, Portainer, and Who Am I. It should be relatively easy to add additional non-static services to any server that is initially configured using this package. For &amp;ldquo;static&amp;rdquo; servers have a look at post 008 docker-bootstrap Workflow .
+Capture As a Project Picking up from the end of Configuring DGDocker2, my first step on the dgdocker2 server was to move everything into a single subdirectory of /opt; I called the new directory dockerized-server, like so:</description>
+    </item>
+    
+    <item>
+      <title>Configuring DGDocker2</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/041-configuring-dgdocker2/</link>
+      <pubDate>Tue, 03 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/041-configuring-dgdocker2/</guid>
+      <description>My mission today is to successfully migrate the images/containers/services chronicled in post 030, &amp;ldquo;Dockerized Omeka-S: Starting Over&amp;rdquo; to Docker-ready node dgdocker2 without compromising any of the services that already run there.
+Pushing WMI Omeka-S to Production on dgdocker2 Grinnell&amp;rsquo;s dgdocker2 server, specifically dgdocker2.grinnell.edu with an IP address of 132.161.132.143, is a Docker-ready CentOS 7 node that&amp;rsquo;s currently supporting the following containers and configuration:
+╭─root@dgdocker2 ~ ╰─# docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES ef20d71ffea8 mcfatem/ohscribe &amp;quot;./boot.sh&amp;quot; 6 days ago Up 6 days 5000/tcp ohscribe b525f4670cd2 mariadb:latest &amp;quot;docker-entrypoint.</description>
+    </item>
+    
+    <item>
+      <title>Building Grocy in Docksal</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/036-building-grocy-in-docksal/</link>
+      <pubDate>Thu, 08 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/036-building-grocy-in-docksal/</guid>
+      <description>Grocy looks lika a great little PHP stack application for me. It&amp;rsquo;s aim is to help folks organize and inventory their &amp;ldquo;stuff&amp;rdquo;, with a slant toward food and groceries. I need this!
+Since I&amp;rsquo;m also a big fan of Docker and Docksal, naturally I wanted to spin Grocy up in one of these environments. Thankfully, the heavy lifting of getting this &amp;ldquo;Dockerized&amp;rdquo; has already been done, and that fine work is shared in GitHub at grocy/grocy-docker. So my quest last evening started with a fork of this GitHub project to SummittDweller/grocy-docker, where I&amp;rsquo;ve created a new docksal branch.</description>
+    </item>
+    
+    <item>
+      <title>Resetting Docker</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/031-resetting-docker/</link>
+      <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/031-resetting-docker/</guid>
+      <description>This command snippet needs a blog post of its own! I typically use the following command stream to clean up any Docker cruft before I begin anew. Note: Uncomment the third line ONLY if you want to delete images and download new ones. If you do, be patient, it could take several minutes depending on connection speed.
+   Workstation Commands     docker stop $(docker ps -q)  docker rm -v $(docker ps -qa)  # docker image rm $(docker image ls -q)  docker system prune &amp;ndash;force    And that&amp;rsquo;s a wrap.</description>
+    </item>
+    
+    <item>
+      <title>Dockerized Omeka-S: Starting Over</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/030-dockerized-omeka-s-starting-over/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/030-dockerized-omeka-s-starting-over/</guid>
+      <description>Attention!     The Docksal portion of this discussion DID NOT WORK PROPERLY so I&amp;rsquo;ve hidden it from public view. Don&amp;rsquo;t use this project with Docksal (fin commands) until further notice!    I&amp;rsquo;ve created a new fork of dodeeric/omeka-s-docker at DigitalGrinnell/omeka-s-docker, and it introduces a new docker-compose.yml file for spinning Omeka-S up locally, but WITHOUT Docksal (due to problems with the integration originally documented here).
+System requirements for local development of this project currently include:</description>
+    </item>
+    
+    <item>
+      <title>Removing Traefik&#39;s Weak Cipher Suites</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/005-removing-traefik-weak-ciphers/</link>
+      <pubDate>Fri, 10 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/005-removing-traefik-weak-ciphers/</guid>
+      <description>Most of the servers I deploy to and manage here at Grinnell College are now &amp;ldquo;Dockerized&amp;rdquo;, and all of those use Traefik to manage traffic, of course. Before a web app or server can be opened for access to the world here, it has to pass a vulnerability scan, and I&amp;rsquo;m not privy to the specifics of that scan. However, I do know that &amp;ldquo;weak cipher suites&amp;rdquo; are a common source of failure among my newest servers. It took a couple of weeks of searching, and trial/error solution attempts to identify the nature and specific source of these weaknesses, and to eradicate them.</description>
+    </item>
+    
+    <item>
+      <title>A Blog is Born</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/001-a-blog-is-born/</link>
+      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/001-a-blog-is-born/</guid>
+      <description>Have you ever wondered how a blog is born? The story behind this blog begins with my interest in stepping back from the CMS world, primarily Drupal, to discover the joys of static site generation. The journey begins in earnest at the 2016 DLF Forum: Milwaukee on the eve of the United States&#39; 2016 national election, when all the buzz that wasn&amp;rsquo;t political, was about building static web sites, and Jekyll.
+A few weeks after the DLF Forum this server was born, thanks to the my colleagues in the Grinnell College (GC) Libraries, and Grinnell&amp;rsquo;s Information Technology Services (ITS) department.</description>
+    </item>
+    
+  </channel>
+</rss>
