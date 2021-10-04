@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Who Am I on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/who-am-i/</link>
+    <description>Recent content in Who Am I on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 07 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/who-am-i/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My dockerized-server Config</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/042-my-dockerized-server-config/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/042-my-dockerized-server-config/</guid>
+      <description>This post picks up from where Configuring DGDocker2 left off. In it I will establish a workflow to setup a &amp;ldquo;Dockerized&amp;rdquo; server complete with Traefik, Portainer, and Who Am I. It should be relatively easy to add additional non-static services to any server that is initially configured using this package. For &amp;ldquo;static&amp;rdquo; servers have a look at post 008 docker-bootstrap Workflow .
+Capture As a Project Picking up from the end of Configuring DGDocker2, my first step on the dgdocker2 server was to move everything into a single subdirectory of /opt; I called the new directory dockerized-server, like so:</description>
+    </item>
+    
+  </channel>
+</rss>

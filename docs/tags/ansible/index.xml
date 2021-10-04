@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ansible on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/ansible/</link>
+    <description>Recent content in ansible on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sun, 18 Nov 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A Blog is Born</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/001-a-blog-is-born/</link>
+      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/001-a-blog-is-born/</guid>
+      <description>Have you ever wondered how a blog is born? The story behind this blog begins with my interest in stepping back from the CMS world, primarily Drupal, to discover the joys of static site generation. The journey begins in earnest at the 2016 DLF Forum: Milwaukee on the eve of the United States&#39; 2016 national election, when all the buzz that wasn&amp;rsquo;t political, was about building static web sites, and Jekyll.
+A few weeks after the DLF Forum this server was born, thanks to the my colleagues in the Grinnell College (GC) Libraries, and Grinnell&amp;rsquo;s Information Technology Services (ITS) department.</description>
+    </item>
+    
+  </channel>
+</rss>

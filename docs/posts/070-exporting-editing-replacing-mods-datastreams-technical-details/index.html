@@ -1,0 +1,632 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>Exporting, Editing, &amp; Replacing MODS Datastreams: Technical Details // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Exporting, Editing, &amp; Replacing MODS Datastreams: Technical Details"/>
+<meta name="twitter:description" content="Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
+ A 5-Step Workflow This document is follow-up, with technical details, to Exporting, Editing, &amp; Replacing MODS Datastreams, post 069, in my blog. In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 Grinnell College Libraries review of Digital Grinnell MODS metadata."/>
+
+    <meta property="og:title" content="Exporting, Editing, &amp; Replacing MODS Datastreams: Technical Details" />
+<meta property="og:description" content="Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
+ A 5-Step Workflow This document is follow-up, with technical details, to Exporting, Editing, &amp; Replacing MODS Datastreams, post 069, in my blog. In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 Grinnell College Libraries review of Digital Grinnell MODS metadata." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-04-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-23T00:00:00+00:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
+          Content Updated: 2021-Sep-30 08:02 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/'>070 exporting editing replacing mods datastreams technical details</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Exporting, Editing, &amp; Replacing MODS Datastreams: Technical Details</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          14 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 23, 2020
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign">
+  <title>at-sign</title>
+  <circle cx="12" cy="12" r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+</svg> Mark A. McFate</strong>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/mods/">MODS</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/export/">Export</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/replace/">Replace</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/twig/">Twig</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/islandora_datastream_export/">islandora_datastream_export</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/islandora_datastream_replace/">islandora_datastream_replace</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/islandora_mods_via_twig/">islandora_mods_via_twig</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/map-mods-to-master/">Map-MODS-to-MASTER</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/islandora_mods_post_processing/">islandora_mods_post_processing</a></div></div>
+    </header>
+    <div class="post-content">
+      <blockquote>
+<p>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new <em>Drush</em> command: <em>islandora_mods_post_processing</em>, an addition to my previous work in <a href="https://github.com/DigitalGrinnell/islandora_mods_via_twig">islandora_mods_via_twig</a>. See my new post, <a href="https://digital-grinnell.github.io/dlad-blog/posts/075-islandora-mods-post-processing/">Islandora MODS Post Processing</a> for complete details.</p>
+</blockquote>
+<h1 id="a-5-step-workflow">A 5-Step Workflow</h1>
+<p>This document is follow-up, with technical details, to <a href="https://digital-grinnell.github.io/dlad-blog/posts/069-exporting-editing-replacing-mods-datastreams/">Exporting, Editing, &amp; Replacing MODS Datastreams</a>, post 069, in my blog.  In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 <em>Grinnell College Libraries</em> review of <em>Digital Grinnell</em> MODS metadata.</p>
+<p>Attention: This document uses a shorthand <code>./</code> in place of the frequently referenced <code>//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/</code> directory.  For example, <code>./social-justice</code> is equivalent to the <em>Social Justice</em> collection sub-directory at <code>//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/social-justice</code>.</p>
+<p>Briefly, the five steps in this workflow are:</p>
+<ol>
+<li>
+<p>Export of all <code>grinnell:*</code> <em>MODS</em> datastreams using <code>drush islandora_datastream_export</code>.  This step, last performed on April 14, 2020, was responsible for creating all of the <code>grinnell_&lt;PID&gt;_MODS.xml</code> exports found in <code>./&lt;collection-PID&gt;</code>.</p>
+</li>
+<li>
+<p>Execute my <em>Map-MODS-to-MASTER</em> <em>Python 3</em> script on iMac <em>MA8660</em> to create a <code>mods.tsv</code> file for each collection, along with associated <code>grinnell_&lt;PID&gt;_MODS.log</code> and <code>grinnell_&lt;PID&gt;_MODS.remainder</code> files for each object. The resultant <code>./&lt;collection-PID&gt;/mods.tsv</code> files are tab-seperated-value (.tsv) files, and they are <strong>key</strong> to this process.</p>
+</li>
+<li>
+<p>Edit the MODS .tsv files.  Refer <a href="https://digital-grinnell.github.io/dlad-blog/posts/069-exporting-editing-replacing-mods-datastreams/">Exporting, Editing, &amp; Replacing MODS Datastreams</a> for details and guidance.</p>
+</li>
+<li>
+<p>Use <code>drush islandora_mods_via_twig</code> in each ready-for-update collection to generate new .xml MODS datastream files. For a specified collection, this command will find and read the <code>./&lt;collection-PID&gt;/mods-imvt.tsv</code> and create one <code>./&lt;collection-PID&gt;/ready-for-datastream-replace/grinnell_&lt;PID&gt;_MODS.xml</code> file for each object.</p>
+</li>
+<li>
+<p>Execute the <code>drush islandora_datastream_replace</code> command once for each collection.  This command will process each <code>./&lt;collection-PID&gt;/ready-for-datastream-replace/grinnell_&lt;PID&gt;_MODS.xml</code> file and replace the corresponding object&rsquo;s MODS datastream with the contents of the .xml file.  The <em>digital_grinnell</em> branch version of the <code>islandora_datastream_replace</code> command also performs an implicit update of the object&rsquo;s &ldquo;Title&rdquo;, a transform of the new MODS to DC (<em>Dublin Core</em>), and a re-indexing of the new metadata in <em>Solr</em>.</p>
+</li>
+</ol>
+<p>The remainder of this document provides technical details, frequently in the form of command lines used to build and use the aforementioned tools.</p>
+<h2 id="step-1a---installation-of-drush-islandora_datastream_export-and-islandora_datastream_replace-commands">Step 1a - Installation of Drush <code>islandora_datastream_export</code> and <code>islandora_datastream_replace</code> Commands</h2>
+<p>To help implement this process efficiently and effectively I first turned to <a href="https://github.com/calhist/documentation/wiki/Exporting,-Editing,-&amp;-Replacing-MODS-Datastreams">Exporting, Editing, &amp; Replacing MODS Datastreams</a>, a workflow developed by the good folks at <a href="https://californiahistoricalsociety.org/">The California Historical Society</a>.  I initiated the workflow by installing two <em>Drush</em> tools on my <a href="https://dg.localdomain">local/development instance</a> of <a href="https://github.com/Islandora-Collaboration-Group/ISLE">ISLE</a> on my Mac workstation.</p>
+<p>The command line process in my local host/workstation terminal looked like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Apache<span style="color:#f92672">=</span>isle-apache-ld
+docker exec -w /var/www/html/sites/all/modules/islandora/ <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span> git clone https://github.com/Islandora-Labs/islandora_datastream_exporter.git --recursive
+docker exec -w /var/www/html/sites/all/modules/islandora/ <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span> git clone https://github.com/pc37utn/islandora_datastream_replace.git --recursive
+docker exec -w /var/www/html/sites/all/modules/islandora/ <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span> chown -R islandora:www-data *
+docker exec -w /var/www/html/sites/default <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span> drush en islandora_datastream_exporter islandora_datastream_replace -y
+docker exec -w /var/www/html/sites/default <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span> drush cc drush -y
+</code></pre></div><p>Local tests of these commands were successful so I proceeded to install them in the production instance of <em>Digital Grinnell</em> at <em>dgdocker1.grinnell.edu</em>. Before doing that I needed to change the definition of <code>Apache</code> to reflect the production instance of our <em>Apache</em> container, like so <code>Apache=isle-apache-dg</code>.</p>
+<h3 id="created-a-fork-of-_islandora-datastream-replace_">Created a Fork of <em>Islandora Datastream Replace</em></h3>
+<p>I also chose to &ldquo;fork&rdquo; the <em>islandora_datastream_replace</em> project so that I could do a little <em>Digital.Grinnell</em> customization of it.  The fork I&rsquo;m working with is <a href="https:/github.com/DigitalGrinnell/islandora_datastream_replace">here</a> and my work is limited to the <a href="https://github.com/DigitalGrinnell/islandora_datastream_replace/tree/digital_grinnell">digital_grinnell</a> branch of that fork.</p>
+<p>In the <a href="https://github.com/DigitalGrinnell/islandora_datastream_replace/tree/digital_grinnell">digital_grinnell</a> branch I modified the behavior of the <em>islandora_datastream_replace</em> command so that it implicitly performs an <code>UpdateFromMODS</code> operation that lives in our <a href="https:/github.com/DigitalGrinnell/idu">idu, or Islandora Drush Utilities</a> module.  The <code>UpdateFromMODS</code>, performed immediately after each datastream replace operation does the following:</p>
+<ul>
+<li>Updates the object &ldquo;Title&rdquo;, one of its properties, to match the new value of <code>/mods:mods/mods:titleInfo[not(@type)]/mods:title</code>.</li>
+<li>Invokes the <code>iduF DCTransform</code> operation which runs the default XSLT transform of the new MODS to DC (<em>Dublin Core</em>) and creates a new &ldquo;DC&rdquo; datastream for the object.</li>
+<li>The <code>iduF DCTransform</code> operation also concludes with an implicit <code>iduF IndexSolr</code> operation to ensure that the new object metadata is properly indexed in <em>Solr</em>.</li>
+</ul>
+<h2 id="step-1b---installation-of-drush-islandora_datastream_export-and-islandora_datastream_replace-commands-in-production">Step 1b - Installation of Drush <code>islandora_datastream_export</code> and <code>islandora_datastream_replace</code> Commands in Production</h2>
+<p>To install the commands in production I opened a terminal to <em>dgdocker1.grinnell.edu</em> as user <em>islandora</em> and executed the following commands there:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Apache<span style="color:#f92672">=</span>isle-apache-dg
+docker exec -w /var/www/html/sites/all/modules/islandora/ <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span> git clone https://github.com/Islandora-Labs/islandora_datastream_exporter.git --recursive
+docker exec -w /var/www/html/sites/all/modules/islandora/ <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span> git clone https://github.com/DigitalGrinnell/islandora_datastream_replace.git --recursive
+docker exec -w /var/www/html/sites/all/modules/islandora/ <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span> chown -R islandora:www-data *
+docker exec -w /var/www/html/sites/all/modules/islandora/islandora_datastream_replace <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span> git checkout -b digital_grinnell
+docker exec -w /var/www/html/sites/default <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span> drush en islandora_datastream_exporter islandora_datastream_replace -y
+docker exec -w /var/www/html/sites/default <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span> drush cc drush -y
+</code></pre></div><h2 id="step-1c---mounting-storage-to-dgdocker1">Step 1c - Mounting //STORAGE to DGDocker1</h2>
+<p>Attention! This step, and some that come later, will require that the network storage path <code>//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1</code> be accessible to our production instance of <em>Digital.Grinnell</em>.  To make that possible I had to run this sequence on <em>DGDocker1</em>:</p>
+<blockquote>
+<p>docker exec -it isle-apache-dg bash
+mount -t cifs -o username=mcfatem /storage.grinnell.edu/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1 /mnt/metadata-review /mnt/metadata-review</p>
+</blockquote>
+<h2 id="step-1d---using-drush-islandora_datastream_export">Step 1d - Using Drush <code>islandora_datastream_export</code></h2>
+<p>Unfortunately, the <code>islandora_datastream_export</code> results in my local test were woefully incomplete&hellip; NONE of the child objects with a compound parent were exported.  I&rsquo;m still not entirely sure why child obejcts were omitted since the query I used should have captured all objects.  In testing I did find that this seems to be a flaw in the <em>islandora_datastream_export</em> command, and specifically in its implementation of any <em>Solr</em> query.</p>
+<p>Fortunately, the aforementioned command also has a <em>SPARQL</em> query option, and after some trial-and-error I got it to work properly.  To do so I created an <code>export.sh</code> <em>bash</em> script, shown below, and used it on <em>dgdocker1.grinnell.edu</em> like so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker exec -it isle-apache-dg bash
+source export.sh
+</code></pre></div><p>The <code>export.sh</code> script is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-export.sh" data-lang="export.sh">Apache<span style="color:#f92672">=</span>isle-apache-dg
+Target<span style="color:#f92672">=</span>/utility-scripts
+<span style="color:#75715e"># wget https://gist.github.com/McFateM/5bd7e5b0fa5d2928b2799d039a4c0fab/raw/collections.list</span>
+<span style="color:#66d9ef">while</span> read collection
+<span style="color:#66d9ef">do</span>
+    cp -f ri-query.txt query.sparql
+    sed -i <span style="color:#e6db74">&#39;s|COLLECTION|&#39;</span><span style="color:#e6db74">${</span>collection<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;|g&#39;</span> query.sparql
+    docker cp query.sparql <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span>:<span style="color:#e6db74">${</span>Target<span style="color:#e6db74">}</span>/<span style="color:#e6db74">${</span>collection<span style="color:#e6db74">}</span>.sparql
+    rm -f query.sparql
+    q<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>Target<span style="color:#e6db74">}</span>/<span style="color:#e6db74">${</span>collection<span style="color:#e6db74">}</span>.sparql
+    echo Processing collection <span style="color:#e6db74">&#39;${collection}&#39;</span>; Query is <span style="color:#e6db74">&#39;${q}&#39;</span>...
+    docker exec -w <span style="color:#e6db74">${</span>Target<span style="color:#e6db74">}</span> <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span> mkdir -p /mnt/metadata-review/<span style="color:#e6db74">${</span>collection<span style="color:#e6db74">}</span>
+    docker exec -w /var/www/html/sites/default/ <span style="color:#e6db74">${</span>Apache<span style="color:#e6db74">}</span> drush -u <span style="color:#ae81ff">1</span> islandora_datastream_export --export_target<span style="color:#f92672">=</span>/mnt/metadata-review/<span style="color:#e6db74">${</span>collection<span style="color:#e6db74">}</span> --query<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>q<span style="color:#e6db74">}</span> --query_type<span style="color:#f92672">=</span>islandora_datastream_exporter_ri_query  --dsid<span style="color:#f92672">=</span>MODS
+<span style="color:#66d9ef">done</span> &lt; collections.list
+</code></pre></div><p>In the case of the <em>Digital Grinnell</em> <em>social-justice</em> collection, for example, this script produced 32 <em>.xml</em> files, the correct number.  Each collection&rsquo;s set of exported <em>.xml</em> files can be found in the collection-specific subdirectory of <code>//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/</code> and all have filenames of the form: <code>grinnell_&lt;PID&gt;_MODS.xml</code>.  Note that objects which have no MODS datastream were not exported.</p>
+<h2 id="step-2---_map-mods-to-master_-_python-3_-script">Step 2 - <em>Map-MODS-to-MASTER</em> <em>Python 3</em> Script</h2>
+<p>The <em>Map-MODS-to-MASTER</em> script was developed, in <em>Python 3</em>, on iMac <em>MA8660</em> at <code>~/GitHub/Map-MODS-to-MASTER</code> to facilitate generation of <code>mods.tsv</code> and accompanying <code>.log</code> files for each <em>Digital Grinnell</em> collection from the <code>.xml</code> files found in subdirectories of <code>//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/</code>.</p>
+<p>The <em>Map-MODS-to-MASTER</em> project can be found in the <em>master</em> branch of <a href="https://github.com/DigitalGrinnell/Map-MODS-to-MASTER">https://github.com/DigitalGrinnell/Map-MODS-to-MASTER</a>. I choose to execute it using <em>PyCharm</em> from iMac <em>MA8660</em> since the directory holding all of the <code>.xml</code> files and folders is already mapped to <code>/Volumes/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1</code> on that iMac.  Note that this <code>//STORAGE</code> location was choosen because the <code>./ALLSTAFF</code> directory, and its subordinates, are accessible to all staff in the <em>Grinnell College Libraries</em>.</p>
+<p>It should not be necessary to run this script ever again&hellip;NEVER.  However, if it becomes necessary to look back at this code and process, details can be found in <a href="https://github.com/DigitalGrinnell/Map-MODS-to-MASTER">Map-MODS-to-MASTER</a>.  Note: If it should ever become necessary to repeat the <em>Map-MODS-to-MASTER</em> process it might be wise to look at replacing the <em>Python 3</em> script with a new <em>Drush</em> command, maybe <code>islandora_map_mods_to_master</code>, written in PHP and installed directly into the production instance of <em>Digital.Grinnell</em>.</p>
+<h2 id="step-3---editing-the-mods-tsv-files">Step 3 - Editing the MODS .tsv Files</h2>
+<p>Please refer to   Refer to <a href="https://digital-grinnell.github.io/dlad-blog/posts/069-exporting-editing-replacing-mods-datastreams/">Exporting, Editing, &amp; Replacing MODS Datastreams</a>, post 069 in my blog, for details and guidance.</p>
+<h2 id="step-4---run-drush-islandora_mods_via_twig">Step 4 - Run <code>drush islandora_mods_via_twig</code></h2>
+<p>As each individual collection <code>mods-imvt.tsv</code> file is made ready-for-update, it will be necessary to run a <code>drush islandora_mods_via_twig</code> command to process the .tsv data.  Running <code>--help</code> with that command produces:</p>
+<pre><code>[islandora@dgdocker1 ~]$ docker exec -it isle-apache-dg bash
+root@122092fe8182:/# cd /var/www/html/sites/default/
+root@122092fe8182:/var/www/html/sites/default# drush -u 1 islandora_mods_via_twig --help
+Generate MODS .xml files from the mods-imvt.tsv file for a specified collection.
+
+Examples:
+ drush -u 1 islandora_mods_via_twig social-justice   Process ../social-justice/mods-imvt.tsv, for example.
+
+Arguments:
+ collection             The name of the collection to be processed.  Defaults to &quot;social-justice&quot;.
+
+Aliases: imvt
+</code></pre><p>So, my command sequence to run <code>islandora_mods_via_twig</code> for the &ldquo;Social Justice&rdquo; collection, as an example, was:</p>
+<pre><code>[islandora@dgdocker1 ~]$ docker exec -it isle-apache-dg bash
+root@122092fe8182:/# cd /var/www/html/sites/default/
+root@122092fe8182:/var/www/html/sites/default# drush -u 1 islandora_mods_via_twig social-justice
+</code></pre><p>When the <code>islandora_mods_via_twig</code> command is run, it processes the corresponding <code>//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/&lt;collection-PID&gt;/mods-imvt.tsv</code> file and creates one <code>//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/&lt;collection-PID&gt;/ready-for-datastream-replace/grinnell_&lt;PID&gt;_MODS.xml</code> file for each object.</p>
+<h2 id="step-5---run-drush-islandora_datastream_replace">Step 5 - Run <code>drush islandora_datastream_replace</code></h2>
+<p>The whole point of this entire process is to get us back to this point with a set of reviewed and modified <em>.xml</em> files in a <code>//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/&lt;collection-PID&gt;/ready-for-datastream-replace/</code> collection-specific subdirectory so that we can replace existing object MODS datastreams with new data, and we use the <code>drush islandora_datastream_replace</code> command to do this.</p>
+<p>Running <code>--help</code> for the aformentioned command produced this:</p>
+<pre><code>root@122092fe8182:/var/www/html/sites/default# drush -u 1 islandora_datastream_replace --help
+Replaces a datastream in all objects given a file list in a directory.
+
+Examples:
+ drush -u 1 islandora_datastream_replace --source=/mnt/metadata-review/social-justice/ready-for-datastream-replace
+ --dsid=MODS --namespace=grinnell
+
+   Replacing MODS datastream for objects in --source using the digital_grinnell branch of code.
+
+Options:
+ --dsid                                    The datastream id of the datastream. Required.
+ --namespace                               The namespace of the pids. Required.
+ --source                                  The directory to get the datastreams and pid# from. Required.
+
+Aliases: idre
+</code></pre><p>It&rsquo;s worth noting that this command looks for any files named <em><em>MODS</em></em> in whatever <em>ABSOLUTE</em> directory is named with the <code>--source</code> parameter.  The command shown below was executed inside the <em>Apache</em> container, <em>isle-apache-dg</em>, on node <em>DGDocker1</em>, in order to process <em>Digital Grinnell</em>&rsquo;s <em>social-justice</em> collection.</p>
+<pre><code>root@122092fe8182:drush -u 1 islandora_datastream_replace --source=/mnt/metadata-review/social-justice/ready-for-datastream-replace --dsid=MODS --namespace=grinnell
+</code></pre><p>The same command could have been executed directly from node <em>DGDocker1</em> like so:</p>
+<pre><code>docker exec isle-apache-dg drush -u 1 -w /var/www/html/sites/default drush -u 1 islandora_datastream_replace --source=mnt/metadata-review/social-justice/ready-for-datastream-replace --dsid=MODS --namespace=grinnell
+</code></pre><!--
+
+## Part 6 - The _mods-via-twig_ Script in _lando-d8_
+
+My original intent was to use the _Islandora Multi-Importer_, or _IMI_, to import our edited `<collection>.csv` files back into _Digital Grinnell_; however, I found that even using _IMI_'s "replace" option with no intended _RELS-EXT_ changes did damage to the object relationships in our repository.  To leverage the robust _Twig_ template found in our [Digital_Grinnell_MODS_Master](https://docs.google.com/spreadsheets/d/1G_pQgKJwtgBZYDAHcMC7dCTOnwexIYGHjarHPFKaAOg/edit#gid=791993009) worksheet I elected to create a new _Drush_ command called `mods-via-twig`, or `mvt`, to mimic what _IMI_ does to create new _MODS_ datastreams.
+
+To implement this as quickly as possible I found it easiest to work in a local _Drupal 8_ environment, since _Drupal 8_ has native _Twig_ libraries already at its disposal.  I also chose to use _Lando_ to facilitate the local development since it is quick and easy.
+
+A chronicle documenting the creation of _mods-via-twig_ can be found in [this gist](https://gist.github.com/McFateM/291c29ce411493801e2b72a8d2ce9e6a).
+
+## Part 7 - Copying Modified `<collection>.csv` Files to _lando-d8_
+
+A small set of `rsync` and associated commands that I use to copy files to and from the _mvt_ process can be found in [this gist](https://gist.github.com/McFateM/2f0b7a725cafeb767da59581d2b58852).
+
+## Part 8 - Executing _mods-via-twig_, the _drush mvt_ Command
+
+Another [gist](https://gist.github.com/McFateM/6da051df1da4b3613194e34c41b5d65b) provides guidance for running the _drush mods-via-twig_ command in the _lando-d8_ environment.
+
+## Part 9 - Copying New _.xml_ Files for Import Back Into _Digital Grinnell_
+
+Like _Part 7_ above, this is also addressed in a [gist](https://gist.github.com/McFateM/2f0b7a725cafeb767da59581d2b58852).
+
+## Part 10 - Executing _islandora\_datastream\_replace_
+
+This needs to happen in the _isle-apache-dg_ container on the production instance of _Digital Grinnell_ at _dgdocker1.grinnell.edu:/opt/ISLE/_ and once again, the command is documented in a [gist](https://gist.github.com/McFateM/6da051df1da4b3613194e34c41b5d65b).
+
+## Part 11 - Follow-up
+
+Since objects in _Digital Grinnell_ display _Solr_ data, not raw _MODS_, it may be necessary to take steps to regenerate new _DC_ datastreams and perform susequent _Solr_ indexing for all modified objects.  I'm still working out the details of that portion of this process...
+
+<!--
+## Editing the MODS Metadata
+
+I found a simple and effective process for editing the `.xml` files that were produced, using [Atom](https://atom.io). For testing purposes I made changes in a few of the objects listed above: 3246, 11569, 20575, and 25497.  These changes included removing some empty XML tags, changing student/alumni graduation class years from ` '64` notation to `, Class of 1964`, as well as eliminiation of trailing whitespace and whitespace lines.  Now I'll push them back into the repository to confirm that the workflow does indeed "work".
+
+## Importing the Changes
+
+My command line "test" import of all the exported objects goes like this:
+
+```
+Apache=isle-apache-ld
+docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 islandora_datastream_replace --dsid=MODS --source=/var/www/private/ --namespace=grinnell
+```
+
+And the output from that command, with whitelines removed, is:
+
+```
+╭─mark@Marks-Mac-Mini ~/GitHub/dg-isle ‹master*›
+╰─$ docker exec -w /var/www/html/sites/default/ isle-apache-ld drush -u 1 islandora_datastream_replace --dsid=MODS --source=/var/www/private/ --namespace=grinnell
+dsid=MODS  filename=
+ dsid is not in filename!
+dsid=MODS  filename=.
+ dsid is not in filename!
+dsid=MODS  filename=
+ dsid is not in filename!
+ file = grinnell_11569_MODS
+pidnum=11569
+Datastream replacement succeeded for grinnell:11569.                   [success]
+ file = grinnell_20575_MODS
+pidnum=20575
+ file = grinnell_25482_MODS
+pidnum=25482
+Datastream replacement succeeded for grinnell:20575.                   [success]
+ file = grinnell_25483_MODS
+pidnum=25483
+Datastream replacement succeeded for grinnell:25482.                   [success]
+Datastream replacement succeeded for grinnell:25483.                   [success]
+ file = grinnell_25484_MODS
+pidnum=25484
+Datastream replacement succeeded for grinnell:25484.                   [success]
+ file = grinnell_25493_MODS
+pidnum=25493
+Datastream replacement succeeded for grinnell:25493.                   [success]
+ file = grinnell_25494_MODS
+pidnum=25494
+Datastream replacement succeeded for grinnell:25494.                   [success]
+ file = grinnell_25495_MODS
+pidnum=25495
+Datastream replacement succeeded for grinnell:25495.                   [success]
+ file = grinnell_25497_MODS
+pidnum=25497
+Datastream replacement succeeded for grinnell:25497.                   [success]
+ file = grinnell_25510_MODS
+pidnum=25510
+Datastream replacement succeeded for grinnell:25510.                   [success]
+ file = grinnell_3246_MODS
+pidnum=3246
+Datastream replacement succeeded for grinnell:3246.                    [success]
+```
+
+Note that some replacment operations clearly took longer than others, and in some cases they report back in the "wrong order", but it looks like all the legitimate object MODS records got updated.  It's also worth noting that after import each processed `.xml` file name is changed to `.xml.used` so that the file is not processed again unless its name is modified beforehand.  Now to check up on one or two of them...
+
+## Test Results
+
+Clearly, the changes I made to the four MODS `.xml` files are present in the repository.  However, they are NOT reflected in the objects' MODS display, presumably because _Digital.Grinnell_ uses a _Solr_ display of MODS data, and _Solr_ has not been re-indexed.
+
+So, I elected to validate and enable an old feature of my [IDU - Islandora Drush Utilities](https://github.com/DigitalGrinnell/idu) module, the "DCTransform" command. Coupling "DCTransform" with the previously validated "SelfTransform" command and the "--reorder" option appears clean things up as expected.
+
+```
+docker exec -w /var/www/html/sites/default/ isle-apache-ld drush cc all
+```
+
+```
+Apache=isle-apache-ld
+docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 iduF grinnell:25497 DCTransform
+docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 iduF grinnell:25497 SelfTransform --reorder
+docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 iduF grinnell:3246 DCTransform
+docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 iduF grinnell:3246 SelfTransform --reorder
+docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 iduF grinnell:11569 DCTransform
+docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 iduF grinnell:11569 SelfTransform --reorder
+docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 iduF grinnell:20575 DCTransform
+docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 iduF grinnell:20575 SelfTransform --reorder
+docker exec -w /var/www/html/sites/default/ isle-apache-ld drush cc all
+```
+
+# Woot!
+
+It works. However, it's worth noting that changes made to objects' `title` field were NOT reflected in the object titles, presumably because the title becomes a "property" of the object itself, held apart from either the MODS or DC datastreams.
+
+Next step, repeat the installation in production and export ALL of the objects in preparation for review and editing.
+
+# Exporting By Collection
+
+After the successful tests docmented above, I repeated this process for _Digital.Grinnell_ production on host _DGDocker1_.  The export worked nicely; however, the process produces so many _MODS_ .xml files (9,084 is the count) that I can't easily work with them, there are too many to "glob" using a single wildcard spec.  So, I'm going to try to formulate an export that isolates objects into their primary collections.  A test of this process on my local/dev instance of _ISLE_ looks likes this:
+
+```
+Collection=jimmy-ley
+Apache=isle-apache-ld
+Target=/tmp
+docker exec -w ${Target} ${Apache} mkdir -p grinnell/${Collection}
+docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 islandora_datastream_export --export_target=${Target}/grinnell/${Collection} --query=RELS_EXT_isMemberOfCollection_uri_mlt:\"info:fedora/grinnell:${Collection}\" --dsid=MODS
+```
+
+## In Production
+
+The same export in production on _DGDocker1_ looks like this:
+
+```
+Collection=jimmy-ley
+Apache=isle-apache-dg
+Target=/utility-scripts
+docker exec -w ${Target} ${Apache} mkdir -p grinnell/${Collection}
+docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 islandora_datastream_export --export_target=${Target}/grinnell/${Collection} --query=RELS_EXT_isMemberOfCollection_uri_mlt:\"info:fedora/grinnell:${Collection}\" --dsid=MODS
+```
+
+This command set produced a total of 210 MODS .xml files in the _Apache_ container's new `/utility-scripts/grinnell/jimmy-ley` directory.  All that's required to repeat it for other collections in the `grinnell:` namespace is to repeat the command set changing the value of `Collection=` as needed.
+
+There is a list of ALL _Digital.Grinnell_ collections in [this public gist](https://gist.github.com/McFateM/5bd7e5b0fa5d2928b2799d039a4c0fab), making it possible to loop the aforementioned command set like so:
+
+```
+Apache=isle-apache-dg
+Target=/utility-scripts
+wget https://gist.github.com/McFateM/5bd7e5b0fa5d2928b2799d039a4c0fab/raw/collections.list
+while read collection
+do
+    q=RELS_EXT_isMemberOfCollection_uri_mlt:*${collection}
+    echo Processing collection '${collection}'; Query is '${q}'...
+    docker exec -w ${Target} ${Apache} mkdir -p exported-MODS/${collection}
+    docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 islandora_datastream_export --export_target=${Target}/exported-MODS/${Collection} --query=${q} --dsid=MODS
+done < collections.list
+```
+
+# Next Steps
+
+I'll open another post so that I can document the process of collecting and processing all the dumped _MODS_ records presumably using [OpenRefine](https://openrefine.org/).
+
+# rsync - Fetch All mods.csv
+
+With the Grinnell College _//STORAGE_ server mounted to iMac _MA8660_ you can run the following `rsync` command to fetch all of the latest _mods.csv_ files and directories after they have been created using the `Map-MODS-to-MASTER` Python 3 script on _MA8660_...
+
+```
+╭─mark@Marks-Mac-Mini ~/GitHub/lando-d8/sites/default/files/collections ‹8.6.x*›
+╰─$ rsync -aruvi --exclude '*.xml' --exclude '*.log' --exclude '*.remainder' --progress markmcfate@132.161.216.145:/Volumes/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/. ~/GitHub/lando-d8/sites/default/files/collections/.
+```
+
+The command alone is:
+
+```
+rsync -aruvi --exclude '*.xml' --exclude '*.log' --exclude '*.remainder' --progress markmcfate@132.161.216.145:/Volumes/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/. ~/GitHub/lando-d8/sites/default/files/collections/.
+```
+
+# rsync - Pushing New .xml Files Back for Update
+
+Once a new set of .xml files has been generated, they need to be copied to node _DGDocker1_ so they can be imported into the _Digital Grinnell_ repository. Specifically, they should be copied to a collection-named directory at _dgdocker1.grinnell.edu:/opt/ISLE/persistent/html/sites/default/files/DG-Metadata-Review-2020-r1/Ready-to-Process/_.  The _social-justice_ collection, for example, would occupy _dgdocker1.grinnell.edu:/opt/ISLE/persistent/html/sites/default/files/DG-Metadata-Review-2020-r1/Ready-to-Process/social-justice_.
+
+An example for the _social-justice_ collection is shown here:
+
+```
+╭─mark@Marks-Mac-Mini ~/GitHub/lando-d8/sites/default/files/collections ‹8.6.x*›
+╰─$ collection=social-justice
+╭─mark@Marks-Mac-Mini ~/GitHub/lando-d8/sites/default/files/collections ‹8.6.x*›
+╰─$ rsync -aruvi --progress ~/GitHub/lando-d8/sites/default/files/collections/${collection}/. islandora@dgdocker1.grinnell.edu:/opt/ISLE/persistent/html/sites/default/files/DG-Metadata-Review-2020-r1/Ready-to-Process/${collection}/.
+```
+
+You must define the _collection_ variable before running the _rsync_ command and both commands are:
+
+```
+collection=
+rsync -aruvi --progress ~/GitHub/lando-d8/sites/default/files/collections/${collection}/. islandora@dgdocker1.grinnell.edu:/opt/ISLE/persistent/html/sites/default/files/DG-Metadata-Review-2020-r1/Ready-to-Process/${collection}/.
+```
+
+# Importing the New .xml Using Drush
+
+
+--->
+<!--     processes the aforementioned _mods-via-twig_ command in my _mods-via-twig_ local platform to generate updated `grinnell_<PID>_MODS.xml` files on a collection-by-collection basis.
+9. Copying via `rsync` of all generated `grinnell_<PID>_MODS.xml` files back to _Digital Grinnell_ at _dgdocker1.grinnell.edu:/opt/ISLE/_.
+10. Execution of _islandora\_datastream\_replace_ in the _isle-apache-dg_ container on the production instance of _Digital Grinnell_ at _dgdocker1.grinnell.edu:/opt/ISLE/_.
+11. Follow-up to reindex modified objects in _Solr_ and generate new _DC_ (_Dublin Core_) datastreams.
+
+Note that parts 5, 7, 8, 9, and 10 must be repeated, but parts 1-4 and part 6 were performed only once.
+
+   1. Installation of _Drush_ modules _islandora\_datastream\_export_ and _islandora\_datastream\_replace_ in the _isle-apache-dg_ container on the production instance of _Digital Grinnell_ at _dgdocker1.grinnell.edu:/opt/ISLE/_.
+   2. Execution of the _islandora\_datastream\_export_ command inside the aforementioned _isle-apache-dg_ container to generate individual `grinnell_<PID>_MODS.xml` exports for all _Digital Grinnell_ objects that have a _MODS_ datastream.
+   3. Copying of exported `grinnell_<PID>_MODS.xml` files to shared _//STORAGE_ space to make them accessible on iMac _MA8660_.
+   4. Creation and execution of the _Map-MODS-to-MASTER_ _Python 3_ script on iMac _MA8660_ to create a `<collection>.csv` and accompanying `.log` and `.remainder` files for each _Digital Grinnell_ collection.
+   5. Editing `<collection>.csv` files found in subdirectories of `//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1` to conform with documented metadata practices.
+   6. Creation of the _Drupal 8_ local _Lando_-based _mods-via-twig_ platform and the new _mods-via-twig_ _Drush_ command on my MacBook Air _MA7053_.
+   7. Copying via `rsync` of all modified `<collection>.csv` files from `//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1` to my local _mods-via-twig_ platform.
+   8. Execution of the aforementioned _mods-via-twig_ command in my _mods-via-twig_ local platform to generate updated `grinnell_<PID>_MODS.xml` files on a collection-by-collection basis.
+   9. Copying via `rsync` of all generated `grinnell_<PID>_MODS.xml` files back to _Digital Grinnell_ at _dgdocker1.grinnell.edu:/opt/ISLE/_.
+  10. Execution of _islandora\_datastream\_replace_ in the _isle-apache-dg_ container on the production instance of _Digital Grinnell_ at _dgdocker1.grinnell.edu:/opt/ISLE/_.
+  11. Follow-up to reindex modified objects in _Solr_ and generate new _DC_ (_Dublin Core_) datastreams.
+
+Note that parts 5, 7, 8, 9, and 10 must be repeated, but parts 1-4 and part 6 were performed only once.
+
+## Part 1 - Installing _islandora\_datastream..._ Modules
+
+To help implement this process efficiently and effectively I'm first turning to "[Exporting, Editing, & Replacing MODS Datastreams](https://github.com/calhist/documentation/wiki/Exporting,-Editing,-&-Replacing-MODS-Datastreams)", a workflow developed by the good folks at [The California Historical Society](https://californiahistoricalsociety.org/).  I'll initiate the workflow with installation of two _Drush_ tools on my [local/development instance](https://dg.localdomain) of [ISLE](https://github.com/Islandora-Collaboration-Group/ISLE) on my Mac workstation.
+
+The command line process in my local host/workstation terminal looks like this:
+
+```
+Apache=isle-apache-ld
+docker exec -w /var/www/html/sites/all/modules/islandora/ ${Apache} git clone https://github.com/Islandora-Labs/islandora_datastream_exporter.git --recursive
+docker exec -w /var/www/html/sites/all/modules/islandora/ ${Apache} git clone https://github.com/pc37utn/islandora_datastream_replace.git --recursive
+docker exec -w /var/www/html/sites/all/modules/islandora/ ${Apache} chown -R islandora:www-data *
+docker exec -w /var/www/html/sites/default ${Apache} drush en islandora_datastream_exporter islandora_datastream_replace -y
+docker exec -w /var/www/html/sites/default ${Apache} drush cc drush -y
+```
+
+Local tests of these commands were successful so I proceeded to install them in the production instance of _Digital Grinnell_ at _dgdocker1.grinnell.edu_ and only had to change the definition of `Apache` to do so:
+
+```
+Apache=isle-apache-dg
+```
+
+## Part 2a - Execution of _islandora\_datastream\_export_ to Dump MODS Datastreams
+
+I've elected to test the export of all of the "grinnell:" namespace objects to my _private:_ filesystem which resides on my host at `~/GitHub/dg-isle/private` and maps into my _Apache_ container as `/var/www/private`.  The commands are:
+
+```
+Apache=isle-apache-ld
+docker exec -w /var/www/ ${Apache} chown -R islandora:www-data private
+docker exec -w /var/www/ ${Apache} chmod 775 private
+docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 islandora_datastream_export --export_target=/var/www/private --query=PID:grinnell* --dsid=MODS
+```
+
+The last command in the above set populated the _export\_target_ directory mentioned above, and the result looked like this:
+
+```
+╭─mark@Marks-Mac-Mini ~/GitHub/dg-isle/private ‹master*›
+╰─$ ls -alh
+total 128
+drwxrwxr-x@ 14 mark  staff   448B Mar 17 15:37 .
+drwxr-xr-x  30 mark  staff   960B Mar 12 19:40 ..
+-rw-r--r--@  1 mark  staff   675B Mar 10 14:01 .htaccess
+-rw-r--r--   1 mark  staff   2.4K Mar 17 15:48 grinnell_11569_MODS.xml
+-rw-r--r--   1 mark  staff   2.5K Mar 17 15:50 grinnell_20575_MODS.xml
+-rw-r--r--   1 mark  staff   7.8K Mar 17 15:38 grinnell_25482_MODS.xml
+-rw-r--r--   1 mark  staff   7.4K Mar 17 15:38 grinnell_25483_MODS.xml
+-rw-r--r--   1 mark  staff   7.3K Mar 17 15:38 grinnell_25484_MODS.xml
+-rw-r--r--   1 mark  staff   1.3K Mar 17 15:38 grinnell_25493_MODS.xml
+-rw-r--r--   1 mark  staff   1.3K Mar 17 15:38 grinnell_25494_MODS.xml
+-rw-r--r--   1 mark  staff   1.1K Mar 17 15:38 grinnell_25495_MODS.xml
+-rw-r--r--   1 mark  staff   1.3K Mar 17 15:38 grinnell_25497_MODS.xml
+-rw-r--r--   1 mark  staff   4.8K Mar 17 15:38 grinnell_25510_MODS.xml
+-rw-r--r--   1 mark  staff   2.7K Mar 17 15:48 grinnell_3246_MODS.xml
+```
+
+Note that objects, like collections in the "grinnell:" namespace, which have no MODS datastream were reported as such, and were automatically excluded from populating the _export\_target_ directory.
+
+## Part 2b - Local Export Was Incomplete, but Corrected in Production
+
+Unfortunately, the export results in my local test were woefully incomplete... NONE of the child objects with a compound parent were exported.  I'm still not entirely sure why child obejcts were omitted since the query I used should have captured all objects.  In testing I did find that this seems to be a flaw in the _islandora\_datastream\_export_ command, and specifically in its implementation of any _Solr_ query.
+
+Fortunately, the aforementioned command also has a _SPARQL_ query option, and after some trial-and-error I got it to work properly.  To do so I created an `export.sh` _bash_ script, shown below, and used it on _dgdocker1.grinnell.edu_ like so:
+
+```export.sh
+Apache=isle-apache-dg
+Target=/utility-scripts
+# wget https://gist.github.com/McFateM/5bd7e5b0fa5d2928b2799d039a4c0fab/raw/collections.list
+while read collection
+do
+    cp -f ri-query.txt query.sparql
+    sed -i 's|COLLECTION|'${collection}'|g' query.sparql
+    docker cp query.sparql ${Apache}:${Target}/${collection}.sparql
+    rm -f query.sparql
+    q=${Target}/${collection}.sparql
+    echo Processing collection '${collection}'; Query is '${q}'...
+    docker exec -w ${Target} ${Apache} mkdir -p exported-MODS/${collection}
+    docker exec -w /var/www/html/sites/default/ ${Apache} drush -u 1 islandora_datastream_export --export_target=${Target}/exported-MODS/${collection} --query=${q} --query_type=islandora_datastream_exporter_ri_query  --dsid=MODS
+done < collections.list
+```
+
+In the case of the _Digital Grinnell_ _social-justice_ collection, for example, this script produced 32 _.xml_ files, the correct number.
+
+## Part 3 - Copying Exported `grinnell_<PID>_MODS.xml` Files to _//STORAGE_
+
+I used a short series of `docker cp` and `rsync` commands, executed on _dgdocker1,grinnell.edu_ and _MA8660_, to copy the `grinnell_<PID>_MODS.xml` files from `isle-apache-dg:/utility-scripts/exported-MODS/*` to `//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/`.
+-->
+<p>And that&rsquo;s a wrap.  Until next time, stay safe and wash your hands! 😄</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

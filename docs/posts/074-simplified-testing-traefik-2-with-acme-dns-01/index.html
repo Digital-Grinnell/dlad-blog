@@ -1,0 +1,357 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>Simplified Testing of Traefik 2 with ACME DNS-01 Challenge // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Simplified Testing of Traefik 2 with ACME DNS-01 Challenge"/>
+<meta name="twitter:description" content="This post is a simplified and focused follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge.
+Simplify Today, 19-May-2020, I&rsquo;m going to take a shot at simplifying my testing on dgdocker3.grinnell.edu by removing unnecessary things and consolidating as much as possible to reduce clutter in the logs and get right to the point. I&rsquo;m also going to have a look to see if there are additional logs that can tell give me more detail. Everything used here, and everything that takes place here, will be found in a new directory, /opt/containers/test on DGDocker3."/>
+
+    <meta property="og:title" content="Simplified Testing of Traefik 2 with ACME DNS-01 Challenge" />
+<meta property="og:description" content="This post is a simplified and focused follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge.
+Simplify Today, 19-May-2020, I&rsquo;m going to take a shot at simplifying my testing on dgdocker3.grinnell.edu by removing unnecessary things and consolidating as much as possible to reduce clutter in the logs and get right to the point. I&rsquo;m also going to have a look to see if there are additional logs that can tell give me more detail. Everything used here, and everything that takes place here, will be found in a new directory, /opt/containers/test on DGDocker3." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-05-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-19T00:00:00+00:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
+          Content Updated: 2021-Sep-30 08:02 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/'>074 simplified testing traefik 2 with acme DNS 01</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Simplified Testing of Traefik 2 with ACME DNS-01 Challenge</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          3 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          May 19, 2020
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign">
+  <title>at-sign</title>
+  <circle cx="12" cy="12" r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+</svg> Mark A. McFate</strong>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/docker/">docker</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/traefik/">Traefik</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/acme/">ACME</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/dns-01/">DNS-01</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/docker-traefik2-host/">docker-traefik2-host</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/docker-compose/">docker-compose</a></div></div>
+    </header>
+    <div class="post-content">
+      <p>This post is a simplified and focused follow-up to <a href="https://digital-grinnell.github.io/dlad-blog/en/posts/071-dockerized-traefik-using-acme-dns-01/">Dockerized Traefik Host Using ACME DNS-01 Challenge</a>.</p>
+<h2 id="simplify">Simplify</h2>
+<p>Today, 19-May-2020, I&rsquo;m going to take a shot at simplifying my testing on <code>dgdocker3.grinnell.edu</code> by removing unnecessary things and consolidating as much as possible to reduce clutter in the logs and get right to the point. I&rsquo;m also going to have a look to see if there are additional logs that can tell give me more detail.  <strong>Everything</strong> used here, and everything that takes place here, will be found in a new directory, <code>/opt/containers/test</code> on <em>DGDocker3</em>.</p>
+<h2 id="key-files">Key Files</h2>
+<p>The key files involved in these tests are presented in subsections here.</p>
+<h3 id="testdocker-composeyml">./test/docker-compose.yml</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3&#39;</span>
+
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">traefik</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">traefik:2.2.1</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">traefik</span>
+    <span style="color:#f92672">hostname</span>: <span style="color:#ae81ff">traefik</span>
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+    <span style="color:#f92672">security_opt</span>:
+      - <span style="color:#66d9ef">no</span>-<span style="color:#ae81ff">new-privileges:true</span>
+    <span style="color:#f92672">networks</span>:
+      - <span style="color:#ae81ff">proxy</span>
+    <span style="color:#f92672">ports</span>:
+      - <span style="color:#ae81ff">80</span>:<span style="color:#ae81ff">80</span>
+      - <span style="color:#ae81ff">443</span>:<span style="color:#ae81ff">443</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">/etc/localtime:/etc/localtime:ro</span>
+      - <span style="color:#ae81ff">/var/run/docker.sock:/var/run/docker.sock:ro</span>
+      - <span style="color:#ae81ff">./data/traefik.yml:/traefik.yml:ro</span>
+      - <span style="color:#ae81ff">./data/acme.json:/acme.json</span>
+    <span style="color:#f92672">labels</span>:
+      - <span style="color:#e6db74">&#34;traefik.enable=true&#34;</span>
+      <span style="color:#75715e"># next 4 lines...universal http --&gt; https redirect per https://community.containo.us/t/a-global-http-https-redirection/864/3</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.http-catchall.rule=hostregexp(`{host:[a-z-.]+}`)&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.http-catchall.entrypoints=http&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.http-catchall.middlewares=redirect-to-https&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https&#34;</span>
+      <span style="color:#75715e"># now the Traefik-specific dashboard stuff</span>
+      - <span style="color:#e6db74">&#34;traefik.http.middlewares.traefik-auth.basicauth.users=admin:$$2y$$05$$pJEzHJBzfoYYS7/hGAedcOP8XdsqNXE7j.LHFBVjueASOqOvvjGOy&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.traefik-secure.entrypoints=https&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.traefik-secure.rule=Host(`${HOST}`) &amp;&amp; (PathPrefix(`/api`) || PathPrefix(`/dashboard`))&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.traefik-secure.middlewares=traefik-auth&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.traefik-secure.tls=true&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.traefik-secure.tls.certresolver=http&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.traefik-secure.service=api@internal&#34;</span>
+
+  <span style="color:#f92672">landing</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mcfatem/dgdocker3-landing:latest</span>
+    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">landing-page</span>
+    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+    <span style="color:#f92672">security_opt</span>:
+      - <span style="color:#66d9ef">no</span>-<span style="color:#ae81ff">new-privileges:true</span>
+    <span style="color:#f92672">networks</span>:
+      - <span style="color:#ae81ff">proxy</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">/etc/localtime:/etc/localtime:ro</span>
+      - <span style="color:#ae81ff">/var/run/docker.sock:/var/run/docker.sock:ro</span>
+      - <span style="color:#ae81ff">./data:/data</span>
+    <span style="color:#f92672">labels</span>:
+      - <span style="color:#e6db74">&#34;traefik.enable=true&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.docker.network=proxy&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.landing-secure.entrypoints=https&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.landing-secure.rule=Host(`${HOST}`)&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.landing-secure.tls=true&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.landing-secure.tls.certresolver=http&#34;</span>
+      - <span style="color:#e6db74">&#34;traefik.http.routers.landing-secure.service=landing-test&#34;</span>
+      - <span style="color:#e6db74">&#34;com.centurylinklabs.watchtower.enable=true&#34;</span>
+
+<span style="color:#f92672">networks</span>:
+  <span style="color:#f92672">proxy</span>:
+    <span style="color:#f92672">external</span>: <span style="color:#66d9ef">true</span>
+</code></pre></div><h3 id="testdestroysh">./test/destroy.sh</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span>
+rm -f /opt/containers/test/data/acme.json
+<span style="color:#75715e">#</span>
+docker stop <span style="color:#66d9ef">$(</span>docker ps -q<span style="color:#66d9ef">)</span>;
+docker rm -v <span style="color:#66d9ef">$(</span>docker ps -qa<span style="color:#66d9ef">)</span>;
+<span style="color:#75715e"># docker image rm $(docker image ls -q)</span>
+docker system prune --force
+<span style="color:#75715e">#</span>
+touch /opt/containers/test/data/acme.json
+chmod <span style="color:#ae81ff">600</span> /opt/containers/test/data/acme.json
+</code></pre></div><h3 id="testrestartsh">./test/restart.sh</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span>
+docker network create proxy
+cd /opt/containers/test
+docker-compose up -d; docker-compose logs
+<span style="color:#75715e">#</span>
+echo <span style="color:#e6db74">&#34;Dumping traefik.log...&#34;</span>
+docker exec -it traefik cat /var/log/traefik.log
+</code></pre></div><h3 id="testdatatraefikyml-obfuscated">./test/data/traefik.yml (obfuscated)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">api</span>:
+  <span style="color:#f92672">dashboard</span>: <span style="color:#66d9ef">true</span>
+
+<span style="color:#f92672">entryPoints</span>:
+  <span style="color:#f92672">http</span>:
+    <span style="color:#f92672">address</span>: <span style="color:#e6db74">&#34;:80&#34;</span>
+  <span style="color:#f92672">https</span>:
+    <span style="color:#f92672">address</span>: <span style="color:#e6db74">&#34;:443&#34;</span>
+
+<span style="color:#f92672">providers</span>:
+  <span style="color:#f92672">docker</span>:
+    <span style="color:#f92672">endpoint</span>: <span style="color:#e6db74">&#34;unix:///var/run/docker.sock&#34;</span>
+    <span style="color:#f92672">exposedByDefault</span>: <span style="color:#66d9ef">false</span>
+
+<span style="color:#75715e">### for HTTP-01 challenge</span>
+<span style="color:#75715e">#certificatesResolvers:</span>
+<span style="color:#75715e">#  http:</span>
+<span style="color:#75715e">#    acme:</span>
+<span style="color:#75715e">#      # - Uncomment caServer line below to run on the staging let&#39;s encrypt server.  Leave comment to go to prod.</span>
+<span style="color:#75715e">#      #caServer: https://acme-staging-v02.api.letsencrypt.org/directory</span>
+<span style="color:#75715e">#      email: digital@grinnell.edu</span>
+<span style="color:#75715e">#      storage: acme.json</span>
+<span style="color:#75715e">#      httpChallenge:</span>
+<span style="color:#75715e">#        entryPoint: http</span>
+
+<span style="color:#75715e">## for DNS-01 challenge</span>
+<span style="color:#f92672">certificatesResolvers</span>:
+  <span style="color:#f92672">http</span>:
+    <span style="color:#f92672">acme</span>:
+      <span style="color:#75715e"># - Uncomment caServer line below to run on the staging Let&#39;s Encrypt server.  Leave comment to go to prod.</span>
+      <span style="color:#f92672">caServer</span>: <span style="color:#ae81ff">https://acme-staging-v02.api.letsencrypt.org/directory</span>
+      <span style="color:#f92672">email</span>: <span style="color:#ae81ff">digital@grinnell.edu</span>
+      <span style="color:#f92672">storage</span>: <span style="color:#ae81ff">acme.json</span>
+      <span style="color:#f92672">dnsChallenge</span>:
+        <span style="color:#f92672">provider</span>: <span style="color:#ae81ff">azure</span>
+        <span style="color:#f92672">delayBeforeCheck</span>: <span style="color:#ae81ff">0</span>
+
+<span style="color:#f92672">environment</span>:
+  <span style="color:#f92672">AZURE_CLIENT_ID</span>: <span style="color:#e6db74">&#34;c537...d99&#34;</span>
+  <span style="color:#f92672">AZURE_CLIENT_SECRET</span>: <span style="color:#e6db74">&#34;6a2...154&#34;</span>
+  <span style="color:#f92672">AZURE_SUBSCRIPTION_ID</span>: <span style="color:#e6db74">&#34;a55...c4f&#34;</span>
+  <span style="color:#f92672">AZURE_TENANT_ID</span>: <span style="color:#e6db74">&#34;524...807&#34;</span>
+  <span style="color:#f92672">AZURE_DNS_ZONE</span>: <span style="color:#e6db74">&#34;lev...nfo&#34;</span>
+  <span style="color:#f92672">AZURE_RESOURCE_GROUP</span>: <span style="color:#e6db74">&#34;Net...ces&#34;</span>
+  <span style="color:#75715e">#</span>
+  <span style="color:#75715e">#AZURE_CLIENT_ID: &#34;${AZURE_CLIENT_ID}&#34;</span>
+  <span style="color:#75715e">#AZURE_CLIENT_SECRET: &#34;${AZURE_CLIENT_SECRET}&#34;</span>
+  <span style="color:#75715e">#AZURE_SUBSCRIPTION_ID: &#34;${AZURE_SUBSCRIPTION_ID}&#34;</span>
+  <span style="color:#75715e">#AZURE_TENANT_ID: &#34;${AZURE_TENANT_ID}&#34;</span>
+  <span style="color:#75715e">#AZURE_DNS_ZONE: &#34;${AZURE_DNS_ZONE}&#34;</span>
+  <span style="color:#75715e">#AZURE_RESOURCE_GROUP: &#34;${AZURE_RESOURCE_GROUP}&#34;</span>
+
+<span style="color:#f92672">log</span>:
+  <span style="color:#f92672">level</span>: <span style="color:#ae81ff">DEBUG</span>
+  <span style="color:#f92672">filePath</span>: <span style="color:#e6db74">&#34;/var/log/traefik.log&#34;</span>
+</code></pre></div><h3 id="testdataconfigyml">./test/data/config.yml</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">http</span>:
+  <span style="color:#f92672">middlewares</span>:
+    <span style="color:#f92672">https-redirect</span>:
+      <span style="color:#f92672">redirectScheme</span>:
+        <span style="color:#f92672">scheme</span>: <span style="color:#ae81ff">https</span>
+</code></pre></div><h2 id="initial-test---failed">Initial Test - Failed</h2>
+<p>My initial test was a simplified repeat of <a href="https://digital-grinnell.github.io/dlad-blog/en/posts/071-dockerized-traefik-using-acme-dns-01/#test-7---dgdocker3-test-with-staging-and-dns-01">Test 7</a>. The result was much like I documented in that previous test, with no certs, and no indication of problems other than the mysterious &ldquo;TLS handshake error&rdquo; that I reported before. So, time to make some changes and see what happens.</p>
+<h2 id="changing-the-name-of-the-certresolver">Changing the Name of the CertResolver</h2>
+<p>In all my previous tests there are lots of instances of &ldquo;http&rdquo;, and most notably, it&rsquo;s the name given to the <em>certresolver</em> regardless if this is an HTTP-01 or DNS-01 challenge. Since my simplified tests all focus on DNS-01 I&rsquo;m changing that <em>certresolver</em> name to &ldquo;dns&rdquo;.</p>
+<p>This change was made in <code>./test/docker-compose.yml</code> lines 22 and 43, and line 30 of <code>./test/data/traefik.yml</code>. No other files or lines were modified.</p>
+<h3 id="test-s1">Test S1</h3>
+<p>The &ldquo;S&rdquo; in &ldquo;S1&rdquo; distinguishes this as a &ldquo;Simplified&rdquo; test. To run this test I executed the following, as <em>root</em>, on <code>dgdocker3.grinnell.edu</code>:</p>
+<pre><code>cd /opt/containers/test
+./destroy.sh
+./restart.sh
+grep Certificates data/acme.json
+</code></pre><p>The outcome is the same as before, both the <em>Traefik</em> dashboard (<a href="https://dgdocker3.grinnell.edu/dashboard/">https://dgdocker3.grinnell.edu/dashboard/</a>) and landing page (<a href="https://dgdocker3.grinnell.edu/">https://dgdocker3.grinnell.edu/</a>) are working, but without valid certs so browser security exceptions are required.  The output from this test can be found in <a href="https://gist.github.com/McFateM/36ade6742e90922d8a484ce23f07998c">this gist</a>.</p>
+<p>And that&rsquo;s a good place to break, but I&rsquo;ll be baaaaak. 😄</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

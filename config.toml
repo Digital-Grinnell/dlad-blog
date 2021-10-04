@@ -7,6 +7,8 @@ baseURL = "https://digital-grinnell.github.io/dlad-blog/"
 # baseURL = "https://blog.grinnell.rocks/"
 
 title = "The Grinnell College Digital Library Application Developer's Blog"
+publishDir = "docs"
+
 #themesDir = "../.."
 themesDir = "themes"
 # theme = ["hugo-search-fuse-js", "hugo-theme-m10c"]

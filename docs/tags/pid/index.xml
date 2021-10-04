@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PID on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/pid/</link>
+    <description>Recent content in PID on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 25 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/pid/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Add a Collection to Digital.Grinnell</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/084-how-to-add-a-collection-to-digital-grinnell/</link>
+      <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/084-how-to-add-a-collection-to-digital-grinnell/</guid>
+      <description>So, you want to add a new collection or sub-collection (they are really the same thing) to Digital.Grinnell, eh? It&amp;rsquo;s easy, but there are some things to consider before I show you how.
+Collection Guidelines There are no &amp;ldquo;formal&amp;rdquo; guidelines for the creation of a collection or sub-collection in Digital.Grinnell, but I can think of a couple &amp;ldquo;informal&amp;rdquo; things to consider.
+  Are there or will there ever be enough objects, old and/or new, with something in common to warrant a new collection?</description>
+    </item>
+    
+  </channel>
+</rss>

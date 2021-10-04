@@ -1,0 +1,244 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>Moving Omeka-S Data to NFS // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Moving Omeka-S Data to NFS"/>
+<meta name="twitter:description" content="Grinnell&rsquo;s dockerized version of Omeka-S has been running for several weeks now, and we recently ran out of disk space for object data on the host, a CentOS node we named DGDocker2. My posts 041, Configuring DGDocker2 and 042, My dockerized-server Config address the original configuration of DGDocker2 in detail.
+Omeka-S is configured on DGDocker2 to reside in /opt/omeka-s-docker, and inside that directory is a subdirectory named volume. The portions of the application stack that deliver Omeka-S are configured largely in /opt/omeka-s-docker/docker-compose."/>
+
+    <meta property="og:title" content="Moving Omeka-S Data to NFS" />
+<meta property="og:description" content="Grinnell&rsquo;s dockerized version of Omeka-S has been running for several weeks now, and we recently ran out of disk space for object data on the host, a CentOS node we named DGDocker2. My posts 041, Configuring DGDocker2 and 042, My dockerized-server Config address the original configuration of DGDocker2 in detail.
+Omeka-S is configured on DGDocker2 to reside in /opt/omeka-s-docker, and inside that directory is a subdirectory named volume. The portions of the application stack that deliver Omeka-S are configured largely in /opt/omeka-s-docker/docker-compose." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/054-moving-omeka-s-data-to-nfs/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-11-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-11-15T16:38:20-05:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
+          Content Updated: 2021-Sep-30 08:02 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/054-moving-omeka-s-data-to-nfs/'>054 moving omeka s data to nfs</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Moving Omeka-S Data to NFS</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          2 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Nov 13, 2019
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: Nov 15, 2019 - 16:38
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign">
+  <title>at-sign</title>
+  <circle cx="12" cy="12" r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+</svg> Mark A. McFate</strong>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/omeka-s/">Omeka-S</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/nfs/">NFS</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/backup/">backup</a></div></div>
+    </header>
+    <div class="post-content">
+      <p>Grinnell&rsquo;s dockerized version of <em>Omeka-S</em> has been running for several weeks now, and we recently ran out of disk space for object data on the host, a <em>CentOS</em> node we named <em>DGDocker2</em>. My posts 041, <a href="https://static.grinnell.edu/blogs/McFateM/posts/041-configuring-dgdocker2/">Configuring DGDocker2</a> and 042, <a href="https://static.grinnell.edu/blogs/McFateM/posts/042-my-dockerized-server-config/">My dockerized-server Config</a> address the original configuration of <em>DGDocker2</em> in detail.</p>
+<p><em>Omeka-S</em> is configured on <em>DGDocker2</em> to reside in <code>/opt/omeka-s-docker</code>, and inside that directory is a subdirectory named <code>volume</code>.  The portions of the application stack that deliver <em>Omeka-S</em> are configured largely in <code>/opt/omeka-s-docker/docker-compose.yml</code>, and portions of that file related to this discussion include:</p>
+<pre><code>services:
+  ...
+  omeka:
+    ...
+    volumes:
+      - omeka:/var/www/html/volume
+volumes:
+  ...
+  omeka:
+
+</code></pre><p>So, there&rsquo;s a Docker-managed volume named <code>omeka</code> that maps into the <em>omeka</em> container as <code>/var/www/html/volume</code>.  This <code>../volume</code> directory contains two subdirectories, <code>./config</code> and <code>./files</code>.  We are really only interested in <code>./files</code>, but because of the way things are mapped I found it prudent to deal with <code>/opt/omeka-s-docker/volume</code> itself, rather than trying to separate <code>./config</code> from <code>./files</code>.</p>
+<p>The quick and easy solution to change this configuration <strong>did NOT work!</strong>  Consequently, I&rsquo;m hiding that work from public view&hellip;until a long-term solution is found.</p>
+<!--
+The necessary change in mapping involved these steps:
+
+  - Set proper ownership and permission on `/omeka-digital` like so: `chown -R mcfatem:mcfatem /omeka-digital; chmod 755 /omeka-digital`.  
+  - Copy the live data from `/opt/omeka-s-docker/volume` to a new NFS share mounted as `/omeka-digital` like so: `rsync -aruvi /opt/omeka-s-docker/volume/ /omeka-digital/ --progress`.
+  - Bring the stack down using `cd /opt/omeka-s-docker; docker-compose down`.
+  - Move the old directory out of the way like so: `cd /opt/omeka-s-docker; mv -f volume .out-of-the-way.volume`.
+  - Create a symbolic link, as "root", using `cd /opt/omeka-s-docker; ln -s /omeka-digital/volume volume`.
+  - Bring the stack back up using `cd /opt/omeka-s-docker; docker-compose up -d`.
+-->
+<p>Since the quick-fix didn&rsquo;t work, we are going to extend the original system, or &ldquo;root&rdquo;, disk and supplement the stack with some automated &ldquo;backup&rdquo; operations to capture any changes made so that we can eventually roll those into a properly configured and dockerized  <em>Omeka-S</em>.  The backup operations involve the following:</p>
+<p>In the <em>mariadb</em> container, a new script at <code>/daily-script.sh</code> with the following contents:</p>
+<pre><code>#!/bin/bash
+## This is daily-script.sh for the Omeka-S &quot;mariadb&quot; container.
+/usr/bin/mysqldump -u root --password=${MYSQL_ROOT_PASSWORD} omeka &gt; omeka-database-backup.sql
+</code></pre><p>On the <em>DGDocker2</em> host, there&rsquo;s a new script at <code>/opt/omeka-s-docker/daily-backup.sh</code> with contents of:</p>
+<pre><code>#!/bin/bash
+mkdir -p /omeka-digital/temporary
+docker exec mariadb ./daily-script.sh       
+docker cp mariadb:/omeka-database-backup.sql /omeka-digital/temporary/omeka-database-backup.sql
+docker cp omeka:/var/www/html/modules /omeka-digital/temporary
+docker cp omeka:/var/www/html/themes /omeka-digital/temporary
+tar -zcvPf &quot;/omeka-digital/backups/$(date '+%Y-%m-%d').tar.gz&quot; /omeka-digital/temporary --remove-files
+</code></pre><p>And finally, there&rsquo;s a new &ldquo;root&rdquo; <em>crontab</em> entry on <em>DGDocker2</em> of:</p>
+<pre><code>0 18 * * * /opt/omeka-s-docker/daily-backup.sh
+</code></pre><p>The result of all this should be a daily backup of about 17MB saved on the NFS share at <code>/omeka-digital/backups/&lt;today&gt;.tar.gz</code>, where <code>&lt;today&gt;</code> is the current date in a format like <code>2019-11-15</code>.  For example, a test backup run earlier today produced:</p>
+<pre><code>╭─root@dgdocker2 /omeka-digital/backups
+╰─# ll
+total 17M
+-rw-r--r--. 1 root root 17M Nov 15 14:44 2019-11-15.tar.gz
+</code></pre><!--
+A brief visit to https://omeka-s.grinnell.edu/s/MusicalInstruments/page/welcome and some of the associated pages seems to indicate that things are working as they should.  Once this has been confirmed it should be safe to remove `/opt/omeka-s-docker/.out-of-the-way.volume` to free up significant disk space.
+-->
+<p>And that&rsquo;s a wrap.  Until next time&hellip;</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

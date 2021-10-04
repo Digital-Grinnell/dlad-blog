@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Twig on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/twig/</link>
+    <description>Recent content in Twig on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 23 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/twig/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exporting, Editing, &amp; Replacing MODS Datastreams: Technical Details</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/</link>
+      <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/</guid>
+      <description>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
+ A 5-Step Workflow This document is follow-up, with technical details, to Exporting, Editing, &amp;amp; Replacing MODS Datastreams, post 069, in my blog. In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 Grinnell College Libraries review of Digital Grinnell MODS metadata.</description>
+    </item>
+    
+    <item>
+      <title>Exporting, Editing, &amp; Replacing MODS Datastreams</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/069-exporting-editing-replacing-mods-datastreams/</link>
+      <pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/069-exporting-editing-replacing-mods-datastreams/</guid>
+      <description>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
+ The transition to distance learning, social distancing, and more remote work at Grinnell College in the wake of the COVID-19 pandemic may afford GC Libraries an opportunity to do some overdue and necessary metadata cleaning in Digital.</description>
+    </item>
+    
+    <item>
+      <title>Granular ISLE Customization: Installing IMI</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/048-granular-isle-customization-installing-imi/</link>
+      <pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/048-granular-isle-customization-installing-imi/</guid>
+      <description>Granular ISLE Customization     This post is part of a series describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.   An index of all documents in this series is included at the end of Granular ISLE Customization: Series Guidelines.    Goal Statement In this &amp;ldquo;granular&amp;rdquo; post we will install IMI, the Islandora Multi-Importer module, into an existing ISLE instance, for example: https://dg.localdomain/.
+Install the Islandora Multi-Importer (IMI) It&amp;rsquo;s important that we take this step BEFORE other customizations, otherwise the module may not install properly.</description>
+    </item>
+    
+  </channel>
+</rss>

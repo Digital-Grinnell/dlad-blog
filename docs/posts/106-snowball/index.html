@@ -1,0 +1,300 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>SNOWBALL // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="SNOWBALL"/>
+<meta name="twitter:description" content="Digital.Grinnell and a handful of other servers/sites that I deal with crashed on the morning of Thursday, May 16. Really bad timing! I have yet to figure out what happened to trigger the tsunami, but it happened shortly before the college announced successful cut-over to a new emergency alert system. Related? I dunno.
+In any case, on Friday afternoon (yesterday) I got a steroid shot for a nasty sinus condition and my doctor warned that I might not be able to sleep well."/>
+
+    <meta property="og:title" content="SNOWBALL" />
+<meta property="og:description" content="Digital.Grinnell and a handful of other servers/sites that I deal with crashed on the morning of Thursday, May 16. Really bad timing! I have yet to figure out what happened to trigger the tsunami, but it happened shortly before the college announced successful cut-over to a new emergency alert system. Related? I dunno.
+In any case, on Friday afternoon (yesterday) I got a steroid shot for a nasty sinus condition and my doctor warned that I might not be able to sleep well." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/106-snowball/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-05-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-17T13:47:36-05:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
+          Content Updated: 2021-Sep-30 08:02 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/106-snowball/'>106 snowball</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">SNOWBALL</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          8 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          May 15, 2021
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: May 17, 2021 - 13:47
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign">
+  <title>at-sign</title>
+  <circle cx="12" cy="12" r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+</svg> Mark A. McFate</strong>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/java/">Java</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/snowball/">SNOWBALL</a></div></div>
+    </header>
+    <div class="post-content">
+      
+<div class="original"><p>Digital.Grinnell and a handful of other servers/sites that I deal with crashed on the morning of Thursday, May 16.  Really bad timing! I have yet to figure out what happened to trigger the tsunami, but it happened shortly before the college announced successful cut-over to a new emergency alert system.  Related?  I dunno.</p>
+<p>In any case, on Friday afternoon (yesterday) I got a steroid shot for a nasty sinus condition and my doctor warned that I might not be able to sleep well.  I didn&rsquo;t believe her at the time, but at about 4 AM this morning the prophecy came true.</p>
+<p>What follows is my posting to <em>Slack</em> from the ensuing early-morning sleepless rant.</p>
+</div>
+
+<p>Mark M.  4:15 AM
+It’s 4 AM and I can’t sleep, again.  Too many concerns about DGDocker1 and whatever the hell took it and other servers down on Thursday, coupled with the untimely death of our HDL server.  I’m hoping an hour or two of fiddling with things will help resolve this, or at least get things working again, so I can get this out of my head for now.</p>
+<p>Unfortunately, I think my first move is to bring DGDocker1 down, apply pending updates, and bring it back.  However, that means backing it up first in case of catastrophic failure, and that requires using the vSphere Client, a start-to-finish process that will take at least 30 minutes…once I get it started.</p>
+<p>I said unfortunately above because it literally took me 20 minutes to get my MacBook up and running again, connected via VPN, and ready to open the vSphere Client.  When I finally did I was greeted with the security warnings shown below.</p>
+<p>So, it appears that the vSphere Client https cert is not valid, or self-signed.  I can understand why that might be allowed as an exception to our security rules since this client requires VPN or on-campus access, but it’s still a little troubling that we might make an “exception” for the UI into all our server assets.  Maybe I’m just extra sensitive to this because it’s now 4:14 AM.</p>
+<p>Anyway, vSphere is finally open so I’m going to start that backup.  Wish me luck.</p>
+<p>Mark M.  4:23 AM
+Grrrrrrr…… the clucking VPN died halfway through the backup process.  Now 4:23 AM.  Starting over.</p>
+<p>4:27 AM   Discovered that all of my NFS mounts are also dead.  Not surprised based on what I saw on Thursday morning.  I should have seen this coming.</p>
+<p>Mark M.  4:35 AM
+Got things re-mounted and am removing the old, failed snapshots so I can start a new vSphere snapshot now.</p>
+<p>Mark M.  4:58 AM
+In the meantime I think I’ve come up with a new name for GUAVA, er, you know what I mean.   Most developers probably associate GUAVA with coffee, and that might make sense for some folks who love coffee since I think that’s central to the origin of the name…back in 1995.  It will come as no surprise that I hate coffee.  Never liked it, can’t imagine that I ever will.  Begs the question… which came first, my dislike of coffee or my utter loathing of all things GUAVA?  Probably the coffee, but it’s all ancient history so who really knows?</p>
+<p>4:40 AM   Back to the new name train of thought since removing the old snapshots is now 87% complete.</p>
+<p>So I think GUAVA is a rabbit of some kind.  Clearly it lives in a hole, a rabbit hole I think, at least that’s what this feels like because I’m having a difficult time remembering why I started down this path.  Fortunately, I can look back in this Slack thread for reminders.  Gotta love Slack!  Naturally, it is NOT based on GUAVA.  Coincidence?  Nope, it’s modern, not 20th century software.</p>
+<p>4:44 AM  Removal of the failed backup is complete, so time to start another backup.  VPN don’t fail me now!  🤞</p>
+<p>Oh ya, the name….   So the taxonomic name for rabbit is Oryctolagus cuniculus, but that’s a lot to remember, and there are so many different kinds of rabbits, as I’m learning now.  GUAVA  was created by Oracle and Sun Microsystems (are either of them still in business?  does anybody care?) way back in the day.  I believe they were headquartered in Silicon Valley, so it makes sense that GUAVA is a Californian rabbit, a particular breed of domestic rabbit.</p>
+<p>Well, taxonomic names only get longer as we get more specific, so this ain’t gonna help.  ☹️  But wait, Californian rabbits are mostly white with gray/black tips, so, owners of this breed commonly name them “Snowball”.   That sounds like a perfect name to me, it fits!    I’ll try and remember to write it as SNOWBALL just to help folks remember that we’re talking about rabbits, er, I mean GUAVA, er, I mean… you know what I mean.</p>
+<p>4:57 AM and the snapshot is done!  Now give me a minute to look back in this thread and see how this SNOWBALL (see, it works!) started…</p>
+<p>Ok, here we go…</p>
+<p>5:00 AM   With a snapshot in hand I’ve taken DG down.  <code>docker-compose down</code></p>
+<p>Back to vSphere and I’m going to reboot DGDocker1.</p>
+<p>5:01</p>
+<blockquote>
+<p>Restart the guest OS</p>
+</blockquote>
+<p>5:06
+Ok, so that killed the VPN, for good reason this time.  Back at it.  sudo yum update.  Only 253 packages that require updates.  The SNOWBALL is getting bigger.  Gotta love progress, aka complexity… NOT.</p>
+<p>5:08 AM   Almost there, completed update of 252 packages.  Unfortunately that means package cleanup comes next, and it’s really boring.  All of this makes me wonder…  Isn’t all of this the kind of thing you’d think ITS would take care of?  Must be late, what am I thinking?  That ain’t never gonna happen.</p>
+<p>5:10 AM   Update is done.  Now, 🤞 and hope there’s enough disk space to complete sudo yum upgrade.</p>
+<p>5:11
+Made it!  One more vSphere restart just for good measure.</p>
+<p>5:13
+So far, so good.  Reconnect VPN and restoring the NFS mounts…</p>
+<p>Mark M.  5:18 AM
+Hmmm, 2 out of 3 ain’t bad.  Unfortunately, that 3rd one is our bagit storage, our backup failsafe.  Not so good.  I’m seeing this:</p>
+<pre><code>[root@dgdocker1 islandora]# mount -t nfs -o username=mcfatem 132.161.252.72:/nas/LibArchive /libarchive
+mount.nfs: an incorrect mount option was specified
+</code></pre><p>It’s always worked in the past.  ☹️  I guess I’ll proceed without and hope for the best, and open another ticket when all this is done.  What was I doing here again?</p>
+<p>5:20
+Lets just hope this works…</p>
+<pre><code>[islandora@dgdocker1 ~]$ cd /opt/ISLE/dg-isle
+[islandora@dgdocker1 dg-isle]$
+[islandora@dgdocker1 dg-isle]$ docker-compose up -d
+Creating network &quot;dg_isle-internal&quot; with the default driver
+Creating network &quot;dg_isle-external&quot; with the default driver
+Creating isle-proxy-dg     ... done
+Creating isle-mysql-dg     ... done
+Creating isle-portainer-dg ... done
+Creating isle-solr-dg      ... done
+Creating isle-fedora-dg    ... done
+Creating isle-apache-dg    ... done
+Creating isle-images-dg    ... done
+[islandora@dgdocker1 dg-isle]$
+</code></pre><p>Looking good.  Now, is DG back?</p>
+<p>5:20 AM   Not yet.  Wait for it…</p>
+<p>5:21 AM   Yes, DG is back and a search for ley returned 270 records with complete facets.  Always a good test.</p>
+<p>Now, how about SNOWBALL and our HDL server, will it restart now?</p>
+<p>Mark M.  5:29 AM
+🥁</p>
+<pre><code>[root@dgdocker1 dg-isle]# cd /hs/handle-9.2.0
+[root@dgdocker1 handle-9.2.0]# ./bin/hdl-server /hs/svr_1
+Handle.Net Server Software version 9.2.0
+Enter the passphrase for this server's authentication private key:
+Note: Your passphrase will be displayed as it is entered
+
+***The fact that I have to type this phrase every time is the reason why all of this can't be automated, but that's the way SNOWBALL is.  She can't help it , after all, she was born in 1995 and that's just how things worked back in the good 'ol days, I guess***
+
+HTTP handle Request Listener:
+   address: 132.161.132.103
+      port: 8000
+Starting HTTP server...
+UDP handle Request Listener:
+   address: 132.161.132.103
+      port: 2641
+TCP handle Request Listener:
+   address: 132.161.132.103
+      port: 2641
+Starting TCP request handlers...
+Starting UDP request handlers...
+^Z
+[1]+  Stopped                 ./bin/hdl-server /hs/svr_1
+[root@dgdocker1 handle-9.2.0]# bg
+[1]+ ./bin/hdl-server /hs/svr_1 &amp;
+[root@dgdocker1 handle-9.2.0]# exit
+exit
+[islandora@dgdocker1 dg-isle]$ ps -ef | grep handle
+root      24821  24812  8 06:19 ?        00:00:26 /opt/java/openjdk/bin/java -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.awt.headless=true -server -Xmx2048M -Xms512M -XX:+UseG1GC -XX:+UseStringDeduplication -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=70 -Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses=true -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0027 -Dignore.endorsed.dirs= -classpath /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar -Dcatalina.base=/usr/local/tomcat -Dcatalina.home=/usr/local/tomcat -Djava.io.tmpdir=/usr/local/tomcat/temp org.apache.catalina.startup.Bootstrap start
+root      42021  42012 36 06:19 ?        00:01:55 /opt/java/openjdk/bin/java -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.awt.headless=true -server -Xmx4096M -Xms1024M -XX:+UseG1GC -XX:+UseStringDeduplication -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=70 -Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses=true -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0027 -Dignore.endorsed.dirs= -classpath /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar -Dcatalina.base=/usr/local/tomcat -Dcatalina.home=/usr/local/tomcat -Djava.io.tmpdir=/usr/local/tomcat/temp org.apache.catalina.startup.Bootstrap start
+root      59454  59443  9 06:20 ?        00:00:28 /opt/java/openjdk/bin/java -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.awt.headless=true -server -Xmx2048M -Xms512M -XX:+UseG1GC -XX:+UseStringDeduplication -XX:MaxGCPauseMillis=200 -XX:InitiatingHeapOccupancyPercent=70 -Djava.net.preferIPv4Stack=true -Djava.net.preferIPv4Addresses=true -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0027 -Dcantaloupe.config=/usr/local/cantaloupe/cantaloupe.properties -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -Djava.library.path=/usr/local/lib:/usr/local/tomcat/lib -DLD_LIBRARY_PATH=/usr/local/lib:/usr/local/tomcat/lib -Dignore.endorsed.dirs= -classpath /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar -Dcatalina.base=/usr/local/tomcat -Dcatalina.home=/usr/local/tomcat -Djava.io.tmpdir=/usr/local/tomcat/temp org.apache.catalina.startup.Bootstrap start
+root      92190      1  6 06:23 pts/0    00:00:05 java -Xmx200M -server -cp :/hs/handle-9.2.0/bin/../lib/admintool-9.2.0.jar:/hs/handle-9.2.0/bin/../lib/bcpkix-jdk15on-1.59.jar:/hs/handle-9.2.0/bin/../lib/bcprov-jdk15on-1.59.jar:/hs/handle-9.2.0/bin/../lib/cnriutil-2.0.jar:/hs/handle-9.2.0/bin/../lib/commons-codec-1.11.jar:/hs/handle-9.2.0/bin/../lib/gson-2.8.5.jar:/hs/handle-9.2.0/bin/../lib/handle-9.2.0.jar:/hs/handle-9.2.0/bin/../lib/javax.servlet-api-3.0.1.jar:/hs/handle-9.2.0/bin/../lib/je-7.5.11.jar:/hs/handle-9.2.0/bin/../lib/jna-5.3.1.jar:/hs/handle-9.2.0/bin/../lib/jna-platform-5.3.1.jar:/hs/handle-9.2.0/bin/../lib/jython-2.2.1.jar:/hs/handle-9.2.0/bin/../lib/oldadmintool-9.2.0.jar:/hs/handle-9.2.0/bin/../lib/oshi-core-3.13.3.jar:/hs/handle-9.2.0/bin/../lib/slf4j-api-1.7.25.jar:/hs/handle-9.2.0/bin/../lib/jetty/com.sun.el-2.2.0.v201108011116.jar:/hs/handle-9.2.0/bin/../lib/jetty/javax.annotation-1.1.0.v201108011116.jar:/hs/handle-9.2.0/bin/../lib/jetty/javax.el-2.2.0.v201108011116.jar:/hs/handle-9.2.0/bin/../lib/jetty/javax.servlet.jsp-2.2.0.v201112011158.jar:/hs/handle-9.2.0/bin/../lib/jetty/javax.servlet.jsp.jstl-1.2.0.v201105211821.jar:/hs/handle-9.2.0/bin/../lib/jetty/javax.transaction-1.1.1.v201105210645.jar:/hs/handle-9.2.0/bin/../lib/jetty/jetty-all-8.1.22.v20160922.jar:/hs/handle-9.2.0/bin/../lib/jetty/org.apache.jasper.glassfish-2.2.2.v201112011158.jar:/hs/handle-9.2.0/bin/../lib/jetty/org.apache.taglibs.standard.glassfish-1.2.0.v201112081803.jar:/hs/handle-9.2.0/bin/../lib/jetty/org.eclipse.jdt.core-3.7.1.jar:/hs/handle-9.2.0/bin/../lib/jetty/org.objectweb.asm-3.1.0.v200803061910.jar net.handle.server.Main /hs/svr_1
+islando+  92358   2346  0 06:25 pts/0    00:00:00 grep --color=auto handle
+</code></pre><p>5:33
+So, what does all that $hit mean?  IT WORKS!</p>
+<p>In SNOWBALL terms it means that at 5:32 AM I can go back to bed.  Notice I said bed, not sleep.  There’s no telling how long it might take me to forget all this $hit so I can relax a little.</p>
+<p>Oh yeah, I also have to remember to work out that <code>mount -t nfs -o username=mcfatem 132.161.252.72:/nas/LibArchive /libarchive</code> failure sometime.</p>
+<p>Probably ought to capture all of this in my blog sometime too, but who has time for that?</p>
+<p>G’night all.</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

@@ -1,0 +1,1156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/</link>
+    <description>Recent content on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 27 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Searching This Blog Using Fuse</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/110-searching-my-blog-using-fuse/</link>
+      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/110-searching-my-blog-using-fuse/</guid>
+      <description>A short time ago I moved this blog from DigitalOcean to Azure, and along the way I discovered that my search feature wasn&amp;rsquo;t working properly. That old search mechanism used Fuse, which has NO dependencies, but that old scheme used a Hugo theme component that I found difficult to properly maintain. So, as this blog was moving to Azure I elected to try something a little different with Fuse and found this gist to help get it done.
+As of this writing, the new search is limited to just finding tag references, and sometimes a search will return a 404 error because of a bad path reference.</description>
+    </item>
+    
+    <item>
+      <title>Updating Digital.Grinnell to ISLE v1.5.11</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/111-updating-isle-v1.5.11/</link>
+      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/111-updating-isle-v1.5.11/</guid>
+      <description>Attention: This is an updated copy of post 107 gleaned from the ISLE project&amp;rsquo;s update.md document. ONLY the headings from the original document and the annotations which are specific to Digital.Grinnell appear in this document!
+ Note: This update procedure was NOT performed &amp;ldquo;locally&amp;rdquo;, as recommended, due to substantial errors encountered in my last attempt to update. Rather than diving down that rabbit hole, again, I elected to attempt this update on our staging server, DGDockerX on 2021-Sep-27.
+ Update ISLE to the Latest Release Important Information # stop the docker service $ sudo service docker stop # download the latest docker binary and replace the current outdated docker # DEPRECATED WAY TO UPGRADE DOCKER: $ sudo wget https://get.</description>
+    </item>
+    
+    <item>
+      <title>Moving Static Sites to Azure</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/109-moving-static-sites-to-azure/</link>
+      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/109-moving-static-sites-to-azure/</guid>
+      <description>On Thursday, September 9, 2021, I discovered that Azure, Microsoft&amp;rsquo;s offering of host/cloud services for Open Source developers, and a favored partner of Grinnell&amp;rsquo;s IT department, had come up with a Static Web App deployment scheme that allegedly would rival what I&amp;rsquo;ve been using at DigitalOcean. So, I first tried to migrate my very simple Static Landing Page Hugo static site to a new home on Azure. The process wasn&amp;rsquo;t quite as slick and easy as at DigitalOcean, but Azure does nicely leverage GitHub Actions, and the process wasn&amp;rsquo;t too difficult to grasp.</description>
+    </item>
+    
+    <item>
+      <title>Updates to VAF-Kiosk</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/108-updates-to-vaf-kiosk/</link>
+      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/108-updates-to-vaf-kiosk/</guid>
+      <description>On Thursday, August 26, 2021, updates to a new iPad destined for the VAF (Visualizing Abolition and Freedom) installing in the Grinnell&amp;rsquo;s HSSC were completed. As of this writing the iPad has not been re-installed, but Facilities Management has been contacted to schedule that event soon.
+New DigitalOcean Deployment Due to small differences between the aspect ratio and resolution of the old versus new devices, the kiosk site had to be re-designed. Changes were also necessary to help ensure that users of the kiosk could not &amp;ldquo;escape&amp;rdquo; from the VAF screens and cause havoc by surfing the internet.</description>
+    </item>
+    
+    <item>
+      <title>Updating Digital.Grinnell in ISLE</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/107-updating-digital-grinnell-in-isle/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/107-updating-digital-grinnell-in-isle/</guid>
+      <description>Attention: This is an annotated copy of the ISLE project&amp;rsquo;s update.md document. Annotations specific to Digital.Grinnell appear in specially formatted blocks like this one
+There was one universal change made here in the original text, specifically all references to master branches have been changed to main to correlate with updated names of the repositories involved in this process.
+ Note: This update procedure was first performed &amp;ldquo;locally&amp;rdquo;, as recommended on 2021-June-22 when I attempted it on my Grinnell College MacBook Pro, MA10713, serial number C02FK0XXQ05Q.</description>
+    </item>
+    
+    <item>
+      <title>SNOWBALL</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/106-snowball/</link>
+      <pubDate>Mon, 17 May 2021 13:47:36 -0500</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/106-snowball/</guid>
+      <description>Digital.Grinnell and a handful of other servers/sites that I deal with crashed on the morning of Thursday, May 16. Really bad timing! I have yet to figure out what happened to trigger the tsunami, but it happened shortly before the college announced successful cut-over to a new emergency alert system. Related? I dunno.
+In any case, on Friday afternoon (yesterday) I got a steroid shot for a nasty sinus condition and my doctor warned that I might not be able to sleep well.</description>
+    </item>
+    
+    <item>
+      <title>Adding `.htaccess` to Apache Container `/tmp` Directory</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/105-adding-htaccess-to-apache-tmp-directory/</link>
+      <pubDate>Wed, 14 Apr 2021 15:23:45 -0500</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/105-adding-htaccess-to-apache-tmp-directory/</guid>
+      <description>For some time now we&amp;rsquo;ve had a problem lurking in Digital.Grinnell, when large files are opened for viewing or download one of the DG services makes a temporary copy of the file in the Apache container&amp;rsquo;s /tmp directory. Locally, and in staging I&amp;rsquo;ve debugged the code that is responsible for removing the temporary file once the operation is complete. Running locally or in staging the process does its job, the temporary files get deleted soon after creation, but this never happens in production.</description>
+    </item>
+    
+    <item>
+      <title>301 Redirect in Digital.Grinnell</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/104-301-redirect-in-digital.grinnell/</link>
+      <pubDate>Wed, 14 Apr 2021 10:28:31 -0500</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/104-301-redirect-in-digital.grinnell/</guid>
+      <description>A colleague and I were recently sifting through the Digital.Grinnell logs and came across some recurring 404, &amp;ldquo;page not found&amp;rdquo;, status messages. 404&amp;rsquo;s are not uncommon in DG, but these were particularly troubling because they were requests of the form drupal/fedora/repository/grinnell:162 and drupal/fedora/repository/grinnell:86. That&amp;rsquo;s the old, and by that I mean VERY OLD, like Drupal v6 vintage from 2012 or 2013, form for an object address. All such references were to some of DG&amp;rsquo;s oldest digital objects, too.
+We tried to figure out where such old address references might be coming from, but we struck out.</description>
+    </item>
+    
+    <item>
+      <title>Remote Atom</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/085-remote-atom/</link>
+      <pubDate>Wed, 14 Apr 2021 08:51:46 -0500</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/085-remote-atom/</guid>
+      <description>Earlier this year I installed and configured the remote-atom package to assist with editing content and code for my personal blog. Naturally, I wrote a blog post to document it.
+In the past week I&amp;rsquo;ve added the remote-atom package, and configuration to many of my Digital.Grinnell servers. The installation and configuration was virtually identical to what I described in Adding remote-atom to my DigitalOcean Server. Thus far the package and it&amp;rsquo;s configuration have been implemented on the following workstations, both personal and professional, with the following username@server configurations:</description>
+    </item>
+    
+    <item>
+      <title>Debugging ISLE Local with PHPStorm</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/103-debugging-isle-local-with-phpstorm/</link>
+      <pubDate>Wed, 17 Mar 2021 08:39:33 -0500</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/103-debugging-isle-local-with-phpstorm/</guid>
+      <description>For the past couple of years I&amp;rsquo;ve been working in Digital.Grinnell to remove as much &amp;ldquo;customization&amp;rdquo; as I can. The effort is coming along, but still, there&amp;rsquo;s a long way to go. Every now and then I come across a feature that we just can&amp;rsquo;t live without, and it&amp;rsquo;s in times like those that I turn to PHPStorm for development and testing. Unfortunately, I&amp;rsquo;ve been operating without PHPStorm in ISLE because I worried that configuring the PHPStorm debugger in a Docker environment would be a time-consuming, tall task.</description>
+    </item>
+    
+    <item>
+      <title>Everything You Ever Wanted to Know About Digital.Grinnell Entities, but were Afraid to Ask</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/102-digital-grinnell-entities/</link>
+      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/102-digital-grinnell-entities/</guid>
+      <description>Digital.Grinnell used to support and use &amp;ldquo;entities&amp;rdquo;, metadata-only objects that are referential in nature. Entities are best described in this Entities Solution Pack documentation. Quoting from that resource&amp;hellip;
+This module allows you to add person, place, event, and organization entities to an Islandora repository. Entities are small, metadata-based objects. A number of forms and additional features are provided in this module for those building an institutional repository with Islandora. Much of the functionality for batch ingest and autocomplete (to use entities as authority objects) centres [sic] around the MADS forms provided with the module.</description>
+    </item>
+    
+    <item>
+      <title>Book Ingest in Digital.Grinnell</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/097-book-ingest-in-digital-grinnell/</link>
+      <pubDate>Fri, 05 Feb 2021 16:12:55 -0600</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/097-book-ingest-in-digital-grinnell/</guid>
+      <description>It&amp;rsquo;s high-time this was posted to my blog, but the canonical copy of this document can be found in smb://Storage/LIBRARY/mcfatem/DG-Book-Ingest-Workflow.md.
+Valid Book Datastream Structure I want to begin here by showing what I see as a &amp;ldquo;proper&amp;rdquo; working book datastream structure in Digital.Grinnell. The image below is a screen grab of the datastreams from the Grinnell College Yearbook 1961, DG object grinnell:23749:
+  Valid Book Datastreams    Creating a Valid Book Structure One of the biggest problems I have encountered with ingest of books is uploading very large multi-page PDFs.</description>
+    </item>
+    
+    <item>
+      <title>Git Submodule Tips</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/100-git-submodule-tips/</link>
+      <pubDate>Wed, 27 Jan 2021 12:10:25 -0600</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/100-git-submodule-tips/</guid>
+      <description>I seem to have a never-ending struggle with git submodules. Today, I need to add some new features to one of my submodules in a non-ISLE project, but I&amp;rsquo;ve elected to post this here because this blog is relatively easy to search. I also feel fortunate to have found Mastering Git Submodules from Christophe Porteneuve.
+So, what I need to do now is update some submodule code, commit, and push that change back to its remote. I will also want to subsequentmly update a pair of projects that use the submodule so they are referencing the newest submodule code.</description>
+    </item>
+    
+    <item>
+      <title>Debugging SSH Login Issues</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/073-debugging-ssh-login-issues/</link>
+      <pubDate>Tue, 26 Jan 2021 20:15:43 -0600</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/073-debugging-ssh-login-issues/</guid>
+      <description>Lately my passwordless, SSH logins to all my servers have quit working, at least they seem to have stopped working from the only accessible &amp;ldquo;work&amp;rdquo; workstation that I have at the moment, MA7053. Since our enterprise malware mitigation agent, Traps, is blocking my access to my &amp;ldquo;real&amp;rdquo; workstation, MA8660, this has become more than just a nuisance.
+So here&amp;rsquo;s what I came up with as a process to try and determine exactly where the problems are&amp;hellip;
+To Debug SSHD Issues with Key Logins From a terminal opened in the target (CentOS 7 in this example) server:</description>
+    </item>
+    
+    <item>
+      <title>Changing Master to Main</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/101-changing-master-to-main/</link>
+      <pubDate>Tue, 26 Jan 2021 11:04:43 -0600</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/101-changing-master-to-main/</guid>
+      <description>In hindsight, this really should have been post number 100 in the blog, or perhaps it should have happened even earlier. In any event it&amp;rsquo;s high-time I made this move and captured the process. In June 2020 the good folks at GitHub announced that they would begin removing references to master as a small step forward in removing divisive language in tech. The change dictates that the default branch name of future repositories should be main in place of master.</description>
+    </item>
+    
+    <item>
+      <title>Adding LASIR Features to DG</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/099-adding-lasir-features-to-dg/</link>
+      <pubDate>Tue, 12 Jan 2021 15:31:37 -0600</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/099-adding-lasir-features-to-dg/</guid>
+      <description>This afternoon I finally got back to trying to implement some features of LASIR, the Liberal Arts Sprint for Institutional Repositories. The information I found initially was not what I expected to encounter, and that left me scratching my head just a bit. Fortunately, a colleague at the ICG came through with the needed information and I immediately added it to my list of key resources. You can find those resources in my OneTab at:
+ https://www.one-tab.com/page/9OatzLo-TB6XuuizqbGrwA  And that&amp;rsquo;s a&amp;hellip; break.</description>
+    </item>
+    
+    <item>
+      <title>Git Submodule Workflow in ISLE</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/098-git-submodule-workflow-in-isle/</link>
+      <pubDate>Mon, 07 Dec 2020 18:23:02 -0600</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/098-git-submodule-workflow-in-isle/</guid>
+      <description>In the past few days I&amp;rsquo;ve attempted to update the &amp;ldquo;staging&amp;rdquo; copy of Digital.Grinnell at https://dg-staging.grinnell.edu and learned a valuable lesson regarding workflow around Git and submodules. Specifically, I found the following resource to be most helpful:
+ https://intellipaat.com/community/9971/git-update-submodule-to-latest-commit-on-origin  In case that post ever disappers, here&amp;rsquo;s the gist of it&amp;hellip;
+The git submodule update command actually tells git that you simply want your submodules to each check out the commit already mentioned in the index of the superproject.
+If you want to update your submodules to the most recent commit available from their remote, you&amp;rsquo;ll try this directly within the submodules.</description>
+    </item>
+    
+    <item>
+      <title>Production ISLE Installation: Migrate Existing Islandora Site - with Annotations</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/096-production-isle/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/096-production-isle/</guid>
+      <description>Attention: Take note that annotations stop where my process departed from this script in Step 16. Enter at your own risk beyond the annotation in Step 16!
+ -- This post is an addendum to earlier post 092. It is intended to chronicle my efforts to complete migration of our production instance of Digital.Grinnell from ISLE v1.1 to ISLE v1.5.1 on Linux node DGDocker1.grinnell.edu. The remainder of this document is an annotated copy of Production ISLE Installation: Migrate Existing Islandora Site.</description>
+    </item>
+    
+    <item>
+      <title>Collaborating on Hugo Site Development</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/095-collaborating-on-hugo-site-development/</link>
+      <pubDate>Thu, 12 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/095-collaborating-on-hugo-site-development/</guid>
+      <description>I&amp;rsquo;ve nearly completed migration of all Grinnell College Libraries&#39; static sites to Azure and I&amp;rsquo;m updating this post to reflect that move. Wherever possible I&amp;rsquo;ll strike-through outdated information like this, and replace it with updated info.
+ This post will instruct the reader to install necessary tools and engage the workflow I now use to develop and maintain a handful of Hugo static websites. The list of sites now includes both professional, those owned and operated by Grinnell College, as well as &amp;ldquo;personal&amp;rdquo; sites that I develop, maintain and host myself.</description>
+    </item>
+    
+    <item>
+      <title>Compact Build of dg.localdomain - Concise Instructions</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/094-compact-build-of-dg.localdomain/</link>
+      <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/094-compact-build-of-dg.localdomain/</guid>
+      <description>This post is an addendum to an earlier post, Local ISLE Installation: Migrate Existing Islandora Site - with Annotations, where I exhaustively documented my workflow for building a local/development instance of ISLE to mimic the behavoir of Digital.Grinnell.
+Goal The goal of this project is to present a repeatable, minimal set of instructions for spinning up a safe, stand-alone, local/development instance of ISLE on any Mac running OS X.
+Prerequisites This document assumes the user will be spinning up https://dg.localdomain on a Mac with a suitable DG-FEDORA USB stick mounted and accessible.</description>
+    </item>
+    
+    <item>
+      <title>Traefik and Acme.sh for DG-STAGING</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</link>
+      <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</guid>
+      <description>This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge and Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations, specifically Step 11 in the later document. It introduces a Digital.Grinnell-specific implementation of the Traefik with Acme.sh.
+Testing with McFateM/docker-traefik2-acme-host I started work on this implementation with a test, by cloning https://github.com/McFateM/docker-traefik2-acme-host and proceeding as directed in the repository&amp;rsquo;s README.md document, as user islandora on node DGDockerX, like so:
+   DGDockerX Host Commands     cd ~  git clone https://github.</description>
+    </item>
+    
+    <item>
+      <title>Fixing &#39;Mixed Content&#39; Errors</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/091-fixing-mixed-mode-errors/</link>
+      <pubDate>Fri, 11 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/091-fixing-mixed-mode-errors/</guid>
+      <description>Last evening, just before the World Champion Kansas City Chiefs kicked off the NFL&amp;rsquo;s 2020-21 season (I hope the season is healthy all the way into 2021), I attempted to update all the Drupal contrib modules, and core, in my new local instance of ISLE as chronicled in the Next Steps chapter of ISLE Local Migration Customization. Ultimately that update process left me with a host of incorrect owner/group/permissions issues in the Drupal code, and I was able to remedy those in short order.</description>
+    </item>
+    
+    <item>
+      <title>Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/092-staging-isle/</link>
+      <pubDate>Fri, 11 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/092-staging-isle/</guid>
+      <description>Attention: Take note that annotations stop where my process departed from this script in Step 16. Enter at your own risk beyond the annotation in Step 16!
+ This post is an addendum to earlier posts 087 and 090. It is intended to chronicle my efforts to migrate to a staging instance of Digital.Grinnell on Linux node DGDockerX.grinnell.edu. The remainder of this document is an annotated copy of Staging ISLE Installation: Migrate Existing Islandora Site.
+Annotations, with information specific to my experience with Digital.</description>
+    </item>
+    
+    <item>
+      <title>Local ISLE Installation: Migrate Existing Islandora Site - One-Time Customizations</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/090-isle-local-migration-customization/</link>
+      <pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/090-isle-local-migration-customization/</guid>
+      <description>This post is an addendum to earlier post 087. It is intended to chronicle my customization efforts, necessary steps that follow the aforementioned document&amp;rsquo;s Step 11, to migrate to a local development instance of Digital.Grinnell on my work-issued iMac, MA8660, currently identified as MAD25W812UJ1G9. Please refer to Steps 0 - 11 in post 087 for background info.
+Note that it should NOT be necessary to repeat steps taken in this document. Pertinent changes made herein were saved into a new completed-install-local-migrate branch of my dg-islandora project repository, effectively capturing all progress made within.</description>
+    </item>
+    
+    <item>
+      <title>Stop Mac OS X from Requiring a Repeat of User Name</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/089-stop-macosx-from-requiring-user-name/</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/089-stop-macosx-from-requiring-user-name/</guid>
+      <description>Ever since moving to a new college-controlled VPN client, Cisco AnyConnect, for VPN access on August 1, 2020, I&amp;rsquo;ve had to repeatedly enter both my username and system password every time I launch a VPN connection. The annoying prompt/dialog looked like this:
+  Keychain Access Prompt    Fortunately, I found this post and answer explaining how to enable Keychain Access without having to repeat the User Name twice each time. The suggested process is this:
+Launch /Applications/Utilities/Keychain Access</description>
+    </item>
+    
+    <item>
+      <title>Local ISLE Installation: Migrate Existing Islandora Site - with Annotations</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/087-rebuilding-isle-ld-again/</link>
+      <pubDate>Mon, 31 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/087-rebuilding-isle-ld-again/</guid>
+      <description>This post is an addendum to earlier posts 021 and 058, with simiar titles. It is intended to chronicle my efforts to migrate to a local development instance of Digital.Grinnell on my work-issued iMac, MA8660, currently identified as MAD25W812UJ1G9.
+Goal The goal of this project is once again to spin up a local Islandora stack using the ISLE project following the guidance of the project&amp;rsquo;s install-local-migrate document. My process will be slightly different than documented since I&amp;rsquo;ve already created a pair of private dg-isle and dg-islandora repositories.</description>
+    </item>
+    
+    <item>
+      <title>Synergy with a KM (Keyboard/Mouse) Switch: A Near-Perfect Combination</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/088-synergy-with-a-km-switch/</link>
+      <pubDate>Fri, 28 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/088-synergy-with-a-km-switch/</guid>
+      <description>Update: September 4, 2020
+As of this morning my Synergy solution stopped working and I could not easily get it back in-sync between machines. This has happened before, more than once, and it&amp;rsquo;s largely the reason I abandoned Synergy in favor of Sharemouse. But Sharemouse was plagued with similar issues, and it absolutely didn&amp;rsquo;t work well with VPN active.
+The other factor today&amp;hellip; now that my GC iMac has a new &amp;ldquo;assigned identity&amp;rdquo;, I think the old system tag has to be removed from my config because Synergy keeps expecting to find that hostname.</description>
+    </item>
+    
+    <item>
+      <title>Islandora MODS Post-Processing</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/075-islandora-mods-post-processing/</link>
+      <pubDate>Fri, 24 Jul 2020 18:37:10 -0500</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/075-islandora-mods-post-processing/</guid>
+      <description>Attention: On 21-May-2020 this optional, but recommended, sixth step was added to the workflow that is documented in Exporting, Editing, &amp;amp; Replacing MODS Datastreams and Exporting, Editing, &amp;amp; Replacing MODS Datastreams: Technical Details. This addtional workflow step comes in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig.
+ Purpose Many of the objects in Digital.Grinnell are &amp;ldquo;shared&amp;rdquo; between two or more collections. For example, grinnell:10361 can be found in both the &amp;ldquo;Social Justice&amp;rdquo; and &amp;ldquo;Student Scholarship&amp;rdquo; collections.</description>
+    </item>
+    
+    <item>
+      <title>Scheduled Updates for a Hugo Static Site</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/086-scheduled-updates-for-a-hugo-static-site/</link>
+      <pubDate>Sat, 18 Jul 2020 16:56:04 -0500</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/086-scheduled-updates-for-a-hugo-static-site/</guid>
+      <description>A few months ago I migrated a site, The Compass Rose Band, from Drupal to Hugo for my Uncle. Since then I have been maintaining the site, adding and removing dates, and updating the site about every other week. With the passage of time events on the site &amp;ldquo;automatically&amp;rdquo; move from &amp;ldquo;upcoming&amp;rdquo; to &amp;ldquo;past&amp;rdquo;, but since it is a &amp;ldquo;static&amp;rdquo; site, that only happens when I recompile and rebuild the site. So I needed to automate builds.
+I tried a few different ideas I&amp;rsquo;d heard about, including crontab, but on my Mac desktop I ended up settling on an Automator workflow tied to a Calendar event.</description>
+    </item>
+    
+    <item>
+      <title>Back in (Scarlet and) Black</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/083-back-in-scarlet-and-black/</link>
+      <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/083-back-in-scarlet-and-black/</guid>
+      <description>Once upon a time this blog had an address of https://static.grinnell.edu/blogs/McFateM and it used a theme called M10c. Well, what was once is once again. If you read my New Blog Style and Features post you can learn a little more of this blog&amp;rsquo;s &amp;ldquo;interim&amp;rdquo; history.
+By the way, if you&amp;rsquo;re reading this post at https://dlad.summittdweller.com, then you&amp;rsquo;re missing out. If you are looking at that old blog you probably see something more like this:
+Please jump to https://static.grinnell.edu/blogs/McFateM and catch up as quick as you can!</description>
+    </item>
+    
+    <item>
+      <title>How to Add a Collection to Digital.Grinnell</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/084-how-to-add-a-collection-to-digital-grinnell/</link>
+      <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/084-how-to-add-a-collection-to-digital-grinnell/</guid>
+      <description>So, you want to add a new collection or sub-collection (they are really the same thing) to Digital.Grinnell, eh? It&amp;rsquo;s easy, but there are some things to consider before I show you how.
+Collection Guidelines There are no &amp;ldquo;formal&amp;rdquo; guidelines for the creation of a collection or sub-collection in Digital.Grinnell, but I can think of a couple &amp;ldquo;informal&amp;rdquo; things to consider.
+  Are there or will there ever be enough objects, old and/or new, with something in common to warrant a new collection?</description>
+    </item>
+    
+    <item>
+      <title>Here There Be WARCs</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/082-here-there-be-warcs/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/082-here-there-be-warcs/</guid>
+      <description>The term WARC, an abbreviation of Web ARChive, always reminds me of things like hobbits, elves, dark lords, and orcs, of course. But this post has nothing to do with those things so I need to clear my head and press on.
+A WARC is essentially a file format used to capture the content and organization of a web site. Recently, I was asked to add a pair of WARCs to Digital.Grinnell. Doing so proved to be quite an adventure, but I am pleased to report that we now have these two objects to show for it:</description>
+    </item>
+    
+    <item>
+      <title>New Host Config: Vulnerability Scan</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/081-new-host-config-vulnerability-scan/</link>
+      <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/081-new-host-config-vulnerability-scan/</guid>
+      <description>Today I elected to run a vulnerability scan against our new instance of the docker-traefik2-acme-host configuration that&amp;rsquo;s running on static.grinnell.edu. The command I used, and the results, are posted below.
+╭─islandora@dgdockerx ~ ╰─$ /home/islandora/testssl.sh/testssl.sh static.grinnell.edu ########################################################### testssl.sh 3.0rc4 from https://testssl.sh/dev/ This program is free software. Distribution and modification under GPLv2 permitted. USAGE w/o ANY WARRANTY. USE IT AT YOUR OWN RISK! Please file bugs @ https://testssl.sh/bugs/ ########################################################### Using &amp;quot;OpenSSL 1.0.2-chacha (1.0.2k-dev)&amp;quot; [~183 ciphers] on dgdockerx:/home/islandora/testssl.sh/bin/openssl.Linux.x86_64 (built: &amp;quot;Jan 18 17:12:17 2019&amp;quot;, platform: &amp;quot;linux-x86_64&amp;quot;) Start 2020-06-11 17:33:25 --&amp;gt;&amp;gt; 132.</description>
+    </item>
+    
+    <item>
+      <title>Host Config: docker-traefik2-acme-host</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</link>
+      <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</guid>
+      <description>This post is celebrating the completion (really, is anything ever complete?) of a new server/host/stack deployment project: docker-traefik2-acme-host. In order to make this post really easy to read, I&amp;rsquo;m going to wrap it up in one bullet&amp;hellip;
+ README.md  Troubleshooting Should you ever encounter an error like the one below, be sure to ask your IT provider if they created the proper CNAME record when creating your DNS entry.
+[Tue Jun 30 20:53:50 UTC 2020] ohscribe.grinnell.edu:Verify error:DNS problem: NXDOMAIN looking up TXT for _acme-challenge.</description>
+    </item>
+    
+    <item>
+      <title>Remote Connection to MA6879</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/078-remote-connection-to-ma6879/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/078-remote-connection-to-ma6879/</guid>
+      <description>MA6879 is the tag ID of the Mac Mini student-workstation in my Grinnell College office in Burling Library. During the COVID-19 pandemic it&amp;rsquo;s the only Mac that I have access to on campus. But the Macs here in my home office are not allowed to run Screens 4, the software that I formerly used to make remote connections between Macs. Fortunately, since the IP address of MA6879 is &amp;ldquo;static&amp;rdquo; and known (by me!), I can use built-in tools to make my screen-share and remote-control connections.</description>
+    </item>
+    
+    <item>
+      <title>Traefik and Acme.sh Instead of DNS-01</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</guid>
+      <description>This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge. It introduces an alternative to the failed process that was proposed in that earlier post.
+ Note that the following config-specific elements have been replaced below:
+ 6 occurances of ?.grinnell.edu now say example-1.grinnell.edu, and 2 occurances of ?.info now say example-2.info.   New Proposal On June 1 my colleage, Matt, suggested the following&amp;hellip;
+ As much as I would like to resolve the DNS-01 challenge using Traefik alone, I don&amp;rsquo;t believe it will support what we&amp;rsquo;re trying to do here.</description>
+    </item>
+    
+    <item>
+      <title>Oral History Transcription Workflow</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/077-oral-history-transcription-workflow/</link>
+      <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/077-oral-history-transcription-workflow/</guid>
+      <description>Digital.Grinnell features a fair number of transcribed digital oral histories. Most are interviews conducted with Grinnelleans as they return to campus annualy for alumni Reunion or Grinnell&amp;rsquo;s Multicultural Reunion.
+ What follows is largely sharable &amp;ldquo;public&amp;rdquo; content lifted from a &amp;ldquo;private&amp;rdquo; GitHub repository at https://github.com/McFateM/OHScribe, the README.md and WORKFLOW.md files in particular.
+ OHScribe! https://ohscribe.grinnell.edu Note: This link was disabled in the spring of 2020, but is working again as of July 1, 2020, on host DGDocker3.
+This is a Python 3 and Flask web application designed to transform oral history transcripts, presumably created using InqScribe, into XML suitable for ingest into the Islandora Oral Histories Solution Pack to populate a TRANSCRIPT datastream and its derivatives.</description>
+    </item>
+    
+    <item>
+      <title>Digital.Grinnell Custom MODS Display</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/076-digital.grinnell-custom-mods-display/</link>
+      <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/076-digital.grinnell-custom-mods-display/</guid>
+      <description>Digital.Grinnell has seen a lot of customization over the years, and quite a bit of it relates to how an object&amp;rsquo;s metadata, especially its MODS metadata, is displayed. My aim for the past couple of years has been to remove as much customization as possible, but I&amp;rsquo;ve found it difficult to remove features of our MODS display because those features seem to be rather popular. This is particulary true of our compound object display.
+Custom Compound/Child MODS Display At present, May 28, 2020, the MODS display for a typical compound/child object in Digital.</description>
+    </item>
+    
+    <item>
+      <title>Simplified Testing of Traefik 2 with ACME DNS-01 Challenge</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</link>
+      <pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</guid>
+      <description>This post is a simplified and focused follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge.
+Simplify Today, 19-May-2020, I&amp;rsquo;m going to take a shot at simplifying my testing on dgdocker3.grinnell.edu by removing unnecessary things and consolidating as much as possible to reduce clutter in the logs and get right to the point. I&amp;rsquo;m also going to have a look to see if there are additional logs that can tell give me more detail. Everything used here, and everything that takes place here, will be found in a new directory, /opt/containers/test on DGDocker3.</description>
+    </item>
+    
+    <item>
+      <title>Enhancing &#39;motd&#39; with &#39;server-info&#39;</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/072-enhancing-motd-with-server-info/</link>
+      <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/072-enhancing-motd-with-server-info/</guid>
+      <description>My memory isn&amp;rsquo;t what it used to be, but I have this blog. 😄 And on the handful of CentOS and Ubuntu servers that I maintain, I have my server-info script, my replacement for motd. 😁
+Requirements: mdv and figlet The server-info script/command relies on a pair of utilities, namely mdv and figlet.
+The server-info Script You&amp;rsquo;ll find the script itself in this gist. Sample installation of the script is documented below, and the content template can be found in this gist.</description>
+    </item>
+    
+    <item>
+      <title>Dockerized Traefik Host Using ACME DNS-01 Challenge</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</guid>
+      <description>This post builds on My dockerized-server Config and attempts to change what was a problematic ACME HTTP-01 or httpChallenge in Traefik and Let&amp;rsquo;s Encrypt to an ACME DNS-01 or dnsChallenge. The problem with the old HTTP-01 or httpChallenge is that it requires the creation of a valid and widely accessible &amp;ldquo;A&amp;rdquo; record in our DNS before the creation of a cert; the record has to be in place so that the Let&amp;rsquo;s Encrypt CA-server can find it to confirm that the request is valid.</description>
+    </item>
+    
+    <item>
+      <title>Exporting, Editing, &amp; Replacing MODS Datastreams: Technical Details</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/</link>
+      <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/</guid>
+      <description>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
+ A 5-Step Workflow This document is follow-up, with technical details, to Exporting, Editing, &amp;amp; Replacing MODS Datastreams, post 069, in my blog. In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 Grinnell College Libraries review of Digital Grinnell MODS metadata.</description>
+    </item>
+    
+    <item>
+      <title>Exporting, Editing, &amp; Replacing MODS Datastreams</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/069-exporting-editing-replacing-mods-datastreams/</link>
+      <pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/069-exporting-editing-replacing-mods-datastreams/</guid>
+      <description>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
+ The transition to distance learning, social distancing, and more remote work at Grinnell College in the wake of the COVID-19 pandemic may afford GC Libraries an opportunity to do some overdue and necessary metadata cleaning in Digital.</description>
+    </item>
+    
+    <item>
+      <title>Updating DG&#39;s Collection Views</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/068-updating-dgs-collection-views/</link>
+      <pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/068-updating-dgs-collection-views/</guid>
+      <description>Digital.Grinnell employs a custom-built Drupal &amp;ldquo;view&amp;rdquo; we call the dg7 Collection View; it&amp;rsquo;s part of the code in our custom dg7 module where all of Digital.Grinnell&amp;rsquo;s hook implementations are also defined. Experience leads me to beleive that keeping a complex Drupal view in code is prudent, but overriding that code with a database copy of the view helps tremendously in terms of system performance. So, I recommend keeping the view code in the module, but that means that when significant changes are made, like the addition of a new colleciton, the code should be updated in the database to speed things up.</description>
+    </item>
+    
+    <item>
+      <title>New Blog Style and Features</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/067-new-blog-style-and-features/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/067-new-blog-style-and-features/</guid>
+      <description>Welcome to my new blog theme/style with new features. All of the content, aka &amp;lsquo;posts&amp;rsquo;, from my old blog have been moved here, but there are still lots of remnants of the new theme, Zzo, lurking here. Please be patient with this new format while I work to fully implement all the features that this setup provides.
+Also, thank you, Mackenzie. My daughter played an important role in helping me with this transition.
+And it&amp;rsquo;s time to do some real work&amp;hellip; I&amp;rsquo;ll be back to share more here soon.</description>
+    </item>
+    
+    <item>
+      <title>Archiving What Git Ignores</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/066-archiving-what-git-ignores/</link>
+      <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/066-archiving-what-git-ignores/</guid>
+      <description>I love git and GitHub, and I can certainly appreciate the usefullness of .gitignore, but there are times when I&amp;rsquo;d really like to move an ENTIRE project to a new home. I have in my head a process that might play out like this&amp;hellip;
+ Fetch a list of all the files and directories that .gitignore is ignoring. Pass that list to a tar or gzip command (maybe two of them) with encryption to create a secure, compressed archive. Commit the archive to the project repo in GitHub, or keep it in a safe place for restoration in the future.</description>
+    </item>
+    
+    <item>
+      <title>How to Create a New GitHub Repo from an Existing Branch</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/065-create-new-github-project-from-a-branch/</link>
+      <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/065-create-new-github-project-from-a-branch/</guid>
+      <description>I just found a handy git/GitHub workflow in a Quora post titled &amp;ldquo;How do I create a new GitHub repository from a branch in an existing repository?&amp;quot;. And I used it, successfully, to create a new GitHub repo for my updated Drupal 8 rendition of the Wieting Theatre&amp;rsquo;s website.
+The new GitHub repo is wieting-D8-DO and it was created from the wieting branch of docker-compose-drupal.
+The commands I used looked something like this:
+cd ~/GitHub git clone https://github.com/SummittDweller/docker-compose-drupal.git cd docker-compose-drupal git checkout master git reset --hard origin/wieting git checkout wieting git remote rm origin git remote add origin https://github.</description>
+    </item>
+    
+    <item>
+      <title>Migration to Lando</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/064-migration-to-lando/</link>
+      <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/064-migration-to-lando/</guid>
+      <description>I have ITS tickets, for seemingly simple DNS changes, that are now more than a month old, and because of that I&amp;rsquo;ve taken steps to try and do some ISLE staging work on one of my DigitalOcean droplets, namely summitt-services-droplet-01. In order to accommodate that I&amp;rsquo;ve moved nearly all of the sites and services from that droplet to my other, summitt-dweller-DO-docker. The site migration was a smooth process except for https://Wieting.TamaToledo.com. That Drupal 8 site has been difficult to upgrade and migrate largely because it was deployed using my old Port-Ability scripts, and about a year ago I scrapped Port-Ability in favor of Docksal, but I never got around to moving that particular site to a Docksal environment.</description>
+    </item>
+    
+    <item>
+      <title>Installing ZSH in Catalina</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/063-installing-zsh-in-catalina/</link>
+      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/063-installing-zsh-in-catalina/</guid>
+      <description>These days I like to do all my terminal/command-line work in zsh, more specifically, with Oh My ZSH! and the bira theme. This previous post described the process I used on each of my Linux servers, and this post is similar, but written specifically for my Catalina (Macintosh OS X v10.15.x), workstations.
+This is how I installed and configured zsh, and some other goodies, on my student Mac Mini workstation, MA6879&amp;hellip;
+brew update brew install nano zsh chsh -s /bin/zsh mark exit # log back in after this echo $SHELL brew install wget git hugo docker # Docker and Hugo added just for good measure wget https://github.</description>
+    </item>
+    
+    <item>
+      <title>Hugo, Goldmark and CommonMark Compliance</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/061-hugo-and-commmonmark-compliance/</link>
+      <pubDate>Tue, 11 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/061-hugo-and-commmonmark-compliance/</guid>
+      <description>Just making a note here that Hugo, as of version 0.60.0, is now using the Goldmark markdown rendering library, and that library is CommonMark compliant. The official word, from this document states that:
+Goldmark is from Hugo 0.60 the default library used for Markdown. It’s fast, it’s CommonMark compliant and it’s very flexible. Note that the feature set of Goldmark vs Blackfriday isn’t the same; you gain a lot but also lose some, but we will work to bridge any gap in the upcoming Hugo versions.</description>
+    </item>
+    
+    <item>
+      <title>Staging Digital.Grinnell (DG) on DigitalOcean (DO)</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/062-testing-dg-staging-on-digitalocean/</link>
+      <pubDate>Tue, 11 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/062-testing-dg-staging-on-digitalocean/</guid>
+      <description>ISLE v1.3.0 has been running on my staging server, DGDockerX, for months now and it seems to be performing as-expected with one exception&amp;hellip; when I try to import a batch of objects using IMI, the Islandora Multi-Importer, I get the following error:
+The website encountered an unexpected error. Please try again later. Examinations of Recent log messages seem to point to DNS issues that I&amp;rsquo;m unable to overcome because I have no control over our DNS records, campus networking, or firewalls.</description>
+    </item>
+    
+    <item>
+      <title>ISLE Workflow Test</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/060-isle-workflow-test/</link>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/060-isle-workflow-test/</guid>
+      <description>ISLE v1.3.0 has been running on my staging server, DGDockerX, for about 6 weeks now and it seems to be performing as-expected with one exception&amp;hellip; when I try to import a batch of objects using IMI, the Islandora Multi-Importer, I get the following error:
+The website encountered an unexpected error. Please try again later. An examination of Recent log messages shows&amp;hellip;
+GuzzleHttp\Exception\ConnectException: cURL error 6: Could not resolve host: sheets.googleapis.com (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) in GuzzleHttp\Handler\CurlFactory::createRejection() (line 200 of /var/www/html/sites/all/modules/islandora/islandora_multi_importer/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php). Engaging the Local Workflow Since I&amp;rsquo;m not at all sure what&amp;rsquo;s wrong, I feel like I need to rewind my process a bit and try to reproduce the same configuration, and error, on a local instance of this ISLE stack.</description>
+    </item>
+    
+    <item>
+      <title>Pushing ISLE to Staging</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/059-pushing-isle-to-staging/</link>
+      <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/059-pushing-isle-to-staging/</guid>
+      <description>This post chronicles the steps I took to push my local dg.localdomain project, an ISLE v1.3.0 build, to staging on node DGDockerX as https://isle-stage.grinnell.edu using my dg-isle and dg-islandora repositories.
+Directories I&amp;rsquo;ll begin by opening a terminal on the staging host, DGDockerX as user islandora. Then I very carefully (note the use of the --recursive flags!) clone the aforementioned projects to DGDockerX like so:
+   Host / DGDockerX Commands     cd /opt  git clone &amp;ndash;recursive https://github.</description>
+    </item>
+    
+    <item>
+      <title>Rebuilding ISLE-ld (for Local Development)</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/058-rebuilding-isle-ld/</link>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/058-rebuilding-isle-ld/</guid>
+      <description>This post replaces my earlier post 021 with the same title. It is intended to chronicle my efforts to build a new ISLE v1.3.0 local development instance of Digital.Grinnell on my work-issued MacBook Air, MA7053.
+Goal The goal of this project is to spin up a pristine, local Islandora stack using the ISLE project at https://github.com/Digital-Grinnell/dg-isle/, then introduce elements like the Digital Grinnell theme and custom modules like DG7. Once these pieces are in-place and working, I&amp;rsquo;ll begin adding other critical components as well as a robust set of data gleaned from https://digital.</description>
+    </item>
+    
+    <item>
+      <title>Granular ISLE Customization: Install &#39;Backup and Migrate&#39;</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/057-granular-isle-customization-instal-backup-and-migrate/</link>
+      <pubDate>Mon, 25 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/057-granular-isle-customization-instal-backup-and-migrate/</guid>
+      <description>Granular ISLE Customization     This post is part of a series describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.   An index of all documents in this series is included at the end of Granular ISLE Customization: Series Guidelines.    Goal Statement In this &amp;ldquo;granular&amp;rdquo; post we will install Backup and Migrate, a tremendous Drupal module that I use extensively for backup, restoration, migration and maintenance of Digital.</description>
+    </item>
+    
+    <item>
+      <title>How to Work with Git</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/056-how-to-work-with-git/</link>
+      <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/056-how-to-work-with-git/</guid>
+      <description>Credits: This document is an abstraction of some fine documentation authored and posted by my ICG colleague and friend, David Keiser-Clark.    ICG Git Workflow: How to work with Git    The examples in this document use my work with the Islandora Collaboration Group&amp;rsquo;s (ICG) ISLE-Drupal-Build-Tools repository, as well as my fork and local clone of that repository.       I recommend having a look at the GitHub Glossary for a list of terms used frequently in this post, and many of the referenced documents.</description>
+    </item>
+    
+    <item>
+      <title>Easily Change GitHub User in OSX</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/055-easily-change-github-user-in-osx/</link>
+      <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/055-easily-change-github-user-in-osx/</guid>
+      <description>The first step is to run git config -l to see what the current configuration is. If the user.name and/or user.email properties are incorrect, change them using something like this:
+git config --global user.name &amp;quot;Mark McFate&amp;quot; git config --global user.email &amp;quot;yourEMail@address.here&amp;quot; That&amp;rsquo;s only half the battle. I love OSX and the Keychain Access app is wonderful, except when I&amp;rsquo;m working with git and GitHub in a terminal, which I do quite often. The real problem is that I have 4 different identities in GitHub&amp;hellip; crazy, I know.</description>
+    </item>
+    
+    <item>
+      <title>Moving Omeka-S Data to NFS</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/054-moving-omeka-s-data-to-nfs/</link>
+      <pubDate>Wed, 13 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/054-moving-omeka-s-data-to-nfs/</guid>
+      <description>Grinnell&amp;rsquo;s dockerized version of Omeka-S has been running for several weeks now, and we recently ran out of disk space for object data on the host, a CentOS node we named DGDocker2. My posts 041, Configuring DGDocker2 and 042, My dockerized-server Config address the original configuration of DGDocker2 in detail.
+Omeka-S is configured on DGDocker2 to reside in /opt/omeka-s-docker, and inside that directory is a subdirectory named volume. The portions of the application stack that deliver Omeka-S are configured largely in /opt/omeka-s-docker/docker-compose.</description>
+    </item>
+    
+    <item>
+      <title>DG&#39;s ISLE Git Workflow</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/053-dgs-isle-git-workflow/</link>
+      <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/053-dgs-isle-git-workflow/</guid>
+      <description>For some time now Digital.Grinnell has been using ISLE in production, with an instance that was built from a &amp;ldquo;non-standard&amp;rdquo; workflow, one that was a little different than the Git workflow established in the ISLE install docs. Consequently, DG&amp;rsquo;s situation is a little different than what&amp;rsquo;s documented for ISLE, so my mission here is to describe and execute the steps I&amp;rsquo;m taking to get back into the documented workflow.
+The steps will involve and achieve the following:
+ Establish a working, local instance of my production DG site with an ISLE-1.</description>
+    </item>
+    
+    <item>
+      <title>Granular ISLE Customization: Installing the DG Theme</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/052-granular-isle-customization-installing-the-dg-theme/</link>
+      <pubDate>Thu, 07 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/052-granular-isle-customization-installing-the-dg-theme/</guid>
+      <description>Granular ISLE Customization     This post is part of a series describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.   An index of all documents in this series is included at the end of Granular ISLE Customization: Series Guidelines.    Goal Statement In this &amp;ldquo;granular&amp;rdquo; post we will install Digital.Grinnell&amp;rsquo;s custom-built theme, namely digital_grinnell_bootstrap. The experience documented here involves an existing ISLE instance created using Building ISLE 1.</description>
+    </item>
+    
+    <item>
+      <title>Migrating Digital.Grinnell (DG) to ISLE 1.3.0 (ld) for Local Development</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/051-migrating-dg-to-isle-1.3.0-ld/</link>
+      <pubDate>Tue, 29 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/051-migrating-dg-to-isle-1.3.0-ld/</guid>
+      <description>This is a follow-up to previous posts 034, Building ISLE 1.2.0 (ld) and 037, Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development where I successfully completed a &amp;ldquo;local&amp;rdquo; build of ISLE v1.2.0 and subsequently started &amp;ldquo;customization&amp;rdquo; of that local instance. So, this post&amp;rsquo;s intent is to complete the goal stated in Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development, but for ISLE 1.3.0, specifically to:
+The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of the ISLE project at https://github.</description>
+    </item>
+    
+    <item>
+      <title>Granular ISLE Customization: Installing DG7</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/050-granular-isle-customization-installing-dg7/</link>
+      <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/050-granular-isle-customization-installing-dg7/</guid>
+      <description>Warning!     The DG7 module contains code with numerous dependencies, and the most sinister of these is a Grinnell-specific version of the Solr schema. Do NOT attempt to use this module early in a stack-building process, nor outside the Digital.Grinnell environment.       Granular ISLE Customization     This post is part of a series describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.</description>
+    </item>
+    
+    <item>
+      <title>Granular ISLE Customization: Implementing IMI Hooks</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/049-granular-isle-customization-implementing-imi-hooks/</link>
+      <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/049-granular-isle-customization-implementing-imi-hooks/</guid>
+      <description>Granular ISLE Customization     This post is part of a series describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.   An index of all documents in this series is included at the end of Granular ISLE Customization: Series Guidelines.    Goal Statement In this &amp;ldquo;granular&amp;rdquo; post I&amp;rsquo;ll introduce two customizations to IMI that implement and engage Drupal &amp;ldquo;hook&amp;rdquo; functions, namely:
+ hook_islandora_multi_importer_remote_file_get(), and hook_form_islandora_multi_importer_form_alter().  Drupal 7 Hooks See Understanding the hook system for Drupal modules to better understand what Drupal v7 hook functions are, and how they work.</description>
+    </item>
+    
+    <item>
+      <title>Granular ISLE Customization: Installing IMI</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/048-granular-isle-customization-installing-imi/</link>
+      <pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/048-granular-isle-customization-installing-imi/</guid>
+      <description>Granular ISLE Customization     This post is part of a series describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.   An index of all documents in this series is included at the end of Granular ISLE Customization: Series Guidelines.    Goal Statement In this &amp;ldquo;granular&amp;rdquo; post we will install IMI, the Islandora Multi-Importer module, into an existing ISLE instance, for example: https://dg.localdomain/.
+Install the Islandora Multi-Importer (IMI) It&amp;rsquo;s important that we take this step BEFORE other customizations, otherwise the module may not install properly.</description>
+    </item>
+    
+    <item>
+      <title>Granular ISLE Customization: Series Guidelines</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/047-granular-isle-customizations-the-series/</link>
+      <pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/047-granular-isle-customizations-the-series/</guid>
+      <description>Granular ISLE Customization     This post provides guidelines for a series of posts describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.    Using the Granular ISLE Customization Posts There are just a couple of notes regarding the subject posts that I&amp;rsquo;d like to pass along to make them more useful.
+  Gists - You will find a few places in this series where I generated a gist to take the place of lengthy command output.</description>
+    </item>
+    
+    <item>
+      <title>Repairing Static.Grinnell.edu</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/045-repairing-static.grinnell.edu/</link>
+      <pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/045-repairing-static.grinnell.edu/</guid>
+      <description>This morning, Tuesday, September 17, 2019, I awoke to find our https://static.grinnell.edu server, and all of the services on it, unreachable via the web. I managed to open a shell on the host and found that the server was up-and-running as expected, but a quick docker ps command indicated that one of the key services on the server, namely Traefik, had stopped and then failed to restart, repeatedly. Traefik is the service that&amp;rsquo;s responsible for routing web traffic on the static host.</description>
+    </item>
+    
+    <item>
+      <title>DG-FEDORA: A Portable FEDORA Repository</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/046-dg-fedora-a-portable-object-repository/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/046-dg-fedora-a-portable-object-repository/</guid>
+      <description>Teaser Late last night (don&amp;rsquo;t ask how late it was) I discovered a really slick trick, aka &amp;ldquo;feature&amp;rdquo;, of docker-compose. Full disclosure: I love docker-compose &amp;ldquo;overrides&amp;rdquo;, a feature I found a couple of months ago. However, implementing overrides in a granular fashion, as I&amp;rsquo;d like, and within a docker-compose hierarchy of environments like the ISLE stack, can be difficult and counter-productive. I may have found a workable compromise last night. If you&amp;rsquo;re interested, please, read on&amp;hellip;
+History About a year ago I created a &amp;ldquo;portable&amp;rdquo; FEDORA object repository &amp;ldquo;on a stick&amp;rdquo;, a USB stick.</description>
+    </item>
+    
+    <item>
+      <title>Installing ZSH in CentOS</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/044-installing-zsh-in-centos/</link>
+      <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/044-installing-zsh-in-centos/</guid>
+      <description>These days I like to do all my terminal/command-line work in zsh, more specifically, with Oh My ZSH! and the bira theme. So, on my new node dgdocker3, I added nano, zsh, and some other goodies by largely following How to Setup ZSH and Oh-my-zsh on Linux.
+This is how I did it&amp;hellip;
+sudo yum install nano sudo yum install zsh chsh -s /bin/zsh mcfatem exit # log back in after this echo $SHELL sudo yum install wget git wget https://github.</description>
+    </item>
+    
+    <item>
+      <title>A Dockerized &#39;Handle&#39; Server</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/043-a-dockerzied-handle-server/</link>
+      <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/043-a-dockerzied-handle-server/</guid>
+      <description>Today&amp;rsquo;s quest&amp;hellip; to build a new Handle.net server for Digital.Grinnell, preferably one that is &amp;ldquo;Dockerized&amp;rdquo;. I&amp;rsquo;m going to start by forking datacite/docker-handle, a project that looks promising, and following it along with the documentation in chapter 3 of the HANDLE.NET (version 9) Technical Manual. The aforementioned fork can now be found in DigitalGrinnell/docker-handle.
+The digital7 Saga My old friend and server (or should that be servant?), digital7, used to be the home of Digital.Grinnell in Islandora v7, before Docker and ISLE came along.</description>
+    </item>
+    
+    <item>
+      <title>My dockerized-server Config</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/042-my-dockerized-server-config/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/042-my-dockerized-server-config/</guid>
+      <description>This post picks up from where Configuring DGDocker2 left off. In it I will establish a workflow to setup a &amp;ldquo;Dockerized&amp;rdquo; server complete with Traefik, Portainer, and Who Am I. It should be relatively easy to add additional non-static services to any server that is initially configured using this package. For &amp;ldquo;static&amp;rdquo; servers have a look at post 008 docker-bootstrap Workflow .
+Capture As a Project Picking up from the end of Configuring DGDocker2, my first step on the dgdocker2 server was to move everything into a single subdirectory of /opt; I called the new directory dockerized-server, like so:</description>
+    </item>
+    
+    <item>
+      <title>Configuring DGDocker2</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/041-configuring-dgdocker2/</link>
+      <pubDate>Tue, 03 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/041-configuring-dgdocker2/</guid>
+      <description>My mission today is to successfully migrate the images/containers/services chronicled in post 030, &amp;ldquo;Dockerized Omeka-S: Starting Over&amp;rdquo; to Docker-ready node dgdocker2 without compromising any of the services that already run there.
+Pushing WMI Omeka-S to Production on dgdocker2 Grinnell&amp;rsquo;s dgdocker2 server, specifically dgdocker2.grinnell.edu with an IP address of 132.161.132.143, is a Docker-ready CentOS 7 node that&amp;rsquo;s currently supporting the following containers and configuration:
+╭─root@dgdocker2 ~ ╰─# docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES ef20d71ffea8 mcfatem/ohscribe &amp;quot;./boot.sh&amp;quot; 6 days ago Up 6 days 5000/tcp ohscribe b525f4670cd2 mariadb:latest &amp;quot;docker-entrypoint.</description>
+    </item>
+    
+    <item>
+      <title>Digital.Grinnell&#39;s IMI Workflow</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/040-digital.grinnells-imi-workflow/</link>
+      <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/040-digital.grinnells-imi-workflow/</guid>
+      <description>Note: The abbreviation IMI is used frequently in this post to represent the Islandora Multi-Importer, a CSV-file-driven batch ingest tool used by numerous institutions in the Islandora community.
+Also, while updating this post I found this gem&amp;hellip; Diagrams in Documentation (Markdown Guide).
+This post is an addition to the discussion in post 028, Mounting //Storage for IMI Ingest in Digital.Grinnell  which was written largely to remind me how the //Storage mount works. 😕 Unlike post 028, this post is meant for myself AND for others at Grinnell College who prepare digital objects for ingest via IMI.</description>
+    </item>
+    
+    <item>
+      <title>Omeka-S in Docksal</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/039-omeka-s-in-docksal/</link>
+      <pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/039-omeka-s-in-docksal/</guid>
+      <description>Attention!     The Docksal portion of this discussion DID NOT WORK PROPERLY so I&amp;rsquo;ve hidden it from public view. Don&amp;rsquo;t use this project with Docksal (fin commands) until further notice!    git checkout -b docksal-proper  mkdir -p .docksal/services/cli  cp -f Dockerfile ./docksal/services/cli/Dockerfile  atom . | In case you haven&#39;t seen me do this before, that last `atom .` command simply opens the entire project directory in my [Atom](https://atom.io) editing environment.</description>
+    </item>
+    
+    <item>
+      <title>Building My `dg-islandora` Code Repository</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/038-building-my-dg-islandora-code-repository/</link>
+      <pubDate>Fri, 16 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/038-building-my-dg-islandora-code-repository/</guid>
+      <description>As promised in post 037, this post combines elements of post 021 with updated post 034 to create a &amp;ldquo;customized&amp;rdquo; local ISLE instance with features of Digital.Grinnell. In this November 2019 update I&amp;rsquo;m building the repository on my MacBook ma7053 using ISLE-1.3.0. The target of this endeavor will be a properly populated Digital.Grinnell custom Islandora code repository featuring ISLE-1.3.0 code.
+Process Overview I believe the process I need to engage here can be outlined like this:
+  Repeat or follow-up on post 034.</description>
+    </item>
+    
+    <item>
+      <title>Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/037-migrating-dg-to-isle-1.2.0-ld/</link>
+      <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/037-migrating-dg-to-isle-1.2.0-ld/</guid>
+      <description>This post is a follow-up to previous post 034 where I successfully completed a &amp;ldquo;local&amp;rdquo; build of ISLE v1.2.0, but did no &amp;ldquo;customization&amp;rdquo; of that local instance. So, this post&amp;rsquo;s intent is to complete the goal stated in post 034, specifically to:
+The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of the ISLE project at https://github.com/DigitalGrinnell/dg-isle, then introduce elements like the Digital Grinnell theme and custom modules like DG7. Once these pieces are in-place and working, I&amp;rsquo;ll begin adding other critical components as well as a robust set of data gleaned from https://digital.</description>
+    </item>
+    
+    <item>
+      <title>Building Grocy in Docksal</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/036-building-grocy-in-docksal/</link>
+      <pubDate>Thu, 08 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/036-building-grocy-in-docksal/</guid>
+      <description>Grocy looks lika a great little PHP stack application for me. It&amp;rsquo;s aim is to help folks organize and inventory their &amp;ldquo;stuff&amp;rdquo;, with a slant toward food and groceries. I need this!
+Since I&amp;rsquo;m also a big fan of Docker and Docksal, naturally I wanted to spin Grocy up in one of these environments. Thankfully, the heavy lifting of getting this &amp;ldquo;Dockerized&amp;rdquo; has already been done, and that fine work is shared in GitHub at grocy/grocy-docker. So my quest last evening started with a fork of this GitHub project to SummittDweller/grocy-docker, where I&amp;rsquo;ve created a new docksal branch.</description>
+    </item>
+    
+    <item>
+      <title>CanonifyURLs in Hugo</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/035-canonifyurls-in-hugo/</link>
+      <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/035-canonifyurls-in-hugo/</guid>
+      <description>I&amp;rsquo;ve been seeing a lot of .URL will be deprecated... warnings in my Hugo compilations lately, and just now figured out a slick replacement for it: canonifyURLs = true. The documentation for this parameter says&amp;hellip;
+By default, all relative URLs encountered in the input are left unmodified, e.g. /css/foo.css would stay as /css/foo.css. The canonifyURLs field in your site config has a default value of false.
+By setting canonifyURLs to true, all relative URLs would instead be canonicalized using baseURL. For example, assuming you have baseURL = https://example.</description>
+    </item>
+    
+    <item>
+      <title>Building ISLE 1.3.0 (ld) for Local Development</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/034-building-isle-1.3.0-ld/</link>
+      <pubDate>Mon, 05 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/034-building-isle-1.3.0-ld/</guid>
+      <description>This post, an updated (the original was written in August 2019 for ISLE-1.2.0) follow-up to a previous post is intended to chronicle my efforts to build a new ~ISLE v1.2.0~ ISLE-1.3.0, ld, or local development, instance of Digital.Grinnell on my work-issued MacBook, ma7053.
+Goal Statement The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of the ISLE project at https://github.com/Digital-Grinnell/dg-isle, then introduce elements like the Digital Grinnell theme and custom modules like DG7.</description>
+    </item>
+    
+    <item>
+      <title>Adding a LastMod Date</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/033-adding-lastmod-date/</link>
+      <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/033-adding-lastmod-date/</guid>
+      <description>So, Hugo supports the use of front matter &amp;ldquo;date&amp;rdquo; variables including: date, publishDate and lastmod. I won&amp;rsquo;t explain the details of each variable because the aforementioned resource has a nice, concise explanation of them all.
+Until recently this blog only dealt with the &amp;ldquo;date&amp;rdquo; field since I used to have Atom configured to automatically update that field for me when I save changes to a file. However, Hugo treats &amp;ldquo;date&amp;rdquo; more like the date of publication (publishDate) than the last modification (lastmod) date, so things got a little screwy if/when I edited an old post.</description>
+    </item>
+    
+    <item>
+      <title>Deleting Config Items in Drupal 8</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/032-deleting-config-items-in-drupal-8/</link>
+      <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/032-deleting-config-items-in-drupal-8/</guid>
+      <description>None of this is my creation, but it&amp;rsquo;s too valuable to forget! So kudos to Goran Nikolovski and his blog post.
+The problem I ran into involved the Drupal update.php script, and an orphaned bit of configuration data. When I tried running update.php the first of 13 pending database updates kept throwing an exception telling me of a missing plugin, and that effectively killed the other 12 updates. 😦 Well, I really didn&amp;rsquo;t care that it was missing (and Drupal should not either) because the update was there to delete it, but since the update kept failing, we had ourselves an impossible loop.</description>
+    </item>
+    
+    <item>
+      <title>Resetting Docker</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/031-resetting-docker/</link>
+      <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/031-resetting-docker/</guid>
+      <description>This command snippet needs a blog post of its own! I typically use the following command stream to clean up any Docker cruft before I begin anew. Note: Uncomment the third line ONLY if you want to delete images and download new ones. If you do, be patient, it could take several minutes depending on connection speed.
+   Workstation Commands     docker stop $(docker ps -q)  docker rm -v $(docker ps -qa)  # docker image rm $(docker image ls -q)  docker system prune &amp;ndash;force    And that&amp;rsquo;s a wrap.</description>
+    </item>
+    
+    <item>
+      <title>Dockerized Omeka-S: Starting Over</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/030-dockerized-omeka-s-starting-over/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/030-dockerized-omeka-s-starting-over/</guid>
+      <description>Attention!     The Docksal portion of this discussion DID NOT WORK PROPERLY so I&amp;rsquo;ve hidden it from public view. Don&amp;rsquo;t use this project with Docksal (fin commands) until further notice!    I&amp;rsquo;ve created a new fork of dodeeric/omeka-s-docker at DigitalGrinnell/omeka-s-docker, and it introduces a new docker-compose.yml file for spinning Omeka-S up locally, but WITHOUT Docksal (due to problems with the integration originally documented here).
+System requirements for local development of this project currently include:</description>
+    </item>
+    
+    <item>
+      <title>PDF Ingest in Digital.Grinnell</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/029-pdf-ingest-in-digital-grinnell/</link>
+      <pubDate>Wed, 24 Jul 2019 16:56:44 -0700</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/029-pdf-ingest-in-digital-grinnell/</guid>
+      <description>A set of 21 PDF objects were ingested into Digital.Grinnell&amp;rsquo;s Faculty Scholarship collection using IMI on 22-July-2019; unfortunately none of these PDFs contained OCR (optical character recognition) or &amp;ldquo;text recognition&amp;rdquo; data, so none of them generated a valid FULL_TEXT datastream. FULL_TEXT datastreams are required to make PDF, and similar text content, searchable and discoverable in Digital.Grinnell.
+In order to confirm that the lack of OCR was in fact the problem, I ran a little test on https://digital.grinnell.edu/islandora/object/grinnell:26702, one of the 21 objects.</description>
+    </item>
+    
+    <item>
+      <title>Mounting //STORAGE for IMI Ingest in Digital.Grinnell</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/028-mounting-storage-for-imi-ingest-in-digital-grinnell/</link>
+      <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/028-mounting-storage-for-imi-ingest-in-digital-grinnell/</guid>
+      <description>Claiming another small victory today! Why? Well, the Digital.Grinnell instance of IMI (Islandora Multi-Importer) module is customized so that choosing &amp;ldquo;*local&amp;rdquo; as an object ingest source invokes a hook function I created in our DG7 module. That hook enables IMI to &amp;ldquo;find&amp;rdquo; named files/content (things like PDFs, images, etc.) in the Grinnell College //STORAGE server. //STORAGE can be mounted as a CIFS (Common Internet File System) and used to drive ingest if the right package/drivers are made available to Islandora. That can be a little tricky in ISLE, but it&amp;rsquo;s manageable.</description>
+    </item>
+    
+    <item>
+      <title>Replace OSX Terminal with iTerm2 for SSH</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/027-replace-osx-terminal-with-iterm2-for-ssh/</link>
+      <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/027-replace-osx-terminal-with-iterm2-for-ssh/</guid>
+      <description>My memory isn&amp;rsquo;t what it used to be, but I have this blog. 😄 So when I realized that my primary work machine, an iMac, had not been configured with iTerm2 as its default terminal for ssh, I went looking for the solution&amp;hellip;again. Found it here!
+The trick is to open iTerm2 and follow these two simple steps&amp;hellip;
+Q: How do I set iTerm2 as the handler for ssh:// links?
+A: Two steps:
+ Create a new profile called &amp;ldquo;ssh&amp;rdquo;. In the General tab, select the Command: button and enter $$ as the command.</description>
+    </item>
+    
+    <item>
+      <title>Missing Oral History Transcripts in DG - Fixed</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/026-oral-history-solr-fix/</link>
+      <pubDate>Fri, 19 Jul 2019 13:09:54 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/026-oral-history-solr-fix/</guid>
+      <description>I recently constructed a new, local/development instance of ISLE (see my previous post) largely in order to debug a mystery in Digital.Grinnell&amp;rsquo;s display of oral histories. My Trello card for the issue reads:
+ Our newest AOH entries, and some older objects, will not display a transcript after upgrade to the latest version of the OH module. OHScribe is needed to aid in re-processing transcripts for these objects, and some XDebug work will also be required.
+ Engaging XDebug and PHPStorm allowed me to peek inside the relatively complex oral histories (OH) module where I found that some of our OH objects were missing key Solr field elements, like or_transcripts and or_speaker.</description>
+    </item>
+    
+    <item>
+      <title>Compiling SCSS (SASS) for This Blog</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/024-compiling-scss-for-this-blog/</link>
+      <pubDate>Fri, 19 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/024-compiling-scss-for-this-blog/</guid>
+      <description>While working on another post I finally made the decision to improve the appearance of this blog a bit, and unfortunately I&amp;rsquo;d forgotten exactly how to do that. Even more unfortunate, I never blogged about the process so I had to &amp;ldquo;discover&amp;rdquo; the details all over again. 😢 This post is intended to remedy that.
+SASS The theme used here, m10c, employs .scss, or SASS (Syntactically Awesome Style Sheets) files. Subsequently, a SASS compiler is required to process them and produce suitable .</description>
+    </item>
+    
+    <item>
+      <title>Debugging PHP in ISLE: a Kludge</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/025-kludge-debugging-isle/</link>
+      <pubDate>Fri, 19 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/025-kludge-debugging-isle/</guid>
+      <description>In an earlier post I chronicle the exhaustive steps taken to create a &amp;ldquo;debuggable&amp;rdquo; local/development instance of Digital.Grinnell that behaves exactly like the real thing, except with a much smaller, portable FEDORA repository under it. I&amp;rsquo;m claiming success on that front, but there is one glaring kludge in the process that I have yet to work out.
+The Kludge So, my debugging of an ISLE stack involves the coordinated configuration and engagement of XDebug inside the Apache container, and PHPStorm, along with persistence of the stack&amp;rsquo;s PHP codebase&amp;hellip; and therein lies the rub.</description>
+    </item>
+    
+    <item>
+      <title>Debugging ISLE-ld (Local Development) in PHPStorm</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/023-debugging-isle-ld-in-phpstorm/</link>
+      <pubDate>Fri, 12 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/023-debugging-isle-ld-in-phpstorm/</guid>
+      <description>Debugging ISLE on a Mac This guidance applies to debugging PHP code in a local ISLE-ld, that&amp;rsquo;s http://isle.localdomain, instance using PHPStorm.
+Modify ISLE&amp;rsquo;s docker-compose.override.yml Before engaging PHPStorm we need to make one change to our ISLE-ld configuration by running a docker cp command, making a change to our docker-compose.override.yml file, and restarting the stack. Here are the commands and procedure.
+   Workstation Commands     cd ~/Projects/ISLE  mkdir -p persistent/html  docker cp isle-apache-ld:/var/www/html/. ./persistent/html    The above commands will make a new .</description>
+    </item>
+    
+    <item>
+      <title>Awesome Hugo Resource - Config Variables Summary</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/022-awesome-hugo-resource-config-variables/</link>
+      <pubDate>Mon, 08 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/022-awesome-hugo-resource-config-variables/</guid>
+      <description>I&amp;rsquo;m working remotely from a desk on the 3rd floor of the MSOE (Milwaukee School of Engineering) this morning and just ran into a problem with this blog&amp;hellip; some of my single and double quotes are rendered as &amp;ldquo;curly quotes&amp;rdquo; so I can&amp;rsquo;t effectively copy and paste them into a command line. While searching for a fix I found an awesome Hugo resource. It lists, among other things, ALL of Hugo&amp;rsquo;s standard configuration variables!
+The settings I&amp;rsquo;m most interested in right now are part of BlackFriday, Hugo&amp;rsquo;s markdown rendering engine.</description>
+    </item>
+    
+    <item>
+      <title>Lessons Learned: Vacationing In Europe</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/020-lesson-learned-vacationing-in-europe/</link>
+      <pubDate>Tue, 25 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/020-lesson-learned-vacationing-in-europe/</guid>
+      <description>I just returned from 12-days of vacation and travel that took me unexpectedly to Paris and northern Finland, and as-expected to Norway (nearly all of it), and Iceland (expected, but not as promised). Since this is a professional blog I won&amp;rsquo;t elaborate here, but look for my &amp;ldquo;personal&amp;rdquo; blog at https://blog.summittdweller.com/posts/, a perpetual work-in-progress. I will briefly comment on two things:
+  It IS possible to work remotely from Europe, and even from a cruise at sea, but I found it difficult to be really productive.</description>
+    </item>
+    
+    <item>
+      <title>A Dockerized Omeka-S for Development and Staging</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/019-dockerized-omeka-s/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/019-dockerized-omeka-s/</guid>
+      <description>Update: 24-July-2019     The Docksal process outlined here is NOT working reliably. See this new post for updated info.    My fork of the dodeeric/omeka-s-docker project can be found at McFateM/omeka-s-docker, and it introduces a new docker-compose.yml file for spinning Omeka-S up on any Dockerized server, and a Docksal .docksal directory to enable local development using fin up.
+   Note     What follows is reflected in the README.</description>
+    </item>
+    
+    <item>
+      <title>Free Ports 80 and 8080 in OSX</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/018-free-ports-80-and-8080-in-osx/</link>
+      <pubDate>Fri, 07 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/018-free-ports-80-and-8080-in-osx/</guid>
+      <description>Ok, this is info I should have documented here a long, long time ago. For many months now this tidbit of wisdom has lived on a post-it in my office. Not the best strategy for someone who works from home and travels a lot.
+Apparently OSX ships with built-in Apache and/or NGINX servers, presumably to facilitate creation of web content that&amp;rsquo;s local to the machine. Well, in my Dockerized workflows those port assignments typically get in the way. When they do, like when I do a fin up to launch a local development project using Docksal, I see error messages like the following in my terminal:</description>
+    </item>
+    
+    <item>
+      <title>Drupal Flyover Camp 2019</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/017-drupal-flyover-camp-2019/</link>
+      <pubDate>Sat, 01 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/017-drupal-flyover-camp-2019/</guid>
+      <description>The last couple days I attended Drupal Flyover Camp 2019 at UMKC in Kansas City, MO. I picked up on a few tricks and tools that I thought I&amp;rsquo;d mention here, just so I don&amp;rsquo;t forget some of the details.
+Friday - Day 1 My favorite presentation of the day was Visual Regression Testing with BackstopJS by David Needham. There&amp;rsquo;s some cool tech here that I think could be very useful with things like Digital Grinnell, Rootstalk, and even this blog.</description>
+    </item>
+    
+    <item>
+      <title>Fixing the VAF Cert Problem</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/016-fixing-vaf-cert-problems/</link>
+      <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/016-fixing-vaf-cert-problems/</guid>
+      <description>True to form, just after posting my lengthy description of VAF cert problems I figured out what was wrong and how to fix it. Naturally, just after.
+So, the root of my VAF woes stemmed from the fact that Let&amp;rsquo;s Encrypt, upon my request, had previously issued an untrusted cert for https://vaf.grinnell.edu (because I used the staging environment during development of this blog), and I was unable to find it or override it with a trusted cert. I was under the impression that in my workflow the cert was being stored inside one of my Docker containers&amp;hellip; and it was.</description>
+    </item>
+    
+    <item>
+      <title>Working with Let&#39;s Encrypt to Generate Certs</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/015-working-with-lets-encrypt/</link>
+      <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/015-working-with-lets-encrypt/</guid>
+      <description>The workflow I use to create, publish, and update this blog is discussed in three of my earlier posts, namely docker-bootstrap Workflow, Building This Blog, and Developing This Blog. This workflow works nicely in the case of this blog, but my daughter and I created another site, Visualizing Abolition and Freedom, frequently referred to as simply VAF, where the same workflow doesn&amp;rsquo;t quite work. The problem, I believe is with the manner in which I attempted to obtain TLS certs from Let&amp;rsquo;s Encrypt.</description>
+    </item>
+    
+    <item>
+      <title>Updates to Atom and Themes</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/014-updates-to-atom-and-themes/</link>
+      <pubDate>Sat, 25 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/014-updates-to-atom-and-themes/</guid>
+      <description>Recently I made several significant updates to this blog, including changes to my Atom configuration, and the introduction of a new theme, plus a &amp;ldquo;theme component&amp;rdquo; to help manage search. Both of these updates are perhaps best described in this portion of the README.md file in my blog&amp;rsquo;s Github repo so I won&amp;rsquo;t bother with the details here.
+And that’s a wrap. Until next time…</description>
+    </item>
+    
+    <item>
+      <title>New Theme and Search</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/013-new-theme-and-search/</link>
+      <pubDate>Fri, 24 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/013-new-theme-and-search/</guid>
+      <description>I recently made changes to this blog that made the old theme &amp;ldquo;un-responsive&amp;rdquo;, it no longer reformatted nicely for small, mobile devices. So I&amp;rsquo;ve switched the theme to use hugo-theme-m10c, and I think it&amp;rsquo;s a welcome improvement.
+In addition, I found this repo which provides an awesome wrapper in the form of a very elegant Hugo theme component around some work that I mentioned in an earlier post, namely this awesome gist. Consequently, the mark.js keyword highlighting that was &amp;ldquo;broken&amp;rdquo; in my earlier search implementation is now working!</description>
+    </item>
+    
+    <item>
+      <title>Help!</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/add-a-simple-page/</link>
+      <pubDate>Thu, 23 May 2019 10:58:27 -0700</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/add-a-simple-page/</guid>
+      <description>Looking to add a simple, single, new page to this site? Have a look at this content in the site&#39;s `./content/add-a-simple-page.md` file. Pay particular attention to the front matter where the type and layout are declared, as well as a list of aliases::
+aliases: - help - add-this-page - add-a-page-to-the-site type: page layout: single But note that all of these aliases re-direct to the canonical URL which takes its name, ./add-a-simple-page, from the name of this markdown document, ./content/add-a-simple-page.md.</description>
+    </item>
+    
+    <item>
+      <title>About Me</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/about/</link>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/about/</guid>
+      <description>I am DevOps and I love Hugo&amp;hellip; in spite of the fact that the logo colors clash with my blog theme. 😄 More About Me What more do you need to know? Ok, so my official title at Grinnell College is actually Digital Library Applications Developer.</description>
+    </item>
+    
+    <item>
+      <title>Developing This Blog</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/012-developing-this-blog/</link>
+      <pubDate>Mon, 20 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/012-developing-this-blog/</guid>
+      <description>I realized today that I previously documented how to &amp;ldquo;begin&amp;rdquo; a blog like this using Docksal to assist, but I failed to remind myself how to make structural/programming changes to it now that it is well-established. Since I&amp;rsquo;d like to add BleveSearch to this blog, and similar sites, I need to make some &amp;ldquo;structural&amp;rdquo; changes, and I want to do so locally before pushing them to production.
+The process of making updates like this is basically:
+ Open a local terminal and navigate to this project.</description>
+    </item>
+    
+    <item>
+      <title>Search Me?</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/011-search-me/</link>
+      <pubDate>Sun, 19 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/011-search-me/</guid>
+      <description>Yes, yes you can!
+It&amp;rsquo;s not &amp;ldquo;done&amp;rdquo; yet (is anything ever really done?) but you can now &amp;lsquo;search&amp;rsquo; the content, titles, and tags of this blog! For now just visit the new /search page and enter the term(s) you would like to look for. I&amp;rsquo;ll explain this better once it is &amp;ldquo;done&amp;rdquo;, I hope.
+This wonderful addition to the site comes to you compliments of this awesome gist, with a little hacking by your&amp;rsquo;s truly.
+There&amp;rsquo;s just one problem, perhaps summarized in my comment on the gist posted moments ago.</description>
+    </item>
+    
+    <item>
+      <title>Updating This Blog with Atom</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/010-updating-this-blog-with-atom/</link>
+      <pubDate>Thu, 16 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/010-updating-this-blog-with-atom/</guid>
+      <description>So I have my Atom config stored in a Github repo so that I can easily keep Atom in-sync between the various platforms I use here and at home. Today I added the atom-shell-commands package to my Atom config and have configured it with a “command” that takes care of updating my blog when I add a new post (like this one).
+The command configuration in my .atom/config.cson looks like this:
+&amp;quot;atom-shell-commands&amp;quot;: commands: [ { name: &amp;quot;Update My Blog&amp;quot; command: &amp;quot;.</description>
+    </item>
+    
+    <item>
+      <title>docker-bootstrap Workflow</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/008-docker-bootstrap-workflow/</link>
+      <pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/008-docker-bootstrap-workflow/</guid>
+      <description>This post is as much about adding an image to a &amp;ldquo;live&amp;rdquo; Markdown document (this blog post), as it is about my docker-bootstrap workflow.
+The workflow is perhaps best described and summarized in a diagram I recently created, and exported to a PDF. It should be self-explanatory, and with any luck you can see it below&amp;hellip;
+Posting an &amp;ldquo;inline&amp;rdquo; image into a Markdown document is pretty easy using syntax like this:
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png &amp;quot;Logo Title Text 1&amp;quot;) But, does that work if the &amp;ldquo;image&amp;rdquo; is a PDF?</description>
+    </item>
+    
+    <item>
+      <title>Testing SSL Vulnerabilities</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/009-testssl-on-dgdockerx/</link>
+      <pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/009-testssl-on-dgdockerx/</guid>
+      <description>This is a subject that&amp;rsquo;s grabbed my attention recently here at Grinnell College. Specifically, I wanted a way to run my own SSL vulnerability scans of servers inside the campus firewall, something that outside agents could not do effectively. About a month ago I came upon a tool for this task, testssl.sh, and I&amp;rsquo;ve installed it on my Docker staging server, DGDockerX.
+The tool resides in the islandora user&amp;rsquo;s home directory on DGDockerX and I&amp;rsquo;m able to run it from a terminal open to that node like so:</description>
+    </item>
+    
+    <item>
+      <title>Bleve Search - Note to Self</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/006-implementing-bleve-search/</link>
+      <pubDate>Tue, 14 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/006-implementing-bleve-search/</guid>
+      <description>Had a conversation about lots of topics this afternoon and bumped into bleve, along the way, including a discussion about adding search capability to a Hugo site. bleeeve is based on the Go programming language, as is Hugo, so I hope implementation is super simple.
+I think in the near future I&amp;rsquo;ll have a look at adding such a feature to this blog, and perhaps to the Visualizing Abolition and Freedom site too!
+In conversation we also bumped into Lunr JS and I might consider attempting to implement it instead.</description>
+    </item>
+    
+    <item>
+      <title>Removing Traefik&#39;s Weak Cipher Suites</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/005-removing-traefik-weak-ciphers/</link>
+      <pubDate>Fri, 10 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/005-removing-traefik-weak-ciphers/</guid>
+      <description>Most of the servers I deploy to and manage here at Grinnell College are now &amp;ldquo;Dockerized&amp;rdquo;, and all of those use Traefik to manage traffic, of course. Before a web app or server can be opened for access to the world here, it has to pass a vulnerability scan, and I&amp;rsquo;m not privy to the specifics of that scan. However, I do know that &amp;ldquo;weak cipher suites&amp;rdquo; are a common source of failure among my newest servers. It took a couple of weeks of searching, and trial/error solution attempts to identify the nature and specific source of these weaknesses, and to eradicate them.</description>
+    </item>
+    
+    <item>
+      <title>Bypassing Docker Hub Auto-Build</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/004-bypassing-auto-build/</link>
+      <pubDate>Thu, 29 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/004-bypassing-auto-build/</guid>
+      <description>One of the really cool things I like about the workflow documented in Juan Treminio&amp;rsquo;s blog post is the ability to setup auto-build in Docker Hub. Unfortunately, that comes at a cost. Docker Hub&amp;rsquo;s &amp;lsquo;free&amp;rsquo; account option will support only one parallel auto-build, so if you have more than one project you&amp;rsquo;d like to auto-build at Docker Hub you&amp;rsquo;ll need to pay for an account. The current cost is, I think, $7/month for an account that will handle up to 5 parallel auto-build projects.</description>
+    </item>
+    
+    <item>
+      <title>Pushing This Blog to Production</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/003-pushing-to-production/</link>
+      <pubDate>Tue, 20 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/003-pushing-to-production/</guid>
+      <description>Juan Treminio&amp;rsquo;s blog post does a nice job of covering the steps necessary to engage Watchtower, GitHub, and an automated build configuration in Docker Hub. The entire process can be used to push your initial Hugo project to production, watch for changes in your GitHub project repo, compile the changes, build a new Docker image, and automatically push it to production. Like I said, it&amp;rsquo;s an awesome workflow, and there&amp;rsquo;s no need to repeat much of it here. However, I will provide some insight into issues we encountered, and the solutions we employed.</description>
+    </item>
+    
+    <item>
+      <title>Building this Blog with Hugo, Docker, Docksal, and More</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/002-building-this-blog/</link>
+      <pubDate>Mon, 19 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/002-building-this-blog/</guid>
+      <description>In this post I will attempt to chronicle the steps my associates and I took to complete the configuration of static.grinnell.edu, and to eventually create this blog following Juan Treminio&amp;rsquo;s lead. Small portions of Juan&amp;rsquo;s blog post are reproduced here, with permission, so that you can follow along in his work. Those passages appear with a colored background like so:
+&amp;hellip;I will walk you through the complete process of setting up a static website that you can deploy new versions with a simple git push.</description>
+    </item>
+    
+    <item>
+      <title>A Blog is Born</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/001-a-blog-is-born/</link>
+      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/001-a-blog-is-born/</guid>
+      <description>Have you ever wondered how a blog is born? The story behind this blog begins with my interest in stepping back from the CMS world, primarily Drupal, to discover the joys of static site generation. The journey begins in earnest at the 2016 DLF Forum: Milwaukee on the eve of the United States&#39; 2016 national election, when all the buzz that wasn&amp;rsquo;t political, was about building static web sites, and Jekyll.
+A few weeks after the DLF Forum this server was born, thanks to the my colleagues in the Grinnell College (GC) Libraries, and Grinnell&amp;rsquo;s Information Technology Services (ITS) department.</description>
+    </item>
+    
+    <item>
+      <title>Search Results</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/search/</guid>
+      <description>This file exists solely to respond to /search URL with the related search layout template.
+No content shown here is rendered, all content is based in the template layouts/page/search.html
+Setting a very low sitemap priority will tell search engines this is not important content.
+This implementation uses Fusejs, jquery and mark.js
+Initial setup Search depends on additional output content type of JSON in config.toml ``` [outputs] home = [&amp;ldquo;HTML&amp;rdquo;, &amp;ldquo;JSON&amp;rdquo;] ```
+Searching additional fields To search additional fields defined in front matter, you must add it in 2 places.</description>
+    </item>
+    
+  </channel>
+</rss>

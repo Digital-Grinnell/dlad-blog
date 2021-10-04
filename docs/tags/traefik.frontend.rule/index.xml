@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>traefik.frontend.rule on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/traefik.frontend.rule/</link>
+    <description>Recent content in traefik.frontend.rule on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/traefik.frontend.rule/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dockerized Traefik Host Using ACME DNS-01 Challenge</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</guid>
+      <description>This post builds on My dockerized-server Config and attempts to change what was a problematic ACME HTTP-01 or httpChallenge in Traefik and Let&amp;rsquo;s Encrypt to an ACME DNS-01 or dnsChallenge. The problem with the old HTTP-01 or httpChallenge is that it requires the creation of a valid and widely accessible &amp;ldquo;A&amp;rdquo; record in our DNS before the creation of a cert; the record has to be in place so that the Let&amp;rsquo;s Encrypt CA-server can find it to confirm that the request is valid.</description>
+    </item>
+    
+    <item>
+      <title>My dockerized-server Config</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/042-my-dockerized-server-config/</link>
+      <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/042-my-dockerized-server-config/</guid>
+      <description>This post picks up from where Configuring DGDocker2 left off. In it I will establish a workflow to setup a &amp;ldquo;Dockerized&amp;rdquo; server complete with Traefik, Portainer, and Who Am I. It should be relatively easy to add additional non-static services to any server that is initially configured using this package. For &amp;ldquo;static&amp;rdquo; servers have a look at post 008 docker-bootstrap Workflow .
+Capture As a Project Picking up from the end of Configuring DGDocker2, my first step on the dgdocker2 server was to move everything into a single subdirectory of /opt; I called the new directory dockerized-server, like so:</description>
+    </item>
+    
+    <item>
+      <title>Configuring DGDocker2</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/041-configuring-dgdocker2/</link>
+      <pubDate>Tue, 03 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/041-configuring-dgdocker2/</guid>
+      <description>My mission today is to successfully migrate the images/containers/services chronicled in post 030, &amp;ldquo;Dockerized Omeka-S: Starting Over&amp;rdquo; to Docker-ready node dgdocker2 without compromising any of the services that already run there.
+Pushing WMI Omeka-S to Production on dgdocker2 Grinnell&amp;rsquo;s dgdocker2 server, specifically dgdocker2.grinnell.edu with an IP address of 132.161.132.143, is a Docker-ready CentOS 7 node that&amp;rsquo;s currently supporting the following containers and configuration:
+╭─root@dgdocker2 ~ ╰─# docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES ef20d71ffea8 mcfatem/ohscribe &amp;quot;./boot.sh&amp;quot; 6 days ago Up 6 days 5000/tcp ohscribe b525f4670cd2 mariadb:latest &amp;quot;docker-entrypoint.</description>
+    </item>
+    
+  </channel>
+</rss>

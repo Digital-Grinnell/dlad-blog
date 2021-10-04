@@ -1,0 +1,355 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>Collaborating on Hugo Site Development // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Collaborating on Hugo Site Development"/>
+<meta name="twitter:description" content="I&rsquo;ve nearly completed migration of all Grinnell College Libraries&#39; static sites to Azure and I&rsquo;m updating this post to reflect that move. Wherever possible I&rsquo;ll strike-through outdated information like this, and replace it with updated info.
+ This post will instruct the reader to install necessary tools and engage the workflow I now use to develop and maintain a handful of Hugo static websites. The list of sites now includes both professional, those owned and operated by Grinnell College, as well as &ldquo;personal&rdquo; sites that I develop, maintain and host myself."/>
+
+    <meta property="og:title" content="Collaborating on Hugo Site Development" />
+<meta property="og:description" content="I&rsquo;ve nearly completed migration of all Grinnell College Libraries&#39; static sites to Azure and I&rsquo;m updating this post to reflect that move. Wherever possible I&rsquo;ll strike-through outdated information like this, and replace it with updated info.
+ This post will instruct the reader to install necessary tools and engage the workflow I now use to develop and maintain a handful of Hugo static websites. The list of sites now includes both professional, those owned and operated by Grinnell College, as well as &ldquo;personal&rdquo; sites that I develop, maintain and host myself." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/095-collaborating-on-hugo-site-development/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-11-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-09-27T13:42:55-05:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
+          Content Updated: 2021-Sep-30 08:02 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/095-collaborating-on-hugo-site-development/'>095 collaborating on hugo site development</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Collaborating on Hugo Site Development</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          9 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Nov 12, 2020
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: Sep 27, 2021 - 13:42
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign">
+  <title>at-sign</title>
+  <circle cx="12" cy="12" r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+</svg> Mark A. McFate</strong>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/hugo/">hugo</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/git/">git</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/atom/">Atom</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/rootstalk/">Rootstalk</a></div></div>
+    </header>
+    <div class="post-content">
+      
+<div class="original"><p>I&rsquo;ve nearly completed migration of all <em>Grinnell College Libraries'</em> static sites to <em>Azure</em> and I&rsquo;m updating this post to reflect that move.  Wherever possible I&rsquo;ll strike-through outdated information <strike>like this</strike>, and replace it with updated info.</p>
+</div>
+
+<p>This post will instruct the reader to install necessary tools and engage the workflow I now use to develop and maintain a handful of <em>Hugo</em> static websites. The list of sites now includes both professional, those owned and operated by <a href="https://grinnell.edu">Grinnell College</a>, as well as &ldquo;personal&rdquo; sites that I develop, maintain and host myself.</p>
+<h2 id="professional-sites">Professional Sites</h2>
+<p>These include:</p>
+<ul>
+<li><a href="https://rootstalk.grinnell.edu">Rootstalk</a>,</li>
+<li><a href="ashy-hill-086e62810.azurestaticapps.net">This Blog</a> &hellip;previously at <strike><a href="https://static.grinnell.edu/blogs/McFateM">https://static.grinnell.edu/blogs/McFateM</a></strike>,</li>
+<li><a href="victorious-river-0bf860d10.azurestaticapps.net">The Static.Grinnell.edu Landing Page</a> &hellip; previously at <strike><a href="https://static.grinnell.edu">https://static.grinnell.edu</a></strike>, and</li>
+<li><a href="victorious-field-065e3d110.azurestaticapps.net">VAF</a> &hellip;previously at <strike><a href="https://vaf.grinnell.edu">https://vaf.grinnell.edu</a></strike></li>
+</ul>
+
+<div class="original"><p>The detailed information provided in this blog post uses <em>Rootstalk</em> and <a href="ashy-hill-086e62810.azurestaticapps.net">this blog</a> as examples, but the concepts apply equally to all of the professional and personal sites I&rsquo;ve listed.</p>
+</div>
+
+<h2 id="personal-sites">Personal Sites</h2>
+<p>These include:</p>
+<ul>
+<li><a href="https://summittdweller.com">The SummittDweller.com Landing Page</a>,</li>
+<li><a href="https://blog.summittdweller.com/posts/">My Personal Blog</a>, and</li>
+<li><a href="https://compassroseband.net/">The Compass Rose Band</a></li>
+</ul>
+<h2 id="local-development">Local Development</h2>
+<p>This section briefly describes all that is necessary to collaborate effectively on the development and maintenance of <a href="https://rootstalk.grinnell.edu">Rootstalk</a> from your OS X workstation, presumably a Mac desktop or laptop.</p>
+<h3 id="required-software">Required Software</h3>
+<p>The workflow which follows will require you to install, or update, the following software packages:</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th>How to Install</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git</td>
+<td>The suggested <code>Homebrew</code> instructions lead down an infinite rabbit-hole, so use <a href="https://sourceforge.net/projects/git-osx-installer/">https://sourceforge.net/projects/git-osx-installer/</a> instead.</td>
+</tr>
+<tr>
+<td>atom</td>
+<td>See <a href="https://flight-manual.atom.io/getting-started/sections/installing-atom/">https://flight-manual.atom.io/getting-started/sections/installing-atom/</a></td>
+</tr>
+<tr>
+<td>hugo</td>
+<td>The easiest way to install on a Mac is using the <a href="https://gohugo.io/getting-started/installing/#binary-cross-platform">Binary (Cross-platform)</a> technique.  The latest release can always be found on <em>GitHub</em> in <a href="https://github.com/gohugoio/hugo/releases">gohugoio/hugo</a>. As of the writing of this post the package of choice for a Mac was named <code>hugo_extended_0.78.2_macOS-64bit.tar.gz</code>. Once you have downloaded the <code>.gz</code> file, double-click on it to expand the archive.  Then try this command to install it in your $PATH: <code>sudo cp -f ~/Downloads/hugo_extended_0.78.2_macOS-64bit/hugo /usr/local/bin/hugo</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="usual-workflow">Usual Workflow</h3>
+<p>It is recommended that you clone this repository to an OS X workstation where <a href="https://git-scm.com">git</a>, <a href="https://atom.io">Atom</a>, and <a href="https://gohugo.io">Hugo</a> are installed and running in an up-to-date versions.</p>
+<p>My typical workflow for local development, after installation of the above, goes like this:</p>
+<pre><code>mkdir -p ~/GitHub
+cd ~/GitHub
+git clone https://github.com/Digital-Grinnell/rootstalk --recursive
+cd rootstalk
+git checkout -b &lt;new-branch-name&gt;
+atom .
+hugo server
+</code></pre><h4 id="atom-">atom .</h4>
+<p>The <code>atom .</code> command opens the project in my <a href="https://atom.io">Atom</a> editor which provides many tools and shortcuts to speed development and maintenance. <a href="https://flight-manual.atom.io/getting-started/sections/atom-basics/">Atom Basics</a> is well worth reading to get you up-to-speed with the powerful editor you now have at your disposal.</p>
+<p>Note that when <em>Atom</em> is installed it should include a command-line shortcut so that the <code>atom .</code> command will work; however, if <code>atom .</code> will not launch <em>Atom</em> it should be possible to add the necessary command-line option as directed in <a href="https://stackoverflow.com/a/23666354">this StackOverflow answer</a>.</p>
+<h4 id="hugo-server">hugo server</h4>
+<p>The <code>hugo server</code> command compiles and launches a local instance of the site and provides a link, usually <a href="http://localhost:1313/">http://localhost:1313</a>, to that site if there are no errors.  This local site will respond immediately to any changes made and saved in <em>Atom</em>.</p>
+<p>Note that if your Mac complains that <code>hugo</code> isn&rsquo;t from an &ldquo;approved&rdquo; developer, you should run the following command to override the need for &ldquo;approval&rdquo;: <code>sudo xattr -d com.apple.quarantine /usr/local/bin/hugo</code></p>
+<h3 id="editing-and-saving-changes-locally">Editing and Saving Changes Locally</h3>
+<p>Once you have both <code>atom .</code> and <code>hugo server</code> running the process of editing, testing, saving, and sharing your changes should be pretty straightforward.  You will generally use the following commands and operations, in sequence, and repeated as often as necessary.</p>
+<ul>
+<li>Open your local site by visiting <code>https://localhost:1313</code>, or whatever address the <code>hugo server</code> command returned, in the web browser of your choice.</li>
+<li>When you have identified a change that needs to be made, find the corresponding file in the left-most panel of your <em>Atom</em> editor window &ndash; this will usually be some <code>.md</code> (<em>Markdown</em>) file beneath the <code>content</code> directory.  Click on that file to open it in your editor window.</li>
+<li>Make changes to the file using the appropriate syntax, usually <em>Markdown</em>.  There&rsquo;s a nice basic syntax guide for <em>Markdown</em> at <a href="https://www.markdownguide.org/basic-syntax/">https://www.markdownguide.org/basic-syntax/</a>.</li>
+<li>Once your changes to the file are complete, visit the <code>File</code> menu in <em>Atom</em> and select <code>Save</code> to save the change.</li>
+<li>As soon as the file is saved you should see your site change immediately, or almost so, in your browser window.  Check that the changes are properly reflected.</li>
+<li>Repeat the above steps for as many files as needed.</li>
+</ul>
+<h3 id="sharing-your-changes-with-the-project-team">Sharing Your Changes with the Project Team</h3>
+<p>Assuming you have made proper changes, and tested them locally, you should be ready to share your work with the project team.  The first time you do this it&rsquo;s likely that you will need some live assistance in order to get proper <code>git</code> credentials and configuration applied.  Reach out to your team development leader for help.  An example of the steps that you will be taking, and repeating quite often, are:</p>
+<pre><code>git status
+git add .
+git status
+git commit -m &quot;Mark's edits to post 095&quot;
+git status
+git remote -v
+git push origin post-095-edits
+</code></pre><p>This <code>git status</code>, <code>git add .</code>, <code>git commit...</code> and <code>git push...</code> sequence should become VERY familiar over time.  Since I am currently using this workflow to edit the document you are reading, I&rsquo;m going to change my &ldquo;example&rdquo; project and execute these commands now, sharing the results with you below.</p>
+<h4 id="git-status">git status</h4>
+<p>In this example I previously used the command <code>git checkout -b post-095-edits</code> to create a new branch for my work here. I subsequently edited this file, named <code>095-collaborating-on-hugo-site-development</code>, and tested then saved my changes.  Now, when I run <code>git status</code> I see this:</p>
+<pre><code>╭─mark@Marks-Mac-Mini ~/GitHub/blogs-McFateM ‹post-095-edits›
+╰─$ git status
+On branch post-095-edits
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+
+	modified:   content/posts/095-collaborating-on-hugo-site-development.md
+	modified:   themes/hugo-theme-m10c (modified content)
+
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
+</code></pre><p>This command indicates that I&rsquo;m working in my <code>post-095-edits</code> branch, as intended.  It also shows that I&rsquo;ve made changes to <code>content/posts/095-collaborating-on-hugo-site-development.md</code> as well as to my <code>themes/hugo-theme-m10c</code> theme. Finally, it tells me that none of these changes have been &ldquo;committed&rdquo; yet. You can&rsquo;t see it here, but the two lines that begin with the word <code>modified:</code> appear in my terminal in red; indicating that they are not quite ready to share yet.</p>
+<h4 id="git-add-">git add .</h4>
+<p>I&rsquo;m comfortable with changes made to ALL of the files reported as &ldquo;modified&rdquo; above, so I want to &ldquo;stage&rdquo; ALL of them to be committed, and I do that using <code>git add .</code>.  The dot at the end captures ALL of the modified files.  If there were changes that I&rsquo;m not comfortable with I could be more specific and repeat the path of each file to be committed like so:  <code>git add content/posts/095-collaborating-on-hugo-site-development.md</code>.</p>
+<p>If all goes as planned, the <code>git add .</code> command won&rsquo;t return anything.</p>
+<h4 id="git-status-1">git status</h4>
+<p>Now I can check my progress with another <code>git status</code>, like so:</p>
+<pre><code>╭─mark@Marks-Mac-Mini ~/GitHub/blogs-McFateM ‹post-095-edits*›
+╰─$ git status
+On branch post-095-edits
+Changes to be committed:
+  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
+
+	modified:   content/posts/095-collaborating-on-hugo-site-development.md
+
+Changes not staged for commit:
+  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
+  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+
+	modified:   themes/hugo-theme-m10c (modified content)
+</code></pre><p>This time <code>git status</code> is showing me that my <code>content/posts/095-collaborating-on-hugo-site-development.md</code> file is &ldquo;to be committed&rdquo;, and it appears in my terminal in green to indicate that it&rsquo;s &ldquo;ready to go&rdquo;.  The line that reads <code>modified:   themes/hugo-theme-m10c (modified content)</code> still appears in red and is &ldquo;not staged for commit&rdquo;, and that&rsquo;s OK because I didn&rsquo;t make any necessary changes to that path, the system did, and they don&rsquo;t need to be saved.</p>
+<p>So, now we are ready to commit our &ldquo;staged&rdquo; changes.</p>
+<h4 id="git-commit--m-marks-edits-to-post-095">git commit -m &ldquo;Mark&rsquo;s edits to post 095&rdquo;</h4>
+<p>The <code>git commit</code> command should always include a short but descriptive &ldquo;message&rdquo; following a <code>-m</code> flag as you see here:</p>
+<pre><code>╭─mark@Marks-Mac-Mini ~/GitHub/blogs-McFateM ‹post-095-edits*›
+╰─$ git commit -m &quot;Mark's edits to post 095&quot;
+[post-095-edits d5e2c50] Mark's edits to post 095
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+</code></pre><p>The output indicates that I changed and am committing just one file, where I inserted two new blocks of text, and deleted another.</p>
+<h4 id="git-remote--v">git remote -v</h4>
+<p>The <code>git remote...</code> command is not absolutely necesary, but I use it just to confirm where my next <code>git push</code> is going to go. The command lists for me all of the &ldquo;remotes&rdquo;, the project repositories, that are associated with this project.  In this case:</p>
+<pre><code>╭─mark@Marks-Mac-Mini ~/GitHub/blogs-McFateM ‹post-095-edits›
+╰─$ git remote -v
+origin	https://github.com/McFateM/blogs-McFateM.git (fetch)
+origin	https://github.com/McFateM/blogs-McFateM.git (push)
+</code></pre><p>This indicates that I have just one remote with an alias of <code>origin</code>, and any <code>git push origin...</code> or <code>git fetch origin...</code> commands will reference this blog&rsquo;s project repository on <em>GitHub</em> at <a href="https://github.com/McFateM/blogs-McFateM.git">https://github.com/McFateM/blogs-McFateM.git</a>.  This is the same repository that I cloned from earlier using <code>git clone git clone https://github.com/McFateM/blogs-McFateM.git --recursive</code>.</p>
+<h4 id="git-push-origin-post-095-edits">git push origin post-095-edits</h4>
+<p>This <code>git push</code> statement will attempt to &ldquo;push&rdquo; my committed changes up to the project&rsquo;s <code>origin</code> remote, as described above. The results are:</p>
+<pre><code>╭─mark@Marks-Mac-Mini ~/GitHub/blogs-McFateM ‹post-095-edits›
+╰─$ git push origin post-095-edits
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 6 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 635 bytes | 635.00 KiB/s, done.
+Total 5 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+remote:
+remote: Create a pull request for 'post-095-edits' on GitHub by visiting:
+remote:      https://github.com/McFateM/blogs-McFateM/pull/new/post-095-edits
+remote:
+To https://github.com/McFateM/blogs-McFateM.git
+ * [new branch]      post-095-edits -&gt; post-095-edits
+</code></pre><p>This <code>git push...</code> was a success! The committed changes were pushed to my blog&rsquo;s repository where a new <code>post-095-edits</code> branch has been created.</p>
+<h3 id="whats-next">What&rsquo;s Next?</h3>
+<p>As you can see in the output above, the next step in the process is for someone, presumably the project lead, that&rsquo;s me, to create a <code>pull request</code> so that the new <code>post-095-edits</code> branch of the project can be tested and merged into the <code>master</code> branch. In all of my workflows <code>master</code> is the branch that is ultimately used in production. Untill a <code>pull request</code> is created, tested, and merged, the changes that we just committed will still not be available to the public.</p>
+<p>You can learn more about pull-requests, specifically as they apply to <em>GitHub</em> repositories and workflows, at <a href="https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests">https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests</a>.</p>
+<hr/>
+<p>And that&rsquo;s a wrap.  Until next time&hellip;</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

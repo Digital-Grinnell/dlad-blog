@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>debug on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/debug/</link>
+    <description>Recent content in debug on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 17 Mar 2021 08:39:33 -0500</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/debug/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debugging ISLE Local with PHPStorm</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/103-debugging-isle-local-with-phpstorm/</link>
+      <pubDate>Wed, 17 Mar 2021 08:39:33 -0500</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/103-debugging-isle-local-with-phpstorm/</guid>
+      <description>For the past couple of years I&amp;rsquo;ve been working in Digital.Grinnell to remove as much &amp;ldquo;customization&amp;rdquo; as I can. The effort is coming along, but still, there&amp;rsquo;s a long way to go. Every now and then I come across a feature that we just can&amp;rsquo;t live without, and it&amp;rsquo;s in times like those that I turn to PHPStorm for development and testing. Unfortunately, I&amp;rsquo;ve been operating without PHPStorm in ISLE because I worried that configuring the PHPStorm debugger in a Docker environment would be a time-consuming, tall task.</description>
+    </item>
+    
+  </channel>
+</rss>

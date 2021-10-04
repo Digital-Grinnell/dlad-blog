@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>temporary on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/temporary/</link>
+    <description>Recent content in temporary on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 14 Apr 2021 15:23:45 -0500</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/temporary/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Adding `.htaccess` to Apache Container `/tmp` Directory</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/105-adding-htaccess-to-apache-tmp-directory/</link>
+      <pubDate>Wed, 14 Apr 2021 15:23:45 -0500</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/105-adding-htaccess-to-apache-tmp-directory/</guid>
+      <description>For some time now we&amp;rsquo;ve had a problem lurking in Digital.Grinnell, when large files are opened for viewing or download one of the DG services makes a temporary copy of the file in the Apache container&amp;rsquo;s /tmp directory. Locally, and in staging I&amp;rsquo;ve debugged the code that is responsible for removing the temporary file once the operation is complete. Running locally or in staging the process does its job, the temporary files get deleted soon after creation, but this never happens in production.</description>
+    </item>
+    
+  </channel>
+</rss>

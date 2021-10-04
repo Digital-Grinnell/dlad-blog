@@ -1,0 +1,447 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>Oral History Transcription Workflow // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Oral History Transcription Workflow"/>
+<meta name="twitter:description" content="Digital.Grinnell features a fair number of transcribed digital oral histories. Most are interviews conducted with Grinnelleans as they return to campus annualy for alumni Reunion or Grinnell&rsquo;s Multicultural Reunion.
+ What follows is largely sharable &ldquo;public&rdquo; content lifted from a &ldquo;private&rdquo; GitHub repository at https://github.com/McFateM/OHScribe, the README.md and WORKFLOW.md files in particular.
+ OHScribe! https://ohscribe.grinnell.edu Note: This link was disabled in the spring of 2020, but is working again as of July 1, 2020, on host DGDocker3.
+This is a Python 3 and Flask web application designed to transform oral history transcripts, presumably created using InqScribe, into XML suitable for ingest into the Islandora Oral Histories Solution Pack to populate a TRANSCRIPT datastream and its derivatives."/>
+
+    <meta property="og:title" content="Oral History Transcription Workflow" />
+<meta property="og:description" content="Digital.Grinnell features a fair number of transcribed digital oral histories. Most are interviews conducted with Grinnelleans as they return to campus annualy for alumni Reunion or Grinnell&rsquo;s Multicultural Reunion.
+ What follows is largely sharable &ldquo;public&rdquo; content lifted from a &ldquo;private&rdquo; GitHub repository at https://github.com/McFateM/OHScribe, the README.md and WORKFLOW.md files in particular.
+ OHScribe! https://ohscribe.grinnell.edu Note: This link was disabled in the spring of 2020, but is working again as of July 1, 2020, on host DGDocker3.
+This is a Python 3 and Flask web application designed to transform oral history transcripts, presumably created using InqScribe, into XML suitable for ingest into the Islandora Oral Histories Solution Pack to populate a TRANSCRIPT datastream and its derivatives." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/077-oral-history-transcription-workflow/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-01T00:00:00+00:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
+          Content Updated: 2021-Sep-30 08:02 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/077-oral-history-transcription-workflow/'>077 oral history transcription workflow</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Oral History Transcription Workflow</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          14 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Jun 1, 2020
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign">
+  <title>at-sign</title>
+  <circle cx="12" cy="12" r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+</svg> Mark A. McFate</strong>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/digital.grinnell/">Digital.Grinnell</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/ohscribe/">OHScribe</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/inqscribe/">InqScribe</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/workflow/">workflow</a></div></div>
+    </header>
+    <div class="post-content">
+      <p><a href="https://digital.grinnell.edu">Digital.Grinnell</a> features a fair number of transcribed digital oral histories. Most are interviews conducted with Grinnelleans as they return to campus annualy for alumni <a href="https://alumni.grinnell.edu/events/reunion-and-alumni-college">Reunion</a> or Grinnell&rsquo;s <a href="http://magazine.grinnell.edu/news/evolution-multicultural-reunion">Multicultural Reunion</a>.</p>
+<blockquote>
+<p>What follows is largely sharable &ldquo;public&rdquo; content lifted from a &ldquo;private&rdquo; GitHub repository at <a href="https://github.com/McFateM/OHScribe,">https://github.com/McFateM/OHScribe,</a> the README.md and WORKFLOW.md files in particular.</p>
+</blockquote>
+<h2 id="ohscribe">OHScribe!</h2>
+<p><a href="https://ohscribe.grinnell.edu">https://ohscribe.grinnell.edu</a>   <strong>Note: This link was disabled in the spring of 2020, but is working again as of July 1, 2020, on host DGDocker3.</strong></p>
+<p>This is a <em>Python 3</em> and <em>Flask</em> web application designed to transform oral history transcripts, presumably created using <a href="https://www.inqscribe.com">InqScribe</a>, into XML suitable for ingest into the <strong><a href="https://github.com/Islandora-Labs/islandora_solution_pack_oralhistories">Islandora Oral Histories Solution Pack</a></strong> to populate a TRANSCRIPT datastream and its derivatives.  <em>Islandora Oral Histories</em> and the aforementioned solution pack are commonly referred to as <strong>IOH</strong> throughout this document.</p>
+<p><strong>OHScribe!</strong> is intended to be used as part of a broader IOH transcription workflow developed at <em>Grinnell College</em>.  The workflow documented in the section titled <a href="#the-digitalgrinnell-oral-history-workflow">The Digital.Grinnell Oral History Workflow</a> may be of significant interest to individuals tasked with transcribing IOH audio recordings. The aforementioned workflow document now includes a link to an 11.5 minute long training video.</p>
+<h3 id="formatted-ioh-example">Formatted IOH Example</h3>
+<p>The aforementioned workflow, application, and accompanying CSS (provided below) are intended to deliver oral histories that look something like this:</p>
+<p><img src="https://user-images.githubusercontent.com/8472769/27488663-707973aa-57fd-11e7-98e7-a7994b528ab9.png" alt="IOH Example"></p>
+<p>Note that the names of speakers appear in different colors in the video window captions, and speaker names appear in bold in the indexed transcript below the video.  Each speaker and corresponding text appears on a new line, and captions are superimposed over a thumbnail image of the speaker(s).</p>
+<h3 id="inqscribe-ioh-transcription-workflow">InqScribe IOH Transcription Workflow</h3>
+<p>A detailed description of the workflow intended for use with <em>OHScribe!</em> is provided in our <a href="https://github.com/DigitalGrinnell/OHScribe/blob/master/WORKFLOW.md">WORKFLOW.md</a> document.</p>
+<h3 id="workflow-output">Workflow Output</h3>
+<p>The workflow documented in the aforementioned <em>WORKFLOW.md</em> should produce an XML formatted transcript which resembles the structure of the following example.</p>
+<pre><code> &lt;transcript&gt;
+  &lt;prologue/&gt;
+  &lt;scene id=&quot;1&quot; in=&quot;00:00:00.21&quot; out=&quot;00:00:12.07&quot;&gt;&lt;speaker&gt; Heather Riggs &lt;/speaker&gt;
+Heather | Okay, so.. Yeah, just before we start, if you could each go around and say your name, your class year, and where you live now, just for the microphone.&lt;/scene&gt;
+  &lt;scene id=&quot;2&quot; in=&quot;00:00:12.08&quot; out=&quot;00:00:18.02&quot;&gt;&lt;speaker&gt; Margo Gray &lt;/speaker&gt;
+Margo | Cool. I’m Margo Gray of the class of 2005, and, what else am I saying?&lt;/scene&gt;
+  &lt;scene id=&quot;3&quot; in=&quot;00:00:18.03&quot; out=&quot;00:00:19.07&quot;&gt;Heather | Your home.
+
+&lt;speaker&gt; Maggie Montanaro &lt;/speaker&gt;
+Maggie | Where you live.&lt;/scene&gt;
+  &lt;scene id=&quot;4&quot; in=&quot;00:00:19.08&quot; out=&quot;00:00:21.14&quot;&gt;Margo | I live in Chicago, Illinois.&lt;/scene&gt;
+  &lt;scene id=&quot;5&quot; in=&quot;00:00:21.15&quot; out=&quot;00:00:26.07&quot;&gt;&lt;speaker&gt; Jenny Noyce &lt;/speaker&gt;
+Jenny | My name is Jenny Noyce, the class of 2005 and I live in Oakland, California.&lt;/scene&gt;
+  &lt;scene id=&quot;6&quot; in=&quot;00:00:26.08&quot; out=&quot;00:00:32.11&quot;&gt;Maggie | I’m Maggie Montanaro, also class of 2005, and I live in Avignon, France.&lt;/scene&gt;
+  &lt;scene id=&quot;7&quot; in=&quot;00:00:32.12&quot; out=&quot;00:00:39.17&quot;&gt;Heather | Wow. So, what are your strongest memories of Grinnell?&lt;/scene&gt;
+  &lt;scene id=&quot;8&quot; in=&quot;00:00:39.18&quot; out=&quot;00:00:45.05&quot;&gt;Maggie | Harris Parties.&lt;/scene&gt;
+  &lt;scene id=&quot;9&quot; in=&quot;00:00:45.06&quot; out=&quot;00:00:53.00&quot;&gt;Jenny | Mud sliding in the rain.
+
+Maggie | Yeah, mud wrestling. Mud sliding on Mac Field. Lots and lots of work.&lt;/scene&gt;
+  &lt;scene id=&quot;10&quot; in=&quot;00:00:53.01&quot; out=&quot;00:01:30.27&quot;&gt;Margo | I guess I remember people, like, I still am in touch with a lot of people from Grinnell and yeah. So I don’t, I mean I don’t have like
+these really specific memories of like meeting people, but just mostly, like this whole sort of like pool of memories of times when I was hanging out with people or working with people or, yeah. Building the sort of, you don’t think of it when you’re there, it’s not like, &quot;Ah, I’m building connections to last me!&quot; You’re just like, &quot;I’m hanging out with my friends.&quot; But those sort of things tend to last.
+
+Maggie | Lots of good hanging out.
+
+Margo | Yes.&lt;/scene&gt;
+  &lt;scene id=&quot;11&quot; in=&quot;00:01:30.28&quot; out=&quot;00:02:01.00&quot;&gt;Heather | What kind of Harris parties did you have? Like themed...
+
+Maggie | All the, I assume they still have them, the hall ones like the Haines Underwear Ball, the Mary B. James, Disco... what else? Lots of just themed…
+
+Jenny | They started a fetish party.
+
+Maggie | Really? They still have fetish?
+
+Jenny | I never went to that one. Maybe I was too close-minded.
+
+Maggie | Yeah.&lt;/scene&gt;
+  &lt;scene id=&quot;12&quot; in=&quot;00:02:01.01&quot; out=&quot;00:02:18.14&quot;&gt;Heather | What are your first memories of Grinnell?
+</code></pre><p>Key parts of this exported transcript example are described in the sections below.</p>
+<h4 id="scene-tags"><code>&lt;scene&gt;</code> Tags</h4>
+<p><code>&lt;scene&gt;</code> tags enclose data indicating who is speaking along with transcribed text from the recording. <code>&lt;scene&gt;</code> tags also include attributes indicating the position or scene&rsquo;s <em>id</em>, <em>in</em> and <em>out</em> times provided in hours-minutes-seconds, or <em>hh:mm:ss.s</em> notation, and one or more optional <code>&lt;speaker&gt;</code> tags.</p>
+<pre><code>&lt;scene id=&quot;1&quot; in=&quot;00:00:00.21&quot; out=&quot;00:00:12.07&quot;&gt;
+  &lt;speaker&gt; Heather Riggs &lt;/speaker&gt;
+  Heather | Okay, so.. Yeah, just before we start, if you could each go around and say your name, your class year, and where you live now, just for the microphone.
+&lt;/scene&gt;
+</code></pre><p>The example <code>&lt;scene&gt;</code> tag shown above carries an <em>id</em> of &lsquo;1&rsquo;, it&rsquo;s the first scene in the transcript, with <em>in</em> and <em>out</em> times provided in hours-minutes-seconds, or <em>hh:mm:ss.s</em> notation.  The <em>in</em> and <em>out</em> attributes indicate when the transcribed text is heard in the audio stream.  This scene also encloses a <code>&lt;speaker&gt;</code> tag which, in this case, identifies the speaker &ldquo;Heather&rdquo;, as an individual with a full name of &ldquo;Heather Riggs&rdquo;.</p>
+<p>The text of this scene, a single sentence, opens with a required <code>speaker ID</code>, the name of the speaker, <em>Heather</em>, followed by a pipe (|) delimiter.</p>
+<p>This demonstrates an important rule&hellip; <strong>Each line of transcribed text MUST begin with a <em>speaker ID</em>, a given/first name, or single word identifying the speaker, followed by a pipe delimiter.</strong></p>
+<pre><code>&lt;scene id=&quot;11&quot; in=&quot;00:01:30.28&quot; out=&quot;00:02:01.00&quot;&gt;
+  Heather | What kind of Harris parties did you have? Like themed...
+  Maggie | All the, I assume they still have them, the hall ones like the Haines Underwear Ball, the Mary B. James, Disco... what else? Lots of just themed…
+  Jenny | They started a fetish party.
+  Maggie | Really? They still have fetish?
+  Jenny | I never went to that one. Maybe I was too close-minded.
+  Maggie | Yeah.
+&lt;/scene&gt;
+</code></pre><p>The example <code>&lt;scene&gt;</code> tag shown above, with an <em>id</em> of &lsquo;11&rsquo;, includes <em>in</em> and <em>out</em> time attributes, and seven lines of transcribed text.  Each line begins with a <em>speaker ID</em>, in this case the given/first name of the speaker followed by a pipe (|) delimiter.  Note that this scene has NO <code>&lt;speaker&gt;</code> tags because the speakers: Heather, Maggie, and Jenny; all have corresponding <code>&lt;speaker&gt;</code> tags inside previous scenes.</p>
+<h4 id="speaker-tags"><code>&lt;speaker&gt;</code> Tags</h4>
+<p><code>&lt;speaker&gt;</code> tags are used to identify each speaker in a transcript by providing their full name, and associating the given/first name portion of their full name with subsequent <em>speaker ID</em> prefixes.</p>
+<p><strong>At least one <code>&lt;speaker&gt;</code> tag must appear for each <em>speaker ID</em> used in the transcript, and a speaker&rsquo;s tag must appear BEFORE any/all corresponding <em>speaker ID</em>s.</strong></p>
+<p>A <code>&lt;speaker&gt;</code> must occur only within an enclosing <code>&lt;scene&gt;</code> tag.</p>
+<h4 id="speaker-id">Speaker ID</h4>
+<p>As previously mentioned, a <em>speaker ID</em> identifies a speaker by their given/first name or some single-word identifying term, like &ldquo;Interviewer&quot;or &ldquo;Interviewee&rdquo;.  Each <em>speaker ID</em> consists of a given/first name, or other single-word identifier, followed by a pipe (|) delimiter.</p>
+<p>Spaces around pipe delimiters are recommended, but not required.</p>
+<h3 id="xml-for-ingest-into-ioh">XML for Ingest into IOH</h3>
+<p>The Islandora Oral Histories (IOH) solution pack expects a TRANSCRIPT datastream of <code>&lt;cues&gt;</code> formatted like the following for successful ingest.</p>
+<pre><code>&lt;cues&gt;
+  &lt;cue&gt;
+    &lt;speaker&gt;Heather Riggs&lt;/speaker&gt;
+    &lt;start&gt;0.21&lt;/start&gt;
+    &lt;end&gt;12.07&lt;/end&gt;
+    &lt;transcript&gt;&amp;lt;span class='oh_speaker_1'&amp;gt;Heather: &amp;lt;span class='oh_speaker_text'&amp;gt; Okay, so.. Yeah, just before we start, if you could each go around and say your name, your class year, and where you live now, just for the microphone.&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&lt;/transcript&gt;
+  &lt;/cue&gt;
+  &lt;cue&gt;
+    &lt;speaker&gt;Margo Gray&lt;/speaker&gt;
+    &lt;start&gt;12.08&lt;/start&gt;
+    &lt;end&gt;18.02&lt;/end&gt;
+    &lt;transcript&gt;&amp;lt;span class='oh_speaker_2'&amp;gt;Margo: &amp;lt;span class='oh_speaker_text'&amp;gt; Cool. I&amp;#8217;m Margo Gray of the class of 2005, and, what else am I saying?&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&lt;/transcript&gt;
+  &lt;/cue&gt;
+  &lt;cue&gt;
+    &lt;speaker&gt;Heather Riggs &amp;amp; Maggie Montanaro&lt;/speaker&gt;
+    &lt;start&gt;18.03&lt;/start&gt;
+    &lt;end&gt;19.07&lt;/end&gt;
+    &lt;transcript&gt;&amp;lt;span class='oh_speaker_1'&amp;gt;Heather: &amp;lt;span class='oh_speaker_text'&amp;gt; Your home.&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span class='oh_speaker_3'&amp;gt;Maggie: &amp;lt;span class='oh_speaker_text'&amp;gt; Where you live.&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&lt;/transcript&gt;
+  &lt;/cue&gt;
+  &lt;cue&gt;
+    &lt;speaker&gt;Margo Gray&lt;/speaker&gt;
+    &lt;start&gt;19.08&lt;/start&gt;
+    &lt;end&gt;21.14&lt;/end&gt;
+    &lt;transcript&gt;&amp;lt;span class='oh_speaker_2'&amp;gt;Margo: &amp;lt;span class='oh_speaker_text'&amp;gt; I live in Chicago, Illinois.&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&lt;/transcript&gt;
+  &lt;/cue&gt;
+  &lt;cue&gt;
+    &lt;speaker&gt;Jenny Noyce&lt;/speaker&gt;
+    &lt;start&gt;21.15&lt;/start&gt;
+    &lt;end&gt;26.07&lt;/end&gt;
+    &lt;transcript&gt;&amp;lt;span class='oh_speaker_4'&amp;gt;Jenny: &amp;lt;span class='oh_speaker_text'&amp;gt; My name is Jenny Noyce, the class of 2005 and I live in Oakland, California.&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&lt;/transcript&gt;
+  &lt;/cue&gt;
+  &lt;cue&gt;
+    &lt;speaker&gt;Maggie Montanaro&lt;/speaker&gt;
+    &lt;start&gt;26.08&lt;/start&gt;
+    &lt;end&gt;32.11&lt;/end&gt;
+    &lt;transcript&gt;&amp;lt;span class='oh_speaker_3'&amp;gt;Maggie: &amp;lt;span class='oh_speaker_text'&amp;gt; I&amp;#8217;m Maggie Montanaro, also class of 2005, and I live in Avignon, France.&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&lt;/transcript&gt;
+  &lt;/cue&gt;
+</code></pre><p>In this format each <code>&lt;cue&gt;</code> tag within the enclosing <code>&lt;cues&gt;</code> tag represents one <code>&lt;scene&gt;</code> from the previously documented workflow output.  Like a <code>&lt;scene&gt;</code>, each <code>&lt;cue&gt;</code> identifies a speaker, a start and end time, and one or more lines of transcribed text.</p>
+<p><strong>OHScribe!</strong> can be used to transform output from the documented workflow into this format for ingest.</p>
+<h3 id="running-ohscribe">Running OHScribe!</h3>
+<p><strong>OHScribe!</strong> is accessible at <a href="https://ohscribe.grinnell.edu">https://ohscribe.grinnell.edu</a> and should run in any web browser.  It permits a user to upload an XML file (presumably this is output from the aforementioned workflow), and if successful, it provides an output file in IOH-compatible XML format as a download.  Since upload and download of content is provided the site will present the user with a required login screen like this:</p>
+<p><img src="https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribeAuthWindow.png" alt="Authentication Window"></p>
+<p>Interested users of <strong>OHScribe!</strong> should [request credentials via email to <em>digital@grinnell.edu</em>](mailto:digital@grinnell.edu?subject=OHScribe Credentials).</p>
+<h4 id="uploading-xml">Uploading XML</h4>
+<p>Once authorized, <strong>OHScribe!</strong> presents the user with a file upload form like so:</p>
+<p><img src="https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribeUpload.png" alt="Upload Window"></p>
+<p>Selecting the <code>Browse...</code> button will open a file-selection window on the local host.  The user should select a single .XML transcript file for upload and click the <code>Upload</code> key to send it to the <em>OHScribe!</em> server.</p>
+<p>A successful file upload produces <code>Main/Control</code> screen like this:</p>
+<p><img src="https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribeMainControl.png" alt="Main / Control After Upload"></p>
+<p>Note the message/status portion of the window just above the <code>Main / Control Screen</code> title.  The message here in green print indicates a successful upload.</p>
+<h3 id="typicalrecommended-use">Typical/Recommended Use</h3>
+<p>Once an XML file has been successfully uploaded for processing, the user is presented with a six individual or single actions, or a seventh option to <code>Do All of the Above</code>.  <strong>Users should ALWAYS choose <code>Do All of the Above</code> unless there are special circumstances and they have been instructed otherwise.</strong></p>
+<p>Typical use of OHScribe! follows these steps.</p>
+<ol>
+<li>In the <strong>Upload an XML File</strong> screen click the <code>Browse</code> button and navigate to a transcript XML file prepared in and exported from InqScribe.</li>
+</ol>
+<pre><code>This action opens the selected XML file for processing with the path to the file reflected in the box at the top of the GUI.
+</code></pre>
+<ol start="2">
+<li>In the <strong>Main / Control Screen</strong> window click the <strong>Do All of the Above</strong> button.</li>
+</ol>
+<pre><code>This inokes the six actions documented below.  If successful it will transform the XML exported from InqScribe into the XML form required for IOH ingest, giving the user an option to download the transformed file.
+</code></pre>
+<ol start="3">
+<li>Click the <strong>Download</strong> button.</li>
+</ol>
+<pre><code>This action converts \&lt;start&gt; and \&lt;end&gt; values from hours:minutes:seconds notation to the decimal seconds notation required for IOH. The changes are saved directly in the selected **IOH-** file. This file should be suitable for ingest into IOH.
+</code></pre>
+<h4 id="single-actions">Single Actions</h4>
+<p><em>OHScribe!</em> divides the transformation of a transcript into six <em>ordered</em>, individual steps represented by the following single <em>Action</em> choices:</p>
+<ol>
+<li>
+<p><strong>Clean-Up the XML</strong> - This action checks that the uploaded file has a .xml extension and subsequently parses the XML to verify its validity.</p>
+</li>
+<li>
+<p><strong>Transform XML to IOH</strong> - This action transforms the valid XML creating a <code>&lt;cues&gt;</code> and enclosed <code>&lt;cue&gt;</code> tags from <code>&lt;scene&gt;</code> tags.</p>
+</li>
+<li>
+<p><strong>Convert hh:mm:ss to Seconds</strong> - This action converts all of the <em>in</em> and <em>out</em> time codes from hours-minutes-seconds (hh:mm:ss.s) notation to necessary <code>&lt;start&gt;</code> and <code>&lt;end&gt;</code> tags expressed as the number of seconds measured from the beginning of the transcribed audio or video stream.</p>
+</li>
+<li>
+<p><strong>Format Speaker Tags</strong> - This action transforms all of the <em>speaker tags</em> and <em>speaker IDs</em> from the original transcription into IOH-formatted speaker tags.</p>
+</li>
+<li>
+<p><strong>Analyze Cue Times</strong> - This final action checks each of the <code>&lt;cue&gt;</code> tag contents against a fixed target of <em>10 lines</em>.  Cues with more than 10 lines of captioning may overwhelm or even overflow the underlying image or video content.</p>
+</li>
+</ol>
+<p>Note that when a single action is performed the user must take steps to download <em>intermediate</em> results and upload those back to OHScribe! in order to perform the next step.  Since this can become rather tedious, the option to <code>Do All of the Above</code> is recommended.</p>
+<p>A single action can be performed by clicking the radio button corresponding to the desired action, and clicking the <code>Do Single Action</code> button near the bottom of the <em>Main / Control Screen</em> as shown below.</p>
+<p><img src="https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribeOutputSingleAction.png" alt="Do Single Action"></p>
+<h4 id="action-results">Action Results</h4>
+<p>Results of a <code>Do All of the Above</code> action typically include status output in a box at the top of the window, a <em>Message</em> box explaining the outcome, and a <em>Download your Output!</em> button with instructions.  The window typically looks something like this:</p>
+<p><img src="https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribeOutputNoErrors.png" alt="Do All Results"></p>
+<p>Single actions produce slightly different results which may also include <code>Details</code> of the output, and <code>Guidance</code> for follow-up actions as shown below.</p>
+<p><img src="https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribe-CleanUp.png" alt="Single Action Result"></p>
+<h4 id="errors">Errors</h4>
+<p>Processing errors are generally presented with red text appearing in the status box at the top of the window, like so:</p>
+<p><img src="https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribeOutputErrors.png" alt="Errors"></p>
+<p>Unexpected or unresolvable errors encountered in <strong>OHScribe!</strong> should be [reported to the author via email to <em>digital@grinnell.edu</em>](mailto:digital@grinnell.edu?subject=OHScribe Error) and/or added to the <em>Issue</em> queue at <a href="https://github.com/DigitalGrinnell/OHScribe/issues">https://github.com/DigitalGrinnell/OHScribe/issues</a>.</p>
+<h3 id="css-required-for-speaker-formatting">CSS Required for Speaker Formatting</h3>
+<p>To take advantage of the script&rsquo;s &ldquo;speaker formatting&rdquo; capabilities you must add the following CSS, or something very similar, to the theme of the site where Islandora Oral Histories are displayed.  This CSS produces coloring and formatting like that shown in the example above.</p>
+<pre><code>/* Color, display and font additions for Oral Histories */
+div.tier.active span {
+  font-weight: bold;
+}
+div.tier.active span,
+div.tier.active span span.oh_speaker_text {
+  color: black !important;
+}
+div.tier.active span span.oh_speaker_text {
+  font-weight: normal !important;
+}
+span.oh_speaker_text {
+  color: #ffff00 !important;     /* yellow */
+}
+span.oh_speaker_1 {
+  display: block;
+  color: #00ffff;     /* aqua */
+}
+span.oh_speaker_2 {
+  display: block;
+  color: #80ff00;     /* bright green */
+}
+span.oh_speaker_3 {
+  display: block;
+  color: #ff0000;     /* bright red */
+}
+span.oh_speaker_4 {
+  display: block;
+  color: #ff00ff;     /* fuchsia */
+}
+span.oh_speaker_5 {
+  display: block;
+  color: #ffbf00;     /* orange */
+}
+</code></pre><h2 id="the-digitalgrinnell-oral-history-workflow">The Digital.Grinnell Oral History Workflow</h2>
+<h3 id="inqscribe-ioh-transcription-workflow-1">InqScribe IOH Transcription Workflow</h3>
+<p>Grinnell College employs the transcription workflow described here when preparing oral histories for ingest into Digital Grinnell.  This workflow includes a commercially available software tool called <a href="https://www.inqscribe.com">InqScribe</a> and at Grinnell transcribers also frequently use a <em>VEC USB Footpedal</em> to help control playback of audio to be transcribed.</p>
+<h3 id="training-video">Training Video</h3>
+<p>An 11.5 minute long is available to reinforce the concepts presented below.</p>
+<p><a href="http://www.youtube.com/watch?v=MlGTPPN2uAA" title="Grinnell College Digital Oral History Transcription Workflow"><img src="http://img.youtube.com/vi/MlGTPPN2uAA/0.jpg" alt="training video"></a></p>
+<p>The video moves very quickly, compressing a 2-hour transcription session down into 11.5 minutes.  You may find it necessary to slow the playback down, or rewind and repeat portions of the video, using the controls available in your browser.</p>
+<h3 id="workflow-description">Workflow Description</h3>
+<p>A typical transcription session generally involves the following steps&hellip;</p>
+<p>OHScribe creates a new cue every time it encounters a timecode, so every timecode should be followed immediately by a newline, speaker name and pipe character. For areas of the recording that are dense with speaker changes, no timecode is needed to transition to the next speaker, i.e. the transcriber can represent a change in speaker by entering a newline, the speaker name and pipe character to start the next speaker&rsquo;s dialogue. This will result in a cue that has mutliple speakers.</p>
+<h3 id="inqscribe-snippets-and-triggers-shortcuts">InqScribe Snippets and Triggers (Shortcuts)</h3>
+<p><a href="https://www.inqscribe.com">InqScribe</a> allows a transcriber to define and use <a href="http://docs.inqscribe.com/2.2/snippets.html">Snippets</a>, short bits of frequently-repeated text, with associated triggers or keyboard <a href="http://docs.inqscribe.com/2.2/keyboardshortcuts.html">Shortcuts</a> that make it easy to quickly add key elements to a transcript.  The following are samples of <em>Snippets</em> and their corresponding <em>Triggers</em>/<em>Shortcuts</em> used in conjunction with our workflow.</p>
+<p><img src="https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/InqScribeSnippet1.png" alt="file-inqscribesnippet1-png"></p>
+<p>The above image is an example of a <em>Snippet</em> we refer to as a &lsquo;Speaker Timecode&rsquo;.  When triggered, this snippet will insert:</p>
+<ul>
+<li>A timecode, the <code>${TIME}</code> variable portion of the snippet, and</li>
+<li>A name identifying the speaker providing the transcribed text that will follow.</li>
+</ul>
+<p>In this example the speaker&rsquo;s name is &lsquo;Darrell&rsquo; and that name is followed by a <em>REQUIRED</em> space and a pipe character, the vertical bar, in the portion that reads <code>Darrell | </code>. There is a space after the pipe character so as to allow the thranscriber to simply press the triger and then immediately start to type the dialogue into InqScribe. OHScribe does not currently correctly parse a pipe character from other text unless it is surrounded by spaces on either side.</p>
+<p>If a speaker has a double first name, the name will need to be hyphentated because OHScribe will only identify one word/name, separated from others by spaces, as the trigger name for the speaker. The first name in the <code>&lt;speaker&gt; FirstName LastName &lt;/speaker&gt;</code> tag MUST match the name that follows after the timecode.</p>
+<p>Note also that in this example our <em>Speaker Timecode</em> snippet is named <code>Darrell Fisher</code> and it is assigned to trigger <code>KP1</code> which has a corresponding keyboard shortcut. The name of the timecode snippet is not important, and can be left vague/general, as with the <code>Interviewer</code> example.</p>
+<p>Any additional speakers can be represented in the same way by selecting &lsquo;Add&rsquo; and then filling in the correct information similarly to the example above.</p>
+<p>Each time a new speaker is introduced, there must be <code>&lt;speaker&gt; FirstName LastName &lt;/speaker&gt;</code> line added between the timecode and the <code>FirstName | </code>. Each speaker should only have one instance of speaker tags in the InqScribe file.</p>
+<p><img src="https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/InqScribeSnippet2.png" alt="file-inqscribesnippet2-png"></p>
+<p>The second image, immediately above, is an example of a <em>Snippet</em> we refer to as a &lsquo;Raw Timecode&rsquo;.  When triggered, this snippet will insert:</p>
+<ul>
+<li>A timecode, the value of the <code>${TIME}</code> variable referenced in the snippet, and nothing else.</li>
+</ul>
+<p>Note that a <em>Raw Timecode</em> has no associated speaker name as it&rsquo;s intended to be used when the speaker name is unknown, or when there isn&rsquo;t time during transcription to pause for identification of the next speaker.</p>
+<p>This example <em>Raw Timecode</em> snippet is named <code>{$TIME}</code> and it is assigned to the <code>Enter</code> trigger which generally corresponds to the <em>Enter</em> or <em>Return</em> key on the keyboard.</p>
+<h3 id="export-to-xml">Export to XML</h3>
+<p>Once the transcription and timecodes are in place, save the InqScribe file and export it to an XML file by selecting <code>File -&gt; Export -&gt; XML</code>.</p>
+<p>And that&rsquo;s a wrap.  Until next time, stay safe and wash your hands! 😄</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

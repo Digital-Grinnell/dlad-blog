@@ -1,0 +1,371 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>How to Work with Git // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="How to Work with Git"/>
+<meta name="twitter:description" content="Credits: This document is an abstraction of some fine documentation authored and posted by my ICG colleague and friend, David Keiser-Clark.    ICG Git Workflow: How to work with Git    The examples in this document use my work with the Islandora Collaboration Group&rsquo;s (ICG) ISLE-Drupal-Build-Tools repository, as well as my fork and local clone of that repository.       I recommend having a look at the GitHub Glossary for a list of terms used frequently in this post, and many of the referenced documents."/>
+
+    <meta property="og:title" content="How to Work with Git" />
+<meta property="og:description" content="Credits: This document is an abstraction of some fine documentation authored and posted by my ICG colleague and friend, David Keiser-Clark.    ICG Git Workflow: How to work with Git    The examples in this document use my work with the Islandora Collaboration Group&rsquo;s (ICG) ISLE-Drupal-Build-Tools repository, as well as my fork and local clone of that repository.       I recommend having a look at the GitHub Glossary for a list of terms used frequently in this post, and many of the referenced documents." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/056-how-to-work-with-git/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-11-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-11-20T15:33:19-05:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
+          Content Updated: 2021-Sep-30 08:02 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/056-how-to-work-with-git/'>056 how to work with git</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">How to Work with Git</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          5 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Nov 19, 2019
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: Nov 20, 2019 - 15:33
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign">
+  <title>at-sign</title>
+  <circle cx="12" cy="12" r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+</svg> Mark A. McFate</strong>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/git/">git</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/github/">GitHub</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/workflow/">workflow</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/fork/">fork</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/clone/">clone</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/commit/">commit</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/origin/">origin</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/upstream/">upstream</a></div></div>
+    </header>
+    <div class="post-content">
+      <table>
+<thead>
+<tr>
+<th>Credits: This document is an abstraction of some <a href="https://github.com/Islandora-Collaboration-Group/ISLE/wiki/How-to-Work-with-Git">fine documentation</a> authored and posted by my <a href="https://github.com/Islandora-Collaboration-Group">ICG</a> colleague and friend, <a href="https://github.com/dwk2">David Keiser-Clark</a>.</th>
+</tr>
+</thead>
+</table>
+<h2 id="icg-git-workflow-how-to-work-with-git">ICG Git Workflow: How to work with Git</h2>
+<table>
+<thead>
+<tr>
+<th>The examples in this document use my work with the Islandora Collaboration Group&rsquo;s (ICG) <a href="https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools">ISLE-Drupal-Build-Tools</a> repository, as well as <a href="https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools">my fork</a> and local clone of that repository.</th>
+</tr>
+</thead>
+</table>
+<table>
+<thead>
+<tr>
+<th>I recommend having a look at the <a href="https://help.github.com/en/github/getting-started-with-github/github-glossary">GitHub Glossary</a> for a list of terms used frequently in this post, and many of the referenced documents.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The terms <code>original</code>, <code>canonical</code>, and <code>upstream</code> are also used in this post to describe the <em>GitHub</em> repository at the root of the project being managed.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Configuration: In most cases you will do Steps 1-3 only once! If you move to a new machine execute Steps 2-3 only.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Only &ldquo;fork&rdquo; once! Do not repeat Step 1 if you&rsquo;ve already forked the original/canonical repo.</td>
+</tr>
+<tr>
+<td>Only &ldquo;clone&rdquo; once! Do not repeat Step 2 if you already have a local clone of your fork.</td>
+</tr>
+<tr>
+<td>Only add this remote once! Do not perform this step if your local repo already has an <code>upstream</code> remote.</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Always <em>fork</em> the repo (repository) you are working on.</li>
+</ol>
+<ul>
+<li>This is accomplished by logging into your <em>GitHub</em> account and selecting <strong>Fork</strong> near the top right of the repo&rsquo;s page.
+<ul>
+<li>Navigate your browser to the <em>GitHub</em> project you wish to work on. Example: <a href="https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools">https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools</a></li>
+<li>Click the <strong>Fork</strong> button near the top right of the repo&rsquo;s <em>GitHub</em> page.</li>
+<li>This will either create a new fork in your own <em>GitHub</em> account, or prompt you to choose an account if you have more than one. In either case, make a note of where the fork is created! In this document we&rsquo;ll reference your fork&rsquo;s URI as <code>upstream</code>. Example: <a href="https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools">https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools</a></li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>Clone your fork down to your local machine.</li>
+</ol>
+<ul>
+<li>Navigate your browser to the fork.  Example: <a href="https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools">https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools</a></li>
+<li>Click on the <strong>Clone</strong> button to copy the fork&rsquo;s URI to your clipboard.</li>
+<li>Open terminal/shell/powershell/cmd, navigate to your preferred project &ldquo;parent&rdquo; directory, and <code>git clone &lt;paste from clipboard&gt;</code>.</li>
+<li>Change into the directory (<code>cd</code>) with the files you just cloned.</li>
+</ul>
+<ol start="3">
+<li>Before you start working, add an <code>upstream</code> pointer to the original/canonical repo that you forked.</li>
+</ol>
+<ul>
+<li>Navigate your browser back to the original/canonical <em>GitHub</em> project. Example: <a href="https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools">https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools</a></li>
+<li>From this repo, NOT your fork or local clone, click on the <strong>Clone</strong> button and copy the <em>https</em> URI to your clipboard.</li>
+<li>In terminal/shell/powershell/cmd enter <code>git remote add upstream &lt;paste from clipboard&gt;</code>.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Make certain your <code>master</code> branches are even with the original/canonical <code>master</code></th>
+</tr>
+</thead>
+</table>
+<ol start="4">
+<li>STOP! Get up-to-date before you do anything, fetch your remotes so your local clone has the most recent commits.</li>
+</ol>
+<ul>
+<li>Change into the directory (<code>cd</code>) with the files you cloned.</li>
+<li>In terminal/shell/powershell/cmd enter <code>git fetch --all</code>.</li>
+</ul>
+<ol start="5">
+<li>Checkout and pull the <code>upsteam master</code> to your local <code>master</code> branch.</li>
+</ol>
+<ul>
+<li>Checkout your master: <code>git checkout master</code></li>
+<li>Pull the <code>upstream</code> master into yours so your local is up-to-date: <code>git pull upstream master</code></li>
+<li>Push your local <code>master</code> branch BACK to your fork in <em>GitHub</em>.
+<ul>
+<li>If all is well and your <code>git pull...</code> resulted in a fast-forward or &ldquo;Already up to date.&rdquo;, then: <code>git push origin master</code></li>
+<li>If your <code>git pull...</code> did not fast-forward and a merge message appeared, then there were differences in your branches. Never work on <code>master</code>.</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Create an <em>issue</em> and a topic/fix/enhancement/document <em>branch</em> for your work, and have at!</th>
+</tr>
+</thead>
+</table>
+<ol start="6">
+<li>Create an <em>issue</em> for your work.</li>
+</ol>
+<ul>
+<li>Navigate your browser to the original/canonical <em>GitHub</em> project you wish to work on. Example: <a href="https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools">https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools</a></li>
+<li>Find and open the <code>Issues</code> tab (its icon is an exclamation point in a circle) near the top of the page.</li>
+<li>Look through the list of all issues, both <code>Open</code> and <code>Closed</code>, for any mention of the problem you wish to solve.
+<ul>
+<li>If you find an existing issue, study it and determine if you can add your work to the existing issue.</li>
+<li>If an appropriate existing issue is not found, click <code>New issue</code> to create one and describe the problem you will be attacking.</li>
+</ul>
+</li>
+<li>Take note of the new, or existing, sequential number assigned to your issue.  In subsequent steps you should refer to your issue using its number (Example: #20) in references like these examples:  <code>#20</code>, <code>issue-20</code>.</li>
+</ul>
+<ol start="7">
+<li>Create your branch and check it out.</li>
+</ol>
+<ul>
+<li>Create a branch with: <code>git branch &lt;helpful and identifying name&gt;</code>.  Example: <code>git branch issue-20</code></li>
+<li>Checkout your new branch with <code>git checkout &lt;helpful and identifying name&gt;</code>. Example: <code>git checkout issue-20</code></li>
+</ul>
+<ol start="8">
+<li>Start your work and commit locally, aka &ldquo;save your work&rdquo;, at times (probably more than once) that feel logical.</li>
+</ol>
+<ul>
+<li>Create logical checkpoints (i.e., commits) when you feel you&rsquo;ve finished on a particular &ldquo;part&rdquo; of your work. Example: You&rsquo;ve just created a new file and added some stubbed content: Commit it!
+<ul>
+<li>Commits are references in your work and can be helpful if you need to go back to an earlier version of your work, sort of like an &ldquo;undo&rdquo; command. By committing regularly, you give yourself utmost flexibility and it&rsquo;s a good practice/habit.</li>
+</ul>
+</li>
+</ul>
+<ol start="9">
+<li>
+<p>Creating commits.</p>
+<ul>
+<li>In terminal/shell/powershell/cmd enter <code>git status</code> to see a list of files changed, added, and removed.</li>
+<li>Use <code>git add &lt;file&gt;</code> or <code>git rm &lt;file&gt;</code> to stage (add or remove) files from your commit. If you want to add all files to the commit you may shorthand it with <code>git add -A</code>; the <code>-A</code> flag is short for &ldquo;All&rdquo;.</li>
+<li>Create your commit after files are staged: <code>git commit</code>. Enter a commit message that is helpful for you and us! Helpful hint: Always write in the present tense: &ldquo;Update &lt;somefile.ext&gt; to include all of the appropriate modules.&rdquo;</li>
+<li>Continue your work, going through <em>this step</em> as many times as needed.</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Finalizing and preparing for a pull request (PR)</th>
+</tr>
+</thead>
+</table>
+<ol start="10">
+<li>Pushing back to <code>origin</code> will update your fork in <em>GitHub</em>.</li>
+</ol>
+<ul>
+<li>After your final commit and feel you&rsquo;re ready to PR back to the project: <code>git push origin &lt;name-of-your-branch&gt;</code>.</li>
+<li>Visit your forked <em>GitHub</em> repo and switch branches to your new branch.</li>
+<li>Select <code>New pull request</code> (top-left) and tell <em>GitHub</em>, if it isn&rsquo;t already, to compare against remote branches. Select the original/canonical master first, then your repo and branch.</li>
+</ul>
+<ol start="11">
+<li>Create the pull request (PR) and send it.
+<ul>
+<li>Enter a description of what your commits do as a whole.</li>
+<li>How should this be tested?</li>
+<li>Who should be notified? @mention them if you know.</li>
+<li>Is there anything else we should know before we review and test your work?</li>
+<li>With your description complete click the <code>Create Pull Request</code> button and you&rsquo;re done! Thank you!</li>
+</ul>
+</li>
+</ol>
+<p>And that&rsquo;s a wrap.  Until next time&hellip;</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

@@ -1,0 +1,374 @@
+
+
+
+
+<!doctype html>
+<html lang="en-us">
+  <head>
+
+    <title>Dockerized Traefik Host Using ACME DNS-01 Challenge // The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.87.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Mark A. McFate" />
+    <meta name="description" content="" />
+    
+    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-4766052-14', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dockerized Traefik Host Using ACME DNS-01 Challenge"/>
+<meta name="twitter:description" content="This post builds on My dockerized-server Config and attempts to change what was a problematic ACME HTTP-01 or httpChallenge in Traefik and Let&rsquo;s Encrypt to an ACME DNS-01 or dnsChallenge. The problem with the old HTTP-01 or httpChallenge is that it requires the creation of a valid and widely accessible &ldquo;A&rdquo; record in our DNS before the creation of a cert; the record has to be in place so that the Let&rsquo;s Encrypt CA-server can find it to confirm that the request is valid."/>
+
+    <meta property="og:title" content="Dockerized Traefik Host Using ACME DNS-01 Challenge" />
+<meta property="og:description" content="This post builds on My dockerized-server Config and attempts to change what was a problematic ACME HTTP-01 or httpChallenge in Traefik and Let&rsquo;s Encrypt to an ACME DNS-01 or dnsChallenge. The problem with the old HTTP-01 or httpChallenge is that it requires the creation of a valid and widely accessible &ldquo;A&rdquo; record in our DNS before the creation of a cert; the record has to be in place so that the Let&rsquo;s Encrypt CA-server can find it to confirm that the request is valid." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-04-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-27T00:00:00+00:00" />
+
+
+
+  </head>
+
+  <body>
+
+    
+    <header class="app-header">
+
+      
+
+      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
+
+      <div class="author-block">
+
+        
+
+        <p class="site-rev">
+          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
+          Content Updated: 2021-Sep-30 08:02 CDT
+        </p>
+
+        <div class="name">by
+        <strong>Mark A. McFate</strong></div>
+        <div class="address">Grinnell College Libraries</div>
+        <div class="link"><a href="mailto:"></a></div>
+        <br/>
+      </div>
+
+      <nav class="sidebar-nav">
+        
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        
+        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        
+      </nav>
+
+      <p class="site-description">Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/McFateM"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+          <a target="_blank" href="https://twitter.com/gohugoio"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter">
+  <title>twitter</title>
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg></a>
+        
+      </div>
+      <p class="copyright">The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+    </header>
+
+    
+    <main class="app-container">
+      <div class="breadcrumbs">
+  
+  
+  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+      
+    
+  
+    
+    
+    
+      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/'>071 dockerized traefik using acme DNS 01</a>
+      
+    
+  
+    
+    
+    
+  
+</div>
+
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Dockerized Traefik Host Using ACME DNS-01 Challenge</h1>
+      <div class="post-meta">
+
+        
+        
+
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          11 min read
+          &nbsp;&nbsp;&bullet;&nbsp;&nbsp;
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Apr 27, 2020
+          
+          
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign">
+  <title>at-sign</title>
+  <circle cx="12" cy="12" r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+</svg> Mark A. McFate</strong>
+          <div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag">
+  <title>tag</title>
+  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
+</svg>
+              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/docker/">docker</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/traefik/">Traefik</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/portainer/">Portainer</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/watchtower/">Watchtower</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/dockerized-server/">dockerized-server</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/traefik.frontend.rule/">traefik.frontend.rule</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/acme/">ACME</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/dns-01/">DNS-01</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/http-01/">HTTP-01</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/docker-traefik2-host/">docker-traefik2-host</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/docker-compose/">docker-compose</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/service-stack/">service-stack</a></div></div>
+    </header>
+    <div class="post-content">
+      <p>This post builds on <a href="https://dlad.summittdweller.com/en/posts/042-my-dockerized-server-config/">My dockerized-server Config</a> and attempts to change what was a problematic <a href="https://docs.traefik.io/https/acme/#httpchallenge">ACME HTTP-01 or httpChallenge</a> in <a href="https://traefik.io">Traefik</a> and <a href="https://letsencrypt.org">Let&rsquo;s Encrypt</a> to an <a href="https://docs.traefik.io/https/acme/#dnschallenge">ACME DNS-01 or dnsChallenge</a>. The problem with the old <em>HTTP-01</em> or <em>httpChallenge</em> is that it requires the creation of a valid and widely accessible &ldquo;A&rdquo; record in our DNS <em>before</em> the creation of a cert; the record has to be in place so that the <em>Let&rsquo;s Encrypt</em> CA-server can find it to confirm that the request is valid.  However, doing this puts the cart-before-the-horse, so-to-speak, since we like to have a valid cert in place <em>before</em> we add a new DNS record.</p>
+<p>Just like my old <a href="https:/github.com/McFateM/dockerized-server">dockerized-server</a> configuration, this project revolves around a workflow that will setup a &ldquo;Dockerized&rdquo; server complete with <em>Traefik</em>, <em>Portainer</em>, and <em>Who Am I</em>. Like its predecessor, it should be relatively easy to add additional services or application stacks to any server that is initially configured using this package.  For &ldquo;static&rdquo; servers have a look at my <a href="https://dlad.summittdweller.com/en/posts/posts/008-docker-bootstrap-workflow/">docker-bootstrap Workflow </a> for an example.</p>
+<table>
+<thead>
+<tr>
+<th>All of my associated research and testing for this issue can be found in a <em>OneTab</em> at <a href="https://www.one-tab.com/page/9E_29YLjSGa9iAeckxMbIQ">https://www.one-tab.com/page/9E_29YLjSGa9iAeckxMbIQ</a></th>
+</tr>
+</thead>
+</table>
+<p>To overcome the <em>HTTP-01 challenge</em> issue mentioned above, a colleague of mine at <em>Grinnell College</em> suggested we move to a <em>DNS-01 challenge</em>, and formulated a propsal to do so.</p>
+<h2 id="dns-01-proposal">DNS-01 Proposal</h2>
+<p>My colleague&rsquo;s proposal reads like this:</p>
+<pre><code>The proposed design uses CNAME following so that TXT records can be created for the grinnell.edu domain in a custom (non-grinnell.edu) domain.  On your side, the initial steps will be similar to what we do now.  When you need a new host record, a ticket should be created requesting example.grinnell.edu, and with a note that you will need Let’s Encrypt verification.  In order for CNAME following to work, a CNAME in the college’s external DNS must first be created.  This record will follow the format of _acme-challenge.example.grinnell.edu, and will point to a custom domain (le-verify.info or something similar).  We will register this custom domain name with Azure DNS and utilize a service principal account in Azure that will have permission to create TXT records in that custom domain.  We will then give you a key to that service principal account so that you can configure Traefik to create the TXT records automatically as a part of the Let’s Encrypt verification process.  When Let’s Encrypt goes to find the _acme-challenge.example.grinnell.edu record, it will be forwarded to the custom domain, see the TXT record, and then approve and sign the certificate for example.grinnell.edu.
+ 
+I have tested this using an NGINX ingress controller, but the documentation for Traefik shows that it supports the same kind of configuration.
+...
+Here is some documentation that may explain things better than I have:
+ 
+CNAME Following
+https://letsencrypt.org/2019/10/09/onboarding-your-customers-with-lets-encrypt-and-acme.html
+ 
+An Example Ingress Controller’s Implementation of DNS verification:
+https://docs.traefik.io/https/acme/#dnschallenge
+</code></pre><h2 id="april-dns-01-troubles">April: DNS-01 Troubles</h2>
+<p>When attempting to implement the proposal outlined above we got back some odd errors. My record of the result can be found <a href="https://gist.github.com/McFateM/095eb6cd798f8c9807de7e0c0024cf62">in this Gist</a>.</p>
+<h2 id="may-moving-to-traefik-v2">May: Moving to Traefik v2</h2>
+<p>All of the above material was generated using <a href="https://dlad.summittdweller.com/en/posts/042-my-dockerized-server-config/">My dockerized-server Config</a> running <a href="https://traefik.io">Traefik</a> version 1.x. Since the Traefik community has moved on it seemed prudent to try upgrading the server to Traefik v2.x before posting a lot of debug info involving the previous version. So, that&rsquo;s what I did, upgrade to Traefik 2.2.1.</p>
+<h2 id="docker-traefik2-host">docker-traefik2-host</h2>
+<p>Our move to <em>Traefik v2.2.1</em> is captured in a new Dockerized-server configuration I call <a href="https://github.com/DigitalGrinnell/docker-traefik2-host">docker-traefik2-host</a>. The key to obtaining certs in <a href="https://github.com/DigitalGrinnell/docker-traefik2-host">docker-traefik2-host</a> lies in the <a href="https://github.com/DigitalGrinnell/docker-traefik2-host/blob/master/traefik/data/traefik.yml">./traefik/data/traefik.yml</a> file and corresponding <em>.env</em> file which is NOT stored in GitHub. <em>traefik.yml</em> inlcudes a section of configuration like this:</p>
+<pre><code># ## for HTTP-01 challeng
+# certificatesResolvers:
+#   http:
+#     acme:
+#       # - Uncomment caServer line below to run on the staging let's encrypt server.  Leave comment to go to prod.
+#       caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+#       email: digital@grinnell.edu
+#       storage: acme.json
+#       httpChallenge:
+#         entryPoint: http
+
+## for DNS-01 challenge
+certificatesResolvers:
+ http:
+   acme:
+     # - Uncomment caServer line below to run on the staging Let's Encrypt server.  Leave comment to go to prod.
+     #caServer: https://acme-staging-v02.api.letsencrypt.org/directory
+     email: digital@grinnell.edu
+     storage: acme.json
+     dnsChallenge:
+       provider: azure
+</code></pre><p>The above configuration is intended to implement either an <em>HTTP-01</em> or <em>DNS-01</em> challenge, but never both. In the above example the host is being configured to use a <em>DNS-01</em> challenge, and it uses the <em>Let&rsquo;s Encrypt</em> production server since the &ldquo;caServer&rdquo; declaration of &ldquo;staging&rdquo; is commented out.</p>
+<h2 id="failure-on-staticgrinnelledu">Failure on Static.Grinnell.edu</h2>
+<p>Unfortunately, the configuration shown above, when applied to the <em>static.grinnell.edu</em> host, failed even after being tweaked and tested several times. Along the way I eventually ran into <em>Let&rsquo;s Encrypt&rsquo;s</em> rate limit and got shut out of further testing for one week. During that week I attempted to implement this configuration on a different host, namely <em>dgdocker3.grinnell.edu</em>, where I encountered different failures.</p>
+<h2 id="testing-on-dgdocker3grinnelledu">Testing on DGDocker3.Grinnell.edu</h2>
+<p><em>DGDocker3.Grinnell.edu</em> is a CentOS 7.8 host running Docker with my <a href="https://github.com/DigitalGrinnell/docker-traefik2-host">docker-traefik2-host</a> resident in <code>/opt/containers</code>. It sits behind the college firewall so VPN access is required, and it&rsquo;s configured to provide the following services:</p>
+<table>
+<thead>
+<tr>
+<th>Stack and Service</th>
+<th>Details</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>landing-landing</td>
+<td>Dockerized Hugo static site</td>
+<td><a href="https://dgdocker3.grinnell.edu/">https://dgdocker3.grinnell.edu/</a></td>
+</tr>
+<tr>
+<td>traefik</td>
+<td>Traefik v2.2.1 with dashboard</td>
+<td><a href="https://dgdocker3.grinnell.edu/dashboard/">https://dgdocker3.grinnell.edu/dashboard/</a></td>
+</tr>
+<tr>
+<td>portainer</td>
+<td>Portainer v1.23.2 dashboard</td>
+<td><a href="https://dgdocker3.grinnell.edu/portainer/">https://dgdocker3.grinnell.edu/portainer/</a></td>
+</tr>
+</tbody>
+</table>
+<p>Each service has its own subdirectory and <code>docker-compose.yml</code> file located there. All can be found in <a href="https://github.com/DigitalGrinnell/docker-traefik2-host">docker-traefik2-host</a>. The all-important <a href="https://github.com/DigitalGrinnell/docker-traefik2-host/blob/master/traefik/data/traefik.yml">./traefik/data/traefik.yml</a> is also there.</p>
+<h3 id="scripts">Scripts</h3>
+<p>The <a href="https://github.com/DigitalGrinnell/docker-traefik2-host">docker-traefik2-host</a> project also features a pair of scripts to help facilitate testing. They are:</p>
+<table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>destroy.sh</td>
+<td>Stops and removes all running containers, images and networks. Destroys the <code>./traefik/data/acme.json</code> file and restores it to pristine condition.</td>
+</tr>
+<tr>
+<td>restart.sh</td>
+<td>Restarts all the services with verbose (<code>--debug</code>) logs echoed from Traefik&rsquo;s <code>/var/log/traefik.log</code> file.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="test-1---http-01-challenge-using-les-staging-server">Test 1 - HTTP-01 Challenge Using LE&rsquo;s Staging Server</h3>
+<p>My first test will attempt a clean restart of all services using LE&rsquo;s <strong>staging</strong> CA-server and <strong>HTTP-01 challenge</strong>. The &lsquo;./traefik/data/traefik.yml&rsquo; file for this test is reflected in <a href="https://gist.github.com/McFateM/1d15b4e2bd992d1883de5f12e31dc6c3">this gist</a>.</p>
+<p>I initiated this test as <em>root</em> using:</p>
+<pre><code>cd /opt/containers
+./destroy.sh
+./restart.sh
+</code></pre><p>The result of this test shows all three services are working and are reachable via VPN at the addresses listed above, but <strong>none have valid certs</strong> so they all require an exception. This is to be expected when using LE&rsquo;s &ldquo;staging&rdquo; CA-server, but it seems there is more to this outcome since some errors are present.</p>
+<p>The log and resulting <em>acme.json</em> from this test can be seen in <a href="https://gist.github.com/McFateM/dd5e7b016ccfd3d71b91f5c8602c3f33">this gist</a>, and the first errors encountered state that:</p>
+<pre><code>time=&quot;2020-05-17T13:09:14-04:00&quot; level=debug msg=&quot;http: TLS handshake error from 132.161.249.251:51447: remote error: tls: bad certificate&quot;
+time=&quot;2020-05-17T13:09:14-04:00&quot; level=debug msg=&quot;http: TLS handshake error from 132.161.249.251:51448: remote error: tls: bad certificate&quot;
+</code></pre><table>
+<thead>
+<tr>
+<th>Since this test appears to have failed &ldquo;unexpectedly&rdquo;, I&rsquo;m going forego the next test that would attempt the same but using LE&rsquo;s &ldquo;production&rdquo; CA-server, and proceed straight to DNS-01 testing.</th>
+</tr>
+</thead>
+</table>
+<h3 id="test-2---dns-01-challenge-using-les-staging-server">Test 2 - DNS-01 Challenge Using LE&rsquo;s Staging Server</h3>
+<p>My next test will attempt a clean restart of all services using LE&rsquo;s <strong>staging</strong> CA-server and <strong>DNS-01 challenge</strong>. The &lsquo;./traefik/data/traefik.yml&rsquo; file for this test is reflected in <a href="https://gist.github.com/McFateM/4b093a4f7e0ba29723495f4a0458717f">this gist</a>.</p>
+<p>I initiated this test as <em>root</em> using:</p>
+<pre><code>cd /opt/containers
+./destroy.sh
+./restart.sh
+</code></pre><p>The result of this test shows all three services are working and are reachable via VPN at the addresses listed above, but <strong>none have valid certs</strong> so they all require an exception. This is to be expected when using LE&rsquo;s &ldquo;staging&rdquo; CA-server, but it seems there is more to this outcome since some errors are present.</p>
+<p>The log from this test can be seen in [this gist](The result of this test shows all three services are working and are reachable via VPN at the addresses listed above, but <strong>none have valid certs</strong> so they all require an exception. This is to be expected when using LE&rsquo;s &ldquo;staging&rdquo; CA-server, but it seems there is more to this outcome since some errors are present.</p>
+<p>The log from this test can be seen in <a href="https://gist.github.com/McFateM/dd5e7b016ccfd3d71b91f5c8602c3f33">this gist</a>, and the first error encountered states that:</p>
+<pre><code>time=&quot;2020-05-17T13:43:01-04:00&quot; level=debug msg=&quot;No ACME certificate generation required for domains [\&quot;dgdocker3.grinnell.edu\&quot;].&quot; providerName=http.acme routerName=traefik-secure@docker rule=&quot;Host(`dgdocker3.grinnell.edu`) &amp;&amp; (PathPrefix(`/api`) || PathPrefix(`/dashboard`))&quot;
+time=&quot;2020-05-17T13:43:01-04:00&quot; level=debug msg=&quot;http: TLS handshake error from 132.161.249.251:52136: remote error: tls: bad certificate&quot;
+</code></pre><table>
+<thead>
+<tr>
+<th>Since this test appears to have failed in the same &ldquo;unexpected&rdquo; manner as Test 1, I&rsquo;m going forego subsequent tests until this can be resolved.</th>
+</tr>
+</thead>
+</table>
+<h2 id="returning-to-staticgrinnelledu">Returning to Static.Grinnell.edu</h2>
+<p>Since more than a week has passed since I hit LE&rsquo;s rate limit, I thought that this evening I&rsquo;d try my luck with <code>static.grinnell.edu</code> again, this time with an HTTP-01 challenge and LE&rsquo;s production server. It worked, except that some of my stack_service names were incorrect. What I really wanted to learn from this is what an <code>acme.json</code> file should look like when valid certs have been created. The answer can be found in <a href="https://gist.github.com/McFateM/4f1524627a5ebbcbeae299d43d002640">this gist</a>.</p>
+<p>Note that I was ultimately able to get all the services on <code>static.grinnell.edu</code> working properly, with valid certs, by stopping (see below) those containers that had incorrect names, fixing the router&rsquo;s service name in each corresponding <code>docker-compose.yml</code>, then doing a new <code>docker-compose up -d</code> to restart things. No additional cert validation or modification of <em>Traefik</em> was needed.</p>
+<ul>
+<li>Stopping containers&hellip; <code>docker stop [id]; docker rm -v [id]</code></li>
+<li>Correct <code>service-stack</code> names&hellip; the correct name convention is <code>service-stack</code> where <em>service</em> is the name of the service, not the container name, and <em>stack</em> is the name of the sub-directory</li>
+</ul>
+<h3 id="test-3---static-to-dns-01-production">Test 3 - Static to DNS-01 Production</h3>
+<p>This morning, May 18, 2020, I switched the configuration on <code>static.grinnell.edu</code> back to DNS-01 using LE&rsquo;s production CA-server, and tried again.  The log from this test as well as an obfuscated <code>acme.json</code> can be seen in <a href="https://gist.github.com/McFateM/4ad29fa0a30e2a3fc5ef3b4b566a031a">this gist</a>.</p>
+<p>The sites all appear to work, except for the landing page at <a href="https://static.grinnell.edu/">https://static.grinnell.edu/</a> which returns a 404, but none have valid certs and therefore require browser security exceptions again. I found the landing page problem in <code>restart.sh</code>, fixed it, and did a <code>docker-compose up -d</code> in <code>./landing</code> to get that page running.</p>
+<p>The first error encountered in the log is at line 243 and it reads:</p>
+<blockquote>
+<p>time=&ldquo;2020-05-18T09:21:35-05:00&rdquo; level=error msg=&ldquo;Unable to obtain ACME certificate for domains &quot;static.grinnell.edu&quot;: cannot get ACME client azure: Get &quot;http://169.254.169.254/metadata/instance/compute/subscriptionId?api-version=2017-12-01&amp;format=text&quot;: dial tcp 169.254.169.254:80: i/o timeout&rdquo; providerName=http.acme routerName=traefik-secure@docker rule=&ldquo;Host(<code>static.grinnell.edu</code>) &amp;&amp; (PathPrefix(<code>/api</code>) || PathPrefix(<code>/dashboard</code>))&rdquo;</p>
+</blockquote>
+<h3 id="test-4---replace-invalid-certs-with-valid">Test 4 - Replace Invalid Certs with Valid</h3>
+<p>This test is really a remediation step as in it I&rsquo;ll replace the now &ldquo;broken&rdquo; <code>./traefik/data/acme.json</code> file with the working copy (<code>./traefik/data/http-01-acme.json</code>) that was created in &ldquo;Returning to Static.Grinnell.edu&rdquo; above. I do this on the <code>static.grinnell.edu</code> host as <em>root</em> like so:</p>
+<pre><code>cd /opt/containers/traefik/data
+rm -f acme.json
+cp -f http-01-acme.json acme.json
+</code></pre><p>Unfortunately, the old certs don&rsquo;t match the new services so they are invalid and the sites all require browser security exceptions again.</p>
+<h3 id="test-5---static-returned-to-staging-with-dns-01">Test 5 - Static Returned to Staging with DNS-01</h3>
+<p>In this test I&rsquo;ve moved the values of our Azure <code>.env</code> variables directly into <code>traefik.yml</code> and I have prudently switched the process back to using LE&rsquo;s staging server.  The complete log and obfuscated <code>acme.json</code> are in <a href="https://gist.github.com/McFateM/3f4bc94a6d1031debcf2dfbec305093b">this gist</a>.</p>
+<p>The log contains a series of errors like the one below, and all seven sites are up and running but with browser security exceptions still required.</p>
+<blockquote>
+<p>time=&ldquo;2020-05-18T11:58:02-05:00&rdquo; level=debug msg=&ldquo;Serving default certificate for request: &quot;static.grinnell.edu&quot;&rdquo;
+time=&ldquo;2020-05-18T11:58:02-05:00&rdquo; level=debug msg=&ldquo;http: TLS handshake error from 132.161.249.72:57914: remote error: tls: bad certificate&rdquo;</p>
+</blockquote>
+<h3 id="test-6---static-returned-to-production-with-http-01">Test 6 - Static Returned to Production with HTTP-01</h3>
+<p>I need to put <code>static.grinnell.edu</code> back to work and return to testing on <code>dgdocker3.grinnell.edu</code>, so this test will return <em>static</em> to using the LE production server and HTTP-01 challenge. The complete log and obfuscated <code>acme.json</code> are in <a href="https://gist.github.com/McFateM/d504088f8df79ebf28bb70eec03500d8">this gist</a>.</p>
+<p>All seven sites are working, and have valid certs. That&rsquo;s my cue to move back to <code>dgdocker3.grinnell.edu</code>.</p>
+<p>Note that even with working sites and new, valid certs I still see a series of errors like this one:</p>
+<blockquote>
+<p>time=&ldquo;2020-05-18T12:52:18-05:00&rdquo; level=debug msg=&ldquo;Serving default certificate for request: &quot;static.grinnell.edu&quot;&rdquo;
+time=&ldquo;2020-05-18T12:52:18-05:00&rdquo; level=debug msg=&ldquo;http: TLS handshake error from 132.161.249.72:60953: remote error: tls: bad certificate&rdquo;</p>
+</blockquote>
+<p>So, apparently those errors have nothing to do with the challenge? The plot thickens.</p>
+<h2 id="back-to-dgdocker3">Back to DGDocker3</h2>
+<p>The debug messages (not errors) like <code>TLS handshake error from 132.161.249.72:60953: remote error: tls: bad certificate</code> seem to be present in every test I&rsquo;ve run, even when valid certs are issued. So it seems safe to assume they are not critical.  To try and work around them I&rsquo;m going to return my testing to <code>dgdocker3.grinnell.edu</code> and start anew there with Test 7.</p>
+<h3 id="test-7---dgdocker3-test-with-staging-and-dns-01">Test 7 - DGDocker3 Test with Staging and DNS-01</h3>
+<p>This test will reset <code>dgdocker3.grinnell.edu</code> using LE&rsquo;s staging server and our DNS-01 challenge just as it was configured in Test 6 above. The complete log and obfuscated <code>acme.json</code> are in <a href="https://gist.github.com/McFateM/b525152c822cdb3dd85d5214c06b1d8e">this gist</a>.</p>
+<p>There were no errors or warnings in the log, and all three sites are working without valid certs, therefore all require browser security exceptions, but that is to be expected since the LE staging server was used. The mysterious &ldquo;TLS handshake error&rdquo; debug messages do still appear. In light of this, my next test will use the same configuration, but switched back to DNS-01.</p>
+<h3 id="test-8---dgdocker3-test-with-production-and-dns-01">Test 8 - DGDocker3 Test with Production and DNS-01</h3>
+<p>This test will reset <code>dgdocker3.grinnell.edu</code> using LE&rsquo;s production server and our DNS-01 challenge just as it was configured in Test 7 above. The complete log and obfuscated <code>acme.json</code> are in <a href="https://gist.github.com/McFateM/bcc9bfcd79ba5f54d569cad4aaf30457">this gist</a>.</p>
+<p>Again, there were no errors or warnings in the log, and all three sites are working, but they still have no valid certs, therefore all require browser security exceptions. Again, the &ldquo;TLS handshake error&rdquo; messages are still present.  <strong>What are those meant to tell us?</strong></p>
+<p>And that&rsquo;s a good place to break&hellip; because I&rsquo;m exhausted and can&rsquo;t imagine what to try next.  Too many questions here, not enough answsers.  😦</p>
+
+    </div>
+    <div class="post-footer">
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "digital-library-applications-developer-blog" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+  </article>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

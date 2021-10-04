@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>config on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
+    <link>https://digital-grinnell.github.io/dlad-blog/tags/config/</link>
+    <description>Recent content in config on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 30 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/config/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deleting Config Items in Drupal 8</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/032-deleting-config-items-in-drupal-8/</link>
+      <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/032-deleting-config-items-in-drupal-8/</guid>
+      <description>None of this is my creation, but it&amp;rsquo;s too valuable to forget! So kudos to Goran Nikolovski and his blog post.
+The problem I ran into involved the Drupal update.php script, and an orphaned bit of configuration data. When I tried running update.php the first of 13 pending database updates kept throwing an exception telling me of a missing plugin, and that effectively killed the other 12 updates. 😦 Well, I really didn&amp;rsquo;t care that it was missing (and Drupal should not either) because the update was there to delete it, but since the update kept failing, we had ourselves an impossible loop.</description>
+    </item>
+    
+    <item>
+      <title>Awesome Hugo Resource - Config Variables Summary</title>
+      <link>https://digital-grinnell.github.io/dlad-blog/posts/022-awesome-hugo-resource-config-variables/</link>
+      <pubDate>Mon, 08 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://digital-grinnell.github.io/dlad-blog/posts/022-awesome-hugo-resource-config-variables/</guid>
+      <description>I&amp;rsquo;m working remotely from a desk on the 3rd floor of the MSOE (Milwaukee School of Engineering) this morning and just ran into a problem with this blog&amp;hellip; some of my single and double quotes are rendered as &amp;ldquo;curly quotes&amp;rdquo; so I can&amp;rsquo;t effectively copy and paste them into a command line. While searching for a fix I found an awesome Hugo resource. It lists, among other things, ALL of Hugo&amp;rsquo;s standard configuration variables!
+The settings I&amp;rsquo;m most interested in right now are part of BlackFriday, Hugo&amp;rsquo;s markdown rendering engine.</description>
+    </item>
+    
+  </channel>
+</rss>
