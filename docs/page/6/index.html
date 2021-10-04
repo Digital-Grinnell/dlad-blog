@@ -56,8 +56,8 @@ if (!doNotTrack) {
         
 
         <p class="site-rev">
-          Compiled: Oct 4, 2021 at 4:22pm CDT<br/>
-          Content Updated: 2021-Sep-15 08:11 CDT
+          Compiled: Oct 4, 2021 at 4:29pm CDT<br/>
+          Content Updated: 2021-Sep-30 08:02 CDT
         </p>
 
         <div class="name">by
@@ -146,6 +146,36 @@ git config --global user.name &#34;Mark McFate&#34; git config --global user.ema
         <br/>
 
         
+          <a target="_blank" class="posts-list-item-title" href="https://digital-grinnell.github.io/dlad-blog/posts/060-isle-workflow-test/">ISLE Workflow Test</a>
+          <span class="posts-list-item-description">
+            
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>&nbsp;9 min read &nbsp;
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg> Jan 27, 2020
+            
+              &nbsp;&nbsp;|&nbsp;&nbsp;Updated: Feb 11, 2020 - 19:58
+            
+            
+            <br/>
+            <span class="summary">ISLE v1.3.0 has been running on my staging server, DGDockerX, for about 6 weeks now and it seems to be performing as-expected with one exception… when I try to import a batch of objects using IMI, the Islandora Multi-Importer, I get the following error:
+The website encountered an unexpected error. Please try again later. An examination of Recent log messages shows…
+GuzzleHttp\Exception\ConnectException: cURL error 6: Could not resolve host: sheets.googleapis.com (see https://curl.haxx.se/libcurl/c/libcurl-errors.html) in GuzzleHttp\Handler\CurlFactory::createRejection() (line 200 of /var/www/html/sites/all/modules/islandora/islandora_multi_importer/vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php). Engaging the Local Workflow Since I’m not at all sure what’s wrong, I feel like I need to rewind my process a bit and try to reproduce the same configuration, and error, on a local instance of this ISLE stack. ...</span>
+          </span>
+        
+
+      
+
+        
+
+        <br/>
+
+        
           <a target="_blank" class="posts-list-item-title" href="https://digital-grinnell.github.io/dlad-blog/posts/059-pushing-isle-to-staging/">Pushing ISLE to Staging</a>
           <span class="posts-list-item-description">
             
@@ -195,34 +225,6 @@ Directories I’ll begin by opening a terminal on the staging host, DGDockerX as
             <br/>
             <span class="summary">This post replaces my earlier post 021 with the same title. It is intended to chronicle my efforts to build a new ISLE v1.3.0 local development instance of Digital.Grinnell on my work-issued MacBook Air, MA7053.
 Goal The goal of this project is to spin up a pristine, local Islandora stack using the ISLE project at https://github.com/Digital-Grinnell/dg-isle/, then introduce elements like the Digital Grinnell theme and custom modules like DG7. Once these pieces are in-place and working, I’ll begin adding other critical components as well as a robust set of data gleaned from https://digital. ...</span>
-          </span>
-        
-
-      
-
-        
-
-        <br/>
-
-        
-          <a target="_blank" class="posts-list-item-title" href="https://digital-grinnell.github.io/dlad-blog/posts/050-granular-isle-customization-installing-dg7/">Granular ISLE Customization: Installing DG7</a>
-          <span class="posts-list-item-description">
-            
-            
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <title>clock</title>
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg>&nbsp;1 min read &nbsp;
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <title>calendar</title>
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg> Oct 9, 2019
-            
-              &nbsp;&nbsp;|&nbsp;&nbsp;Updated: Nov 25, 2019 - 17:05
-            
-            
-            <br/>
-            <span class="summary">Warning!     The DG7 module contains code with numerous dependencies, and the most sinister of these is a Grinnell-specific version of the Solr schema. Do NOT attempt to use this module early in a stack-building process, nor outside the Digital.Grinnell environment.       Granular ISLE Customization     This post is part of a series describing Digital.Grinnell customizations to ISLE, in a “granular” format… one small customization at a time. ...</span>
           </span>
         
 
@@ -473,6 +475,12 @@ The goal of this project is to spin up a pristine, local Islandora stack using a
   <li class="page-item">
     <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/11/">
       11
+    </a>
+  </li>
+  
+  <li class="page-item">
+    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/12/">
+      12
     </a>
   </li>
   

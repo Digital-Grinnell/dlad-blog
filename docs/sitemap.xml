@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://digital-grinnell.github.io/dlad-blog/tags/isle/</loc>
+    <lastmod>2021-09-30T08:02:10-05:00</lastmod>
+  </url><url>
+    <loc>https://digital-grinnell.github.io/dlad-blog/tags/</loc>
+    <lastmod>2021-09-30T08:02:10-05:00</lastmod>
+  </url><url>
+    <loc>https://digital-grinnell.github.io/dlad-blog/</loc>
+    <lastmod>2021-09-30T08:02:10-05:00</lastmod>
+  </url><url>
+    <loc>https://digital-grinnell.github.io/dlad-blog/tags/update/</loc>
+    <lastmod>2021-09-30T08:02:10-05:00</lastmod>
+  </url><url>
+    <loc>https://digital-grinnell.github.io/dlad-blog/posts/111-updating-isle-v1.5.11/</loc>
+    <lastmod>2021-09-30T08:02:10-05:00</lastmod>
+  </url><url>
+    <loc>https://digital-grinnell.github.io/dlad-blog/tags/v1.5.11/</loc>
+    <lastmod>2021-09-30T08:02:10-05:00</lastmod>
+  </url><url>
     <loc>https://digital-grinnell.github.io/dlad-blog/tags/azure/</loc>
     <lastmod>2021-09-15T08:11:50-05:00</lastmod>
   </url><url>
@@ -11,12 +29,6 @@
     <loc>https://digital-grinnell.github.io/dlad-blog/tags/static/</loc>
     <lastmod>2021-09-15T08:11:50-05:00</lastmod>
   </url><url>
-    <loc>https://digital-grinnell.github.io/dlad-blog/tags/</loc>
-    <lastmod>2021-09-15T08:11:50-05:00</lastmod>
-  </url><url>
-    <loc>https://digital-grinnell.github.io/dlad-blog/</loc>
-    <lastmod>2021-09-15T08:11:50-05:00</lastmod>
-  </url><url>
     <loc>https://digital-grinnell.github.io/dlad-blog/tags/digitalocean/</loc>
     <lastmod>2021-09-02T14:57:56-05:00</lastmod>
   </url><url>
@@ -24,9 +36,6 @@
     <lastmod>2021-09-02T14:57:56-05:00</lastmod>
   </url><url>
     <loc>https://digital-grinnell.github.io/dlad-blog/tags/kiosk/</loc>
-    <lastmod>2021-09-02T14:57:56-05:00</lastmod>
-  </url><url>
-    <loc>https://digital-grinnell.github.io/dlad-blog/tags/update/</loc>
     <lastmod>2021-09-02T14:57:56-05:00</lastmod>
   </url><url>
     <loc>https://digital-grinnell.github.io/dlad-blog/posts/108-updates-to-vaf-kiosk/</loc>
@@ -39,9 +48,6 @@
     <lastmod>2021-09-02T14:53:19-05:00</lastmod>
   </url><url>
     <loc>https://digital-grinnell.github.io/dlad-blog/tags/disable-security/</loc>
-    <lastmod>2021-09-02T14:53:19-05:00</lastmod>
-  </url><url>
-    <loc>https://digital-grinnell.github.io/dlad-blog/tags/isle/</loc>
     <lastmod>2021-09-02T14:53:19-05:00</lastmod>
   </url><url>
     <loc>https://digital-grinnell.github.io/dlad-blog/tags/public/</loc>
