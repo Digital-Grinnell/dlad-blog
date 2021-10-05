@@ -1,7 +1,7 @@
 ---
 title: "Moving Static Sites to GitHub Pages"
 publishDate: 2021-10-05
-lastmod: 2021-10-05T16:59:11-05:00
+lastmod: 2021-10-05T17:00:15-05:00
 draft: false
 tags:
   - static
@@ -79,7 +79,7 @@ To complete the process of creating a _GitHub Pages_ site you'll need to visit y
 
 {{% figure title="GH Pages Settings" src="/images/post-112/gh-pages-setting.png" %}}
 
-# Address and Repo Tabulation
+# Completed Migrations
 
 | CNAME Assigned               | New GH Address                      | GitHub Repo   | Old Address |
 | ---                          | ---                                 | ---           | ---         |
