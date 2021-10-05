@@ -1,7 +1,7 @@
 ---
 title: "Moving Static Sites to GitHub Pages"
 publishDate: 2021-10-05
-lastmod: 2021-10-05T17:00:15-05:00
+lastmod: 2021-10-05T18:35:56-05:00
 draft: false
 tags:
   - static
@@ -28,13 +28,15 @@ This section simply tabluates the posts and documentation used to effect migrati
 
 ## publishDir = "docs"
 
-Note that in all cases I found it necessary to conform to _GitHub_ practice of publishing content from a `./docs` site subdirectory rather than from `./public`, the default _Hugo_ behavior.  Publishing from `./docs` is default behavior for _Jekyll_, and that static generator is commonly used in _GitHub_ pages. The `./docs` setting typically appears in a site's front matter within `config.toml` as: `publishDir = "docs"`.
+Do *NOT* change the `publishDir` parameter in your configuration, if you even have one!  The default `public` setting is correct.
+
+~Note that in all cases I found it necessary to conform to _GitHub_ practice of publishing content from a `./docs` site subdirectory rather than from `./public`, the default _Hugo_ behavior.  Publishing from `./docs` is default behavior for _Jekyll_, and that static generator is commonly used in _GitHub_ pages. The `./docs` setting typically appears in a site's front matter within `config.toml` as: `publishDir = "docs"`.~
 
 ## gh-pages.yml
 
 [Host on GitHub](https://gohugo.io/hosting-and-deployment/hosting-on-github/) directs us to create a new `.github/workflows/gh-pages.yml` file in each project.  This file directs _GitHub_ to build a _Hugo_ site each time a triggering event, like a "push", takes place.
 
-The document specifies the file contents to be:
+The document specifies the following contents plus a few additions of my own:
 
 ```
 name: github pages
@@ -54,11 +56,15 @@ jobs:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
+      - uses: szenius/set-timezone@v1.0  # per https://github.com/marketplace/actions/set-timezone
+        with:
+          timezoneLinux: "America/Chicago"
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: 'latest'
-          # extended: true
+          extended: true
 
       - name: Build
         run: hugo --minify
@@ -71,13 +77,13 @@ jobs:
           publish_dir: ./public
 ```
 
-I find that setting the last line to read `publish_dir: ./doc` makes more sense based on changes documented in the previous section; however, leaving this parameter set to `./public` also seems to work.
-
 ## GitHub Pages Settings
+
+It's not documented well, but *important to note* that this workflow will create a new `gh-pages` branch of your repo and the `root` of that branch is what you should publish! *Pay attention to that setting in the figure below!*
 
 To complete the process of creating a _GitHub Pages_ site you'll need to visit your repository's [GitHub Pages Settings](https://github.com/Digital-Grinnell/Digital-Grinnell.github.io/settings/pages) page and make selections like you see in the figure below.  The example below is taken from https://github.com/Digital-Grinnell/Digital-Grinnell.github.io/settings/pages.
 
-{{% figure title="GH Pages Settings" src="/images/post-112/gh-pages-setting.png" %}}
+{{% figure title="GH Pages Settings" src="/images/post-112/gh-pages-settings.png" %}}
 
 # Completed Migrations
 
