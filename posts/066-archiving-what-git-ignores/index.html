@@ -1,0 +1,127 @@
+<!doctype html><html lang=en-us>
+<head>
+<title>Archiving What Git Ignores // The Grinnell College Digital Library Application Developer's Blog</title>
+<meta charset=utf-8>
+<meta name=generator content="Hugo 0.88.1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=author content="Mark A. McFate">
+<meta name=description content>
+<link rel=stylesheet href=/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Archiving What Git Ignores">
+<meta name=twitter:description content="I love git and GitHub, and I can certainly appreciate the usefullness of .gitignore, but there are times when I&rsquo;d really like to move an ENTIRE project to a new home. I have in my head a process that might play out like this&mldr;
+ Fetch a list of all the files and directories that .gitignore is ignoring. Pass that list to a tar or gzip command (maybe two of them) with encryption to create a secure, compressed archive. Commit the archive to the project repo in GitHub, or keep it in a safe place for restoration in the future.">
+<meta property="og:title" content="Archiving What Git Ignores">
+<meta property="og:description" content="I love git and GitHub, and I can certainly appreciate the usefullness of .gitignore, but there are times when I&rsquo;d really like to move an ENTIRE project to a new home. I have in my head a process that might play out like this&mldr;
+ Fetch a list of all the files and directories that .gitignore is ignoring. Pass that list to a tar or gzip command (maybe two of them) with encryption to create a secure, compressed archive. Commit the archive to the project repo in GitHub, or keep it in a safe place for restoration in the future.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/posts/066-archiving-what-git-ignores/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-02-26T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-02-27T15:14:56-06:00">
+</head>
+<body>
+<header class=app-header>
+<a href><img class=app-header-avatar src=/avatar.jpg alt="Mark A. McFate"></a>
+<h2>The Grinnell College Digital Library Application Developer's Blog</h2>
+<div class=author-block>
+<p class=site-rev>
+Compiled: Oct 5, 2021 at 6:46pm CDT<br>
+Content Updated: 2021-Oct-5 18:35 CDT
+</p>
+<div class=name>by
+<strong>Mark A. McFate</strong></div>
+<div class=address>Grinnell College Libraries</div>
+<div class=link><a href=mailto:></a></div>
+<br>
+</div>
+<nav class=sidebar-nav>
+<a class=sidebar-nav-item href=/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=/about/ title>About Me</a>
+</nav>
+<p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+<div class=app-header-social>
+<a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a>
+<a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a>
+</div>
+<p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+</header>
+<main class=app-container>
+<div class=breadcrumbs>
+<a href>Home</a>
+&bull; <a href=posts/>Posts</a>
+&bull; <a href=posts/066-archiving-what-git-ignores/>066 archiving what git ignores</a>
+</div>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Archiving What Git Ignores</h1>
+<div class=post-meta>
+<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+3 min read
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+Feb 26, 2020
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;Updated: Feb 27, 2020 - 15:14
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
+<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+<a class=tag href=/tags/github/>GitHub</a><a class=tag href=/tags/git/>git</a><a class=tag href=/tags/ls-files/>ls-files</a><a class=tag href=/tags/.gitignore/>.gitignore</a><a class=tag href=/tags/archive/>archive</a><a class=tag href=/tags/gnupg/>GnuPG</a><a class=tag href=/tags/gpg/>gpg</a></div></div>
+</header>
+<div class=post-content>
+<p>I love <em>git</em> and <em>GitHub</em>, and I can certainly appreciate the usefullness of <em>.gitignore</em>, but there are times when I&rsquo;d really like to move an ENTIRE project to a new home. I have in my head a process that might play out like this&mldr;</p>
+<ol>
+<li>Fetch a list of all the files and directories that <em>.gitignore</em> is ignoring.</li>
+<li>Pass that list to a <em>tar</em> or <em>gzip</em> command (maybe two of them) <strong>with encryption</strong> to create a secure, compressed archive.</li>
+<li>Commit the archive to the project repo in <em>GitHub</em>, or keep it in a safe place for restoration in the future.</li>
+<li>Navigate in your terminal to a target and restore the archive using the</li>
+</ol>
+<h3 id=step-1>Step 1</h3>
+<p>Ok, the first step looks pretty easy. According to <a href=https://stackoverflow.com/a/1446609>this <em>StackOverflow</em> answer</a> we can use one or two <em>git</em> commands to do the trick, specifically:</p>
+<pre tabindex=0><code>git ls-files --others --ignored --exclude-standard
+git ls-files --others --ignored --exclude-standard --directory
+</code></pre><p>The first command above lists all the ignored files, and the second one lists all the ignored directories.</p>
+<h3 id=step-2>Step 2</h3>
+<p>I&rsquo;m going to try installing and using <a href=https://www.gnupg.org/index.html>GnuPG</a> and an example command sequence I found in <code>Solution 2</code> at <a href=https://stackoverflow.com/questions/35584461/gpg-encryption-and-decryption-of-a-folder-using-command-line>https://stackoverflow.com/questions/35584461/gpg-encryption-and-decryption-of-a-folder-using-command-line</a></p>
+<p>First, we capture the list of &ldquo;ignored&rdquo; files, then we <em>tar</em> it, then apply a <em>GnuPG</em> encryption, then remove the intermediate, unsecure artifact, like so:</p>
+<pre tabindex=0><code>git ls-files --others --ignored --exclude-standard &gt; $(date --iso-8601).ignored.list
+tar czvf $(date --iso-8601).ignored.list.tar.gz --files-from $(date --iso-8601).ignored.list
+gpg --encrypt --recipient summitt.dweller@gmail.com $(date --iso-8601).ignored.list.tar.gz
+rm -fr $(date --iso-8601).ignored.list.tar.gz
+</code></pre><p>This process leaves us with <code>&lt;today>.ignored.list.tar.gz.gpg</code>, a secure tarball that we can safely store and restore.</p>
+<h3 id=step-3>Step 3</h3>
+<p>Not much to elaborate on here&mldr; just keep that archive safe. Unfortunately, in the case of my <code>wieting-D8-DO</code> the archive is something north of 270 MB, way too big for <em>GitHub</em>.</p>
+<h3 id=step-4---restoring-a-gpg-archive-as-needed>Step 4 - Restoring a GPG Archive, As Needed</h3>
+<p>Copy the <code>&lt;date>.ignored.list.tar.gz</code> file to your target/parent directory, presumably the same directory that the files were captured from originally, and run this sequence, substituting the datestamp prefix of the <code>.gpg</code> filename in place of <code>&lt;date></code>.</p>
+<pre tabindex=0><code>gpg --decrypt &lt;date&gt;.ignored.list.tar.gz.gpg &gt; ignored.list.tar.gz
+tar xzvf ignored.list.tar.gz
+rm -f ignored.lists.tar.gz *.ignored.list.tar.gz.gpg
+</code></pre><h4 id=installing-_gnupg_-tools>Installing <em>GnuPG</em> Tools</h4>
+<p>Should work nicely once I get <em>GnuPG</em> installed and configured (see <a href=https://blog.ghostinthemachines.com/2015/03/01/how-to-use-gpg-command-line/>https://blog.ghostinthemachines.com/2015/03/01/how-to-use-gpg-command-line/</a>) on my Mac. The installation should be as easy as <code>brew install gnupg</code>.</p>
+<ul>
+<li>
+<p>Completed install of <em>GnuPG</em> as <code>Mark McFate &lt;mark.mcfate@icloud.com></code> on my Mac Mini. 27-Feb-2020</p>
+</li>
+<li>
+<p><code>gpg --gen-key</code> output is captured in my <em>KeePass</em> vault.</p>
+</li>
+<li>
+<p>Completed install of <em>GnuPG</em> for <code>administrator</code> as <code>Summitt Dweller &lt;summitt.dweller@gmail.com></code> on <code>summitt-dweller-DO-docker</code>. 27-Feb-2020</p>
+</li>
+<li>
+<p>Added <code>rng-tools</code> per <a href=https://delightlylinux.wordpress.com/2015/07/01/is-gpg-hanging-when-generating-a-key/>this very helpful post</a>!</p>
+</li>
+<li>
+<p><code>gpg --gen-key</code> output is captured in my <em>KeePass</em> vault.</p>
+</li>
+</ul>
+<h2 id=does-this-really-work>Does This Really Work?</h2>
+<p>Why yes, yes it does. The proof is in the pudding, or in this case, it&rsquo;s in a post I just pushed to my personal blog, specifically: <a href=https://blog.summittdweller.com/posts//posts/migrating-the-wieting-site-in-drupal-8/>Updating the Wieting Site in Drupal 8</a>. Check it out.</p>
+<p>And that&rsquo;s a break&mldr; I&rsquo;ll be back. 😄</p>
+</div>
+<div class=post-footer>
+<div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//digital-library-applications-developer-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</article>
+</main>
+</body>
+</html>

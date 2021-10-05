@@ -1,0 +1,321 @@
+<!doctype html><html lang=en-us>
+<head>
+<title>Traefik and Acme.sh Instead of DNS-01 // The Grinnell College Digital Library Application Developer's Blog</title>
+<meta charset=utf-8>
+<meta name=generator content="Hugo 0.88.1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=author content="Mark A. McFate">
+<meta name=description content>
+<link rel=stylesheet href=/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Traefik and Acme.sh Instead of DNS-01">
+<meta name=twitter:description content="This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge. It introduces an alternative to the failed process that was proposed in that earlier post.
+ Note that the following config-specific elements have been replaced below:
+ 6 occurances of ?.grinnell.edu now say example-1.grinnell.edu, and 2 occurances of ?.info now say example-2.info.   New Proposal On June 1 my colleage, Matt, suggested the following&mldr;
+ As much as I would like to resolve the DNS-01 challenge using Traefik alone, I don&rsquo;t believe it will support what we&rsquo;re trying to do here.">
+<meta property="og:title" content="Traefik and Acme.sh Instead of DNS-01">
+<meta property="og:description" content="This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge. It introduces an alternative to the failed process that was proposed in that earlier post.
+ Note that the following config-specific elements have been replaced below:
+ 6 occurances of ?.grinnell.edu now say example-1.grinnell.edu, and 2 occurances of ?.info now say example-2.info.   New Proposal On June 1 my colleage, Matt, suggested the following&mldr;
+ As much as I would like to resolve the DNS-01 challenge using Traefik alone, I don&rsquo;t believe it will support what we&rsquo;re trying to do here.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/posts/079-traefik-and-acme.sh-instead-of-dns-01/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-06-02T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-06-02T00:00:00+00:00">
+</head>
+<body>
+<header class=app-header>
+<a href><img class=app-header-avatar src=/avatar.jpg alt="Mark A. McFate"></a>
+<h2>The Grinnell College Digital Library Application Developer's Blog</h2>
+<div class=author-block>
+<p class=site-rev>
+Compiled: Oct 5, 2021 at 6:46pm CDT<br>
+Content Updated: 2021-Oct-5 18:35 CDT
+</p>
+<div class=name>by
+<strong>Mark A. McFate</strong></div>
+<div class=address>Grinnell College Libraries</div>
+<div class=link><a href=mailto:></a></div>
+<br>
+</div>
+<nav class=sidebar-nav>
+<a class=sidebar-nav-item href=/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=/about/ title>About Me</a>
+</nav>
+<p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+<div class=app-header-social>
+<a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a>
+<a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a>
+</div>
+<p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+</header>
+<main class=app-container>
+<div class=breadcrumbs>
+<a href>Home</a>
+&bull; <a href=posts/>Posts</a>
+&bull; <a href=posts/079-traefik-and-acme.sh-instead-of-dns-01/>079 traefik and acme.sh instead of DNS 01</a>
+</div>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Traefik and Acme.sh Instead of DNS-01</h1>
+<div class=post-meta>
+<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+13 min read
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+Jun 2, 2020
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
+<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+<a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/traefik/>Traefik</a><a class=tag href=/tags/acme/>ACME</a><a class=tag href=/tags/dns-01/>DNS-01</a><a class=tag href=/tags/docker-traefik2-host/>docker-traefik2-host</a><a class=tag href=/tags/docker-compose/>docker-compose</a></div></div>
+</header>
+<div class=post-content>
+<p>This post is a follow-up to <a href=/en/posts/071-dockerized-traefik-using-acme-dns-01>Dockerized Traefik Host Using ACME DNS-01 Challenge</a>. It introduces an alternative to the failed process that was proposed in that earlier post.</p>
+<blockquote>
+<p>Note that the following config-specific elements have been replaced below:</p>
+<ul>
+<li>6 occurances of <code>?.grinnell.edu</code> now say <code>example-1.grinnell.edu</code>, and</li>
+<li>2 occurances of <code>?.info</code> now say <code>example-2.info</code>.</li>
+</ul>
+</blockquote>
+<h2 id=new-proposal>New Proposal</h2>
+<p>On June 1 my colleage, Matt, suggested the following&mldr;</p>
+<blockquote>
+<p>As much as I would like to resolve the DNS-01 challenge using Traefik alone, I don&rsquo;t believe it will support what we&rsquo;re trying to do here. I&rsquo;m a bit disappointed by that as Nginx makes this process very easy, and my reading through the Traefik documentation and my own tests lead me to believe that CNAME following is not currently supported in Traefik, and is basically impossible. Until the they allow for the verification domain to be specified as a provider option (in this case, specifying example-2.info as the domain for the Azure DNS provider), using the built-in ACME functionality in Traefik won&rsquo;t work, no matter which DNS provider is in use.</p>
+<p>However, I believe I have a solution. Acme.sh is another tool that is commonly used to generate certificates using Let&rsquo;s Encrypt and the ACME protocol, and it does support domain aliasing. There is a containerized version of this, and I was able to build a docker-compose file that launches Traefik, a simple Whoami app, and the acme.sh container for creating certificates using the DNS-01 challenge. It&rsquo;s not fully automated in that you have to run a docker exec command after the first run, but I think automating that part of it should be possible. The acme.sh container will renew certificates every 60 days as long as the acme.sh container is running. Traefik is configured to watch the certificate directory for changes and will reload when the certificate is renewed.</p>
+</blockquote>
+<blockquote>
+<p>It&rsquo;s a fairly simple set up and I hope it can work for your use case.</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.3&#34;</span>
+
+<span style=color:#f92672>services</span>:
+
+  <span style=color:#f92672>acme</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>neilpang/acme.sh:latest</span>
+    <span style=color:#f92672>volumes</span>:
+      - <span style=color:#ae81ff>./certs:/certs</span>
+    <span style=color:#f92672>environment</span>:
+      <span style=color:#75715e># Azure</span>
+      - <span style=color:#ae81ff>AZUREDNS_SUBSCRIPTIONID=</span>
+      - <span style=color:#ae81ff>AZUREDNS_TENANTID=</span>
+      - <span style=color:#ae81ff>AZUREDNS_APPID=</span>
+      - <span style=color:#ae81ff>AZUREDNS_CLIENTSECRET=</span>
+
+    <span style=color:#f92672>command</span>: <span style=color:#ae81ff>daemon</span>
+    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>acme</span>
+
+
+  <span style=color:#f92672>traefik</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#e6db74>&#34;traefik:v2.2.1&#34;</span>
+    <span style=color:#f92672>container_name</span>: <span style=color:#e6db74>&#34;traefik&#34;</span>
+    <span style=color:#f92672>command</span>:
+      <span style=color:#75715e># --log.level=DEBUG</span>
+      --<span style=color:#ae81ff>api.insecure=true</span>
+      --<span style=color:#ae81ff>providers.docker=true</span>
+      --<span style=color:#ae81ff>providers.docker.exposedbydefault=false</span>
+      --<span style=color:#ae81ff>providers.file.directory=/certs/</span>
+      --<span style=color:#ae81ff>providers.file.watch=true</span>
+      --<span style=color:#ae81ff>entrypoints.web.address=:80</span>
+      --<span style=color:#ae81ff>entrypoints.websecure.address=:443</span>
+
+    <span style=color:#f92672>ports</span>:
+      - <span style=color:#ae81ff>80</span>:<span style=color:#ae81ff>80</span>
+      - <span style=color:#ae81ff>443</span>:<span style=color:#ae81ff>443</span>
+      - <span style=color:#ae81ff>8080</span>:<span style=color:#ae81ff>8080</span>
+
+    <span style=color:#f92672>volumes</span>:
+      - <span style=color:#ae81ff>/var/run/docker.sock:/var/run/docker.sock:ro</span>
+      - <span style=color:#ae81ff>./letsencrypt:/letsencrypt</span>
+      - <span style=color:#ae81ff>./certs/:/certs/</span>
+
+  <span style=color:#f92672>whoami</span>:
+    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>containous/whoami</span>
+    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>simple-service</span>
+    <span style=color:#f92672>labels</span>:
+      <span style=color:#f92672>traefik.enable</span>: <span style=color:#e6db74>&#34;true&#34;</span>
+      <span style=color:#f92672>traefik.http.routers.whoami.rule</span>: <span style=color:#e6db74>&#34;Host(`example-1.grinnell.edu`)&#34;</span>
+      <span style=color:#f92672>traefik.http.routers.whoami.entrypoints</span>: <span style=color:#e6db74>&#34;websecure&#34;</span>
+      <span style=color:#f92672>traefik.http.routers.whoami.tls</span>: <span style=color:#e6db74>&#34;true&#34;</span>
+</code></pre></div><blockquote>
+<p>In my &lsquo;certs&rsquo; directory, I have a certs.toml file with this:</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml>[[<span style=color:#a6e22e>tls</span>.<span style=color:#a6e22e>certificates</span>]]
+    <span style=color:#a6e22e>certFile</span> = <span style=color:#e6db74>&#34;/certs/example-1.grinnell.edu.cert&#34;</span>
+    <span style=color:#a6e22e>keyFile</span> = <span style=color:#e6db74>&#34;/certs/example-1.grinnell.edu.key&#34;</span>
+</code></pre></div><blockquote>
+<p>Just add an additional [[tls.certificates]] section for every additional certificate you will want generated.</p>
+</blockquote>
+<blockquote>
+<p>Netcentos is the name of my test machine, so just change that where you see it.</p>
+<p>You will also want to move your Azure environment variables from the Traefik section to the Acme.sh container section (without quotes).</p>
+<p>After running docker-compose up -d, you will need to run the acme.sh command within the container once, changing the hostname for your own. If you want an additional hostname include another -d flag and then the FQDN.</p>
+</blockquote>
+<pre tabindex=0><code>docker exec -it acme --issue --dns dns_azure -d example-1.grinnell.edu --domain-alias _acme-challenge.example-2.info --key-file /certs/example-1.grinnell.edu.key --cert-file /certs/example-1.grinnell.edu.cert --standalone
+</code></pre><blockquote>
+<p>Here&rsquo;s the documentation that I followed to get here, but feel free to send me questions if you have any.</p>
+<ul>
+<li><a href=https://containo.us/blog/traefik-2-tls-101-23b4fbee81f1/>https://containo.us/blog/traefik-2-tls-101-23b4fbee81f1/</a></li>
+<li><a href=https://github.com/acmesh-official/acme.sh/wiki/DNS-alias-mode>https://github.com/acmesh-official/acme.sh/wiki/DNS-alias-mode</a></li>
+<li><a href=https://hub.docker.com/r/neilpang/acme.sh>https://hub.docker.com/r/neilpang/acme.sh</a></li>
+</ul>
+</blockquote>
+<h2 id=mcfatemdocker-traefik2-acme-host>McFateM/docker-traefik2-acme-host</h2>
+<p>I started work on this proposal by cloning <a href=https://github.com/DigitalGrinnell/docker-traefik2-host>https://github.com/DigitalGrinnell/docker-traefik2-host</a>, reinitializing it, and pushing back an unmodified new copy to <a href=https://github.com/McFateM/docker-traefik2-acme-host>https://github.com/McFateM/docker-traefik2-acme-host</a>.</p>
+<h2 id=first-experience>First Experience</h2>
+<p>Yesterday I created cloned the above repository to the <code>/opt/containers</code> directory on my development and testing host, <code>dgdocker3</code>. In the <code>docker-traefik2-acme-host</code> directory there I created a new <code>traefik</code> subdirectory to work from.</p>
+<p>After introducing as few changes as possible, I navigated into the aforementioned <code>traefik</code> subdirectory and did this, with the following log results:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>docker-compose up -d
+traefik    | time<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;2020-06-03T21:03:31Z&#34;</span> level<span style=color:#f92672>=</span>info msg<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Configuration loaded from flags.&#34;</span>
+traefik    | time<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;2020-06-03T21:03:31Z&#34;</span> level<span style=color:#f92672>=</span>error msg<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Unable to append certificate /certs/dgdocker3.grinnell.edu.cert to store: unable to generate TLS certificate : tls: failed to find any PEM data in certificate input&#34;</span> tlsStoreName<span style=color:#f92672>=</span>default
+</code></pre></div><p>The error here caused me to panic for a bit, but realizing that the process wasn&rsquo;t complete I eventually moved on to the necessary next step.</p>
+<h2 id=invoking-acmesh>Invoking Acme.sh</h2>
+<p>In spite of the errors reported by <code>docker-compose up -d</code>, the command did indeed create three healthy containers: <code>traefik</code>, <code>acme</code>, and <code>simple-service</code>. That last container just provides a <a href=https://en.wikipedia.org/wiki/Whoami>WhoAmI</a> app that I&rsquo;ve configured to respond to <a href=https://dgdocker3.grinnell.edu>https://dgdocker3.grinnell.edu</a>. It works, but the cert is reported to be invalid/insecure.</p>
+<p>Matt&rsquo;s instructions do say that after <code>docker-compose up -d</code> there is one remaining command required to configure <code>acme.sh</code> to provision and keep watch on the certs to be created. This command is to be run only one time in order to create a cert. So I did this with the following obfuscated results:</p>
+<pre tabindex=0><code>[root@dgdocker3 traefik]# docker exec -it acme --issue --dns dns_azure -d dgdocker3.grinnell.edu --domain-alias _acme-challenge.obfuscated.info --key-file /certs/dgdocker3.grinnell.edu --cert-file /cernts/dgdocker3.grinnell.edu.cert --standalone
+[Wed Jun  3 22:13:45 UTC 2020] Create account key ok.
+[Wed Jun  3 22:13:45 UTC 2020] Registering account
+[Wed Jun  3 22:13:46 UTC 2020] Registered
+[Wed Jun  3 22:13:46 UTC 2020] ACCOUNT_THUMBPRINT='EOC57YZgSg-D6S1dAREUNxGArecjpDRizh_Tyo85kN8'
+[Wed Jun  3 22:13:46 UTC 2020] Creating domain key
+[Wed Jun  3 22:13:46 UTC 2020] The domain key is here: /acme.sh/dgdocker3.grinnell.edu/dgdocker3.grinnell.edu.key
+[Wed Jun  3 22:13:46 UTC 2020] Single domain='dgdocker3.grinnell.edu'
+[Wed Jun  3 22:13:46 UTC 2020] Getting domain auth token for each domain
+[Wed Jun  3 22:13:47 UTC 2020] Getting webroot for domain='dgdocker3.grinnell.edu'
+[Wed Jun  3 22:13:47 UTC 2020] Adding txt value: eMxRFkWK...mWAX4 for domain:  _acme-challenge.obfuscated.info
+[Wed Jun  3 22:13:49 UTC 2020] validation value added
+[Wed Jun  3 22:13:49 UTC 2020] The txt record is added: Success.
+[Wed Jun  3 22:13:49 UTC 2020] Let's check each dns records now. Sleep 20 seconds first.
+[Wed Jun  3 22:14:10 UTC 2020] Checking dgdocker3.grinnell.edu for _acme-challenge.obfuscated.info
+[Wed Jun  3 22:14:10 UTC 2020] Domain dgdocker3.grinnell.edu '_acme-challenge.obfuscated.info' success.
+[Wed Jun  3 22:14:10 UTC 2020] All success, let's return
+[Wed Jun  3 22:14:10 UTC 2020] Verifying: dgdocker3.grinnell.edu
+[Wed Jun  3 22:14:12 UTC 2020] Success
+[Wed Jun  3 22:14:12 UTC 2020] Removing DNS records.
+[Wed Jun  3 22:14:12 UTC 2020] Removing txt: eMxRFkWK...WAX4 for domain: _acme-challenge.obfuscated.info
+[Wed Jun  3 22:14:14 UTC 2020] validation record removed
+[Wed Jun  3 22:14:14 UTC 2020] Removed: Success
+[Wed Jun  3 22:14:14 UTC 2020] Verify finished, start to sign.
+[Wed Jun  3 22:14:14 UTC 2020] Lets finalize the order, Le_OrderFinalize: https://acme-v02.api.letsencrypt.org/acme/finalize/87890647/3622372972
+[Wed Jun  3 22:14:15 UTC 2020] Download cert, Le_LinkCert: https://acme-v02.api.letsencrypt.org/acme/cert/04591be468a971eb756bf08bc626c5905321
+[Wed Jun  3 22:14:15 UTC 2020] Cert success.
+-----BEGIN CERTIFICATE-----
+MIIFZDCCBE...waHNHdLOQrtg==
+-----END CERTIFICATE-----
+[Wed Jun  3 22:14:15 UTC 2020] Your cert is in  /acme.sh/dgdocker3.grinnell.edu/dgdocker3.grinnell.edu.cer
+[Wed Jun  3 22:14:15 UTC 2020] Your cert key is in  /acme.sh/dgdocker3.grinnell.edu/dgdocker3.grinnell.edu.key
+[Wed Jun  3 22:14:15 UTC 2020] The intermediate CA cert is in  /acme.sh/dgdocker3.grinnell.edu/ca.cer
+[Wed Jun  3 22:14:15 UTC 2020] And the full chain certs is there:  /acme.sh/dgdocker3.grinnell.edu/fullchain.cer
+[Wed Jun  3 22:14:15 UTC 2020] Installing cert to:/cernts/dgdocker3.grinnell.edu.cert
+/root/.acme.sh/acme.sh: line 5246: can't create /cernts/dgdocker3.grinnell.edu.cert: nonexistent directory
+[root@dgdocker3 traefik]# docker exec -it acme --issue --dns dns_azure -d dgdocker3.grinnell.edu --domain-alias _acme-challenge.obfuscated.info --key-file /certs/dgdocker3.grinnell.edu --cert-file /certs/dgdocker3.grinnell.edu.cert --standalone
+[Wed Jun  3 22:16:31 UTC 2020] Domains not changed.
+[Wed Jun  3 22:16:31 UTC 2020] Skip, Next renewal time is: Sun Aug  2 22:14:15 UTC 2020
+[Wed Jun  3 22:16:31 UTC 2020] Add '--force' to force to renew.
+[root@dgdocker3 traefik]# docker exec -it acme --issue --dns dns_azure -d dgdocker3.grinnell.edu --domain-alias _acme-challenge.obfuscated.info --key-file /certs/dgdocker3.grinnell.edu --cert-file /certs/dgdocker3.grinnell.edu.cert --standalone --force
+[Wed Jun  3 22:16:42 UTC 2020] Single domain='dgdocker3.grinnell.edu'
+[Wed Jun  3 22:16:42 UTC 2020] Getting domain auth token for each domain
+[Wed Jun  3 22:16:43 UTC 2020] Getting webroot for domain='dgdocker3.grinnell.edu'
+[Wed Jun  3 22:16:43 UTC 2020] dgdocker3.grinnell.edu is already verified, skip dns-01.
+[Wed Jun  3 22:16:43 UTC 2020] Verify finished, start to sign.
+[Wed Jun  3 22:16:43 UTC 2020] Lets finalize the order, Le_OrderFinalize: https://acme-v02.api.letsencrypt.org/acme/finalize/87890647/3622403221
+[Wed Jun  3 22:16:44 UTC 2020] Download cert, Le_LinkCert: https://acme-v02.api.letsencrypt.org/acme/cert/0342ac4b3f8619949070cce67d48b998ea8c
+[Wed Jun  3 22:16:44 UTC 2020] Cert success.
+-----BEGIN CERTIFICATE-----
+MIIFZjCCBE6...uZDIZq1GMQ7xM
+-----END CERTIFICATE-----
+[Wed Jun  3 22:16:44 UTC 2020] Your cert is in  /acme.sh/dgdocker3.grinnell.edu/dgdocker3.grinnell.edu.cer
+[Wed Jun  3 22:16:44 UTC 2020] Your cert key is in  /acme.sh/dgdocker3.grinnell.edu/dgdocker3.grinnell.edu.key
+[Wed Jun  3 22:16:44 UTC 2020] The intermediate CA cert is in  /acme.sh/dgdocker3.grinnell.edu/ca.cer
+[Wed Jun  3 22:16:44 UTC 2020] And the full chain certs is there:  /acme.sh/dgdocker3.grinnell.edu/fullchain.cer
+[Wed Jun  3 22:16:44 UTC 2020] Installing cert to:/certs/dgdocker3.grinnell.edu.cert
+[Wed Jun  3 22:16:44 UTC 2020] Installing key to:/certs/dgdocker3.grinnell.edu
+[root@dgdocker3 traefik]#
+</code></pre><h2 id=oops>Oops</h2>
+<p>If you look closely above you&rsquo;ll see that I ran the command twice because of a typo the first time around. As suggested in the output, I corrected the syntax and ran the command a second time with an appended <code>--force</code> option. That seemed to work since it looks like the second command ran without incident. However, when I visit <a href=https://dgdocker3.grinnell.edu>https://dgdocker3.grinnell.edu</a> the site comes up, but still with an invalid/insecure cert.</p>
+<p><strong>The cert appears to have been generated correctly, and against the <em>Let&rsquo;s Encrypt</em> production server, so why is it invalid?</strong></p>
+<h2 id=a-hunch>A Hunch</h2>
+<p>I&rsquo;ve received confirmation that certs are generated only when this critical command, <code>docker exec -it acme --issue --dns dns_azure -d dgdocker3.grinnell.edu --domain-alias _acme-challenge.obfuscated.info --key-file /certs/dgdocker3.grinnell.edu --cert-file /certs/dgdocker3.grinnell.edu.cert --standalone --force</code>, is run. Also, the order in which the containers are created isn&rsquo;t critical, so in the future it probably makes better sense to create the <code>acme</code> container first, and run it before <code>traefik</code> and the others are created.</p>
+<p>Now I need to confirm that the generated certs are visible to the <em>traefik</em> container, and that they have proper permissions. Looking at that now&mldr;</p>
+<p>I set <em>Traefik</em>&rsquo;s debugging level to <code>DEBUG</code>, and removed all of the trailing slashes from <code>/certs</code> references in <code>docker-compose.yml</code>. When I did a new <code>docker-compose up -d</code> this is what I got, with some obfuscation:</p>
+<pre tabindex=0><code>╭─mcfatem@dgdocker3 /opt/containers/docker-traefik2-acme-host/traefik ‹master*›
+╰─$ docker-compose up -d
+Recreating traefik ...
+simple-service is up-to-date
+Recreating traefik ... done
+╭─mcfatem@dgdocker3 /opt/containers/docker-traefik2-acme-host/traefik ‹master*›
+╰─$ docker-compose logs
+Attaching to traefik, simple-service, acme
+simple-service | Starting up on port 80
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=info msg=&quot;Configuration loaded from flags.&quot;
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=info msg=&quot;Traefik version 2.2.1 built on 2020-04-29T18:02:09Z&quot;
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=debug msg=&quot;Static configuration loaded {\&quot;global\&quot;:{\&quot;checkNewVersion\&quot;:true},\&quot;serversTransport\&quot;:{\&quot;maxIdleConnsPerHost\&quot;:200},\&quot;entryPoints\&quot;:{\&quot;traefik\&quot;:{\&quot;address\&quot;:\&quot;:8080\&quot;,\&quot;transport\&quot;:{\&quot;lifeCycle\&quot;:{\&quot;graceTimeOut\&quot;:10000000000},\&quot;respondingTimeouts\&quot;:{\&quot;idleTimeout\&quot;:180000000000}},\&quot;forwardedHeaders\&quot;:{},\&quot;http\&quot;:{}},\&quot;web\&quot;:{\&quot;address\&quot;:\&quot;:80\&quot;,\&quot;transport\&quot;:{\&quot;lifeCycle\&quot;:{\&quot;graceTimeOut\&quot;:10000000000},\&quot;respondingTimeouts\&quot;:{\&quot;idleTimeout\&quot;:180000000000}},\&quot;forwardedHeaders\&quot;:{},\&quot;http\&quot;:{}},\&quot;websecure\&quot;:{\&quot;address\&quot;:\&quot;:443\&quot;,\&quot;transport\&quot;:{\&quot;lifeCycle\&quot;:{\&quot;graceTimeOut\&quot;:10000000000},\&quot;respondingTimeouts\&quot;:{\&quot;idleTimeout\&quot;:180000000000}},\&quot;forwardedHeaders\&quot;:{},\&quot;http\&quot;:{}}},\&quot;providers\&quot;:{\&quot;providersThrottleDuration\&quot;:2000000000,\&quot;docker\&quot;:{\&quot;watch\&quot;:true,\&quot;endpoint\&quot;:\&quot;unix:///var/run/docker.sock\&quot;,\&quot;defaultRule\&quot;:\&quot;Host(`{{ normalize .Name }}`)\&quot;,\&quot;swarmModeRefreshSeconds\&quot;:15000000000},\&quot;file\&quot;:{\&quot;directory\&quot;:\&quot;/certs\&quot;,\&quot;watch\&quot;:true}},\&quot;api\&quot;:{\&quot;insecure\&quot;:true,\&quot;dashboard\&quot;:true},\&quot;log\&quot;:{\&quot;level\&quot;:\&quot;DEBUG\&quot;,\&quot;format\&quot;:\&quot;common\&quot;}}&quot;
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=info msg=&quot;\nStats collection is disabled.\nHelp us improve Traefik by turning this feature on :)\nMore details on: https://docs.traefik.io/contributing/data-collection/\n&quot;
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=info msg=&quot;Starting provider aggregator.ProviderAggregator {}&quot;
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=debug msg=&quot;Start TCP Server&quot; entryPointName=web
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=debug msg=&quot;Start TCP Server&quot; entryPointName=websecure
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=debug msg=&quot;Start TCP Server&quot; entryPointName=traefik
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=info msg=&quot;Starting provider *file.Provider {\&quot;directory\&quot;:\&quot;/certs\&quot;,\&quot;watch\&quot;:true}&quot;
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=info msg=&quot;Starting provider *traefik.Provider {}&quot;
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=debug msg=&quot;Configuration received from provider file: {\&quot;http\&quot;:{},\&quot;tcp\&quot;:{},\&quot;udp\&quot;:{},\&quot;tls\&quot;:{}}&quot; providerName=file
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=debug msg=&quot;Configuration received from provider internal: {\&quot;http\&quot;:{\&quot;routers\&quot;:{\&quot;api\&quot;:{\&quot;entryPoints\&quot;:[\&quot;traefik\&quot;],\&quot;service\&quot;:\&quot;api@internal\&quot;,\&quot;rule\&quot;:\&quot;PathPrefix(`/api`)\&quot;,\&quot;priority\&quot;:2147483646},\&quot;dashboard\&quot;:{\&quot;entryPoints\&quot;:[\&quot;traefik\&quot;],\&quot;middlewares\&quot;:[\&quot;dashboard_redirect@internal\&quot;,\&quot;dashboard_stripprefix@internal\&quot;],\&quot;service\&quot;:\&quot;dashboard@internal\&quot;,\&quot;rule\&quot;:\&quot;PathPrefix(`/`)\&quot;,\&quot;priority\&quot;:2147483645}},\&quot;services\&quot;:{\&quot;api\&quot;:{},\&quot;dashboard\&quot;:{},\&quot;noop\&quot;:{}},\&quot;middlewares\&quot;:{\&quot;dashboard_redirect\&quot;:{\&quot;redirectRegex\&quot;:{\&quot;regex\&quot;:\&quot;^(http:\\\\/\\\\/[^:\\\\/]+(:\\\\d+)?)\\\\/$\&quot;,\&quot;replacement\&quot;:\&quot;${1}/dashboard/\&quot;,\&quot;permanent\&quot;:true}},\&quot;dashboard_stripprefix\&quot;:{\&quot;stripPrefix\&quot;:{\&quot;prefixes\&quot;:[\&quot;/dashboard/\&quot;,\&quot;/dashboard\&quot;]}}}},\&quot;tcp\&quot;:{},\&quot;tls\&quot;:{}}&quot; providerName=internal
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=debug msg=&quot;No store is defined to add the certificate MIIFZjCCBE6gAwIBAgISA0KsSz+GGZSQcMzmfUi5mOqMMA0GCS, it will be added to the default store.&quot;
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=error msg=&quot;Unable to append certificate MIIFZjCCBE6gAwIBAgISA0KsSz+GGZSQcMzmfUi5mOqMMA0GCS to store: unable to generate TLS certificate : tls: failed to find any PEM data in key input&quot; tlsStoreName=default
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=debug msg=&quot;No default certificate, generating one&quot;
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=info msg=&quot;Starting provider *docker.Provider {\&quot;watch\&quot;:true,\&quot;endpoint\&quot;:\&quot;unix:///var/run/docker.sock\&quot;,\&quot;defaultRule\&quot;:\&quot;Host(`{{ normalize .Name }}`)\&quot;,\&quot;swarmModeRefreshSeconds\&quot;:15000000000}&quot;
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=debug msg=&quot;Provider connection established with docker 19.03.8 (API 1.40)&quot; providerName=docker
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=debug msg=&quot;Filtering disabled container&quot; container=traefik-traefik-afe2703051b474ea3e259e1fcc8699a925968ddca1132fb67265479c4e93c85b providerName=docker
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=debug msg=&quot;Filtering disabled container&quot; providerName=docker container=acme-traefik-cda17bc48f61207b7c92c9d1760f7d428eccc4b413dd440bb97bdd84ee052df3
+traefik    | time=&quot;2020-06-04T16:36:15Z&quot; level=debug msg=&quot;Configuration received from provider docker: {\&quot;http\&quot;:{\&quot;routers\&quot;:{\&quot;whoami\&quot;:{\&quot;entryPoints\&quot;:[\&quot;websecure\&quot;],\&quot;service\&quot;:\&quot;whoami-traefik\&quot;,\&quot;rule\&quot;:\&quot;Host(`dgdocker3.grinnell.edu`)\&quot;,\&quot;tls\&quot;:{}}},\&quot;services\&quot;:{\&quot;whoami-traefik\&quot;:{\&quot;loadBalancer\&quot;:{\&quot;servers\&quot;:[{\&quot;url\&quot;:\&quot;http://192.168.160.3:80\&quot;}],\&quot;passHostHeader\&quot;:true}}}},\&quot;tcp\&quot;:{},\&quot;udp\&quot;:{}}&quot; providerName=docker
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=error msg=&quot;Unable to append certificate MIIFZjCCBE6gAwIBAgISA0KsSz+GGZSQcMzmfUi5mOqMMA0GCS to store: unable to generate TLS certificate : tls: failed to find any PEM data in key input&quot; tlsStoreName=default
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Added outgoing tracing middleware api@internal&quot; middlewareType=TracingForwarder entryPointName=traefik routerName=api@internal middlewareName=tracing
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Added outgoing tracing middleware dashboard@internal&quot; entryPointName=traefik routerName=dashboard@internal middlewareName=tracing middlewareType=TracingForwarder
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Creating middleware&quot; entryPointName=traefik routerName=dashboard@internal middlewareType=StripPrefix middlewareName=dashboard_stripprefix@internal
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Adding tracing to middleware&quot; routerName=dashboard@internal middlewareName=dashboard_stripprefix@internal entryPointName=traefik
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Creating middleware&quot; entryPointName=traefik routerName=dashboard@internal middlewareName=dashboard_redirect@internal middlewareType=RedirectRegex
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Setting up redirection from ^(http:\\/\\/[^:\\/]+(:\\d+)?)\\/$ to ${1}/dashboard/&quot; middlewareType=RedirectRegex entryPointName=traefik routerName=dashboard@internal middlewareName=dashboard_redirect@internal
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Adding tracing to middleware&quot; entryPointName=traefik routerName=dashboard@internal middlewareName=dashboard_redirect@internal
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Creating middleware&quot; entryPointName=traefik middlewareName=traefik-internal-recovery middlewareType=Recovery
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;No default certificate, generating one&quot;
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=error msg=&quot;Unable to append certificate MIIFZjCCBE6gAwIBAgISA0KsSz+GGZSQcMzmfUi5mOqMMA0GCS to store: unable to generate TLS certificate : tls: failed to find any PEM data in key input&quot; tlsStoreName=default
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Added outgoing tracing middleware dashboard@internal&quot; middlewareName=tracing middlewareType=TracingForwarder routerName=dashboard@internal entryPointName=traefik
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Creating middleware&quot; middlewareType=StripPrefix entryPointName=traefik routerName=dashboard@internal middlewareName=dashboard_stripprefix@internal
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Adding tracing to middleware&quot; routerName=dashboard@internal middlewareName=dashboard_stripprefix@internal entryPointName=traefik
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Creating middleware&quot; middlewareName=dashboard_redirect@internal middlewareType=RedirectRegex entryPointName=traefik routerName=dashboard@internal
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Setting up redirection from ^(http:\\/\\/[^:\\/]+(:\\d+)?)\\/$ to ${1}/dashboard/&quot; entryPointName=traefik routerName=dashboard@internal middlewareName=dashboard_redirect@internal middlewareType=RedirectRegex
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Adding tracing to middleware&quot; middlewareName=dashboard_redirect@internal entryPointName=traefik routerName=dashboard@internal
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Added outgoing tracing middleware api@internal&quot; middlewareName=tracing middlewareType=TracingForwarder entryPointName=traefik routerName=api@internal
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Creating middleware&quot; entryPointName=traefik middlewareName=traefik-internal-recovery middlewareType=Recovery
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Creating middleware&quot; entryPointName=websecure routerName=whoami@docker serviceName=whoami-traefik middlewareName=pipelining middlewareType=Pipelining
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Creating load-balancer&quot; serviceName=whoami-traefik entryPointName=websecure routerName=whoami@docker
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Creating server 0 http://192.168.160.3:80&quot; routerName=whoami@docker serviceName=whoami-traefik entryPointName=websecure serverName=0
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Added outgoing tracing middleware whoami-traefik&quot; entryPointName=websecure routerName=whoami@docker middlewareName=tracing middlewareType=TracingForwarder
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;Creating middleware&quot; entryPointName=websecure middlewareName=traefik-internal-recovery middlewareType=Recovery
+traefik    | time=&quot;2020-06-04T16:36:16Z&quot; level=debug msg=&quot;No default certificate, generating one&quot;
+traefik    | time=&quot;2020-06-04T16:36:26Z&quot; level=debug msg=&quot;Serving default certificate for request: \&quot;dgdocker3.grinnell.edu\&quot;&quot;
+traefik    | time=&quot;2020-06-04T16:36:26Z&quot; level=debug msg=&quot;http: TLS handshake error from 132.161.249.186:55292: remote error: tls: bad certificate&quot; |
+</code></pre><h2 id=aha>Aha!</h2>
+<p>I poured over the output above and to be honest, it wasn&rsquo;t all that helpful, but along the way I decided to double check something&mldr;</p>
+<p>The unfortunate thing with this process is that we have to run a lengthy <code>docker exec...</code> command. Sure, you only run it once, but it&rsquo;s pretty long and therefore subject to human error. I knew that I got it wrong twice, but in reality, there were three iterations of at least one error/omission.</p>
+<p>The command I typed (can&rsquo;t even copy/paste since I have to be on VPN to run the command, and VPN effectively &ldquo;blinds&rdquo; my machine rendering the clipboard almost useless), four times now, looked like this the first time:</p>
+<pre tabindex=0><code>docker exec -it acme --issue --dns dns_azure -d dgdocker3.grinnell.edu --domain-alias _acme-challenge.{obfuscated}.info --key-file /cernts/dgdocker3.grinnell.edu --cert-file /certs/dgdocker3.grinnell.edu.cert --standalone
+</code></pre><p>There&rsquo;s an obvious error there, an extra &ldquo;n&rdquo; in the <code>--key-file</code> path. It read <code>/cernts/</code>, but should have been <code>/certs/</code>. Fortunately that was pretty easy to catch and the error messages in the log helped me identify it. However, in that same portion of the command there&rsquo;s another error, actually an omission, that&rsquo;s more sinister. The clause <code>--key-file /cernts/dgdocker3.grinnell.edu</code> should actually be <code>--key-file /certs/dgdocker3.grinnell.edu.key</code>. They &ldquo;key&rdquo; difference there is the <code>.key</code> extension at the very end, it was omitted the first THREE times I ran this command!</p>
+<h2 id=one-more-timewith-feeling>One More Time&mldr;with Feeling</h2>
+<p>So, the correct <code>docker exec...</code> command at this point is:</p>
+<pre tabindex=0><code>docker exec -it acme --issue --dns dns_azure -d dgdocker3.grinnell.edu --domain-alias _acme-challenge.{obfuscated}.info --key-file /certs/dgdocker3.grinnell.edu.key --cert-file /certs/dgdocker3.grinnell.edu.cert --standalone --force
+</code></pre><p>The <code>--force</code> option is required here to &ldquo;force&rdquo; <em>Acme</em> to renew, or create, new certs since some already exist from previous iterations of the command. This time we must need to renew/create them with the correct path and file names!</p>
+<p>I&rsquo;ve put a &ldquo;copy&rdquo; of that command, with obfuscated elements restored as needed, into the <code>.env</code> file that carries some necessary credentials. Now to give it a go&mldr;</p>
+<h2 id=the-end-result>The End Result</h2>
+<p><strong>I am exceptionally pleased to report that&mldr;</strong> <code>IT</code> <code>JUST</code> <code>WORKS</code>. ❗ 😀 ❗ 😀 ❗</p>
+<p>Next steps&mldr;I&rsquo;m going to split the process into a more granluar form with additional containers/services, and repeat this test. If that works I&rsquo;ll take additional steps to automate everything to reduce the potential for future human-error, within reason.</p>
+<p>Look for all of that in a follow-up blog post.</p>
+<p>And that&rsquo;s a wrap. I am so pleased that this works (and it&rsquo;s not even Friday!) 😄</p>
+</div>
+<div class=post-footer>
+<div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//digital-library-applications-developer-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</article>
+</main>
+</body>
+</html>

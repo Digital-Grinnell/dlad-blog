@@ -1,0 +1,90 @@
+<!doctype html><html lang=en-us>
+<head>
+<title>Compiling SCSS (SASS) for This Blog // The Grinnell College Digital Library Application Developer's Blog</title>
+<meta charset=utf-8>
+<meta name=generator content="Hugo 0.88.1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=author content="Mark A. McFate">
+<meta name=description content>
+<link rel=stylesheet href=/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Compiling SCSS (SASS) for This Blog">
+<meta name=twitter:description content="While working on another post I finally made the decision to improve the appearance of this blog a bit, and unfortunately I&rsquo;d forgotten exactly how to do that. Even more unfortunate, I never blogged about the process so I had to &ldquo;discover&rdquo; the details all over again. 😢 This post is intended to remedy that.
+SASS The theme used here, m10c, employs .scss, or SASS (Syntactically Awesome Style Sheets) files. Subsequently, a SASS compiler is required to process them and produce suitable .">
+<meta property="og:title" content="Compiling SCSS (SASS) for This Blog">
+<meta property="og:description" content="While working on another post I finally made the decision to improve the appearance of this blog a bit, and unfortunately I&rsquo;d forgotten exactly how to do that. Even more unfortunate, I never blogged about the process so I had to &ldquo;discover&rdquo; the details all over again. 😢 This post is intended to remedy that.
+SASS The theme used here, m10c, employs .scss, or SASS (Syntactically Awesome Style Sheets) files. Subsequently, a SASS compiler is required to process them and produce suitable .">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/posts/024-compiling-scss-for-this-blog/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2019-07-19T00:00:00+00:00">
+<meta property="article:modified_time" content="2019-07-19T00:00:00+00:00">
+</head>
+<body>
+<header class=app-header>
+<a href><img class=app-header-avatar src=/avatar.jpg alt="Mark A. McFate"></a>
+<h2>The Grinnell College Digital Library Application Developer's Blog</h2>
+<div class=author-block>
+<p class=site-rev>
+Compiled: Oct 5, 2021 at 6:46pm CDT<br>
+Content Updated: 2021-Oct-5 18:35 CDT
+</p>
+<div class=name>by
+<strong>Mark A. McFate</strong></div>
+<div class=address>Grinnell College Libraries</div>
+<div class=link><a href=mailto:></a></div>
+<br>
+</div>
+<nav class=sidebar-nav>
+<a class=sidebar-nav-item href=/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=/about/ title>About Me</a>
+</nav>
+<p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+<div class=app-header-social>
+<a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a>
+<a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a>
+</div>
+<p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+</header>
+<main class=app-container>
+<div class=breadcrumbs>
+<a href>Home</a>
+&bull; <a href=posts/>Posts</a>
+&bull; <a href=posts/024-compiling-scss-for-this-blog/>024 compiling scss for this blog</a>
+</div>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Compiling SCSS (SASS) for This Blog</h1>
+<div class=post-meta>
+<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+2 min read
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+Jul 19, 2019
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
+<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+<a class=tag href=/tags/sass/>SASS</a><a class=tag href=/tags/.scss/>.scss</a><a class=tag href=/tags/emoji/>emoji</a></div></div>
+</header>
+<div class=post-content>
+<p>While working on another post I finally made the decision to improve the appearance of this blog a bit, and unfortunately I&rsquo;d forgotten exactly how to do that. Even more unfortunate, I never blogged about the process so I had to &ldquo;discover&rdquo; the details all over again. 😢 This post is intended to remedy that.</p>
+<h2 id=sass>SASS</h2>
+<p>The <a href=https://github.com/McFateM/hugo-theme-m10c>theme</a> used here, <code>m10c</code>, employs <code>.scss</code>, or <a href=https://sass-lang.com/>SASS</a> (Syntactically Awesome Style Sheets) files. Subsequently, a <code>SASS</code> compiler is required to process them and produce suitable <code>.css</code> to control the display you see now.</p>
+<p>Since I use <a href=https://atom.io/>Atom</a> for all of my maintenance and content here, it only made sense to create a workflow that would make compilation of <code>.scss</code> changes automatic. Doing so on each of my Mac&rsquo;s involved these simple steps:</p>
+<ul>
+<li>Install <code>SASS</code> - I used <code>homebrew</code> from the command line based on guidance found <a href=https://sass-lang.com/install>here</a>, like so: <code>brew install sass/sass/sass</code></li>
+<li>Install the <a href=https://atom.io/packages/atom-sass>atom-sass package</a> in <em>Atom</em> per the guidance provided with the package.</li>
+</ul>
+<p>That&rsquo;s it. Now, when I edit my <code>~/Projects/blogs-McFateM/assets/css/_extra.scss</code> file using <em>Atom</em> and save the changes, the corresponding <code>.css</code> is automatically created for me.</p>
+<p>Now, I need to research the techniques found in <a href=https://blog.fullstackdigital.com/how-to-cache-bust-and-concatenate-js-and-sass-files-with-hugo-in-2018-9266fd3c411e>this post about Hugo with SASS</a> and <a href=https://blog.fullstackdigital.com/how-to-use-hugo-template-variables-in-scss-files-in-2018-b8a834accce>this subsequent post about including SASS variables from config.toml</a> and figure out how to make them work for me. Unfortunately, I haven&rsquo;t figured out how to make my <code>atom-sass</code> recognize config variables from my <code>config.toml</code> file yet. 😏 I probably need to study <a href=https://gohugo.io/hugo-pipes/scss-sass/>this <em>Hugo</em> pipes document</a> too.</p>
+<h2 id=emoji>Emoji</h2>
+<p>Also&mldr; I&rsquo;ve forgotten more than once to document the super-simple <code>Emoji</code> capabilities of <em>Hugo</em> and the handy cheatsheet available at <a href=https://www.webfx.com/tools/emoji-cheat-sheet/>https://www.webfx.com/tools/emoji-cheat-sheet/</a>. Not forgotten anymore. Now, just don&rsquo;t forget to add <code>enableEmoji = true</code> to your <code>config.toml</code>, and <code>emoji: true</code> to the frontmatter of your posts!</p>
+<p>And that&rsquo;s a wrap. Until next time&mldr;</p>
+</div>
+<div class=post-footer>
+<div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//digital-library-applications-developer-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</article>
+</main>
+</body>
+</html>

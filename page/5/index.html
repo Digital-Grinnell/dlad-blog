@@ -1,0 +1,209 @@
+<!doctype html><html lang=en-us>
+<head>
+<title>The Grinnell College Digital Library Application Developer's Blog</title>
+<meta charset=utf-8>
+<meta name=generator content="Hugo 0.88.1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=author content="Mark A. McFate">
+<meta name=description content="Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.">
+<link rel=stylesheet href=/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="The Grinnell College Digital Library Application Developer's Blog">
+<meta name=twitter:description content="Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.">
+<meta property="og:title" content="The Grinnell College Digital Library Application Developer's Blog">
+<meta property="og:description" content="Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="/">
+</head>
+<body>
+<header class=app-header>
+<a href><img class=app-header-avatar src=/avatar.jpg alt="Mark A. McFate"></a>
+<h2>The Grinnell College Digital Library Application Developer's Blog</h2>
+<div class=author-block>
+<p class=site-rev>
+Compiled: Oct 5, 2021 at 6:46pm CDT<br>
+Content Updated: 2021-Oct-5 18:35 CDT
+</p>
+<div class=name>by
+<strong>Mark A. McFate</strong></div>
+<div class=address>Grinnell College Libraries</div>
+<div class=link><a href=mailto:></a></div>
+<br>
+</div>
+<nav class=sidebar-nav>
+<a class=sidebar-nav-item href=/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=/about/ title>About Me</a>
+</nav>
+<p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+<div class=app-header-social>
+<a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a>
+<a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a>
+</div>
+<p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+</header>
+<main class=app-container>
+<div class=breadcrumbs>
+<a href>Home</a>
+</div>
+<article>
+<h1>The Grinnell College Digital Library Application Developer's Blog</h1>
+<ul class=posts-list>
+<br>
+<a target=_blank class=posts-list-item-title href=/posts/072-enhancing-motd-with-server-info/>Enhancing 'motd' with 'server-info'</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;2 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> May 5, 2020
+<br>
+<span class=summary>My memory isn’t what it used to be, but I have this blog. 😄 And on the handful of CentOS and Ubuntu servers that I maintain, I have my server-info script, my replacement for motd. 😁
+Requirements: mdv and figlet The server-info script/command relies on a pair of utilities, namely mdv and figlet.
+The server-info Script You’ll find the script itself in this gist. Sample installation of the script is documented below, and the content template can be found in this gist. ...</span>
+</span>
+<br>
+<a target=_blank class=posts-list-item-title href=/posts/071-dockerized-traefik-using-acme-dns-01/>Dockerized Traefik Host Using ACME DNS-01 Challenge</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;11 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Apr 27, 2020
+<br>
+<span class=summary>This post builds on My dockerized-server Config and attempts to change what was a problematic ACME HTTP-01 or httpChallenge in Traefik and Let’s Encrypt to an ACME DNS-01 or dnsChallenge. The problem with the old HTTP-01 or httpChallenge is that it requires the creation of a valid and widely accessible “A” record in our DNS before the creation of a cert; the record has to be in place so that the Let’s Encrypt CA-server can find it to confirm that the request is valid. ...</span>
+</span>
+<br>
+<a target=_blank class=posts-list-item-title href=/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/>Exporting, Editing, & Replacing MODS Datastreams: Technical Details</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;14 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Apr 23, 2020
+<br>
+<span class=summary>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
+A 5-Step Workflow This document is follow-up, with technical details, to Exporting, Editing, & Replacing MODS Datastreams, post 069, in my blog. In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 Grinnell College Libraries review of Digital Grinnell MODS metadata. ...</span>
+</span>
+<br>
+<a target=_blank class=posts-list-item-title href=/posts/068-updating-dgs-collection-views/>Updating DG's Collection Views</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;3 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Mar 17, 2020
+<br>
+<span class=summary>Digital.Grinnell employs a custom-built Drupal “view” we call the dg7 Collection View; it’s part of the code in our custom dg7 module where all of Digital.Grinnell’s hook implementations are also defined. Experience leads me to beleive that keeping a complex Drupal view in code is prudent, but overriding that code with a database copy of the view helps tremendously in terms of system performance. So, I recommend keeping the view code in the module, but that means that when significant changes are made, like the addition of a new colleciton, the code should be updated in the database to speed things up. ...</span>
+</span>
+<br>
+<a target=_blank class=posts-list-item-title href=/posts/069-exporting-editing-replacing-mods-datastreams/>Exporting, Editing, & Replacing MODS Datastreams</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;5 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Mar 17, 2020
+<br>
+<span class=summary>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
+The transition to distance learning, social distancing, and more remote work at Grinnell College in the wake of the COVID-19 pandemic may afford GC Libraries an opportunity to do some overdue and necessary metadata cleaning in Digital. ...</span>
+</span>
+<br>
+<a target=_blank class=posts-list-item-title href=/posts/067-new-blog-style-and-features/>New Blog Style and Features</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;1 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Mar 10, 2020
+<br>
+<span class=summary>Welcome to my new blog theme/style with new features. All of the content, aka ‘posts’, from my old blog have been moved here, but there are still lots of remnants of the new theme, Zzo, lurking here. Please be patient with this new format while I work to fully implement all the features that this setup provides.
+Also, thank you, Mackenzie. My daughter played an important role in helping me with this transition.
+And it’s time to do some real work… I’ll be back to share more here soon. ...</span>
+</span>
+<br>
+<a target=_blank class=posts-list-item-title href=/posts/066-archiving-what-git-ignores/>Archiving What Git Ignores</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;3 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Feb 26, 2020
+&nbsp;&nbsp;|&nbsp;&nbsp;Updated: Feb 27, 2020 - 15:14
+<br>
+<span class=summary>I love git and GitHub, and I can certainly appreciate the usefullness of .gitignore, but there are times when I’d really like to move an ENTIRE project to a new home. I have in my head a process that might play out like this…
+Fetch a list of all the files and directories that .gitignore is ignoring. Pass that list to a tar or gzip command (maybe two of them) with encryption to create a secure, compressed archive. Commit the archive to the project repo in GitHub, or keep it in a safe place for restoration in the future. ...</span>
+</span>
+<br>
+<a target=_blank class=posts-list-item-title href=/posts/065-create-new-github-project-from-a-branch/>How to Create a New GitHub Repo from an Existing Branch</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;1 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Feb 26, 2020
+<br>
+<span class=summary>I just found a handy git/GitHub workflow in a Quora post titled “How do I create a new GitHub repository from a branch in an existing repository?". And I used it, successfully, to create a new GitHub repo for my updated Drupal 8 rendition of the Wieting Theatre’s website.
+The new GitHub repo is wieting-D8-DO and it was created from the wieting branch of docker-compose-drupal.
+The commands I used looked something like this:
+cd ~/GitHub git clone https://github.com/SummittDweller/docker-compose-drupal.git cd docker-compose-drupal git checkout master git reset --hard origin/wieting git checkout wieting git remote rm origin git remote add origin https://github. ...</span>
+</span>
+<br>
+<a target=_blank class=posts-list-item-title href=/posts/064-migration-to-lando/>Migration to Lando</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;28 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Feb 17, 2020
+&nbsp;&nbsp;|&nbsp;&nbsp;Updated: Feb 20, 2020 - 22:25
+<br>
+<span class=summary>I have ITS tickets, for seemingly simple DNS changes, that are now more than a month old, and because of that I’ve taken steps to try and do some ISLE staging work on one of my DigitalOcean droplets, namely summitt-services-droplet-01. In order to accommodate that I’ve moved nearly all of the sites and services from that droplet to my other, summitt-dweller-DO-docker. The site migration was a smooth process except for https://Wieting.TamaToledo.com. That Drupal 8 site has been difficult to upgrade and migrate largely because it was deployed using my old Port-Ability scripts, and about a year ago I scrapped Port-Ability in favor of Docksal, but I never got around to moving that particular site to a Docksal environment. ...</span>
+</span>
+<br>
+<a target=_blank class=posts-list-item-title href=/posts/063-installing-zsh-in-catalina/>Installing ZSH in Catalina</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;1 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Feb 12, 2020
+<br>
+<span class=summary>These days I like to do all my terminal/command-line work in zsh, more specifically, with Oh My ZSH! and the bira theme. This previous post described the process I used on each of my Linux servers, and this post is similar, but written specifically for my Catalina (Macintosh OS X v10.15.x), workstations.
+This is how I installed and configured zsh, and some other goodies, on my student Mac Mini workstation, MA6879…
+brew update brew install nano zsh chsh -s /bin/zsh mark exit # log back in after this echo $SHELL brew install wget git hugo docker # Docker and Hugo added just for good measure wget https://github. ...</span>
+</span>
+</ul>
+<ul class=pagination>
+<li class=page-item>
+<a class=page-link href=/page/4/><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-left"><title>arrow-left</title><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+</a>
+</li>
+<li class=page-item>
+<a class=page-link href=/>
+1
+</a>
+</li>
+<li class=page-item>
+<a class=page-link href=/page/2/>
+2
+</a>
+</li>
+<li class=page-item>
+<a class=page-link href=/page/3/>
+3
+</a>
+</li>
+<li class=page-item>
+<a class=page-link href=/page/4/>
+4
+</a>
+</li>
+<li class="page-item active">
+<a class=page-link href=/page/5/>
+5
+</a>
+</li>
+<li class=page-item>
+<a class=page-link href=/page/6/>
+6
+</a>
+</li>
+<li class=page-item>
+<a class=page-link href=/page/7/>
+7
+</a>
+</li>
+<li class=page-item>
+<a class=page-link href=/page/8/>
+8
+</a>
+</li>
+<li class=page-item>
+<a class=page-link href=/page/9/>
+9
+</a>
+</li>
+<li class=page-item>
+<a class=page-link href=/page/10/>
+10
+</a>
+</li>
+<li class=page-item>
+<a class=page-link href=/page/11/>
+11
+</a>
+</li>
+<li class=page-item>
+<a class=page-link href=/page/12/>
+12
+</a>
+</li>
+<li class=page-item>
+<a class=page-link href=/page/6/><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right"><title>arrow-right</title><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+</a>
+</li>
+</ul>
+</article>
+</main>
+</body>
+</html>

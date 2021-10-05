@@ -1,0 +1,280 @@
+<!doctype html><html lang=en-us>
+<head>
+<title>Traefik and Acme.sh for DG-STAGING // The Grinnell College Digital Library Application Developer's Blog</title>
+<meta charset=utf-8>
+<meta name=generator content="Hugo 0.88.1">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=author content="Mark A. McFate">
+<meta name=description content>
+<link rel=stylesheet href=/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Traefik and Acme.sh for DG-STAGING">
+<meta name=twitter:description content="This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge and Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations, specifically Step 11 in the later document. It introduces a Digital.Grinnell-specific implementation of the Traefik with Acme.sh.
+Testing with McFateM/docker-traefik2-acme-host I started work on this implementation with a test, by cloning https://github.com/McFateM/docker-traefik2-acme-host and proceeding as directed in the repository&rsquo;s README.md document, as user islandora on node DGDockerX, like so:
+   DGDockerX Host Commands     cd ~  git clone https://github.">
+<meta property="og:title" content="Traefik and Acme.sh for DG-STAGING">
+<meta property="og:description" content="This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge and Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations, specifically Step 11 in the later document. It introduces a Digital.Grinnell-specific implementation of the Traefik with Acme.sh.
+Testing with McFateM/docker-traefik2-acme-host I started work on this implementation with a test, by cloning https://github.com/McFateM/docker-traefik2-acme-host and proceeding as directed in the repository&rsquo;s README.md document, as user islandora on node DGDockerX, like so:
+   DGDockerX Host Commands     cd ~  git clone https://github.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/posts/093-traefik-and-acme.sh-for-dg-staging/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-09-15T00:00:00+00:00">
+<meta property="article:modified_time" content="2020-09-28T15:15:56-05:00">
+</head>
+<body>
+<header class=app-header>
+<a href><img class=app-header-avatar src=/avatar.jpg alt="Mark A. McFate"></a>
+<h2>The Grinnell College Digital Library Application Developer's Blog</h2>
+<div class=author-block>
+<p class=site-rev>
+Compiled: Oct 5, 2021 at 6:46pm CDT<br>
+Content Updated: 2021-Oct-5 18:35 CDT
+</p>
+<div class=name>by
+<strong>Mark A. McFate</strong></div>
+<div class=address>Grinnell College Libraries</div>
+<div class=link><a href=mailto:></a></div>
+<br>
+</div>
+<nav class=sidebar-nav>
+<a class=sidebar-nav-item href=/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=/about/ title>About Me</a>
+</nav>
+<p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+<div class=app-header-social>
+<a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a>
+<a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a>
+</div>
+<p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+</header>
+<main class=app-container>
+<div class=breadcrumbs>
+<a href>Home</a>
+&bull; <a href=posts/>Posts</a>
+&bull; <a href=posts/093-traefik-and-acme.sh-for-dg-staging/>093 traefik and acme.sh for dg staging</a>
+</div>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Traefik and Acme.sh for DG-STAGING</h1>
+<div class=post-meta>
+<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+6 min read
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+Sep 15, 2020
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;Updated: Sep 28, 2020 - 15:15
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
+<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+<a class=tag href=/tags/isle/>ISLE</a><a class=tag href=/tags/migrate/>Migrate</a><a class=tag href=/tags/staging/>staging</a><a class=tag href=/tags/docker/>docker</a><a class=tag href=/tags/traefik/>Traefik</a><a class=tag href=/tags/acme/>ACME</a><a class=tag href=/tags/dns-01/>DNS-01</a><a class=tag href=/tags/docker-traefik2-host/>docker-traefik2-host</a><a class=tag href=/tags/docker-compose/>docker-compose</a></div></div>
+</header>
+<div class=post-content>
+<p>This post is a follow-up to <a href=/posts/079-traefik-and-acme.sh-instead-of-dns-01/>Dockerized Traefik Host Using ACME DNS-01 Challenge</a> and <a href=/posts/092-staging-isle/>Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations</a>, specifically <em>Step 11</em> in the later document. It introduces a <em>Digital.Grinnell</em>-specific implementation of the <em>Traefik</em> with <em>Acme.sh</em>.</p>
+<h2 id=testing-with-mcfatemdocker-traefik2-acme-host>Testing with McFateM/docker-traefik2-acme-host</h2>
+<p>I started work on this implementation with a test, by cloning <a href=https://github.com/McFateM/docker-traefik2-acme-host>https://github.com/McFateM/docker-traefik2-acme-host</a> and proceeding as directed in the repository&rsquo;s <a href=https://github.com/McFateM/docker-traefik2-acme-host/blob/master/README.md>README.md</a> document, as user <code>islandora</code> on node <em>DGDockerX</em>, like so:</p>
+<table>
+<thead>
+<tr>
+<th>DGDockerX Host Commands</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cd ~</code> <br> <code>git clone https://github.com/McFateM/docker-traefik2-acme-host host --recursive</code> <br> <code>cd host</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id=working-in-hostacme>Working in <code>~/host/acme</code></h3>
+<p>As suggested, I made a copy of the <code>.env</code> file from the corresponding <code>acme</code> directory on Grinnell&rsquo;s <code>dgdocker3.grinnell.edu</code> server, something like this:</p>
+<pre tabindex=0><code>╭─islandora@dgdockerx ~/host/acme ‹master*›
+╰─$ rsync -aruvi islandora@dgdocker3.grinnell.edu:/home/islandora/host/acme/.env . --progress
+The authenticity of host 'dgdocker3.grinnell.edu (132.161.151.***)' can't be established.
+ECDSA key fingerprint is SHA256:************************************************.
+ECDSA key fingerprint is MD5:****************************************.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'dgdocker3.grinnell.edu,132.161.151.***' (ECDSA) to the list of known hosts.
+islandora@dgdocker3.grinnell.edu's password:
+receiving incremental file list
+&gt;f+++++++++ .env            896 100%  875.00kB/s    0:00:00 (xfr#1, to-chk=0/1)
+
+sent 43 bytes  received 1,011 bytes  39.77 bytes/sec
+total size is 896  speedup is 0.85
+</code></pre><p>I made the following edits/changes on the <em>DGDocker3</em> host as suggested in the project repository <a href=https://github.com/McFateM/docker-traefik2-acme-host/blob/master/README.md>README.md</a> file, using <em>nano</em>.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Edits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/host/certs/certs.toml</code></td>
+<td>Changed initial <code>tls.certificates</code> entry to reference <code>dgdockerx.grinnell.edu.&lt;extension></code></td>
+</tr>
+<tr>
+<td><code>~/host/acme/DGDOCKERX.md</code></td>
+<td>Copied file <code>DGDOCKER3.md</code> and changed all <code>dgdocker3.grinnell.edu</code> references to <code>dgdockerx.grinnell.edu</code></td>
+</tr>
+<tr>
+<td><code>~/host/acme/.env</code></td>
+<td>Changed the <code>HOST</code> and added/activated a new <code>DNS_LIST</code> variable appropriate for <code>dgdockerx.grinnell.edu</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id=working-in-hosttraefik>Working in <code>~/host/traefik</code></h3>
+<p>As suggested in the documentation, I moved into the <code>traefik</code> directory and had a look at the <code>README.md</code> file there. Following it&rsquo;s advice, like so:</p>
+<pre tabindex=0><code>╭─islandora@dgdockerx ~/host/acme ‹master*›
+╰─$ cd ../traefik
+╭─islandora@dgdockerx ~/host/traefik ‹master*›
+╰─$ ll
+total 12K
+-rw-rw-r--. 1 islandora islandora 1.9K Sep 15 14:29 docker-compose.yml
+-rw-rw-r--. 1 islandora islandora  673 Sep 15 14:29 README.md
+-rw-rw-r--. 1 islandora islandora  442 Sep 15 14:29 traefik-tls.toml
+╭─islandora@dgdockerx ~/host/traefik ‹master*›
+╰─$ cat README.md
+---
+Host: Defined as ${HOST} in .env
+Service: traefik
+URL: https://${HOST}/dashboard/
+---
+
+This document should be used to launch the `traefik` service on ANY host as part of a `docker-traefik2-acme-host` stack.
+
+&gt; Note that this process should be started only AFTER the `acme` service!
+
+## Preparation
+
+Before entering the prescribed &quot;Command Sequence&quot;, below, the user should take steps to copy any pertinent `.env` files from an existing deployment. Try something like this:
+
+  - `rsync -aruvi administrator@static.grinnell.edu:/home/administrator/host/traefik/.env . --progress`
+
+## Command Sequence
+
+  - cd ~/host/traefik
+  - docker-compose up -d; docker-compose logs
+╭─islandora@dgdockerx /opt/containers/host/traefik ‹master*›
+╰─$ rsync -aruvi administrator@static.grinnell.edu:/home/administrator/host/traefik/.env . --progress
+administrator@static.grinnell.edu's password:
+receiving incremental file list
+&gt;f+++++++++ .env
+             25 100%   24.41kB/s    0:00:00 (xfr#1, to-chk=0/1)
+
+sent 43 bytes  received 140 bytes  11.09 bytes/sec
+total size is 25  speedup is 0.14
+╭─islandora@dgdockerx /opt/containers/host/traefik ‹master*›
+╰─$ nano .env
+</code></pre><table>
+<thead>
+<tr>
+<th>File</th>
+<th>Edits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>~/host/traefik/.env</code></td>
+<td>Changed the <code>HOST</code> to <code>dgdockerx.grinnell.edu</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id=working-in-the-remaining-directories>Working in the Remaining Directories</h3>
+<p>I did the same as above in each of the remaining directories: <code>portainer</code>, <code>watchtower</code>, and <code>whoami</code>. Afterward, I returned to the <code>~/host</code> directory and made necessary changes to <code>restart.sh</code>.</p>
+<p>Ultimately the changes I made were intended to create the following services and addresses for testing purposes only:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>traefik</td>
+<td><a href=https://dgdockerx.grinnell.edu/dashboard/>https://dgdockerx.grinnell.edu/dashboard/</a></td>
+</tr>
+<tr>
+<td>portainer</td>
+<td><a href=https://dgdockerx.grinnell.edu/portainer/>https://dgdockerx.grinnell.edu/portainer/</a></td>
+</tr>
+<tr>
+<td>whoami</td>
+<td><a href=https://dgdockerx.grinnell.edu/whoami/>https://dgdockerx.grinnell.edu/whoami/</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id=test-launching-the-stack>Test Launching the Stack</h2>
+<p>With my test configured I should be able to launch the Traefik/Portainer/WhoAmI stack for testing by simply running the <code>~/host/destroy.sh</code> script followed by <code>~/host/restart.sh</code>. Initially when I did this I had configured <code>restart.sh</code> with an <code>acme.sh</code> command like this:</p>
+<pre tabindex=0><code>docker exec -it acme --issue --dns dns_azure --server https://acme-staging-v02.api.letsencrypt.org/directory -d dgdockerx.grinnell.edu -d isle-staging.grinnell.edu -d dg-staging.grinnell.edu --domain-alias _acme-challenge.leverify.info --key-file /certs/dgdockerx.grinnell.edu.key --cert-file /certs/dgdockerx.grinnell.edu.cert --standalone --force --log --debug 2
+</code></pre><p>That <code>acme</code> command failed because it tried to create and validate a cert for three different subdomains, <code>dgdockerx.grinnell.edu</code>, <code>isle-staging.grinnell.edu</code>, and <code>dg-staging.grinnell.edu</code>. Validation like this requires that each target subdomain has three things in place:</p>
+<ul>
+<li>A valid <code>A</code> record in the Grinnell College external and/or internal DNS tables directing the subdomain to an appropriate service endpoint.</li>
+<li>A corresponding <code>CNAME</code> record in the college&rsquo;s <em>Azure</em> DNS. <code>acme</code> uses this to generate <code>TXT</code> records that are subsequently used for validation.</li>
+<li>A working service endpoint capable of returning a valid response.</li>
+</ul>
+<p>When I initiated that first test by running <code>~/host/restart.sh</code>, none of my three subdomains had the necessary <code>CNAME</code> records and only <code>dgdockerx.grinnell.edu</code> had a working service endpoint. Naturally, that test failed, and I learned from subsequent tests that <strong>any error in the running of the <code>acme</code> script apparently negates the entire command</strong>. So, with that in mind, I am taking steps to limit each <code>acme</code> command I run to a single subdomain. For example:</p>
+<pre tabindex=0><code>docker exec -it acme --issue --dns dns_azure --server https://acme-staging-v02.api.letsencrypt.org/directory -d dgdockerx.grinnell.edu --domain-alias _acme-challenge.leverify.info --key-file /certs/dgdockerx.grinnell.edu.key --cert-file /certs/dgdockerx.grinnell.edu.cert --standalone --force --log --debug 2
+
+docker exec -it acme --issue --dns dns_azure --server https://acme-staging-v02.api.letsencrypt.org/directory -d isle-staging.grinnell.edu --domain-alias _acme-challenge.leverify.info --key-file /certs/isle-staging.grinnell.edu.key --cert-file /certs/isle-staging.grinnell.edu.cert --standalone --force --log --debug 2
+
+docker exec -it acme --issue --dns dns_azure --server https://acme-staging-v02.api.letsencrypt.org/directory -d dg-staging.grinnell.edu --domain-alias _acme-challenge.leverify.info --key-file /certs/dg-staging.grinnell.edu.key --cert-file /certs/dg-staging.grinnell.edu.cert --standalone --force --log --debug 2
+</code></pre><h2 id=another-test-launch>Another Test Launch</h2>
+<p>Before attempting to engage the <code>acme.sh</code> validation scheme with my staging instance of <em>ISLE</em>, I elected to run another test with my <code>whoami</code> service and a new <code>dgdockerx-landing-page</code> service as well. I would do so using the one-subdomain-per-command approach mentioned above. This new test needs to introduce a new service and URL as well, so I elected to add a static site &ldquo;landing page&rdquo; to this server. The services and addresses I intend to create will include:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>landing page/site</td>
+<td><a href=https://dgdockerx.grinnell.edu/>https://dgdockerx.grinnell.edu/</a></td>
+</tr>
+<tr>
+<td>traefik</td>
+<td><a href=https://dgdockerx.grinnell.edu/dashboard/>https://dgdockerx.grinnell.edu/dashboard/</a></td>
+</tr>
+<tr>
+<td>portainer</td>
+<td><a href=https://dgdockerx.grinnell.edu/portainer/>https://dgdockerx.grinnell.edu/portainer/</a></td>
+</tr>
+<tr>
+<td>whoami (permanent)</td>
+<td><a href=https://dgdockerx.grinnell.edu/whoami/>https://dgdockerx.grinnell.edu/whoami/</a></td>
+</tr>
+<tr>
+<td>whoami (test)</td>
+<td><a href=https://dg-staging.grinnell.edu/>https://dg-staging.grinnell.edu/</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>I am exceptionally pleased to report that&mldr;</strong> <code>IT</code> <code>JUST</code> <code>WORKS</code>. ❗ 😀 ❗ 😀 ❗</p>
+<p>All of the updated files, <code>sans any .env files needed for complete configuration</code>, have been pushed back into the <a href=https://github.com/McFateM/docker-traefik2-acme-host>docker-traefik2-acme-host</a> public repository. On September 28, 2020, I also took the liberty of upgrading the aforementioned project to use <em>Portainer v2.0.0</em> as well as <em>Traefik:latest</em> (currently equates to 2.3.0) and <em>docker-compose 3.3</em>. All of those changes have also been pushed back and merged into <em>master</em>. Enjoy.</p>
+<h1 id=next-repeat-with-dg-staging-isle-v151-at-httpsdg-staginggrinnelledu>Next: Repeat with DG-STAGING (ISLE v1.5.1) at <a href=https://dg-staging.grinnell.edu>https://dg-staging.grinnell.edu</a></h1>
+<p>This could be a real challenge because <a href=https://github.com/McFateM/docker-traefik2-acme-host>docker-traefik2-acme-host</a> uses <em>Traefik v2</em> while <em>ISLE</em> still employ <em>Traefik v1</em>. Fortunately, the key component to making this work is the <em>acme.sh</em> script and service, and that should work with any version of <em>Traefik</em>. So let&rsquo;s take some baby steps&mldr;</p>
+<h2 id=introduce-_acmesh_-into-isle>Introduce <em>acme.sh</em> Into ISLE</h2>
+<p>All that&rsquo;s necessary to introduce <em>acme.sh</em> into <em>ISLE</em> is copying the current <code>~/host/acme</code> directory to <code>/opt/dg-isle/acme</code>, changing a litte of the configuration there, and invoking the <em>acme</em> service to obtain our certs before we bring up the <em>ISLE</em> stack. Working on <em>DGDockerX</em> as user <em>islandora</em> I made the copy and edits like so:</p>
+<pre tabindex=0><code>cp -f ~/host/destroy.sh /opt/dg-isle/destroy.sh
+cp -f ~/host/restart.sh /opt/dg-isle/restart.sh
+cp -fr ~/host/acme /opt/dg-isle/acme
+cd /opt/dg-isle
+nano /opt/dg-isle/acme/docker-compose.yml
+# In nano I changed all instances of the external network name from 'proxy' to 'isle-external', and our host '../certs:' directory to '../config/proxy/ssl-certs' in order to match ISLE conventions.
+nano /opt/dg-isle/restart.sh
+# In nano I changed the external network name from 'proxy' to 'isle-external' and modified directory names for other portions from `~/host` to `/opt/dg-isle`
+# The next command will use the new `restart.sh` script to launch ISLE
+./restart.sh
+</code></pre>
+<p>And that&rsquo;s a wrap for this episode. Until next time&mldr;</p>
+</div>
+<div class=post-footer>
+<div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//digital-library-applications-developer-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</article>
+</main>
+</body>
+</html>
