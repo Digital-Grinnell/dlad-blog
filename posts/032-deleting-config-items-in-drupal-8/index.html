@@ -6,7 +6,7 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=author content="Mark A. McFate">
 <meta name=description content>
-<link rel=stylesheet href=/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css>
+<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css>
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Deleting Config Items in Drupal 8">
 <meta name=twitter:description content="None of this is my creation, but it&rsquo;s too valuable to forget! So kudos to Goran Nikolovski and his blog post.
@@ -15,17 +15,17 @@ The problem I ran into involved the Drupal update.php script, and an orphaned bi
 <meta property="og:description" content="None of this is my creation, but it&rsquo;s too valuable to forget! So kudos to Goran Nikolovski and his blog post.
 The problem I ran into involved the Drupal update.php script, and an orphaned bit of configuration data. When I tried running update.php the first of 13 pending database updates kept throwing an exception telling me of a missing plugin, and that effectively killed the other 12 updates. 😦 Well, I really didn&rsquo;t care that it was missing (and Drupal should not either) because the update was there to delete it, but since the update kept failing, we had ourselves an impossible loop.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="/posts/032-deleting-config-items-in-drupal-8/"><meta property="article:section" content="posts">
+<meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/032-deleting-config-items-in-drupal-8/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2019-07-30T00:00:00+00:00">
 <meta property="article:modified_time" content="2019-07-31T22:53:06-05:00">
 </head>
 <body>
 <header class=app-header>
-<a href><img class=app-header-avatar src=/avatar.jpg alt="Mark A. McFate"></a>
+<a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a>
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Oct 5, 2021 at 6:52pm CDT<br>
+Compiled: Oct 5, 2021 at 6:54pm CDT<br>
 Content Updated: 2021-Oct-5 18:47 CDT
 </p>
 <div class=name>by
@@ -35,8 +35,8 @@ Content Updated: 2021-Oct-5 18:47 CDT
 <br>
 </div>
 <nav class=sidebar-nav>
-<a class=sidebar-nav-item href=/search/ title>Search This Blog</a>
-<a class=sidebar-nav-item href=/about/ title>About Me</a>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a>
 </nav>
 <p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
 <div class=app-header-social>
@@ -47,9 +47,9 @@ Content Updated: 2021-Oct-5 18:47 CDT
 </header>
 <main class=app-container>
 <div class=breadcrumbs>
-<a href>Home</a>
-&bull; <a href=posts/>Posts</a>
-&bull; <a href=posts/032-deleting-config-items-in-drupal-8/>032 deleting config items in drupal 8</a>
+<a href=https://static.grinnell.edu/dlad-blog/>Home</a>
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/>Posts</a>
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/032-deleting-config-items-in-drupal-8/>032 deleting config items in drupal 8</a>
 </div>
 <article class=post>
 <header class=post-header>
@@ -62,7 +62,7 @@ Jul 30, 2019
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;Updated: Jul 31, 2019 - 22:53
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
 <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-<a class=tag href=/tags/drupal/>Drupal</a><a class=tag href=/tags/config/>config</a><a class=tag href=/tags/orphan/>orphan</a></div></div>
+<a class=tag href=https://static.grinnell.edu/dlad-blog/tags/drupal/>Drupal</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/config/>config</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/orphan/>orphan</a></div></div>
 </header>
 <div class=post-content>
 <p>None of this is my creation, but it&rsquo;s too valuable to forget! So kudos to <a href=https://gorannikolovski.com>Goran Nikolovski</a> and <a href=https://gorannikolovski.com/blog/4-ways-delete-configuration-items-drupal-8>his blog post</a>.</p>

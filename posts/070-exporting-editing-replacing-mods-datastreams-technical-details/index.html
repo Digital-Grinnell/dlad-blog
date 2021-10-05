@@ -6,7 +6,7 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=author content="Mark A. McFate">
 <meta name=description content>
-<link rel=stylesheet href=/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css>
+<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css>
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Exporting, Editing, & Replacing MODS Datastreams: Technical Details">
 <meta name=twitter:description content="Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
@@ -15,17 +15,17 @@
 <meta property="og:description" content="Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
  A 5-Step Workflow This document is follow-up, with technical details, to Exporting, Editing, & Replacing MODS Datastreams, post 069, in my blog. In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 Grinnell College Libraries review of Digital Grinnell MODS metadata.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/"><meta property="article:section" content="posts">
+<meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2020-04-23T00:00:00+00:00">
 <meta property="article:modified_time" content="2020-04-23T00:00:00+00:00">
 </head>
 <body>
 <header class=app-header>
-<a href><img class=app-header-avatar src=/avatar.jpg alt="Mark A. McFate"></a>
+<a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a>
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Oct 5, 2021 at 6:52pm CDT<br>
+Compiled: Oct 5, 2021 at 6:54pm CDT<br>
 Content Updated: 2021-Oct-5 18:47 CDT
 </p>
 <div class=name>by
@@ -35,8 +35,8 @@ Content Updated: 2021-Oct-5 18:47 CDT
 <br>
 </div>
 <nav class=sidebar-nav>
-<a class=sidebar-nav-item href=/search/ title>Search This Blog</a>
-<a class=sidebar-nav-item href=/about/ title>About Me</a>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a>
 </nav>
 <p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
 <div class=app-header-social>
@@ -47,9 +47,9 @@ Content Updated: 2021-Oct-5 18:47 CDT
 </header>
 <main class=app-container>
 <div class=breadcrumbs>
-<a href>Home</a>
-&bull; <a href=posts/>Posts</a>
-&bull; <a href=posts/070-exporting-editing-replacing-mods-datastreams-technical-details/>070 exporting editing replacing mods datastreams technical details</a>
+<a href=https://static.grinnell.edu/dlad-blog/>Home</a>
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/>Posts</a>
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/>070 exporting editing replacing mods datastreams technical details</a>
 </div>
 <article class=post>
 <header class=post-header>
@@ -61,14 +61,14 @@ Content Updated: 2021-Oct-5 18:47 CDT
 Apr 23, 2020
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
 <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-<a class=tag href=/tags/mods/>MODS</a><a class=tag href=/tags/export/>Export</a><a class=tag href=/tags/replace/>Replace</a><a class=tag href=/tags/twig/>Twig</a><a class=tag href=/tags/islandora_datastream_export/>islandora_datastream_export</a><a class=tag href=/tags/islandora_datastream_replace/>islandora_datastream_replace</a><a class=tag href=/tags/islandora_mods_via_twig/>islandora_mods_via_twig</a><a class=tag href=/tags/map-mods-to-master/>Map-MODS-to-MASTER</a><a class=tag href=/tags/islandora_mods_post_processing/>islandora_mods_post_processing</a></div></div>
+<a class=tag href=https://static.grinnell.edu/dlad-blog/tags/mods/>MODS</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/export/>Export</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/replace/>Replace</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/twig/>Twig</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/islandora_datastream_export/>islandora_datastream_export</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/islandora_datastream_replace/>islandora_datastream_replace</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/islandora_mods_via_twig/>islandora_mods_via_twig</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/map-mods-to-master/>Map-MODS-to-MASTER</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/islandora_mods_post_processing/>islandora_mods_post_processing</a></div></div>
 </header>
 <div class=post-content>
 <blockquote>
-<p>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new <em>Drush</em> command: <em>islandora_mods_post_processing</em>, an addition to my previous work in <a href=https://github.com/DigitalGrinnell/islandora_mods_via_twig>islandora_mods_via_twig</a>. See my new post, <a href=/posts/075-islandora-mods-post-processing/>Islandora MODS Post Processing</a> for complete details.</p>
+<p>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new <em>Drush</em> command: <em>islandora_mods_post_processing</em>, an addition to my previous work in <a href=https://github.com/DigitalGrinnell/islandora_mods_via_twig>islandora_mods_via_twig</a>. See my new post, <a href=https://static.grinnell.edu/dlad-blog/posts/075-islandora-mods-post-processing/>Islandora MODS Post Processing</a> for complete details.</p>
 </blockquote>
 <h1 id=a-5-step-workflow>A 5-Step Workflow</h1>
-<p>This document is follow-up, with technical details, to <a href=/posts/069-exporting-editing-replacing-mods-datastreams/>Exporting, Editing, & Replacing MODS Datastreams</a>, post 069, in my blog. In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 <em>Grinnell College Libraries</em> review of <em>Digital Grinnell</em> MODS metadata.</p>
+<p>This document is follow-up, with technical details, to <a href=https://static.grinnell.edu/dlad-blog/posts/069-exporting-editing-replacing-mods-datastreams/>Exporting, Editing, & Replacing MODS Datastreams</a>, post 069, in my blog. In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 <em>Grinnell College Libraries</em> review of <em>Digital Grinnell</em> MODS metadata.</p>
 <p>Attention: This document uses a shorthand <code>./</code> in place of the frequently referenced <code>//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/</code> directory. For example, <code>./social-justice</code> is equivalent to the <em>Social Justice</em> collection sub-directory at <code>//STORAGE/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1/social-justice</code>.</p>
 <p>Briefly, the five steps in this workflow are:</p>
 <ol>
@@ -79,7 +79,7 @@ Apr 23, 2020
 <p>Execute my <em>Map-MODS-to-MASTER</em> <em>Python 3</em> script on iMac <em>MA8660</em> to create a <code>mods.tsv</code> file for each collection, along with associated <code>grinnell_&lt;PID>_MODS.log</code> and <code>grinnell_&lt;PID>_MODS.remainder</code> files for each object. The resultant <code>./&lt;collection-PID>/mods.tsv</code> files are tab-seperated-value (.tsv) files, and they are <strong>key</strong> to this process.</p>
 </li>
 <li>
-<p>Edit the MODS .tsv files. Refer <a href=/posts/069-exporting-editing-replacing-mods-datastreams/>Exporting, Editing, & Replacing MODS Datastreams</a> for details and guidance.</p>
+<p>Edit the MODS .tsv files. Refer <a href=https://static.grinnell.edu/dlad-blog/posts/069-exporting-editing-replacing-mods-datastreams/>Exporting, Editing, & Replacing MODS Datastreams</a> for details and guidance.</p>
 </li>
 <li>
 <p>Use <code>drush islandora_mods_via_twig</code> in each ready-for-update collection to generate new .xml MODS datastream files. For a specified collection, this command will find and read the <code>./&lt;collection-PID>/mods-imvt.tsv</code> and create one <code>./&lt;collection-PID>/ready-for-datastream-replace/grinnell_&lt;PID>_MODS.xml</code> file for each object.</p>
@@ -148,7 +148,7 @@ Target<span style=color:#f92672>=</span>/utility-scripts
 <p>The <em>Map-MODS-to-MASTER</em> project can be found in the <em>master</em> branch of <a href=https://github.com/DigitalGrinnell/Map-MODS-to-MASTER>https://github.com/DigitalGrinnell/Map-MODS-to-MASTER</a>. I choose to execute it using <em>PyCharm</em> from iMac <em>MA8660</em> since the directory holding all of the <code>.xml</code> files and folders is already mapped to <code>/Volumes/LIBRARY/ALLSTAFF/DG-Metadata-Review-2020-r1</code> on that iMac. Note that this <code>//STORAGE</code> location was choosen because the <code>./ALLSTAFF</code> directory, and its subordinates, are accessible to all staff in the <em>Grinnell College Libraries</em>.</p>
 <p>It should not be necessary to run this script ever again&mldr;NEVER. However, if it becomes necessary to look back at this code and process, details can be found in <a href=https://github.com/DigitalGrinnell/Map-MODS-to-MASTER>Map-MODS-to-MASTER</a>. Note: If it should ever become necessary to repeat the <em>Map-MODS-to-MASTER</em> process it might be wise to look at replacing the <em>Python 3</em> script with a new <em>Drush</em> command, maybe <code>islandora_map_mods_to_master</code>, written in PHP and installed directly into the production instance of <em>Digital.Grinnell</em>.</p>
 <h2 id=step-3---editing-the-mods-tsv-files>Step 3 - Editing the MODS .tsv Files</h2>
-<p>Please refer to Refer to <a href=/posts/069-exporting-editing-replacing-mods-datastreams/>Exporting, Editing, & Replacing MODS Datastreams</a>, post 069 in my blog, for details and guidance.</p>
+<p>Please refer to Refer to <a href=https://static.grinnell.edu/dlad-blog/posts/069-exporting-editing-replacing-mods-datastreams/>Exporting, Editing, & Replacing MODS Datastreams</a>, post 069 in my blog, for details and guidance.</p>
 <h2 id=step-4---run-drush-islandora_mods_via_twig>Step 4 - Run <code>drush islandora_mods_via_twig</code></h2>
 <p>As each individual collection <code>mods-imvt.tsv</code> file is made ready-for-update, it will be necessary to run a <code>drush islandora_mods_via_twig</code> command to process the .tsv data. Running <code>--help</code> with that command produces:</p>
 <pre tabindex=0><code>[islandora@dgdocker1 ~]$ docker exec -it isle-apache-dg bash
