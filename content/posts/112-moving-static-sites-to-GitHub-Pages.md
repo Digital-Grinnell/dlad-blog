@@ -1,7 +1,7 @@
 ---
 title: "Moving Static Sites to GitHub Pages"
 publishDate: 2021-10-05
-lastmod: 2021-10-05T18:35:56-05:00
+lastmod: 2021-10-05T18:47:51-05:00
 draft: false
 tags:
   - static
@@ -77,7 +77,7 @@ jobs:
           publish_dir: ./public
 ```
 
-## GitHub Pages Settings
+## GitHub Pages Settings 
 
 It's not documented well, but *important to note* that this workflow will create a new `gh-pages` branch of your repo and the `root` of that branch is what you should publish! *Pay attention to that setting in the figure below!*
 
