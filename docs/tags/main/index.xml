@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>main on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
-    <link>https://digital-grinnell.github.io/dlad-blog/tags/main/</link>
+    <link>/tags/main/</link>
     <description>Recent content in main on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 26 Jan 2021 11:04:43 -0600</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/main/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Jan 2021 11:04:43 -0600</lastBuildDate><atom:link href="/tags/main/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Changing Master to Main</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/101-changing-master-to-main/</link>
+      <link>/posts/101-changing-master-to-main/</link>
       <pubDate>Tue, 26 Jan 2021 11:04:43 -0600</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/101-changing-master-to-main/</guid>
+      <guid>/posts/101-changing-master-to-main/</guid>
       <description>In hindsight, this really should have been post number 100 in the blog, or perhaps it should have happened even earlier. In any event it&amp;rsquo;s high-time I made this move and captured the process. In June 2020 the good folks at GitHub announced that they would begin removing references to master as a small step forward in removing divisive language in tech. The change dictates that the default branch name of future repositories should be main in place of master.</description>
     </item>
     

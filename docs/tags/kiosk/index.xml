@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>kiosk on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
-    <link>https://digital-grinnell.github.io/dlad-blog/tags/kiosk/</link>
+    <link>/tags/kiosk/</link>
     <description>Recent content in kiosk on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 26 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/kiosk/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/kiosk/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Updates to VAF-Kiosk</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/108-updates-to-vaf-kiosk/</link>
+      <link>/posts/108-updates-to-vaf-kiosk/</link>
       <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/108-updates-to-vaf-kiosk/</guid>
+      <guid>/posts/108-updates-to-vaf-kiosk/</guid>
       <description>On Thursday, August 26, 2021, updates to a new iPad destined for the VAF (Visualizing Abolition and Freedom) installing in the Grinnell&amp;rsquo;s HSSC were completed. As of this writing the iPad has not been re-installed, but Facilities Management has been contacted to schedule that event soon.
 New DigitalOcean Deployment Due to small differences between the aspect ratio and resolution of the old versus new devices, the kiosk site had to be re-designed. Changes were also necessary to help ensure that users of the kiosk could not &amp;ldquo;escape&amp;rdquo; from the VAF screens and cause havoc by surfing the internet.</description>
     </item>

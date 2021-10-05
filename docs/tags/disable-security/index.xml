@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>disable security on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
-    <link>https://digital-grinnell.github.io/dlad-blog/tags/disable-security/</link>
+    <link>/tags/disable-security/</link>
     <description>Recent content in disable security on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 22 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/disable-security/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Jun 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/disable-security/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Updating Digital.Grinnell in ISLE</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/107-updating-digital-grinnell-in-isle/</link>
+      <link>/posts/107-updating-digital-grinnell-in-isle/</link>
       <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/107-updating-digital-grinnell-in-isle/</guid>
+      <guid>/posts/107-updating-digital-grinnell-in-isle/</guid>
       <description>Attention: This is an annotated copy of the ISLE project&amp;rsquo;s update.md document. Annotations specific to Digital.Grinnell appear in specially formatted blocks like this one
 There was one universal change made here in the original text, specifically all references to master branches have been changed to main to correlate with updated names of the repositories involved in this process.
  Note: This update procedure was first performed &amp;ldquo;locally&amp;rdquo;, as recommended on 2021-June-22 when I attempted it on my Grinnell College MacBook Pro, MA10713, serial number C02FK0XXQ05Q.</description>

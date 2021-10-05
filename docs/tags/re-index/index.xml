@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>re-index on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
-    <link>https://digital-grinnell.github.io/dlad-blog/tags/re-index/</link>
+    <link>/tags/re-index/</link>
     <description>Recent content in re-index on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 16 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/re-index/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 Sep 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/re-index/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DG-FEDORA: A Portable FEDORA Repository</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/046-dg-fedora-a-portable-object-repository/</link>
+      <link>/posts/046-dg-fedora-a-portable-object-repository/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/046-dg-fedora-a-portable-object-repository/</guid>
+      <guid>/posts/046-dg-fedora-a-portable-object-repository/</guid>
       <description>Teaser Late last night (don&amp;rsquo;t ask how late it was) I discovered a really slick trick, aka &amp;ldquo;feature&amp;rdquo;, of docker-compose. Full disclosure: I love docker-compose &amp;ldquo;overrides&amp;rdquo;, a feature I found a couple of months ago. However, implementing overrides in a granular fashion, as I&amp;rsquo;d like, and within a docker-compose hierarchy of environments like the ISLE stack, can be difficult and counter-productive. I may have found a workable compromise last night. If you&amp;rsquo;re interested, please, read on&amp;hellip;
 History About a year ago I created a &amp;ldquo;portable&amp;rdquo; FEDORA object repository &amp;ldquo;on a stick&amp;rdquo;, a USB stick.</description>
     </item>

@@ -2,2185 +2,2194 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
-    <link>https://digital-grinnell.github.io/dlad-blog/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 27 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Fuse</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/fuse/</link>
-      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      <title>GitHub Pages</title>
+      <link>/tags/github-pages/</link>
+      <pubDate>Tue, 05 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/fuse/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Fuse.js</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/fuse.js/</link>
-      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/fuse.js/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLE</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/isle/</link>
-      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/isle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>search</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/search/</link>
-      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/search/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>static</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/static/</link>
-      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/static/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>update</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/update/</link>
-      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/update/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>v1.5.11</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/v1.5.11/</link>
-      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/v1.5.11/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Azure</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/azure/</link>
-      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/azure/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>DigitalOcean</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/digitalocean/</link>
-      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/digitalocean/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Google Analytics</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/google-analytics/</link>
-      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/google-analytics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kiosk</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/kiosk/</link>
-      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/kiosk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>VAF</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/vaf/</link>
-      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/vaf/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>52698</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/52698/</link>
-      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/52698/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>disable security</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/disable-security/</link>
-      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/disable-security/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>public</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/public/</link>
-      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/public/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ratom</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/ratom/</link>
-      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/ratom/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Java</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/java/</link>
-      <pubDate>Mon, 17 May 2021 13:47:36 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/java/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SNOWBALL</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/snowball/</link>
-      <pubDate>Mon, 17 May 2021 13:47:36 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/snowball/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>.htaccess</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/.htaccess/</link>
-      <pubDate>Wed, 14 Apr 2021 15:23:45 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/.htaccess/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Apache</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/apache/</link>
-      <pubDate>Wed, 14 Apr 2021 15:23:45 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/apache/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>temporary</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/temporary/</link>
-      <pubDate>Wed, 14 Apr 2021 15:23:45 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/temporary/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tmp</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/tmp/</link>
-      <pubDate>Wed, 14 Apr 2021 15:23:45 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/tmp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>301</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/301/</link>
-      <pubDate>Wed, 14 Apr 2021 10:28:31 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/301/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Redirect</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/redirect/</link>
-      <pubDate>Wed, 14 Apr 2021 10:28:31 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/redirect/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Atom</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/atom/</link>
-      <pubDate>Wed, 14 Apr 2021 08:51:46 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/atom/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>remote-atom</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/remote-atom/</link>
-      <pubDate>Wed, 14 Apr 2021 08:51:46 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/remote-atom/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>debug</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/debug/</link>
-      <pubDate>Wed, 17 Mar 2021 08:39:33 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/debug/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>drush</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/drush/</link>
-      <pubDate>Wed, 17 Mar 2021 08:39:33 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/drush/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>local</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/local/</link>
-      <pubDate>Wed, 17 Mar 2021 08:39:33 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/local/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PHPStorm</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/phpstorm/</link>
-      <pubDate>Wed, 17 Mar 2021 08:39:33 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/phpstorm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>XDebug</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/xdebug/</link>
-      <pubDate>Wed, 17 Mar 2021 08:39:33 -0500</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/xdebug/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Entities</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/entities/</link>
-      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/entities/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>event</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/event/</link>
-      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/event/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Islandora Scholar Extended Profiles</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/islandora-scholar-extended-profiles/</link>
-      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/islandora-scholar-extended-profiles/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>islandora:entityCModel</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/islandoraentitycmodel/</link>
-      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/islandoraentitycmodel/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>LASIR</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/lasir/</link>
-      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/lasir/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>organization</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/organization/</link>
-      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/organization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>person</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/person/</link>
-      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/person/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>place</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/place/</link>
-      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/place/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>profile</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/profile/</link>
-      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/profile/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Book</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/book/</link>
-      <pubDate>Fri, 05 Feb 2021 16:12:55 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/book/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Digital.Grinnell</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/digital.grinnell/</link>
-      <pubDate>Fri, 05 Feb 2021 16:12:55 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/digital.grinnell/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ingest</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/ingest/</link>
-      <pubDate>Fri, 05 Feb 2021 16:12:55 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/ingest/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>workflow</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/workflow/</link>
-      <pubDate>Fri, 05 Feb 2021 16:12:55 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/workflow/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>commit</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/commit/</link>
-      <pubDate>Wed, 27 Jan 2021 12:10:25 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/commit/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>git</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/git/</link>
-      <pubDate>Wed, 27 Jan 2021 12:10:25 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Submodule</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/submodule/</link>
-      <pubDate>Wed, 27 Jan 2021 12:10:25 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/submodule/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ssh</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/ssh/</link>
-      <pubDate>Tue, 26 Jan 2021 20:15:43 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/ssh/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ssh-copy-id</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/ssh-copy-id/</link>
-      <pubDate>Tue, 26 Jan 2021 20:15:43 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/ssh-copy-id/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ssh-keygen</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/ssh-keygen/</link>
-      <pubDate>Tue, 26 Jan 2021 20:15:43 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/ssh-keygen/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sshd</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/sshd/</link>
-      <pubDate>Tue, 26 Jan 2021 20:15:43 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/sshd/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>inclusive</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/inclusive/</link>
-      <pubDate>Tue, 26 Jan 2021 11:04:43 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/inclusive/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>main</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/main/</link>
-      <pubDate>Tue, 26 Jan 2021 11:04:43 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/main/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>master</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/master/</link>
-      <pubDate>Tue, 26 Jan 2021 11:04:43 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/master/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>dg.localdomain</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/dg.localdomain/</link>
-      <pubDate>Tue, 12 Jan 2021 15:31:37 -0600</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/dg.localdomain/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Migrate</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/migrate/</link>
-      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/migrate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>production</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/production/</link>
-      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/production/</guid>
+      <guid>/tags/github-pages/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hugo</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/hugo/</link>
-      <pubDate>Thu, 12 Nov 2020 00:00:00 +0000</pubDate>
+      <link>/tags/hugo/</link>
+      <pubDate>Tue, 05 Oct 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/hugo/</guid>
+      <guid>/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>static</title>
+      <link>/tags/static/</link>
+      <pubDate>Tue, 05 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/static/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Fuse</title>
+      <link>/tags/fuse/</link>
+      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/fuse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Fuse.js</title>
+      <link>/tags/fuse.js/</link>
+      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/fuse.js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLE</title>
+      <link>/tags/isle/</link>
+      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/isle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>search</title>
+      <link>/tags/search/</link>
+      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/search/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>update</title>
+      <link>/tags/update/</link>
+      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/update/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>v1.5.11</title>
+      <link>/tags/v1.5.11/</link>
+      <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/v1.5.11/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Azure</title>
+      <link>/tags/azure/</link>
+      <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/azure/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>DigitalOcean</title>
+      <link>/tags/digitalocean/</link>
+      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/digitalocean/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Google Analytics</title>
+      <link>/tags/google-analytics/</link>
+      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/google-analytics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kiosk</title>
+      <link>/tags/kiosk/</link>
+      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/kiosk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VAF</title>
+      <link>/tags/vaf/</link>
+      <pubDate>Thu, 26 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/vaf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>52698</title>
+      <link>/tags/52698/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/52698/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>disable security</title>
+      <link>/tags/disable-security/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/disable-security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>public</title>
+      <link>/tags/public/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/public/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ratom</title>
+      <link>/tags/ratom/</link>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ratom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>/tags/java/</link>
+      <pubDate>Mon, 17 May 2021 13:47:36 -0500</pubDate>
+      
+      <guid>/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SNOWBALL</title>
+      <link>/tags/snowball/</link>
+      <pubDate>Mon, 17 May 2021 13:47:36 -0500</pubDate>
+      
+      <guid>/tags/snowball/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>.htaccess</title>
+      <link>/tags/.htaccess/</link>
+      <pubDate>Wed, 14 Apr 2021 15:23:45 -0500</pubDate>
+      
+      <guid>/tags/.htaccess/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Apache</title>
+      <link>/tags/apache/</link>
+      <pubDate>Wed, 14 Apr 2021 15:23:45 -0500</pubDate>
+      
+      <guid>/tags/apache/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>temporary</title>
+      <link>/tags/temporary/</link>
+      <pubDate>Wed, 14 Apr 2021 15:23:45 -0500</pubDate>
+      
+      <guid>/tags/temporary/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tmp</title>
+      <link>/tags/tmp/</link>
+      <pubDate>Wed, 14 Apr 2021 15:23:45 -0500</pubDate>
+      
+      <guid>/tags/tmp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>301</title>
+      <link>/tags/301/</link>
+      <pubDate>Wed, 14 Apr 2021 10:28:31 -0500</pubDate>
+      
+      <guid>/tags/301/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redirect</title>
+      <link>/tags/redirect/</link>
+      <pubDate>Wed, 14 Apr 2021 10:28:31 -0500</pubDate>
+      
+      <guid>/tags/redirect/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Atom</title>
+      <link>/tags/atom/</link>
+      <pubDate>Wed, 14 Apr 2021 08:51:46 -0500</pubDate>
+      
+      <guid>/tags/atom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>remote-atom</title>
+      <link>/tags/remote-atom/</link>
+      <pubDate>Wed, 14 Apr 2021 08:51:46 -0500</pubDate>
+      
+      <guid>/tags/remote-atom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>debug</title>
+      <link>/tags/debug/</link>
+      <pubDate>Wed, 17 Mar 2021 08:39:33 -0500</pubDate>
+      
+      <guid>/tags/debug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>drush</title>
+      <link>/tags/drush/</link>
+      <pubDate>Wed, 17 Mar 2021 08:39:33 -0500</pubDate>
+      
+      <guid>/tags/drush/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>local</title>
+      <link>/tags/local/</link>
+      <pubDate>Wed, 17 Mar 2021 08:39:33 -0500</pubDate>
+      
+      <guid>/tags/local/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PHPStorm</title>
+      <link>/tags/phpstorm/</link>
+      <pubDate>Wed, 17 Mar 2021 08:39:33 -0500</pubDate>
+      
+      <guid>/tags/phpstorm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>XDebug</title>
+      <link>/tags/xdebug/</link>
+      <pubDate>Wed, 17 Mar 2021 08:39:33 -0500</pubDate>
+      
+      <guid>/tags/xdebug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Entities</title>
+      <link>/tags/entities/</link>
+      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
+      
+      <guid>/tags/entities/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>event</title>
+      <link>/tags/event/</link>
+      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
+      
+      <guid>/tags/event/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Islandora Scholar Extended Profiles</title>
+      <link>/tags/islandora-scholar-extended-profiles/</link>
+      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
+      
+      <guid>/tags/islandora-scholar-extended-profiles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>islandora:entityCModel</title>
+      <link>/tags/islandoraentitycmodel/</link>
+      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
+      
+      <guid>/tags/islandoraentitycmodel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LASIR</title>
+      <link>/tags/lasir/</link>
+      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
+      
+      <guid>/tags/lasir/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>organization</title>
+      <link>/tags/organization/</link>
+      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
+      
+      <guid>/tags/organization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>person</title>
+      <link>/tags/person/</link>
+      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
+      
+      <guid>/tags/person/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>place</title>
+      <link>/tags/place/</link>
+      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
+      
+      <guid>/tags/place/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>profile</title>
+      <link>/tags/profile/</link>
+      <pubDate>Wed, 17 Feb 2021 15:12:28 -0600</pubDate>
+      
+      <guid>/tags/profile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Book</title>
+      <link>/tags/book/</link>
+      <pubDate>Fri, 05 Feb 2021 16:12:55 -0600</pubDate>
+      
+      <guid>/tags/book/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Digital.Grinnell</title>
+      <link>/tags/digital.grinnell/</link>
+      <pubDate>Fri, 05 Feb 2021 16:12:55 -0600</pubDate>
+      
+      <guid>/tags/digital.grinnell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ingest</title>
+      <link>/tags/ingest/</link>
+      <pubDate>Fri, 05 Feb 2021 16:12:55 -0600</pubDate>
+      
+      <guid>/tags/ingest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>workflow</title>
+      <link>/tags/workflow/</link>
+      <pubDate>Fri, 05 Feb 2021 16:12:55 -0600</pubDate>
+      
+      <guid>/tags/workflow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>commit</title>
+      <link>/tags/commit/</link>
+      <pubDate>Wed, 27 Jan 2021 12:10:25 -0600</pubDate>
+      
+      <guid>/tags/commit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>/tags/git/</link>
+      <pubDate>Wed, 27 Jan 2021 12:10:25 -0600</pubDate>
+      
+      <guid>/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Submodule</title>
+      <link>/tags/submodule/</link>
+      <pubDate>Wed, 27 Jan 2021 12:10:25 -0600</pubDate>
+      
+      <guid>/tags/submodule/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssh</title>
+      <link>/tags/ssh/</link>
+      <pubDate>Tue, 26 Jan 2021 20:15:43 -0600</pubDate>
+      
+      <guid>/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssh-copy-id</title>
+      <link>/tags/ssh-copy-id/</link>
+      <pubDate>Tue, 26 Jan 2021 20:15:43 -0600</pubDate>
+      
+      <guid>/tags/ssh-copy-id/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssh-keygen</title>
+      <link>/tags/ssh-keygen/</link>
+      <pubDate>Tue, 26 Jan 2021 20:15:43 -0600</pubDate>
+      
+      <guid>/tags/ssh-keygen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sshd</title>
+      <link>/tags/sshd/</link>
+      <pubDate>Tue, 26 Jan 2021 20:15:43 -0600</pubDate>
+      
+      <guid>/tags/sshd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>inclusive</title>
+      <link>/tags/inclusive/</link>
+      <pubDate>Tue, 26 Jan 2021 11:04:43 -0600</pubDate>
+      
+      <guid>/tags/inclusive/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>main</title>
+      <link>/tags/main/</link>
+      <pubDate>Tue, 26 Jan 2021 11:04:43 -0600</pubDate>
+      
+      <guid>/tags/main/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>master</title>
+      <link>/tags/master/</link>
+      <pubDate>Tue, 26 Jan 2021 11:04:43 -0600</pubDate>
+      
+      <guid>/tags/master/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dg.localdomain</title>
+      <link>/tags/dg.localdomain/</link>
+      <pubDate>Tue, 12 Jan 2021 15:31:37 -0600</pubDate>
+      
+      <guid>/tags/dg.localdomain/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Migrate</title>
+      <link>/tags/migrate/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/migrate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>production</title>
+      <link>/tags/production/</link>
+      <pubDate>Fri, 20 Nov 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/production/</guid>
       <description></description>
     </item>
     
     <item>
       <title>local development</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/local-development/</link>
+      <link>/tags/local-development/</link>
       <pubDate>Thu, 12 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/local-development/</guid>
+      <guid>/tags/local-development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rootstalk</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/rootstalk/</link>
+      <link>/tags/rootstalk/</link>
       <pubDate>Thu, 12 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/rootstalk/</guid>
+      <guid>/tags/rootstalk/</guid>
       <description></description>
     </item>
     
     <item>
       <title>compact</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/compact/</link>
+      <link>/tags/compact/</link>
       <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/compact/</guid>
+      <guid>/tags/compact/</guid>
       <description></description>
     </item>
     
     <item>
       <title>concise</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/concise/</link>
+      <link>/tags/concise/</link>
       <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/concise/</guid>
+      <guid>/tags/concise/</guid>
       <description></description>
     </item>
     
     <item>
       <title>development</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/development/</link>
+      <link>/tags/development/</link>
       <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/development/</guid>
+      <guid>/tags/development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DG-FEDORA</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/dg-fedora/</link>
+      <link>/tags/dg-fedora/</link>
       <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/dg-fedora/</guid>
+      <guid>/tags/dg-fedora/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ACME</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/acme/</link>
+      <link>/tags/acme/</link>
       <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/acme/</guid>
+      <guid>/tags/acme/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DNS-01</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/dns-01/</link>
+      <link>/tags/dns-01/</link>
       <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/dns-01/</guid>
+      <guid>/tags/dns-01/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/docker/</link>
+      <link>/tags/docker/</link>
       <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/docker/</guid>
+      <guid>/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker-compose</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/docker-compose/</link>
+      <link>/tags/docker-compose/</link>
       <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/docker-compose/</guid>
+      <guid>/tags/docker-compose/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker-traefik2-host</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/docker-traefik2-host/</link>
+      <link>/tags/docker-traefik2-host/</link>
       <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/docker-traefik2-host/</guid>
+      <guid>/tags/docker-traefik2-host/</guid>
       <description></description>
     </item>
     
     <item>
       <title>staging</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/staging/</link>
+      <link>/tags/staging/</link>
       <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/staging/</guid>
+      <guid>/tags/staging/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Traefik</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/traefik/</link>
+      <link>/tags/traefik/</link>
       <pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/traefik/</guid>
+      <guid>/tags/traefik/</guid>
       <description></description>
     </item>
     
     <item>
       <title>error</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/error/</link>
+      <link>/tags/error/</link>
       <pubDate>Fri, 11 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/error/</guid>
+      <guid>/tags/error/</guid>
       <description></description>
     </item>
     
     <item>
       <title>JavaScript</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/javascript/</link>
+      <link>/tags/javascript/</link>
       <pubDate>Fri, 11 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/javascript/</guid>
+      <guid>/tags/javascript/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mixed content</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/mixed-content/</link>
+      <link>/tags/mixed-content/</link>
       <pubDate>Fri, 11 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/mixed-content/</guid>
+      <guid>/tags/mixed-content/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mixed mode</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/mixed-mode/</link>
+      <link>/tags/mixed-mode/</link>
       <pubDate>Fri, 11 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/mixed-mode/</guid>
+      <guid>/tags/mixed-mode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>AnyConnect</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/anyconnect/</link>
+      <link>/tags/anyconnect/</link>
       <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/anyconnect/</guid>
+      <guid>/tags/anyconnect/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cisco</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/cisco/</link>
+      <link>/tags/cisco/</link>
       <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/cisco/</guid>
+      <guid>/tags/cisco/</guid>
       <description></description>
     </item>
     
     <item>
       <title>keychain</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/keychain/</link>
+      <link>/tags/keychain/</link>
       <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/keychain/</guid>
+      <guid>/tags/keychain/</guid>
       <description></description>
     </item>
     
     <item>
       <title>VPN</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/vpn/</link>
+      <link>/tags/vpn/</link>
       <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/vpn/</guid>
+      <guid>/tags/vpn/</guid>
       <description></description>
     </item>
     
     <item>
       <title>KM switch</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/km-switch/</link>
+      <link>/tags/km-switch/</link>
       <pubDate>Fri, 28 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/km-switch/</guid>
+      <guid>/tags/km-switch/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Sharemouse</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/sharemouse/</link>
+      <link>/tags/sharemouse/</link>
       <pubDate>Fri, 28 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/sharemouse/</guid>
+      <guid>/tags/sharemouse/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Synergy</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/synergy/</link>
+      <link>/tags/synergy/</link>
       <pubDate>Fri, 28 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/synergy/</guid>
+      <guid>/tags/synergy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Universal Clipboard</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/universal-clipboard/</link>
+      <link>/tags/universal-clipboard/</link>
       <pubDate>Fri, 28 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/universal-clipboard/</guid>
+      <guid>/tags/universal-clipboard/</guid>
       <description></description>
     </item>
     
     <item>
       <title>islandora_mods_post_processing</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/islandora_mods_post_processing/</link>
+      <link>/tags/islandora_mods_post_processing/</link>
       <pubDate>Fri, 24 Jul 2020 18:37:10 -0500</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/islandora_mods_post_processing/</guid>
+      <guid>/tags/islandora_mods_post_processing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>islandora_mods_via_twig</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/islandora_mods_via_twig/</link>
+      <link>/tags/islandora_mods_via_twig/</link>
       <pubDate>Fri, 24 Jul 2020 18:37:10 -0500</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/islandora_mods_via_twig/</guid>
+      <guid>/tags/islandora_mods_via_twig/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Automator</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/automator/</link>
+      <link>/tags/automator/</link>
       <pubDate>Sat, 18 Jul 2020 16:56:04 -0500</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/automator/</guid>
+      <guid>/tags/automator/</guid>
       <description></description>
     </item>
     
     <item>
       <title>calendar</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/calendar/</link>
+      <link>/tags/calendar/</link>
       <pubDate>Sat, 18 Jul 2020 16:56:04 -0500</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/calendar/</guid>
+      <guid>/tags/calendar/</guid>
       <description></description>
     </item>
     
     <item>
       <title>abstract</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/abstract/</link>
+      <link>/tags/abstract/</link>
       <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/abstract/</guid>
+      <guid>/tags/abstract/</guid>
       <description></description>
     </item>
     
     <item>
       <title>collection</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/collection/</link>
+      <link>/tags/collection/</link>
       <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/collection/</guid>
+      <guid>/tags/collection/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Lunr.js</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/lunr.js/</link>
+      <link>/tags/lunr.js/</link>
       <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/lunr.js/</guid>
+      <guid>/tags/lunr.js/</guid>
       <description></description>
     </item>
     
     <item>
       <title>M10c</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/m10c/</link>
+      <link>/tags/m10c/</link>
       <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/m10c/</guid>
+      <guid>/tags/m10c/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PID</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/pid/</link>
+      <link>/tags/pid/</link>
       <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/pid/</guid>
+      <guid>/tags/pid/</guid>
       <description></description>
     </item>
     
     <item>
       <title>sub-collection</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/sub-collection/</link>
+      <link>/tags/sub-collection/</link>
       <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/sub-collection/</guid>
+      <guid>/tags/sub-collection/</guid>
       <description></description>
     </item>
     
     <item>
       <title>thumbnail</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/thumbnail/</link>
+      <link>/tags/thumbnail/</link>
       <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/thumbnail/</guid>
+      <guid>/tags/thumbnail/</guid>
       <description></description>
     </item>
     
     <item>
       <title>title</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/title/</link>
+      <link>/tags/title/</link>
       <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/title/</guid>
+      <guid>/tags/title/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Zzo</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/zzo/</link>
+      <link>/tags/zzo/</link>
       <pubDate>Thu, 25 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/zzo/</guid>
+      <guid>/tags/zzo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>islandora_datastream_replace</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/islandora_datastream_replace/</link>
+      <link>/tags/islandora_datastream_replace/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/islandora_datastream_replace/</guid>
+      <guid>/tags/islandora_datastream_replace/</guid>
       <description></description>
     </item>
     
     <item>
       <title>islandora_solution_pack_web_archive</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/islandora_solution_pack_web_archive/</link>
+      <link>/tags/islandora_solution_pack_web_archive/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/islandora_solution_pack_web_archive/</guid>
+      <guid>/tags/islandora_solution_pack_web_archive/</guid>
       <description></description>
     </item>
     
     <item>
       <title>PDF</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/pdf/</link>
+      <link>/tags/pdf/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/pdf/</guid>
+      <guid>/tags/pdf/</guid>
       <description></description>
     </item>
     
     <item>
       <title>WARC</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/warc/</link>
+      <link>/tags/warc/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/warc/</guid>
+      <guid>/tags/warc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>web archive</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/web-archive/</link>
+      <link>/tags/web-archive/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/web-archive/</guid>
+      <guid>/tags/web-archive/</guid>
       <description></description>
     </item>
     
     <item>
       <title>wget</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/wget/</link>
+      <link>/tags/wget/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/wget/</guid>
+      <guid>/tags/wget/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker-traefik2-acme-host</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/docker-traefik2-acme-host/</link>
+      <link>/tags/docker-traefik2-acme-host/</link>
       <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/docker-traefik2-acme-host/</guid>
+      <guid>/tags/docker-traefik2-acme-host/</guid>
       <description></description>
     </item>
     
     <item>
       <title>OpenSSL</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/openssl/</link>
+      <link>/tags/openssl/</link>
       <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/openssl/</guid>
+      <guid>/tags/openssl/</guid>
       <description></description>
     </item>
     
     <item>
       <title>testssl.sh</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/testssl.sh/</link>
+      <link>/tags/testssl.sh/</link>
       <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/testssl.sh/</guid>
+      <guid>/tags/testssl.sh/</guid>
       <description></description>
     </item>
     
     <item>
       <title>TLS</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/tls/</link>
+      <link>/tags/tls/</link>
       <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/tls/</guid>
+      <guid>/tags/tls/</guid>
       <description></description>
     </item>
     
     <item>
       <title>vulnerability</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/vulnerability/</link>
+      <link>/tags/vulnerability/</link>
       <pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/vulnerability/</guid>
+      <guid>/tags/vulnerability/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CNAME</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/cname/</link>
+      <link>/tags/cname/</link>
       <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/cname/</guid>
+      <guid>/tags/cname/</guid>
       <description></description>
     </item>
     
     <item>
       <title>NXDOMAIN</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/nxdomain/</link>
+      <link>/tags/nxdomain/</link>
       <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/nxdomain/</guid>
+      <guid>/tags/nxdomain/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MA6879</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/ma6879/</link>
+      <link>/tags/ma6879/</link>
       <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/ma6879/</guid>
+      <guid>/tags/ma6879/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mac Mini</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/mac-mini/</link>
+      <link>/tags/mac-mini/</link>
       <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/mac-mini/</guid>
+      <guid>/tags/mac-mini/</guid>
       <description></description>
     </item>
     
     <item>
       <title>remote</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/remote/</link>
+      <link>/tags/remote/</link>
       <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/remote/</guid>
+      <guid>/tags/remote/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Screens 4</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/screens-4/</link>
+      <link>/tags/screens-4/</link>
       <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/screens-4/</guid>
+      <guid>/tags/screens-4/</guid>
       <description></description>
     </item>
     
     <item>
       <title>vnc</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/vnc/</link>
+      <link>/tags/vnc/</link>
       <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/vnc/</guid>
+      <guid>/tags/vnc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>InqScribe</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/inqscribe/</link>
+      <link>/tags/inqscribe/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/inqscribe/</guid>
+      <guid>/tags/inqscribe/</guid>
       <description></description>
     </item>
     
     <item>
       <title>OHScribe</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/ohscribe/</link>
+      <link>/tags/ohscribe/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/ohscribe/</guid>
+      <guid>/tags/ohscribe/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Oral History</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/oral-history/</link>
+      <link>/tags/oral-history/</link>
       <pubDate>Mon, 01 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/oral-history/</guid>
+      <guid>/tags/oral-history/</guid>
       <description></description>
     </item>
     
     <item>
       <title>custom</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/custom/</link>
+      <link>/tags/custom/</link>
       <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/custom/</guid>
+      <guid>/tags/custom/</guid>
       <description></description>
     </item>
     
     <item>
       <title>display</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/display/</link>
+      <link>/tags/display/</link>
       <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/display/</guid>
+      <guid>/tags/display/</guid>
       <description></description>
     </item>
     
     <item>
       <title>metadata</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/metadata/</link>
+      <link>/tags/metadata/</link>
       <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/metadata/</guid>
+      <guid>/tags/metadata/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MODS</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/mods/</link>
+      <link>/tags/mods/</link>
       <pubDate>Thu, 28 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/mods/</guid>
+      <guid>/tags/mods/</guid>
       <description></description>
     </item>
     
     <item>
       <title>figlet</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/figlet/</link>
+      <link>/tags/figlet/</link>
       <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/figlet/</guid>
+      <guid>/tags/figlet/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mdv</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/mdv/</link>
+      <link>/tags/mdv/</link>
       <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/mdv/</guid>
+      <guid>/tags/mdv/</guid>
       <description></description>
     </item>
     
     <item>
       <title>motd</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/motd/</link>
+      <link>/tags/motd/</link>
       <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/motd/</guid>
+      <guid>/tags/motd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>server-info</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/server-info/</link>
+      <link>/tags/server-info/</link>
       <pubDate>Tue, 05 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/server-info/</guid>
+      <guid>/tags/server-info/</guid>
       <description></description>
     </item>
     
     <item>
       <title>dockerized-server</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/dockerized-server/</link>
+      <link>/tags/dockerized-server/</link>
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/dockerized-server/</guid>
+      <guid>/tags/dockerized-server/</guid>
       <description></description>
     </item>
     
     <item>
       <title>HTTP-01</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/http-01/</link>
+      <link>/tags/http-01/</link>
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/http-01/</guid>
+      <guid>/tags/http-01/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Portainer</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/portainer/</link>
+      <link>/tags/portainer/</link>
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/portainer/</guid>
+      <guid>/tags/portainer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>service-stack</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/service-stack/</link>
+      <link>/tags/service-stack/</link>
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/service-stack/</guid>
+      <guid>/tags/service-stack/</guid>
       <description></description>
     </item>
     
     <item>
       <title>traefik.frontend.rule</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/traefik.frontend.rule/</link>
+      <link>/tags/traefik.frontend.rule/</link>
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/traefik.frontend.rule/</guid>
+      <guid>/tags/traefik.frontend.rule/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Watchtower</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/watchtower/</link>
+      <link>/tags/watchtower/</link>
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/watchtower/</guid>
+      <guid>/tags/watchtower/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Export</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/export/</link>
+      <link>/tags/export/</link>
       <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/export/</guid>
+      <guid>/tags/export/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Islandora Multi-Importer</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/islandora-multi-importer/</link>
+      <link>/tags/islandora-multi-importer/</link>
       <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/islandora-multi-importer/</guid>
+      <guid>/tags/islandora-multi-importer/</guid>
       <description></description>
     </item>
     
     <item>
       <title>islandora_datastream_export</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/islandora_datastream_export/</link>
+      <link>/tags/islandora_datastream_export/</link>
       <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/islandora_datastream_export/</guid>
+      <guid>/tags/islandora_datastream_export/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Map-MODS-to-MASTER</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/map-mods-to-master/</link>
+      <link>/tags/map-mods-to-master/</link>
       <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/map-mods-to-master/</guid>
+      <guid>/tags/map-mods-to-master/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Replace</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/replace/</link>
+      <link>/tags/replace/</link>
       <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/replace/</guid>
+      <guid>/tags/replace/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Twig</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/twig/</link>
+      <link>/tags/twig/</link>
       <pubDate>Thu, 23 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/twig/</guid>
+      <guid>/tags/twig/</guid>
       <description></description>
     </item>
     
     <item>
       <title>dg7 Collection View</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/dg7-collection-view/</link>
+      <link>/tags/dg7-collection-view/</link>
       <pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/dg7-collection-view/</guid>
+      <guid>/tags/dg7-collection-view/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Maintenance Mode</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/maintenance-mode/</link>
+      <link>/tags/maintenance-mode/</link>
       <pubDate>Tue, 17 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/maintenance-mode/</guid>
+      <guid>/tags/maintenance-mode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Blog</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/blog/</link>
+      <link>/tags/blog/</link>
       <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/blog/</guid>
+      <guid>/tags/blog/</guid>
       <description></description>
     </item>
     
     <item>
       <title>.gitignore</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/.gitignore/</link>
+      <link>/tags/.gitignore/</link>
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/.gitignore/</guid>
+      <guid>/tags/.gitignore/</guid>
       <description></description>
     </item>
     
     <item>
       <title>archive</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/archive/</link>
+      <link>/tags/archive/</link>
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/archive/</guid>
+      <guid>/tags/archive/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Branch</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/branch/</link>
+      <link>/tags/branch/</link>
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/branch/</guid>
+      <guid>/tags/branch/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docker-compose-drupal</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/docker-compose-drupal/</link>
+      <link>/tags/docker-compose-drupal/</link>
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/docker-compose-drupal/</guid>
+      <guid>/tags/docker-compose-drupal/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GitHub</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/github/</link>
+      <link>/tags/github/</link>
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/github/</guid>
+      <guid>/tags/github/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GnuPG</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/gnupg/</link>
+      <link>/tags/gnupg/</link>
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/gnupg/</guid>
+      <guid>/tags/gnupg/</guid>
       <description></description>
     </item>
     
     <item>
       <title>gpg</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/gpg/</link>
+      <link>/tags/gpg/</link>
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/gpg/</guid>
+      <guid>/tags/gpg/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ls-files</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/ls-files/</link>
+      <link>/tags/ls-files/</link>
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/ls-files/</guid>
+      <guid>/tags/ls-files/</guid>
       <description></description>
     </item>
     
     <item>
       <title>mogtofu33</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/mogtofu33/</link>
+      <link>/tags/mogtofu33/</link>
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/mogtofu33/</guid>
+      <guid>/tags/mogtofu33/</guid>
       <description></description>
     </item>
     
     <item>
       <title>New</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/new/</link>
+      <link>/tags/new/</link>
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/new/</guid>
+      <guid>/tags/new/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Repo</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/repo/</link>
+      <link>/tags/repo/</link>
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/repo/</guid>
+      <guid>/tags/repo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Wieting</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/wieting/</link>
+      <link>/tags/wieting/</link>
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/wieting/</guid>
+      <guid>/tags/wieting/</guid>
       <description></description>
     </item>
     
     <item>
       <title>docksal</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/docksal/</link>
+      <link>/tags/docksal/</link>
       <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/docksal/</guid>
+      <guid>/tags/docksal/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Drupal 8</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/drupal-8/</link>
+      <link>/tags/drupal-8/</link>
       <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/drupal-8/</guid>
+      <guid>/tags/drupal-8/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Lando</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/lando/</link>
+      <link>/tags/lando/</link>
       <pubDate>Mon, 17 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/lando/</guid>
+      <guid>/tags/lando/</guid>
       <description></description>
     </item>
     
     <item>
       <title>bira</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/bira/</link>
+      <link>/tags/bira/</link>
       <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/bira/</guid>
+      <guid>/tags/bira/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Catalina</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/catalina/</link>
+      <link>/tags/catalina/</link>
       <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/catalina/</guid>
+      <guid>/tags/catalina/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mac</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/mac/</link>
+      <link>/tags/mac/</link>
       <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/mac/</guid>
+      <guid>/tags/mac/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Oh My ZSH!</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/oh-my-zsh/</link>
+      <link>/tags/oh-my-zsh/</link>
       <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/oh-my-zsh/</guid>
+      <guid>/tags/oh-my-zsh/</guid>
       <description></description>
     </item>
     
     <item>
       <title>OS X</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/os-x/</link>
+      <link>/tags/os-x/</link>
       <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/os-x/</guid>
+      <guid>/tags/os-x/</guid>
       <description></description>
     </item>
     
     <item>
       <title>zsh</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/zsh/</link>
+      <link>/tags/zsh/</link>
       <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/zsh/</guid>
+      <guid>/tags/zsh/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CommonMark</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/commonmark/</link>
+      <link>/tags/commonmark/</link>
       <pubDate>Tue, 11 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/commonmark/</guid>
+      <guid>/tags/commonmark/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Goldmark</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/goldmark/</link>
+      <link>/tags/goldmark/</link>
       <pubDate>Tue, 11 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/goldmark/</guid>
+      <guid>/tags/goldmark/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DGDockerX</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/dgdockerx/</link>
+      <link>/tags/dgdockerx/</link>
       <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/dgdockerx/</guid>
+      <guid>/tags/dgdockerx/</guid>
       <description></description>
     </item>
     
     <item>
       <title>git config core.fileMode</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/git-config-core.filemode/</link>
+      <link>/tags/git-config-core.filemode/</link>
       <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/git-config-core.filemode/</guid>
+      <guid>/tags/git-config-core.filemode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>isle-stage.grinnell.edu</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/isle-stage.grinnell.edu/</link>
+      <link>/tags/isle-stage.grinnell.edu/</link>
       <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/isle-stage.grinnell.edu/</guid>
+      <guid>/tags/isle-stage.grinnell.edu/</guid>
       <description></description>
     </item>
     
     <item>
       <title>backup</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/backup/</link>
+      <link>/tags/backup/</link>
       <pubDate>Mon, 25 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/backup/</guid>
+      <guid>/tags/backup/</guid>
       <description></description>
     </item>
     
     <item>
       <title>customization</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/customization/</link>
+      <link>/tags/customization/</link>
       <pubDate>Mon, 25 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/customization/</guid>
+      <guid>/tags/customization/</guid>
       <description></description>
     </item>
     
     <item>
       <title>granular</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/granular/</link>
+      <link>/tags/granular/</link>
       <pubDate>Mon, 25 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/granular/</guid>
+      <guid>/tags/granular/</guid>
       <description></description>
     </item>
     
     <item>
       <title>clone</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/clone/</link>
+      <link>/tags/clone/</link>
       <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/clone/</guid>
+      <guid>/tags/clone/</guid>
       <description></description>
     </item>
     
     <item>
       <title>fork</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/fork/</link>
+      <link>/tags/fork/</link>
       <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/fork/</guid>
+      <guid>/tags/fork/</guid>
       <description></description>
     </item>
     
     <item>
       <title>origin</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/origin/</link>
+      <link>/tags/origin/</link>
       <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/origin/</guid>
+      <guid>/tags/origin/</guid>
       <description></description>
     </item>
     
     <item>
       <title>upstream</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/upstream/</link>
+      <link>/tags/upstream/</link>
       <pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/upstream/</guid>
+      <guid>/tags/upstream/</guid>
       <description></description>
     </item>
     
     <item>
       <title>credentials</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/credentials/</link>
+      <link>/tags/credentials/</link>
       <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/credentials/</guid>
+      <guid>/tags/credentials/</guid>
       <description></description>
     </item>
     
     <item>
       <title>login</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/login/</link>
+      <link>/tags/login/</link>
       <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/login/</guid>
+      <guid>/tags/login/</guid>
       <description></description>
     </item>
     
     <item>
       <title>OSX</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/osx/</link>
+      <link>/tags/osx/</link>
       <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/osx/</guid>
+      <guid>/tags/osx/</guid>
       <description></description>
     </item>
     
     <item>
       <title>terminal</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/terminal/</link>
+      <link>/tags/terminal/</link>
       <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/terminal/</guid>
+      <guid>/tags/terminal/</guid>
       <description></description>
     </item>
     
     <item>
       <title>user</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/user/</link>
+      <link>/tags/user/</link>
       <pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/user/</guid>
+      <guid>/tags/user/</guid>
       <description></description>
     </item>
     
     <item>
       <title>NFS</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/nfs/</link>
+      <link>/tags/nfs/</link>
       <pubDate>Wed, 13 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/nfs/</guid>
+      <guid>/tags/nfs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Omeka-S</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/omeka-s/</link>
+      <link>/tags/omeka-s/</link>
       <pubDate>Wed, 13 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/omeka-s/</guid>
+      <guid>/tags/omeka-s/</guid>
       <description></description>
     </item>
     
     <item>
       <title>migration</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/migration/</link>
+      <link>/tags/migration/</link>
       <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/migration/</guid>
+      <guid>/tags/migration/</guid>
       <description></description>
     </item>
     
     <item>
       <title>worflow</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/worflow/</link>
+      <link>/tags/worflow/</link>
       <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/worflow/</guid>
+      <guid>/tags/worflow/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DG</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/dg/</link>
+      <link>/tags/dg/</link>
       <pubDate>Thu, 07 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/dg/</guid>
+      <guid>/tags/dg/</guid>
       <description></description>
     </item>
     
     <item>
       <title>theme</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/theme/</link>
+      <link>/tags/theme/</link>
       <pubDate>Thu, 07 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/theme/</guid>
+      <guid>/tags/theme/</guid>
       <description></description>
     </item>
     
     <item>
       <title>v1.3.0</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/v1.3.0/</link>
+      <link>/tags/v1.3.0/</link>
       <pubDate>Tue, 29 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/v1.3.0/</guid>
+      <guid>/tags/v1.3.0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DG7</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/dg7/</link>
+      <link>/tags/dg7/</link>
       <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/dg7/</guid>
+      <guid>/tags/dg7/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hooks</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/hooks/</link>
+      <link>/tags/hooks/</link>
       <pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/hooks/</guid>
+      <guid>/tags/hooks/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hook_form_alter</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/hook_form_alter/</link>
+      <link>/tags/hook_form_alter/</link>
       <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/hook_form_alter/</guid>
+      <guid>/tags/hook_form_alter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hook_islandora_multi_importer_remote_file_get</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/hook_islandora_multi_importer_remote_file_get/</link>
+      <link>/tags/hook_islandora_multi_importer_remote_file_get/</link>
       <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/hook_islandora_multi_importer_remote_file_get/</guid>
+      <guid>/tags/hook_islandora_multi_importer_remote_file_get/</guid>
       <description></description>
     </item>
     
     <item>
       <title>IMI</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/imi/</link>
+      <link>/tags/imi/</link>
       <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/imi/</guid>
+      <guid>/tags/imi/</guid>
       <description></description>
     </item>
     
     <item>
       <title>islandora_multi_importer_form</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/islandora_multi_importer_form/</link>
+      <link>/tags/islandora_multi_importer_form/</link>
       <pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/islandora_multi_importer_form/</guid>
+      <guid>/tags/islandora_multi_importer_form/</guid>
       <description></description>
     </item>
     
     <item>
       <title>gists</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/gists/</link>
+      <link>/tags/gists/</link>
       <pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/gists/</guid>
+      <guid>/tags/gists/</guid>
       <description></description>
     </item>
     
     <item>
       <title>guidelines</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/guidelines/</link>
+      <link>/tags/guidelines/</link>
       <pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/guidelines/</guid>
+      <guid>/tags/guidelines/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CentOS</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/centos/</link>
+      <link>/tags/centos/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/centos/</guid>
+      <guid>/tags/centos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>COMPOSE_FILE</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/compose_file/</link>
+      <link>/tags/compose_file/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/compose_file/</guid>
+      <guid>/tags/compose_file/</guid>
       <description></description>
     </item>
     
     <item>
       <title>FEDORA</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/fedora/</link>
+      <link>/tags/fedora/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/fedora/</guid>
+      <guid>/tags/fedora/</guid>
       <description></description>
     </item>
     
     <item>
       <title>override</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/override/</link>
+      <link>/tags/override/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/override/</guid>
+      <guid>/tags/override/</guid>
       <description></description>
     </item>
     
     <item>
       <title>portable</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/portable/</link>
+      <link>/tags/portable/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/portable/</guid>
+      <guid>/tags/portable/</guid>
       <description></description>
     </item>
     
     <item>
       <title>re-index</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/re-index/</link>
+      <link>/tags/re-index/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/re-index/</guid>
+      <guid>/tags/re-index/</guid>
       <description></description>
     </item>
     
     <item>
       <title>HANDLE.NET</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/handle.net/</link>
+      <link>/tags/handle.net/</link>
       <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/handle.net/</guid>
+      <guid>/tags/handle.net/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hdl</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/hdl/</link>
+      <link>/tags/hdl/</link>
       <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/hdl/</guid>
+      <guid>/tags/hdl/</guid>
       <description></description>
     </item>
     
     <item>
       <title>restart</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/restart/</link>
+      <link>/tags/restart/</link>
       <pubDate>Tue, 10 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/restart/</guid>
+      <guid>/tags/restart/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Who Am I</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/who-am-i/</link>
+      <link>/tags/who-am-i/</link>
       <pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/who-am-i/</guid>
+      <guid>/tags/who-am-i/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Google Sheets</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/google-sheets/</link>
+      <link>/tags/google-sheets/</link>
       <pubDate>Wed, 21 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/google-sheets/</guid>
+      <guid>/tags/google-sheets/</guid>
       <description></description>
     </item>
     
     <item>
       <title>fin</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/fin/</link>
+      <link>/tags/fin/</link>
       <pubDate>Sat, 17 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/fin/</guid>
+      <guid>/tags/fin/</guid>
       <description></description>
     </item>
     
     <item>
       <title>code repository</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/code-repository/</link>
+      <link>/tags/code-repository/</link>
       <pubDate>Fri, 16 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/code-repository/</guid>
+      <guid>/tags/code-repository/</guid>
       <description></description>
     </item>
     
     <item>
       <title>dg-islandora</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/dg-islandora/</link>
+      <link>/tags/dg-islandora/</link>
       <pubDate>Fri, 16 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/dg-islandora/</guid>
+      <guid>/tags/dg-islandora/</guid>
       <description></description>
     </item>
     
     <item>
       <title>v1.2.0</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/v1.2.0/</link>
+      <link>/tags/v1.2.0/</link>
       <pubDate>Tue, 13 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/v1.2.0/</guid>
+      <guid>/tags/v1.2.0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Grocy</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/grocy/</link>
+      <link>/tags/grocy/</link>
       <pubDate>Thu, 08 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/grocy/</guid>
+      <guid>/tags/grocy/</guid>
       <description></description>
     </item>
     
     <item>
       <title>canonifyURLs</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/canonifyurls/</link>
+      <link>/tags/canonifyurls/</link>
       <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/canonifyurls/</guid>
+      <guid>/tags/canonifyurls/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ISLE-1.3.0</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/isle-1.3.0/</link>
+      <link>/tags/isle-1.3.0/</link>
       <pubDate>Mon, 05 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/isle-1.3.0/</guid>
+      <guid>/tags/isle-1.3.0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>atom-timestamp</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/atom-timestamp/</link>
+      <link>/tags/atom-timestamp/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/atom-timestamp/</guid>
+      <guid>/tags/atom-timestamp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ByLastmod</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/bylastmod/</link>
+      <link>/tags/bylastmod/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/bylastmod/</guid>
+      <guid>/tags/bylastmod/</guid>
       <description></description>
     </item>
     
     <item>
       <title>lastmod</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/lastmod/</link>
+      <link>/tags/lastmod/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/lastmod/</guid>
+      <guid>/tags/lastmod/</guid>
       <description></description>
     </item>
     
     <item>
       <title>paginator</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/paginator/</link>
+      <link>/tags/paginator/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/paginator/</guid>
+      <guid>/tags/paginator/</guid>
       <description></description>
     </item>
     
     <item>
       <title>publishDate</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/publishdate/</link>
+      <link>/tags/publishdate/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/publishdate/</guid>
+      <guid>/tags/publishdate/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Reverse</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/reverse/</link>
+      <link>/tags/reverse/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/reverse/</guid>
+      <guid>/tags/reverse/</guid>
       <description></description>
     </item>
     
     <item>
       <title>config</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/config/</link>
+      <link>/tags/config/</link>
       <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/config/</guid>
+      <guid>/tags/config/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Drupal</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/drupal/</link>
+      <link>/tags/drupal/</link>
       <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/drupal/</guid>
+      <guid>/tags/drupal/</guid>
       <description></description>
     </item>
     
     <item>
       <title>orphan</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/orphan/</link>
+      <link>/tags/orphan/</link>
       <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/orphan/</guid>
+      <guid>/tags/orphan/</guid>
       <description></description>
     </item>
     
     <item>
       <title>prune</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/prune/</link>
+      <link>/tags/prune/</link>
       <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/prune/</guid>
+      <guid>/tags/prune/</guid>
       <description></description>
     </item>
     
     <item>
       <title>reset</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/reset/</link>
+      <link>/tags/reset/</link>
       <pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/reset/</guid>
+      <guid>/tags/reset/</guid>
       <description></description>
     </item>
     
     <item>
       <title>FULL_TEXT</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/full_text/</link>
+      <link>/tags/full_text/</link>
       <pubDate>Wed, 24 Jul 2019 16:56:44 -0700</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/full_text/</guid>
+      <guid>/tags/full_text/</guid>
       <description></description>
     </item>
     
     <item>
       <title>OCR</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/ocr/</link>
+      <link>/tags/ocr/</link>
       <pubDate>Wed, 24 Jul 2019 16:56:44 -0700</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/ocr/</guid>
+      <guid>/tags/ocr/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CIFS Mount</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/cifs-mount/</link>
+      <link>/tags/cifs-mount/</link>
       <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/cifs-mount/</guid>
+      <guid>/tags/cifs-mount/</guid>
       <description></description>
     </item>
     
     <item>
       <title>iTerm2</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/iterm2/</link>
+      <link>/tags/iterm2/</link>
       <pubDate>Mon, 22 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/iterm2/</guid>
+      <guid>/tags/iterm2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>FedoraGSearch config</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/fedoragsearch-config/</link>
+      <link>/tags/fedoragsearch-config/</link>
       <pubDate>Fri, 19 Jul 2019 13:09:54 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/fedoragsearch-config/</guid>
+      <guid>/tags/fedoragsearch-config/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Oral Histories</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/oral-histories/</link>
+      <link>/tags/oral-histories/</link>
       <pubDate>Fri, 19 Jul 2019 13:09:54 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/oral-histories/</guid>
+      <guid>/tags/oral-histories/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Solr config</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/solr-config/</link>
+      <link>/tags/solr-config/</link>
       <pubDate>Fri, 19 Jul 2019 13:09:54 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/solr-config/</guid>
+      <guid>/tags/solr-config/</guid>
       <description></description>
     </item>
     
     <item>
       <title>XSLT</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/xslt/</link>
+      <link>/tags/xslt/</link>
       <pubDate>Fri, 19 Jul 2019 13:09:54 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/xslt/</guid>
+      <guid>/tags/xslt/</guid>
       <description></description>
     </item>
     
     <item>
       <title>.scss</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/.scss/</link>
+      <link>/tags/.scss/</link>
       <pubDate>Fri, 19 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/.scss/</guid>
+      <guid>/tags/.scss/</guid>
       <description></description>
     </item>
     
     <item>
       <title>emoji</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/emoji/</link>
+      <link>/tags/emoji/</link>
       <pubDate>Fri, 19 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/emoji/</guid>
+      <guid>/tags/emoji/</guid>
       <description></description>
     </item>
     
     <item>
       <title>SASS</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/sass/</link>
+      <link>/tags/sass/</link>
       <pubDate>Fri, 19 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/sass/</guid>
+      <guid>/tags/sass/</guid>
       <description></description>
     </item>
     
     <item>
       <title>BlackFriday</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/blackfriday/</link>
+      <link>/tags/blackfriday/</link>
       <pubDate>Mon, 08 Jul 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/blackfriday/</guid>
+      <guid>/tags/blackfriday/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Europe</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/europe/</link>
+      <link>/tags/europe/</link>
       <pubDate>Tue, 25 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/europe/</guid>
+      <guid>/tags/europe/</guid>
       <description></description>
     </item>
     
     <item>
       <title>travel</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/travel/</link>
+      <link>/tags/travel/</link>
       <pubDate>Tue, 25 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/travel/</guid>
+      <guid>/tags/travel/</guid>
       <description></description>
     </item>
     
     <item>
       <title>vacation</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/vacation/</link>
+      <link>/tags/vacation/</link>
       <pubDate>Tue, 25 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/vacation/</guid>
+      <guid>/tags/vacation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>configuration</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/configuration/</link>
+      <link>/tags/configuration/</link>
       <pubDate>Fri, 10 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/configuration/</guid>
+      <guid>/tags/configuration/</guid>
       <description></description>
     </item>
     
     <item>
       <title>weak ciphers</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/weak-ciphers/</link>
+      <link>/tags/weak-ciphers/</link>
       <pubDate>Fri, 10 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/weak-ciphers/</guid>
+      <guid>/tags/weak-ciphers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ansible</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/ansible/</link>
+      <link>/tags/ansible/</link>
       <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/ansible/</guid>
+      <guid>/tags/ansible/</guid>
       <description></description>
     </item>
     
     <item>
       <title>lets-encrypt</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/lets-encrypt/</link>
+      <link>/tags/lets-encrypt/</link>
       <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/lets-encrypt/</guid>
+      <guid>/tags/lets-encrypt/</guid>
       <description></description>
     </item>
     
     <item>
       <title>https://staging.summittservices.com</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/tags/https/staging.summittservices.com/</link>
+      <link>/tags/https/staging.summittservices.com/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/tags/https/staging.summittservices.com/</guid>
+      <guid>/tags/https/staging.summittservices.com/</guid>
       <description></description>
     </item>
     

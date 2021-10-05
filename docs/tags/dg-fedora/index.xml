@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DG-FEDORA on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
-    <link>https://digital-grinnell.github.io/dlad-blog/tags/dg-fedora/</link>
+    <link>/tags/dg-fedora/</link>
     <description>Recent content in DG-FEDORA on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 20 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/dg-fedora/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/dg-fedora/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Compact Build of dg.localdomain - Concise Instructions</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/094-compact-build-of-dg.localdomain/</link>
+      <link>/posts/094-compact-build-of-dg.localdomain/</link>
       <pubDate>Tue, 20 Oct 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/094-compact-build-of-dg.localdomain/</guid>
+      <guid>/posts/094-compact-build-of-dg.localdomain/</guid>
       <description>This post is an addendum to an earlier post, Local ISLE Installation: Migrate Existing Islandora Site - with Annotations, where I exhaustively documented my workflow for building a local/development instance of ISLE to mimic the behavoir of Digital.Grinnell.
 Goal The goal of this project is to present a repeatable, minimal set of instructions for spinning up a safe, stand-alone, local/development instance of ISLE on any Mac running OS X.
 Prerequisites This document assumes the user will be spinning up https://dg.localdomain on a Mac with a suitable DG-FEDORA USB stick mounted and accessible.</description>
@@ -19,10 +19,10 @@ Prerequisites This document assumes the user will be spinning up https://dg.loca
     
     <item>
       <title>DG-FEDORA: A Portable FEDORA Repository</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/046-dg-fedora-a-portable-object-repository/</link>
+      <link>/posts/046-dg-fedora-a-portable-object-repository/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/046-dg-fedora-a-portable-object-repository/</guid>
+      <guid>/posts/046-dg-fedora-a-portable-object-repository/</guid>
       <description>Teaser Late last night (don&amp;rsquo;t ask how late it was) I discovered a really slick trick, aka &amp;ldquo;feature&amp;rdquo;, of docker-compose. Full disclosure: I love docker-compose &amp;ldquo;overrides&amp;rdquo;, a feature I found a couple of months ago. However, implementing overrides in a granular fashion, as I&amp;rsquo;d like, and within a docker-compose hierarchy of environments like the ISLE stack, can be difficult and counter-productive. I may have found a workable compromise last night. If you&amp;rsquo;re interested, please, read on&amp;hellip;
 History About a year ago I created a &amp;ldquo;portable&amp;rdquo; FEDORA object repository &amp;ldquo;on a stick&amp;rdquo;, a USB stick.</description>
     </item>

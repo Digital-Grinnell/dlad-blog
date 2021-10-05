@@ -13,21 +13,9 @@
     <meta name="author" content="Mark A. McFate" />
     <meta name="description" content="" />
     
-    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+    <link rel="stylesheet" href="/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-4766052-14', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="DG&#39;s ISLE Git Workflow"/>
 <meta name="twitter:description" content="For some time now Digital.Grinnell has been using ISLE in production, with an instance that was built from a &ldquo;non-standard&rdquo; workflow, one that was a little different than the Git workflow established in the ISLE install docs. Consequently, DG&rsquo;s situation is a little different than what&rsquo;s documented for ISLE, so my mission here is to describe and execute the steps I&rsquo;m taking to get back into the documented workflow.
@@ -39,7 +27,7 @@ The steps will involve and achieve the following:
 The steps will involve and achieve the following:
  Establish a working, local instance of my production DG site with an ISLE-1." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/053-dgs-isle-git-workflow/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="/posts/053-dgs-isle-git-workflow/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-11-12T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-11-12T11:54:00-05:00" />
 
@@ -54,7 +42,7 @@ The steps will involve and achieve the following:
 
       
 
-      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <a href=""><img class="app-header-avatar" src="/avatar.jpg" alt="Mark A. McFate" /></a>
       <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
 
       <div class="author-block">
@@ -62,8 +50,8 @@ The steps will involve and achieve the following:
         
 
         <p class="site-rev">
-          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
-          Content Updated: 2021-Sep-30 08:02 CDT
+          Compiled: Oct 5, 2021 at 5:05pm CDT<br/>
+          Content Updated: 2021-Oct-5 17:00 CDT
         </p>
 
         <div class="name">by
@@ -76,9 +64,9 @@ The steps will involve and achieve the following:
       <nav class="sidebar-nav">
         
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        <a class="sidebar-nav-item" href="/search/" title="">Search This Blog</a>
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        <a class="sidebar-nav-item" href="/about/" title="">About Me</a>
         
       </nav>
 
@@ -104,19 +92,23 @@ The steps will involve and achieve the following:
       <div class="breadcrumbs">
   
   
-  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  <a href="">Home</a>
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+  
+    
+    
+    
+      &bullet; <a href='posts/'>Posts</a>
       
     
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/053-dgs-isle-git-workflow/'>053 dgs isle git workflow</a>
+      &bullet; <a href='posts/053-dgs-isle-git-workflow/'>053 dgs isle git workflow</a>
       
     
   
@@ -158,7 +150,7 @@ The steps will involve and achieve the following:
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
 </svg>
-              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/isle/">ISLE</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/git/">git</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/worflow/">worflow</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/migration/">migration</a></div></div>
+              <a class="tag" href="/tags/isle/">ISLE</a><a class="tag" href="/tags/git/">git</a><a class="tag" href="/tags/worflow/">worflow</a><a class="tag" href="/tags/migration/">migration</a></div></div>
     </header>
     <div class="post-content">
       <p>For some time now <em>Digital.Grinnell</em> has been using <em>ISLE</em> in production, with an instance that was built from a &ldquo;non-standard&rdquo; workflow, one that was a little different than the <em>Git</em> workflow established in the <a href="https://github.com/Islandora-Collaboration-Group/ISLE/tree/master/docs/install"><em>ISLE</em> install docs</a>.  Consequently, <em>DG&rsquo;s</em> situation is a little different than what&rsquo;s documented for <em>ISLE</em>, so my mission here is to describe and execute the steps I&rsquo;m taking to get back into the documented workflow.</p>

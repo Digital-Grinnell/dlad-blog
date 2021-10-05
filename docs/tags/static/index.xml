@@ -2,35 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>static on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
-    <link>https://digital-grinnell.github.io/dlad-blog/tags/static/</link>
+    <link>/tags/static/</link>
     <description>Recent content in static on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 27 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/static/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Oct 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/static/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Moving Static Sites to GitHub Pages</title>
+      <link>/posts/112-moving-static-sites-to-github-pages/</link>
+      <pubDate>Tue, 05 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/112-moving-static-sites-to-github-pages/</guid>
+      <description>Attention: This post effectively superseeds post 109.
+ Pertinent Resources This section simply tabluates the posts and documentation used to effect migration of all sites from the Grinnell College static host to GitHub Pages.
+   Resource Address     Hugo: Host on GitHub https://gohugo.io/hosting-and-deployment/hosting-on-github/   GitHub: Getting started with GitHub Pages https://docs.github.com/en/pages/getting-started-with-github-pages   GitHub: Creating a GitHub Pages site https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site   GitHub: Managing a custom domain for your GitHub Pages site https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain    Customizations publishDir = &amp;ldquo;docs&amp;rdquo; Note that in all cases I found it necessary to conform to GitHub practice of publishing content from a .</description>
+    </item>
+    
     <item>
       <title>Searching This Blog Using Fuse</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/110-searching-my-blog-using-fuse/</link>
+      <link>/posts/110-searching-my-blog-using-fuse/</link>
       <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/110-searching-my-blog-using-fuse/</guid>
+      <guid>/posts/110-searching-my-blog-using-fuse/</guid>
       <description>A short time ago I moved this blog from DigitalOcean to Azure, and along the way I discovered that my search feature wasn&amp;rsquo;t working properly. That old search mechanism used Fuse, which has NO dependencies, but that old scheme used a Hugo theme component that I found difficult to properly maintain. So, as this blog was moving to Azure I elected to try something a little different with Fuse and found this gist to help get it done.
 As of this writing, the new search is limited to just finding tag references, and sometimes a search will return a 404 error because of a bad path reference.</description>
     </item>
     
     <item>
       <title>Moving Static Sites to Azure</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/109-moving-static-sites-to-azure/</link>
+      <link>/posts/109-moving-static-sites-to-azure/</link>
       <pubDate>Mon, 13 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/109-moving-static-sites-to-azure/</guid>
+      <guid>/posts/109-moving-static-sites-to-azure/</guid>
       <description>On Thursday, September 9, 2021, I discovered that Azure, Microsoft&amp;rsquo;s offering of host/cloud services for Open Source developers, and a favored partner of Grinnell&amp;rsquo;s IT department, had come up with a Static Web App deployment scheme that allegedly would rival what I&amp;rsquo;ve been using at DigitalOcean. So, I first tried to migrate my very simple Static Landing Page Hugo static site to a new home on Azure. The process wasn&amp;rsquo;t quite as slick and easy as at DigitalOcean, but Azure does nicely leverage GitHub Actions, and the process wasn&amp;rsquo;t too difficult to grasp.</description>
     </item>
     
     <item>
       <title>Repairing Static.Grinnell.edu</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/045-repairing-static.grinnell.edu/</link>
+      <link>/posts/045-repairing-static.grinnell.edu/</link>
       <pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/045-repairing-static.grinnell.edu/</guid>
+      <guid>/posts/045-repairing-static.grinnell.edu/</guid>
       <description>This morning, Tuesday, September 17, 2019, I awoke to find our https://static.grinnell.edu server, and all of the services on it, unreachable via the web. I managed to open a shell on the host and found that the server was up-and-running as expected, but a quick docker ps command indicated that one of the key services on the server, namely Traefik, had stopped and then failed to restart, repeatedly. Traefik is the service that&amp;rsquo;s responsible for routing web traffic on the static host.</description>
     </item>
     

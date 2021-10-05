@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>canonifyURLs on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
-    <link>https://digital-grinnell.github.io/dlad-blog/tags/canonifyurls/</link>
+    <link>/tags/canonifyurls/</link>
     <description>Recent content in canonifyURLs on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 06 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/canonifyurls/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/canonifyurls/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CanonifyURLs in Hugo</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/035-canonifyurls-in-hugo/</link>
+      <link>/posts/035-canonifyurls-in-hugo/</link>
       <pubDate>Tue, 06 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/035-canonifyurls-in-hugo/</guid>
+      <guid>/posts/035-canonifyurls-in-hugo/</guid>
       <description>I&amp;rsquo;ve been seeing a lot of .URL will be deprecated... warnings in my Hugo compilations lately, and just now figured out a slick replacement for it: canonifyURLs = true. The documentation for this parameter says&amp;hellip;
 By default, all relative URLs encountered in the input are left unmodified, e.g. /css/foo.css would stay as /css/foo.css. The canonifyURLs field in your site config has a default value of false.
 By setting canonifyURLs to true, all relative URLs would instead be canonicalized using baseURL. For example, assuming you have baseURL = https://example.</description>

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DGDockerX on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
-    <link>https://digital-grinnell.github.io/dlad-blog/tags/dgdockerx/</link>
+    <link>/tags/dgdockerx/</link>
     <description>Recent content in DGDockerX on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 13 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/dgdockerx/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/dgdockerx/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pushing ISLE to Staging</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/059-pushing-isle-to-staging/</link>
+      <link>/posts/059-pushing-isle-to-staging/</link>
       <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/059-pushing-isle-to-staging/</guid>
+      <guid>/posts/059-pushing-isle-to-staging/</guid>
       <description>This post chronicles the steps I took to push my local dg.localdomain project, an ISLE v1.3.0 build, to staging on node DGDockerX as https://isle-stage.grinnell.edu using my dg-isle and dg-islandora repositories.
 Directories I&amp;rsquo;ll begin by opening a terminal on the staging host, DGDockerX as user islandora. Then I very carefully (note the use of the --recursive flags!) clone the aforementioned projects to DGDockerX like so:
    Host / DGDockerX Commands     cd /opt  git clone &amp;ndash;recursive https://github.</description>

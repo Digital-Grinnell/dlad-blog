@@ -13,21 +13,9 @@
     <meta name="author" content="Mark A. McFate" />
     <meta name="description" content="" />
     
-    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+    <link rel="stylesheet" href="/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-4766052-14', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="My dockerized-server Config"/>
 <meta name="twitter:description" content="This post picks up from where Configuring DGDocker2 left off. In it I will establish a workflow to setup a &ldquo;Dockerized&rdquo; server complete with Traefik, Portainer, and Who Am I. It should be relatively easy to add additional non-static services to any server that is initially configured using this package. For &ldquo;static&rdquo; servers have a look at post 008 docker-bootstrap Workflow .
@@ -37,7 +25,7 @@ Capture As a Project Picking up from the end of Configuring DGDocker2, my first 
 <meta property="og:description" content="This post picks up from where Configuring DGDocker2 left off. In it I will establish a workflow to setup a &ldquo;Dockerized&rdquo; server complete with Traefik, Portainer, and Who Am I. It should be relatively easy to add additional non-static services to any server that is initially configured using this package. For &ldquo;static&rdquo; servers have a look at post 008 docker-bootstrap Workflow .
 Capture As a Project Picking up from the end of Configuring DGDocker2, my first step on the dgdocker2 server was to move everything into a single subdirectory of /opt; I called the new directory dockerized-server, like so:" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/042-my-dockerized-server-config/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="/posts/042-my-dockerized-server-config/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-09-07T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-09-08T09:26:32-05:00" />
 
@@ -52,7 +40,7 @@ Capture As a Project Picking up from the end of Configuring DGDocker2, my first 
 
       
 
-      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <a href=""><img class="app-header-avatar" src="/avatar.jpg" alt="Mark A. McFate" /></a>
       <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
 
       <div class="author-block">
@@ -60,8 +48,8 @@ Capture As a Project Picking up from the end of Configuring DGDocker2, my first 
         
 
         <p class="site-rev">
-          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
-          Content Updated: 2021-Sep-30 08:02 CDT
+          Compiled: Oct 5, 2021 at 5:05pm CDT<br/>
+          Content Updated: 2021-Oct-5 17:00 CDT
         </p>
 
         <div class="name">by
@@ -74,9 +62,9 @@ Capture As a Project Picking up from the end of Configuring DGDocker2, my first 
       <nav class="sidebar-nav">
         
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        <a class="sidebar-nav-item" href="/search/" title="">Search This Blog</a>
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        <a class="sidebar-nav-item" href="/about/" title="">About Me</a>
         
       </nav>
 
@@ -102,19 +90,23 @@ Capture As a Project Picking up from the end of Configuring DGDocker2, my first 
       <div class="breadcrumbs">
   
   
-  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  <a href="">Home</a>
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+  
+    
+    
+    
+      &bullet; <a href='posts/'>Posts</a>
       
     
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/042-my-dockerized-server-config/'>042 my dockerized server config</a>
+      &bullet; <a href='posts/042-my-dockerized-server-config/'>042 my dockerized server config</a>
       
     
   
@@ -158,7 +150,7 @@ Capture As a Project Picking up from the end of Configuring DGDocker2, my first 
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
 </svg>
-              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/docker/">docker</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/traefik/">Traefik</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/portainer/">Portainer</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/traefik.frontend.rule/">traefik.frontend.rule</a></div></div>
+              <a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/traefik/">Traefik</a><a class="tag" href="/tags/portainer/">Portainer</a><a class="tag" href="/tags/traefik.frontend.rule/">traefik.frontend.rule</a></div></div>
     </header>
     <div class="post-content">
       <p>This post picks up from where <a href="https://static.grinnell.edu/blogs/McFateM/posts/041-configuring-dgdocker2">Configuring DGDocker2</a> left off. In it I will establish a workflow to setup a &ldquo;Dockerized&rdquo; server complete with <em>Traefik</em>, <em>Portainer</em>, and <em>Who Am I</em>. It should be relatively easy to add additional non-static services to any server that is initially configured using this package.  For &ldquo;static&rdquo; servers have a look at post <a href="https://static.grinnell.edu/blogs/McFateM/posts/008-docker-bootstrap-workflow/">008 docker-bootstrap Workflow </a>.</p>

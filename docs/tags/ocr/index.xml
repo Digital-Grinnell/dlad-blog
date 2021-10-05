@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>OCR on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
-    <link>https://digital-grinnell.github.io/dlad-blog/tags/ocr/</link>
+    <link>/tags/ocr/</link>
     <description>Recent content in OCR on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 24 Jul 2019 16:56:44 -0700</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/ocr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 24 Jul 2019 16:56:44 -0700</lastBuildDate><atom:link href="/tags/ocr/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>PDF Ingest in Digital.Grinnell</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/029-pdf-ingest-in-digital-grinnell/</link>
+      <link>/posts/029-pdf-ingest-in-digital-grinnell/</link>
       <pubDate>Wed, 24 Jul 2019 16:56:44 -0700</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/029-pdf-ingest-in-digital-grinnell/</guid>
+      <guid>/posts/029-pdf-ingest-in-digital-grinnell/</guid>
       <description>A set of 21 PDF objects were ingested into Digital.Grinnell&amp;rsquo;s Faculty Scholarship collection using IMI on 22-July-2019; unfortunately none of these PDFs contained OCR (optical character recognition) or &amp;ldquo;text recognition&amp;rdquo; data, so none of them generated a valid FULL_TEXT datastream. FULL_TEXT datastreams are required to make PDF, and similar text content, searchable and discoverable in Digital.Grinnell.
 In order to confirm that the lack of OCR was in fact the problem, I ran a little test on https://digital.grinnell.edu/islandora/object/grinnell:26702, one of the 21 objects.</description>
     </item>

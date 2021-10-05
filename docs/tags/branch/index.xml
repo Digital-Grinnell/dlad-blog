@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Branch on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
-    <link>https://digital-grinnell.github.io/dlad-blog/tags/branch/</link>
+    <link>/tags/branch/</link>
     <description>Recent content in Branch on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 26 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/branch/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 26 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/branch/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Create a New GitHub Repo from an Existing Branch</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/065-create-new-github-project-from-a-branch/</link>
+      <link>/posts/065-create-new-github-project-from-a-branch/</link>
       <pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/065-create-new-github-project-from-a-branch/</guid>
+      <guid>/posts/065-create-new-github-project-from-a-branch/</guid>
       <description>I just found a handy git/GitHub workflow in a Quora post titled &amp;ldquo;How do I create a new GitHub repository from a branch in an existing repository?&amp;quot;. And I used it, successfully, to create a new GitHub repo for my updated Drupal 8 rendition of the Wieting Theatre&amp;rsquo;s website.
 The new GitHub repo is wieting-D8-DO and it was created from the wieting branch of docker-compose-drupal.
 The commands I used looked something like this:

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>web archive on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
-    <link>https://digital-grinnell.github.io/dlad-blog/tags/web-archive/</link>
+    <link>/tags/web-archive/</link>
     <description>Recent content in web archive on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 17 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/web-archive/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Jun 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/web-archive/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Here There Be WARCs</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/082-here-there-be-warcs/</link>
+      <link>/posts/082-here-there-be-warcs/</link>
       <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/082-here-there-be-warcs/</guid>
+      <guid>/posts/082-here-there-be-warcs/</guid>
       <description>The term WARC, an abbreviation of Web ARChive, always reminds me of things like hobbits, elves, dark lords, and orcs, of course. But this post has nothing to do with those things so I need to clear my head and press on.
 A WARC is essentially a file format used to capture the content and organization of a web site. Recently, I was asked to add a pair of WARCs to Digital.Grinnell. Doing so proved to be quite an adventure, but I am pleased to report that we now have these two objects to show for it:</description>
     </item>

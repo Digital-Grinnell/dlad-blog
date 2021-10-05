@@ -13,21 +13,9 @@
     <meta name="author" content="Mark A. McFate" />
     <meta name="description" content="" />
     
-    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+    <link rel="stylesheet" href="/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-4766052-14', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Debugging ISLE Local with PHPStorm"/>
 <meta name="twitter:description" content="For the past couple of years I&rsquo;ve been working in Digital.Grinnell to remove as much &ldquo;customization&rdquo; as I can. The effort is coming along, but still, there&rsquo;s a long way to go. Every now and then I come across a feature that we just can&rsquo;t live without, and it&rsquo;s in times like those that I turn to PHPStorm for development and testing. Unfortunately, I&rsquo;ve been operating without PHPStorm in ISLE because I worried that configuring the PHPStorm debugger in a Docker environment would be a time-consuming, tall task."/>
@@ -35,7 +23,7 @@ if (!doNotTrack) {
     <meta property="og:title" content="Debugging ISLE Local with PHPStorm" />
 <meta property="og:description" content="For the past couple of years I&rsquo;ve been working in Digital.Grinnell to remove as much &ldquo;customization&rdquo; as I can. The effort is coming along, but still, there&rsquo;s a long way to go. Every now and then I come across a feature that we just can&rsquo;t live without, and it&rsquo;s in times like those that I turn to PHPStorm for development and testing. Unfortunately, I&rsquo;ve been operating without PHPStorm in ISLE because I worried that configuring the PHPStorm debugger in a Docker environment would be a time-consuming, tall task." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/103-debugging-isle-local-with-phpstorm/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="/posts/103-debugging-isle-local-with-phpstorm/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-03-12T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-03-17T08:39:33-05:00" />
 
@@ -50,7 +38,7 @@ if (!doNotTrack) {
 
       
 
-      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <a href=""><img class="app-header-avatar" src="/avatar.jpg" alt="Mark A. McFate" /></a>
       <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
 
       <div class="author-block">
@@ -58,8 +46,8 @@ if (!doNotTrack) {
         
 
         <p class="site-rev">
-          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
-          Content Updated: 2021-Sep-30 08:02 CDT
+          Compiled: Oct 5, 2021 at 5:05pm CDT<br/>
+          Content Updated: 2021-Oct-5 17:00 CDT
         </p>
 
         <div class="name">by
@@ -72,9 +60,9 @@ if (!doNotTrack) {
       <nav class="sidebar-nav">
         
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        <a class="sidebar-nav-item" href="/search/" title="">Search This Blog</a>
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        <a class="sidebar-nav-item" href="/about/" title="">About Me</a>
         
       </nav>
 
@@ -100,19 +88,23 @@ if (!doNotTrack) {
       <div class="breadcrumbs">
   
   
-  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  <a href="">Home</a>
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+  
+    
+    
+    
+      &bullet; <a href='posts/'>Posts</a>
       
     
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/103-debugging-isle-local-with-phpstorm/'>103 debugging isle local with phpstorm</a>
+      &bullet; <a href='posts/103-debugging-isle-local-with-phpstorm/'>103 debugging isle local with phpstorm</a>
       
     
   
@@ -156,7 +148,7 @@ if (!doNotTrack) {
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
 </svg>
-              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/debug/">debug</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/xdebug/">XDebug</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/isle/">ISLE</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/local/">local</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/phpstorm/">PHPStorm</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/drush/">drush</a></div></div>
+              <a class="tag" href="/tags/debug/">debug</a><a class="tag" href="/tags/xdebug/">XDebug</a><a class="tag" href="/tags/isle/">ISLE</a><a class="tag" href="/tags/local/">local</a><a class="tag" href="/tags/phpstorm/">PHPStorm</a><a class="tag" href="/tags/drush/">drush</a></div></div>
     </header>
     <div class="post-content">
       <p>For the past couple of years I&rsquo;ve been working in <a href="https://digital.grinnell.edu">Digital.Grinnell</a> to remove as much &ldquo;customization&rdquo; as I can. The effort is coming along, but still, there&rsquo;s a long way to go.  Every now and then I come across a feature that we just can&rsquo;t live without, and it&rsquo;s in times like those that I turn to <a href="https://www.jetbrains.com/phpstorm/">PHPStorm</a> for development and testing. Unfortunately, I&rsquo;ve been operating without <em>PHPStorm</em> in <a href="https://github.com/Islandora-Collaboration-Group/ISLE">ISLE</a> because I worried that configuring the <em>PHPStorm</em> debugger in a Docker environment would be a time-consuming, tall task.  It <strong>was</strong> tricky, but worry no more!</p>
@@ -273,13 +265,13 @@ drwxr-x---@  36 mark  staff   1.1K Mar 11 14:18 dg-islandora
 drwxr-xr-x   42 mark  staff   1.3K Mar 11 12:41 dg-isle
 </code></pre><h2 id="first-steps-in-phpstorm">First Steps in PHPStorm</h2>
 <p>The first thing I remember doing in <em>PHPStorm</em> was creating my project.  That process is probably best shown in this screen grab:</p>
-<link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/hugo-easy-gallery.css" />
+<link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
 <div class="box" >
   <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
     <div class="img">
-      <img itemprop="thumbnail" src="https://digital-grinnell.github.io/dlad-blog/images/post-103/new-phpstorm-project.png" />
+      <img itemprop="thumbnail" src="/images/post-103/new-phpstorm-project.png" />
     </div>
-    <a href="https://digital-grinnell.github.io/dlad-blog/images/post-103/new-phpstorm-project.png" itemprop="contentUrl"></a>
+    <a href="/images/post-103/new-phpstorm-project.png" itemprop="contentUrl"></a>
       <figcaption><h4>Creating My PHPStorm Project Structure</h4>
       </figcaption>
   </figure>
@@ -289,9 +281,9 @@ drwxr-xr-x   42 mark  staff   1.3K Mar 11 12:41 dg-isle
 <div class="box" >
   <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
     <div class="img">
-      <img itemprop="thumbnail" src="https://digital-grinnell.github.io/dlad-blog/images/post-103/my-project-structure.png" />
+      <img itemprop="thumbnail" src="/images/post-103/my-project-structure.png" />
     </div>
-    <a href="https://digital-grinnell.github.io/dlad-blog/images/post-103/my-project-structure.png" itemprop="contentUrl"></a>
+    <a href="/images/post-103/my-project-structure.png" itemprop="contentUrl"></a>
       <figcaption><h4>My PHPStorm Project Structure</h4>
       </figcaption>
   </figure>
@@ -302,9 +294,9 @@ drwxr-xr-x   42 mark  staff   1.3K Mar 11 12:41 dg-isle
 <div class="box" >
   <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
     <div class="img">
-      <img itemprop="thumbnail" src="https://digital-grinnell.github.io/dlad-blog/images/post-103/phpstorm-run-debug-config.png" />
+      <img itemprop="thumbnail" src="/images/post-103/phpstorm-run-debug-config.png" />
     </div>
-    <a href="https://digital-grinnell.github.io/dlad-blog/images/post-103/phpstorm-run-debug-config.png" itemprop="contentUrl"></a>
+    <a href="/images/post-103/phpstorm-run-debug-config.png" itemprop="contentUrl"></a>
       <figcaption><h4>PHPStorm Run/Debug Configurations</h4>
       </figcaption>
   </figure>
@@ -313,9 +305,9 @@ drwxr-xr-x   42 mark  staff   1.3K Mar 11 12:41 dg-isle
 <div class="box" >
   <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
     <div class="img">
-      <img itemprop="thumbnail" src="https://digital-grinnell.github.io/dlad-blog/images/post-103/servers-config.png" />
+      <img itemprop="thumbnail" src="/images/post-103/servers-config.png" />
     </div>
-    <a href="https://digital-grinnell.github.io/dlad-blog/images/post-103/servers-config.png" itemprop="contentUrl"></a>
+    <a href="/images/post-103/servers-config.png" itemprop="contentUrl"></a>
       <figcaption><h4>Preferences</h4>
       </figcaption>
   </figure>
@@ -330,9 +322,9 @@ drwxr-xr-x   42 mark  staff   1.3K Mar 11 12:41 dg-isle
 <div class="box" >
   <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
     <div class="img">
-      <img itemprop="thumbnail" src="https://digital-grinnell.github.io/dlad-blog/images/post-103/set-breakpoint-index.php.png" />
+      <img itemprop="thumbnail" src="/images/post-103/set-breakpoint-index.php.png" />
     </div>
-    <a href="https://digital-grinnell.github.io/dlad-blog/images/post-103/set-breakpoint-index.php.png" itemprop="contentUrl"></a>
+    <a href="/images/post-103/set-breakpoint-index.php.png" itemprop="contentUrl"></a>
       <figcaption><h4>My Breakpoint in index.php</h4>
       </figcaption>
   </figure>
@@ -343,9 +335,9 @@ drwxr-xr-x   42 mark  staff   1.3K Mar 11 12:41 dg-isle
 <div class="box" >
   <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
     <div class="img">
-      <img itemprop="thumbnail" src="https://digital-grinnell.github.io/dlad-blog/images/post-103/start-listening.png" />
+      <img itemprop="thumbnail" src="/images/post-103/start-listening.png" />
     </div>
-    <a href="https://digital-grinnell.github.io/dlad-blog/images/post-103/start-listening.png" itemprop="contentUrl"></a>
+    <a href="/images/post-103/start-listening.png" itemprop="contentUrl"></a>
       <figcaption><h4>Start Listening</h4>
       </figcaption>
   </figure>
@@ -363,9 +355,9 @@ The first time I did this with <em>PHPStorm</em> &ldquo;listening&rdquo;, I was 
 <div class="box" >
   <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
     <div class="img">
-      <img itemprop="thumbnail" src="https://digital-grinnell.github.io/dlad-blog/images/post-103/No-dg_local.png" />
+      <img itemprop="thumbnail" src="/images/post-103/No-dg_local.png" />
     </div>
-    <a href="https://digital-grinnell.github.io/dlad-blog/images/post-103/No-dg_local.png" itemprop="contentUrl"></a>
+    <a href="/images/post-103/No-dg_local.png" itemprop="contentUrl"></a>
       <figcaption><h4>Can&#39;t Find dg_local Server</h4>
       </figcaption>
   </figure>
@@ -380,9 +372,9 @@ The first time I did this with <em>PHPStorm</em> &ldquo;listening&rdquo;, I was 
 <div class="box" >
   <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
     <div class="img">
-      <img itemprop="thumbnail" src="https://digital-grinnell.github.io/dlad-blog/images/post-103/No-auto-breakpoints.png" />
+      <img itemprop="thumbnail" src="/images/post-103/No-auto-breakpoints.png" />
     </div>
-    <a href="https://digital-grinnell.github.io/dlad-blog/images/post-103/No-auto-breakpoints.png" itemprop="contentUrl"></a>
+    <a href="/images/post-103/No-auto-breakpoints.png" itemprop="contentUrl"></a>
       <figcaption><h4>Do NOT Set Automatic Breakpoints</h4>
       </figcaption>
   </figure>

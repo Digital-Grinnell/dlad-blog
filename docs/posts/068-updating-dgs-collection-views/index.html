@@ -13,21 +13,9 @@
     <meta name="author" content="Mark A. McFate" />
     <meta name="description" content="" />
     
-    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+    <link rel="stylesheet" href="/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-4766052-14', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Updating DG&#39;s Collection Views"/>
 <meta name="twitter:description" content="Digital.Grinnell employs a custom-built Drupal &ldquo;view&rdquo; we call the dg7 Collection View; it&rsquo;s part of the code in our custom dg7 module where all of Digital.Grinnell&rsquo;s hook implementations are also defined. Experience leads me to beleive that keeping a complex Drupal view in code is prudent, but overriding that code with a database copy of the view helps tremendously in terms of system performance. So, I recommend keeping the view code in the module, but that means that when significant changes are made, like the addition of a new colleciton, the code should be updated in the database to speed things up."/>
@@ -35,7 +23,7 @@ if (!doNotTrack) {
     <meta property="og:title" content="Updating DG&#39;s Collection Views" />
 <meta property="og:description" content="Digital.Grinnell employs a custom-built Drupal &ldquo;view&rdquo; we call the dg7 Collection View; it&rsquo;s part of the code in our custom dg7 module where all of Digital.Grinnell&rsquo;s hook implementations are also defined. Experience leads me to beleive that keeping a complex Drupal view in code is prudent, but overriding that code with a database copy of the view helps tremendously in terms of system performance. So, I recommend keeping the view code in the module, but that means that when significant changes are made, like the addition of a new colleciton, the code should be updated in the database to speed things up." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/068-updating-dgs-collection-views/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="/posts/068-updating-dgs-collection-views/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-03-17T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-03-17T12:47:36-05:00" />
 
@@ -50,7 +38,7 @@ if (!doNotTrack) {
 
       
 
-      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <a href=""><img class="app-header-avatar" src="/avatar.jpg" alt="Mark A. McFate" /></a>
       <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
 
       <div class="author-block">
@@ -58,8 +46,8 @@ if (!doNotTrack) {
         
 
         <p class="site-rev">
-          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
-          Content Updated: 2021-Sep-30 08:02 CDT
+          Compiled: Oct 5, 2021 at 5:05pm CDT<br/>
+          Content Updated: 2021-Oct-5 17:00 CDT
         </p>
 
         <div class="name">by
@@ -72,9 +60,9 @@ if (!doNotTrack) {
       <nav class="sidebar-nav">
         
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        <a class="sidebar-nav-item" href="/search/" title="">Search This Blog</a>
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        <a class="sidebar-nav-item" href="/about/" title="">About Me</a>
         
       </nav>
 
@@ -100,19 +88,23 @@ if (!doNotTrack) {
       <div class="breadcrumbs">
   
   
-  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  <a href="">Home</a>
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+  
+    
+    
+    
+      &bullet; <a href='posts/'>Posts</a>
       
     
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/068-updating-dgs-collection-views/'>068 updating dgs collection views</a>
+      &bullet; <a href='posts/068-updating-dgs-collection-views/'>068 updating dgs collection views</a>
       
     
   
@@ -154,7 +146,7 @@ if (!doNotTrack) {
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
 </svg>
-              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/digital.grinnell/">Digital.Grinnell</a></div></div>
+              <a class="tag" href="/tags/digital.grinnell/">Digital.Grinnell</a></div></div>
     </header>
     <div class="post-content">
       <p><a href="https://digital.grinnell.edu">Digital.Grinnell</a> employs a custom-built <em>Drupal</em> &ldquo;view&rdquo; we call the <em>dg7 Collection View</em>; it&rsquo;s part of the code in our custom <a href="https://github.com/DigitalGrinnell/dg7">dg7 module</a> where all of <em>Digital.Grinnell</em>&rsquo;s hook implementations are also defined.  Experience leads me to beleive that keeping a complex <em>Drupal</em> view in code is prudent, but overriding that code with a database copy of the view helps tremendously in terms of system performance. So, I recommend keeping the view code in the module, but that means that when significant changes are made, like the addition of a new colleciton, the code should be updated in the database to speed things up.  <em>Digital.Grinnell</em> employs the following workflow to keep the view in code, but allow it to be selectively updated in the database as needed:</p>

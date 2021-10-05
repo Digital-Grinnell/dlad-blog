@@ -13,21 +13,9 @@
     <meta name="author" content="Mark A. McFate" />
     <meta name="description" content="" />
     
-    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+    <link rel="stylesheet" href="/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-4766052-14', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Building ISLE 1.3.0 (ld) for Local Development"/>
 <meta name="twitter:description" content="This post, an updated (the original was written in August 2019 for ISLE-1.2.0) follow-up to a previous post is intended to chronicle my efforts to build a new ~ISLE v1.2.0~ ISLE-1.3.0, ld, or local development, instance of Digital.Grinnell on my work-issued MacBook, ma7053.
@@ -37,7 +25,7 @@ Goal Statement The goal of this project is to spin up a pristine, local Islandor
 <meta property="og:description" content="This post, an updated (the original was written in August 2019 for ISLE-1.2.0) follow-up to a previous post is intended to chronicle my efforts to build a new ~ISLE v1.2.0~ ISLE-1.3.0, ld, or local development, instance of Digital.Grinnell on my work-issued MacBook, ma7053.
 Goal Statement The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of the ISLE project at https://github.com/Digital-Grinnell/dg-isle, then introduce elements like the Digital Grinnell theme and custom modules like DG7." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/034-building-isle-1.3.0-ld/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="/posts/034-building-isle-1.3.0-ld/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-08-05T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-11-05T20:38:47-05:00" />
 
@@ -52,7 +40,7 @@ Goal Statement The goal of this project is to spin up a pristine, local Islandor
 
       
 
-      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <a href=""><img class="app-header-avatar" src="/avatar.jpg" alt="Mark A. McFate" /></a>
       <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
 
       <div class="author-block">
@@ -60,8 +48,8 @@ Goal Statement The goal of this project is to spin up a pristine, local Islandor
         
 
         <p class="site-rev">
-          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
-          Content Updated: 2021-Sep-30 08:02 CDT
+          Compiled: Oct 5, 2021 at 5:05pm CDT<br/>
+          Content Updated: 2021-Oct-5 17:00 CDT
         </p>
 
         <div class="name">by
@@ -74,9 +62,9 @@ Goal Statement The goal of this project is to spin up a pristine, local Islandor
       <nav class="sidebar-nav">
         
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        <a class="sidebar-nav-item" href="/search/" title="">Search This Blog</a>
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        <a class="sidebar-nav-item" href="/about/" title="">About Me</a>
         
       </nav>
 
@@ -102,19 +90,23 @@ Goal Statement The goal of this project is to spin up a pristine, local Islandor
       <div class="breadcrumbs">
   
   
-  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  <a href="">Home</a>
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+  
+    
+    
+    
+      &bullet; <a href='posts/'>Posts</a>
       
     
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/034-building-isle-1.3.0-ld/'>034 building isle 1.3.0 ld</a>
+      &bullet; <a href='posts/034-building-isle-1.3.0-ld/'>034 building isle 1.3.0 ld</a>
       
     
   
@@ -158,7 +150,7 @@ Goal Statement The goal of this project is to spin up a pristine, local Islandor
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
 </svg>
-              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/isle/">ISLE</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/isle-1.3.0/">ISLE-1.3.0</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/local/">local</a></div></div>
+              <a class="tag" href="/tags/isle/">ISLE</a><a class="tag" href="/tags/isle-1.3.0/">ISLE-1.3.0</a><a class="tag" href="/tags/local/">local</a></div></div>
     </header>
     <div class="post-content">
       <p>This post, an updated (the original was written in August 2019 for ISLE-1.2.0) follow-up to <a href="https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/">a previous post</a> is intended to chronicle my efforts to build a new ~ISLE v1.2.0~ ISLE-1.3.0, <em>ld</em>, or <em>local development</em>, instance of Digital.Grinnell on my work-issued MacBook, <em>ma7053</em>.</p>

@@ -13,21 +13,9 @@
     <meta name="author" content="Mark A. McFate" />
     <meta name="description" content="" />
     
-    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+    <link rel="stylesheet" href="/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-4766052-14', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Git Submodule Tips"/>
 <meta name="twitter:description" content="I seem to have a never-ending struggle with git submodules. Today, I need to add some new features to one of my submodules in a non-ISLE project, but I&rsquo;ve elected to post this here because this blog is relatively easy to search. I also feel fortunate to have found Mastering Git Submodules from Christophe Porteneuve.
@@ -37,7 +25,7 @@ So, what I need to do now is update some submodule code, commit, and push that c
 <meta property="og:description" content="I seem to have a never-ending struggle with git submodules. Today, I need to add some new features to one of my submodules in a non-ISLE project, but I&rsquo;ve elected to post this here because this blog is relatively easy to search. I also feel fortunate to have found Mastering Git Submodules from Christophe Porteneuve.
 So, what I need to do now is update some submodule code, commit, and push that change back to its remote. I will also want to subsequentmly update a pair of projects that use the submodule so they are referencing the newest submodule code." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/100-git-submodule-tips/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="/posts/100-git-submodule-tips/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-01-25T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-01-27T12:10:25-06:00" />
 
@@ -52,7 +40,7 @@ So, what I need to do now is update some submodule code, commit, and push that c
 
       
 
-      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <a href=""><img class="app-header-avatar" src="/avatar.jpg" alt="Mark A. McFate" /></a>
       <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
 
       <div class="author-block">
@@ -60,8 +48,8 @@ So, what I need to do now is update some submodule code, commit, and push that c
         
 
         <p class="site-rev">
-          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
-          Content Updated: 2021-Sep-30 08:02 CDT
+          Compiled: Oct 5, 2021 at 5:05pm CDT<br/>
+          Content Updated: 2021-Oct-5 17:00 CDT
         </p>
 
         <div class="name">by
@@ -74,9 +62,9 @@ So, what I need to do now is update some submodule code, commit, and push that c
       <nav class="sidebar-nav">
         
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        <a class="sidebar-nav-item" href="/search/" title="">Search This Blog</a>
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        <a class="sidebar-nav-item" href="/about/" title="">About Me</a>
         
       </nav>
 
@@ -102,19 +90,23 @@ So, what I need to do now is update some submodule code, commit, and push that c
       <div class="breadcrumbs">
   
   
-  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  <a href="">Home</a>
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+  
+    
+    
+    
+      &bullet; <a href='posts/'>Posts</a>
       
     
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/100-git-submodule-tips/'>100 git submodule tips</a>
+      &bullet; <a href='posts/100-git-submodule-tips/'>100 git submodule tips</a>
       
     
   
@@ -158,7 +150,7 @@ So, what I need to do now is update some submodule code, commit, and push that c
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
 </svg>
-              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/git/">git</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/submodule/">Submodule</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/workflow/">workflow</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/commit/">commit</a></div></div>
+              <a class="tag" href="/tags/git/">git</a><a class="tag" href="/tags/submodule/">Submodule</a><a class="tag" href="/tags/workflow/">workflow</a><a class="tag" href="/tags/commit/">commit</a></div></div>
     </header>
     <div class="post-content">
       <p>I seem to have a never-ending struggle with <strong>git submodules</strong>. Today, I need to add some new features to one of my submodules in a non-ISLE project, but I&rsquo;ve elected to post this here because this blog is relatively easy to search. I also feel fortunate to have found <a href="https://medium.com/@porteneuve/mastering-git-submodules-34c65e940407">Mastering Git Submodules</a> from <a href="https://medium.com/@porteneuve">Christophe Porteneuve</a>.</p>

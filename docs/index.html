@@ -13,21 +13,9 @@
     <meta name="author" content="Mark A. McFate" />
     <meta name="description" content="Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure." />
     
-    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+    <link rel="stylesheet" href="/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-4766052-14', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="The Grinnell College Digital Library Application Developer&#39;s Blog"/>
 <meta name="twitter:description" content="Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure."/>
@@ -35,7 +23,7 @@ if (!doNotTrack) {
     <meta property="og:title" content="The Grinnell College Digital Library Application Developer&#39;s Blog" />
 <meta property="og:description" content="Mark&#39;s first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/" />
+<meta property="og:url" content="/" />
 
 
 
@@ -48,7 +36,7 @@ if (!doNotTrack) {
 
       
 
-      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <a href=""><img class="app-header-avatar" src="/avatar.jpg" alt="Mark A. McFate" /></a>
       <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
 
       <div class="author-block">
@@ -56,8 +44,8 @@ if (!doNotTrack) {
         
 
         <p class="site-rev">
-          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
-          Content Updated: 2021-Sep-30 08:02 CDT
+          Compiled: Oct 5, 2021 at 5:05pm CDT<br/>
+          Content Updated: 2021-Oct-5 17:00 CDT
         </p>
 
         <div class="name">by
@@ -70,9 +58,9 @@ if (!doNotTrack) {
       <nav class="sidebar-nav">
         
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        <a class="sidebar-nav-item" href="/search/" title="">Search This Blog</a>
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        <a class="sidebar-nav-item" href="/about/" title="">About Me</a>
         
       </nav>
 
@@ -98,7 +86,11 @@ if (!doNotTrack) {
       <div class="breadcrumbs">
   
   
-  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  <a href="">Home</a>
+  
+    
+    
+    
   
     
     
@@ -117,7 +109,35 @@ if (!doNotTrack) {
         <br/>
 
         
-          <a target="_blank" class="posts-list-item-title" href="https://digital-grinnell.github.io/dlad-blog/posts/111-updating-isle-v1.5.11/">Updating Digital.Grinnell to ISLE v1.5.11</a>
+          <a target="_blank" class="posts-list-item-title" href="/posts/112-moving-static-sites-to-github-pages/">Moving Static Sites to GitHub Pages</a>
+          <span class="posts-list-item-description">
+            
+            
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>&nbsp;2 min read &nbsp;
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg> Oct 5, 2021
+            
+            
+            <br/>
+            <span class="summary">Attention: This post effectively superseeds post 109.
+ Pertinent Resources This section simply tabluates the posts and documentation used to effect migration of all sites from the Grinnell College static host to GitHub Pages.
+   Resource Address     Hugo: Host on GitHub https://gohugo.io/hosting-and-deployment/hosting-on-github/   GitHub: Getting started with GitHub Pages https://docs.github.com/en/pages/getting-started-with-github-pages   GitHub: Creating a GitHub Pages site https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site   GitHub: Managing a custom domain for your GitHub Pages site https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain    Customizations publishDir = “docs” Note that in all cases I found it necessary to conform to GitHub practice of publishing content from a . ...</span>
+          </span>
+        
+
+      
+
+        
+
+        <br/>
+
+        
+          <a target="_blank" class="posts-list-item-title" href="/posts/111-updating-isle-v1.5.11/">Updating Digital.Grinnell to ISLE v1.5.11</a>
           <span class="posts-list-item-description">
             
             
@@ -147,7 +167,7 @@ if (!doNotTrack) {
         <br/>
 
         
-          <a target="_blank" class="posts-list-item-title" href="https://digital-grinnell.github.io/dlad-blog/posts/110-searching-my-blog-using-fuse/">Searching This Blog Using Fuse</a>
+          <a target="_blank" class="posts-list-item-title" href="/posts/110-searching-my-blog-using-fuse/">Searching This Blog Using Fuse</a>
           <span class="posts-list-item-description">
             
             
@@ -174,7 +194,7 @@ As of this writing, the new search is limited to just finding tag references, an
         <br/>
 
         
-          <a target="_blank" class="posts-list-item-title" href="https://digital-grinnell.github.io/dlad-blog/posts/109-moving-static-sites-to-azure/">Moving Static Sites to Azure</a>
+          <a target="_blank" class="posts-list-item-title" href="/posts/109-moving-static-sites-to-azure/">Moving Static Sites to Azure</a>
           <span class="posts-list-item-description">
             
             
@@ -202,7 +222,7 @@ As of this writing, the new search is limited to just finding tag references, an
         <br/>
 
         
-          <a target="_blank" class="posts-list-item-title" href="https://digital-grinnell.github.io/dlad-blog/posts/108-updates-to-vaf-kiosk/">Updates to VAF-Kiosk</a>
+          <a target="_blank" class="posts-list-item-title" href="/posts/108-updates-to-vaf-kiosk/">Updates to VAF-Kiosk</a>
           <span class="posts-list-item-description">
             
             
@@ -231,7 +251,7 @@ New DigitalOcean Deployment Due to small differences between the aspect ratio an
         <br/>
 
         
-          <a target="_blank" class="posts-list-item-title" href="https://digital-grinnell.github.io/dlad-blog/posts/107-updating-digital-grinnell-in-isle/">Updating Digital.Grinnell in ISLE</a>
+          <a target="_blank" class="posts-list-item-title" href="/posts/107-updating-digital-grinnell-in-isle/">Updating Digital.Grinnell in ISLE</a>
           <span class="posts-list-item-description">
             
             
@@ -261,7 +281,7 @@ There was one universal change made here in the original text, specifically all 
         <br/>
 
         
-          <a target="_blank" class="posts-list-item-title" href="https://digital-grinnell.github.io/dlad-blog/posts/106-snowball/">SNOWBALL</a>
+          <a target="_blank" class="posts-list-item-title" href="/posts/106-snowball/">SNOWBALL</a>
           <span class="posts-list-item-description">
             
             
@@ -290,7 +310,7 @@ In any case, on Friday afternoon (yesterday) I got a steroid shot for a nasty si
         <br/>
 
         
-          <a target="_blank" class="posts-list-item-title" href="https://digital-grinnell.github.io/dlad-blog/posts/105-adding-htaccess-to-apache-tmp-directory/">Adding `.htaccess` to Apache Container `/tmp` Directory</a>
+          <a target="_blank" class="posts-list-item-title" href="/posts/105-adding-htaccess-to-apache-tmp-directory/">Adding `.htaccess` to Apache Container `/tmp` Directory</a>
           <span class="posts-list-item-description">
             
             
@@ -316,7 +336,7 @@ In any case, on Friday afternoon (yesterday) I got a steroid shot for a nasty si
         <br/>
 
         
-          <a target="_blank" class="posts-list-item-title" href="https://digital-grinnell.github.io/dlad-blog/posts/104-301-redirect-in-digital.grinnell/">301 Redirect in Digital.Grinnell</a>
+          <a target="_blank" class="posts-list-item-title" href="/posts/104-301-redirect-in-digital.grinnell/">301 Redirect in Digital.Grinnell</a>
           <span class="posts-list-item-description">
             
             
@@ -343,7 +363,7 @@ We tried to figure out where such old address references might be coming from, b
         <br/>
 
         
-          <a target="_blank" class="posts-list-item-title" href="https://digital-grinnell.github.io/dlad-blog/posts/085-remote-atom/">Remote Atom</a>
+          <a target="_blank" class="posts-list-item-title" href="/posts/085-remote-atom/">Remote Atom</a>
           <span class="posts-list-item-description">
             
             
@@ -366,34 +386,6 @@ In the past week I’ve added the remote-atom package, and configuration to many
         
 
       
-
-        
-
-        <br/>
-
-        
-          <a target="_blank" class="posts-list-item-title" href="https://digital-grinnell.github.io/dlad-blog/posts/103-debugging-isle-local-with-phpstorm/">Debugging ISLE Local with PHPStorm</a>
-          <span class="posts-list-item-description">
-            
-            
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
-  <title>clock</title>
-  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
-</svg>&nbsp;8 min read &nbsp;
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
-  <title>calendar</title>
-  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-</svg> Mar 12, 2021
-            
-              &nbsp;&nbsp;|&nbsp;&nbsp;Updated: Mar 17, 2021 - 08:39
-            
-            
-            <br/>
-            <span class="summary">For the past couple of years I’ve been working in Digital.Grinnell to remove as much “customization” as I can. The effort is coming along, but still, there’s a long way to go. Every now and then I come across a feature that we just can’t live without, and it’s in times like those that I turn to PHPStorm for development and testing. Unfortunately, I’ve been operating without PHPStorm in ISLE because I worried that configuring the PHPStorm debugger in a Docker environment would be a time-consuming, tall task. ...</span>
-          </span>
-        
-
-      
     </ul>
     
 
@@ -401,80 +393,80 @@ In the past week I’ve added the remote-atom package, and configuration to many
   
   
   <li class="page-item active">
-    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/">
+    <a class="page-link" href="/">
       1
     </a>
   </li>
   
   <li class="page-item">
-    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/2/">
+    <a class="page-link" href="/page/2/">
       2
     </a>
   </li>
   
   <li class="page-item">
-    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/3/">
+    <a class="page-link" href="/page/3/">
       3
     </a>
   </li>
   
   <li class="page-item">
-    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/4/">
+    <a class="page-link" href="/page/4/">
       4
     </a>
   </li>
   
   <li class="page-item">
-    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/5/">
+    <a class="page-link" href="/page/5/">
       5
     </a>
   </li>
   
   <li class="page-item">
-    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/6/">
+    <a class="page-link" href="/page/6/">
       6
     </a>
   </li>
   
   <li class="page-item">
-    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/7/">
+    <a class="page-link" href="/page/7/">
       7
     </a>
   </li>
   
   <li class="page-item">
-    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/8/">
+    <a class="page-link" href="/page/8/">
       8
     </a>
   </li>
   
   <li class="page-item">
-    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/9/">
+    <a class="page-link" href="/page/9/">
       9
     </a>
   </li>
   
   <li class="page-item">
-    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/10/">
+    <a class="page-link" href="/page/10/">
       10
     </a>
   </li>
   
   <li class="page-item">
-    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/11/">
+    <a class="page-link" href="/page/11/">
       11
     </a>
   </li>
   
   <li class="page-item">
-    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/12/">
+    <a class="page-link" href="/page/12/">
       12
     </a>
   </li>
   
   
   <li class="page-item">
-    <a class="page-link" href="https://digital-grinnell.github.io/dlad-blog/page/2/">
+    <a class="page-link" href="/page/2/">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-arrow-right">
   <title>arrow-right</title>
   <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>

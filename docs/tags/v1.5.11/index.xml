@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>v1.5.11 on The Grinnell College Digital Library Application Developer&#39;s Blog</title>
-    <link>https://digital-grinnell.github.io/dlad-blog/tags/v1.5.11/</link>
+    <link>/tags/v1.5.11/</link>
     <description>Recent content in v1.5.11 on The Grinnell College Digital Library Application Developer&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 27 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://digital-grinnell.github.io/dlad-blog/tags/v1.5.11/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/v1.5.11/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Updating Digital.Grinnell to ISLE v1.5.11</title>
-      <link>https://digital-grinnell.github.io/dlad-blog/posts/111-updating-isle-v1.5.11/</link>
+      <link>/posts/111-updating-isle-v1.5.11/</link>
       <pubDate>Mon, 27 Sep 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://digital-grinnell.github.io/dlad-blog/posts/111-updating-isle-v1.5.11/</guid>
+      <guid>/posts/111-updating-isle-v1.5.11/</guid>
       <description>Attention: This is an updated copy of post 107 gleaned from the ISLE project&amp;rsquo;s update.md document. ONLY the headings from the original document and the annotations which are specific to Digital.Grinnell appear in this document!
  Note: This update procedure was NOT performed &amp;ldquo;locally&amp;rdquo;, as recommended, due to substantial errors encountered in my last attempt to update. Rather than diving down that rabbit hole, again, I elected to attempt this update on our staging server, DGDockerX on 2021-Sep-27.
  Update ISLE to the Latest Release Important Information # stop the docker service $ sudo service docker stop # download the latest docker binary and replace the current outdated docker # DEPRECATED WAY TO UPGRADE DOCKER: $ sudo wget https://get.</description>

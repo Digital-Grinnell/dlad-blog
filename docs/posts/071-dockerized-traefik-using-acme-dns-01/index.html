@@ -13,21 +13,9 @@
     <meta name="author" content="Mark A. McFate" />
     <meta name="description" content="" />
     
-    <link rel="stylesheet" href="https://digital-grinnell.github.io/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
+    <link rel="stylesheet" href="/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css" />
 
     
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-4766052-14', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
     <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Dockerized Traefik Host Using ACME DNS-01 Challenge"/>
 <meta name="twitter:description" content="This post builds on My dockerized-server Config and attempts to change what was a problematic ACME HTTP-01 or httpChallenge in Traefik and Let&rsquo;s Encrypt to an ACME DNS-01 or dnsChallenge. The problem with the old HTTP-01 or httpChallenge is that it requires the creation of a valid and widely accessible &ldquo;A&rdquo; record in our DNS before the creation of a cert; the record has to be in place so that the Let&rsquo;s Encrypt CA-server can find it to confirm that the request is valid."/>
@@ -35,7 +23,7 @@ if (!doNotTrack) {
     <meta property="og:title" content="Dockerized Traefik Host Using ACME DNS-01 Challenge" />
 <meta property="og:description" content="This post builds on My dockerized-server Config and attempts to change what was a problematic ACME HTTP-01 or httpChallenge in Traefik and Let&rsquo;s Encrypt to an ACME DNS-01 or dnsChallenge. The problem with the old HTTP-01 or httpChallenge is that it requires the creation of a valid and widely accessible &ldquo;A&rdquo; record in our DNS before the creation of a cert; the record has to be in place so that the Let&rsquo;s Encrypt CA-server can find it to confirm that the request is valid." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://digital-grinnell.github.io/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="/posts/071-dockerized-traefik-using-acme-dns-01/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-04-27T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-04-27T00:00:00+00:00" />
 
@@ -50,7 +38,7 @@ if (!doNotTrack) {
 
       
 
-      <a href="https://digital-grinnell.github.io/dlad-blog/"><img class="app-header-avatar" src="https://digital-grinnell.github.io/dlad-blog/avatar.jpg" alt="Mark A. McFate" /></a>
+      <a href=""><img class="app-header-avatar" src="/avatar.jpg" alt="Mark A. McFate" /></a>
       <h2>The Grinnell College Digital Library Application Developer&#39;s Blog</h2>
 
       <div class="author-block">
@@ -58,8 +46,8 @@ if (!doNotTrack) {
         
 
         <p class="site-rev">
-          Compiled: Oct 4, 2021 at 5:30pm CDT<br/>
-          Content Updated: 2021-Sep-30 08:02 CDT
+          Compiled: Oct 5, 2021 at 5:05pm CDT<br/>
+          Content Updated: 2021-Oct-5 17:00 CDT
         </p>
 
         <div class="name">by
@@ -72,9 +60,9 @@ if (!doNotTrack) {
       <nav class="sidebar-nav">
         
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/search/" title="">Search This Blog</a>
+        <a class="sidebar-nav-item" href="/search/" title="">Search This Blog</a>
         
-        <a class="sidebar-nav-item" href="https://digital-grinnell.github.io/dlad-blog/about/" title="">About Me</a>
+        <a class="sidebar-nav-item" href="/about/" title="">About Me</a>
         
       </nav>
 
@@ -100,19 +88,23 @@ if (!doNotTrack) {
       <div class="breadcrumbs">
   
   
-  <a href="https://digital-grinnell.github.io/dlad-blog/">Home</a>
+  <a href="">Home</a>
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/'>Posts</a>
+  
+    
+    
+    
+      &bullet; <a href='posts/'>Posts</a>
       
     
   
     
     
     
-      &bullet; <a href='https://digital-grinnell.github.io/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/'>071 dockerized traefik using acme DNS 01</a>
+      &bullet; <a href='posts/071-dockerized-traefik-using-acme-dns-01/'>071 dockerized traefik using acme DNS 01</a>
       
     
   
@@ -154,7 +146,7 @@ if (!doNotTrack) {
   <title>tag</title>
   <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line>
 </svg>
-              <a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/docker/">docker</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/traefik/">Traefik</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/portainer/">Portainer</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/watchtower/">Watchtower</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/dockerized-server/">dockerized-server</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/traefik.frontend.rule/">traefik.frontend.rule</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/acme/">ACME</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/dns-01/">DNS-01</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/http-01/">HTTP-01</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/docker-traefik2-host/">docker-traefik2-host</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/docker-compose/">docker-compose</a><a class="tag" href="https://digital-grinnell.github.io/dlad-blog/tags/service-stack/">service-stack</a></div></div>
+              <a class="tag" href="/tags/docker/">docker</a><a class="tag" href="/tags/traefik/">Traefik</a><a class="tag" href="/tags/portainer/">Portainer</a><a class="tag" href="/tags/watchtower/">Watchtower</a><a class="tag" href="/tags/dockerized-server/">dockerized-server</a><a class="tag" href="/tags/traefik.frontend.rule/">traefik.frontend.rule</a><a class="tag" href="/tags/acme/">ACME</a><a class="tag" href="/tags/dns-01/">DNS-01</a><a class="tag" href="/tags/http-01/">HTTP-01</a><a class="tag" href="/tags/docker-traefik2-host/">docker-traefik2-host</a><a class="tag" href="/tags/docker-compose/">docker-compose</a><a class="tag" href="/tags/service-stack/">service-stack</a></div></div>
     </header>
     <div class="post-content">
       <p>This post builds on <a href="https://dlad.summittdweller.com/en/posts/042-my-dockerized-server-config/">My dockerized-server Config</a> and attempts to change what was a problematic <a href="https://docs.traefik.io/https/acme/#httpchallenge">ACME HTTP-01 or httpChallenge</a> in <a href="https://traefik.io">Traefik</a> and <a href="https://letsencrypt.org">Let&rsquo;s Encrypt</a> to an <a href="https://docs.traefik.io/https/acme/#dnschallenge">ACME DNS-01 or dnsChallenge</a>. The problem with the old <em>HTTP-01</em> or <em>httpChallenge</em> is that it requires the creation of a valid and widely accessible &ldquo;A&rdquo; record in our DNS <em>before</em> the creation of a cert; the record has to be in place so that the <em>Let&rsquo;s Encrypt</em> CA-server can find it to confirm that the request is valid.  However, doing this puts the cart-before-the-horse, so-to-speak, since we like to have a valid cert in place <em>before</em> we add a new DNS record.</p>
