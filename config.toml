@@ -15,7 +15,8 @@ themesDir = "themes"
 theme = "hugo-theme-m10c"
 paginate = 10
 summaryLength = 80    # default is 70 words
-googleAnalytics = "UA-4766052-14"
+# googleAnalytics = "UA-4766052-14"
+googleAnalytics = "288703662"
 disqusShortname = "digital-library-applications-developer-blog"
 canonifyURLs = true
 
