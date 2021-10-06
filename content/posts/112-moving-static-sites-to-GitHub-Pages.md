@@ -1,7 +1,7 @@
 ---
 title: "Moving Static Sites to GitHub Pages"
 publishDate: 2021-10-05
-lastmod: 2021-10-05T18:47:51-05:00
+lastmod: 2021-10-05T19:02:34-05:00
 draft: false
 tags:
   - static
@@ -26,11 +26,9 @@ This section simply tabluates the posts and documentation used to effect migrati
 
 # Customizations
 
-## publishDir = "docs"
+## Do NOT Set `publishDir = "docs"`
 
 Do *NOT* change the `publishDir` parameter in your configuration, if you even have one!  The default `public` setting is correct.
-
-~Note that in all cases I found it necessary to conform to _GitHub_ practice of publishing content from a `./docs` site subdirectory rather than from `./public`, the default _Hugo_ behavior.  Publishing from `./docs` is default behavior for _Jekyll_, and that static generator is commonly used in _GitHub_ pages. The `./docs` setting typically appears in a site's front matter within `config.toml` as: `publishDir = "docs"`.~
 
 ## gh-pages.yml
 
@@ -77,9 +75,9 @@ jobs:
           publish_dir: ./public
 ```
 
-## GitHub Pages Settings 
+## GitHub Pages Settings
 
-It's not documented well, but *important to note* that this workflow will create a new `gh-pages` branch of your repo and the `root` of that branch is what you should publish! *Pay attention to that setting in the figure below!*
+It's not documented well, but *important to note* that this workflow will create a new `gh-pages` branch of your repo and the `root` of that branch is what you should publish! _**Pay attention to those settings in the figure below!**_
 
 To complete the process of creating a _GitHub Pages_ site you'll need to visit your repository's [GitHub Pages Settings](https://github.com/Digital-Grinnell/Digital-Grinnell.github.io/settings/pages) page and make selections like you see in the figure below.  The example below is taken from https://github.com/Digital-Grinnell/Digital-Grinnell.github.io/settings/pages.
 
