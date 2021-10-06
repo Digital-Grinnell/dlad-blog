@@ -1,17 +1,14 @@
 ---
 title: "Moving Static Sites to GitHub Pages"
 publishDate: 2021-10-05
-lastmod: 2021-10-05T22:16:30-05:00
+lastmod: 2021-10-06T07:43:16-05:00
 draft: false
 tags:
   - static
   - Hugo
   - GitHub Pages
+supersedes: posts/109-moving-static-sites-to-azure
 ---
-
-{{% annotation %}}
-Attention: This post effectively supersedes [post 109](/posts/109-moving-static-sites-to-azure).
-{{% /annotation %}}
 
 # Pertinent Resources
 

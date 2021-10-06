@@ -1,12 +1,13 @@
 ---
 title: "Updating Digital.Grinnell to ISLE v1.5.11"
 publishDate: 2021-09-27
-lastmod: 2021-09-30T08:02:10-05:00
+lastmod: 2021-10-06T07:45:14-05:00
 draft: false
 tags:
   - ISLE
   - update
   - v1.5.11
+supersedes: posts/107-updating-Digital-Grinnell-in-ISLE
 ---
 
 {{% annotation %}}

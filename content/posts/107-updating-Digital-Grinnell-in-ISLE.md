@@ -10,6 +10,7 @@ tags:
   - 52698
   - disable security
   - public
+superseded_by: posts/111-updating-isle-v1.5.11
 ---
 
 {{% annotation %}}
