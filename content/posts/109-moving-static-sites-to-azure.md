@@ -6,7 +6,7 @@ draft: false
 tags:
   - static
   - Azure
-superseeded_by: posts/112-moving-static-sites-to-GitHub-Pages
+superseded_by: posts/112-moving-static-sites-to-GitHub-Pages
 ---
 
 On Thursday, September 9, 2021, I discovered that [Azure](https://azure.microsoft.com/en-us/), Microsoft's offering of host/cloud services for Open Source developers, and a favored partner of Grinnell's IT department, had come up with a _Static Web App_ deployment scheme that allegedly would rival what I've been using at _DigitalOcean_. So, I first tried to migrate my very simple `Static Landing Page` _Hugo_ static site to a new home on _Azure_.  The process wasn't quite as slick and easy as at _DigitalOcean_, but _Azure_ does nicely leverage [GitHub Actions](https://github.com/features/actions), and the process wasn't too difficult to grasp.

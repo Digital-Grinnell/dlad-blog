@@ -36,14 +36,14 @@
           <span class="posts-list-item-description">
             {{ $pub := .PublishDate.AddDate 0 0 1 }}
             {{ $mod := .Lastmod }}
-            {{ $superseeded := .Params.superseeded_by | urlize }}
+            {{ $superseded := .Params.superseded_by | urlize }}
             {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}&nbsp;{{ .ReadingTime }} min read &nbsp;
             {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }} {{ .PublishDate.Format "Jan 2, 2006" }}
             {{ if $mod.After $pub }}
               &nbsp;&nbsp;|&nbsp;&nbsp;Updated: {{ .Lastmod.Format "Jan 2, 2006 - 15:04" }}
             {{ end }}
-            {{ if $superseeded }}
-              &nbsp;&nbsp;<strong>{{ partial "icon.html" (dict "ctx" $ "name" "at-sign") }}<a href="{{ $superseeded }}/">Superseeded</a></strong>
+            {{ if $superseded }}
+              &nbsp;&nbsp;<strong>{{ partial "icon.html" (dict "ctx" $ "name" "at-sign") }}<a href="{{ $superseded }}/">Superseded</a></strong>
             {{ else if .Params.author }}
               &nbsp;&nbsp;<strong>{{ partial "icon.html" (dict "ctx" $ "name" "at-sign") }} {{ .Params.author }}</strong>
             {{ end }}
