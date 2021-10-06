@@ -43,7 +43,7 @@
               &nbsp;&nbsp;|&nbsp;&nbsp;Updated: {{ .Lastmod.Format "Jan 2, 2006 - 15:04" }}
             {{ end }}
             {{ if $superseded }}
-              &nbsp;&nbsp;<strong>{{ partial "icon.html" (dict "ctx" $ "name" "at-sign") }}<a href="{{ $superseded }}/">Superseded</a></strong>
+              &nbsp;&nbsp;<strong>{{ partial "icon.html" (dict "ctx" $ "name" "at-sign") }}Superseded by {{ $superseded }}</strong>
             {{ else if .Params.author }}
               &nbsp;&nbsp;<strong>{{ partial "icon.html" (dict "ctx" $ "name" "at-sign") }} {{ .Params.author }}</strong>
             {{ end }}
