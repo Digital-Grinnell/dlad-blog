@@ -30,6 +30,14 @@
             </div>
           {{- end -}}
       </div>
+      {{ $superseeded := .Params.superseeded_by | urlize }}
+      {{ if $superseeded }}
+        <div class="annotation">
+          <p style="font-size:1.75em;">
+            <strong>Attention</strong>: This post has been superseeded by <strong><a href="/{{ $superseeded }}/"> {{ $superseeded }}</a></strong>.
+          </p>
+        </div>
+      {{ end }}
     </header>
     <div class="post-content">
       {{ .Content }}
