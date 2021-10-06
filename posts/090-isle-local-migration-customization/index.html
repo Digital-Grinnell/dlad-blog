@@ -25,7 +25,7 @@ Note that it should NOT be necessary to repeat steps taken in this document. Per
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Oct 6, 2021 at 8:03am CDT<br>
+Compiled: Oct 6, 2021 at 8:33am CDT<br>
 Content Updated: 2021-Oct-6 07:45 CDT
 </p>
 <div class=name>by
@@ -65,7 +65,7 @@ Sep 7, 2020
 <a class=tag href=https://static.grinnell.edu/dlad-blog/tags/isle/>ISLE</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/migrate/>Migrate</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/local/>local</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/development/>development</a></div></div>
 </header>
 <div class=post-content>
-<p>This post is an addendum to earlier <a href=https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again/>post 087</a>. It is intended to chronicle my <em>customization</em> efforts, necessary steps that follow the aforementioned document&rsquo;s <code>Step 11</code>, to migrate to a <code>local development</code> instance of <em>Digital.Grinnell</em> on my work-issued iMac, <code>MA8660</code>, currently identified as <code>MAD25W812UJ1G9</code>. Please refer to Steps 0 - 11 in <a href=https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again/>post 087</a> for background info.</p>
+<p>This post is an addendum to earlier <a href=https://static.grinnell.edu/dlad-blog/posts/087-rebuilding-isle-ld-again/>post 087</a>. It is intended to chronicle my <em>customization</em> efforts, necessary steps that follow the aforementioned document&rsquo;s <code>Step 11</code>, to migrate to a <code>local development</code> instance of <em>Digital.Grinnell</em> on my work-issued iMac, <code>MA8660</code>, currently identified as <code>MAD25W812UJ1G9</code>. Please refer to Steps 0 - 11 in <a href=https://static.grinnell.edu/dlad-blog/posts/087-rebuilding-isle-ld-again/>post 087</a> for background info.</p>
 <div class=original><p>Note that it <strong>should NOT be necessary to repeat steps taken in this document</strong>. Pertinent changes made herein were saved into a new <code>completed-install-local-migrate</code> branch of my <a href=https://github.com/Digital-Grinnell/dg-islandora/>dg-islandora</a> project repository, effectively capturing all progress made within.</p>
 </div>
 <h2 id=goal>Goal</h2>
@@ -73,7 +73,7 @@ Sep 7, 2020
 <div class=annotation><p>Note that there are no formal &ldquo;annotations&rdquo; in this document because everything here is an addendum/annotation to the original <a href=https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md>install-local-migrate</a> document.</p>
 </div>
 <h2 id=outcomes-of-step-11>Outcomes of Step 11</h2>
-<p>As part of <a href=https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-11-test-the-site>Step 11</a> I visited <a href=https://dg.localdomain>https://dg.localdomain</a> on my iMac desktop and found that the site came up looking and behaving just as it should, but with two warnings. The complete list of warnings was:</p>
+<p>As part of <a href=https://static.grinnell.edu/dlad-blog/posts/087-rebuilding-isle-ld-again#step-11-test-the-site>Step 11</a> I visited <a href=https://dg.localdomain>https://dg.localdomain</a> on my iMac desktop and found that the site came up looking and behaving just as it should, but with two warnings. The complete list of warnings was:</p>
 <pre tabindex=0><code>    User warning: The following module is missing from the file system: antibot. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
     User warning: The following module is missing from the file system: islandora_mods_via_twig. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
 </code></pre><h2 id=dealing-with-warnings>Dealing with Warnings</h2>
@@ -182,7 +182,7 @@ drwxr-x--- 63 islandora www-data  2016 Sep 10 03:08 ../
 -rw-r--r--  1 www-data  www-data    67 Sep 10 03:08 islandora_mods_via_twig.module
 -rw-r--r--  1 root      root     35064 Sep 10 03:08 LICENSE.txt
 -rw-r--r--  1 root      root     17925 Sep 10 03:08 README.md
-</code></pre><p>Not good from an owner/group perspective, but looking OK in terms of permissions? So, the necessary changes I need to make here are ones that were previously performed as part of the <code>migration_site_vsets.sh</code> script back in <a href=https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-10-run-islandora-drupal-site-scripts>Step 10: Run Islandora Drupal Site Scripts</a>. Specifically, inside the <em>Apache</em> container I need to rerun this command from that script:</p>
+</code></pre><p>Not good from an owner/group perspective, but looking OK in terms of permissions? So, the necessary changes I need to make here are ones that were previously performed as part of the <code>migration_site_vsets.sh</code> script back in <a href=https://static.grinnell.edu/dlad-blog/posts/087-rebuilding-isle-ld-again#step-10-run-islandora-drupal-site-scripts>Step 10: Run Islandora Drupal Site Scripts</a>. Specifically, inside the <em>Apache</em> container I need to rerun this command from that script:</p>
 <table>
 <thead>
 <tr>
@@ -200,10 +200,10 @@ drwxr-x--- 63 islandora www-data  2016 Sep 10 03:08 ../
 <p>Ok, so I&rsquo;m showing my age with that subtitle, I know. But it&rsquo;s a valid question, perhaps best summed up in this <em>Slack</em> post of mine:</p>
 <div class=original><p>At <a href=https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#drupal-site-files-and-code>https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#drupal-site-files-and-code</a> I made a copy of my production <code>/var/www/html/sites/default/files</code> directory anticipating that &ldquo;You&rsquo;ll move this directory in later steps.&rdquo; I must have missed something, because I can&rsquo;t find anyplace in the document where I moved those files into my new local instance of ISLE.</p>
 </div>
-<p>The resolution of this issue is now covered in the annotation at the end of <a href=https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-9-import-the-production-mysql-drupal-database>Step 9: Import the Production MySQL Drupal Database</a>.</p>
+<p>The resolution of this issue is now covered in the annotation at the end of <a href=https://static.grinnell.edu/dlad-blog/posts/087-rebuilding-isle-ld-again#step-9-import-the-production-mysql-drupal-database>Step 9: Import the Production MySQL Drupal Database</a>.</p>
 <h2 id=next-steps>Next Steps</h2>
-<p>After completion of everything mentioned in this document, I returned to <a href=https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-12-ingest-sample-objects>Step 12: Ingest Sample Objects</a> but ended my work there differently than suggested. The differences are all covered in one final annotation there.</p>
-<p>The <code>install-local-migrate.md</code> document subsequently suggests moving on to <a href=https://static.grinnell.edu/blogs/McFateM/posts/install/install-staging-migrate.md>Staging ISLE Installation: Migrate Existing Islandora Site</a> and I believe I will do just that, probably with production of another annotated document to chronicle my specific experience.</p>
+<p>After completion of everything mentioned in this document, I returned to <a href=https://static.grinnell.edu/dlad-blog/posts/087-rebuilding-isle-ld-again#step-12-ingest-sample-objects>Step 12: Ingest Sample Objects</a> but ended my work there differently than suggested. The differences are all covered in one final annotation there.</p>
+<p>The <code>install-local-migrate.md</code> document subsequently suggests moving on to <a href=https://static.grinnell.edu/dlad-blog/posts/install/install-staging-migrate.md>Staging ISLE Installation: Migrate Existing Islandora Site</a> and I believe I will do just that, probably with production of another annotated document to chronicle my specific experience.</p>
 <p>But before I go&mldr; I elected to take two more steps here. The first is&mldr;</p>
 <ul>
 <li>Updating my <code>dg-islandora</code> repository with all of the changes made thus far.

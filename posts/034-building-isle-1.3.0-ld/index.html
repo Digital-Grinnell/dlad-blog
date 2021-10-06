@@ -25,7 +25,7 @@ Goal Statement The goal of this project is to spin up a pristine, local Islandor
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Oct 6, 2021 at 8:03am CDT<br>
+Compiled: Oct 6, 2021 at 8:33am CDT<br>
 Content Updated: 2021-Oct-6 07:45 CDT
 </p>
 <div class=name>by
@@ -65,7 +65,7 @@ Aug 5, 2019
 <a class=tag href=https://static.grinnell.edu/dlad-blog/tags/isle/>ISLE</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/isle-1.3.0/>ISLE-1.3.0</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/local/>local</a></div></div>
 </header>
 <div class=post-content>
-<p>This post, an updated (the original was written in August 2019 for ISLE-1.2.0) follow-up to <a href=https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/>a previous post</a> is intended to chronicle my efforts to build a new ~ISLE v1.2.0~ ISLE-1.3.0, <em>ld</em>, or <em>local development</em>, instance of Digital.Grinnell on my work-issued MacBook, <em>ma7053</em>.</p>
+<p>This post, an updated (the original was written in August 2019 for ISLE-1.2.0) follow-up to <a href=https://static.grinnell.edu/dlad-blog/posts/021-rebuilding-isle-ld/>a previous post</a> is intended to chronicle my efforts to build a new ~ISLE v1.2.0~ ISLE-1.3.0, <em>ld</em>, or <em>local development</em>, instance of Digital.Grinnell on my work-issued MacBook, <em>ma7053</em>.</p>
 <h2 id=goal-statement>Goal Statement</h2>
 <p>The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of <a href=https://github.com/Islandora-Collaboration-Group/ISLE>the ISLE project</a> at <a href=https://github.com/Digital-Grinnell/dg-isle,>https://github.com/Digital-Grinnell/dg-isle,</a> then introduce elements like the <a href=https://github.com/DigitalGrinnell/digital_grinnell_theme>Digital Grinnell theme</a> and custom modules like <a href=https://github.com/DigitalGrinnell/dg7>DG7</a>. Once these pieces are in-place and working, I&rsquo;ll begin adding other critical components as well as a robust set of data gleaned from <a href=https://digital.grinnell.edu>https://digital.grinnell.edu</a>.</p>
 <h2 id=using-this-document>Using This Document</h2>
@@ -241,7 +241,7 @@ COMPOSE_FILE=docker-compose.local.yml
 <p>Woot! It works! ✨👍✨ No funky errors this time.</p>
 <p>For the record (remember, no secrets here) my admin username and password for the site are: <code>local</code> and <code>password</code>. Pretty sneaky, eh? And the address is <a href=https://dg.localdomain>https://dg.localdomain</a>.</p>
 <h2 id=step-10-ingest-sample-objectshttpsgithubcomislandora-collaboration-groupisleblobisle-130docsinstallinstall-local-newmdstep-10-ingest-sample-objects><a href=https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-10-ingest-sample-objects>Step 10: Ingest Sample Objects</a></h2>
-<p>OK, so this is where I generally depart from the &ldquo;script&rdquo;, because I&rsquo;m lazy, and I already have a portable <em>Fedora</em> repository to test from. So, my process in this step follows what I wrote more than a month ago, <a href=https://static.grinnell.edu/blogs/McFateM/posts/046-dg-fedora-a-portable-object-repository/>046 DG-FEDORA: A Portable Object Repository</a>.</p>
+<p>OK, so this is where I generally depart from the &ldquo;script&rdquo;, because I&rsquo;m lazy, and I already have a portable <em>Fedora</em> repository to test from. So, my process in this step follows what I wrote more than a month ago, <a href=https://static.grinnell.edu/dlad-blog/posts/046-dg-fedora-a-portable-object-repository/>046 DG-FEDORA: A Portable Object Repository</a>.</p>
 <p>Next, I added the <em>Islandora Simple Search</em> block as instructed in <a href=https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-10-ingest-sample-objects>Step 10: Ingest Sample Objects</a>, and ran some search tests. ☑️ It works!</p>
 <h2 id=step-11-check-in-the-newly-created-islandora-drupal-site-code-into-your-git-repositoryhttpsgithubcomislandora-collaboration-groupisleblobisle-130docsinstallinstall-local-newmdstep-11-check-in-the-newly-created-islandora-drupal-site-code-into-is-git-repository><a href=https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-11-check-in-the-newly-created-islandora-drupal-site-code-into-is-git-repository>Step 11: Check-In the Newly Created Islandora Drupal Site Code Into Your Git Repository</a></h2>
 <p>OK, I have to admit this &ldquo;step&rdquo; was confusing at first, but it works and seems to make sense now that I&rsquo;ve completed it. I&rsquo;ll spare you the output details, because there was a LOT of it, but here is the exact command sequence I used&mldr;</p>
