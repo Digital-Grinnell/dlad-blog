@@ -11,7 +11,7 @@ tags:
   - migration
 ---
 
-This is a follow-up to previous posts 034, [Building ISLE 1.2.0 (ld)](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.2.0-ld/) and 037, [Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development](https://static.grinnell.edu/blogs/McFateM/posts/037-migrating-dg-to-isle-1.2.0-ld/) where I successfully completed a "local" build of ISLE v1.2.0 and subsequently started "customization" of that local instance.  So, this post's intent is to complete the goal stated in [Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development](https://static.grinnell.edu/blogs/McFateM/posts/037-migrating-dg-to-isle-1.2.0-ld/), but for [ISLE 1.3.0](https://github.com/Islandora-Collaboration-Group/ISLE/tree/master), specifically to:
+This is a follow-up to previous posts 034, [Building ISLE 1.2.0 (ld)](/posts/034-building-isle-1.2.0-ld/) and 037, [Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development](/posts/037-migrating-dg-to-isle-1.2.0-ld/) where I successfully completed a "local" build of ISLE v1.2.0 and subsequently started "customization" of that local instance.  So, this post's intent is to complete the goal stated in [Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development](/posts/037-migrating-dg-to-isle-1.2.0-ld/), but for [ISLE 1.3.0](https://github.com/Islandora-Collaboration-Group/ISLE/tree/master), specifically to:
 
 {{% original %}}
 The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) at https://github.com/Digital-Grinnell/dg-isle, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu.
@@ -148,7 +148,7 @@ OK, this section will deal with my Islandora/Drupal code repository with all my 
 
 # Post 038 - Building My `dg-islandora` Code Repository
 
-Earlier I created blog post [038-Building-My-`dg-islandora`-Code-Repository](https://static.grinnell.edu/blogs/McFateM/posts/038-building-my-dg-islandora-code-repository/).  It combined elements of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) with [post 034](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) to create a "customized" local ISLE v1.2.0 instance with features of Digital.Grinnell.
+Earlier I created blog post [038-Building-My-`dg-islandora`-Code-Repository](/posts/038-building-my-dg-islandora-code-repository/).  It combined elements of [post 021](/posts/021-rebuilding-isle-ld/) with [post 034](/posts/021-rebuilding-isle-ld/) to create a "customized" local ISLE v1.2.0 instance with features of Digital.Grinnell.
 
 The product of all that work is the [Digital-Grinnell/dg-islandora](https://github.com/Digital-Grinnell/dg-islandora) **private** GitHub repo.
 

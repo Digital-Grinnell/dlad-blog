@@ -10,7 +10,7 @@ tags:
   - development
 ---
 
-This post is an addendum to earlier [post 087](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again/). It is intended to chronicle my _customization_ efforts, necessary steps that follow the aforementioned document's `Step 11`, to migrate to a `local development` instance of _Digital.Grinnell_ on my work-issued iMac, `MA8660`, currently identified as `MAD25W812UJ1G9`.  Please refer to Steps 0 - 11 in [post 087](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again/) for background info.
+This post is an addendum to earlier [post 087](/posts/087-rebuilding-isle-ld-again/). It is intended to chronicle my _customization_ efforts, necessary steps that follow the aforementioned document's `Step 11`, to migrate to a `local development` instance of _Digital.Grinnell_ on my work-issued iMac, `MA8660`, currently identified as `MAD25W812UJ1G9`.  Please refer to Steps 0 - 11 in [post 087](/posts/087-rebuilding-isle-ld-again/) for background info.
 
 {{% boxmd %}}
 Note that it **should NOT be necessary to repeat steps taken in this document**. Pertinent changes made herein were saved into a new `completed-install-local-migrate` branch of my [dg-islandora](https://github.com/Digital-Grinnell/dg-islandora/) project repository, effectively capturing all progress made within.
@@ -24,7 +24,7 @@ Note that there are no formal "annotations" in this document because everything 
 {{% /annotation %}}
 
 ## Outcomes of Step 11
-As part of [Step 11](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-11-test-the-site) I visited [https://dg.localdomain](https://dg.localdomain) on my iMac desktop and found that the site came up looking and behaving just as it should, but with two warnings. The complete list of warnings was:
+As part of [Step 11](/posts/087-rebuilding-isle-ld-again#step-11-test-the-site) I visited [https://dg.localdomain](https://dg.localdomain) on my iMac desktop and found that the site came up looking and behaving just as it should, but with two warnings. The complete list of warnings was:
 
 ```
     User warning: The following module is missing from the file system: antibot. For information about how to fix this, see the documentation page. in _drupal_trigger_error_with_delayed_logging() (line 1156 of /var/www/html/includes/bootstrap.inc).
@@ -164,7 +164,7 @@ drwxr-x--- 63 islandora www-data  2016 Sep 10 03:08 ../
 -rw-r--r--  1 root      root     17925 Sep 10 03:08 README.md
 ```
 
-Not good from an owner/group perspective, but looking OK in terms of permissions? So, the necessary changes I need to make here are ones that were previously performed as part of the `migration_site_vsets.sh` script back in [Step 10: Run Islandora Drupal Site Scripts](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-10-run-islandora-drupal-site-scripts). Specifically, inside the _Apache_ container I need to rerun this command from that script:
+Not good from an owner/group perspective, but looking OK in terms of permissions? So, the necessary changes I need to make here are ones that were previously performed as part of the `migration_site_vsets.sh` script back in [Step 10: Run Islandora Drupal Site Scripts](/posts/087-rebuilding-isle-ld-again#step-10-run-islandora-drupal-site-scripts). Specifically, inside the _Apache_ container I need to rerun this command from that script:
 
 | _isle-apache-ld_ Container Commands |
 | --- |
@@ -180,13 +180,13 @@ Ok, so I'm showing my age with that subtitle, I know. But it's a valid question,
 At https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#drupal-site-files-and-code I made a copy of my production `/var/www/html/sites/default/files` directory anticipating that "You'll move this directory in later steps."   I must have missed something, because I can't find anyplace in the document where I moved those files into my new local instance of ISLE.
 {{% /original %}}
 
-The resolution of this issue is now covered in the annotation at the end of [Step 9: Import the Production MySQL Drupal Database](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-9-import-the-production-mysql-drupal-database).
+The resolution of this issue is now covered in the annotation at the end of [Step 9: Import the Production MySQL Drupal Database](/posts/087-rebuilding-isle-ld-again#step-9-import-the-production-mysql-drupal-database).
 
 ## Next Steps
 
-After completion of everything mentioned in this document, I returned to [Step 12: Ingest Sample Objects](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-12-ingest-sample-objects) but ended my work there differently than suggested. The differences are all covered in one final annotation there.
+After completion of everything mentioned in this document, I returned to [Step 12: Ingest Sample Objects](/posts/087-rebuilding-isle-ld-again#step-12-ingest-sample-objects) but ended my work there differently than suggested. The differences are all covered in one final annotation there.
 
-The `install-local-migrate.md` document subsequently suggests moving on to [Staging ISLE Installation: Migrate Existing Islandora Site](https://static.grinnell.edu/blogs/McFateM/posts/install/install-staging-migrate.md) and I believe I will do just that, probably with production of another annotated document to chronicle my specific experience.
+The `install-local-migrate.md` document subsequently suggests moving on to [Staging ISLE Installation: Migrate Existing Islandora Site](/posts/install/install-staging-migrate.md) and I believe I will do just that, probably with production of another annotated document to chronicle my specific experience.
 
 But before I go... I elected to take two more steps here. The first is...
 
@@ -757,7 +757,7 @@ A visit to [the site](https://dg.localdomain/) with a refresh showed that this w
 
 ## Connecting to FEDORA
 
-The `docker-compose.override.yml` file in the `local-dg-fedora` branch of my [dg-isle](https://github.com/Digital-Grinnell/dg-isle) project includes 3 lines that direct _FEDORA_ and _FGSearch_ to use the mounted and pre-configured `/Volumes/DG-FEDORA` USB stick for object storage. The commands and process required to use the USB stick are presented in [post 046, "DG-FEDORA: A Portable Object Repository"](https://static.grinnell.edu/blogs/McFateM/posts/046-dg-fedora-a-portable-object-repository/).
+The `docker-compose.override.yml` file in the `local-dg-fedora` branch of my [dg-isle](https://github.com/Digital-Grinnell/dg-isle) project includes 3 lines that direct _FEDORA_ and _FGSearch_ to use the mounted and pre-configured `/Volumes/DG-FEDORA` USB stick for object storage. The commands and process required to use the USB stick are presented in [post 046, "DG-FEDORA: A Portable Object Repository"](/posts/046-dg-fedora-a-portable-object-repository/).
 
 
 ## Restarting the Stack

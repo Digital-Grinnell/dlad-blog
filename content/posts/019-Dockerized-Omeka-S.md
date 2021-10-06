@@ -4,7 +4,7 @@ date: 2019-06-10
 ---
 | Update: 24-July-2019 |
 | --- |
-| The Docksal process outlined here is NOT working reliably.  See [this new post](https://static.grinnell.edu/blogs/McFateM/posts/030-dockerized-omeka-s-starting-over/) for updated info. |
+| The Docksal process outlined here is NOT working reliably.  See [this new post](/posts/030-dockerized-omeka-s-starting-over/) for updated info. |
 
 My fork of the [dodeeric/omeka-s-docker](https://github.com/dodeeric/omeka-s-docker) project can be found at [McFateM/omeka-s-docker](https://github.com/McFateM/omeka-s-docker), and it introduces a new `docker-compose.yml` file for spinning [Omeka-S](https://omeka.org/s/) up on any Dockerized server, and a Docksal `.docksal` directory to enable local development using `fin up`.
 
@@ -46,7 +46,7 @@ You should be able to start (`fin up`) and stop (`fin down`) this local project 
 
 The requirements for an Omeka-S staging environment are essentially the same as the local workstation, except that Docksal is NOT required.
 
-In addition, the staging server needs to also have been configured using `./init` and the workflow outlined in my [docker-bootstrap Workflow](https://static.grinnell.edu/blogs/McFateM/posts/008-docker-bootstrap-workflow/). The aforementioned `./init` script was successfully run against `dgdocker2.grinnell.edu` on June 7, 2019.
+In addition, the staging server needs to also have been configured using `./init` and the workflow outlined in my [docker-bootstrap Workflow](/posts/008-docker-bootstrap-workflow/). The aforementioned `./init` script was successfully run against `dgdocker2.grinnell.edu` on June 7, 2019.
 
 If all of those requirements have been met the site can be deployed to staging (currently this involves the `dgdocker2.grinnell.edu` server). In a terminal open to DGDocker2 with Docker running...
 

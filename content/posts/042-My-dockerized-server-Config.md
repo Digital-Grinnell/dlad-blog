@@ -11,11 +11,11 @@ tags:
   - traefik.frontend.rule
 ---
 
-This post picks up from where [Configuring DGDocker2](https://static.grinnell.edu/blogs/McFateM/posts/041-configuring-dgdocker2) left off. In it I will establish a workflow to setup a "Dockerized" server complete with _Traefik_, _Portainer_, and _Who Am I_. It should be relatively easy to add additional non-static services to any server that is initially configured using this package.  For "static" servers have a look at post [008 docker-bootstrap Workflow ](https://static.grinnell.edu/blogs/McFateM/posts/008-docker-bootstrap-workflow/).
+This post picks up from where [Configuring DGDocker2](/posts/041-configuring-dgdocker2) left off. In it I will establish a workflow to setup a "Dockerized" server complete with _Traefik_, _Portainer_, and _Who Am I_. It should be relatively easy to add additional non-static services to any server that is initially configured using this package.  For "static" servers have a look at post [008 docker-bootstrap Workflow ](/posts/008-docker-bootstrap-workflow/).
 
 ## Capture As a Project
 
-Picking up from the end of [Configuring DGDocker2](https://static.grinnell.edu/blogs/McFateM/posts/041-configuring-dgdocker2), my first step on the _dgdocker2_ server was to move everything into a single subdirectory of _/opt_; I called the new directory _dockerized-server_, like so:
+Picking up from the end of [Configuring DGDocker2](/posts/041-configuring-dgdocker2), my first step on the _dgdocker2_ server was to move everything into a single subdirectory of _/opt_; I called the new directory _dockerized-server_, like so:
 
 ```
 mkdir -p /opt/dockerized-server
@@ -151,8 +151,8 @@ git remote add origin https://github.com/McFateM/dockerized-server.git
 git push -u origin master
 ```
 
-## Back to [Configuring DGDocker2](https://static.grinnell.edu/blogs/McFateM/posts/041-configuring-dgdocker2)
+## Back to [Configuring DGDocker2](/posts/041-configuring-dgdocker2)
 
-At this point you might return to [Configuring DGDocker2](https://static.grinnell.edu/blogs/McFateM/posts/041-configuring-dgdocker2#back-to-omeka-s-configuration) where I'll finally add _Omeka-S_ to _dgdocker2_.
+At this point you might return to [Configuring DGDocker2](/posts/041-configuring-dgdocker2#back-to-omeka-s-configuration) where I'll finally add _Omeka-S_ to _dgdocker2_.
 
 And that's a wrap... until next time.  :smile:

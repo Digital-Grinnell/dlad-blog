@@ -52,8 +52,8 @@ Posts in the _Granular ISLE Customization_ series include:
 
 | Title | Synopsis |
 | --- | --- |
-| [Granular ISLE Customization: Series Guidelines](https://static.grinnell.edu/blogs/McFateM/posts/047-granular-isle-customizations-the-series/) | This document. |
-| [Granular ISLE Customization: Installing IMI](https://static.grinnell.edu/blogs/McFateM/posts/048-granular-isle-customization-installing-imi/) | Instructions for installing IMI, the Islandora Multi-Importer module, and a robust sample of TWIG templating. |
-| [Granular ISLE Customization: Implementing IMI Hooks](https://static.grinnell.edu/blogs/McFateM/posts/049-granular-isle-customization-implementing-imi-hooks/) | Guidance to build your own IMI hook implementations to improve the Islandora Multi-Importer.
-| [Granular ISLE Customization: Installing the DG Theme](https://static.grinnell.edu/blogs/McFateM/posts/052-granular-isle-customization-installing-the-dg-theme/) | Guidance to install and configure the [digital_grinnell_bootstrap](https://github.com/DigitalGrinnell/digital_grinnell_bootstrap/) theme. |
-| [Granular ISLE Customization: Installing DG7](https://static.grinnell.edu/blogs/McFateM/posts/050-granular-isle-customization-installing-dg7/) | Some brief notes about installation of _Digital.Grinnell_'s _DG7_ module...where all the hooks live. |
+| [Granular ISLE Customization: Series Guidelines](/posts/047-granular-isle-customizations-the-series/) | This document. |
+| [Granular ISLE Customization: Installing IMI](/posts/048-granular-isle-customization-installing-imi/) | Instructions for installing IMI, the Islandora Multi-Importer module, and a robust sample of TWIG templating. |
+| [Granular ISLE Customization: Implementing IMI Hooks](/posts/049-granular-isle-customization-implementing-imi-hooks/) | Guidance to build your own IMI hook implementations to improve the Islandora Multi-Importer.
+| [Granular ISLE Customization: Installing the DG Theme](/posts/052-granular-isle-customization-installing-the-dg-theme/) | Guidance to install and configure the [digital_grinnell_bootstrap](https://github.com/DigitalGrinnell/digital_grinnell_bootstrap/) theme. |
+| [Granular ISLE Customization: Installing DG7](/posts/050-granular-isle-customization-installing-dg7/) | Some brief notes about installation of _Digital.Grinnell_'s _DG7_ module...where all the hooks live. |

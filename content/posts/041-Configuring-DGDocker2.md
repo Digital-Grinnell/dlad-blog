@@ -11,7 +11,7 @@ tags:
   - traefik.frontend.rule
 ---
 
-My mission today is to successfully migrate the images/containers/services chronicled in [post 030, "Dockerized Omeka-S: Starting Over"](https://static.grinnell.edu/blogs/McFateM/posts/030-dockerized-omeka-s-starting-over/) to Docker-ready node _dgdocker2_ without compromising any of the services that already run there.
+My mission today is to successfully migrate the images/containers/services chronicled in [post 030, "Dockerized Omeka-S: Starting Over"](/posts/030-dockerized-omeka-s-starting-over/) to Docker-ready node _dgdocker2_ without compromising any of the services that already run there.
 
 ## Pushing WMI Omeka-S to Production on _dgdocker2_
 
@@ -124,7 +124,7 @@ watch = true
 network = "web"
 ```
 
-Note:  The 11 lines, including "minVerson" and "cipherSuites" definitions, which appear in the "[entryPoints.https.tls]" section above were lifted from ["Removing Traefik's Weak Cipher Suites"](https://static.grinnell.edu/blogs/McFateM/posts/005-removing-traefik-weak-ciphers/).
+Note:  The 11 lines, including "minVerson" and "cipherSuites" definitions, which appear in the "[entryPoints.https.tls]" section above were lifted from ["Removing Traefik's Weak Cipher Suites"](/posts/005-removing-traefik-weak-ciphers/).
 
 The "preliminary" steps above, and the creation of the _traefik.toml_ file should NOT be repeated, they are good-to-go!
 
@@ -411,11 +411,11 @@ Now, if I visit https://omeka-s.grinnell.edu I can see that the _WhoAmI_ is work
 
 ## Capture As a Project
 
-I like the direction this server setup has taken, apart from the invalid certs issue :frowning:, so I'm taking steps to formally "capture" this setup. I will chronicle that process in [My dockerized-server Config](https://static.grinnell.edu/blogs/McFateM/posts/042-my-dockerized-server-config/).
+I like the direction this server setup has taken, apart from the invalid certs issue :frowning:, so I'm taking steps to formally "capture" this setup. I will chronicle that process in [My dockerized-server Config](/posts/042-my-dockerized-server-config/).
 
 ## Back to _Omeka-S_ Configuration
 
-Having wrapped up [My dockerized-server Config](https://static.grinnell.edu/blogs/McFateM/posts/042-my-dockerized-server-config/), I'm back to finally get _Omeka-S_ configured on _dgdocker2_.  Unfortunately, while configuring this final spin of _Omeka-S_ I ran short on time and failed to document every step.  However, the outcome is working nicely at _dgdocker2:/opt_ and is captured in a new _GitHub_ repo at [McFateM/omeka-s-dgdocker2](https://github.com/McFateM/omeka-s-dgdocker2).
+Having wrapped up [My dockerized-server Config](/posts/042-my-dockerized-server-config/), I'm back to finally get _Omeka-S_ configured on _dgdocker2_.  Unfortunately, while configuring this final spin of _Omeka-S_ I ran short on time and failed to document every step.  However, the outcome is working nicely at _dgdocker2:/opt_ and is captured in a new _GitHub_ repo at [McFateM/omeka-s-dgdocker2](https://github.com/McFateM/omeka-s-dgdocker2).
 
 This repo includes:
 

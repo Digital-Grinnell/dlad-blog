@@ -10,7 +10,7 @@ tags:
     - ISLE
 ---
 
-I recently constructed a new, local/development instance of _ISLE_ (see [my previous post](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/)) largely in order to debug a mystery in _Digital.Grinnell_'s display of oral histories.  My _Trello_ card for the issue reads:
+I recently constructed a new, local/development instance of _ISLE_ (see [my previous post](/posts/021-rebuilding-isle-ld/)) largely in order to debug a mystery in _Digital.Grinnell_'s display of oral histories.  My _Trello_ card for the issue reads:
 
 >Our newest AOH entries, and some older objects, will not display a transcript after upgrade to the latest version of the OH module. OHScribe is needed to aid in re-processing transcripts for these objects, and some XDebug work will also be required.
 

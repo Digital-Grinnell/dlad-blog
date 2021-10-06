@@ -10,7 +10,7 @@ tags:
   - backup
 ---
 
-Grinnell's dockerized version of _Omeka-S_ has been running for several weeks now, and we recently ran out of disk space for object data on the host, a _CentOS_ node we named _DGDocker2_. My posts 041, [Configuring DGDocker2](https://static.grinnell.edu/blogs/McFateM/posts/041-configuring-dgdocker2/) and 042, [My dockerized-server Config](https://static.grinnell.edu/blogs/McFateM/posts/042-my-dockerized-server-config/) address the original configuration of _DGDocker2_ in detail.
+Grinnell's dockerized version of _Omeka-S_ has been running for several weeks now, and we recently ran out of disk space for object data on the host, a _CentOS_ node we named _DGDocker2_. My posts 041, [Configuring DGDocker2](/posts/041-configuring-dgdocker2/) and 042, [My dockerized-server Config](/posts/042-my-dockerized-server-config/) address the original configuration of _DGDocker2_ in detail.
 
 _Omeka-S_ is configured on _DGDocker2_ to reside in `/opt/omeka-s-docker`, and inside that directory is a subdirectory named `volume`.  The portions of the application stack that deliver _Omeka-S_ are configured largely in `/opt/omeka-s-docker/docker-compose.yml`, and portions of that file related to this discussion include:
 

@@ -1,7 +1,7 @@
 ---
 title: "Updating Digital.Grinnell to ISLE v1.5.11"
 publishDate: 2021-09-27
-lastmod: 2021-10-06T07:45:14-05:00
+lastmod: 2021-10-06T07:45:14-05:00 
 draft: false
 tags:
   - ISLE
@@ -81,7 +81,7 @@ Merge made by the 'recursive' strategy.
  create mode 100644 docs/release-notes/release-1-5-9.md
  ```
 
-There were NO merge conflicts so `ratom` (see [Remote Atom](http://static.grinnell.edu/blogs/McFateM/posts/085-remote-atom/)) was not needed.
+There were NO merge conflicts so `ratom` (see [Remote Atom](/posts/085-remote-atom/)) was not needed.
 
 There really should be an additional step here since you **must edit**, or at least check your `.env` file!  I changed mine to read as follows:
 

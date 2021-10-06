@@ -12,7 +12,7 @@ tags:
   - Catalina
 ---
 
-These days I like to do all my terminal/command-line work in _zsh_, more specifically, with [Oh My ZSH!](https://ohmyz.sh/) and the [bira](https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/bira.zsh-theme) theme.  This [previous post](https://static.grinnell.edu/blogs/McFateM/posts/044-installing-zsh-in-centos/) described the process I used on each of my _Linux_ servers, and this post is similar, but written specifically for my _Catalina_ (_Macintosh OS X v10.15.x_), workstations.  
+These days I like to do all my terminal/command-line work in _zsh_, more specifically, with [Oh My ZSH!](https://ohmyz.sh/) and the [bira](https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/bira.zsh-theme) theme.  This [previous post](/posts/044-installing-zsh-in-centos/) described the process I used on each of my _Linux_ servers, and this post is similar, but written specifically for my _Catalina_ (_Macintosh OS X v10.15.x_), workstations.  
 
 This is how I installed and configured _zsh_, and some other goodies, on my student _Mac Mini_ workstation, `MA6879`...
 

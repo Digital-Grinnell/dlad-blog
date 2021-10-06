@@ -14,10 +14,10 @@ tags:
 | Granular ISLE Customization |
 | --- |
 | This post is part of a series describing [Digital.Grinnell](https://digital.grinnell.edu) customizations to [ISLE](https://github.com/Islandora-Collaboration-Group/ISLE), in a "granular" format... one small customization at a time. |
-| An index of all documents in this series is included at the end of [Granular ISLE Customization: Series Guidelines](https://static.grinnell.edu/blogs/McFateM/posts/047-granular-isle-customizations-the-series/). |
+| An index of all documents in this series is included at the end of [Granular ISLE Customization: Series Guidelines](/posts/047-granular-isle-customizations-the-series/). |
 
 ## Goal Statement
-In this "granular" post we will install _Digital.Grinnell_'s custom-built theme, namely  [digital_grinnell_bootstrap](https://github.com/DigitalGrinnell/digital_grinnell_bootstrap). The experience documented here involves an existing ISLE instance created using [Building ISLE 1.3.0 (ld) for Local Development](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.3.0-ld/).
+In this "granular" post we will install _Digital.Grinnell_'s custom-built theme, namely  [digital_grinnell_bootstrap](https://github.com/DigitalGrinnell/digital_grinnell_bootstrap). The experience documented here involves an existing ISLE instance created using [Building ISLE 1.3.0 (ld) for Local Development](/posts/034-building-isle-1.3.0-ld/).
 
 ## Commands
 The install and config process was simply this stream of commands entered directly into the running _Apache_ container:

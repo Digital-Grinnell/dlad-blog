@@ -15,7 +15,7 @@ Attention: Take note that annotations stop where my process departed from this s
 {{% /annotation %}}
 -->
 
-This post is an addendum to earlier post [092](https://static.grinnell.edu/blogs/McFateM/posts/092-staging-isle/). It is intended to chronicle my efforts to complete migration of our production instance of [Digital.Grinnell](https://digital.grinnell.edu) from ISLE v1.1 to ISLE v1.5.1 on Linux node `DGDocker1.grinnell.edu`. The remainder of this document is an annotated copy of [Production ISLE Installation: Migrate Existing Islandora Site](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-production-migrate.md).
+This post is an addendum to earlier post [092](/posts/092-staging-isle/). It is intended to chronicle my efforts to complete migration of our production instance of [Digital.Grinnell](https://digital.grinnell.edu) from ISLE v1.1 to ISLE v1.5.1 on Linux node `DGDocker1.grinnell.edu`. The remainder of this document is an annotated copy of [Production ISLE Installation: Migrate Existing Islandora Site](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-production-migrate.md).
 
 {{% annotation %}}
 Annotations, with information specific to my experience with _Digital.Grinnell_ migration, appear in text blocks like this one.

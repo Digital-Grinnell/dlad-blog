@@ -14,7 +14,7 @@ tags:
 | The Docksal portion of this discussion DID NOT WORK PROPERLY so I've hidden it from public view.  Don't use this project with Docksal (`fin` commands) until further notice! |
 
 <!--
-Please pay no attention to the [Docksal](https://docksal.io) portions of my previous [Omeka-S](https://omeka.org/ss) blog [post 030](https://static.grinnell.edu/blogs/McFateM/posts/030-dockerized-omeka-s-starting-over/)... it is fatally flawed! It doesn't "properly" build an Omeka-S environment in Docksal, but that is what this post will attempt to do.
+Please pay no attention to the [Docksal](https://docksal.io) portions of my previous [Omeka-S](https://omeka.org/ss) blog [post 030](/posts/030-dockerized-omeka-s-starting-over/)... it is fatally flawed! It doesn't "properly" build an Omeka-S environment in Docksal, but that is what this post will attempt to do.
 
 As mentioned in earlier posts, I've created a fork of [dodeeric/omeka-s-docker](https://github.com/dodeeric/omeka-s-docker) at [DigitalGrinnell/omeka-s-docker](https://github.com/DigitalGrinnell/omeka-s-docker), and I'll be working in a new `docksal-proper` branch of that work here.
 

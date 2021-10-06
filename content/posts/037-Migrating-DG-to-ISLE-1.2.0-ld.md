@@ -11,7 +11,7 @@ tags:
   - migration
 ---
 
-This post is a follow-up to [previous post 034](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.2.0-ld/) where I successfully completed a "local" build of ISLE v1.2.0, but did no "customization" of that local instance.  So, this post's intent is to complete the goal stated in [post 034](https://static.grinnell.edu/blogs/McFateM/posts/034-building-isle-1.2.0-ld/), specifically to:
+This post is a follow-up to [previous post 034](/posts/034-building-isle-1.2.0-ld/) where I successfully completed a "local" build of ISLE v1.2.0, but did no "customization" of that local instance.  So, this post's intent is to complete the goal stated in [post 034](/posts/034-building-isle-1.2.0-ld/), specifically to:
 
 {{% original %}}
 The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) at https://github.com/DigitalGrinnell/dg-isle, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu.
@@ -145,7 +145,7 @@ OK, this section will deal with my Islandora/Drupal code repository with all my 
 
 # Post 038 - Building My `dg-islandora` Code Repository
 
-I'm creating a new blog post that will become [038-Building-My-`dg-islandora`-Code-Repository](https://static.grinnell.edu/blogs/McFateM/posts/038-building-my-dg-islandora-code-repository/).  It will combine elements of [post 021](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) with [post 034](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) to create a "customized" local ISLE v1.2.0 instance with features of Digital.Grinnell.
+I'm creating a new blog post that will become [038-Building-My-`dg-islandora`-Code-Repository](/posts/038-building-my-dg-islandora-code-repository/).  It will combine elements of [post 021](/posts/021-rebuilding-isle-ld/) with [post 034](/posts/021-rebuilding-isle-ld/) to create a "customized" local ISLE v1.2.0 instance with features of Digital.Grinnell.
 
 Once that process is complete, I'll return here to continue `Step 3`.  Until then...
 

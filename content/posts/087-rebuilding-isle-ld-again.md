@@ -599,7 +599,7 @@ I chose _Method B_ and used the following commands to complete this step:
 ---
 
 {{% annotation %}}
-Once I completed this entire process, as documented, I was left wondering what to do with the backup copy of my production `/var/www/html/sites/default/files` directory that I created back in [Step 0](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again#step-0-copy-production-data-to-your-personal-computer)? After posting a question to the [isle-support](https://icg-chat.slack.com/archives/CG6HZRWQM) _Slack_ channel about this, I agreed that the handling of that backup directory should be covered here, and I opened an [issue #388 in GitHub](https://github.com/Islandora-Collaboration-Group/ISLE/issues/388) to deal with the documentation. The command sequence I used is documented here.
+Once I completed this entire process, as documented, I was left wondering what to do with the backup copy of my production `/var/www/html/sites/default/files` directory that I created back in [Step 0](/posts/087-rebuilding-isle-ld-again#step-0-copy-production-data-to-your-personal-computer)? After posting a question to the [isle-support](https://icg-chat.slack.com/archives/CG6HZRWQM) _Slack_ channel about this, I agreed that the handling of that backup directory should be covered here, and I opened an [issue #388 in GitHub](https://github.com/Islandora-Collaboration-Group/ISLE/issues/388) to deal with the documentation. The command sequence I used is documented here.
 
 | Workstation Commands |
 | --- |
@@ -860,17 +860,17 @@ I did as instructed and this time the `admin` login was accepted. The output inc
 ---
 
 {{% annotation %}}
-**Please refer to [post 090](https://static.grinnell.edu/blogs/McFateM/posts/090-isle-local-migration-customization/) for details of the customizations I implemented to complete the process of migrating to a new local instance of ISLE, one that looks and behaves exactly like _Digital.Grinnell_.**
+**Please refer to [post 090](/posts/090-isle-local-migration-customization/) for details of the customizations I implemented to complete the process of migrating to a new local instance of ISLE, one that looks and behaves exactly like _Digital.Grinnell_.**
 {{% /annotation %}}
 
 ## Step 12: Ingest Sample Objects
 
 {{% annotation %}}
-Since my new local instance of ISLE includes the use of my `DG-FEDORA portable (USB stick) repository`, there was no need for me to execute the steps outlined in this section. Instead, I followed the update guidance provided in [DG-FEDORA: A Portable FEDORA Repository](https://static.grinnell.edu/blogs/McFateM/posts/046-dg-fedora-a-portable-object-repository/).
+Since my new local instance of ISLE includes the use of my `DG-FEDORA portable (USB stick) repository`, there was no need for me to execute the steps outlined in this section. Instead, I followed the update guidance provided in [DG-FEDORA: A Portable FEDORA Repository](/posts/046-dg-fedora-a-portable-object-repository/).
 
 After following the aforementioned blog post my repository containing more than 120 objects was visible, as expected.
 
-_Digital.Grinnell_'s home page "view" is somewhat complex and requires some attention before it will function properly. Guidance to update/configure the `dg7 Collection View` is provided in [Updating DG's Collection Views](https://static.grinnell.edu/blogs/McFateM/posts/068-updating-dgs-collection-views/) and I followed that guidance to ensure that our new local ISLE instance was behaving properly.
+_Digital.Grinnell_'s home page "view" is somewhat complex and requires some attention before it will function properly. Guidance to update/configure the `dg7 Collection View` is provided in [Updating DG's Collection Views](/posts/068-updating-dgs-collection-views/) and I followed that guidance to ensure that our new local ISLE instance was behaving properly.
 
 Following this critical update I'm pleased to report that [https://dg.localdomain](https://dg.localdomain) appears to be working perfectly!
 {{% /annotation %}}
@@ -1218,7 +1218,7 @@ A visit to [the site](https://dg.localdomain/) with a refresh showed that this w
 
 ## Connecting to FEDORA
 
-The `docker-compose.override.yml` file in the `local-dg-fedora` branch of my [dg-isle](https://github.com/Digital-Grinnell/dg-isle) project includes 3 lines that direct _FEDORA_ and _FGSearch_ to use the mounted and pre-configured `/Volumes/DG-FEDORA` USB stick for object storage. The commands and process required to use the USB stick are presented in [post 046, "DG-FEDORA: A Portable Object Repository"](https://static.grinnell.edu/blogs/McFateM/posts/046-dg-fedora-a-portable-object-repository/).
+The `docker-compose.override.yml` file in the `local-dg-fedora` branch of my [dg-isle](https://github.com/Digital-Grinnell/dg-isle) project includes 3 lines that direct _FEDORA_ and _FGSearch_ to use the mounted and pre-configured `/Volumes/DG-FEDORA` USB stick for object storage. The commands and process required to use the USB stick are presented in [post 046, "DG-FEDORA: A Portable Object Repository"](/posts/046-dg-fedora-a-portable-object-repository/).
 
 
 ## Restarting the Stack

@@ -1,6 +1,6 @@
 # The Grinnell College Digital Library Application Developer's Blog
 
-This project, my Grinnell College [Digital Library Application Developer's blog](https://static.grinnell.edu/blogs/McFateM/), is no longer a [Docker "Multi-Stage" build](https://docs.docker.com/develop/develop-images/multistage-build/).
+This project, my Grinnell College [Digital Library Application Developer's blog](/), is no longer a [Docker "Multi-Stage" build](https://docs.docker.com/develop/develop-images/multistage-build/).
 
   <!---
   , a single-image application developed using [Docksal](https://docksal.io/) and [Hugo](https://gohugo.io/).  Apart from the use of Docksal, the project is patterned after [Juan Treminio's blog](https://jtreminio.com/) and the text of his [original README.md](#original-Juan) file is included below.  The text of the [original Docksal README.md](#original-Docksal) file is also included.
@@ -8,7 +8,7 @@ This project, my Grinnell College [Digital Library Application Developer's blog]
 
 # Deploying this Blog
 
-This blog is intended to be deployed using my [dockerized-server](https://github.com/McFateM/dockerized-server) approach, and the command stream used to launch [the blog]( https://static.grinnell.edu/blogs/McFateM/) on Grinnell College's `static.Grinnell.edu` server is:
+This blog is intended to be deployed using my [dockerized-server](https://github.com/McFateM/dockerized-server) approach, and the command stream used to launch [the blog]( /) on Grinnell College's `static.Grinnell.edu` server is:
 
 ```
 NAME=blogs-mcfatem

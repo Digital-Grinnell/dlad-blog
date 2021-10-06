@@ -13,13 +13,13 @@ tags:
   - DG-FEDORA
 ---
 
-This post is an addendum to an earlier post, [Local ISLE Installation: Migrate Existing Islandora Site - with Annotations](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again/), where I exhaustively documented my workflow for building a local/development instance of ISLE to mimic the behavoir of _Digital.Grinnell_.
+This post is an addendum to an earlier post, [Local ISLE Installation: Migrate Existing Islandora Site - with Annotations](/posts/087-rebuilding-isle-ld-again/), where I exhaustively documented my workflow for building a local/development instance of ISLE to mimic the behavoir of _Digital.Grinnell_.
 
 ## Goal
 The goal of this project is to present a repeatable, minimal set of instructions for spinning up a safe, stand-alone, local/development instance of ISLE on any Mac running OS X.
 
 ## Prerequisites
-This document assumes the user will be spinning up https://dg.localdomain on a Mac with a suitable `DG-FEDORA` USB stick mounted and accessible. See my [README.md](https://gist.github.com/Digital-Grinnell/f0900e9af9341e67433633be3fa0895d) public gist for complete instructions regarding creation, updates and handling of such a USB stick.  Additional prerequisites for running https://dg.localdomain can be found in ISLE documentation and in my [DG-FEDORA: A Portable FEDORA Repository](https://static.grinnell.edu/blogs/McFateM/posts/046-dg-fedora-a-portable-object-repository/) blog post.
+This document assumes the user will be spinning up https://dg.localdomain on a Mac with a suitable `DG-FEDORA` USB stick mounted and accessible. See my [README.md](https://gist.github.com/Digital-Grinnell/f0900e9af9341e67433633be3fa0895d) public gist for complete instructions regarding creation, updates and handling of such a USB stick.  Additional prerequisites for running https://dg.localdomain can be found in ISLE documentation and in my [DG-FEDORA: A Portable FEDORA Repository](/posts/046-dg-fedora-a-portable-object-repository/) blog post.
 
 ## Credentials
 Some of the scripts documented below may require login credentials including:
@@ -87,7 +87,7 @@ Local `dg.localdomain` instances of _Digital.Grinnell_ are made to work with a s
 To mount a 'DG-FEDORA' USB stick simply insert the stick into an open USB port on your Mac.  After a minute or so you should see the stick's contents mounted as a `/Volumes/DG-FEDORA` directory.
 
 #### Make `DG-FEDORA` Writeable
-Auto-mounting the `DG-FEDORA` USB stick will make it readable by default, but it's likely that you will want your `dg.localdomain` site to also write content to the USB stick.  To enable this, execute the following command as documented in [DG-FEDORA: A Portable FEDORA Repository](https://static.grinnell.edu/blogs/McFateM/search/?q=DG-FEDORA):
+Auto-mounting the `DG-FEDORA` USB stick will make it readable by default, but it's likely that you will want your `dg.localdomain` site to also write content to the USB stick.  To enable this, execute the following command as documented in [DG-FEDORA: A Portable FEDORA Repository](/search/?q=DG-FEDORA):
 
 ```
 sudo mount -u -w /Volumes/DG-FEDORA

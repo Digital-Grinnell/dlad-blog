@@ -8,7 +8,7 @@ tags:
     - PHPStorm
 ---
 
-In an earlier [post](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) I chronicle the exhaustive steps taken to create a "debuggable" local/development instance of Digital.Grinnell that behaves exactly like the [real thing](https://digital.grinnell.edu), except with a much smaller, portable _FEDORA_ repository under it.  I'm claiming success on that front, but there is one glaring kludge in the process that I have yet to work out.
+In an earlier [post](/posts/021-rebuilding-isle-ld/) I chronicle the exhaustive steps taken to create a "debuggable" local/development instance of Digital.Grinnell that behaves exactly like the [real thing](https://digital.grinnell.edu), except with a much smaller, portable _FEDORA_ repository under it.  I'm claiming success on that front, but there is one glaring kludge in the process that I have yet to work out.
 
 ### The Kludge
 
@@ -25,7 +25,7 @@ My approach to this so far is to:
 
     - `cd ~/Projects/ISLE; docker cp isle-apache-ld:/var/www/html ./persistent/html`
 
-  3. Now, alter the `docker-compose.override.yml` file to include all of the necessary debug configuration bits (see [this post](https://static.grinnell.edu/blogs/McFateM/posts/023-debugging-isle-ld-in-phpstorm/) for additional details).
+  3. Now, alter the `docker-compose.override.yml` file to include all of the necessary debug configuration bits (see [this post](/posts/023-debugging-isle-ld-in-phpstorm/) for additional details).
   4. Build and launch _ISLE_ again using `docker-compose up -d`, just like before.  The difference is that with `./persistent/html` now mapped into the container, _PHPStorm_ debugging will work as it should.
 
 In my opinion, `Step 2  +  Step 3  =  kludge`.  The question is...

@@ -13,7 +13,7 @@ tags:
 Attention: Take note that annotations stop where my process departed from this script in Step 16. Enter at your own risk beyond the annotation in Step 16!
 {{% /annotation %}}
 
-This post is an addendum to earlier posts [087](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again/) and [090](https://static.grinnell.edu/blogs/McFateM/posts/090-isle-local-migration-customization/). It is intended to chronicle my efforts to migrate to a `staging` instance of _Digital.Grinnell_ on Linux node `DGDockerX.grinnell.edu`. The remainder of this document is an annotated copy of [Staging ISLE Installation: Migrate Existing Islandora Site](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-staging-migrate.md).
+This post is an addendum to earlier posts [087](/posts/087-rebuilding-isle-ld-again/) and [090](/posts/090-isle-local-migration-customization/). It is intended to chronicle my efforts to migrate to a `staging` instance of _Digital.Grinnell_ on Linux node `DGDockerX.grinnell.edu`. The remainder of this document is an annotated copy of [Staging ISLE Installation: Migrate Existing Islandora Site](https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-staging-migrate.md).
 
 {{% annotation %}}
 Annotations, with information specific to my experience with _Digital.Grinnell_ migration, appear in text blocks like this one.
@@ -669,9 +669,9 @@ If using Let's Encrypt, please continue to follow this step.
     * Open your firewall to ports 80, 443 prior to starting up the containers to ensure SSL cert creation.
 
 {{% annotation %}}
-OK, this is where the proverbial $hit hits the fan, so to speak. **Grinnell College ITS will NOT allow both of those last two bullets to happen at the same time.** So, I'm going to try and implement the strategy documented in [Traefik and Acme.sh Instead of DNS-01](https://static.grinnell.edu/blogs/McFateM/posts/079-traefik-and-acme.sh-instead-of-dns-01/) now.  Wish me luck...
+OK, this is where the proverbial $hit hits the fan, so to speak. **Grinnell College ITS will NOT allow both of those last two bullets to happen at the same time.** So, I'm going to try and implement the strategy documented in [Traefik and Acme.sh Instead of DNS-01](/posts/079-traefik-and-acme.sh-instead-of-dns-01/) now.  Wish me luck...
 
-This effort is turning out to be such a departure from the process documented here that I'm inclined to capture it's history, unfolding as I type, in [a new blog post](https://static.grinnell.edu/blogs/McFateM/posts/093-traefik-and-acme.sh-for-DG-staging/).
+This effort is turning out to be such a departure from the process documented here that I'm inclined to capture it's history, unfolding as I type, in [a new blog post](/posts/093-traefik-and-acme.sh-for-DG-staging/).
 {{% /annotation %}}
 
 ---
@@ -775,7 +775,7 @@ I completed this step as documented.
 **Note:** Prior to starting the launch process, it is recommended that you briefly open your firewall to allow ports 80 and 443 access to the world. You'll only need to keep this open for 3 -5 minutes and then promptly close access once the Let's Encrypt SSL certificates have been generated.
 
 {{% annotation %}}
-Since I am using a different SSL certificate validation process I did NOT follow the advice shared in the note above.  See [blog post 093](https://static.grinnell.edu/blogs/McFateM/posts/093-traefik-and-acme.sh-for-DG-staging/).
+Since I am using a different SSL certificate validation process I did NOT follow the advice shared in the note above.  See [blog post 093](/posts/093-traefik-and-acme.sh-for-DG-staging/).
 {{% /annotation %}}
 
 * _Using the same open terminal:_
@@ -865,7 +865,7 @@ Then I copied the SQL file to the correct container and imported it using `mysql
 root@e1e6d5be6de8:/\# mysql -u admin -p digital_grinnell < prod_drupal_site_083120.sql
 Enter password: ***************************
 ```
-Next, looking back at my annotations from [Step 9 of Local ISLE Installation: Migrate Existing Islandora Site - with Annotations](https://static.grinnell.edu/blogs/McFateM/posts/087-rebuilding-isle-ld-again/) I elected to bring my `./sites/default/files` directory over from production, like so:
+Next, looking back at my annotations from [Step 9 of Local ISLE Installation: Migrate Existing Islandora Site - with Annotations](/posts/087-rebuilding-isle-ld-again/) I elected to bring my `./sites/default/files` directory over from production, like so:
 
 ```
 ╭─markmcfate@MAD25W812UJ1G9 ~ ‹ruby-2.3.0›

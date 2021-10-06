@@ -3,7 +3,7 @@ date: 2019-05-29
 title: Fixing the VAF Cert Problem
 ---
 
-True to form, **just after** posting my [lengthy description of VAF cert problems](https://static.grinnell.edu/blogs/McFateM/posts/015-working-with-lets-encrypt) I figured out what was wrong and how to fix it.  Naturally, **just after**.
+True to form, **just after** posting my [lengthy description of VAF cert problems](/posts/015-working-with-lets-encrypt) I figured out what was wrong and how to fix it.  Naturally, **just after**.
 
 So, the root of my _VAF_ woes stemmed from the fact that _Let's Encrypt_, upon my request, had previously issued an untrusted cert for https://vaf.grinnell.edu (because I used the staging environment during development of this blog), and I was unable to find it or override it with a trusted cert.  I was under the impression that in my workflow the cert was being stored inside one of my Docker containers... and it was.  But I couldn't fathom why the untrusted cert seemed to "persist", even though I had deleted and regenerated those containers many times. Hmmm...
 
@@ -49,6 +49,6 @@ root@static:~# docker stop $(docker ps -q); docker rm -v $(docker ps -qa); docke
 
 The first four lines above made a backup of `acme.json`, just in case, then removed and replaced it with a pristine, empty file with proper permissions.  The last line stopped all of the Docker containers running on the server, removed them and their associated volumes, then pruned away all remnants (images, networks, etc.) of those containers.
 
-After this I started rebuilding the server and services using the process documented in [docker-bootstrap Workflow](https://static.grinnell.edu/blogs/McFateM/posts/008-docker-bootstrap-workflow).  Problem solved!  Woot!  Along the way I watched the process create fresh, new, **trusted** certs in the server's new `/root/acme.json` file.
+After this I started rebuilding the server and services using the process documented in [docker-bootstrap Workflow](/posts/008-docker-bootstrap-workflow).  Problem solved!  Woot!  Along the way I watched the process create fresh, new, **trusted** certs in the server's new `/root/acme.json` file.
 
 And that's a wrap.  Until next time...

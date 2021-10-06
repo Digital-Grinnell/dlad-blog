@@ -14,7 +14,7 @@ tags:
 | Granular ISLE Customization |
 | --- |
 | This post is part of a series describing [Digital.Grinnell](https://digital.grinnell.edu/) customizations to [ISLE](https://github.com/Islandora-Collaboration-Group/ISLE/), in a "granular" format... one small customization at a time. |
-| An index of all documents in this series is included at the end of [Granular ISLE Customization: Series Guidelines](https://static.grinnell.edu/blogs/McFateM/posts/047-granular-isle-customization-series-guidelines/). |
+| An index of all documents in this series is included at the end of [Granular ISLE Customization: Series Guidelines](/posts/047-granular-isle-customization-series-guidelines/). |
 
 ## Goal Statement
 In this "granular" post we will install *_Backup and Migrate_*, a tremendous _Drupal_ module that I use extensively for backup, restoration, migration and maintenance of _Digital.Grinnell_.

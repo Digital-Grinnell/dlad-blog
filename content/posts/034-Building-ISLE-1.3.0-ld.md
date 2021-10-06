@@ -10,7 +10,7 @@ tags:
   - local
 ---
 
-This post, an updated (the original was written in August 2019 for ISLE-1.2.0) follow-up to [a previous post](https://static.grinnell.edu/blogs/McFateM/posts/021-rebuilding-isle-ld/) is intended to chronicle my efforts to build a new ~ISLE v1.2.0~ ISLE-1.3.0, _ld_, or _local development_, instance of Digital.Grinnell on my work-issued MacBook, _ma7053_.  
+This post, an updated (the original was written in August 2019 for ISLE-1.2.0) follow-up to [a previous post](/posts/021-rebuilding-isle-ld/) is intended to chronicle my efforts to build a new ~ISLE v1.2.0~ ISLE-1.3.0, _ld_, or _local development_, instance of Digital.Grinnell on my work-issued MacBook, _ma7053_.  
 
 ## Goal Statement
 The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of [the ISLE project](https://github.com/Islandora-Collaboration-Group/ISLE) at https://github.com/Digital-Grinnell/dg-isle, then introduce elements like the [Digital Grinnell theme](https://github.com/DigitalGrinnell/digital_grinnell_theme) and custom modules like [DG7](https://github.com/DigitalGrinnell/dg7).  Once these pieces are in-place and working, I'll begin adding other critical components as well as a robust set of data gleaned from https://digital.grinnell.edu.
@@ -152,7 +152,7 @@ For the record (remember, no secrets here) my admin username and password for th
 
 ## [Step 10: Ingest Sample Objects](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-10-ingest-sample-objects)
 
-OK, so this is where I generally depart from the "script", because I'm lazy, and I already have a portable _Fedora_ repository to test from.  So, my process in this step follows what I wrote more than a month ago, [046 DG-FEDORA: A Portable Object Repository](https://static.grinnell.edu/blogs/McFateM/posts/046-dg-fedora-a-portable-object-repository/).
+OK, so this is where I generally depart from the "script", because I'm lazy, and I already have a portable _Fedora_ repository to test from.  So, my process in this step follows what I wrote more than a month ago, [046 DG-FEDORA: A Portable Object Repository](/posts/046-dg-fedora-a-portable-object-repository/).
 
 Next, I added the _Islandora Simple Search_ block as instructed in [Step 10: Ingest Sample Objects](https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-new.md#step-10-ingest-sample-objects), and ran some search tests.  :ballot_box_with_check:  It works!
 
