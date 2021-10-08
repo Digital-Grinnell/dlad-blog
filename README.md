@@ -4,7 +4,7 @@ This project, my Grinnell College [Digital Library Application Developer's blog]
 
 ## GitHub Pages
 
-In October 2021 I successfully moved this blog to _GitHub Pages_ after creating instances of it on _DigitalOcean_ and _Azure_.  _GH Pages_, specifically https://static.grinnell.edu/dlad-blog/ seems like the right home for it, finally.
+I successfully moved this blog to _GitHub Pages_ in October 2021, after creating instances of it on _DigitalOcean_ and _Azure_.  _GH Pages_, specifically https://static.grinnell.edu/dlad-blog/ seems like the right home for it, finally.
 
 ## Resources
 
