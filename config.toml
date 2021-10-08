@@ -24,6 +24,7 @@ enableEmoji = true
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
+  page = ["HTML", "RSS" ]   # per https://blog.jeremylikness.com/blog/dynamic-search-in-a-static-hugo-website/
 
 #[frontmatter]
 #date = ["date", "publishDate", "lastmod"]

@@ -1,5 +1,18 @@
 # The Grinnell College Digital Library Application Developer's Blog
 
+## New Search Feature
+
+Based on https://blog.jeremylikness.com/blog/dynamic-search-in-a-static-hugo-website/ I made changes to, or added, the following files as described in the post:
+
+| File | Status |
+| ---  | ---       |
+| config.toml | Modified |
+| layouts/_default/index.json | Modified |
+| layouts/shortcodes/staticsearch.html | New |
+| static/js/search.js | Modified |
+
+# Obsolete Info Follows...
+
 This project, my Grinnell College [Digital Library Application Developer's blog](/), is no longer a [Docker "Multi-Stage" build](https://docs.docker.com/develop/develop-images/multistage-build/).
 
   <!---
