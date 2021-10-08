@@ -8,6 +8,7 @@ tags:
   - search
   - Fuse
   - fuse.js
+superseded_by: posts/113-blog-migration-details
 ---
 
 A short time ago I moved this blog from _DigitalOcean_ to _Azure_, and along the way I discovered that my `search` feature wasn't working properly.  That old search mechanism used [Fuse](https://fusejs.io/), which has NO dependencies, but that old scheme used a _Hugo_ theme component that I found difficult to properly maintain.  So, as this blog was moving to _Azure_ I elected to try something a little different with _Fuse_ and found [this gist](https://gist.github.com/gtrevg/a34e0c736d358771437be05c6401e86c) to help get it done.

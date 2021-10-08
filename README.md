@@ -2,9 +2,18 @@
 
 This project, my Grinnell College [Digital Library Application Developer's blog](/), is no longer a [Docker "Multi-Stage" build](https://docs.docker.com/develop/develop-images/multistage-build/).
 
-  <!---
+## GitHub Pages
+
+In October 2021 I successfully moved this blog to _GitHub Pages_ after creating instances of it on _DigitalOcean_ and _Azure_.  _GH Pages_, specifically https://static.grinnell.edu/dlad-blog/ seems like the right home for it, finally.
+
+## Resources
+
+I've create a _OneTab_ of resources that I used here: https://www.one-tab.com/page/Pm1eXBmxS8KOe7PjCt_DLg.  Enjoy!
+
+<!---  Everything below this point is OBSOLETE!
+
   , a single-image application developed using [Docksal](https://docksal.io/) and [Hugo](https://gohugo.io/).  Apart from the use of Docksal, the project is patterned after [Juan Treminio's blog](https://jtreminio.com/) and the text of his [original README.md](#original-Juan) file is included below.  The text of the [original Docksal README.md](#original-Docksal) file is also included.
-  , -->
+  ,
 
 # Deploying this Blog
 
