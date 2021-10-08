@@ -1,117 +1,140 @@
+// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-v3-or-Later
+// How many characters to include on either side of match keyword
+const summaryInclude=60;
 
-summaryInclude = 60;
-// https://fusejs.io/api/options.html
-var fuseOptions = {
+// Options for fuse.js
+let fuseOptions = {
   shouldSort: true,
   includeMatches: true,
-  threshold: 0.0,
   tokenize: true,
+  matchAllTokens: true,
+  threshold: 0.0,
   location: 0,
   distance: 100,
-  maxPatternLength: 32,
-  minMatchCharLength: 1,
+  maxPatternLength: 64,
+  minMatchCharLength: 3,
   keys: [
-    { name: "title", weight: 0.8 },
-    { name: "contents", weight: 0.6 },
-    { name: "tags", weight: 0.4 },
-    { name: "categories", weight: 0.3 }
+    {name:"title",weight:0.8},
+    {name:"tags",weight:0.5},
+    {name:"categories",weight:0.5},
+    {name:"contents",weight:0.4}
   ]
 };
 
-var searchQuery = param("search-query");
-if (searchQuery) {
-  $("#search-query").val(searchQuery);
+function getUrlParameter(name) {
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  let regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  let results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+let searchQuery = getUrlParameter('q');
+
+if(searchQuery){
+  document.getElementById("search-query").value = searchQuery;
   executeSearch(searchQuery);
 } else {
-  $('#search-results').append("");
+  document.getElementById('search-results').innerHTML = "<p class=\"no-results\">Please enter a word or phrase above</p>";
 }
 
 function executeSearch(searchQuery) {
-  $.getJSON("/index.json", function (data) {
-    var pages = data;
-    var fuse = new Fuse(pages, fuseOptions);
-    var result = fuse.search(searchQuery);
+  // Look for "index.json" in the same directory where this script is called.
+  fetch("index.json").
+  then(function (response) {
+    return response.json()
+  }).
+  then(function (data) {
+    let fuse = new Fuse(data, fuseOptions);
+    let result = fuse.search(searchQuery);
     if (result.length > 0) {
       populateResults(result);
     } else {
-      $('#search-results').append("<li>No matches found</li>");
+      document.getElementById('search-results').innerHTML = "<p class=\"no-results\">No matches found</p>";
     }
   });
 }
 
-function populateResults(result) {
-  var filteredResults = [];
-  var addedPermalinks = {};
-  // remove multiple instances of the same page from the result set.
-  for (var i=0, len=result.length; i<len; i++){
-    // exclude search page from search results if the search query was 'search'
-    if (!addedPermalinks.hasOwnProperty(result[i].item.permalink) && (result[i].item.permalink.match(/\/search\//g) === null)){
-      filteredResults.push(result[i]);
-      addedPermalinks[result[i].item.permalink] = result[i].item.permalink;
-    }
-  }
-  $.each(filteredResults, function (key, value) {
-    var contents = value.item.contents;
-    var snippet = "";
-    var snippetHighlights = [];
-    var tags = [];
+function populateResults(result){
+  result.forEach( function (value, key) {
+    let contents= value.item.contents;
+    let snippet = "";
+    let snippetHighlights=[];
+    snippetHighlights.push(searchQuery);
+    if(snippet.length<1){
+      var getSentenceByWordRegex = new RegExp( 
+        `[^.?!]*(?<=[.?\\s!])${searchQuery}(?=[\\s.?!])[^.?!]*[.?!]`,
+        'i'
+      );
+      var maxTextLength = summaryInclude*2
+      // Index of the matched search term
+      var indexOfMatch = contents.toLowerCase().indexOf(
+        searchQuery.toLowerCase()
+      );
+      // Index of the first word of the sentence with the search term in it
+      var indexOfSentence = contents.indexOf(
+        getSentenceByWordRegex.exec(contents)
+      );
+      
+      var start 
+      var cutStart = false
+      // Is the match in the result?
+      if(indexOfSentence+maxTextLength < indexOfMatch){
+        // Make sure that the match is in the result
+        start = indexOfMatch
+        // This bool is used to replace the first part with '...'
+        cutStart = true 
+      } else {
+        // Match is in view, even if we show the whole sentence
+        start = indexOfSentence
+      }
+      
+      // Change end length to the text length if it is longer than 
+      // the text length to prevent problems
+      var end = start + maxTextLength 
+      if (end > contents.length){
+        end = contents.length
+      }
 
-    if (fuseOptions.tokenize) {
-      snippetHighlights.push(searchQuery);
+      if(cutStart){
+        // Replace first three characters with '...'
+        end -= 3;
+        snippet += "…" + contents.substring(start, end).trim();
+      }
+      else{
+        snippet += contents.substring(start, end).trim();
+      }     
+    }
+    snippet += "…";
+
+    // Lifted from https://stackoverflow.com/posts/3700369/revisions
+    var elem = document.createElement('textarea');
+    elem.innerHTML = snippet;
+    var decoded = elem.value;
+
+    // Pull template from hugo template definition
+    let frag = document.getElementById('search-result-template').content.cloneNode(true);
+    // Replace values
+    frag.querySelector(".search_summary").setAttribute("id", "summary-" + key);
+    frag.querySelector(".search_link").setAttribute("href", value.item.permalink);
+    frag.querySelector(".search_title").textContent = value.item.title;
+    frag.querySelector(".search_snippet").textContent = decoded;
+    let tags = value.item.tags;
+    if (tags) {
+      frag.querySelector(".search_tags").textContent = tags;
     } else {
-      $.each(value.matches, function (matchKey, mvalue) {
-        if (mvalue.key == "tags" || mvalue.key == "categories") {
-          snippetHighlights.push(mvalue.value);
-        } else if (mvalue.key == "contents") {
-          start = mvalue.indices[0][0] - summaryInclude > 0 ? mvalue.indices[0][0] - summaryInclude : 0;
-          end = mvalue.indices[0][1] + summaryInclude < contents.length ? mvalue.indices[0][1] + summaryInclude : contents.length;
-          snippet += contents.substring(start, end);
-          snippetHighlights.push(mvalue.value.substring(mvalue.indices[0][0], mvalue.indices[0][1] - mvalue.indices[0][0] + 1));
-        }
-      });
+      frag.querySelector(".search_iftags").remove();
     }
-
-    if (snippet.length < 1) {
-      snippet += contents.substring(0, summaryInclude * 2);
-      snippet += "...";
+    let categories = value.item.categories;
+    if (categories) {
+      frag.querySelector(".search_categories").textContent = categories;
+    } else {
+      frag.querySelector(".search_ifcategories").remove();
     }
-    //pull template from hugo template definition
-    var templateDefinition = $('#search-result-template').html();
-    //replace values
-    var commaSeparatedTags = (value.item.tags) ? value.item.tags.join(', ') : "";
-    var commaSeparatedCategories = (value.item.categories) ? value.item.categories.join(', ') : "";
-    var output = render(templateDefinition, { key: key, title: value.item.title, link: value.item.permalink, tags: commaSeparatedTags, categories: commaSeparatedCategories, snippet: snippet });
-
-    $('#search-results').append(output);
+    snippetHighlights.forEach( function (snipvalue, snipkey) {
+      let markjs = new Mark(frag);
+      markjs.mark(snipvalue);
+    });
+    document.getElementById("search-results").appendChild(frag);
   });
-  $(".excerpt").mark(searchQuery);
 }
-
-function param(name) {
-  return decodeURIComponent((location.search.split(name + '=')[1] || '').split('&')[0]).replace(/\+/g, ' ');
-}
-
-function render(templateString, data) {
-  var conditionalMatches, conditionalPattern, copy;
-  conditionalPattern = /\$\{\s*isset ([a-zA-Z]*) \s*\}(.*)\$\{\s*end\s*}/g;
-  //since loop below depends on re.lastInxdex, we use a copy to capture any manipulations whilst inside the loop
-  copy = templateString;
-  while ((conditionalMatches = conditionalPattern.exec(templateString)) !== null) {
-    if (data[conditionalMatches[1]]) {
-      //valid key, remove conditionals, leave contents.
-      copy = copy.replace(conditionalMatches[0], conditionalMatches[2]);
-    } else {
-      //not valid, remove entire section
-      copy = copy.replace(conditionalMatches[0], '');
-    }
-  }
-  templateString = copy;
-  //now any conditionals removed we can do simple substitution
-  var key, find, re;
-  for (key in data) {
-    find = '\\$\\{\\s*' + key + '\\s*\\}';
-    re = new RegExp(find, 'g');
-    templateString = templateString.replace(re, data[key]);
-  }
-  return templateString;
-}
+// @license-end

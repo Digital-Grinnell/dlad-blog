@@ -6,7 +6,7 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=author content="Mark A. McFate">
 <meta name=description content>
-<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.8a32dadea1834ef74fe59f5362dbaaa416e123d8600158d361ad3d96945c0aa5.css>
+<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.a0a90779d7d7dc7111202c97d61bd4963b7236dd704adac1f03ff9f07a45d022.css>
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Posts">
 <meta name=twitter:description content="Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.">
@@ -21,8 +21,8 @@
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Oct 6, 2021 at 8:33am CDT<br>
-Content Updated: 2021-Oct-6 07:45 CDT
+Compiled: Oct 8, 2021 at 11:38am CDT<br>
+Content Updated: 2021-Oct-8 11:15 CDT
 </p>
 <div class=name>by
 <strong>Mark A. McFate</strong></div>
@@ -49,6 +49,14 @@ Content Updated: 2021-Oct-6 07:45 CDT
 <article>
 <h1>Posts</h1>
 <ul class=posts-list>
+<br>
+<a target=_blank class=posts-list-item-title href=https://static.grinnell.edu/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/>Simplified Testing of Traefik 2 with ACME DNS-01 Challenge</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;3 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> May 19, 2020
+<br>
+<span class=summary>This post is a simplified and focused follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge.
+Simplify Today, 19-May-2020, I’m going to take a shot at simplifying my testing on dgdocker3.grinnell.edu by removing unnecessary things and consolidating as much as possible to reduce clutter in the logs and get right to the point. I’m also going to have a look to see if there are additional logs that can tell give me more detail. Everything used here, and everything that takes place here, will be found in a new directory, /opt/containers/test on DGDocker3. ...</span>
+</span>
 <br>
 <a target=_blank class=posts-list-item-title href=https://static.grinnell.edu/dlad-blog/posts/072-enhancing-motd-with-server-info/>Enhancing 'motd' with 'server-info'</a>
 <span class=posts-list-item-description>
@@ -124,15 +132,6 @@ cd ~/GitHub git clone https://github.com/SummittDweller/docker-compose-drupal.gi
 <br>
 <span class=summary>I have ITS tickets, for seemingly simple DNS changes, that are now more than a month old, and because of that I’ve taken steps to try and do some ISLE staging work on one of my DigitalOcean droplets, namely summitt-services-droplet-01. In order to accommodate that I’ve moved nearly all of the sites and services from that droplet to my other, summitt-dweller-DO-docker. The site migration was a smooth process except for https://Wieting.TamaToledo.com. That Drupal 8 site has been difficult to upgrade and migrate largely because it was deployed using my old Port-Ability scripts, and about a year ago I scrapped Port-Ability in favor of Docksal, but I never got around to moving that particular site to a Docksal environment. ...</span>
 </span>
-<br>
-<a target=_blank class=posts-list-item-title href=https://static.grinnell.edu/dlad-blog/posts/063-installing-zsh-in-catalina/>Installing ZSH in Catalina</a>
-<span class=posts-list-item-description>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;1 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Feb 12, 2020
-<br>
-<span class=summary>These days I like to do all my terminal/command-line work in zsh, more specifically, with Oh My ZSH! and the bira theme. This previous post described the process I used on each of my Linux servers, and this post is similar, but written specifically for my Catalina (Macintosh OS X v10.15.x), workstations.
-This is how I installed and configured zsh, and some other goodies, on my student Mac Mini workstation, MA6879…
-brew update brew install nano zsh chsh -s /bin/zsh mark exit # log back in after this echo $SHELL brew install wget git hugo docker # Docker and Hugo added just for good measure wget https://github. ...</span>
-</span>
 </ul>
 <ul class=pagination>
 <li class=page-item>
@@ -192,6 +191,11 @@ brew update brew install nano zsh chsh -s /bin/zsh mark exit # log back in after
 <li class=page-item>
 <a class=page-link href=https://static.grinnell.edu/dlad-blog/posts/page/11/>
 11
+</a>
+</li>
+<li class=page-item>
+<a class=page-link href=https://static.grinnell.edu/dlad-blog/posts/page/12/>
+12
 </a>
 </li>
 <li class=page-item>
