@@ -2,7 +2,7 @@
 <head>
 <title>Migrating Digital.Grinnell (DG) to ISLE 1.3.0 (ld) for Local Development // The Grinnell College Digital Library Application Developer's Blog</title>
 <meta charset=utf-8>
-<meta name=generator content="Hugo 0.88.1">
+<meta name=generator content="Hugo 0.89.3">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=author content="Mark A. McFate">
 <meta name=description content>
@@ -25,8 +25,8 @@ The goal of this project is to spin up a pristine, local Islandora stack using a
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Oct 8, 2021 at 11:38am CDT<br>
-Content Updated: 2021-Oct-8 11:15 CDT
+Compiled: Nov 17, 2021 at 4:11pm CST<br>
+Content Updated: 2021-Nov-17 16:07 -0500
 </p>
 <div class=name>by
 <strong>Mark A. McFate</strong></div>
@@ -66,7 +66,7 @@ Oct 29, 2019
 </header>
 <div class=post-content>
 <p>This is a follow-up to previous posts 034, <a href=https://static.grinnell.edu/dlad-blog/posts/034-building-isle-1.2.0-ld/>Building ISLE 1.2.0 (ld)</a> and 037, <a href=https://static.grinnell.edu/dlad-blog/posts/037-migrating-dg-to-isle-1.2.0-ld/>Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development</a> where I successfully completed a &ldquo;local&rdquo; build of ISLE v1.2.0 and subsequently started &ldquo;customization&rdquo; of that local instance. So, this post&rsquo;s intent is to complete the goal stated in <a href=https://static.grinnell.edu/dlad-blog/posts/037-migrating-dg-to-isle-1.2.0-ld/>Migrating Digital.Grinnell (DG) to ISLE 1.2.0 (ld) for Local Development</a>, but for <a href=https://github.com/Islandora-Collaboration-Group/ISLE/tree/master>ISLE 1.3.0</a>, specifically to:</p>
-<div class=original><p>The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of <a href=https://github.com/Islandora-Collaboration-Group/ISLE>the ISLE project</a> at <a href=https://github.com/Digital-Grinnell/dg-isle,>https://github.com/Digital-Grinnell/dg-isle,</a> then introduce elements like the <a href=https://github.com/DigitalGrinnell/digital_grinnell_theme>Digital Grinnell theme</a> and custom modules like <a href=https://github.com/DigitalGrinnell/dg7>DG7</a>. Once these pieces are in-place and working, I&rsquo;ll begin adding other critical components as well as a robust set of data gleaned from <a href=https://digital.grinnell.edu>https://digital.grinnell.edu</a>.</p>
+<div class=original><p>The goal of this project is to spin up a pristine, local Islandora stack using an updated fork of <a href=https://github.com/Islandora-Collaboration-Group/ISLE>the ISLE project</a> at <a href=https://github.com/Digital-Grinnell/dg-isle>https://github.com/Digital-Grinnell/dg-isle</a>, then introduce elements like the <a href=https://github.com/DigitalGrinnell/digital_grinnell_theme>Digital Grinnell theme</a> and custom modules like <a href=https://github.com/DigitalGrinnell/dg7>DG7</a>. Once these pieces are in-place and working, I&rsquo;ll begin adding other critical components as well as a robust set of data gleaned from <a href=https://digital.grinnell.edu>https://digital.grinnell.edu</a>.</p>
 </div>
 <p>As before, this effort will involve an <code>ld</code>, or <code>local development</code>, instance of Digital.Grinnell on one of my Mac workstations. Unlike my previous work, this instance will follow the guidance of a different document, specifically <a href=https://github.com/Islandora-Collaboration-Group/ISLE/blob/ISLE-1.3.0/docs/install/install-local-migrate.md><code>install-local-migrate.md</code></a>.</p>
 <h1 id=host-ma6879>Host: MA6879</h1>
@@ -226,7 +226,7 @@ diff -r islandora_transforms/WORKFLOW_to_solr.xslt ../prod/islandora_transforms/
 </tbody>
 </table>
 <h2 id=step-3-git-clone-the-production-islandora-drupal-site-codehttpsgithubcomislandora-collaboration-groupisleblobmasterdocsinstallinstall-local-migratemdstep-3-git-clone-the-production-islandora-drupal-site-code><a href=https://github.com/Islandora-Collaboration-Group/ISLE/blob/master/docs/install/install-local-migrate.md#step-3-git-clone-the-production-islandora-drupal-site-code>Step 3: Git Clone the Production Islandora Drupal Site Code</a></h2>
-<p>OK, this section will deal with my Islandora/Drupal code repository with all my customization in it, in my case that&rsquo;s <a href=https://github.com/Digital-Grinnell/dg-islandora,>https://github.com/Digital-Grinnell/dg-islandora,</a> but my copy isn&rsquo;t complete yet, so&mldr;</p>
+<p>OK, this section will deal with my Islandora/Drupal code repository with all my customization in it, in my case that&rsquo;s <a href=https://github.com/Digital-Grinnell/dg-islandora>https://github.com/Digital-Grinnell/dg-islandora</a>, but my copy isn&rsquo;t complete yet, so&mldr;</p>
 <h1 id=post-038---building-my-dg-islandora-code-repository>Post 038 - Building My <code>dg-islandora</code> Code Repository</h1>
 <p>Earlier I created blog post <a href=https://static.grinnell.edu/dlad-blog/posts/038-building-my-dg-islandora-code-repository/>038-Building-My-<code>dg-islandora</code>-Code-Repository</a>. It combined elements of <a href=https://static.grinnell.edu/dlad-blog/posts/021-rebuilding-isle-ld/>post 021</a> with <a href=https://static.grinnell.edu/dlad-blog/posts/021-rebuilding-isle-ld/>post 034</a> to create a &ldquo;customized&rdquo; local ISLE v1.2.0 instance with features of Digital.Grinnell.</p>
 <p>The product of all that work is the <a href=https://github.com/Digital-Grinnell/dg-islandora>Digital-Grinnell/dg-islandora</a> <strong>private</strong> GitHub repo.</p>

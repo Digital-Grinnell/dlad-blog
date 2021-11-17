@@ -2,7 +2,7 @@
 <head>
 <title>Remote Atom // The Grinnell College Digital Library Application Developer's Blog</title>
 <meta charset=utf-8>
-<meta name=generator content="Hugo 0.88.1">
+<meta name=generator content="Hugo 0.89.3">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=author content="Mark A. McFate">
 <meta name=description content>
@@ -17,7 +17,7 @@ In the past week I&rsquo;ve added the remote-atom package, and configuration to 
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/085-remote-atom/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2020-07-01T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-04-14T08:51:46-05:00">
+<meta property="article:modified_time" content="2021-11-17T16:07:16-05:00">
 </head>
 <body>
 <header class=app-header>
@@ -25,8 +25,8 @@ In the past week I&rsquo;ve added the remote-atom package, and configuration to 
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Oct 8, 2021 at 11:38am CDT<br>
-Content Updated: 2021-Oct-8 11:15 CDT
+Compiled: Nov 17, 2021 at 4:11pm CST<br>
+Content Updated: 2021-Nov-17 16:07 -0500
 </p>
 <div class=name>by
 <strong>Mark A. McFate</strong></div>
@@ -56,13 +56,13 @@ Content Updated: 2021-Oct-8 11:15 CDT
 <h1 class=post-title>Remote Atom</h1>
 <div class=post-meta>
 <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-1 min read
+2 min read
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
 Jul 1, 2020
-&nbsp;&nbsp;&bull;&nbsp;&nbsp;Updated: Apr 14, 2021 - 08:51
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;Updated: Nov 17, 2021 - 16:07
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
 <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-<a class=tag href=https://static.grinnell.edu/dlad-blog/tags/atom/>Atom</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/remote-atom/>remote-atom</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/ratom/>ratom</a></div></div>
+<a class=tag href=https://static.grinnell.edu/dlad-blog/tags/atom/>Atom</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/remote-atom/>remote-atom</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/ratom/>ratom</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/52698/>52698</a></div></div>
 </header>
 <div class=post-content>
 <p>Earlier this year I installed and configured the <a href=https://atom.io/packages/remote-atom>remote-atom</a> package to assist with editing content and code for my <a href=https://blog.summittdweller.com>personal blog</a>. Naturally, I wrote a <a href=https://blog.summittdweller.com/posts/2020/03/adding-remote-atom-to-my-digitalocean-server/>blog post</a> to document it.</p>
@@ -120,6 +120,23 @@ Host dgdockerx
 </tr>
 </tbody>
 </table>
+<h2 id=regarding-port-52698>Regarding Port 52698</h2>
+<p>During recent updates to <em>DGDockerX</em> I had network interruptions that left processes on the remote holding on to port 52698, the port that I need to make <em>ratom</em> work. I found this simple means of freeing up that port&mldr;</p>
+<div class=annotation><pre tabindex=0><code>╭─islandora@dgdockerx ~
+╰─$ sudo netstat -plant | grep 52698
+tcp        0      0 127.0.0.1:52698         0.0.0.0:*               LISTEN      121885/sshd: island
+tcp6       0      0 ::1:52698               :::*                    LISTEN      121885/sshd: island
+tcp6       0      0 ::1:41724               ::1:52698               ESTABLISHED 24103/bash
+tcp6       0      0 ::1:52698               ::1:41724               ESTABLISHED 121885/sshd: island
+tcp6       0      0 ::1:52698               ::1:41382               ESTABLISHED 121885/sshd: island
+tcp6       0      0 ::1:41400               ::1:52698               ESTABLISHED 122118/bash
+tcp6       0      0 ::1:41610               ::1:52698               ESTABLISHED 23600/bash
+tcp6       0      0 ::1:41382               ::1:52698               ESTABLISHED 122040/bash
+tcp6       0      0 ::1:52698               ::1:41400               ESTABLISHED 121885/sshd: island
+tcp6       0      0 ::1:52698               ::1:41610               ESTABLISHED 121885/sshd: island
+╭─islandora@dgdockerx ~
+╰─$ sudo kill -9 121885
+</code></pre></div>
 <p>And that&rsquo;s a wrap. Until next time&mldr;</p>
 </div>
 <div class=post-footer>

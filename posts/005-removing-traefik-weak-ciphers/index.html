@@ -2,7 +2,7 @@
 <head>
 <title>Removing Traefik's Weak Cipher Suites // The Grinnell College Digital Library Application Developer's Blog</title>
 <meta charset=utf-8>
-<meta name=generator content="Hugo 0.88.1">
+<meta name=generator content="Hugo 0.89.3">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=author content="Mark A. McFate">
 <meta name=description content>
@@ -23,8 +23,8 @@
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Oct 8, 2021 at 11:38am CDT<br>
-Content Updated: 2021-Oct-8 11:15 CDT
+Compiled: Nov 17, 2021 at 4:11pm CST<br>
+Content Updated: 2021-Nov-17 16:07 -0500
 </p>
 <div class=name>by
 <strong>Mark A. McFate</strong></div>
@@ -80,7 +80,7 @@ May 10, 2019
     &quot;TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256&quot;,
     &quot;TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256&quot;
    ]
-</code></pre><p>In this code snippet, pulled from <a href=https://github.com/McFateM/docker-bootstrap/blob/master/files/docker-compose.yml,>https://github.com/McFateM/docker-bootstrap/blob/master/files/docker-compose.yml,</a> the second <code>--entryPoints</code> line holds the key. That line specifies a <code>TLS.MinVersion</code> that excludes most of the older, weak default ciphers. It also overrides the default suites with a short list of stronger suites.</p>
+</code></pre><p>In this code snippet, pulled from <a href=https://github.com/McFateM/docker-bootstrap/blob/master/files/docker-compose.yml>https://github.com/McFateM/docker-bootstrap/blob/master/files/docker-compose.yml</a>, the second <code>--entryPoints</code> line holds the key. That line specifies a <code>TLS.MinVersion</code> that excludes most of the older, weak default ciphers. It also overrides the default suites with a short list of stronger suites.</p>
 <p>And that&rsquo;s a wrap. Until next time&mldr;</p>
 </div>
 <div class=post-footer>

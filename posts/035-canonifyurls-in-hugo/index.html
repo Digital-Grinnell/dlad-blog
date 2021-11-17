@@ -2,7 +2,7 @@
 <head>
 <title>CanonifyURLs in Hugo // The Grinnell College Digital Library Application Developer's Blog</title>
 <meta charset=utf-8>
-<meta name=generator content="Hugo 0.88.1">
+<meta name=generator content="Hugo 0.89.3">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=author content="Mark A. McFate">
 <meta name=description content>
@@ -27,8 +27,8 @@ By setting canonifyURLs to true, all relative URLs would instead be canonicalize
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Oct 8, 2021 at 11:38am CDT<br>
-Content Updated: 2021-Oct-8 11:15 CDT
+Compiled: Nov 17, 2021 at 4:11pm CST<br>
+Content Updated: 2021-Nov-17 16:07 -0500
 </p>
 <div class=name>by
 <strong>Mark A. McFate</strong></div>
@@ -69,7 +69,7 @@ Aug 6, 2019
 <div class=post-content>
 <p>I&rsquo;ve been seeing a lot of <code>.URL will be deprecated...</code> warnings in my Hugo compilations lately, and just now figured out a slick replacement for it: <code>canonifyURLs = true</code>. The documentation for this parameter says&mldr;</p>
 <div class=original><p>By default, all relative URLs encountered in the input are left unmodified, e.g. /css/foo.css would stay as /css/foo.css. The canonifyURLs field in your site config has a default value of false.</p>
-<p>By setting canonifyURLs to true, all relative URLs would instead be canonicalized using baseURL. For example, assuming you have baseURL = <a href=https://example.com/,>https://example.com/,</a> the relative URL /css/foo.css would be turned into the absolute URL <a href=https://example.com/css/foo.css>https://example.com/css/foo.css</a>.</p>
+<p>By setting canonifyURLs to true, all relative URLs would instead be canonicalized using baseURL. For example, assuming you have baseURL = <a href=https://example.com/>https://example.com/</a>, the relative URL /css/foo.css would be turned into the absolute URL <a href=https://example.com/css/foo.css>https://example.com/css/foo.css</a>.</p>
 </div>
 <p>Turning this parameter on in my personal blog allowed me to make the following code change work:</p>
 <ul>

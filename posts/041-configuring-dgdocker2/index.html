@@ -2,7 +2,7 @@
 <head>
 <title>Configuring DGDocker2 // The Grinnell College Digital Library Application Developer's Blog</title>
 <meta charset=utf-8>
-<meta name=generator content="Hugo 0.88.1">
+<meta name=generator content="Hugo 0.89.3">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=author content="Mark A. McFate">
 <meta name=description content>
@@ -27,8 +27,8 @@ Pushing WMI Omeka-S to Production on dgdocker2 Grinnell&rsquo;s dgdocker2 server
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Oct 8, 2021 at 11:38am CDT<br>
-Content Updated: 2021-Oct-8 11:15 CDT
+Compiled: Nov 17, 2021 at 4:11pm CST<br>
+Content Updated: 2021-Nov-17 16:07 -0500
 </p>
 <div class=name>by
 <strong>Mark A. McFate</strong></div>
@@ -185,7 +185,7 @@ docker run -d \
   traefik:1.7.14-alpine
 
 </code></pre><p>Ok, let&rsquo;s see what we&rsquo;ve got&mldr;</p>
-<p><strong>Eureka!</strong> <a href=https://traefik2.grinnell.edu>https://traefik2.grinnell.edu</a> returns an <em>admin</em> login prompt for my new <em>Traefik</em> instance at <a href=https://traefik2.grinnell.edu/dashboard/,>https://traefik2.grinnell.edu/dashboard/,</a> as promised, and it&rsquo;s complete with a green lock icon indicating that we have a valid TLS cert for it. Presumably this <em>Traefik</em> will have NO weak ciphers or vulnerabilities. <em>Note to self: <strong>Test this assumption!</strong></em></p>
+<p><strong>Eureka!</strong> <a href=https://traefik2.grinnell.edu>https://traefik2.grinnell.edu</a> returns an <em>admin</em> login prompt for my new <em>Traefik</em> instance at <a href=https://traefik2.grinnell.edu/dashboard/>https://traefik2.grinnell.edu/dashboard/</a>, as promised, and it&rsquo;s complete with a green lock icon indicating that we have a valid TLS cert for it. Presumably this <em>Traefik</em> will have NO weak ciphers or vulnerabilities. <em>Note to self: <strong>Test this assumption!</strong></em></p>
 <h2 id=lets-add-_portainer_>Let&rsquo;s Add <em>Portainer</em></h2>
 <p>In addition to the <em>Treafik</em> dashboard, I like having <a href=https://www.portainer.io>Portainer</a> available to help with stack management too. So, let&rsquo;s add that using <em>docker-compose</em> and an appropriately modified version of the guidance provided in <a href=https://www.digitalocean.com/community/tutorials/how-to-use-traefik-as-a-reverse-proxy-for-docker-containers-on-centos-7#step-3-registering-containers-with-traefik>Step 3 - Registering Containers with Traefik</a>.</p>
 <p>The aforementioned guidance wants us to create a new project directory (optional: we could use the <em>/opt/traefik</em> directory we already have) and populate it with a <em>docker-compose.yml</em> file with contents like this:</p>
@@ -286,7 +286,7 @@ docker-compose up -d
 <ul>
 <li><a href=https://omeka-s.grinnell.edu/something>https://omeka-s.grinnell.edu/something</a></li>
 </ul>
-<p>This implies that <em>Traefik</em> should respond at <a href=https://omeka-s.grinnell.edu/traefik,>https://omeka-s.grinnell.edu/traefik,</a> and <em>Portainer</em> at <a href=https://omeka-s.grinnell.edu/portainer>https://omeka-s.grinnell.edu/portainer</a>. Likewise, our first <em>Omeka-S</em> site, <em>World Music Instruments</em>, or <em>WMI</em>, should respond at <a href=https://omeka-s.grinnell.edu/wmi>https://omeka-s.grinnell.edu/wmi</a>.</p>
+<p>This implies that <em>Traefik</em> should respond at <a href=https://omeka-s.grinnell.edu/traefik>https://omeka-s.grinnell.edu/traefik</a>, and <em>Portainer</em> at <a href=https://omeka-s.grinnell.edu/portainer>https://omeka-s.grinnell.edu/portainer</a>. Likewise, our first <em>Omeka-S</em> site, <em>World Music Instruments</em>, or <em>WMI</em>, should respond at <a href=https://omeka-s.grinnell.edu/wmi>https://omeka-s.grinnell.edu/wmi</a>.</p>
 <p>I&rsquo;ve already asked our DNS managers to make <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a> resolve to our <em>dgdocker2</em> host, so all that&rsquo;s necessary now is a change in some of our <em>Traefik</em> labels to specify a different URL structure. Specifically, we need to change the expression in our <em>docker-compose.yml</em> &ldquo;traefik.frontend.rule&rdquo; label from this:</p>
 <pre><code>- &quot;traefik.frontend.rule=Host:portainer2.grinnell.edu;&quot;
 </code></pre>

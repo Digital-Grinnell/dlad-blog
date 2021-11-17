@@ -2,7 +2,7 @@
 <head>
 <title>Pushing ISLE to Staging // The Grinnell College Digital Library Application Developer's Blog</title>
 <meta charset=utf-8>
-<meta name=generator content="Hugo 0.88.1">
+<meta name=generator content="Hugo 0.89.3">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=author content="Mark A. McFate">
 <meta name=description content>
@@ -27,8 +27,8 @@ Directories I&rsquo;ll begin by opening a terminal on the staging host, DGDocker
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Oct 8, 2021 at 11:38am CDT<br>
-Content Updated: 2021-Oct-8 11:15 CDT
+Compiled: Nov 17, 2021 at 4:11pm CST<br>
+Content Updated: 2021-Nov-17 16:07 -0500
 </p>
 <div class=name>by
 <strong>Mark A. McFate</strong></div>
@@ -177,7 +177,7 @@ drush cc all
 </tbody>
 </table>
 <p>A look at the <code>Installation</code> and <code>Configuration</code> guidance provided in the <a href=https://github.com/Islandora/islandora_pdfjs>islandora_pdfjs module&rsquo;s README.md file</a> suggests that I need to do a little more work in the <em>Apache</em> container so I did as it said, then selected the new PDF viewer at</p>
-<p>Then taking a look at our example PDF object, <a href=https://isle-stage.grinnell.edu/islandora/object/grinnell:25500,>https://isle-stage.grinnell.edu/islandora/object/grinnell:25500,</a> shows that it works!</p>
+<p>Then taking a look at our example PDF object, <a href=https://isle-stage.grinnell.edu/islandora/object/grinnell:25500>https://isle-stage.grinnell.edu/islandora/object/grinnell:25500</a>, shows that it works!</p>
 <h2 id=binary-objects>Binary Objects</h2>
 <p>The <a href=https://github.com/discoverygarden/islandora_binary_object>https://github.com/discoverygarden/islandora_binary_object</a> repository that <em>Digital.Grinnell</em> formerly used is now home to an <em>Islandora</em> version 8 module. :sad: That won&rsquo;t do. Fortuntely, there is a version 7 copy of the old binary content model residing at <a href=https://github.com/Islandora-Labs/islandora_binary_object>https://github.com/Islandora-Labs/islandora_binary_object</a>.</p>
 <p>There&rsquo;s no mention of <code>islandora_binary_object</code> in the host&rsquo;s <code>/opt/dg-islandora/.gitmodules</code> file, so lets add this submodule with the following commands executed from the host:</p>
