@@ -1,12 +1,14 @@
 ---
 title: Remote Atom
 date: 2021-04-14T08:51:46-05:00
+lastmod: 2021-11-17T16:07:16-05:00
 publishdate: 2020-07-01
 draft: false
 tags:
   - Atom
   - remote-atom
   - ratom
+  - 52698
 emoji: true
 ---
 
@@ -47,5 +49,28 @@ Host dgdockerx
 | --- |
 | administrator@dgadmin |
 
+
+## Regarding Port 52698
+
+During recent updates to _DGDockerX_ I had network interruptions that left processes on the remote holding on to port 52698, the port that I need to make _ratom_ work.  I found this simple means of freeing up that port...
+
+{{% annotation %}}
+```
+╭─islandora@dgdockerx ~
+╰─$ sudo netstat -plant | grep 52698
+tcp        0      0 127.0.0.1:52698         0.0.0.0:*               LISTEN      121885/sshd: island
+tcp6       0      0 ::1:52698               :::*                    LISTEN      121885/sshd: island
+tcp6       0      0 ::1:41724               ::1:52698               ESTABLISHED 24103/bash
+tcp6       0      0 ::1:52698               ::1:41724               ESTABLISHED 121885/sshd: island
+tcp6       0      0 ::1:52698               ::1:41382               ESTABLISHED 121885/sshd: island
+tcp6       0      0 ::1:41400               ::1:52698               ESTABLISHED 122118/bash
+tcp6       0      0 ::1:41610               ::1:52698               ESTABLISHED 23600/bash
+tcp6       0      0 ::1:41382               ::1:52698               ESTABLISHED 122040/bash
+tcp6       0      0 ::1:52698               ::1:41400               ESTABLISHED 121885/sshd: island
+tcp6       0      0 ::1:52698               ::1:41610               ESTABLISHED 121885/sshd: island
+╭─islandora@dgdockerx ~
+╰─$ sudo kill -9 121885
+```
+{{% /annotation %}}
 
 And that's a wrap.  Until next time...

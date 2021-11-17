@@ -1,0 +1,88 @@
+---
+title: "Digital.Grinnell Transforms"
+publishDate: 2021-11-17
+lastmod: 2021-11-17T13:20:16-05:00
+draft: false
+tags:
+  - XSLT
+  - XSL
+  - transforms
+  - mods
+  - dc
+  - Islandora MODS Display
+supersedes:
+---
+
+[Digital.Grinnell](https://digital.grinnell.edu) relies on two different metadata XSL "transforms" to convert a cataloger's [MODS](http://www.loc.gov/standards/mods/) descriptive data into a modified MODS record and a corresponding [Dublin Core](https://dublincore.org/) record.
+
+## Self-Transforms
+
+The first transform type can be thought of as a "self-transform" because it accepts a MODS input and produces a modified MODS output; there is no change in schema, just changes in the data and its order.
+
+## MODS-to-DC Transforms
+
+All other transforms relevant to this document are "MODS-to-DC" transforms. They accept a valid MODS record and output a corresponding, valid record under the DC schema.
+
+## Metadata Transform Operations
+
+Metadata transformations in _Digital.Grinnell_ take place in three possible scenarios:
+
+  - When a new object is created or an existing object is modified using one of DG's input "Forms".
+  - When one or more new or existing objects are processed in-bulk using IMI, the [Islandora Multi-Importer](https://github.com/mnylc/islandora_multi_importer) module.
+  - When the system admin invokes an [IDU](https://github.com/Digital-Grinnell/dg-islandora/tree/main/sites/all/modules/islandora/idu), or `Islandora Drush Utilities`, action like `SelfTransform`.
+
+## DG's Available Transforms
+
+A recent survey of [DG's staging instance](https://isle-stage.grinnell.edu) found the following transforms, or `.xsl` files, relevant to MODS and DC records.  The first list includes relevant `.xsl` files from the the `./sites/all/modules/islandora/` path. The second list includes relevant `.xsl` files from all other paths.
+
+### Transforms From `./sites/all/modules/islandora/`
+
+| Path | Purpose |
+| --- | --- |
+| ./islandora_importer/xsl/mods_to_dc.xsl | Unknown. |
+| ./islandora_batch/transforms/mods_to_dc.xsl | Unknown.  |
+| ./islandora_mods_display/xsl/mods_display.xsl | See [MODS display module](#mods-display-module) below. |
+| ./islandora_mods_display/xsl/mods_display_compound_parent.xsl | See [MODS Display Module](#mods-display-module) below. |
+| ./islandora_oai/transforms/mods_to_dc_oai.xsl | Unknown. Part of Islandora's OAI export module. |
+| ./islandora/xml/strip_newlines_and_whitespace.xsl | Unknown. |
+| ./islandora/xml/transforms/mods_to_dc.xsl | Apparently, this is the default MODS-to-DC transform shipped with Islandora's core module? |
+| ./islandora_multi_importer/xslt/mods_to_dc.xsl | See [IMI Transforms](#imi-transforms) below. |
+| ./islandora_multi_importer/xslt/islandora_cleanup_mods_extended_strict.xsl | See [IMI Transforms](#imi-transforms) below. |
+| ./islandora_xml_forms/builder/transforms/mods_to_dc.xsl | See [Forms Builder](#forms-builder) below. |
+| ./islandora_xml_forms/builder/self_transforms/islandora_cleanup_mods_extended.xsl | See [Forms Builder](#forms-builder) below. |
+| ./islandora_xml_forms/builder/self_transforms/cleanup_mods.xsl | See [Forms Builder](#forms-builder) below. |
+| ./islandora_xml_forms/builder/self_transforms/islandora_cleanup_mods_extended_strict.xsl | See [Forms Builder](#forms-builder) below. |
+| ./islandora_xml_forms/tests/islandora_solution_pack_test/xsl/self_transform.xsl | Unknown. Part of the "test" soloution pack. |
+| ./islandora_xml_forms/tests/islandora_solution_pack_test/xsl/mods_to_dc_custom.xsl | Unknown. Part of the "test" soloution pack. |
+| ./dg7/xslt/cleanup_mods_and_reorder.xsl | See [DG7 Custom Transforms](#dg7-custom-transforms) below. |
+| ./dg7/xslt/mods_to_dc_grinnell.xsl | See [DG7 Custom Transforms](#dg7-custom-transforms) below. |
+
+### Transforms From All Other Paths
+
+| Path | Purpose |
+| --- | --- |
+| ./sites/default/files/cleanup_mods.xsl | `public://` files.  See [Custom `public://` Files](#custom-public-files) below. |
+| ./sites/default/files/reorder_mods.xsl | `public://` files.  See [Custom `public://` Files](#custom-public-files) below. |
+
+## MODS Display Module
+
+_Digital.Grinnell_ uses a [DG-specific fork](https://github.com/DigitalGrinnell/islandora_mods_display) of the [Islandora MODS Display](https://github.com/jyobb/islandora_mods_display) module to display metadata on individual object pages like the sample shown here.
+
+{{% figure title="Sample MODS Metadata Display from grinnell:11451" src="/images/post-114/grinnell-11451-mods-display.png" %}}
+
+The two transforms listed as part of this module are for display only.  These transforms are engaged "on-demand" when MODS metadata is to be displayed; the output from these transforms is never saved. They transform an object's stored MODS datastream into a display like that shown in the same above.
+
+The `./islandora_mods_display/xsl/mods_display.xsl` is a customized DG-specific copy of a default transform provided by the module. In most cases this is the only transform that exists as part of the module; however, in _Digital.Grinnell_ we have introduced a mechanism that treats compound objects a little differtently than all others. That's where the module customization and the `./islandora_mods_display/xsl/mods_display_compound_parent.xsl` transform come into play.
+
+When DG's custom `islandora_mods_display` module encounters an object which is a "child" of a compound "parent" object, it engages both transforms to remove most data which is "redundant" between the "parent" and its "child".  The display is split into two sections:
+
+  - The top section shows data specific to the child<sup>\*</sup>, and
+  - The bottom section appears below a `Group Record` sub-heading and shows data that is specific to the parent<sup>\*</sup>, or common to both the parent and child.  
+
+<sup>\*</sup>The `Creator` and `Title` elements of BOTH the parent and child are always shown in BOTH sections of the display.
+
+## Forms Builder
+
+In this context the "forms builder" refers to the [Islandora XML Forms](https://github.com/Islandora/islandora_xml_forms) module.   
+
+Time for a... break.
