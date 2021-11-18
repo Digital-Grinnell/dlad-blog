@@ -83,6 +83,13 @@ When DG's custom `islandora_mods_display` module encounters an object which is a
 
 ## Forms Builder
 
-In this context the "forms builder" refers to the [Islandora XML Forms](https://github.com/Islandora/islandora_xml_forms) module.   
+In this context the "forms builder" refers to the [Islandora XML Forms](https://github.com/Islandora/islandora_xml_forms) module. I hate to say it, but this module is an admin nightmare and always has been.  I've found the forms builder difficult to use and impossible to master, there are just too many undocumented or poorly-documented "features".  Forms are made to be customized but they live in the Drupal database where there's no version control.  Even worse, the user interface provided to associate transforms with a form only makes available those transforms that reside within the module at `./islandora_xml_forms/builder/transforms/` and `./islandora_xml_forms/builder/self_transforms/`.  The effect is a module that's intended to be customized, is painful to manage, and with no reasonable means of enforcing version control for necessary customizations!
+
+The transforms associated with the forms builder above are `./islandora_xml_forms/builder/transforms/mods_to_dc.xsl`, `./islandora_xml_forms/builder/self_transforms/islandora_cleanup_mods_extended.xsl`, `./islandora_xml_forms/builder/self_transforms/cleanup_mods.xsl`, and `./islandora_xml_forms/builder/self_transforms/islandora_cleanup_mods_extended_strict.xsl` are all un-customized "default" forms that ship with the _Islandora XML Forms_ module.
+
+{{% annotation %}}
+It is my belief that the two "custom" transforms currently found in the `./dg7/xslt/` directory, namely `cleanup_mods_and_reorder.xsl` and `mods_to_dc_grinnell.xsl`, should be copied to `./islandora_xml_forms/builder/self_transforms/cleanup_mods_and_reorder.xsl` and `./islandora_xml_forms/builder/transforms/mods_to_dc_grinnell.xsl`, respectively.  Once these have been copied into the `islandora_xml_forms` module path they should be associated with _Digital.Grinnell_'s latest XML form for all content model types.
+{{% /annotation %}}
+
 
 Time for a... break.
