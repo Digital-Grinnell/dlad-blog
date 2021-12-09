@@ -2,7 +2,7 @@
 <head>
 <title>Digital.Grinnell Transforms // The Grinnell College Digital Library Application Developer's Blog</title>
 <meta charset=utf-8>
-<meta name=generator content="Hugo 0.89.4">
+<meta name=generator content="Hugo 0.90.0">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=author content="Mark A. McFate">
 <meta name=description content>
@@ -19,7 +19,7 @@ MODS-to-DC Transforms All other transforms relevant to this document are &ldquo;
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/114-digital.grinnell-transforms/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-11-17T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-11-17T13:20:16-05:00">
+<meta property="article:modified_time" content="2021-12-09T13:20:16-06:00">
 </head>
 <body>
 <header class=app-header>
@@ -27,8 +27,8 @@ MODS-to-DC Transforms All other transforms relevant to this document are &ldquo;
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Nov 18, 2021 at 4:22pm CST<br>
-Content Updated: 2021-Nov-17 16:07 -0500
+Compiled: Dec 9, 2021 at 2:35pm CST<br>
+Content Updated: 2021-Dec-9 13:20 CST
 </p>
 <div class=name>by
 <strong>Mark A. McFate</strong></div>
@@ -58,9 +58,10 @@ Content Updated: 2021-Nov-17 16:07 -0500
 <h1 class=post-title>Digital.Grinnell Transforms</h1>
 <div class=post-meta>
 <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-4 min read
+9 min read
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
 Nov 17, 2021
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;Updated: Dec 9, 2021 - 13:20
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
 <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
 <a class=tag href=https://static.grinnell.edu/dlad-blog/tags/xslt/>XSLT</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/xsl/>XSL</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/transforms/>transforms</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/mods/>MODS</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/dc/>dc</a></div></div>
@@ -199,10 +200,118 @@ Nov 17, 2021
 <li>The bottom section appears below a <code>Group Record</code> sub-heading and shows data that is specific to the parent<sup>*</sup>, or common to both the parent and child.</li>
 </ul>
 <p><sup>*</sup>The <code>Creator</code> and <code>Title</code> elements of BOTH the parent and child are always shown in BOTH sections of the display.</p>
-<h2 id=forms-builder>Forms Builder</h2>
+<h3 id=_group-record_-sub-heading-not-displayed><em>Group Record</em> Sub-heading Not Displayed</h3>
+<p>During evaluation of some objects I found that some compound parent objects were not displaying the <em>Group Record</em> sub-heading mentioned above. I devised a quick fix for such compound parents as a simple <em>drush</em> <code>iduF</code> command of the form:</p>
+<p><code>drush -u 1 iduF grinnell:12423 AddXML --title="mods:CModel" --xpath="/mods:mods/mods:extension" --contents="islandora:compoundCModel" --dsid=MODS</code></p>
+<p>That particular command produced this output&mldr;</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown>root@b15318351296:/var/www/html/sites/default# drush -u 1 iduF grinnell:12423 AddXML --title=&#34;mods:CModel&#34; --xpath=&#34;/mods:mods/mods:extension&#34; --contents=&#34;islandora:compoundCModel&#34; --dsid=MODS
+Ok, iduF command &#39;AddXML&#39; was verified on 3-Dec-2021.                                                                                                                                                       [status]
+icu_drush_prep will consider only objects modified with a yyyy-mm-dd local time matching 2*.                                                                                                                [status]
+Starting operation for PID &#39;grinnell:12423&#39; and --repeat=&#39;0&#39; at 12:20:06.                                                                                                                                   [status]
+Fetching all valid object PIDs in the specified range.                                                                                                                                                      [status]
+Completed fetch of 1 valid object PIDs from Solr.                                                                                                                                                           [status]
+Progress: iduFix - AddXML
+icu_Connect: Connection to Fedora repository as &#39;System Admin&#39; is complete.                                                                                                                                 [status]
+[==============================================================================================================================================================================================================] 100%
+Completed 1 &#39;iduFix - AddXML&#39; operations at 12:20:16.                                                                                                                                                       [status]
+
+</code></pre></div><h2 id=forms-builder>Forms Builder</h2>
 <p>In this context the &ldquo;forms builder&rdquo; refers to the <a href=https://github.com/Islandora/islandora_xml_forms>Islandora XML Forms</a> module. I hate to say it, but this module is an admin nightmare and always has been. I&rsquo;ve found the forms builder difficult to use and impossible to master, there are just too many undocumented or poorly-documented &ldquo;features&rdquo;. Forms are made to be customized but they live in the Drupal database where there&rsquo;s no version control. Even worse, the user interface provided to associate transforms with a form only makes available those transforms that reside within the module at <code>./islandora_xml_forms/builder/transforms/</code> and <code>./islandora_xml_forms/builder/self_transforms/</code>. The effect is a module that&rsquo;s intended to be customized, is painful to manage, and with no reasonable means of enforcing version control for necessary customizations!</p>
 <p>The transforms associated with the forms builder above are <code>./islandora_xml_forms/builder/transforms/mods_to_dc.xsl</code>, <code>./islandora_xml_forms/builder/self_transforms/islandora_cleanup_mods_extended.xsl</code>, <code>./islandora_xml_forms/builder/self_transforms/cleanup_mods.xsl</code>, and <code>./islandora_xml_forms/builder/self_transforms/islandora_cleanup_mods_extended_strict.xsl</code> are all un-customized &ldquo;default&rdquo; forms that ship with the <em>Islandora XML Forms</em> module.</p>
 <div class=annotation><p>It is my belief that the two &ldquo;custom&rdquo; transforms currently found in the <code>./dg7/xslt/</code> directory, namely <code>cleanup_mods_and_reorder.xsl</code> and <code>mods_to_dc_grinnell.xsl</code>, should be copied to <code>./islandora_xml_forms/builder/self_transforms/cleanup_mods_and_reorder.xsl</code> and <code>./islandora_xml_forms/builder/transforms/mods_to_dc_grinnell.xsl</code>, respectively. Once these have been copied into the <code>islandora_xml_forms</code> module path they should be associated with <em>Digital.Grinnell</em>&rsquo;s latest XML form for all content model types.</p>
+</div>
+<h3 id=i-was-wrong-again>I Was Wrong, Again</h3>
+<p>A short time ago I put my hypothesis (see the annotation just above) to the test. Specifically, I applied the two XSL transforms from <code>./dg7/xslt/</code> to a new XML form and ingested a new test object. <strong>The results in terms of MODS were NOT good</strong>. In order to capture the history of this testing process I also created a new GitHub repo, <a href=https://https://github.com/Digital-Grinnell/mods-reordering-notes-mystery.git>https://https://github.com/Digital-Grinnell/mods-reordering-notes-mystery.git</a>.</p>
+<h4 id=grinnell20259-and-test22591-test22592-etc><code>grinnell:20259</code> and <code>test:22591</code>, <code>test:22592</code>, etc.</h4>
+<p>The subjects of this section are <code>grinnell:20259</code>, an object that is missing one of the MODS <code>note</code> fields that an editor specified, <code>test:22591</code>, and <code>test:22592</code>, new copies of that same object ingested and subsequently modified for testing purposes using a series of operations.</p>
+<p><code>grinnell:20259</code> was one of many objects found to be &ldquo;missing&rdquo; a MODS <em>note</em> field that was originally input by an object editor but later disappeared from the object&rsquo;s MODS display.</p>
+<h4 id=history-of-grinnell20259>History of <code>grinnell:20259</code></h4>
+<p>I found evidence of changes made to <code>grinnell:20259</code> in <code>/mnt/metadata-review/phpp-dcl/</code> where there are a number of files named <code>grinnell_20259_MODS...</code> as you can see in this directory listing from <code>dgdocker1</code>:</p>
+<pre tabindex=0><code>[root@dgdocker1 phpp-dcl]# ls -alh grinnell_20259*
+-rwxr-xr-x. 1 root root 3.4K Apr 14  2020 grinnell_20259_MODS.log
+-rwxr-xr-x. 1 root root  291 Apr 14  2020 grinnell_20259_MODS.remainder
+-rwxr-xr-x. 1 root root 2.7K Apr  8  2020 grinnell_20259_MODS.xml
+</code></pre><p>The <code>grinnell_20259_MODS.log</code> file pinpoints why the <code>notes</code> element went missing&mldr;</p>
+<pre tabindex=0><code>[root@dgdocker1 phpp-dcl]# cat grinnell_20259_MODS.log
+Object PID: grinnell:20259   14-Apr-2020 16:55
+
+Warning: Unexpected structure detected in the data. The element could not be processed.
+  Unexpected Element: {&quot;primarySort&quot;: &quot; ==&gt; Primary_Sort&quot;, &quot;dg_importIndex&quot;: &quot; ==&gt; Import_Index&quot;}
+Warning: Unexpected structure detected in the data. The element could not be processed.
+  Unexpected Element: &quot;290 of 592 slides from the Imagine Grinnell 2000 collection have been added to the Poweshiek History Preservation Project. A physical copy and TIFF images of all the slides can be found at Drake Community Library Archives in Grinnell, Iowa.&quot;
+Warning: Unexpected structure detected in the data. The element could not be processed.
+  Unexpected Element: &quot;290 of 592 slides from the Imagine Grinnell 2000 collection have been added to the Poweshiek History Preservation Project. A physical copy and TIFF images of all the slides can be found at Drake Community Library Archives in Grinnell, Iowa.&quot;
+Warning: Unexpected structure detected in the data. The element could not be processed.
+  Unexpected Element: {&quot;dateCreated&quot;: &quot; ==&gt; Index_Date&quot;, &quot;dateIssued&quot;: &quot; ==&gt; Date_Issued&quot;, &quot;publisher&quot;: &quot; ==&gt; Publisher&quot;}
+Warning: Unexpected structure detected in the data. The element could not be processed.
+  Unexpected Element: {&quot;digitalOrigin&quot;: &quot; ==&gt; Digital_Origin&quot;, &quot;extent&quot;: &quot; ==&gt; Extent&quot;, &quot;internetMediaType&quot;: &quot; ==&gt; MIME_Type&quot;}
+Warning: Unexpected structure detected in the data. The element could not be processed.
+  Unexpected Element: {&quot;@authority&quot;: &quot;lcsh&quot;, &quot;geographic&quot;: &quot; ==&gt; Subjects_Geographic&quot;}
+Warning: Unexpected structure detected in the data. The element could not be processed.
+  Unexpected Element: {&quot;@authority&quot;: &quot;lcsh&quot;, &quot;geographic&quot;: &quot; ==&gt; Subjects_Geographic&quot;}
+
+Remaining elements are:
+{
+  &quot;mods&quot;: {
+    &quot;@xmlns&quot;: &quot;http://www.loc.gov/mods/v3&quot;,
+    &quot;@xmlns:mods&quot;: &quot;http://www.loc.gov/mods/v3&quot;,
+    &quot;@xmlns:xlink&quot;: &quot;http://www.w3.org/1999/xlink&quot;,
+    &quot;@xmlns:xsi&quot;: &quot;http://www.w3.org/2001/XMLSchema-instance&quot;,
+    &quot;abstract&quot;: &quot; ==&gt; Abstract&quot;,
+    &quot;accessCondition&quot;: &quot; ==&gt; Access_Condition&quot;,
+    &quot;extension&quot;: {
+      &quot;dg_importIndex&quot;: &quot; ==&gt; Import_Index&quot;,
+      &quot;primarySort&quot;: &quot; ==&gt; Primary_Sort&quot;
+    },
+    &quot;genre&quot;: &quot; ==&gt; Genre~AuthorityURI&quot;,
+    &quot;identifier&quot;: [
+      &quot; ==&gt; Local_Identifier&quot;,
+      &quot; ==&gt; Handle&quot;
+    ],
+    &quot;language&quot;: {
+      &quot;languageTerm&quot;: &quot; ==&gt; Language_Names~Codes&quot;
+    },
+    &quot;name&quot;: &quot; ==&gt; Corporate_Names~Roles&quot;,
+    &quot;note&quot;: [
+      &quot; ==&gt; Public_Notes~Types&quot;,
+      &quot;290 of 592 slides from the Imagine Grinnell 2000 collection have been added to the Poweshiek History Preservation Project. A physical copy and TIFF images of all the slides can be found at Drake Community Library Archives in Grinnell, Iowa.&quot;
+    ],
+    &quot;originInfo&quot;: {
+      &quot;dateCreated&quot;: &quot; ==&gt; Index_Date&quot;,
+      &quot;dateIssued&quot;: &quot; ==&gt; Date_Issued&quot;,
+      &quot;publisher&quot;: &quot; ==&gt; Publisher&quot;
+    },
+    &quot;physicalDescription&quot;: {
+      &quot;digitalOrigin&quot;: &quot; ==&gt; Digital_Origin&quot;,
+      &quot;extent&quot;: &quot; ==&gt; Extent&quot;,
+      &quot;internetMediaType&quot;: &quot; ==&gt; MIME_Type&quot;
+    },
+    &quot;relatedItem&quot;: [
+      &quot; ==&gt; Related_Items~Types&quot;,
+      &quot; ==&gt; Related_Items~Types&quot;,
+      &quot; ==&gt; Related_Items~Types&quot;
+    ],
+    &quot;subject&quot;: [
+      &quot; ==&gt; LCSH_Subjects&quot;,
+      {
+        &quot;@authority&quot;: &quot;lcsh&quot;,
+        &quot;geographic&quot;: &quot; ==&gt; Subjects_Geographic&quot;
+      },
+      &quot; ==&gt; Keywords&quot;
+    ],
+    &quot;titleInfo&quot;: &quot; ==&gt; Title&quot;,
+    &quot;typeOfResource&quot;: &quot; ==&gt; Type_of_Resource~AuthorityURI&quot;
+  }
+</code></pre><p>The presence of &ldquo;leftover&rdquo; <strong>data</strong> in the above log is an indication of a problem in the process.</p>
+<pre tabindex=0><code>&quot;note&quot;: [
+  &quot; ==&gt; Public_Notes~Types&quot;,
+  &quot;290 of 592 slides from the Imagine Grinnell 2000 collection have been added to the Poweshiek History Preservation Project. A physical copy and TIFF images of all the slides can be found at Drake Community Library Archives in Grinnell, Iowa.&quot;
+],
+</code></pre><p>It&rsquo;s acceptable and expected that some &ldquo;labels&rdquo; will be leftover after the record is processed, but there should never be any &ldquo;data&rdquo; left behind. This is also reflected in the contents of <code>grinnell_20259_MODS.remainder</code> which shows:</p>
+<pre tabindex=0><code>[root@dgdocker1 phpp-dcl]# cat grinnell_20259_MODS.remainder
+{&quot;note&quot;: [&quot;290 of 592 slides from the Imagine Grinnell 2000 collection have been added to the Poweshiek History Preservation Project. A physical copy and TIFF images of all the slides can be found at Drake Community Library Archives in Grinnell, Iowa.&quot;], &quot;subject&quot;: [{&quot;@authority&quot;: &quot;lcsh&quot;
+</code></pre>
+<div class=annotation><p>The outcomes noted above point to a deficiency in the logic of the <strong>Map-MODS-to-MASTER</strong> Python 3 script that was used to map MODS to a new <code>mods.tsv</code> file on April 14, 2020.</p>
 </div>
 <p>Time for a&mldr; break.</p>
 </div>
