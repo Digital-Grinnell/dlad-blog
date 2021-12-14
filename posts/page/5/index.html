@@ -2,7 +2,7 @@
 <head>
 <title>Posts // The Grinnell College Digital Library Application Developer's Blog</title>
 <meta charset=utf-8>
-<meta name=generator content="Hugo 0.90.0">
+<meta name=generator content="Hugo 0.90.1">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=author content="Mark A. McFate">
 <meta name=description content>
@@ -21,8 +21,8 @@
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Dec 9, 2021 at 2:35pm CST<br>
-Content Updated: 2021-Dec-9 13:20 CST
+Compiled: Dec 14, 2021 at 3:22pm CST<br>
+Content Updated: 2021-Dec-14 00:00 UTC
 </p>
 <div class=name>by
 <strong>Mark A. McFate</strong></div>
@@ -49,6 +49,16 @@ Content Updated: 2021-Dec-9 13:20 CST
 <article>
 <h1>Posts</h1>
 <ul class=posts-list>
+<br>
+<a target=_blank class=posts-list-item-title href=https://static.grinnell.edu/dlad-blog/posts/077-oral-history-transcription-workflow/>Oral History Transcription Workflow</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;14 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Jun 1, 2020
+<br>
+<span class=summary>Digital.Grinnell features a fair number of transcribed digital oral histories. Most are interviews conducted with Grinnelleans as they return to campus annualy for alumni Reunion or Grinnell’s Multicultural Reunion.
+What follows is largely sharable “public” content lifted from a “private” GitHub repository at https://github.com/McFateM/OHScribe, the README.md and WORKFLOW.md files in particular.
+OHScribe! https://ohscribe.grinnell.edu Note: This link was disabled in the spring of 2020, but is working again as of July 1, 2020, on host DGDocker3.
+This is a Python 3 and Flask web application designed to transform oral history transcripts, presumably created using InqScribe, into XML suitable for ingest into the Islandora Oral Histories Solution Pack to populate a TRANSCRIPT datastream and its derivatives. ...</span>
+</span>
 <br>
 <a target=_blank class=posts-list-item-title href=https://static.grinnell.edu/dlad-blog/posts/076-digital.grinnell-custom-mods-display/>Digital.Grinnell Custom MODS Display</a>
 <span class=posts-list-item-description>
@@ -85,6 +95,7 @@ The server-info Script You’ll find the script itself in this gist. Sample inst
 <a target=_blank class=posts-list-item-title href=https://static.grinnell.edu/dlad-blog/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/>Exporting, Editing, & Replacing MODS Datastreams: Technical Details</a>
 <span class=posts-list-item-description>
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;14 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Apr 23, 2020
+&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg>Superseded by posts/115-exporting-editing-replacing-mods-datastreams-updated-technical-details</strong>
 <br>
 <span class=summary>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
 A 5-Step Workflow This document is follow-up, with technical details, to Exporting, Editing, & Replacing MODS Datastreams, post 069, in my blog. In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 Grinnell College Libraries review of Digital Grinnell MODS metadata. ...</span>
@@ -121,16 +132,6 @@ And it’s time to do some real work… I’ll be back to share more here soon. 
 <br>
 <span class=summary>I love git and GitHub, and I can certainly appreciate the usefullness of .gitignore, but there are times when I’d really like to move an ENTIRE project to a new home. I have in my head a process that might play out like this…
 Fetch a list of all the files and directories that .gitignore is ignoring. Pass that list to a tar or gzip command (maybe two of them) with encryption to create a secure, compressed archive. Commit the archive to the project repo in GitHub, or keep it in a safe place for restoration in the future. ...</span>
-</span>
-<br>
-<a target=_blank class=posts-list-item-title href=https://static.grinnell.edu/dlad-blog/posts/065-create-new-github-project-from-a-branch/>How to Create a New GitHub Repo from an Existing Branch</a>
-<span class=posts-list-item-description>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;1 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Feb 26, 2020
-<br>
-<span class=summary>I just found a handy git/GitHub workflow in a Quora post titled “How do I create a new GitHub repository from a branch in an existing repository?". And I used it, successfully, to create a new GitHub repo for my updated Drupal 8 rendition of the Wieting Theatre’s website.
-The new GitHub repo is wieting-D8-DO and it was created from the wieting branch of docker-compose-drupal.
-The commands I used looked something like this:
-cd ~/GitHub git clone https://github.com/SummittDweller/docker-compose-drupal.git cd docker-compose-drupal git checkout master git reset --hard origin/wieting git checkout wieting git remote rm origin git remote add origin https://github. ...</span>
 </span>
 </ul>
 <ul class=pagination>

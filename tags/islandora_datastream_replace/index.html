@@ -2,7 +2,7 @@
 <head>
 <title>islandora_datastream_replace // The Grinnell College Digital Library Application Developer's Blog</title>
 <meta charset=utf-8>
-<meta name=generator content="Hugo 0.90.0">
+<meta name=generator content="Hugo 0.90.1">
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=author content="Mark A. McFate">
 <meta name=description content>
@@ -21,8 +21,8 @@
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Dec 9, 2021 at 2:35pm CST<br>
-Content Updated: 2021-Dec-9 13:20 CST
+Compiled: Dec 14, 2021 at 3:22pm CST<br>
+Content Updated: 2021-Dec-14 00:00 UTC
 </p>
 <div class=name>by
 <strong>Mark A. McFate</strong></div>
@@ -51,6 +51,13 @@ Content Updated: 2021-Dec-9 13:20 CST
 <h1>islandora_datastream_replace</h1>
 <ul class=posts-list>
 <br>
+<a target=_blank class=posts-list-item-title href=https://static.grinnell.edu/dlad-blog/posts/115-exporting-editing-replacing-mods-datastreams-updated-technical-details/>Exporting, Editing & Replacing MODS Datastreams: Updated Technical Details</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;9 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Dec 14, 2021
+<br>
+<span class=summary>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new _Drush_ command: _islandora\_mods_post\_processing_, an addition to my previous work in [islandora_mods_via_twig](https://github.com/DigitalGrinnell/islandora_mods_via_twig). See my new post, [Islandora MODS Post Processing](/posts/075-islandora-mods-post-processing/) for complete details. Attention: In November 2021 a recommended seventh step was added to this workflow. That addition is documented in the final section of this document. A 7-Step Workflow This document is follow-up, with technical details, to Exporting, Editing & Replacing MODS Datastreams, post 069, in my blog. ...</span>
+</span>
+<br>
 <a target=_blank class=posts-list-item-title href=https://static.grinnell.edu/dlad-blog/posts/082-here-there-be-warcs/>Here There Be WARCs</a>
 <span class=posts-list-item-description>
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;8 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Jun 17, 2020
@@ -62,6 +69,7 @@ A WARC is essentially a file format used to capture the content and organization
 <a target=_blank class=posts-list-item-title href=https://static.grinnell.edu/dlad-blog/posts/070-exporting-editing-replacing-mods-datastreams-technical-details/>Exporting, Editing, & Replacing MODS Datastreams: Technical Details</a>
 <span class=posts-list-item-description>
 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;14 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Apr 23, 2020
+&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg>Superseded by posts/115-exporting-editing-replacing-mods-datastreams-updated-technical-details</strong>
 <br>
 <span class=summary>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
 A 5-Step Workflow This document is follow-up, with technical details, to Exporting, Editing, & Replacing MODS Datastreams, post 069, in my blog. In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 Grinnell College Libraries review of Digital Grinnell MODS metadata. ...</span>
