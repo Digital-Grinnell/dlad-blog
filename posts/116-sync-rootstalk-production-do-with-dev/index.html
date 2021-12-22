@@ -1,0 +1,376 @@
+<!doctype html><html lang=en-us>
+<head>
+<title>Sync Rootstalk Production (DigitalOcean) with Dev // The Grinnell College Digital Library Application Developer's Blog</title>
+<meta charset=utf-8>
+<meta name=generator content="Hugo 0.91.0">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=author content="Mark A. McFate">
+<meta name=description content>
+<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.a0a90779d7d7dc7111202c97d61bd4963b7236dd704adac1f03ff9f07a45d022.css>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Sync Rootstalk Production (DigitalOcean) with Dev">
+<meta name=twitter:description content="My goal for this morning, December 22, 2021, was to find a process I could reliably use to synchronize changes in the development copy of Rootstalk (the main branch https://github.com/Digital-Grinnell/rootstalk) with our production deployment (the main branch of https://github.com/Digital-Grinnell/rootstalk-DO) to DigitalOcean. I used guidance found in How To Merge Between Two Local Repositories to accomplish this with mixed results.
+The Workflow I&rsquo;ve captured the inputs and output of the workflow below. The process basically involved adding a new local remote named dev to my existing rootstalk-DO local repository, and doing a git fetch of that new remote.">
+<meta property="og:title" content="Sync Rootstalk Production (DigitalOcean) with Dev">
+<meta property="og:description" content="My goal for this morning, December 22, 2021, was to find a process I could reliably use to synchronize changes in the development copy of Rootstalk (the main branch https://github.com/Digital-Grinnell/rootstalk) with our production deployment (the main branch of https://github.com/Digital-Grinnell/rootstalk-DO) to DigitalOcean. I used guidance found in How To Merge Between Two Local Repositories to accomplish this with mixed results.
+The Workflow I&rsquo;ve captured the inputs and output of the workflow below. The process basically involved adding a new local remote named dev to my existing rootstalk-DO local repository, and doing a git fetch of that new remote.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/116-sync-rootstalk-production-do-with-dev/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-12-22T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-12-22T00:00:00+00:00">
+</head>
+<body>
+<header class=app-header>
+<a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a>
+<h2>The Grinnell College Digital Library Application Developer's Blog</h2>
+<div class=author-block>
+<p class=site-rev>
+Compiled: Dec 22, 2021 at 12:15pm CST<br>
+Content Updated: 2021-Dec-22 00:00 UTC
+</p>
+<div class=name>by
+<strong>Mark A. McFate</strong></div>
+<div class=address>Grinnell College Libraries</div>
+<div class=link><a href=mailto:></a></div>
+<br>
+</div>
+<nav class=sidebar-nav>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a>
+</nav>
+<p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+<div class=app-header-social>
+<a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a>
+<a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a>
+</div>
+<p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+</header>
+<main class=app-container>
+<div class=breadcrumbs>
+<a href=https://static.grinnell.edu/dlad-blog/>Home</a>
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/>Posts</a>
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/116-sync-rootstalk-production-do-with-dev/>116 sync rootstalk production do with dev</a>
+</div>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>Sync Rootstalk Production (DigitalOcean) with Dev</h1>
+<div class=post-meta>
+<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+8 min read
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+Dec 22, 2021
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
+<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+<a class=tag href=https://static.grinnell.edu/dlad-blog/tags/rootstalk/>Rootstalk</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/sync/>sync</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/production/>production</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/digitalocean/>DigitalOcean</a></div></div>
+</header>
+<div class=post-content>
+<p>My goal for this morning, December 22, 2021, was to find a process I could reliably use to synchronize changes in the development copy of <em>Rootstalk</em> (the <code>main</code> branch <a href=https://github.com/Digital-Grinnell/rootstalk>https://github.com/Digital-Grinnell/rootstalk</a>) with our production deployment (the <code>main</code> branch of <a href=https://github.com/Digital-Grinnell/rootstalk-DO>https://github.com/Digital-Grinnell/rootstalk-DO</a>) to <em>DigitalOcean</em>. I used guidance found in <a href=https://stackoverflow.com/questions/21360077/how-to-merge-between-two-local-repositories>How To Merge Between Two Local Repositories</a> to accomplish this with mixed results.</p>
+<h2 id=the-workflow>The Workflow</h2>
+<p>I&rsquo;ve captured the inputs and output of the workflow below. The process basically involved adding a new local remote named <code>dev</code> to my existing <code>rootstalk-DO</code> local repository, and doing a <code>git fetch</code> of that new remote. Everything in the <code>code block</code> that follows is as-it-was-executed on my <em>Grinnell College</em> MacBook&mldr;</p>
+<pre tabindex=0><code>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk-DO ‹main›
+╰─$ cd ../rootstalk
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk ‹main›
+╰─$ git pull
+Already up to date.
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk ‹main›
+╰─$ cd ../rootstalk-DO
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk-DO ‹main›
+╰─$ git remote add dev ../rootstalk
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk-DO ‹main›
+╰─$ git fetch dev
+remote: Enumerating objects: 664, done.
+remote: Counting objects: 100% (664/664), done.
+remote: Compressing objects: 100% (616/616), done.
+remote: Total 624 (delta 471), reused 1 (delta 0), pack-reused 0
+Receiving objects: 100% (624/624), 23.39 MiB | 30.87 MiB/s, done.
+Resolving deltas: 100% (471/471), completed with 30 local objects.
+From ../rootstalk
+ * [new branch]      gokcebel      -&gt; dev/gokcebel
+ * [new branch]      main          -&gt; dev/main
+ * [new branch]      mcfate        -&gt; dev/mcfate
+ * [new branch]      sep-23-mcfate -&gt; dev/sep-23-mcfate
+ * [new branch]      v4i2          -&gt; dev/v4i2
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk-DO ‹main›
+╰─$ git merge dev/main
+Removing content/past-issues/volume-vii-issue-1/rootstalk_leaf.svg:Zone.Identifier
+Removing content/past-issues/volume-vi-issue-1/rootstalk_leaf.svg:Zone.Identifier
+Removing content/images/rootstalk_leaf.svg:Zone.Identifier
+Removing assets/sass/_custom.scss:Zone.Identifier
+Removing Workflow Text.pdf:Zone.Identifier
+Removing Workflow Diagrams.zip:Zone.Identifier
+Merge made by the 'recursive' strategy.
+ .github/workflows/azure-static-web-apps-delightful-stone-01bd98310.yml                      |   45 +
+ .github/workflows/azure-static-web-apps-icy-tree-020380010.yml                              |   45 +
+ .hugo_build.lock                                                                            |    0
+ Git-Workflow-in-Windows.md                                                                  |  119 +++
+ Meeting Notes.docx =&gt; Meeting-Notes.docx                                                    |  Bin
+ Workflow Diagrams.zip:Zone.Identifier                                                       |    4 -
+ Workflow Text.pdf:Zone.Identifier                                                           |    4 -
+ Workflow-Diagrams/1.png                                                                     |  Bin 0 -&gt; 247700 bytes
+ Workflow-Diagrams/10.png                                                                    |  Bin 0 -&gt; 1892560 bytes
+ Workflow-Diagrams/11.png                                                                    |  Bin 0 -&gt; 970248 bytes
+ Workflow-Diagrams/2.png                                                                     |  Bin 0 -&gt; 1313699 bytes
+ Workflow-Diagrams/3.png                                                                     |  Bin 0 -&gt; 1060465 bytes
+ Workflow-Diagrams/4.png                                                                     |  Bin 0 -&gt; 1020743 bytes
+ Workflow-Diagrams/5.png                                                                     |  Bin 0 -&gt; 1419989 bytes
+ Workflow-Diagrams/6.png                                                                     |  Bin 0 -&gt; 1372473 bytes
+ Workflow-Diagrams/7.png                                                                     |  Bin 0 -&gt; 1251133 bytes
+ Workflow-Diagrams/8.png                                                                     |  Bin 0 -&gt; 1438089 bytes
+ Workflow-Diagrams/9.png                                                                     |  Bin 0 -&gt; 1233239 bytes
+ Workflow Text.pdf =&gt; Workflow-Text.pdf                                                      |  Bin
+ alina-git-workflow.md                                                                       |   10 +-
+ assets/sass/_custom.scss                                                                    |    6 +
+ assets/sass/_custom.scss:Zone.Identifier                                                    |    3 -
+ complex-pdf-to-markdown.py                                                                  |  273 ++++++
+ config.toml                                                                                 |    4 +-
+ content/images/rootstalk_leaf.svg:Zone.Identifier                                           |    3 -
+ content/past-issues/volume-iv-issue-1/.not-ready/mutel.md                                   |   31 +
+ content/past-issues/volume-iv-issue-1/.pending-new/bernal-pending.md                        | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/birds-pending.md                         | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/burt-pending.md                          | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/chirdon-pending.md                       | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/clark-pending.md                         | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/dunham-pending.md                        | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/evans-pending.md                         | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/freeberg-pending.md                      | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/jackson-pending.md                       | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/kugel-pending.md                         | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/lewis-beck-pending.md                    | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/luftig-pending.md                        |  738 +++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/moffett-pending.md                       | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/munoz-pending.md                         | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/mutel-pending.md                         | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending-new/publisher-pending.md                     |   25 +
+ content/past-issues/volume-iv-issue-1/.pending-new/rideout-pending.md                       | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/birds.md                                     | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/burt-pending.md                              | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/chirdon-pending.md                           |  103 +++
+ content/past-issues/volume-iv-issue-1/.pending/chirdon.md                                   |  103 +++
+ content/past-issues/volume-iv-issue-1/.pending/clark.md                                     | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/dunham-pending.md                            | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/evans-pending.md                             | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/freeburg.md                                  | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/jackson-pending.md                           | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/kugel-pending.md                             |   28 +
+ content/past-issues/volume-iv-issue-1/.pending/lewis-beck.md                                | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/luftig.md                                    | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/moffett.md                                   | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/munoz.md                                     | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/mutel.md                                     | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/publisher.md                                 | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/.pending/rideout.md                                   | 2185 ++++++++++++++++++++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/2017-fall.yml                                         |   22 +
+ content/past-issues/volume-iv-issue-1/_index.md                                             |    6 +-
+ content/past-issues/volume-iv-issue-1/bernal.md                                             |   67 ++
+ content/past-issues/volume-iv-issue-1/birds.md                                              |   70 ++
+ content/past-issues/volume-iv-issue-1/burt-volume-iv-issue-1.md                             |   38 +
+ content/past-issues/volume-iv-issue-1/chirdon.md                                            |  103 +++
+ content/past-issues/volume-iv-issue-1/clark.md                                              |   73 ++
+ content/past-issues/volume-iv-issue-1/dunham.md                                             | 1333 +++++++++++++++++++++++++++
+ content/past-issues/volume-iv-issue-1/editor.md                                             |   33 +
+ content/past-issues/volume-iv-issue-1/evans-volume-iv-issue-1.md                            |  122 +++
+ Workflow Diagrams.zip =&gt; content/past-issues/volume-iv-issue-1/evans-volume-iv-issue-1.pdf  |  Bin 13221882 -&gt; 11043734 bytes
+ content/past-issues/volume-iv-issue-1/freeberg.md                                           |   93 ++
+ content/past-issues/volume-iv-issue-1/jackson.md                                            |  105 +++
+ content/past-issues/volume-iv-issue-1/kugel.md                                              |   19 +
+ content/past-issues/volume-iv-issue-1/lewis-beck.md                                         |  132 +++
+ content/past-issues/volume-iv-issue-1/luftig.md                                             |  738 +++++++++++++++
+ content/past-issues/volume-iv-issue-1/moffett.md                                            |  109 +++
+ content/past-issues/volume-iv-issue-1/munoz.md                                              |   26 +
+ content/past-issues/volume-iv-issue-1/mutel.md                                              |   32 +
+ content/past-issues/volume-iv-issue-1/publisher.md                                          |   25 +
+ content/past-issues/volume-iv-issue-1/rideout.md                                            |   69 ++
+ content/past-issues/volume-iv-issue-2/_index.md                                             |    2 +-
+ content/past-issues/volume-iv-issue-2/birds-of-the-prairie-vol-iv-issue-2.md                |   21 +-
+ content/past-issues/volume-iv-issue-2/closeup-keith-kozloff.md                              |   23 +-
+ content/past-issues/volume-iv-issue-2/closeup-kristine-heykants.md                          |   19 +-
+ content/past-issues/volume-iv-issue-2/editors-note-VolIV_Issue2.md                          |    5 +-
+ content/past-issues/volume-iv-issue-2/finding-the-lost-duck.md                              |   13 +-
+ content/past-issues/volume-iv-issue-2/from-my-table-to-yours.md                             |   13 +-
+ content/past-issues/volume-iv-issue-2/gnosis.md                                             |    7 +-
+ content/past-issues/volume-iv-issue-2/growing-up-in-kansas.md                               |   31 +-
+ content/past-issues/volume-iv-issue-2/johansson-his-ambassador.md                           |  860 +++++++++++++++++
+ .../past-issues/volume-iv-issue-2/{his-ambassador.md =&gt; johansson-his-ambassador.md.save}   |   11 +-
+ content/past-issues/volume-iv-issue-2/lac-la-biche-mission.md                               |   13 +-
+ content/past-issues/volume-iv-issue-2/making-room.md                                        |    9 +-
+ .../past-issues/volume-iv-issue-2/{peaches-meet-corn.md =&gt; manoylov-peaches-meet-corn.md}   |   51 +-
+ content/past-issues/volume-iv-issue-2/two-poems-bill-graeser.md                             |    8 +-
+ content/past-issues/volume-vi-issue-1/rootstalk_leaf.svg:Zone.Identifier                    |    3 -
+ content/past-issues/volume-vii-issue-1/rootstalk_leaf.svg:Zone.Identifier                   |    3 -
+ layouts/_default/list.html                                                                  |   22 +-
+ layouts/_default/single.html                                                                |   60 +-
+ layouts/index.html                                                                          |   26 +-
+ layouts/shortcodes/audio_azure.html                                                         |    7 +
+ layouts/shortcodes/figure_azure.html                                                        |   44 +
+ layouts/shortcodes/video_azure.html                                                         |   38 +
+ pdf-to-markdown.py                                                                          |   58 ++
+ resources/_gen/assets/scss/sass/styles.scss_5bac553973685aab030dcdbdaeaab6f8.content        |    2 +-
+ resources/_gen/assets/scss/sass/styles.scss_5bac553973685aab030dcdbdaeaab6f8.json           |    2 +-
+ 107 files changed, 69337 insertions(+), 138 deletions(-)
+ create mode 100644 .github/workflows/azure-static-web-apps-delightful-stone-01bd98310.yml
+ create mode 100644 .github/workflows/azure-static-web-apps-icy-tree-020380010.yml
+ create mode 100644 .hugo_build.lock
+ create mode 100644 Git-Workflow-in-Windows.md
+ rename Meeting Notes.docx =&gt; Meeting-Notes.docx (100%)
+ delete mode 100644 Workflow Diagrams.zip:Zone.Identifier
+ delete mode 100644 Workflow Text.pdf:Zone.Identifier
+ create mode 100644 Workflow-Diagrams/1.png
+ create mode 100644 Workflow-Diagrams/10.png
+ create mode 100644 Workflow-Diagrams/11.png
+ create mode 100644 Workflow-Diagrams/2.png
+ create mode 100644 Workflow-Diagrams/3.png
+ create mode 100644 Workflow-Diagrams/4.png
+ create mode 100644 Workflow-Diagrams/5.png
+ create mode 100644 Workflow-Diagrams/6.png
+ create mode 100644 Workflow-Diagrams/7.png
+ create mode 100644 Workflow-Diagrams/8.png
+ create mode 100644 Workflow-Diagrams/9.png
+ rename Workflow Text.pdf =&gt; Workflow-Text.pdf (100%)
+ delete mode 100644 assets/sass/_custom.scss:Zone.Identifier
+ create mode 100644 complex-pdf-to-markdown.py
+ delete mode 100644 content/images/rootstalk_leaf.svg:Zone.Identifier
+ create mode 100644 content/past-issues/volume-iv-issue-1/.not-ready/mutel.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/bernal-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/birds-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/burt-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/chirdon-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/clark-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/dunham-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/evans-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/freeberg-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/jackson-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/kugel-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/lewis-beck-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/luftig-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/moffett-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/munoz-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/mutel-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/publisher-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending-new/rideout-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/birds.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/burt-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/chirdon-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/chirdon.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/clark.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/dunham-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/evans-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/freeburg.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/jackson-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/kugel-pending.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/lewis-beck.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/luftig.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/moffett.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/munoz.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/mutel.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/publisher.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/.pending/rideout.md
+ create mode 100755 content/past-issues/volume-iv-issue-1/2017-fall.yml
+ create mode 100644 content/past-issues/volume-iv-issue-1/bernal.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/birds.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/burt-volume-iv-issue-1.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/chirdon.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/clark.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/dunham.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/editor.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/evans-volume-iv-issue-1.md
+ rename Workflow Diagrams.zip =&gt; content/past-issues/volume-iv-issue-1/evans-volume-iv-issue-1.pdf (53%)
+ mode change 100644 =&gt; 100755
+ create mode 100644 content/past-issues/volume-iv-issue-1/freeberg.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/jackson.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/kugel.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/lewis-beck.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/luftig.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/moffett.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/munoz.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/mutel.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/publisher.md
+ create mode 100644 content/past-issues/volume-iv-issue-1/rideout.md
+ create mode 100644 content/past-issues/volume-iv-issue-2/johansson-his-ambassador.md
+ rename content/past-issues/volume-iv-issue-2/{his-ambassador.md =&gt; johansson-his-ambassador.md.save} (99%)
+ rename content/past-issues/volume-iv-issue-2/{peaches-meet-corn.md =&gt; manoylov-peaches-meet-corn.md} (76%)
+ delete mode 100644 content/past-issues/volume-vi-issue-1/rootstalk_leaf.svg:Zone.Identifier
+ delete mode 100644 content/past-issues/volume-vii-issue-1/rootstalk_leaf.svg:Zone.Identifier
+ create mode 100644 layouts/shortcodes/audio_azure.html
+ create mode 100644 layouts/shortcodes/figure_azure.html
+ create mode 100644 layouts/shortcodes/video_azure.html
+ create mode 100644 pdf-to-markdown.py
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk-DO ‹main›
+╰─$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 87 commits.
+  (use &quot;git push&quot; to publish your local commits)
+
+nothing to commit, working tree clean
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk-DO ‹main›
+╰─$ hugo server
+Start building sites …
+hugo v0.87.0+extended darwin/arm64 BuildDate=unknown
+WARN 2021/12/22 11:43:28 Page.Hugo is deprecated and will be removed in a future release. Use the global hugo function.
+.File.UniqueID on zero object. Wrap it in if or with: {{ with .File }}{{ .UniqueID }}{{ end }}
+
+                   | EN
+-------------------+------
+  Pages            | 256
+  Paginator pages  |  10
+  Non-page files   | 171
+  Static files     |  27
+  Processed images |   0
+  Aliases          |  62
+  Sitemaps         |   1
+  Cleaned          |   0
+
+Built in 605 ms
+Watching for changes in /Users/mcfatem/GitHub/rootstalk-DO/{archetypes,assets,content,layouts,static,themes}
+Watching for config changes in /Users/mcfatem/GitHub/rootstalk-DO/config.toml
+Environment: &quot;development&quot;
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at //localhost:1313/ (bind address 127.0.0.1)
+Press Ctrl+C to stop
+^C%
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk-DO ‹main›
+╰─$ git push
+Enumerating objects: 702, done.
+Counting objects: 100% (664/664), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (145/145), done.
+Writing objects: 100% (624/624), 23.39 MiB | 1.31 MiB/s, done.
+Total 624 (delta 472), reused 622 (delta 471), pack-reused 0
+remote: Resolving deltas: 100% (472/472), completed with 30 local objects.
+To https://github.com/Digital-Grinnell/rootstalk-DO
+   90aa079..7a1c223  main -&gt; main
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk-DO ‹main›
+╰─$
+</code></pre><h2 id=the-bad-news>The Bad News</h2>
+<p>The bad news here is two-fold:</p>
+<ol>
+<li>I got the following email from <em>Azure</em> indicating a failed deployment. Why? Well, because a GitHub Action from the <code>rootstalk</code> remote, one that&rsquo;s intended only to run in that repository&rsquo;s <em>Azure</em> environment, got executed here in the new <code>rootstalk-DO</code> repository. Fortunately, this does NO HARM.</li>
+</ol>
+<pre tabindex=0><code>[Digital-Grinnell/rootstalk-DO] Run failed: Azure Static Web Apps CI/CD - main (7a1c223)
+</code></pre><ol start=2>
+<li>The production instance of <em>Rootstalk</em> now displays a <code>© Rootstalk - from 'main'</code> footer at the bottom of every page. Why? Well, because the <code>config.toml</code> file from <code>rootstalk</code> found its way into <code>rootstalk-DO</code> and it defines the footer to display that way. That display was intended to help us determine which branch of the <code>rootstalk</code> code is being displayed <strong>in development</strong>.</li>
+</ol>
+<p>Perhaps I need to investigate a way to populate that <code>config.toml</code> variable at compile-time? That would be sweet!</p>
+<h2 id=the-good-news>The Good News</h2>
+<p>The good news is simple&mldr; IT WORKED! <a href=https://rootstalk.grinnell.edu><em>Rootstalk</em></a> is now up-to-date, with the minor issue reported above, and the deployment to <em>DigitalOcean</em> was automatic, as intended. The message I see in my <em>DigitalOcean</em> dashboard says:</p>
+<pre tabindex=0><code>Recent Activity
+
+Dec 22 2021
+LIVE
+Digital-Grinnell's deployment went live
+
+    Trigger: Digital-Grinnell pushed 7a1c223 to Digital-Grinnell/rootstalk-DO/main
+
+11:45:15 AM
+</code></pre><p>And that&rsquo;s a wrap. Until next time, stay safe and wash your hands! 😄</p>
+</div>
+<div class=post-footer>
+<div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//digital-library-applications-developer-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</article>
+</main>
+</body>
+</html>
