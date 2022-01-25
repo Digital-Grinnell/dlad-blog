@@ -11,6 +11,8 @@ tags:
 
 My goal for this morning, December 22, 2021, was to find a process I could reliably use to synchronize changes in the development copy of _Rootstalk_ (the `main` branch https://github.com/Digital-Grinnell/rootstalk) with our production deployment (the `main` branch of https://github.com/Digital-Grinnell/rootstalk-DO) to _DigitalOcean_.  I used guidance found in [How To Merge Between Two Local Repositories](https://stackoverflow.com/questions/21360077/how-to-merge-between-two-local-repositories) to accomplish this with mixed results.
 
+Note: Our `staging` site cast from the `main` branch of https://github.com/Digital-Grinnell/rootstalk, an _Azure_ static app, can be accessed via https://icy-tree-020380010.azurestaticapps.net.  
+
 ## The Workflow
 
 I've captured the inputs and output of the workflow below.  The process basically involved adding a new local remote named `dev` to my existing `rootstalk-DO` local repository, and doing a `git fetch` of that new remote.  Everything in the `code block` that follows is as-it-was-executed on my _Grinnell College_ MacBook...  
