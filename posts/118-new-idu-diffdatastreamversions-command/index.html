@@ -1,0 +1,286 @@
+<!doctype html><html lang=en-us>
+<head>
+<title>IDU DiffDatastreamVersions Command // The Grinnell College Digital Library Application Developer's Blog</title>
+<meta charset=utf-8>
+<meta name=generator content="Hugo 0.92.2">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=author content="Mark A. McFate">
+<meta name=description content>
+<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.a0a90779d7d7dc7111202c97d61bd4963b7236dd704adac1f03ff9f07a45d022.css>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="IDU DiffDatastreamVersions Command">
+<meta name=twitter:description content="Recently, I have been catching up on processing some pending metadata review edits in DG&rsquo;s Faculty Scholarship and Student Scholarship collections. Since these two collections are relatively &ldquo;fluid&rdquo;, they frequent additions and sometimes changes, I was worried that introducing bulk edits could negatively impact some objects. So, I set out to find or create a tool that would help me evaluate the impact of these edits.
+Islandora Pretty Text Diff I was fortunate to find a very nice tool all ready-to-go, the Islandora Pretty Text Diff module, specifically islandora_pretty_text_diff.">
+<meta property="og:title" content="IDU DiffDatastreamVersions Command">
+<meta property="og:description" content="Recently, I have been catching up on processing some pending metadata review edits in DG&rsquo;s Faculty Scholarship and Student Scholarship collections. Since these two collections are relatively &ldquo;fluid&rdquo;, they frequent additions and sometimes changes, I was worried that introducing bulk edits could negatively impact some objects. So, I set out to find or create a tool that would help me evaluate the impact of these edits.
+Islandora Pretty Text Diff I was fortunate to find a very nice tool all ready-to-go, the Islandora Pretty Text Diff module, specifically islandora_pretty_text_diff.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/118-new-idu-diffdatastreamversions-command/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-02-14T00:00:00+00:00">
+<meta property="article:modified_time" content="2022-02-14T00:00:00+00:00">
+</head>
+<body>
+<header class=app-header>
+<a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a>
+<h2>The Grinnell College Digital Library Application Developer's Blog</h2>
+<div class=author-block>
+<p class=site-rev>
+Compiled: Feb 14, 2022 at 3:16pm CST<br>
+Content Updated: 2022-Feb-14 00:00 UTC
+</p>
+<div class=name>by
+<strong>Mark A. McFate</strong></div>
+<div class=address>Grinnell College Libraries</div>
+<div class=link><a href=mailto:></a></div>
+<br>
+</div>
+<nav class=sidebar-nav>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a>
+</nav>
+<p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
+<div class=app-header-social>
+<a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a>
+<a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a>
+</div>
+<p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
+</header>
+<main class=app-container>
+<div class=breadcrumbs>
+<a href=https://static.grinnell.edu/dlad-blog/>Home</a>
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/>Posts</a>
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/118-new-idu-diffdatastreamversions-command/>118 new idu diffdatastreamversions command</a>
+</div>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title>IDU DiffDatastreamVersions Command</h1>
+<div class=post-meta>
+<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+7 min read
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+Feb 14, 2022
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
+<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+<a class=tag href=https://static.grinnell.edu/dlad-blog/tags/idu/>IDU</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/diff/>diff</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/datastream/>Datastream</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/version/>version</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/islandora_pretty_text_diff/>islandora_pretty_text_diff</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/islandora_datastream_replace/>islandora_datastream_replace</a></div></div>
+</header>
+<div class=post-content>
+<p>Recently, I have been catching up on processing some pending metadata review edits in DG&rsquo;s <em>Faculty Scholarship</em> and <em>Student Scholarship</em> collections. Since these two collections are relatively &ldquo;fluid&rdquo;, they frequent additions and sometimes changes, I was worried that introducing bulk edits could negatively impact some objects. So, I set out to find or create a tool that would help me evaluate the impact of these edits.</p>
+<h2 id=islandora-pretty-text-diff>Islandora Pretty Text Diff</h2>
+<p>I was fortunate to find a very nice tool all ready-to-go, the <em>Islandora Pretty Text Diff</em> module, specifically <a href=https://github.com/contentmath/islandora_pretty_text_diff>islandora_pretty_text_diff</a>. I installed and enabled this module on <em>DGDocker1</em> in early February 2022.</p>
+<p>It can be used by any DG admin by examining an object&rsquo;s datastream versions, <a href=https://digital.grinnell.edu/islandora/object/grinnell:10001/manage/datastream>https://digital.grinnell.edu/islandora/object/grinnell:10001/manage/datastream</a>, for example. In a <code>manage/datastreams</code> window like the example an admin can now select the version history of any text datastream, <em>MODS</em> is the most likely choice, and in the ensuing window, like <a href=https://digital.grinnell.edu/islandora/object/grinnell:10001/datastreams/MODS/version>https://digital.grinnell.edu/islandora/object/grinnell:10001/datastreams/MODS/version</a>, there is an option at the bottom of the list/window to select a pair of versions to compare, then click <code>View Diff</code>.</p>
+<p>In my example the bottom of the window looked like the small image captured below.</p>
+<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/hugo-easy-gallery.css>
+<div class=box>
+<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
+<div class=img>
+<img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-118/grinnell-10001-mods-versions.png>
+</div>
+<a href=https://static.grinnell.edu/dlad-blog/images/post-118/grinnell-10001-mods-versions.png itemprop=contentUrl></a>
+<figcaption><h4>Example MODS Versions Window for grinnell:10001</h4>
+</figcaption>
+</figure>
+</div>
+<p>From that window I elected to select two of the most recent MODS versions as you can see in the screen capture posted below.</p>
+<div class=box>
+<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
+<div class=img>
+<img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-118/grinnell-10001-selected-versions.png>
+</div>
+<a href=https://static.grinnell.edu/dlad-blog/images/post-118/grinnell-10001-selected-versions.png itemprop=contentUrl></a>
+<figcaption><h4>Example MODS Versions Window - Two Versions Selected</h4>
+</figcaption>
+</figure>
+</div>
+<p>After selecting the two MODS version I simply clicked on the <code>View Diff</code> button to open the window shown below.</p>
+<div class=box>
+<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
+<div class=img>
+<img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-118/grinnell-10001-diff-display.png>
+</div>
+<a href=https://static.grinnell.edu/dlad-blog/images/post-118/grinnell-10001-diff-display.png itemprop=contentUrl></a>
+<figcaption><h4>Example Version Diff Display</h4>
+</figcaption>
+</figure>
+</div>
+<p>The single line highlighted in green indicates the only difference between the two versions was the addition of a <code>&lt;copyrightDate>2014&lt;/copyrightDate></code> field and value. Note that anything removed from by the version changes would be similarly highlighted in red.</p>
+<h2 id=the-problem-with-this-approach>The Problem with This Approach</h2>
+<p>Many of the operations that can generate new datastream versions will deposit more than one new version per operation. For instance, running a single <code>islandora_datastream_replace</code> command (see <a href=content/posts/115-Exporting-Editing-Replacing-MODS-Datastreams-Updated-Technical-Details.md>Exporting, Editing & Replacing MODS Datastreams: Updated Technical Details</a>) can generate as many as three new versions of an object&rsquo;s MODS record. You can get a sense of the outcome looking at the portion of the MODS version history displayed below for <code>grinnell:10001</code>.</p>
+<div class=box>
+<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
+<div class=img>
+<img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-118/grinnell-10001-version-history.png>
+</div>
+<a href=https://static.grinnell.edu/dlad-blog/images/post-118/grinnell-10001-version-history.png itemprop=contentUrl></a>
+<figcaption><h4>Example Version History</h4>
+</figcaption>
+</figure>
+</div>
+<p>Note how many versions of the MODS datastream were created at the same instant in time, or only a few seconds apart!</p>
+<h2 id=a-new-drush-idu-command>A New Drush IDU Command</h2>
+<p>To try and deal with the issue of multiple versions per operation, I crafted a new <em>IDU</em> (Islandora Drush Utilities) command with example syntax like:</p>
+<pre tabindex=0><code>drush -u 1 iduF grinnell:10000-10001 DiffDatastreamVersions --dsid=MODS
+</code></pre><p>This command will examine the creation dates/times of all of the <code>--dsid</code> datastream versions and select the current version along with the most recent version <em>that is at least one minute older than the current</em>. This helps avoid comparing versions from the same operation.</p>
+<p>The above command produced the following output:</p>
+<pre tabindex=0><code>root@7f4311ed759c:/var/www/html/sites/default# drush -u 1 iduF grinnell:10000-10001 DiffDatastreamVersions --dsid=MODS
+Ok, iduF command 'DiffDatastreamVersions' was verified on 10-Feb-2022.                                [status]
+iduCommon_drush_prep will consider only objects modified with a yyyy-mm-dd local time matching 2*.    [status]
+Starting operation for PID 'grinnell:10000' and --repeat='1' at 16:01:12.                             [status]
+Fetching all valid object PIDs in the specified range.                                                [status]
+Completed fetch of 2 valid object PIDs from Solr.                                                     [status]
+Progress: iduFix - DiffDatastreamVersions
+iduCommon_Connect: Connection to Fedora repository as 'System Admin' is complete.                     [status]
+Version diff written to 'public://grinnell-10000_MODS.diff'
+Version diff written to 'public://grinnell-10001_MODS.diff' ========&gt;                                 ]  50%
+[=====================================================================================================] 100%
+Completed 2 'iduFix - DiffDatastreamVersions' operations at 16:01:22.                                 [status]
+</code></pre><p>Note that two <code>.diff</code> files were created, <code>public://grinnell-10000_MODS.diff</code> and <code>public://grinnell-10001_MODS.diff</code>.</p>
+<p>The first of these files, <code>grinnell-10000_MODS.diff</code>, was empty signifying that the two version of MODS were identical. The second file, <code>grinnell-10001_MODS.diff</code>, contained the following:</p>
+<pre tabindex=0><code>--- /tmp/grinnell-10001_2022-02-10-16-40-43.MODS	2022-02-14 22:01:22.883776814 +0000
++++ /tmp/grinnell-10001_2022-02-10-18-14-27.MODS	2022-02-14 22:01:22.884776813 +0000
+@@ -20,6 +20,7 @@
+     &lt;dateCreated&gt;2014&lt;/dateCreated&gt;
+     &lt;publisher&gt;Grinnell College&lt;/publisher&gt;
+     &lt;dateOther&gt;41933&lt;/dateOther&gt;
++    &lt;copyrightDate&gt;2014&lt;/copyrightDate&gt;
+   &lt;/originInfo&gt;
+   &lt;physicalDescription&gt;
+     &lt;extent&gt;8 objects&lt;/extent&gt;
+</code></pre><p>A single <code>+</code> in the left margin indicates that the line was &ldquo;added&rdquo; during the creation of the most recent datastream version. Likewise, any lines removed or superseded during the creation of the new version would be proceeded by a <code>-</code>, but there were none in this example.</p>
+<p>A more complete example, using <code>grinnell:10010</code> is shown below.</p>
+<pre tabindex=0><code>root@7f4311ed759c:/var/www/html/sites/default/files# drush -u 1 iduF grinnell:10010 DiffDatastreamVersions --dsid=MODS
+Ok, iduF command 'DiffDatastreamVersions' was verified on 10-Feb-2022.                              [status]
+iduCommon_drush_prep will consider only objects modified with a yyyy-mm-dd local time matching 2*.  [status]
+Starting operation for PID 'grinnell:10010' and --repeat='0' at 16:09:49.                           [status]
+Fetching all valid object PIDs in the specified range.                                              [status]
+Completed fetch of 1 valid object PIDs from Solr.                                                   [status]
+Progress: iduFix - DiffDatastreamVersions
+iduCommon_Connect: Connection to Fedora repository as 'System Admin' is complete.                   [status]
+Version diff written to 'public://grinnell-10010_MODS.diff'
+[===================================================================================================] 100%
+Completed 1 'iduFix - DiffDatastreamVersions' operations at 16:09:59.                               [status]
+</code></pre><p>The result:</p>
+<pre tabindex=0><code>root@7f4311ed759c:/var/www/html/sites/default/files# cat grinnell-10010_MODS.diff
+--- /tmp/grinnell-10010_2022-02-09-21-24-57.MODS	2022-02-14 22:09:59.181745351 +0000
++++ /tmp/grinnell-10010_2022-02-10-16-29-49.MODS	2022-02-14 22:09:59.181745351 +0000
+@@ -1,71 +1,70 @@
+ &lt;?xml version=&quot;1.0&quot;?&gt;
+-&lt;mods xmlns=&quot;http://www.loc.gov/mods/v3&quot; xmlns:mods=&quot;http://www.loc.gov/mods/v3&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+-  &lt;name type=&quot;personal&quot; xlink:href=&quot;grinnell-auth:193&quot;&gt;
+-    &lt;namePart type=&quot;given&quot;&gt;Henry&lt;/namePart&gt;
+-    &lt;namePart type=&quot;family&quot;&gt;Walker&lt;/namePart&gt;
+-    &lt;namePart&gt;Walker, Henry M., 1947-&lt;/namePart&gt;
++&lt;mods xmlns=&quot;http://www.loc.gov/mods/v3&quot; xmlns:mods=&quot;http://www.loc.gov/mods/v3&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd&quot;&gt;
++  &lt;titleInfo&gt;
++    &lt;title&gt;ACM Works of Dr. Henry M. Walker&lt;/title&gt;
++  &lt;/titleInfo&gt;
++  &lt;titleInfo type=&quot;alternative&quot;&gt;
++    &lt;title&gt;Publications of Henry M. Walker indexed by the ACM Digital Library or from other sources&lt;/title&gt;
++  &lt;/titleInfo&gt;
++  &lt;name type=&quot;personal&quot;&gt;
++    &lt;namePart&gt;Walker, Henry M., 1947- (Faculty/Staff)&lt;/namePart&gt;
+     &lt;role&gt;
+       &lt;roleTerm type=&quot;text&quot;&gt;creator&lt;/roleTerm&gt;
+     &lt;/role&gt;
+   &lt;/name&gt;
+-  &lt;titleInfo&gt;
+-    &lt;title&gt;ACM Works of Dr. Henry M. Walker&lt;/title&gt;
+-  &lt;/titleInfo&gt;
+   &lt;name type=&quot;corporate&quot;&gt;
++    &lt;namePart&gt;Grinnell College. Computer Science&lt;/namePart&gt;
+     &lt;role&gt;
+       &lt;roleTerm type=&quot;text&quot;&gt;supporting host&lt;/roleTerm&gt;
+     &lt;/role&gt;
+-    &lt;namePart&gt;Grinnell College. Computer Science.&lt;/namePart&gt;
+   &lt;/name&gt;
+-  &lt;abstract&gt;This image is a screen capture (taken February 4, 2015) of a web page listing several ACM (Association for Computing Machinery) copyrighted publications of Dr. Henry M. Walker, Grinnell College.  Associated metadata includes the text of all pertinent links presented in Dr. Walker's page.&lt;/abstract&gt;
++  &lt;abstract&gt;Screen capture (taken February 4, 2015) of a web page listing several ACM (Association for Computing Machinery) copyrighted publications of Dr. Henry M. Walker, Grinnell College.&lt;/abstract&gt;
+   &lt;originInfo&gt;
+-    &lt;dateCreated&gt;1981&lt;/dateCreated&gt;
+-    &lt;edition&gt;current&lt;/edition&gt;
+-    &lt;edition&gt;current&lt;/edition&gt;
++    &lt;dateCreated&gt;2015&lt;/dateCreated&gt;
++    &lt;dateOther displayLabel=&quot;Date Issued&quot;&gt;1981-present&lt;/dateOther&gt;
+     &lt;publisher&gt;ACM&lt;/publisher&gt;
+   &lt;/originInfo&gt;
+-  &lt;typeOfResource&gt;text&lt;/typeOfResource&gt;
+-  &lt;genre&gt;web site&lt;/genre&gt;
+-  &lt;physicalDescription&gt;
+-    &lt;digitalOrigin&gt;born digital&lt;/digitalOrigin&gt;
+-    &lt;extent displayLabel=&quot;Digital Extent&quot;&gt;1 sheet&lt;/extent&gt;
+-    &lt;internetMediaType&gt;image/jpeg&lt;/internetMediaType&gt;
+-  &lt;/physicalDescription&gt;
+-  &lt;note displayLabel=&quot;Date Issued&quot; type=&quot;creation/production credits&quot;&gt;1981-present&lt;/note&gt;
+-  &lt;language&gt;
+-    &lt;languageTerm type=&quot;text&quot;&gt;English&lt;/languageTerm&gt;
+-    &lt;languageTerm type=&quot;code&quot;&gt;eng&lt;/languageTerm&gt;
+-  &lt;/language&gt;
++  &lt;note type=&quot;description&quot;&gt;This image is a screen capture (taken February 4, 2015) of a web page listing several ACM (Association for Computing Machinery) copyrighted publications of Dr. Henry M. Walker, Grinnell College.  Associated metadata includes the text of all pertinent links presented in Dr. Walker's page.&lt;/note&gt;
+   &lt;subject authority=&quot;lcsh&quot;&gt;
+     &lt;topic&gt;Computer science&lt;/topic&gt;
++    &lt;topic&gt;Bibliography&lt;/topic&gt;
+   &lt;/subject&gt;
+   &lt;subject authority=&quot;lcsh&quot;&gt;
+     &lt;temporal&gt;20th century&lt;/temporal&gt;
+   &lt;/subject&gt;
+-  &lt;relatedItem type=&quot;isPartOf&quot;&gt;
++  &lt;relatedItem type=&quot;host&quot;&gt;
+     &lt;titleInfo&gt;
+-      &lt;title&gt;Digital Grinnell&lt;/title&gt;
++      &lt;title&gt;Faculty Scholarship&lt;/title&gt;
+     &lt;/titleInfo&gt;
+-    &lt;identifier type=&quot;uri&quot;&gt;grinnell:173&lt;/identifier&gt;
+   &lt;/relatedItem&gt;
+-  &lt;relatedItem displayLabel=&quot;ACM Page&quot; type=&quot;isPartOf&quot; xlink:href=&quot;http://www.cs.grinnell.edu/~walker/acm-publications.html&quot;&gt;
++  &lt;relatedItem type=&quot;host&quot;&gt;
+     &lt;titleInfo&gt;
+-      &lt;title&gt;Faculty Scholarship&lt;/title&gt;
++      &lt;title&gt;Scholarship at Grinnell&lt;/title&gt;
+     &lt;/titleInfo&gt;
+   &lt;/relatedItem&gt;
+-  &lt;relatedItem type=&quot;constituent&quot;&gt;
++  &lt;relatedItem type=&quot;host&quot; xlink:href=&quot;https://digital.grinnell.edu&quot;&gt;
+     &lt;titleInfo&gt;
+       &lt;title&gt;Digital Grinnell&lt;/title&gt;
+     &lt;/titleInfo&gt;
+   &lt;/relatedItem&gt;
+-  &lt;identifier type=&quot;hdl&quot;&gt;http://hdl.handle.net/11084/10010&lt;/identifier&gt;
++  &lt;genre authorityURI=&quot;https://id.loc.gov/authorities/genreForms.html&quot;&gt;Bibliographies&lt;/genre&gt;
++  &lt;physicalDescription&gt;
++    &lt;extent&gt;1 sheet&lt;/extent&gt;
++    &lt;internetMediaType&gt;image/jpeg&lt;/internetMediaType&gt;
++    &lt;digitalOrigin&gt;born digital&lt;/digitalOrigin&gt;
++  &lt;/physicalDescription&gt;
++  &lt;classification authoritiy=&quot;lcc&quot; type=&quot;mixed&quot;&gt;QA76&lt;/classification&gt;
++  &lt;language&gt;
++    &lt;languageTerm type=&quot;text&quot;&gt;English&lt;/languageTerm&gt;
++    &lt;languageTerm authority=&quot;iso639-2b&quot; type=&quot;code&quot;&gt;eng&lt;/languageTerm&gt;
++  &lt;/language&gt;
+   &lt;identifier type=&quot;local&quot;&gt;grinnell:10010&lt;/identifier&gt;
++  &lt;identifier type=&quot;hdl&quot;&gt;http://hdl.handle.net/11084/10010&lt;/identifier&gt;
+   &lt;accessCondition type=&quot;useAndReproduction&quot;&gt;Copyright to this work is held by the ACM and by the author(s), in accordance with United States copyright law (USC 17). Readers of this work have certain rights as defined by the law, including but not limited to fair use (17 USC 107 et seq.).&lt;/accessCondition&gt;
+-  &lt;mods:extension&gt;
+-    &lt;mods:creators&gt;Walker, Henry M., 1947-&lt;/mods:creators&gt;
+-    &lt;mods:primarySort&gt;99&lt;/mods:primarySort&gt;
+-    &lt;mods:CModel&gt;islandora:sp_basic_image&lt;/mods:CModel&gt;
+-  &lt;/mods:extension&gt;
+-  &lt;identifier type=&quot;u1&quot;&gt;walker&lt;/identifier&gt;
+-  &lt;identifier type=&quot;u2&quot;&gt;CSC&lt;/identifier&gt;
++  &lt;extension&gt;
++    &lt;dg_importIndex&gt;4&lt;/dg_importIndex&gt;
++    &lt;primarySort&gt;99&lt;/primarySort&gt;
++    &lt;dg_parentObject&gt;grinnell:faculty-scholarship&lt;/dg_parentObject&gt;
++    &lt;CModel&gt;islandora:sp_basic_image&lt;/CModel&gt;
++  &lt;/extension&gt;
+</code></pre><p>As you can see, there were numerous differences and they can be very difficult to effectively visualize in this form. <strong>Have no fear, there&rsquo;s a remedy for this too, and I shall document it as soon as my headache has been addressed.</strong> 8^(</p>
+<p>And that&rsquo;s a wrap. Until next time, stay safe and wash your hands! 😄</p>
+</div>
+<div class=post-footer>
+<div id=disqus_thread></div>
+<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//digital-library-applications-developer-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
+<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
+<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
+</div>
+</article>
+</main>
+</body>
+</html>
