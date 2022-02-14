@@ -221,11 +221,18 @@ root@7f4311ed759c:/var/www/html/sites/default/files# cat grinnell-10010_MODS.dif
 +  </extension>
 ```
 
-As you can see, there were numerous differences and they can be very difficult to effectively visualize in this form.  **Have no fear, there's a remedy for this too, and I shall document it as soon as my headache has been addressed.**  8^(
+As you can see, there were numerous differences and they can be very difficult to effectively visualize in this form.  **Have no fear, there's a remedy for this too.  Read on.**  
 
+## Navigation Menu: Islandora Drush Utilities
 
+With the addition of the aforementioned `drush DiffDatastreamVersions` command comes a new `Navigation` menu selection for _Digital.Grinnell_ admins.  If you are an admin, on the DG home page look to the right under `Navigation` for the `Islandora Drush Utilities` menu selection.  If you click that link DG will open to a page where you'll be presented with a list of all the `.diff` files that have been produced by the `drush DiffDatastreamVersions` commands.  The window will look something like this:
 
+{{% figure title="New IDU Navigation Menu Item" src="/images/post-118/idu-navigation.png" %}}
 
+In this instance I selected the `grinnell-10010_MODS.diff` file and clicked `Submit`.  On my MacBook I have `.diff` downloads set to automatically open in my [Atom](https://atom.io) text editing environment and a portion of the result looks like what you see below.
 
+{{% figure title="Visualizing Differences in Atom" src="/images/post-118/visual-diff-in-atom.png" %}}
+
+This may still be difficult to interpret in cases like this example where there are numerous changes from version-to-version, but it's also a definite improvement.  Enjoy!
 
 And that's a wrap.  Until next time, stay safe and wash your hands! :smile:
