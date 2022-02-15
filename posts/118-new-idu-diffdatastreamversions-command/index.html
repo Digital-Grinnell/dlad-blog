@@ -9,10 +9,10 @@
 <link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.a0a90779d7d7dc7111202c97d61bd4963b7236dd704adac1f03ff9f07a45d022.css>
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="IDU DiffDatastreamVersions Command">
-<meta name=twitter:description content="Recently, I have been catching up on processing some pending metadata review edits in DG&rsquo;s Faculty Scholarship and Student Scholarship collections. Since these two collections are relatively &ldquo;fluid&rdquo;, they frequent additions and sometimes changes, I was worried that introducing bulk edits could negatively impact some objects. So, I set out to find or create a tool that would help me evaluate the impact of these edits.
+<meta name=twitter:description content="Recently, I have been catching up on processing some pending metadata review edits in DG&rsquo;s Faculty Scholarship and Student Scholarship collections. Since these two collections are relatively &ldquo;fluid&rdquo;, they get frequent additions and metadata changes, I was worried that introducing bulk edits could negatively impact some objects. So I set out to find, or create, a tool that would help me evaluate the impact of these edits.
 Islandora Pretty Text Diff I was fortunate to find a very nice tool all ready-to-go, the Islandora Pretty Text Diff module, specifically islandora_pretty_text_diff.">
 <meta property="og:title" content="IDU DiffDatastreamVersions Command">
-<meta property="og:description" content="Recently, I have been catching up on processing some pending metadata review edits in DG&rsquo;s Faculty Scholarship and Student Scholarship collections. Since these two collections are relatively &ldquo;fluid&rdquo;, they frequent additions and sometimes changes, I was worried that introducing bulk edits could negatively impact some objects. So, I set out to find or create a tool that would help me evaluate the impact of these edits.
+<meta property="og:description" content="Recently, I have been catching up on processing some pending metadata review edits in DG&rsquo;s Faculty Scholarship and Student Scholarship collections. Since these two collections are relatively &ldquo;fluid&rdquo;, they get frequent additions and metadata changes, I was worried that introducing bulk edits could negatively impact some objects. So I set out to find, or create, a tool that would help me evaluate the impact of these edits.
 Islandora Pretty Text Diff I was fortunate to find a very nice tool all ready-to-go, the Islandora Pretty Text Diff module, specifically islandora_pretty_text_diff.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/118-new-idu-diffdatastreamversions-command/"><meta property="article:section" content="posts">
@@ -25,7 +25,7 @@ Islandora Pretty Text Diff I was fortunate to find a very nice tool all ready-to
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Feb 14, 2022 at 3:58pm CST<br>
+Compiled: Feb 15, 2022 at 8:35am CST<br>
 Content Updated: 2022-Feb-14 00:00 UTC
 </p>
 <div class=name>by
@@ -56,7 +56,7 @@ Content Updated: 2022-Feb-14 00:00 UTC
 <h1 class=post-title>IDU DiffDatastreamVersions Command</h1>
 <div class=post-meta>
 <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-7 min read
+8 min read
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
 Feb 14, 2022
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
@@ -64,7 +64,7 @@ Feb 14, 2022
 <a class=tag href=https://static.grinnell.edu/dlad-blog/tags/idu/>IDU</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/diff/>diff</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/datastream/>Datastream</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/version/>version</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/islandora_pretty_text_diff/>islandora_pretty_text_diff</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/islandora_datastream_replace/>islandora_datastream_replace</a></div></div>
 </header>
 <div class=post-content>
-<p>Recently, I have been catching up on processing some pending metadata review edits in DG&rsquo;s <em>Faculty Scholarship</em> and <em>Student Scholarship</em> collections. Since these two collections are relatively &ldquo;fluid&rdquo;, they frequent additions and sometimes changes, I was worried that introducing bulk edits could negatively impact some objects. So, I set out to find or create a tool that would help me evaluate the impact of these edits.</p>
+<p>Recently, I have been catching up on processing some pending metadata review edits in DG&rsquo;s <em>Faculty Scholarship</em> and <em>Student Scholarship</em> collections. Since these two collections are relatively &ldquo;fluid&rdquo;, they get frequent additions and metadata changes, I was worried that introducing bulk edits could negatively impact some objects. So I set out to find, or create, a tool that would help me evaluate the impact of these edits.</p>
 <h2 id=islandora-pretty-text-diff>Islandora Pretty Text Diff</h2>
 <p>I was fortunate to find a very nice tool all ready-to-go, the <em>Islandora Pretty Text Diff</em> module, specifically <a href=https://github.com/contentmath/islandora_pretty_text_diff>islandora_pretty_text_diff</a>. I installed and enabled this module on <em>DGDocker1</em> in early February 2022.</p>
 <p>It can be used by any DG admin by examining an object&rsquo;s datastream versions, <a href=https://digital.grinnell.edu/islandora/object/grinnell:10001/manage/datastream>https://digital.grinnell.edu/islandora/object/grinnell:10001/manage/datastream</a>, for example. In a <code>manage/datastreams</code> window like the example an admin can now select the version history of any text datastream, <em>MODS</em> is the most likely choice, and in the ensuing window, like <a href=https://digital.grinnell.edu/islandora/object/grinnell:10001/datastreams/MODS/version>https://digital.grinnell.edu/islandora/object/grinnell:10001/datastreams/MODS/version</a>, there is an option at the bottom of the list/window to select a pair of versions to compare, then click <code>View Diff</code>.</p>
@@ -102,7 +102,7 @@ Feb 14, 2022
 </figcaption>
 </figure>
 </div>
-<p>The single line highlighted in green indicates the only difference between the two versions was the addition of a <code>&lt;copyrightDate>2014&lt;/copyrightDate></code> field and value. Note that anything removed from by the version changes would be similarly highlighted in red.</p>
+<p>The single line highlighted in green indicates the only difference between the two versions was the &ldquo;addition&rdquo;, green changes represent additions, of a <code>&lt;copyrightDate>2014&lt;/copyrightDate></code> field and value. Note that anything &ldquo;removed&rdquo; from by the version changes would be similarly highlighted in red.</p>
 <h2 id=the-problem-with-this-approach>The Problem with This Approach</h2>
 <p>Many of the operations that can generate new datastream versions will deposit more than one new version per operation. For instance, running a single <code>islandora_datastream_replace</code> command (see <a href=content/posts/115-Exporting-Editing-Replacing-MODS-Datastreams-Updated-Technical-Details.md>Exporting, Editing & Replacing MODS Datastreams: Updated Technical Details</a>) can generate as many as three new versions of an object&rsquo;s MODS record. You can get a sense of the outcome looking at the portion of the MODS version history displayed below for <code>grinnell:10001</code>.</p>
 <div class=box>
@@ -117,9 +117,9 @@ Feb 14, 2022
 </div>
 <p>Note how many versions of the MODS datastream were created at the same instant in time, or only a few seconds apart!</p>
 <h2 id=a-new-drush-idu-command>A New Drush IDU Command</h2>
-<p>To try and deal with the issue of multiple versions per operation, I crafted a new <em>IDU</em> (Islandora Drush Utilities) command with example syntax like:</p>
+<p>To try and deal with the issue of multiple versions per operation, I crafted a new <em>IDU</em> (Islandora Drush Utilities) command, <code>DiffDatastreamVersions</code>, with example syntax like:</p>
 <pre tabindex=0><code>drush -u 1 iduF grinnell:10000-10001 DiffDatastreamVersions --dsid=MODS
-</code></pre><p>This command will examine the creation dates/times of all of the <code>--dsid</code> datastream versions and select the current version along with the most recent version <em>that is at least one minute older than the current</em>. This helps avoid comparing versions from the same operation.</p>
+</code></pre><p>This command will examine the creation dates/times of all of the <code>--dsid</code> datastream versions and select the current version along with the most recent version <em>that is at least one minute older than the current</em>. This helps avoid comparing &ldquo;intermediate&rdquo; versions from the same operation.</p>
 <p>The above command produced the following output:</p>
 <pre tabindex=0><code>root@7f4311ed759c:/var/www/html/sites/default# drush -u 1 iduF grinnell:10000-10001 DiffDatastreamVersions --dsid=MODS
 Ok, iduF command 'DiffDatastreamVersions' was verified on 10-Feb-2022.                                [status]
@@ -134,7 +134,7 @@ Version diff written to 'public://grinnell-10001_MODS.diff' ========&gt;        
 [=====================================================================================================] 100%
 Completed 2 'iduFix - DiffDatastreamVersions' operations at 16:01:22.                                 [status]
 </code></pre><p>Note that two <code>.diff</code> files were created, <code>public://grinnell-10000_MODS.diff</code> and <code>public://grinnell-10001_MODS.diff</code>.</p>
-<p>The first of these files, <code>grinnell-10000_MODS.diff</code>, was empty signifying that the two version of MODS were identical. The second file, <code>grinnell-10001_MODS.diff</code>, contained the following:</p>
+<p>The first of these files, <code>grinnell-10000_MODS.diff</code>, was empty, signifying that the two version of MODS were identical. The second file, <code>grinnell-10001_MODS.diff</code>, contained the following:</p>
 <pre tabindex=0><code>--- /tmp/grinnell-10001_2022-02-10-16-40-43.MODS	2022-02-14 22:01:22.883776814 +0000
 +++ /tmp/grinnell-10001_2022-02-10-18-14-27.MODS	2022-02-14 22:01:22.884776813 +0000
 @@ -20,6 +20,7 @@
@@ -145,8 +145,8 @@ Completed 2 'iduFix - DiffDatastreamVersions' operations at 16:01:22.           
    &lt;/originInfo&gt;
    &lt;physicalDescription&gt;
      &lt;extent&gt;8 objects&lt;/extent&gt;
-</code></pre><p>A single <code>+</code> in the left margin indicates that the line was &ldquo;added&rdquo; during the creation of the most recent datastream version. Likewise, any lines removed or superseded during the creation of the new version would be proceeded by a <code>-</code>, but there were none in this example.</p>
-<p>A more complete example, using <code>grinnell:10010</code> is shown below.</p>
+</code></pre><p>In this &ldquo;standard&rdquo; diff, or &ldquo;patch&rdquo; format, a single <code>+</code> in the left margin indicates that the line was &ldquo;added&rdquo; during the creation of the most recent datastream version. Likewise, any lines removed or superseded during the creation of the new version would be proceeded by a <code>-</code>, but there were none in this example.</p>
+<p>A more complete example, using <code>grinnell:10010</code>, is shown below.</p>
 <pre tabindex=0><code>root@7f4311ed759c:/var/www/html/sites/default/files# drush -u 1 iduF grinnell:10010 DiffDatastreamVersions --dsid=MODS
 Ok, iduF command 'DiffDatastreamVersions' was verified on 10-Feb-2022.                              [status]
 iduCommon_drush_prep will consider only objects modified with a yyyy-mm-dd local time matching 2*.  [status]
@@ -273,7 +273,7 @@ Completed 1 'iduFix - DiffDatastreamVersions' operations at 16:09:59.           
 +  &lt;/extension&gt;
 </code></pre><p>As you can see, there were numerous differences and they can be very difficult to effectively visualize in this form. <strong>Have no fear, there&rsquo;s a remedy for this too. Read on.</strong></p>
 <h2 id=navigation-menu-islandora-drush-utilities>Navigation Menu: Islandora Drush Utilities</h2>
-<p>With the addition of the aforementioned <code>drush DiffDatastreamVersions</code> command comes a new <code>Navigation</code> menu selection for <em>Digital.Grinnell</em> admins. If you are an admin, on the DG home page look to the right under <code>Navigation</code> for the <code>Islandora Drush Utilities</code> menu selection. If you click that link DG will open to a page where you&rsquo;ll be presented with a list of all the <code>.diff</code> files that have been produced by the <code>drush DiffDatastreamVersions</code> commands. The window will look something like this:</p>
+<p>With the addition of the aforementioned <code>drush DiffDatastreamVersions</code> command comes a new <code>Navigation</code> menu selection for <em>Digital.Grinnell</em> admins. If you are an admin, on the DG home page look to the right under <code>Navigation</code> for the <code>Islandora Drush Utilities</code> menu selection. If you click that link DG will open a page where you&rsquo;ll be presented with a list of all the <code>.diff</code> files that have been produced by the <code>drush DiffDatastreamVersions</code> commands. The window will look something like this:</p>
 <div class=box>
 <figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
 <div class=img>
@@ -295,7 +295,7 @@ Completed 1 'iduFix - DiffDatastreamVersions' operations at 16:09:59.           
 </figcaption>
 </figure>
 </div>
-<p>This may still be difficult to interpret in cases like this example where there are numerous changes from version-to-version, but it&rsquo;s also a definite improvement. Enjoy!</p>
+<p>As was the case above, additions to the data appear underlined in green, while portions that are removed or superseded appear in red. This may still be difficult to interpret in cases like this example where there are numerous changes from version-to-version, but it&rsquo;s also a definite improvement. Enjoy!</p>
 <p>And that&rsquo;s a wrap. Until next time, stay safe and wash your hands! 😄</p>
 </div>
 <div class=post-footer>
