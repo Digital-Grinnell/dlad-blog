@@ -12,7 +12,7 @@ tags:
   - islandora_datastream_replace
 ---
 
-Recently, I have been catching up on processing some pending metadata review edits in DG's _Faculty Scholarship_ and _Student Scholarship_ collections.  Since these two collections are relatively "fluid", they frequent additions and sometimes changes, I was worried that introducing bulk edits could negatively impact some objects.  So, I set out to find or create a tool that would help me evaluate the impact of these edits.
+Recently, I have been catching up on processing some pending metadata review edits in DG's _Faculty Scholarship_ and _Student Scholarship_ collections.  Since these two collections are relatively "fluid", they get frequent additions and metadata changes, I was worried that introducing bulk edits could negatively impact some objects.  So I set out to find, or create, a tool that would help me evaluate the impact of these edits.
 
 ## Islandora Pretty Text Diff
 
@@ -32,7 +32,7 @@ After selecting the two MODS version I simply clicked on the `View Diff` button 
 
 {{% figure title="Example Version Diff Display" src="/images/post-118/grinnell-10001-diff-display.png" %}}
 
-The single line highlighted in green indicates the only difference between the two versions was the addition of a `<copyrightDate>2014</copyrightDate>` field and value.  Note that anything removed from by the version changes would be similarly highlighted in red.
+The single line highlighted in green indicates the only difference between the two versions was the "addition", green changes represent additions, of a `<copyrightDate>2014</copyrightDate>` field and value.  Note that anything "removed" from by the version changes would be similarly highlighted in red.
 
 ## The Problem with This Approach
 
@@ -44,13 +44,13 @@ Note how many versions of the MODS datastream were created at the same instant i
 
 ## A New Drush IDU Command
 
-To try and deal with the issue of multiple versions per operation, I crafted a new _IDU_ (Islandora Drush Utilities) command with example syntax like:
+To try and deal with the issue of multiple versions per operation, I crafted a new _IDU_ (Islandora Drush Utilities) command, `DiffDatastreamVersions`, with example syntax like:
 
 ```
 drush -u 1 iduF grinnell:10000-10001 DiffDatastreamVersions --dsid=MODS
 ```
 
-This command will examine the creation dates/times of all of the `--dsid` datastream versions and select the current version along with the most recent version *that is at least one minute older than the current*.  This helps avoid comparing versions from the same operation.
+This command will examine the creation dates/times of all of the `--dsid` datastream versions and select the current version along with the most recent version *that is at least one minute older than the current*.  This helps avoid comparing "intermediate" versions from the same operation.
 
 The above command produced the following output:
 
@@ -71,7 +71,7 @@ Completed 2 'iduFix - DiffDatastreamVersions' operations at 16:01:22.           
 
 Note that two `.diff` files were created, `public://grinnell-10000_MODS.diff` and `public://grinnell-10001_MODS.diff`.
 
-The first of these files, `grinnell-10000_MODS.diff`, was empty signifying that the two version of MODS were identical.  The second file, `grinnell-10001_MODS.diff`, contained the following:
+The first of these files, `grinnell-10000_MODS.diff`, was empty, signifying that the two version of MODS were identical.  The second file, `grinnell-10001_MODS.diff`, contained the following:
 
 ```
 --- /tmp/grinnell-10001_2022-02-10-16-40-43.MODS	2022-02-14 22:01:22.883776814 +0000
@@ -86,9 +86,9 @@ The first of these files, `grinnell-10000_MODS.diff`, was empty signifying that 
      <extent>8 objects</extent>
 ```
 
-A single `+` in the left margin indicates that the line was "added" during the creation of the most recent datastream version.  Likewise, any lines removed or superseded during the creation of the new version would be proceeded by a `-`, but there were none in this example.
+In this "standard" diff, or "patch" format, a single `+` in the left margin indicates that the line was "added" during the creation of the most recent datastream version.  Likewise, any lines removed or superseded during the creation of the new version would be proceeded by a `-`, but there were none in this example.
 
-A more complete example, using `grinnell:10010` is shown below.
+A more complete example, using `grinnell:10010`, is shown below.
 
 ```
 root@7f4311ed759c:/var/www/html/sites/default/files# drush -u 1 iduF grinnell:10010 DiffDatastreamVersions --dsid=MODS
@@ -225,7 +225,7 @@ As you can see, there were numerous differences and they can be very difficult t
 
 ## Navigation Menu: Islandora Drush Utilities
 
-With the addition of the aforementioned `drush DiffDatastreamVersions` command comes a new `Navigation` menu selection for _Digital.Grinnell_ admins.  If you are an admin, on the DG home page look to the right under `Navigation` for the `Islandora Drush Utilities` menu selection.  If you click that link DG will open to a page where you'll be presented with a list of all the `.diff` files that have been produced by the `drush DiffDatastreamVersions` commands.  The window will look something like this:
+With the addition of the aforementioned `drush DiffDatastreamVersions` command comes a new `Navigation` menu selection for _Digital.Grinnell_ admins.  If you are an admin, on the DG home page look to the right under `Navigation` for the `Islandora Drush Utilities` menu selection.  If you click that link DG will open a page where you'll be presented with a list of all the `.diff` files that have been produced by the `drush DiffDatastreamVersions` commands.  The window will look something like this:
 
 {{% figure title="New IDU Navigation Menu Item" src="/images/post-118/idu-navigation.png" %}}
 
@@ -233,6 +233,6 @@ In this instance I selected the `grinnell-10010_MODS.diff` file and clicked `Sub
 
 {{% figure title="Visualizing Differences in Atom" src="/images/post-118/visual-diff-in-atom.png" %}}
 
-This may still be difficult to interpret in cases like this example where there are numerous changes from version-to-version, but it's also a definite improvement.  Enjoy!
+As was the case above, additions to the data appear underlined in green, while portions that are removed or superseded appear in red.  This may still be difficult to interpret in cases like this example where there are numerous changes from version-to-version, but it's also a definite improvement.  Enjoy!
 
 And that's a wrap.  Until next time, stay safe and wash your hands! :smile:
