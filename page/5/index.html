@@ -21,8 +21,8 @@
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Feb 15, 2022 at 8:35am CST<br>
-Content Updated: 2022-Feb-14 00:00 UTC
+Compiled: Feb 17, 2022 at 11:08am CST<br>
+Content Updated: 2022-Feb-17 00:00 UTC
 </p>
 <div class=name>by
 <strong>Mark A. McFate</strong></div>
@@ -48,6 +48,14 @@ Content Updated: 2022-Feb-14 00:00 UTC
 <article>
 <h1>The Grinnell College Digital Library Application Developer's Blog</h1>
 <ul class=posts-list>
+<br>
+<a target=_blank class=posts-list-item-title href=https://static.grinnell.edu/dlad-blog/posts/081-new-host-config-vulnerability-scan/>New Host Config: Vulnerability Scan</a>
+<span class=posts-list-item-description>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;7 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Jun 11, 2020
+<br>
+<span class=summary>Today I elected to run a vulnerability scan against our new instance of the docker-traefik2-acme-host configuration that’s running on static.grinnell.edu. The command I used, and the results, are posted below.
+╭─islandora@dgdockerx ~ ╰─$ /home/islandora/testssl.sh/testssl.sh static.grinnell.edu ########################################################### testssl.sh 3.0rc4 from https://testssl.sh/dev/ This program is free software. Distribution and modification under GPLv2 permitted. USAGE w/o ANY WARRANTY. USE IT AT YOUR OWN RISK! Please file bugs @ https://testssl.sh/bugs/ ########################################################### Using "OpenSSL 1.0.2-chacha (1.0.2k-dev)" [~183 ciphers] on dgdockerx:/home/islandora/testssl.sh/bin/openssl.Linux.x86_64 (built: "Jan 18 17:12:17 2019", platform: "linux-x86_64") Start 2020-06-11 17:33:25 -->> 132. ...</span>
+</span>
 <br>
 <a target=_blank class=posts-list-item-title href=https://static.grinnell.edu/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/>Host Config: docker-traefik2-acme-host</a>
 <span class=posts-list-item-description>
@@ -124,14 +132,6 @@ The server-info Script You’ll find the script itself in this gist. Sample inst
 <br>
 <span class=summary>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
 A 5-Step Workflow This document is follow-up, with technical details, to Exporting, Editing, & Replacing MODS Datastreams, post 069, in my blog. In case you missed it, the aforementioned post was written specifically for metadata editors working on the 2020 Grinnell College Libraries review of Digital Grinnell MODS metadata. ...</span>
-</span>
-<br>
-<a target=_blank class=posts-list-item-title href=https://static.grinnell.edu/dlad-blog/posts/069-exporting-editing-replacing-mods-datastreams/>Exporting, Editing, & Replacing MODS Datastreams</a>
-<span class=posts-list-item-description>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&nbsp;5 min read &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Mar 17, 2020
-<br>
-<span class=summary>Attention: On 21-May-2020 an optional, but recommended, sixth step was added to this workflow in the form of a new Drush command: islandora_mods_post_processing, an addition to my previous work in islandora_mods_via_twig. See my new post, Islandora MODS Post Processing for complete details.
-The transition to distance learning, social distancing, and more remote work at Grinnell College in the wake of the COVID-19 pandemic may afford GC Libraries an opportunity to do some overdue and necessary metadata cleaning in Digital. ...</span>
 </span>
 </ul>
 <ul class=pagination>
