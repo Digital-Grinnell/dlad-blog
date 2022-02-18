@@ -25,7 +25,7 @@ OAI Exports While on the subject of OAI, it&rsquo;s worth noting here that we ca
 <h2>The Grinnell College Digital Library Application Developer's Blog</h2>
 <div class=author-block>
 <p class=site-rev>
-Compiled: Feb 18, 2022 at 1:09pm CST<br>
+Compiled: Feb 18, 2022 at 1:17pm CST<br>
 Content Updated: 2022-Feb-18 00:00 UTC
 </p>
 <div class=name>by
@@ -79,26 +79,26 @@ Feb 18, 2022
 </ul>
 <p>Yes, these two files are IDENTICAL, but a necessary evil due the way that the <code>islandora_xml_forms</code> module is built. I hate that module almost as much as I hate XSLT, maybe more. 😦</p>
 <p>The XSLT that we apply for MODS-to-DC transform reads like this:</p>
-<pre tabindex=0><code>&lt;xsl:template match=&quot;mods:identifier&quot;&gt;
-  &lt;dc:identifier&gt;
-    &lt;xsl:variable name=&quot;type&quot; select=&quot;translate(@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')&quot;/&gt;
-    &lt;xsl:choose&gt;
-      &lt;!-- 2.0: added identifier type attribute to output, if it is present--&gt;
-      &lt;xsl:when test=&quot;contains(.,':')&quot;&gt;
-        &lt;xsl:value-of select=&quot;.&quot;/&gt;
-      &lt;/xsl:when&gt;
-      &lt;xsl:when test=&quot;@type&quot;&gt;
-        &lt;xsl:value-of select=&quot;$type&quot;/&gt;: &lt;xsl:value-of select=&quot;.&quot;/&gt;
-      &lt;/xsl:when&gt;
-      &lt;xsl:when test=&quot;contains ('isbn issn uri doi lccn', $type)&quot;&gt;
-        &lt;xsl:value-of select=&quot;$type&quot;/&gt;: &lt;xsl:value-of select=&quot;.&quot;/&gt;
-      &lt;/xsl:when&gt;
-      &lt;xsl:otherwise&gt;
-        &lt;xsl:value-of select=&quot;.&quot;/&gt;
-      &lt;/xsl:otherwise&gt;
-    &lt;/xsl:choose&gt;
-  &lt;/dc:identifier&gt;
-&lt;/xsl:template&gt;
+<pre tabindex=0><code>&lt;xsl:template match=&quot;mods:identifier&quot;&gt;  
+  &lt;dc:identifier&gt;  
+    &lt;xsl:variable name=&quot;type&quot; select=&quot;translate(@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')&quot;/&gt;  
+    &lt;xsl:choose&gt;  
+      &lt;!-- 2.0: added identifier type attribute to output, if it is present--&gt;  
+      &lt;xsl:when test=&quot;contains(.,':')&quot;&gt;  
+        &lt;xsl:value-of select=&quot;.&quot;/&gt;  
+      &lt;/xsl:when&gt;  
+      &lt;xsl:when test=&quot;@type&quot;&gt;  
+        &lt;xsl:value-of select=&quot;$type&quot;/&gt;: &lt;xsl:value-of select=&quot;.&quot;/&gt;  
+      &lt;/xsl:when&gt;  
+      &lt;xsl:when test=&quot;contains ('isbn issn uri doi lccn', $type)&quot;&gt;  
+        &lt;xsl:value-of select=&quot;$type&quot;/&gt;: &lt;xsl:value-of select=&quot;.&quot;/&gt;  
+      &lt;/xsl:when&gt;  
+      &lt;xsl:otherwise&gt;  
+        &lt;xsl:value-of select=&quot;.&quot;/&gt;  
+      &lt;/xsl:otherwise&gt;  
+    &lt;/xsl:choose&gt;  
+  &lt;/dc:identifier&gt;  
+&lt;/xsl:template&gt;  
 </code></pre><h2 id=a-viable-solution>A Viable Solution</h2>
 <p>What I&rsquo;m going to discuss here isn&rsquo;t an ideal fix because every time we ingest a new object with <code>u1:</code> and/or <code>u2:</code> MODS identifiers, our transform will put them in the object&rsquo;s corresponding DC record. Like I said, not ideal. But there is a relatively easy way to remove what the transforms deposit.</p>
 <p>For this purpose I&rsquo;ve resurrected an old, broken <code>drush iduF</code> command. So a command of the form <code>drush -u 1 iduF grinnell:31898-31902 PurgeElements --dsid=DC --xpath="*[contains(.,'u1:') or contains(.,'u2:')]" --verbose</code> can be used to strip the DC object(s) of its/their offending element(s). The command is <code>PurgeElements</code> and the <code>--xpath</code> clause shown above is CRITICAL. As with all <code>drush iduF</code> commands, the <code>--verbose</code> parameter is optional, and <code>--dyrRun</code> is also available for testing.</p>
