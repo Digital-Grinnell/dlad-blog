@@ -141,7 +141,7 @@ figcaption h4 {
 }
 
 pre {
-  white-space: pre-line;
+  white-space: pre-wrap;  /* was pre-line */
 }
 
 /*# sourceMappingURL=_extra.css.map */
