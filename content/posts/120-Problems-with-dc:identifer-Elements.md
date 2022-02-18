@@ -38,26 +38,26 @@ Yes, these two files are IDENTICAL, but a necessary evil due the way that the `i
 The XSLT that we apply for MODS-to-DC transform reads like this:
 
 ```
-<xsl:template match="mods:identifier">  
-  <dc:identifier>  
-    <xsl:variable name="type" select="translate(@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>  
-    <xsl:choose>  
-      <!-- 2.0: added identifier type attribute to output, if it is present-->  
-      <xsl:when test="contains(.,':')">  
-        <xsl:value-of select="."/>  
-      </xsl:when>  
-      <xsl:when test="@type">  
-        <xsl:value-of select="$type"/>: <xsl:value-of select="."/>  
-      </xsl:when>  
-      <xsl:when test="contains ('isbn issn uri doi lccn', $type)">  
-        <xsl:value-of select="$type"/>: <xsl:value-of select="."/>  
-      </xsl:when>  
-      <xsl:otherwise>  
-        <xsl:value-of select="."/>  
-      </xsl:otherwise>  
-    </xsl:choose>  
-  </dc:identifier>  
-</xsl:template>  
+  <xsl:template match="mods:identifier">  
+    <dc:identifier>  
+      <xsl:variable name="type" select="translate(@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>  
+      <xsl:choose>  
+        <!-- 2.0: added identifier type attribute to output, if it is present-->  
+        <xsl:when test="contains(.,':')">  
+          <xsl:value-of select="."/>  
+        </xsl:when>  
+        <xsl:when test="@type">  
+          <xsl:value-of select="$type"/>: <xsl:value-of select="."/>  
+        </xsl:when>  
+        <xsl:when test="contains ('isbn issn uri doi lccn', $type)">  
+          <xsl:value-of select="$type"/>: <xsl:value-of select="."/>  
+        </xsl:when>  
+        <xsl:otherwise>  
+          <xsl:value-of select="."/>  
+        </xsl:otherwise>  
+      </xsl:choose>  
+    </dc:identifier>  
+  </xsl:template>  
 ```  
 
 ## A Viable Solution
@@ -74,7 +74,7 @@ drush -u 1 iduF grinnell:31898-31902 PurgeElements --dsid=DC --xpath="*[contains
 
 ## An XML Namespace Issue?
 
-It's not been confirmed just yet, but there is speculation that the real root of the problem here stems from the apparent existence of `dc_srw` namespace references that appear in DC records only when identifier `u1:` or `u2:` elements exist.  You may get some sense of what these references look like on OAI exports from the screen capture shared below.
+It's not been confirmed just yet, but there is speculation that the real root of the problem here stems from the apparent existence of `srw_dc` namespace references that appear in DC records only when identifier `u1:` or `u2:` elements exist.  You may get some sense of what these references look like on OAI exports from the screen capture shared below.
 
 {{% figure title="Problematic OAI Export Sample" src="/images/post-120/oai_dc-problem.png" %}}  
 
