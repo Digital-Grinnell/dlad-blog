@@ -38,26 +38,26 @@ Yes, these two files are IDENTICAL, but a necessary evil due the way that the `i
 The XSLT that we apply for MODS-to-DC transform reads like this:
 
 ```
-<xsl:template match="mods:identifier">
-  <dc:identifier>
-    <xsl:variable name="type" select="translate(@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>
-    <xsl:choose>
-      <!-- 2.0: added identifier type attribute to output, if it is present-->
-      <xsl:when test="contains(.,':')">
-        <xsl:value-of select="."/>
-      </xsl:when>
-      <xsl:when test="@type">
-        <xsl:value-of select="$type"/>: <xsl:value-of select="."/>
-      </xsl:when>
-      <xsl:when test="contains ('isbn issn uri doi lccn', $type)">
-        <xsl:value-of select="$type"/>: <xsl:value-of select="."/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="."/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </dc:identifier>
-</xsl:template>
+<xsl:template match="mods:identifier">  
+  <dc:identifier>  
+    <xsl:variable name="type" select="translate(@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')"/>  
+    <xsl:choose>  
+      <!-- 2.0: added identifier type attribute to output, if it is present-->  
+      <xsl:when test="contains(.,':')">  
+        <xsl:value-of select="."/>  
+      </xsl:when>  
+      <xsl:when test="@type">  
+        <xsl:value-of select="$type"/>: <xsl:value-of select="."/>  
+      </xsl:when>  
+      <xsl:when test="contains ('isbn issn uri doi lccn', $type)">  
+        <xsl:value-of select="$type"/>: <xsl:value-of select="."/>  
+      </xsl:when>  
+      <xsl:otherwise>  
+        <xsl:value-of select="."/>  
+      </xsl:otherwise>  
+    </xsl:choose>  
+  </dc:identifier>  
+</xsl:template>  
 ```  
 
 ## A Viable Solution
