@@ -1,84 +1,16 @@
-<!doctype html><html lang=en-us>
-<head>
-<title>Updating Digital.Grinnell to ISLE v1.5.11 // The Grinnell College Digital Library Application Developer's Blog</title>
-<meta charset=utf-8>
-<meta name=generator content="Hugo 0.92.2">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=author content="Mark A. McFate">
-<meta name=description content>
-<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.248190165c90ec9341e5c211c3fe84447860758c592f879758437e9a6145eb6e.css>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Updating Digital.Grinnell to ISLE v1.5.11">
-<meta name=twitter:description content="Attention: This is an updated copy of post 107 gleaned from the ISLE project&rsquo;s update.md document. ONLY the headings from the original document and the annotations which are specific to Digital.Grinnell appear in this document!
+<!doctype html><html lang=en-us><head><title>Updating Digital.Grinnell to ISLE v1.5.11 // The Grinnell College Digital Library Application Developer's Blog</title><meta charset=utf-8><meta name=generator content="Hugo 0.96.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Mark A. McFate"><meta name=description content><link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.ec5c8abc0625bee34a87b8624d3c683035583f8314d537f8d266c9f01ad58d83.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Updating Digital.Grinnell to ISLE v1.5.11"><meta name=twitter:description content="Attention: This is an updated copy of post 107 gleaned from the ISLE project&rsquo;s update.md document. ONLY the headings from the original document and the annotations which are specific to Digital.Grinnell appear in this document!
  Note: This update procedure was NOT performed &ldquo;locally&rdquo;, as recommended, due to substantial errors encountered in my last attempt to update. Rather than diving down that rabbit hole, again, I elected to attempt this update on our staging server, DGDockerX on 2021-Sep-27.
- Update ISLE to the Latest Release Important Information # stop the docker service $ sudo service docker stop # download the latest docker binary and replace the current outdated docker # DEPRECATED WAY TO UPGRADE DOCKER: $ sudo wget https://get.">
-<meta property="og:title" content="Updating Digital.Grinnell to ISLE v1.5.11">
-<meta property="og:description" content="Attention: This is an updated copy of post 107 gleaned from the ISLE project&rsquo;s update.md document. ONLY the headings from the original document and the annotations which are specific to Digital.Grinnell appear in this document!
+ Update ISLE to the Latest Release Important Information # stop the docker service $ sudo service docker stop # download the latest docker binary and replace the current outdated docker # DEPRECATED WAY TO UPGRADE DOCKER: $ sudo wget https://get."><meta property="og:title" content="Updating Digital.Grinnell to ISLE v1.5.11"><meta property="og:description" content="Attention: This is an updated copy of post 107 gleaned from the ISLE project&rsquo;s update.md document. ONLY the headings from the original document and the annotations which are specific to Digital.Grinnell appear in this document!
  Note: This update procedure was NOT performed &ldquo;locally&rdquo;, as recommended, due to substantial errors encountered in my last attempt to update. Rather than diving down that rabbit hole, again, I elected to attempt this update on our staging server, DGDockerX on 2021-Sep-27.
- Update ISLE to the Latest Release Important Information # stop the docker service $ sudo service docker stop # download the latest docker binary and replace the current outdated docker # DEPRECATED WAY TO UPGRADE DOCKER: $ sudo wget https://get.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/111-updating-isle-v1.5.11/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2021-09-27T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-10-06T07:45:14-05:00">
-</head>
-<body>
-<header class=app-header>
-<a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a>
-<h2>The Grinnell College Digital Library Application Developer's Blog</h2>
-<div class=author-block>
-<p class=site-rev>
-Compiled: Feb 18, 2022 at 1:46pm CST<br>
-Content Updated: 2022-Feb-18 00:00 UTC
-</p>
-<div class=name>by
-<strong>Mark A. McFate</strong></div>
-<div class=address>Grinnell College Libraries</div>
-<div class=link><a href=mailto:></a></div>
-<br>
-</div>
-<nav class=sidebar-nav>
-<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
-<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a>
-</nav>
-<p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
-<div class=app-header-social>
-<a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a>
-<a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a>
-</div>
-<p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
-</header>
-<main class=app-container>
-<div class=breadcrumbs>
-<a href=https://static.grinnell.edu/dlad-blog/>Home</a>
+ Update ISLE to the Latest Release Important Information # stop the docker service $ sudo service docker stop # download the latest docker binary and replace the current outdated docker # DEPRECATED WAY TO UPGRADE DOCKER: $ sudo wget https://get."><meta property="og:type" content="article"><meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/111-updating-isle-v1.5.11/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-09-27T00:00:00+00:00"><meta property="article:modified_time" content="2021-10-06T07:45:14-05:00"></head><body><header class=app-header><a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a><h2>The Grinnell College Digital Library Application Developer's Blog</h2><div class=author-block><p class=site-rev>Compiled: Mar 29, 2022 at 1:35pm CDT<br>Content Updated: 2022-Mar-24 00:00 UTC</p><div class=name>by
+<strong>Mark A. McFate</strong></div><div class=address>Grinnell College Libraries</div><div class=link><a href=mailto:></a></div><br></div><nav class=sidebar-nav><a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a></nav><p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p><div class=app-header-social><a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a></div><p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p></header><main class=app-container><div class=breadcrumbs><a href=https://static.grinnell.edu/dlad-blog/>Home</a>
 &bull; <a href=https://static.grinnell.edu/dlad-blog/posts/>Posts</a>
-&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/111-updating-isle-v1.5.11/>111 updating isle v1.5.11</a>
-</div>
-<article class=post>
-<header class=post-header>
-<h1 class=post-title>Updating Digital.Grinnell to ISLE v1.5.11</h1>
-<div class=post-meta>
-<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-6 min read
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/111-updating-isle-v1.5.11/>111 updating isle v1.5.11</a></div><article class=post><header class=post-header><h1 class=post-title>Updating Digital.Grinnell to ISLE v1.5.11</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>6 min read
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
 Sep 27, 2021
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;Updated: Oct 6, 2021 - 07:45
-&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
-<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-<a class=tag href=https://static.grinnell.edu/dlad-blog/tags/isle/>ISLE</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/update/>update</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/v1.5.11/>v1.5.11</a></div></div>
-<div class=annotation>
-<p style=font-size:1.75em>
-<strong>Attention</strong>: This post supersedes <strong><a href=https://static.grinnell.edu/dlad-blog/posts/107-updating-digital-grinnell-in-isle/> posts/107-updating-digital-grinnell-in-isle</a></strong>.
-</p>
-</div>
-</header>
-<div class=post-content>
-<div class=annotation><p>Attention: This is an updated copy of <a href=content/posts/107-updating-Digital-Grinnell-in-ISLE.md>post 107</a> gleaned from the <a href=https://github.com/Islandora-Collaboration-Group/ISLE>ISLE project&rsquo;s</a> <a href=https://github.com/Digital-Grinnell/dg-isle/blob/main/docs/update/update.md>update.md</a> document. <strong>ONLY the headings from the original document and the annotations which are specific to <em>Digital.Grinnell</em> appear in this document!</strong></p>
-</div>
-<div class=annotation><p>Note: This update procedure was NOT performed &ldquo;locally&rdquo;, as recommended, due to substantial errors encountered in my last attempt to update. Rather than diving down that rabbit hole, again, I elected to attempt this update on our <em>staging</em> server, <em>DGDockerX</em> on <code>2021-Sep-27</code>.</p>
-</div>
-<h1 id=update-isle-to-the-latest-release>Update ISLE to the Latest Release</h1>
-<h2 id=important-information>Important Information</h2>
-<pre tabindex=0><code># stop the docker service
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/isle/>ISLE</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/update/>update</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/v1.5.11/>v1.5.11</a></div></div><div class=annotation><p style=font-size:1.75em><strong>Attention</strong>: This post supersedes <strong><a href=https://static.grinnell.edu/dlad-blog/posts/107-updating-digital-grinnell-in-isle/>posts/107-updating-digital-grinnell-in-isle</a></strong>.</p></div></header><div class=post-content><div class=annotation><p>Attention: This is an updated copy of <a href=content/posts/107-updating-Digital-Grinnell-in-ISLE.md>post 107</a> gleaned from the <a href=https://github.com/Islandora-Collaboration-Group/ISLE>ISLE project&rsquo;s</a> <a href=https://github.com/Digital-Grinnell/dg-isle/blob/main/docs/update/update.md>update.md</a> document. <strong>ONLY the headings from the original document and the annotations which are specific to <em>Digital.Grinnell</em> appear in this document!</strong></p></div><div class=annotation><p>Note: This update procedure was NOT performed &ldquo;locally&rdquo;, as recommended, due to substantial errors encountered in my last attempt to update. Rather than diving down that rabbit hole, again, I elected to attempt this update on our <em>staging</em> server, <em>DGDockerX</em> on <code>2021-Sep-27</code>.</p></div><h1 id=update-isle-to-the-latest-release>Update ISLE to the Latest Release</h1><h2 id=important-information>Important Information</h2><pre tabindex=0><code># stop the docker service
 $ sudo service docker stop
 
 # download the latest docker binary and replace the current outdated docker
@@ -95,11 +27,7 @@ $ sudo docker version
 $ sudo docker images
 $ sudo docker ps
 $ sudo docker ps -a
-</code></pre><h2 id=update-local-personal-computer>Update Local (personal computer)</h2>
-<p>As mentioned above, this work is being conducted in <em>staging</em> rather than <em>local</em>, on <em>DGDockerX</em> in the <code>/home/islandora/ISLE</code> directory and the <code>dg-isle</code> and <code>dg-islandora</code> directories there.</p>
-<p>My new branch is named <code>isle-update-v1.5.11</code>.</p>
-<p>Output from <code>git pull</code> follows.</p>
-<pre tabindex=0><code>╭─islandora@dgdockerx ~/ISLE/dg-isle ‹isle-update-v1.5.11›
+</code></pre><h2 id=update-local-personal-computer>Update Local (personal computer)</h2><p>As mentioned above, this work is being conducted in <em>staging</em> rather than <em>local</em>, on <em>DGDockerX</em> in the <code>/home/islandora/ISLE</code> directory and the <code>dg-isle</code> and <code>dg-islandora</code> directories there.</p><p>My new branch is named <code>isle-update-v1.5.11</code>.</p><p>Output from <code>git pull</code> follows.</p><pre tabindex=0><code>╭─islandora@dgdockerx ~/ISLE/dg-isle ‹isle-update-v1.5.11›
 ╰─$ git pull icg-upstream main
 From https://github.com/Islandora-Collaboration-Group/ISLE
  * branch            main       -&gt; FETCH_HEAD
@@ -107,7 +35,7 @@ Auto-merging docs/install/host-software-dependencies.md
 Auto-merging docker-compose.staging.yml
 Auto-merging docker-compose.production.yml
 Auto-merging docker-compose.local.yml
-Merge made by the 'recursive' strategy.
+Merge made by the &#39;recursive&#39; strategy.
  docker-compose.demo.yml                    | 14 +++++++-------
  docker-compose.local.yml                   | 16 ++++++++--------
  docker-compose.production.yml              | 16 ++++++++--------
@@ -127,24 +55,17 @@ Merge made by the 'recursive' strategy.
  create mode 100644 docs/release-notes/release-1-5-11.md
  create mode 100644 docs/release-notes/release-1-5-8.md
  create mode 100644 docs/release-notes/release-1-5-9.md
-</code></pre><p>There were NO merge conflicts so <code>ratom</code> (see <a href=https://static.grinnell.edu/dlad-blog/posts/085-remote-atom/>Remote Atom</a>) was not needed.</p>
-<p>There really should be an additional step here since you <strong>must edit</strong>, or at least check your <code>.env</code> file! I changed mine to read as follows:</p>
-<pre tabindex=0><code>COMPOSE_PROJECT_NAME=dgs
+</code></pre><p>There were NO merge conflicts so <code>ratom</code> (see <a href=https://static.grinnell.edu/dlad-blog/posts/085-remote-atom/>Remote Atom</a>) was not needed.</p><p>There really should be an additional step here since you <strong>must edit</strong>, or at least check your <code>.env</code> file! I changed mine to read as follows:</p><pre tabindex=0><code>COMPOSE_PROJECT_NAME=dgs
 BASE_DOMAIN=isle-stage.grinnell.edu
 CONTAINER_SHORT_ID=dgs
 COMPOSE_FILE=docker-compose.staging.yml
-</code></pre><p>With an active VPN connection, I am happy to report that the <em>staging</em> site is now working at <a href=https://isle-stage.grinnell.edu>https://isle-stage.grinnell.edu</a>.</p>
-<p>Preliminary tests look good, and a search for &ldquo;Ley&rdquo; returns a very short list of objects that <em>do</em> exist in my <em>DG-STAGING</em> test repository.</p>
-<p>I wasn&rsquo;t able to execute the sequence as presented above. Instead, I did this:</p>
-<pre tabindex=0><code>╭─islandora@dgdockerx ~/ISLE/dg-isle
+</code></pre><p>With an active VPN connection, I am happy to report that the <em>staging</em> site is now working at <a href=https://isle-stage.grinnell.edu>https://isle-stage.grinnell.edu</a>.</p><p>Preliminary tests look good, and a search for &ldquo;Ley&rdquo; returns a very short list of objects that <em>do</em> exist in my <em>DG-STAGING</em> test repository.</p><p>I wasn&rsquo;t able to execute the sequence as presented above. Instead, I did this:</p><pre tabindex=0><code>╭─islandora@dgdockerx ~/ISLE/dg-isle
 ╰─$ git add .
 ╭─islandora@dgdockerx ~/ISLE/dg-isle
-╰─$ git commit -m &quot;Updated and working on DGDockerX&quot;
+╰─$ git commit -m &#34;Updated and working on DGDockerX&#34;
 ╭─islandora@dgdockerx ~/ISLE/dg-isle
 ╰─$ git push origin isle-update-v1.5.11
-</code></pre><p>Hold on, there&rsquo;s one more significant part of the update process that&rsquo;s not covered here, updating the <em>Drupal</em> and <em>Islandora</em> code that is not technically part of <em>ISLE</em>, but probably should be?</p>
-<p>My process for updating that went something like this:</p>
-<pre tabindex=0><code>╭─islandora@dgdockerx ~
+</code></pre><p>Hold on, there&rsquo;s one more significant part of the update process that&rsquo;s not covered here, updating the <em>Drupal</em> and <em>Islandora</em> code that is not technically part of <em>ISLE</em>, but probably should be?</p><p>My process for updating that went something like this:</p><pre tabindex=0><code>╭─islandora@dgdockerx ~
 ╰─$ cd ~/ISLE/dg-islandora
 ╭─islandora@dgdockerx ~/ISLE/dg-islandora ‹main›
 ╰─$ git pull
@@ -155,17 +76,14 @@ COMPOSE_FILE=docker-compose.staging.yml
 root@e97835142685:/# cd /var/www/html/sites/default/
 root@e97835142685:/var/www/html/sites/default# rm -fr files/webform/*
 root@e97835142685:/var/www/html/sites/default# drush up
-</code></pre><p>The <code>drush up</code> command was invoked to pull in all of the latest updates to <em>Drupal</em> v7, and there were many, including an update to <em>Drupal</em>&rsquo;s core, now at <em>v7.82</em>. Since the core got updated, I had to eventually revert changes to <code>/var/www/html/.htaccess</code> since those updates typically remove a line that <em>ISLE</em> requires to function properly. I confirmed that the changes made by <code>drush up</code> did indeed make their way into <code>~/ISLE/dg-islandora</code> by checking <code>git status</code>. I managed to revert the changes to <code>.htaccess</code> using <code>sudo git checkout -- .htaccess</code>.</p>
-<p>After making those changes I found it necessary to restart the stack using:</p>
-<pre tabindex=0><code>╭─islandora@dgdockerx ~/ISLE/dg-islandora ‹update-sept-27*›
+</code></pre><p>The <code>drush up</code> command was invoked to pull in all of the latest updates to <em>Drupal</em> v7, and there were many, including an update to <em>Drupal</em>&rsquo;s core, now at <em>v7.82</em>. Since the core got updated, I had to eventually revert changes to <code>/var/www/html/.htaccess</code> since those updates typically remove a line that <em>ISLE</em> requires to function properly. I confirmed that the changes made by <code>drush up</code> did indeed make their way into <code>~/ISLE/dg-islandora</code> by checking <code>git status</code>. I managed to revert the changes to <code>.htaccess</code> using <code>sudo git checkout -- .htaccess</code>.</p><p>After making those changes I found it necessary to restart the stack using:</p><pre tabindex=0><code>╭─islandora@dgdockerx ~/ISLE/dg-islandora ‹update-sept-27*›
 ╰─$ cd ~/DG-STAGING
 ╭─islandora@dgdockerx ~/DG-STAGING ‹main*›
 ╰─$ ./RESTART.sh
-</code></pre><p>This time I did NOT have to run several of the <code>./Update-*.sh</code> scripts in <code>~/DG-STAGING</code> in order to get everything working properly. So, I pushed my <code>dg-islandora</code> changes to <em>Github</em> using:</p>
-<pre tabindex=0><code>╭─islandora@dgdockerx ~/ISLE/dg-islandora ‹update-sept-27*›
+</code></pre><p>This time I did NOT have to run several of the <code>./Update-*.sh</code> scripts in <code>~/DG-STAGING</code> in order to get everything working properly. So, I pushed my <code>dg-islandora</code> changes to <em>Github</em> using:</p><pre tabindex=0><code>╭─islandora@dgdockerx ~/ISLE/dg-islandora ‹update-sept-27*›
 ╰─$ git add --all .
 ╭─islandora@dgdockerx ~/ISLE/dg-islandora ‹update-sept-27*›
-╰─$ git commit -m &quot;Updates from DGDockerX&quot;
+╰─$ git commit -m &#34;Updates from DGDockerX&#34;
 [update-sept-27 e27a34c] Updates from DGDockerX
  183 files changed, 954 insertions(+), 666 deletions(-)
  mode change 100644 =&gt; 100755 scripts/drupal.sh
@@ -174,19 +92,17 @@ root@e97835142685:/var/www/html/sites/default# drush up
  rewrite sites/all/modules/contrib/views/README.txt (70%)
  ╭─islandora@dgdockerx ~/ISLE/dg-islandora ‹update-sept-27›
  ╰─$ git pull origin main
- Username for 'https://github.com': Digital-Grinnell
- Password for 'https://Digital-Grinnell@github.com': xxxxxxxxxxxxxxx
+ Username for &#39;https://github.com&#39;: Digital-Grinnell
+ Password for &#39;https://Digital-Grinnell@github.com&#39;: xxxxxxxxxxxxxxx
  From https://github.com/Digital-Grinnell/dg-islandora
   * branch            main       -&gt; FETCH_HEAD
  Already up-to-date.
-</code></pre><p>At this point I did another <code>cd ~/DG-STAGING; ./RESTART.sh</code> just to ensure things still work properly. Another <code>./Update-PERMISSIONS.sh</code> was also needed.</p>
-<p>Then&mldr;</p>
-<pre tabindex=0><code>╭─islandora@dgdockerx ~/DG-STAGING ‹main›
+</code></pre><p>At this point I did another <code>cd ~/DG-STAGING; ./RESTART.sh</code> just to ensure things still work properly. Another <code>./Update-PERMISSIONS.sh</code> was also needed.</p><p>Then&mldr;</p><pre tabindex=0><code>╭─islandora@dgdockerx ~/DG-STAGING ‹main›
 ╰─$ cd ~/ISLE/dg-islandora
 ╭─islandora@dgdockerx ~/ISLE/dg-islandora ‹update-sept-27›
 ╰─$ git push origin update-sept-27
-Username for 'https://github.com': Digital-Grinnell
-Password for 'https://Digital-Grinnell@github.com': xxxxxxxxxxxxxxx
+Username for &#39;https://github.com&#39;: Digital-Grinnell
+Password for &#39;https://Digital-Grinnell@github.com&#39;: xxxxxxxxxxxxxxx
 Counting objects: 558, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (288/288), done.
@@ -194,40 +110,10 @@ Writing objects: 100% (292/292), 35.30 KiB | 0 bytes/s, done.
 Total 292 (delta 253), reused 0 (delta 0)
 remote: Resolving deltas: 100% (253/253), completed with 227 local objects.
 remote:
-remote: Create a pull request for 'update-sept-27' on GitHub by visiting:
+remote: Create a pull request for &#39;update-sept-27&#39; on GitHub by visiting:
 remote:      https://github.com/Digital-Grinnell/dg-islandora/pull/new/update-sept-27
 remote:
 To https://github.com/Digital-Grinnell/dg-islandora
  * [new branch]      update-sept-27 -&gt; update-sept-27
-</code></pre><h2 id=update-staging-server>Update Staging Server</h2>
-<p>Ok, at this point I&rsquo;ve already got our staging server up-to-date, including the addition of my <code>purge-tmp-files</code> script successfully added to the Apache container&rsquo;s <code>/etc/cron.hourly</code> directory, but the ownership on that script is <code>islandora:islandora</code> and it needs to be <code>root:root</code>. So, I need to change that from inside the <code>isle-apache-dgs</code> container like so: <code>root@bc83fc8bb3c3:/etc/cron.hourly# chown root:root purge-tmp-files</code>.</p>
-<p>My next steps will be to backup the production database and <code>/var/www/html/sites/default/files</code>, merge all of the <code>dg-isle</code> and <code>dg-islandora</code> repository changes into their respective <code>main</code> branches, and repeat all of my implementation and testing in staging again. For <strong>production backup</strong> look at <code>~/ISLE/DEPLOY/dump-production.sh</code> on <code>DGDocker1</code> for guidance!</p>
-<p>I used the <code>~/ISLE/DG-STAGING/rsync-from-STORAGE.sh</code> and <code>~/ISLE/DG-STAGING/RESTART.sh</code> scripts on <em>DGDockerX</em> to restart the stack after capturing the production database and <code>/var/www/html/sites/default/files</code> contents. It worked nicely except for a warning about permissions on <code>public://backup_migrate/manual</code>. I reran the <code>~/ISLE/DG-STAGING/Update-PERMISSIONS.sh</code> script and the warning went away.</p>
-<p>I subsequently performed a <code>git add .; git commit -m "message"; git push origin update-sept-27</code> command sequence from both the <code>~/ISLE/dg-islandora</code> and a similar sequence, but with branch <code>isle-update-v1.5.11</code> in <code>~/ISLE/dg-isle</code> repositories to commit all changes. I subsequently opened pull requests to merge both back to the corresponding <code>main</code> branches of their respective repositories.</p>
-<p>Next update will be to our production server, <em>DGDocker1</em>, where I hope to repeat this process <strong>to-the-letter</strong>.</p>
-<h1 id=working-here->Working Here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>
-<h1 id=add-a-note-about-making-sure-we-hold-on-to-and-use-the-old-acmejson-file-thats-in-isledg-isleconfigproxy>Add a note about making sure we hold on to, and use, the old <code>acme.json</code> file that&rsquo;s in <code>~/ISLE/dg-isle/config/proxy/</code>!</h1>
-<h2 id=update-production-server>Update Production Server</h2>
-<p>When you are confident that your Staging installation is working as expected:</p>
-<ul>
-<li>Repeat the same above &ldquo;Update Staging Server&rdquo; process but do so on your Production server environment.</li>
-</ul>
-<h2 id=additional-resources>Additional Resources</h2>
-<p>Please post questions to the public <a href=https://groups.google.com/forum/#!forum/islandora-isle>Islandora ISLE Google group</a>, or subscribe to receive emails.</p>
-<div class=annotation><p>One hiccup in the <code>production</code> update&mldr; I encountered this error when trying to initiate an IMI import:</p>
-<pre tabindex=0><code>RuntimeException: Unable to create the cache directory (/var/www/private/ed). in Twig\Cache\FilesystemCache-&gt;write() (line 57 of /var/www/html/sites/all/modules/islandora/islandora_multi_importer/vendor/twig/twig/src/Cache/FilesystemCache.php).
-</code></pre><p>The problem appeared to be ownership of the <code>/var/www/public</code> directory in the <em>Apache</em> container. The <code>public</code> folder was owned by <code>islandora:islandora</code> so I opened a shell into <em>Apache</em> and did <code>cd /var/www/; chown -R islandora:www-data public</code>. That seems to have fixed the problem nicely.</p>
-</div>
-<h1 id=end-of-update-isle-to-the-latest-release>End of: Update ISLE to the Latest Release</h1>
-<p>And that&rsquo;s a wrap. Until next time&mldr;</p>
-</div>
-<div class=post-footer>
-<div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//digital-library-applications-developer-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-</article>
-</main>
-</body>
-</html>
+</code></pre><h2 id=update-staging-server>Update Staging Server</h2><p>Ok, at this point I&rsquo;ve already got our staging server up-to-date, including the addition of my <code>purge-tmp-files</code> script successfully added to the Apache container&rsquo;s <code>/etc/cron.hourly</code> directory, but the ownership on that script is <code>islandora:islandora</code> and it needs to be <code>root:root</code>. So, I need to change that from inside the <code>isle-apache-dgs</code> container like so: <code>root@bc83fc8bb3c3:/etc/cron.hourly# chown root:root purge-tmp-files</code>.</p><p>My next steps will be to backup the production database and <code>/var/www/html/sites/default/files</code>, merge all of the <code>dg-isle</code> and <code>dg-islandora</code> repository changes into their respective <code>main</code> branches, and repeat all of my implementation and testing in staging again. For <strong>production backup</strong> look at <code>~/ISLE/DEPLOY/dump-production.sh</code> on <code>DGDocker1</code> for guidance!</p><p>I used the <code>~/ISLE/DG-STAGING/rsync-from-STORAGE.sh</code> and <code>~/ISLE/DG-STAGING/RESTART.sh</code> scripts on <em>DGDockerX</em> to restart the stack after capturing the production database and <code>/var/www/html/sites/default/files</code> contents. It worked nicely except for a warning about permissions on <code>public://backup_migrate/manual</code>. I reran the <code>~/ISLE/DG-STAGING/Update-PERMISSIONS.sh</code> script and the warning went away.</p><p>I subsequently performed a <code>git add .; git commit -m "message"; git push origin update-sept-27</code> command sequence from both the <code>~/ISLE/dg-islandora</code> and a similar sequence, but with branch <code>isle-update-v1.5.11</code> in <code>~/ISLE/dg-isle</code> repositories to commit all changes. I subsequently opened pull requests to merge both back to the corresponding <code>main</code> branches of their respective repositories.</p><p>Next update will be to our production server, <em>DGDocker1</em>, where I hope to repeat this process <strong>to-the-letter</strong>.</p><h1 id=working-here->Working Here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1><h1 id=add-a-note-about-making-sure-we-hold-on-to-and-use-the-old-acmejson-file-thats-in-isledg-isleconfigproxy>Add a note about making sure we hold on to, and use, the old <code>acme.json</code> file that&rsquo;s in <code>~/ISLE/dg-isle/config/proxy/</code>!</h1><h2 id=update-production-server>Update Production Server</h2><p>When you are confident that your Staging installation is working as expected:</p><ul><li>Repeat the same above &ldquo;Update Staging Server&rdquo; process but do so on your Production server environment.</li></ul><h2 id=additional-resources>Additional Resources</h2><p>Please post questions to the public <a href=https://groups.google.com/forum/#!forum/islandora-isle>Islandora ISLE Google group</a>, or subscribe to receive emails.</p><div class=annotation><p>One hiccup in the <code>production</code> update&mldr; I encountered this error when trying to initiate an IMI import:</p><pre tabindex=0><code>RuntimeException: Unable to create the cache directory (/var/www/private/ed). in Twig\Cache\FilesystemCache-&gt;write() (line 57 of /var/www/html/sites/all/modules/islandora/islandora_multi_importer/vendor/twig/twig/src/Cache/FilesystemCache.php).
+</code></pre><p>The problem appeared to be ownership of the <code>/var/www/public</code> directory in the <em>Apache</em> container. The <code>public</code> folder was owned by <code>islandora:islandora</code> so I opened a shell into <em>Apache</em> and did <code>cd /var/www/; chown -R islandora:www-data public</code>. That seems to have fixed the problem nicely.</p></div><h1 id=end-of-update-isle-to-the-latest-release>End of: Update ISLE to the Latest Release</h1><p>And that&rsquo;s a wrap. Until next time&mldr;</p></div><div class=post-footer><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//digital-library-applications-developer-blog.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></main></body></html>

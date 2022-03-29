@@ -1,167 +1,57 @@
-<!doctype html><html lang=en-us>
-<head>
-<title>IHC is Back! // The Grinnell College Digital Library Application Developer's Blog</title>
-<meta charset=utf-8>
-<meta name=generator content="Hugo 0.92.2">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=author content="Mark A. McFate">
-<meta name=description content>
-<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.248190165c90ec9341e5c211c3fe84447860758c592f879758437e9a6145eb6e.css>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="IHC is Back!">
-<meta name=twitter:description content="Note to self: IHC is back in DG production! What&rsquo;s IHC, you ask?
+<!doctype html><html lang=en-us><head><title>IHC is Back! // The Grinnell College Digital Library Application Developer's Blog</title><meta charset=utf-8><meta name=generator content="Hugo 0.96.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Mark A. McFate"><meta name=description content><link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.ec5c8abc0625bee34a87b8624d3c683035583f8314d537f8d266c9f01ad58d83.css><meta name=twitter:card content="summary"><meta name=twitter:title content="IHC is Back!"><meta name=twitter:description content="Note to self: IHC is back in DG production! What&rsquo;s IHC, you ask?
 IHC is my Islandora Health Check drush command/module. Since this is a note to myself, I&rsquo;m not going to get into a lot of detail here, just posting some reminders so I can remember how it works and how it is used.
-What Is It? IHC is a module that provides drush commands that can be used to collect (drush ihcC), analyze (drush ihcA), and subsequently report (drush ihcR) key object info from DG&rsquo;s FEDORA repository.">
-<meta property="og:title" content="IHC is Back!">
-<meta property="og:description" content="Note to self: IHC is back in DG production! What&rsquo;s IHC, you ask?
+What Is It? IHC is a module that provides drush commands that can be used to collect (drush ihcC), analyze (drush ihcA), and subsequently report (drush ihcR) key object info from DG&rsquo;s FEDORA repository."><meta property="og:title" content="IHC is Back!"><meta property="og:description" content="Note to self: IHC is back in DG production! What&rsquo;s IHC, you ask?
 IHC is my Islandora Health Check drush command/module. Since this is a note to myself, I&rsquo;m not going to get into a lot of detail here, just posting some reminders so I can remember how it works and how it is used.
-What Is It? IHC is a module that provides drush commands that can be used to collect (drush ihcC), analyze (drush ihcA), and subsequently report (drush ihcR) key object info from DG&rsquo;s FEDORA repository.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/119-ihc-is-back/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2022-02-17T00:00:00+00:00">
-<meta property="article:modified_time" content="2022-02-17T00:00:00+00:00">
-</head>
-<body>
-<header class=app-header>
-<a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a>
-<h2>The Grinnell College Digital Library Application Developer's Blog</h2>
-<div class=author-block>
-<p class=site-rev>
-Compiled: Feb 18, 2022 at 1:46pm CST<br>
-Content Updated: 2022-Feb-18 00:00 UTC
-</p>
-<div class=name>by
-<strong>Mark A. McFate</strong></div>
-<div class=address>Grinnell College Libraries</div>
-<div class=link><a href=mailto:></a></div>
-<br>
-</div>
-<nav class=sidebar-nav>
-<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
-<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a>
-</nav>
-<p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
-<div class=app-header-social>
-<a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a>
-<a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a>
-</div>
-<p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
-</header>
-<main class=app-container>
-<div class=breadcrumbs>
-<a href=https://static.grinnell.edu/dlad-blog/>Home</a>
+What Is It? IHC is a module that provides drush commands that can be used to collect (drush ihcC), analyze (drush ihcA), and subsequently report (drush ihcR) key object info from DG&rsquo;s FEDORA repository."><meta property="og:type" content="article"><meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/119-ihc-is-back/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-02-17T00:00:00+00:00"><meta property="article:modified_time" content="2022-02-17T00:00:00+00:00"></head><body><header class=app-header><a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a><h2>The Grinnell College Digital Library Application Developer's Blog</h2><div class=author-block><p class=site-rev>Compiled: Mar 29, 2022 at 1:35pm CDT<br>Content Updated: 2022-Mar-24 00:00 UTC</p><div class=name>by
+<strong>Mark A. McFate</strong></div><div class=address>Grinnell College Libraries</div><div class=link><a href=mailto:></a></div><br></div><nav class=sidebar-nav><a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a></nav><p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p><div class=app-header-social><a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a></div><p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p></header><main class=app-container><div class=breadcrumbs><a href=https://static.grinnell.edu/dlad-blog/>Home</a>
 &bull; <a href=https://static.grinnell.edu/dlad-blog/posts/>Posts</a>
-&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/119-ihc-is-back/>119 ihc is back</a>
-</div>
-<article class=post>
-<header class=post-header>
-<h1 class=post-title>IHC is Back!</h1>
-<div class=post-meta>
-<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-5 min read
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/119-ihc-is-back/>119 ihc is back</a></div><article class=post><header class=post-header><h1 class=post-title>IHC is Back!</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>5 min read
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
 Feb 17, 2022
-&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
-<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-<a class=tag href=https://static.grinnell.edu/dlad-blog/tags/ihc/>IHC</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/format-csv-to-excel/>format-csv-to-excel</a></div></div>
-</header>
-<div class=post-content>
-<p>Note to self: IHC is back in <em>DG</em> production! What&rsquo;s IHC, you ask?</p>
-<p>IHC is my <em>Islandora Health Check</em> <code>drush</code> command/module. Since this is a note to myself, I&rsquo;m not going to get into a lot of detail here, just posting some reminders so I can remember how it works and how it is used.</p>
-<h2 id=what-is-it>What Is It?</h2>
-<p>IHC is a module that provides <code>drush</code> commands that can be used to collect (<code>drush ihcC</code>), analyze (<code>drush ihcA</code>), and subsequently report (<code>drush ihcR</code>) key object info from DG&rsquo;s FEDORA repository.</p>
-<p>At its core, the module consists of three parts:</p>
-<ul>
-<li><code>ihcCollect</code> (alias <code>ihcC</code>) collects information by walking through a user-specified range of PIDs and making calls to PHP functions, peering into and harvesting information from those objects' XML datastreams.</li>
-<li><code>ihcAnalyze</code> (alias <code>ihcA</code>), the analysis command, can be used to analyze the data collected by <code>ihcC</code>. It looks at values for specific fields and for trends in the data, then applies special color or text formatting codes to highlight that data or trend.</li>
-<li><code>ihcReport</code> (alias <code>ihcR</code>), the reporting command, is then used to output the collected and analyzed data into a readable form. Before ISLE the reports were written directly into Excel format. Since the Excel libraries I used years ago are no longer available, due to security concerns, I made the <code>ihcR</code> command output data into a simple <code>.csv</code> format.</li>
-</ul>
-<h2 id=history>History</h2>
-<p>IHC is a module (on DGDocker1 it lives in <code>/var/www/html/sites/all/modules/islandora/ihc</code>) that I wrote several years ago, but one that was broken with the introduction of <a href=https://github.com/Islandora-Collaboration-Group/ISLE>ISLE</a> in about 2018. In February 2022 I managed to re-work some of the code to bring it back-to-life in DG&rsquo;s ISLE environment.</p>
-<h2 id=ihcquick---a-quick-report>ihcQuick - A &ldquo;Quick&rdquo; Report</h2>
-<p>Running a series of <code>ihcC</code>, <code>ihcA</code>, then <code>ihcR</code> commands is a hassle. So, I created the <code>drush ihcQuick</code> (alias <code>ihcQ</code>) command, and it is how I recommend generating an IHC report now. A typical run of <code>ihcQ</code> from DG&rsquo;s production node, <em>DGDocker1</em>, looks like this (truncated here for readability):</p>
-<pre tabindex=0><code>[islandora@dgdocker1 ~]$ docker exec -it isle-apache-dg bash
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/ihc/>IHC</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/format-csv-to-excel/>format-csv-to-excel</a></div></div></header><div class=post-content><p>Note to self: IHC is back in <em>DG</em> production! What&rsquo;s IHC, you ask?</p><p>IHC is my <em>Islandora Health Check</em> <code>drush</code> command/module. Since this is a note to myself, I&rsquo;m not going to get into a lot of detail here, just posting some reminders so I can remember how it works and how it is used.</p><h2 id=what-is-it>What Is It?</h2><p>IHC is a module that provides <code>drush</code> commands that can be used to collect (<code>drush ihcC</code>), analyze (<code>drush ihcA</code>), and subsequently report (<code>drush ihcR</code>) key object info from DG&rsquo;s FEDORA repository.</p><p>At its core, the module consists of three parts:</p><ul><li><code>ihcCollect</code> (alias <code>ihcC</code>) collects information by walking through a user-specified range of PIDs and making calls to PHP functions, peering into and harvesting information from those objects&rsquo; XML datastreams.</li><li><code>ihcAnalyze</code> (alias <code>ihcA</code>), the analysis command, can be used to analyze the data collected by <code>ihcC</code>. It looks at values for specific fields and for trends in the data, then applies special color or text formatting codes to highlight that data or trend.</li><li><code>ihcReport</code> (alias <code>ihcR</code>), the reporting command, is then used to output the collected and analyzed data into a readable form. Before ISLE the reports were written directly into Excel format. Since the Excel libraries I used years ago are no longer available, due to security concerns, I made the <code>ihcR</code> command output data into a simple <code>.csv</code> format.</li></ul><h2 id=history>History</h2><p>IHC is a module (on DGDocker1 it lives in <code>/var/www/html/sites/all/modules/islandora/ihc</code>) that I wrote several years ago, but one that was broken with the introduction of <a href=https://github.com/Islandora-Collaboration-Group/ISLE>ISLE</a> in about 2018. In February 2022 I managed to re-work some of the code to bring it back-to-life in DG&rsquo;s ISLE environment.</p><h2 id=ihcquick---a-quick-report>ihcQuick - A &ldquo;Quick&rdquo; Report</h2><p>Running a series of <code>ihcC</code>, <code>ihcA</code>, then <code>ihcR</code> commands is a hassle. So, I created the <code>drush ihcQuick</code> (alias <code>ihcQ</code>) command, and it is how I recommend generating an IHC report now. A typical run of <code>ihcQ</code> from DG&rsquo;s production node, <em>DGDocker1</em>, looks like this (truncated here for readability):</p><pre tabindex=0><code>[islandora@dgdocker1 ~]$ docker exec -it isle-apache-dg bash
 root@7f4311ed759c:/# cd /var/www/html/sites/default/
 root@7f4311ed759c:/var/www/html/sites/default# drush -u 1 ihcQ grinnell:1-50000 --verbose
 Executing: mysql --defaults-extra-file=/tmp/drush_FURANC --database=digital_grinnell --host=mysql --silent  &lt; /tmp/drush_lhQcPD
 Executing: mysql --defaults-extra-file=/tmp/drush_Va3GiE --database=digital_grinnell --host=mysql --silent  &lt; /tmp/drush_Fode6D
 icu_drush_prep will consider only objects modified after 2000-01-01T00:00:00Z. [status]
-Starting operation for PID 'grinnell:1' and --repeat='49999' at 11:29:05.      [status]
+Starting operation for PID &#39;grinnell:1&#39; and --repeat=&#39;49999&#39; at 11:29:05.      [status]
 Fetching all valid object PIDs in the specified range.                         [status]
 Completed fetch of 22947 valid object PIDs.                                    [status]
 Progress: ihcCollect
-icu_Connect: Connection to Fedora repository as 'System Admin' is complete.    [status]
+icu_Connect: Connection to Fedora repository as &#39;System Admin&#39; is complete.    [status]
 pid is: grinnell:45                                                            [status]
 pid is: grinnell:47                                                            [status]
 pid is: grinnell:49                                                            [status]
 pid is: grinnell:50                                                            [status]
 ...
-</code></pre><p>As you can see above, it begins by shelling in to DG&rsquo;s <code>isle-apache-dg</code> container, moving into the <code>/var/www/html/sites/default</code> directory, and executing the <code>drush</code> command of the form: <code>drush -u 1 ihcQ grinnell:1-50000 --verbose</code>.</p>
-<p>This command will run a &ldquo;quick&rdquo; report for PIDs in the <code>grinnell</code> namespace with numeric IDs in the range 1 to 50000, and it will generate <code>--verbose</code> output.</p>
-<p>In order to capture a complete picture or an <code>ihcQ</code> run I&rsquo;m going to omit the <code>--verbose</code> option and vastly shrink the number of objects to report on, like so:</p>
-<pre tabindex=0><code>root@7f4311ed759c:/var/www/html/sites/default# drush -u 1 ihcQ grinnell:1-50
+</code></pre><p>As you can see above, it begins by shelling in to DG&rsquo;s <code>isle-apache-dg</code> container, moving into the <code>/var/www/html/sites/default</code> directory, and executing the <code>drush</code> command of the form: <code>drush -u 1 ihcQ grinnell:1-50000 --verbose</code>.</p><p>This command will run a &ldquo;quick&rdquo; report for PIDs in the <code>grinnell</code> namespace with numeric IDs in the range 1 to 50000, and it will generate <code>--verbose</code> output.</p><p>In order to capture a complete picture or an <code>ihcQ</code> run I&rsquo;m going to omit the <code>--verbose</code> option and vastly shrink the number of objects to report on, like so:</p><pre tabindex=0><code>root@7f4311ed759c:/var/www/html/sites/default# drush -u 1 ihcQ grinnell:1-50
 icu_drush_prep will consider only objects modified after 2000-01-01T00:00:00Z. [status]
-Starting operation for PID 'grinnell:1' and --repeat='49' at 11:35:39.         [status]
+Starting operation for PID &#39;grinnell:1&#39; and --repeat=&#39;49&#39; at 11:35:39.         [status]
 Fetching all valid object PIDs in the specified range.                         [status]
 Completed fetch of 4 valid object PIDs.                                        [status]
 Progress: ihcCollect
-icu_Connect: Connection to Fedora repository as 'System Admin' is complete.    [status]
+icu_Connect: Connection to Fedora repository as &#39;System Admin&#39; is complete.    [status]
 [=================================================================================] 100%
-Completed ihcCollect at 11:35:50. Use 'drush ihcA' to analyze and 'drush ihcR' [status]
+Completed ihcCollect at 11:35:50. Use &#39;drush ihcA&#39; to analyze and &#39;drush ihcR&#39; [status]
 to report it.
 icu_drush_prep will consider only objects modified after 2000-01-01T00:00:00Z. [status]
-Starting operation for PID 'grinnell:1' and --repeat='49' at 11:35:50.         [status]
+Starting operation for PID &#39;grinnell:1&#39; and --repeat=&#39;49&#39; at 11:35:50.         [status]
 Fetching all valid object PIDs in the specified range.                         [status]
 Completed fetch of 4 valid object PIDs.                                        [status]
 Progress: ihcAnalyze
 [=================================================================================] 100%
-Completed ihcAnalyze at 11:36:00. Use 'drush ihcR' to report it.               [ok]
+Completed ihcAnalyze at 11:36:00. Use &#39;drush ihcR&#39; to report it.               [ok]
 icu_drush_prep will consider only objects modified after 2000-01-01T00:00:00Z. [status]
-Starting operation for PID 'grinnell:1' and --repeat='49' at 11:36:00.         [status]
+Starting operation for PID &#39;grinnell:1&#39; and --repeat=&#39;49&#39; at 11:36:00.         [status]
 Fetching all valid object PIDs in the specified range.                         [status]
 Completed fetch of 4 valid object PIDs.                                        [status]
-.csv file path is: 'public://ihcQ_grinnell_ih.csv'.                            [status]
+.csv file path is: &#39;public://ihcQ_grinnell_ih.csv&#39;.                            [status]
 Progress: ihcReport
 [=================================================================================] 100%
-</code></pre><p>As you can see above, the <code>ihcQ</code> command did the following:</p>
-<ul>
-<li>Collected data by invoking an <code>ihcC</code>, or <code>ihcCollect</code>, operation;</li>
-<li>Analyzed the data via <code>ihcA</code>, or <code>ihcAnalyze</code>; and</li>
-<li>Reported the data using <code>ihcR</code>, or <code>ihcReport</code>.</li>
-</ul>
-<p>Near the end of the output you can see that a new <code>public://ihcQ_grinnell_ih.csv</code> was generated.</p>
-<h2 id=downloading-ihc-reports>Downloading IHC Reports</h2>
-<p>Since the IHC report is a <code>.csv</code> file it&rsquo;s not much use sitting in the <code>public://</code> folder on the server, so I use the <code>Islandora Health Check</code> command in the <code>Management</code> menu on DG&rsquo;s home page to facilitate download of these reports. Clicking that command link in my browser brings me to <code>https://digital.grinnell.edu/ihc</code> where I&rsquo;m presented with a list of <code>_ih.csv</code> files to download.</p>
-<p>Once I&rsquo;ve selected and downloaded one of these files I engage a Python utility of my own creation to interpret the color and format data that <code>ihcAnalyze</code> generated and produce a visually effective Excel output file.</p>
-<h2 id=convert-csv-to-excel-with-formatting>Convert .csv to Excel with Formatting</h2>
-<p>On my Mac I&rsquo;m able to run my <code>format-csv-to-excel</code> Python script like so:</p>
-<pre tabindex=0><code>╭─mcfatem@MAC02FK0XXQ05Q ~/Downloads
+</code></pre><p>As you can see above, the <code>ihcQ</code> command did the following:</p><ul><li>Collected data by invoking an <code>ihcC</code>, or <code>ihcCollect</code>, operation;</li><li>Analyzed the data via <code>ihcA</code>, or <code>ihcAnalyze</code>; and</li><li>Reported the data using <code>ihcR</code>, or <code>ihcReport</code>.</li></ul><p>Near the end of the output you can see that a new <code>public://ihcQ_grinnell_ih.csv</code> was generated.</p><h2 id=downloading-ihc-reports>Downloading IHC Reports</h2><p>Since the IHC report is a <code>.csv</code> file it&rsquo;s not much use sitting in the <code>public://</code> folder on the server, so I use the <code>Islandora Health Check</code> command in the <code>Management</code> menu on DG&rsquo;s home page to facilitate download of these reports. Clicking that command link in my browser brings me to <code>https://digital.grinnell.edu/ihc</code> where I&rsquo;m presented with a list of <code>_ih.csv</code> files to download.</p><p>Once I&rsquo;ve selected and downloaded one of these files I engage a Python utility of my own creation to interpret the color and format data that <code>ihcAnalyze</code> generated and produce a visually effective Excel output file.</p><h2 id=convert-csv-to-excel-with-formatting>Convert .csv to Excel with Formatting</h2><p>On my Mac I&rsquo;m able to run my <code>format-csv-to-excel</code> Python script like so:</p><pre tabindex=0><code>╭─mcfatem@MAC02FK0XXQ05Q ~/Downloads
 ╰─$ python3 /Users/mcfatem/GitHub/format-csv-to-excel/main.py --verbose --dg ihcQ_grinnell_ih.csv
 Verbose output selected.
 Special Digital.Grinnell processing is selected.
 ihcQ_grinnell_ih.xlsx has been created.
-</code></pre><h2 id=the-result>The Result</h2>
-<p>The results, in Excel, look something like the figure you see below.</p>
-<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/hugo-easy-gallery.css>
-<div class=box>
-<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
-<div class=img>
-<img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-119/119-excel-screenshot.png>
-</div>
-<a href=https://static.grinnell.edu/dlad-blog/images/post-119/119-excel-screenshot.png itemprop=contentUrl></a>
-<figcaption><h4>Example Excel from ihcQ</h4>
-</figcaption>
-</figure>
-</div>
-<p>And that&rsquo;s a wrap. Until next time, stay safe and wash your hands! 😄</p>
-</div>
-<div class=post-footer>
-<div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//digital-library-applications-developer-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-</article>
-</main>
-</body>
-</html>
+</code></pre><h2 id=the-result>The Result</h2><p>The results, in Excel, look something like the figure you see below.</p><link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/hugo-easy-gallery.css><div class=box><figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject><div class=img><img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-119/119-excel-screenshot.png></div><a href=https://static.grinnell.edu/dlad-blog/images/post-119/119-excel-screenshot.png itemprop=contentUrl></a><figcaption><h4>Example Excel from ihcQ</h4></figcaption></figure></div><p>And that&rsquo;s a wrap. Until next time, stay safe and wash your hands! 😄</p></div><div class=post-footer><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//digital-library-applications-developer-blog.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></main></body></html>

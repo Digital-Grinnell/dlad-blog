@@ -1,174 +1,92 @@
-<!doctype html><html lang=en-us>
-<head>
-<title>Configuring DGDocker2 // The Grinnell College Digital Library Application Developer's Blog</title>
-<meta charset=utf-8>
-<meta name=generator content="Hugo 0.92.2">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=author content="Mark A. McFate">
-<meta name=description content>
-<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.248190165c90ec9341e5c211c3fe84447860758c592f879758437e9a6145eb6e.css>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Configuring DGDocker2">
-<meta name=twitter:description content="My mission today is to successfully migrate the images/containers/services chronicled in post 030, &ldquo;Dockerized Omeka-S: Starting Over&rdquo; to Docker-ready node dgdocker2 without compromising any of the services that already run there.
+<!doctype html><html lang=en-us><head><title>Configuring DGDocker2 // The Grinnell College Digital Library Application Developer's Blog</title><meta charset=utf-8><meta name=generator content="Hugo 0.96.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Mark A. McFate"><meta name=description content><link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.ec5c8abc0625bee34a87b8624d3c683035583f8314d537f8d266c9f01ad58d83.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Configuring DGDocker2"><meta name=twitter:description content="My mission today is to successfully migrate the images/containers/services chronicled in post 030, &ldquo;Dockerized Omeka-S: Starting Over&rdquo; to Docker-ready node dgdocker2 without compromising any of the services that already run there.
 Pushing WMI Omeka-S to Production on dgdocker2 Grinnell&rsquo;s dgdocker2 server, specifically dgdocker2.grinnell.edu with an IP address of 132.161.132.143, is a Docker-ready CentOS 7 node that&rsquo;s currently supporting the following containers and configuration:
-╭─root@dgdocker2 ~ ╰─# docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES ef20d71ffea8 mcfatem/ohscribe &#34;./boot.sh&#34; 6 days ago Up 6 days 5000/tcp ohscribe b525f4670cd2 mariadb:latest &#34;docker-entrypoint.">
-<meta property="og:title" content="Configuring DGDocker2">
-<meta property="og:description" content="My mission today is to successfully migrate the images/containers/services chronicled in post 030, &ldquo;Dockerized Omeka-S: Starting Over&rdquo; to Docker-ready node dgdocker2 without compromising any of the services that already run there.
+╭─root@dgdocker2 ~ ╰─# docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES ef20d71ffea8 mcfatem/ohscribe &#34;./boot.sh&#34; 6 days ago Up 6 days 5000/tcp ohscribe b525f4670cd2 mariadb:latest &#34;docker-entrypoint."><meta property="og:title" content="Configuring DGDocker2"><meta property="og:description" content="My mission today is to successfully migrate the images/containers/services chronicled in post 030, &ldquo;Dockerized Omeka-S: Starting Over&rdquo; to Docker-ready node dgdocker2 without compromising any of the services that already run there.
 Pushing WMI Omeka-S to Production on dgdocker2 Grinnell&rsquo;s dgdocker2 server, specifically dgdocker2.grinnell.edu with an IP address of 132.161.132.143, is a Docker-ready CentOS 7 node that&rsquo;s currently supporting the following containers and configuration:
-╭─root@dgdocker2 ~ ╰─# docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES ef20d71ffea8 mcfatem/ohscribe &#34;./boot.sh&#34; 6 days ago Up 6 days 5000/tcp ohscribe b525f4670cd2 mariadb:latest &#34;docker-entrypoint.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/041-configuring-dgdocker2/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2019-09-03T00:00:00+00:00">
-<meta property="article:modified_time" content="2019-09-11T10:53:22-05:00">
-</head>
-<body>
-<header class=app-header>
-<a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a>
-<h2>The Grinnell College Digital Library Application Developer's Blog</h2>
-<div class=author-block>
-<p class=site-rev>
-Compiled: Feb 18, 2022 at 1:46pm CST<br>
-Content Updated: 2022-Feb-18 00:00 UTC
-</p>
-<div class=name>by
-<strong>Mark A. McFate</strong></div>
-<div class=address>Grinnell College Libraries</div>
-<div class=link><a href=mailto:></a></div>
-<br>
-</div>
-<nav class=sidebar-nav>
-<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
-<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a>
-</nav>
-<p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
-<div class=app-header-social>
-<a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a>
-<a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a>
-</div>
-<p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
-</header>
-<main class=app-container>
-<div class=breadcrumbs>
-<a href=https://static.grinnell.edu/dlad-blog/>Home</a>
+╭─root@dgdocker2 ~ ╰─# docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES ef20d71ffea8 mcfatem/ohscribe &#34;./boot.sh&#34; 6 days ago Up 6 days 5000/tcp ohscribe b525f4670cd2 mariadb:latest &#34;docker-entrypoint."><meta property="og:type" content="article"><meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/041-configuring-dgdocker2/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-09-03T00:00:00+00:00"><meta property="article:modified_time" content="2019-09-11T10:53:22-05:00"></head><body><header class=app-header><a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a><h2>The Grinnell College Digital Library Application Developer's Blog</h2><div class=author-block><p class=site-rev>Compiled: Mar 29, 2022 at 1:35pm CDT<br>Content Updated: 2022-Mar-24 00:00 UTC</p><div class=name>by
+<strong>Mark A. McFate</strong></div><div class=address>Grinnell College Libraries</div><div class=link><a href=mailto:></a></div><br></div><nav class=sidebar-nav><a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a></nav><p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p><div class=app-header-social><a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a></div><p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p></header><main class=app-container><div class=breadcrumbs><a href=https://static.grinnell.edu/dlad-blog/>Home</a>
 &bull; <a href=https://static.grinnell.edu/dlad-blog/posts/>Posts</a>
-&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/041-configuring-dgdocker2/>041 configuring dgdocker2</a>
-</div>
-<article class=post>
-<header class=post-header>
-<h1 class=post-title>Configuring DGDocker2</h1>
-<div class=post-meta>
-<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-13 min read
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/041-configuring-dgdocker2/>041 configuring dgdocker2</a></div><article class=post><header class=post-header><h1 class=post-title>Configuring DGDocker2</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>13 min read
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
 Sep 3, 2019
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;Updated: Sep 11, 2019 - 10:53
-&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
-<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-<a class=tag href=https://static.grinnell.edu/dlad-blog/tags/docker/>docker</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/traefik/>Traefik</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/portainer/>Portainer</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/omeka-s/>Omeka-S</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/traefik.frontend.rule/>traefik.frontend.rule</a></div></div>
-</header>
-<div class=post-content>
-<p>My mission today is to successfully migrate the images/containers/services chronicled in <a href=https://static.grinnell.edu/dlad-blog/posts/030-dockerized-omeka-s-starting-over/>post 030, &ldquo;Dockerized Omeka-S: Starting Over&rdquo;</a> to Docker-ready node <em>dgdocker2</em> without compromising any of the services that already run there.</p>
-<h2 id=pushing-wmi-omeka-s-to-production-on-_dgdocker2_>Pushing WMI Omeka-S to Production on <em>dgdocker2</em></h2>
-<p>Grinnell&rsquo;s <em>dgdocker2</em> server, specifically <em>dgdocker2.grinnell.edu</em> with an IP address of 132.161.132.143, is a Docker-ready CentOS 7 node that&rsquo;s currently supporting the following containers and configuration:</p>
-<pre tabindex=0><code>╭─root@dgdocker2 ~
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/docker/>docker</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/traefik/>Traefik</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/portainer/>Portainer</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/omeka-s/>Omeka-S</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/traefik.frontend.rule/>traefik.frontend.rule</a></div></div></header><div class=post-content><p>My mission today is to successfully migrate the images/containers/services chronicled in <a href=https://static.grinnell.edu/dlad-blog/posts/030-dockerized-omeka-s-starting-over/>post 030, &ldquo;Dockerized Omeka-S: Starting Over&rdquo;</a> to Docker-ready node <em>dgdocker2</em> without compromising any of the services that already run there.</p><h2 id=pushing-wmi-omeka-s-to-production-on-_dgdocker2_>Pushing WMI Omeka-S to Production on <em>dgdocker2</em></h2><p>Grinnell&rsquo;s <em>dgdocker2</em> server, specifically <em>dgdocker2.grinnell.edu</em> with an IP address of 132.161.132.143, is a Docker-ready CentOS 7 node that&rsquo;s currently supporting the following containers and configuration:</p><pre tabindex=0><code>╭─root@dgdocker2 ~
 ╰─# docker ps
 CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS                                                              NAMES
-ef20d71ffea8        mcfatem/ohscribe               &quot;./boot.sh&quot;              6 days ago          Up 6 days           5000/tcp                                                           ohscribe
-b525f4670cd2        mariadb:latest                 &quot;docker-entrypoint.s…&quot;   2 weeks ago         Up 2 weeks          3306/tcp                                                           omekasdocker_mariadb_1
-7f107a24c204        traefik:latest                 &quot;/traefik --docker -…&quot;   2 weeks ago         Up 2 weeks          0.0.0.0:80-&gt;80/tcp, 0.0.0.0:443-&gt;443/tcp, 0.0.0.0:8080-&gt;8080/tcp   traefik_proxy
-9282ab53ecc4        portainer/portainer:latest     &quot;/portainer --admin-…&quot;   5 weeks ago         Up 5 weeks          0.0.0.0:9000-&gt;9000/tcp                                             portainer
-60ce06301101        dodeeric/omeka-s:latest        &quot;docker-php-entrypoi…&quot;   7 weeks ago         Up 7 weeks          80/tcp                                                             omekasdocker_omeka_1
-54bd82694f3c        phpmyadmin/phpmyadmin:latest   &quot;/docker-entrypoint.…&quot;   2 months ago        Up 2 months         80/tcp                                                             omekasdocker_pma_1
-0cd019c5456e        emilevauge/whoami              &quot;/whoamI&quot;                2 months ago        Up 2 months         80/tcp                                                             omekasdocker_whoami_1
-7b3d4961ec21        v2tec/watchtower               &quot;/watchtower&quot;            2 months ago        Up 2 months                                                                            watchtower
-</code></pre><p>Grinnell&rsquo;s DNS is configured with the following addresses pointed to <em>dgdocker2</em>:</p>
-<ul>
-<li><a href=https://textline.grinnell.edu>https://textline.grinnell.edu</a> - 404 page not found</li>
-<li><a href=https://portainer2.grinnell.edu>https://portainer2.grinnell.edu</a> - 404 page not found</li>
-<li><a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a> - Multi-Cultural Reunion 2019 home page</li>
-<li><a href=https://traefik2.grinnell.edu>https://traefik2.grinnell.edu</a> - 404 page not found</li>
-<li><a href=https://rootstalkx.grinnell.edu>https://rootstalkx.grinnell.edu</a> - 404 page not found</li>
-<li><a href=https://ohscribe.grinnell.edu>https://ohscribe.grinnell.edu</a> - OHScribe home page</li>
-<li><a href=https://dgdocker2.grinnell.edu>https://dgdocker2.grinnell.edu</a> - 404 page not found</li>
-</ul>
-<p>The information following each address is the status or page returned when I tried opening each on 3-September-2019.</p>
-<p>The <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a> on <em>dgdocker2</em> is experimental (at least it was in August 2019) and soon-to-be-replaced with our new <em>Omeka-S</em>. Consequently, the only properly configured service on this node is <em>OHScribe</em>, and the <em>Traefik</em> container is properly configured to serve it as well as the experimental <em>Omeka-S</em> instance. All of the other containers/services should be removed, and the new <em>Omeka-S</em> with <em>WMI</em> configured to work with the existing <em>Traefik</em>.</p>
-<p>Since nearly all of the containers/services running on <em>dgdocker2</em> are broken or obsolete, I&rsquo;m going to remove them all and clean up the node using this sequence as a copy/paste one-liner&mldr;</p>
-<pre tabindex=0><code>docker stop $(docker ps -q); docker rm -v $(docker ps -qa); docker image rm -f $(docker image ls -q); docker system prune --force;
-</code></pre><h2 id=deploying-a-stand-alone-_traefik_-reverse-proxy>Deploying a Stand-Alone <em>Traefik</em> Reverse-Proxy</h2>
-<p>There are at least a dozen ways to do this, and I really don&rsquo;t want to reinvent the wheel here, so I searched the web for some of the latest info and settled on <a href=https://www.digitalocean.com/community/tutorials/how-to-use-traefik-as-a-reverse-proxy-for-docker-containers-on-centos-7>this post from DigitalOcean</a>. It&rsquo;s current, I like <em>DigitalOcean&rsquo;s</em> approach in general, and it appears to be well-documented.</p>
-<p>Perhaps the best of <em>Traefik</em>&rsquo;s qualities is its ability to support additional services/containers using labels. Let&rsquo;s roll with that. The plan here is to turn <em>dgdocker2</em> into the home for many <em>Omeka-S</em> instances with the server answering to <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a>.</p>
-<h2 id=one-timepreliminary-stuff>One-Time/Preliminary Stuff</h2>
-<p>I&rsquo;m starting now with a &ldquo;clean&rdquo;, Docker-ready node in <em>dgdocker2</em>. From a terminal/shell opened as <em>root</em> on <em>dgdocker2</em> we need some preliminary stuff:</p>
-<pre tabindex=0><code># Create a home on dgdocker2 for the project
+ef20d71ffea8        mcfatem/ohscribe               &#34;./boot.sh&#34;              6 days ago          Up 6 days           5000/tcp                                                           ohscribe
+b525f4670cd2        mariadb:latest                 &#34;docker-entrypoint.s…&#34;   2 weeks ago         Up 2 weeks          3306/tcp                                                           omekasdocker_mariadb_1
+7f107a24c204        traefik:latest                 &#34;/traefik --docker -…&#34;   2 weeks ago         Up 2 weeks          0.0.0.0:80-&gt;80/tcp, 0.0.0.0:443-&gt;443/tcp, 0.0.0.0:8080-&gt;8080/tcp   traefik_proxy
+9282ab53ecc4        portainer/portainer:latest     &#34;/portainer --admin-…&#34;   5 weeks ago         Up 5 weeks          0.0.0.0:9000-&gt;9000/tcp                                             portainer
+60ce06301101        dodeeric/omeka-s:latest        &#34;docker-php-entrypoi…&#34;   7 weeks ago         Up 7 weeks          80/tcp                                                             omekasdocker_omeka_1
+54bd82694f3c        phpmyadmin/phpmyadmin:latest   &#34;/docker-entrypoint.…&#34;   2 months ago        Up 2 months         80/tcp                                                             omekasdocker_pma_1
+0cd019c5456e        emilevauge/whoami              &#34;/whoamI&#34;                2 months ago        Up 2 months         80/tcp                                                             omekasdocker_whoami_1
+7b3d4961ec21        v2tec/watchtower               &#34;/watchtower&#34;            2 months ago        Up 2 months                                                                            watchtower
+</code></pre><p>Grinnell&rsquo;s DNS is configured with the following addresses pointed to <em>dgdocker2</em>:</p><ul><li><a href=https://textline.grinnell.edu>https://textline.grinnell.edu</a> - 404 page not found</li><li><a href=https://portainer2.grinnell.edu>https://portainer2.grinnell.edu</a> - 404 page not found</li><li><a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a> - Multi-Cultural Reunion 2019 home page</li><li><a href=https://traefik2.grinnell.edu>https://traefik2.grinnell.edu</a> - 404 page not found</li><li><a href=https://rootstalkx.grinnell.edu>https://rootstalkx.grinnell.edu</a> - 404 page not found</li><li><a href=https://ohscribe.grinnell.edu>https://ohscribe.grinnell.edu</a> - OHScribe home page</li><li><a href=https://dgdocker2.grinnell.edu>https://dgdocker2.grinnell.edu</a> - 404 page not found</li></ul><p>The information following each address is the status or page returned when I tried opening each on 3-September-2019.</p><p>The <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a> on <em>dgdocker2</em> is experimental (at least it was in August 2019) and soon-to-be-replaced with our new <em>Omeka-S</em>. Consequently, the only properly configured service on this node is <em>OHScribe</em>, and the <em>Traefik</em> container is properly configured to serve it as well as the experimental <em>Omeka-S</em> instance. All of the other containers/services should be removed, and the new <em>Omeka-S</em> with <em>WMI</em> configured to work with the existing <em>Traefik</em>.</p><p>Since nearly all of the containers/services running on <em>dgdocker2</em> are broken or obsolete, I&rsquo;m going to remove them all and clean up the node using this sequence as a copy/paste one-liner&mldr;</p><pre tabindex=0><code>docker stop $(docker ps -q); docker rm -v $(docker ps -qa); docker image rm -f $(docker image ls -q); docker system prune --force;
+</code></pre><h2 id=deploying-a-stand-alone-_traefik_-reverse-proxy>Deploying a Stand-Alone <em>Traefik</em> Reverse-Proxy</h2><p>There are at least a dozen ways to do this, and I really don&rsquo;t want to reinvent the wheel here, so I searched the web for some of the latest info and settled on <a href=https://www.digitalocean.com/community/tutorials/how-to-use-traefik-as-a-reverse-proxy-for-docker-containers-on-centos-7>this post from DigitalOcean</a>. It&rsquo;s current, I like <em>DigitalOcean&rsquo;s</em> approach in general, and it appears to be well-documented.</p><p>Perhaps the best of <em>Traefik</em>&rsquo;s qualities is its ability to support additional services/containers using labels. Let&rsquo;s roll with that. The plan here is to turn <em>dgdocker2</em> into the home for many <em>Omeka-S</em> instances with the server answering to <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a>.</p><h2 id=one-timepreliminary-stuff>One-Time/Preliminary Stuff</h2><p>I&rsquo;m starting now with a &ldquo;clean&rdquo;, Docker-ready node in <em>dgdocker2</em>. From a terminal/shell opened as <em>root</em> on <em>dgdocker2</em> we need some preliminary stuff:</p><pre tabindex=0><code># Create a home on dgdocker2 for the project
 mkdir -p /opt/traefik
 cd /opt/traefik
 nano traefik.toml
-</code></pre><p>The <em>traefik.toml</em> file should look like this:</p>
-<pre tabindex=0><code>defaultEntryPoints = [&quot;http&quot;, &quot;https&quot;]
+</code></pre><p>The <em>traefik.toml</em> file should look like this:</p><pre tabindex=0><code>defaultEntryPoints = [&#34;http&#34;, &#34;https&#34;]
 
 # CA server to use
-# Uncomment the line to run on the staging Let's Encrypt server
+# Uncomment the line to run on the staging Let&#39;s Encrypt server
 # Leave comment to go to prod
 #
 # Optional
 #
-caServer = &quot;https://acme-staging.api.letsencrypt.org/directory&quot;
+caServer = &#34;https://acme-staging.api.letsencrypt.org/directory&#34;
 
 [entryPoints]
   [entryPoints.dashboard]
-    address = &quot;:8080&quot;
+    address = &#34;:8080&#34;
     [entryPoints.dashboard.auth]
       [entryPoints.dashboard.auth.basic]
-        users = [&quot;admin:$2y$05$pJEzHJBzfoYYS7/hGAedcOP8XdsqNXE7j.LHFBVjueASOqOvvjGOy&quot;]
+        users = [&#34;admin:$2y$05$pJEzHJBzfoYYS7/hGAedcOP8XdsqNXE7j.LHFBVjueASOqOvvjGOy&#34;]
   [entryPoints.http]
-    address = &quot;:80&quot;
+    address = &#34;:80&#34;
       [entryPoints.http.redirect]
-        entryPoint = &quot;https&quot;
+        entryPoint = &#34;https&#34;
   [entryPoints.https]
-    address = &quot;:443&quot;
+    address = &#34;:443&#34;
       [entryPoints.https.tls]
-        minVersion = &quot;VersionTLS12&quot;
+        minVersion = &#34;VersionTLS12&#34;
         cipherSuites = [
-          &quot;TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384&quot;,
-          &quot;TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384&quot;,
-          &quot;TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305&quot;,
-          &quot;TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305&quot;,
-          &quot;TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256&quot;,
-          &quot;TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256&quot;,
-          &quot;TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256&quot;,
-          &quot;TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256&quot;
+          &#34;TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384&#34;,
+          &#34;TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384&#34;,
+          &#34;TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305&#34;,
+          &#34;TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305&#34;,
+          &#34;TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256&#34;,
+          &#34;TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256&#34;,
+          &#34;TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256&#34;,
+          &#34;TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256&#34;
          ]
 
 [api]
-entrypoint=&quot;dashboard&quot;
+entrypoint=&#34;dashboard&#34;
 
 [acme]
-### email = &quot;your_email@your_domain&quot;
-email = &quot;digital@grinnell.edu&quot;
-storage = &quot;acme.json&quot;
-entryPoint = &quot;https&quot;
+### email = &#34;your_email@your_domain&#34;
+email = &#34;digital@grinnell.edu&#34;
+storage = &#34;acme.json&#34;
+entryPoint = &#34;https&#34;
 onHostRule = true
   [acme.httpChallenge]
-  entryPoint = &quot;http&quot;
+  entryPoint = &#34;http&#34;
 
 [docker]
-### domain = &quot;your_domain&quot;
-domain = &quot;omeka-s.grinnell.edu&quot;
+### domain = &#34;your_domain&#34;
+domain = &#34;omeka-s.grinnell.edu&#34;
 watch = true
-network = &quot;web&quot;
-</code></pre><p>Note: The 11 lines, including &ldquo;minVerson&rdquo; and &ldquo;cipherSuites&rdquo; definitions, which appear in the &ldquo;[entryPoints.https.tls]&rdquo; section above were lifted from <a href=https://static.grinnell.edu/dlad-blog/posts/005-removing-traefik-weak-ciphers/>&ldquo;Removing Traefik&rsquo;s Weak Cipher Suites&rdquo;</a>.</p>
-<p>The &ldquo;preliminary&rdquo; steps above, and the creation of the <em>traefik.toml</em> file should NOT be repeated, they are good-to-go!</p>
-<h2 id=launching-_traefik_>Launching <em>Traefik</em></h2>
-<pre tabindex=0><code># Clean up first!
+network = &#34;web&#34;
+</code></pre><p>Note: The 11 lines, including &ldquo;minVerson&rdquo; and &ldquo;cipherSuites&rdquo; definitions, which appear in the &ldquo;[entryPoints.https.tls]&rdquo; section above were lifted from <a href=https://static.grinnell.edu/dlad-blog/posts/005-removing-traefik-weak-ciphers/>&ldquo;Removing Traefik&rsquo;s Weak Cipher Suites&rdquo;</a>.</p><p>The &ldquo;preliminary&rdquo; steps above, and the creation of the <em>traefik.toml</em> file should NOT be repeated, they are good-to-go!</p><h2 id=launching-_traefik_>Launching <em>Traefik</em></h2><pre tabindex=0><code># Clean up first!
 docker stop $(docker ps -q); docker rm -v $(docker ps -qa); # docker image rm -f $(docker image ls -q); docker system prune --force;
 # rm -f /opt/traefik/acme.json    # probably not necessary?
-# Create the &quot;web&quot; network
+# Create the &#34;web&#34; network
 docker network create web
 # Create a home on dgdocker2 for the project... if one does not already exist
 mkdir -p /opt/traefik
 cd /opt/traefik
-# Setup for Let's Encrypt certs
+# Setup for Let&#39;s Encrypt certs
 touch acme.json
 chmod 600 acme.json
 # Launch Traefik
@@ -183,15 +101,9 @@ docker run -d \
   --network web \
   --name traefik \
   traefik:1.7.14-alpine
+</code></pre><p>Ok, let&rsquo;s see what we&rsquo;ve got&mldr;</p><p><strong>Eureka!</strong> <a href=https://traefik2.grinnell.edu>https://traefik2.grinnell.edu</a> returns an <em>admin</em> login prompt for my new <em>Traefik</em> instance at <a href=https://traefik2.grinnell.edu/dashboard/>https://traefik2.grinnell.edu/dashboard/</a>, as promised, and it&rsquo;s complete with a green lock icon indicating that we have a valid TLS cert for it. Presumably this <em>Traefik</em> will have NO weak ciphers or vulnerabilities. <em>Note to self: <strong>Test this assumption!</strong></em></p><h2 id=lets-add-_portainer_>Let&rsquo;s Add <em>Portainer</em></h2><p>In addition to the <em>Treafik</em> dashboard, I like having <a href=https://www.portainer.io>Portainer</a> available to help with stack management too. So, let&rsquo;s add that using <em>docker-compose</em> and an appropriately modified version of the guidance provided in <a href=https://www.digitalocean.com/community/tutorials/how-to-use-traefik-as-a-reverse-proxy-for-docker-containers-on-centos-7#step-3-registering-containers-with-traefik>Step 3 - Registering Containers with Traefik</a>.</p><p>The aforementioned guidance wants us to create a new project directory (optional: we could use the <em>/opt/traefik</em> directory we already have) and populate it with a <em>docker-compose.yml</em> file with contents like this:</p><pre tabindex=0><code>version: &#34;3&#34;
 
-</code></pre><p>Ok, let&rsquo;s see what we&rsquo;ve got&mldr;</p>
-<p><strong>Eureka!</strong> <a href=https://traefik2.grinnell.edu>https://traefik2.grinnell.edu</a> returns an <em>admin</em> login prompt for my new <em>Traefik</em> instance at <a href=https://traefik2.grinnell.edu/dashboard/>https://traefik2.grinnell.edu/dashboard/</a>, as promised, and it&rsquo;s complete with a green lock icon indicating that we have a valid TLS cert for it. Presumably this <em>Traefik</em> will have NO weak ciphers or vulnerabilities. <em>Note to self: <strong>Test this assumption!</strong></em></p>
-<h2 id=lets-add-_portainer_>Let&rsquo;s Add <em>Portainer</em></h2>
-<p>In addition to the <em>Treafik</em> dashboard, I like having <a href=https://www.portainer.io>Portainer</a> available to help with stack management too. So, let&rsquo;s add that using <em>docker-compose</em> and an appropriately modified version of the guidance provided in <a href=https://www.digitalocean.com/community/tutorials/how-to-use-traefik-as-a-reverse-proxy-for-docker-containers-on-centos-7#step-3-registering-containers-with-traefik>Step 3 - Registering Containers with Traefik</a>.</p>
-<p>The aforementioned guidance wants us to create a new project directory (optional: we could use the <em>/opt/traefik</em> directory we already have) and populate it with a <em>docker-compose.yml</em> file with contents like this:</p>
-<pre tabindex=0><code>version: &quot;3&quot;
-
-networks:            # This &quot;networks&quot; section is key.  &quot;web&quot; refers to our already-running Docker network
+networks:            # This &#34;networks&#34; section is key.  &#34;web&#34; refers to our already-running Docker network
   web:
     external: true
   internal:
@@ -232,14 +144,13 @@ services:
       - web
     depends_on:
       - mysql
-</code></pre><p>The <a href=https://www.portainer.io>Portainer</a> configuration that I like to use was derived from the <em>docker-compose.demo.yml</em> file in the <a href=https://github.com/Islandora-Collaboration-Group/ISLE>ISLE</a> project, and it typically looks something like this:</p>
-<pre tabindex=0><code>version: &quot;3&quot;
+</code></pre><p>The <a href=https://www.portainer.io>Portainer</a> configuration that I like to use was derived from the <em>docker-compose.demo.yml</em> file in the <a href=https://github.com/Islandora-Collaboration-Group/ISLE>ISLE</a> project, and it typically looks something like this:</p><pre tabindex=0><code>version: &#34;3&#34;
 
 #### docker-compose up -d
 
 networks:
   web:
-    external: true    ## Connect to the existing &quot;web&quot; network!
+    external: true    ## Connect to the existing &#34;web&#34; network!
   internal:
     external: false
 
@@ -252,82 +163,51 @@ services:
       - web
       - internal
     ports:
-      - &quot;9010:9000&quot;     ## Remapped to avoid conflicts on systems/servers with portainer already running.
+      - &#34;9010:9000&#34;     ## Remapped to avoid conflicts on systems/servers with portainer already running.
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer-data:/data
     labels:
       - traefik.port=9000
-      - traefik.docker.network=web     ## Another critical reference to the &quot;web&quot; network
+      - traefik.docker.network=web     ## Another critical reference to the &#34;web&#34; network
       - traefik.enable=true
-      - &quot;traefik.frontend.rule=Host:portainer2.grinnell.edu;&quot;
+      - &#34;traefik.frontend.rule=Host:portainer2.grinnell.edu;&#34;
 
 volumes:
   portainer-data:
-</code></pre><p>I built this content into a new <em>/opt/portainer/docker-compose.yml</em> file and subsequently launched <em>Portainer</em> like so:</p>
-<pre tabindex=0><code>cd /opt/portainer
+</code></pre><p>I built this content into a new <em>/opt/portainer/docker-compose.yml</em> file and subsequently launched <em>Portainer</em> like so:</p><pre tabindex=0><code>cd /opt/portainer
 docker-compose up -d
-</code></pre><p>Visiting <a href=https://portainer2.grinnell.edu>https://portainer2.grinnell.edu</a> in my browser shows that it works and has a valid TLS cert too!</p>
-<h2 id=securing-_portainer_-auth>Securing <em>Portainer</em> Auth</h2>
-<p>The previous outcome is great, but there are at least 3 issues that need to be dealt with. The first issue is <em>Portainer</em> authentication. My initial spin of <em>Portainer</em>, above, is an &ldquo;unprotected&rdquo; instance. Anyone can currently visit <a href=https://portainer2.grinnell.edu>https://portainer2.grinnell.edu</a> and see what the stack looks like there. Not good. The culprit is the last line shown in this snippet from our <em>docker-compose.yml</em> file:</p>
-<pre tabindex=0><code>services:
+</code></pre><p>Visiting <a href=https://portainer2.grinnell.edu>https://portainer2.grinnell.edu</a> in my browser shows that it works and has a valid TLS cert too!</p><h2 id=securing-_portainer_-auth>Securing <em>Portainer</em> Auth</h2><p>The previous outcome is great, but there are at least 3 issues that need to be dealt with. The first issue is <em>Portainer</em> authentication. My initial spin of <em>Portainer</em>, above, is an &ldquo;unprotected&rdquo; instance. Anyone can currently visit <a href=https://portainer2.grinnell.edu>https://portainer2.grinnell.edu</a> and see what the stack looks like there. Not good. The culprit is the last line shown in this snippet from our <em>docker-compose.yml</em> file:</p><pre tabindex=0><code>services:
   portainer2:
     ...
     command: -H unix:///var/run/docker.sock --no-auth  
-</code></pre><p>The remedy is to preserve the indentation, that&rsquo;s critical in a .yml file, but change that line to read:</p>
-<pre tabindex=0><code>    command: --admin-password &quot;$$2y$$05$$pJEzHJBzfoYYS7/hGAedcOP8XdsqNXE7j.LHFBVjueASOqOvvjGOy&quot; -H unix:///var/run/docker.sock
-</code></pre><p>The hash following &ldquo;&ndash;admin-password&rdquo; is one I generated for my own use with a <code>htpasswd -nb admin...</code> command as documented in <a href=https://www.digitalocean.com/community/tutorials/how-to-use-traefik-as-a-reverse-proxy-for-docker-containers-on-centos-7#step-1-configuring-and-running-traefik>Step 1 — Configuring and Running Traefik</a>. Important: Note that in this instance every single dollar sign ($) is DOUBLED and the hash appears in double quotes!</p>
-<p>Visiting <a href=https://portainer2.grinnell.edu>https://portainer2.grinnell.edu</a> again and this time the <em>Portainer</em> interface is behind an authentication login pop-up. Nice!</p>
-<h2 id=switching-to-subdirectory-addressing>Switching to Subdirectory Addressing</h2>
-<p>Now we have <a href=https://traefik2.grinnell.edu>https://traefik2.grinnell.edu</a> and <a href=https://portainer2.grinnell.edu>https://portainer2.grinnell.edu</a> both working properly on <em>dgdocker2</em> in what I call a &ldquo;sub-second-top&rdquo; domain name structure. I so named this structure because it follows the convention documented in <a href=https://blog.hubspot.com/marketing/parts-url>The Parts of a URL: A Short & Sweet Guide</a>. That blog post identifies the parts of a URL as:</p>
-<p><code>scheme</code>://<code>subdomain</code>.<code>second-level</code>.<code>top-level</code>/<code>subdirectory</code></p>
-<p>In case you didn&rsquo;t pick up on it, the &ldquo;2&rdquo; at the end of each subdomain reflects the fact that the server, or host, is named <em>dgdocker<strong>2</strong></em>.</p>
-<p>While these addresses are fine, they require considerable coordination with the folks who manage our DNS names; I enlisted their help months ago to &ldquo;create&rdquo; the two addresses we now have. To avoid having to coordinate every change I&rsquo;d like to change things up and identify this server, and the services that run on it, to the world in a form like:</p>
-<ul>
-<li><a href=https://omeka-s.grinnell.edu/something>https://omeka-s.grinnell.edu/something</a></li>
-</ul>
-<p>This implies that <em>Traefik</em> should respond at <a href=https://omeka-s.grinnell.edu/traefik>https://omeka-s.grinnell.edu/traefik</a>, and <em>Portainer</em> at <a href=https://omeka-s.grinnell.edu/portainer>https://omeka-s.grinnell.edu/portainer</a>. Likewise, our first <em>Omeka-S</em> site, <em>World Music Instruments</em>, or <em>WMI</em>, should respond at <a href=https://omeka-s.grinnell.edu/wmi>https://omeka-s.grinnell.edu/wmi</a>.</p>
-<p>I&rsquo;ve already asked our DNS managers to make <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a> resolve to our <em>dgdocker2</em> host, so all that&rsquo;s necessary now is a change in some of our <em>Traefik</em> labels to specify a different URL structure. Specifically, we need to change the expression in our <em>docker-compose.yml</em> &ldquo;traefik.frontend.rule&rdquo; label from this:</p>
-<pre><code>- &quot;traefik.frontend.rule=Host:portainer2.grinnell.edu;&quot;
-</code></pre>
-<p>&mldr;to this set of configuration labels:</p>
-<pre><code>- &quot;traefik.frontend.rule=PathPrefixStrip:/portainer&quot;
+</code></pre><p>The remedy is to preserve the indentation, that&rsquo;s critical in a .yml file, but change that line to read:</p><pre tabindex=0><code>    command: --admin-password &#34;$$2y$$05$$pJEzHJBzfoYYS7/hGAedcOP8XdsqNXE7j.LHFBVjueASOqOvvjGOy&#34; -H unix:///var/run/docker.sock
+</code></pre><p>The hash following &ldquo;&ndash;admin-password&rdquo; is one I generated for my own use with a <code>htpasswd -nb admin...</code> command as documented in <a href=https://www.digitalocean.com/community/tutorials/how-to-use-traefik-as-a-reverse-proxy-for-docker-containers-on-centos-7#step-1-configuring-and-running-traefik>Step 1 — Configuring and Running Traefik</a>. Important: Note that in this instance every single dollar sign ($) is DOUBLED and the hash appears in double quotes!</p><p>Visiting <a href=https://portainer2.grinnell.edu>https://portainer2.grinnell.edu</a> again and this time the <em>Portainer</em> interface is behind an authentication login pop-up. Nice!</p><h2 id=switching-to-subdirectory-addressing>Switching to Subdirectory Addressing</h2><p>Now we have <a href=https://traefik2.grinnell.edu>https://traefik2.grinnell.edu</a> and <a href=https://portainer2.grinnell.edu>https://portainer2.grinnell.edu</a> both working properly on <em>dgdocker2</em> in what I call a &ldquo;sub-second-top&rdquo; domain name structure. I so named this structure because it follows the convention documented in <a href=https://blog.hubspot.com/marketing/parts-url>The Parts of a URL: A Short & Sweet Guide</a>. That blog post identifies the parts of a URL as:</p><p><code>scheme</code>://<code>subdomain</code>.<code>second-level</code>.<code>top-level</code>/<code>subdirectory</code></p><p>In case you didn&rsquo;t pick up on it, the &ldquo;2&rdquo; at the end of each subdomain reflects the fact that the server, or host, is named <em>dgdocker<strong>2</strong></em>.</p><p>While these addresses are fine, they require considerable coordination with the folks who manage our DNS names; I enlisted their help months ago to &ldquo;create&rdquo; the two addresses we now have. To avoid having to coordinate every change I&rsquo;d like to change things up and identify this server, and the services that run on it, to the world in a form like:</p><ul><li><a href=https://omeka-s.grinnell.edu/something>https://omeka-s.grinnell.edu/something</a></li></ul><p>This implies that <em>Traefik</em> should respond at <a href=https://omeka-s.grinnell.edu/traefik>https://omeka-s.grinnell.edu/traefik</a>, and <em>Portainer</em> at <a href=https://omeka-s.grinnell.edu/portainer>https://omeka-s.grinnell.edu/portainer</a>. Likewise, our first <em>Omeka-S</em> site, <em>World Music Instruments</em>, or <em>WMI</em>, should respond at <a href=https://omeka-s.grinnell.edu/wmi>https://omeka-s.grinnell.edu/wmi</a>.</p><p>I&rsquo;ve already asked our DNS managers to make <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a> resolve to our <em>dgdocker2</em> host, so all that&rsquo;s necessary now is a change in some of our <em>Traefik</em> labels to specify a different URL structure. Specifically, we need to change the expression in our <em>docker-compose.yml</em> &ldquo;traefik.frontend.rule&rdquo; label from this:</p><pre><code>- &quot;traefik.frontend.rule=Host:portainer2.grinnell.edu;&quot;
+</code></pre><p>&mldr;to this set of configuration labels:</p><pre><code>- &quot;traefik.frontend.rule=PathPrefixStrip:/portainer&quot;
 - &quot;traefik.frontend.redirect.regex=^(.*)/portainer$$&quot;
 - &quot;traefik.frontend.redirect.replacement=$$1/portainer/&quot;
 - &quot;traefik.frontend.rule=PathPrefix:/portainer;ReplacePathRegex: ^/portainer/(.*) /$$1&quot;
-</code></pre>
-<p>This nice example was taken verbatim from <a href=https://docs.traefik.io/user-guide/examples#using-labels-in-docker-compose-yml>Using labels in docker-compose.yml</a>. After editing these changes into <em>/opt/portainer/docker-compose.yml</em> I did a new <code>cd /opt/portainer; docker-compose up -d</code> and&mldr;</p>
-<p>Now, visiting <a href=https://omeka-s.grinnell.edu/portainer>https://omeka-s.grinnell.edu/portainer</a> brings my authentication-protected <em>Portainer</em> interface up as planned. However, my TLS cert for this domain is not valid yet. Hmmm, wonder why that is? In any case&mldr; this is progress!</p>
-<h2 id=moving-_traefik_-to-a-subdirectory>Moving <em>Traefik</em> to a Subdirectory</h2>
-<p>I&rsquo;m going to make the same kind of changes for <em>Traefik</em> now, but this time the modifications are to the <code>docker run...</code> command that I use to launch it. Some trial, and lots of errors, lead me to this new <code>docker run...</code> command syntax:</p>
-<pre tabindex=0><code>docker run -d \
+</code></pre><p>This nice example was taken verbatim from <a href=https://docs.traefik.io/user-guide/examples#using-labels-in-docker-compose-yml>Using labels in docker-compose.yml</a>. After editing these changes into <em>/opt/portainer/docker-compose.yml</em> I did a new <code>cd /opt/portainer; docker-compose up -d</code> and&mldr;</p><p>Now, visiting <a href=https://omeka-s.grinnell.edu/portainer>https://omeka-s.grinnell.edu/portainer</a> brings my authentication-protected <em>Portainer</em> interface up as planned. However, my TLS cert for this domain is not valid yet. Hmmm, wonder why that is? In any case&mldr; this is progress!</p><h2 id=moving-_traefik_-to-a-subdirectory>Moving <em>Traefik</em> to a Subdirectory</h2><p>I&rsquo;m going to make the same kind of changes for <em>Traefik</em> now, but this time the modifications are to the <code>docker run...</code> command that I use to launch it. Some trial, and lots of errors, lead me to this new <code>docker run...</code> command syntax:</p><pre tabindex=0><code>docker run -d \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v $PWD/traefik.toml:/traefik.toml \
   -v $PWD/acme.json:/acme.json \
   -p 80:80 \
   -p 443:443 \
   -l traefik.frontend.rule=PathPrefixStrip:/traefik \
-  -l traefik.frontend.redirect.regex='^(.*)/traefik$' \
+  -l traefik.frontend.redirect.regex=&#39;^(.*)/traefik$&#39; \
   -l traefik.frontend.redirect.replacement=$1/traefik/ \
   -l traefik.port=8080 \
   --network web \
   --name traefik \
   traefik:1.7.14-alpine
-</code></pre><p>Unfortunately, just like <em>Portainer</em>, my new <em>Traefik</em> address failed to get a valid TLS cert. 😦</p>
-<h2 id=who-am-i>Who Am I</h2>
-<p>Everything on the <em>dgdocker2</em> server responds to a &ldquo;subdirectory&rdquo; address now and there&rsquo;s nothing registered at <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a>. To help eliminate the possibility that this is a problem I&rsquo;m going to try adding a <a href=https://en.wikipedia.org/wiki/Whoami>WhoAmI</a> service, at the aforementioned address, using the configuration documented in <a href=https://github.com/lukasnellen/dc-whoami>this simple and straightforward repo</a>.</p>
-<pre tabindex=0><code># Create a home on dgdocker2 for the project... if one does not already exist
+</code></pre><p>Unfortunately, just like <em>Portainer</em>, my new <em>Traefik</em> address failed to get a valid TLS cert. 😦</p><h2 id=who-am-i>Who Am I</h2><p>Everything on the <em>dgdocker2</em> server responds to a &ldquo;subdirectory&rdquo; address now and there&rsquo;s nothing registered at <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a>. To help eliminate the possibility that this is a problem I&rsquo;m going to try adding a <a href=https://en.wikipedia.org/wiki/Whoami>WhoAmI</a> service, at the aforementioned address, using the configuration documented in <a href=https://github.com/lukasnellen/dc-whoami>this simple and straightforward repo</a>.</p><pre tabindex=0><code># Create a home on dgdocker2 for the project... if one does not already exist
 cd /opt
 git clone https://github.com/lukasnellen/dc-whoami.git whoami
 cd /opt/whoami
 # Edit the docker-compose.yml file as needed
 nano docker-compose.yml    # see completed edits below
-</code></pre><p>Continuing after edits to <em>/opt/whoami/docker-compose.yml</em>&mldr;</p>
-<pre tabindex=0><code>docker-compose --log-level DEBUG up -d
-</code></pre><p>Now, if I visit <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a> I can see that the <em>WhoAmI</em> is working, but again, it does not have a valid cert. 😦</p>
-<h2 id=investigating-invalid-certs>Investigating Invalid Certs</h2>
-<p>In an attempt to determine why my certs are not valid, I found <a href=https://nickjanetakis.com/blog/debugging-lets-encrypt-errors-sometimes-its-not-your-fault>Debugging Let&rsquo;s Encrypt Errors, Sometimes It&rsquo;s Not Your Fault</a>. From my workstation I tried some of the suggestions in the post and got these results:</p>
-<pre tabindex=0><code>╭─mark@Marks-Mac-Mini ~/Projects/blogs-McFateM ‹master*›
+</code></pre><p>Continuing after edits to <em>/opt/whoami/docker-compose.yml</em>&mldr;</p><pre tabindex=0><code>docker-compose --log-level DEBUG up -d
+</code></pre><p>Now, if I visit <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a> I can see that the <em>WhoAmI</em> is working, but again, it does not have a valid cert. 😦</p><h2 id=investigating-invalid-certs>Investigating Invalid Certs</h2><p>In an attempt to determine why my certs are not valid, I found <a href=https://nickjanetakis.com/blog/debugging-lets-encrypt-errors-sometimes-its-not-your-fault>Debugging Let&rsquo;s Encrypt Errors, Sometimes It&rsquo;s Not Your Fault</a>. From my workstation I tried some of the suggestions in the post and got these results:</p><pre tabindex=0><code>╭─mark@Marks-Mac-Mini ~/Projects/blogs-McFateM ‹master*›
 ╰─$ host omeka-s.grinnell.edu
 omeka-s.grinnell.edu has address 132.161.132.143
 ╭─mark@Marks-Mac-Mini ~/Projects/blogs-McFateM ‹master*›
@@ -355,140 +235,11 @@ X-Forwarded-Port: 443
 X-Forwarded-Proto: https
 X-Forwarded-Server: 34e5bc377410
 X-Real-Ip: 173.18.136.80
-</code></pre><p>These results make me believe that our DNS entries are NOT the problem. That leaves me believing that I&rsquo;ve probably hit a <em>Let&rsquo;s Encrypt</em> rate limit. 😦 So, moving on, I&rsquo;m going to accept the invalid certs and just try to get <em>Omeka-S</em> up and running.</p>
-<h2 id=who-am-i-1>Who Am I</h2>
-<p>That didn&rsquo;t help with the invalid certs issue. So, now I&rsquo;m thinking the problem here is that nothing is registered at <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a>; everything lives in subdirectory paths &ldquo;below&rdquo; that subdomain. Based on that hunch, I&rsquo;m going to try adding a <a href=https://en.wikipedia.org/wiki/Whoami>WhoAmI</a> service, at the aforementioned address, using the configuration documented in <a href=https://github.com/lukasnellen/dc-whoami>this simple and straightforward repo</a>.</p>
-<pre tabindex=0><code># Create a home on dgdocker2 for the project... if one does not already exist
+</code></pre><p>These results make me believe that our DNS entries are NOT the problem. That leaves me believing that I&rsquo;ve probably hit a <em>Let&rsquo;s Encrypt</em> rate limit. 😦 So, moving on, I&rsquo;m going to accept the invalid certs and just try to get <em>Omeka-S</em> up and running.</p><h2 id=who-am-i-1>Who Am I</h2><p>That didn&rsquo;t help with the invalid certs issue. So, now I&rsquo;m thinking the problem here is that nothing is registered at <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a>; everything lives in subdirectory paths &ldquo;below&rdquo; that subdomain. Based on that hunch, I&rsquo;m going to try adding a <a href=https://en.wikipedia.org/wiki/Whoami>WhoAmI</a> service, at the aforementioned address, using the configuration documented in <a href=https://github.com/lukasnellen/dc-whoami>this simple and straightforward repo</a>.</p><pre tabindex=0><code># Create a home on dgdocker2 for the project... if one does not already exist
 cd /opt
 git clone https://github.com/lukasnellen/dc-whoami.git whoami
 cd /opt/whoami
 # Edit the docker-compose.yml file as needed
 nano docker-compose.yml    # see completed edits below
-</code></pre><p>Continuing after edits to <em>/opt/whoami/docker-compose.yml</em>&mldr;</p>
-<pre tabindex=0><code>docker-compose --log-level DEBUG up -d
-</code></pre><p>Now, if I visit <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a> I can see that the <em>WhoAmI</em> is working, but again, it does not have a valid cert.</p>
-<h2 id=capture-as-a-project>Capture As a Project</h2>
-<p>I like the direction this server setup has taken, apart from the invalid certs issue 😦, so I&rsquo;m taking steps to formally &ldquo;capture&rdquo; this setup. I will chronicle that process in <a href=https://static.grinnell.edu/dlad-blog/posts/042-my-dockerized-server-config/>My dockerized-server Config</a>.</p>
-<h2 id=back-to-_omeka-s_-configuration>Back to <em>Omeka-S</em> Configuration</h2>
-<p>Having wrapped up <a href=https://static.grinnell.edu/dlad-blog/posts/042-my-dockerized-server-config/>My dockerized-server Config</a>, I&rsquo;m back to finally get <em>Omeka-S</em> configured on <em>dgdocker2</em>. Unfortunately, while configuring this final spin of <em>Omeka-S</em> I ran short on time and failed to document every step. However, the outcome is working nicely at <em>dgdocker2:/opt</em> and is captured in a new <em>GitHub</em> repo at <a href=https://github.com/McFateM/omeka-s-dgdocker2>McFateM/omeka-s-dgdocker2</a>.</p>
-<p>This repo includes:</p>
-<ul>
-<li>A <em>dockerized-server</em> component where <em>Traefik</em>, <em>Portainer</em> and <em>Who Am I</em> are configured;</li>
-<li>A <em>solr</em> component <em>Solr</em> is configured;</li>
-<li>An <em>omeka-s-docker</em> component where <em>Omeka-S</em>, <em>MariaDB</em>, and <em>PHPMyAdmin</em> (PMA) are configured;</li>
-<li>A <em>docker-reset.sh</em> script that can be used to reset the host&rsquo;s <em>Docker</em>; and</li>
-<li>A <em>launch-stack.sh</em> script that can be used to reset <em>Docker</em> and then re-start the entire stack.</li>
-</ul>
-<h2 id=persistence>Persistence</h2>
-<p>As currently configured, the stack maintains persistent <em>Omeka</em> site data in a <em>Docker</em> volume (NOT a &ldquo;bind mount&rdquo;, but a named volume managed by <em>Docker</em>). There is a comment line in the <em>docker-reset.sh</em> that can be enabled to wipe the aforementioned volume clean; use it with extreme caution! There&rsquo;s also a comment line in <em>omeka-s-docker/docker-compose.yml</em> that can be enabled to re-initialize the <em>omeka</em> database with a backup of the original <em>World Music Instruments</em> site on server <em>omeka1</em>.</p>
-<h2 id=launch-and-addressing>Launch and Addressing</h2>
-<p>I did a <code>git clone https://github.com/DigitalGrinnell/omeka-s-dgdocker2 /opt</code> and then <code>source /opt/launch-stack.sh</code> from a <em>root</em> terminal/shell on <em>dgdocker2</em>. The result is this working set of services and addresses:</p>
-<table>
-<thead>
-<tr>
-<th>Service</th>
-<th>Address</th>
-<th>Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>Traefik</em> dashboard</td>
-<td><a href=https://traefik2.grinnell.edu>https://traefik2.grinnell.edu</a></td>
-<td>Requires authentication</td>
-</tr>
-<tr>
-<td><em>Portainer</em> dashboard</td>
-<td><a href=https://omeka-s.grinnell.edu/portainer/>https://omeka-s.grinnell.edu/portainer/</a></td>
-<td>Requires authentication</td>
-</tr>
-<tr>
-<td><em>Who Am I</em></td>
-<td><a href=https://omeka-s.grinnell.edu/who-am-i>https://omeka-s.grinnell.edu/who-am-i</a></td>
-<td></td>
-</tr>
-<tr>
-<td><em>Solr</em> administration</td>
-<td><a href=https://portainer2.grinnell.edu>https://portainer2.grinnell.edu</a></td>
-<td>Temporary. Requires authentication</td>
-</tr>
-<tr>
-<td><em>MariaDB</em> administration</td>
-<td>None</td>
-<td>See ./pma/ below</td>
-</tr>
-<tr>
-<td><em>PHPMyAdmin</em></td>
-<td><a href=https://omeka-s.grinnell.edu/pma/>https://omeka-s.grinnell.edu/pma/</a></td>
-<td>Trailing slash is REQUIRED</td>
-</tr>
-<tr>
-<td><em>Omeka-S</em></td>
-<td><a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id=addressing-update>Addressing Update</h2>
-<p>Today, 11-Sep-2019, I got word that my DNS requests for subdomain names <em>solr2.grinnell.edu</em> and <em>pma2.grinnell.edu</em> were completed. So this morning I made necessary changes to <em>dgdocker2:/opt/omeka-s-docker/docker-compose.yml</em> and did a new <code>docker-compose up -d</code> in that directory. It worked, and I didn&rsquo;t even have to take the stack down and restart it!</p>
-<p>So, we now have this updated, and final, addressing scheme:</p>
-<table>
-<thead>
-<tr>
-<th>Service</th>
-<th>Address</th>
-<th>Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><em>Traefik</em> dashboard</td>
-<td><a href=https://traefik2.grinnell.edu>https://traefik2.grinnell.edu</a></td>
-<td>Requires authentication</td>
-</tr>
-<tr>
-<td><em>Portainer</em> dashboard</td>
-<td><a href=https://omeka-s.grinnell.edu/portainer/>https://omeka-s.grinnell.edu/portainer/</a></td>
-<td>Requires authentication</td>
-</tr>
-<tr>
-<td><em>Who Am I</em></td>
-<td><a href=https://omeka-s.grinnell.edu/who-am-i>https://omeka-s.grinnell.edu/who-am-i</a></td>
-<td></td>
-</tr>
-<tr>
-<td><em>Solr</em> administration</td>
-<td><a href=https://solr2.grinnell.edu>https://solr2.grinnell.edu</a></td>
-<td>No longer temporary</td>
-</tr>
-<tr>
-<td><em>MariaDB</em> administration</td>
-<td>None</td>
-<td>See <em>pma2.grinnell.edu</em> below</td>
-</tr>
-<tr>
-<td><em>PHPMyAdmin</em></td>
-<td><a href=https://pma2.grinnell.edu>https://pma2.grinnell.edu</a></td>
-<td>No longer temporary. Behaving properly</td>
-</tr>
-<tr>
-<td><em>Omeka-S</em></td>
-<td><a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id=now-with-valid-certs>Now with Valid Certs!</h2>
-<p>Earlier in this process we learned that <em>Solr</em> won&rsquo;t work properly without a <strong>valid</strong> TLS certificate, not a temporary one. So I was forced to move our certificate authority server spec from <em>Let&rsquo;s Encrypt</em> &ldquo;stagging&rdquo; back to &ldquo;production&rdquo; (see the <em>./dockerized-server/data/traefik.toml</em> file for details). Fortunately, when I ran our addressing update (see section above) the production certs obtained from <em>Let&rsquo;s Encrypt</em> were valid this time. Woot! I guess that means that our recent rate-limit induced ban had expired? It also means I can now close the books on this project. Double woot!</p>
-<p>And that&rsquo;s a wrap&mldr; until next time.</p>
-</div>
-<div class=post-footer>
-<div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//digital-library-applications-developer-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-</article>
-</main>
-</body>
-</html>
+</code></pre><p>Continuing after edits to <em>/opt/whoami/docker-compose.yml</em>&mldr;</p><pre tabindex=0><code>docker-compose --log-level DEBUG up -d
+</code></pre><p>Now, if I visit <a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a> I can see that the <em>WhoAmI</em> is working, but again, it does not have a valid cert.</p><h2 id=capture-as-a-project>Capture As a Project</h2><p>I like the direction this server setup has taken, apart from the invalid certs issue 😦, so I&rsquo;m taking steps to formally &ldquo;capture&rdquo; this setup. I will chronicle that process in <a href=https://static.grinnell.edu/dlad-blog/posts/042-my-dockerized-server-config/>My dockerized-server Config</a>.</p><h2 id=back-to-_omeka-s_-configuration>Back to <em>Omeka-S</em> Configuration</h2><p>Having wrapped up <a href=https://static.grinnell.edu/dlad-blog/posts/042-my-dockerized-server-config/>My dockerized-server Config</a>, I&rsquo;m back to finally get <em>Omeka-S</em> configured on <em>dgdocker2</em>. Unfortunately, while configuring this final spin of <em>Omeka-S</em> I ran short on time and failed to document every step. However, the outcome is working nicely at <em>dgdocker2:/opt</em> and is captured in a new <em>GitHub</em> repo at <a href=https://github.com/McFateM/omeka-s-dgdocker2>McFateM/omeka-s-dgdocker2</a>.</p><p>This repo includes:</p><ul><li>A <em>dockerized-server</em> component where <em>Traefik</em>, <em>Portainer</em> and <em>Who Am I</em> are configured;</li><li>A <em>solr</em> component <em>Solr</em> is configured;</li><li>An <em>omeka-s-docker</em> component where <em>Omeka-S</em>, <em>MariaDB</em>, and <em>PHPMyAdmin</em> (PMA) are configured;</li><li>A <em>docker-reset.sh</em> script that can be used to reset the host&rsquo;s <em>Docker</em>; and</li><li>A <em>launch-stack.sh</em> script that can be used to reset <em>Docker</em> and then re-start the entire stack.</li></ul><h2 id=persistence>Persistence</h2><p>As currently configured, the stack maintains persistent <em>Omeka</em> site data in a <em>Docker</em> volume (NOT a &ldquo;bind mount&rdquo;, but a named volume managed by <em>Docker</em>). There is a comment line in the <em>docker-reset.sh</em> that can be enabled to wipe the aforementioned volume clean; use it with extreme caution! There&rsquo;s also a comment line in <em>omeka-s-docker/docker-compose.yml</em> that can be enabled to re-initialize the <em>omeka</em> database with a backup of the original <em>World Music Instruments</em> site on server <em>omeka1</em>.</p><h2 id=launch-and-addressing>Launch and Addressing</h2><p>I did a <code>git clone https://github.com/DigitalGrinnell/omeka-s-dgdocker2 /opt</code> and then <code>source /opt/launch-stack.sh</code> from a <em>root</em> terminal/shell on <em>dgdocker2</em>. The result is this working set of services and addresses:</p><table><thead><tr><th>Service</th><th>Address</th><th>Note</th></tr></thead><tbody><tr><td><em>Traefik</em> dashboard</td><td><a href=https://traefik2.grinnell.edu>https://traefik2.grinnell.edu</a></td><td>Requires authentication</td></tr><tr><td><em>Portainer</em> dashboard</td><td><a href=https://omeka-s.grinnell.edu/portainer/>https://omeka-s.grinnell.edu/portainer/</a></td><td>Requires authentication</td></tr><tr><td><em>Who Am I</em></td><td><a href=https://omeka-s.grinnell.edu/who-am-i>https://omeka-s.grinnell.edu/who-am-i</a></td><td></td></tr><tr><td><em>Solr</em> administration</td><td><a href=https://portainer2.grinnell.edu>https://portainer2.grinnell.edu</a></td><td>Temporary. Requires authentication</td></tr><tr><td><em>MariaDB</em> administration</td><td>None</td><td>See ./pma/ below</td></tr><tr><td><em>PHPMyAdmin</em></td><td><a href=https://omeka-s.grinnell.edu/pma/>https://omeka-s.grinnell.edu/pma/</a></td><td>Trailing slash is REQUIRED</td></tr><tr><td><em>Omeka-S</em></td><td><a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a></td><td></td></tr></tbody></table><h2 id=addressing-update>Addressing Update</h2><p>Today, 11-Sep-2019, I got word that my DNS requests for subdomain names <em>solr2.grinnell.edu</em> and <em>pma2.grinnell.edu</em> were completed. So this morning I made necessary changes to <em>dgdocker2:/opt/omeka-s-docker/docker-compose.yml</em> and did a new <code>docker-compose up -d</code> in that directory. It worked, and I didn&rsquo;t even have to take the stack down and restart it!</p><p>So, we now have this updated, and final, addressing scheme:</p><table><thead><tr><th>Service</th><th>Address</th><th>Note</th></tr></thead><tbody><tr><td><em>Traefik</em> dashboard</td><td><a href=https://traefik2.grinnell.edu>https://traefik2.grinnell.edu</a></td><td>Requires authentication</td></tr><tr><td><em>Portainer</em> dashboard</td><td><a href=https://omeka-s.grinnell.edu/portainer/>https://omeka-s.grinnell.edu/portainer/</a></td><td>Requires authentication</td></tr><tr><td><em>Who Am I</em></td><td><a href=https://omeka-s.grinnell.edu/who-am-i>https://omeka-s.grinnell.edu/who-am-i</a></td><td></td></tr><tr><td><em>Solr</em> administration</td><td><a href=https://solr2.grinnell.edu>https://solr2.grinnell.edu</a></td><td>No longer temporary</td></tr><tr><td><em>MariaDB</em> administration</td><td>None</td><td>See <em>pma2.grinnell.edu</em> below</td></tr><tr><td><em>PHPMyAdmin</em></td><td><a href=https://pma2.grinnell.edu>https://pma2.grinnell.edu</a></td><td>No longer temporary. Behaving properly</td></tr><tr><td><em>Omeka-S</em></td><td><a href=https://omeka-s.grinnell.edu>https://omeka-s.grinnell.edu</a></td><td></td></tr></tbody></table><h2 id=now-with-valid-certs>Now with Valid Certs!</h2><p>Earlier in this process we learned that <em>Solr</em> won&rsquo;t work properly without a <strong>valid</strong> TLS certificate, not a temporary one. So I was forced to move our certificate authority server spec from <em>Let&rsquo;s Encrypt</em> &ldquo;stagging&rdquo; back to &ldquo;production&rdquo; (see the <em>./dockerized-server/data/traefik.toml</em> file for details). Fortunately, when I ran our addressing update (see section above) the production certs obtained from <em>Let&rsquo;s Encrypt</em> were valid this time. Woot! I guess that means that our recent rate-limit induced ban had expired? It also means I can now close the books on this project. Double woot!</p><p>And that&rsquo;s a wrap&mldr; until next time.</p></div><div class=post-footer><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//digital-library-applications-developer-blog.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></main></body></html>

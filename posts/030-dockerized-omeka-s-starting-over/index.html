@@ -1,122 +1,35 @@
-<!doctype html><html lang=en-us>
-<head>
-<title>Dockerized Omeka-S: Starting Over // The Grinnell College Digital Library Application Developer's Blog</title>
-<meta charset=utf-8>
-<meta name=generator content="Hugo 0.92.2">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=author content="Mark A. McFate">
-<meta name=description content>
-<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.248190165c90ec9341e5c211c3fe84447860758c592f879758437e9a6145eb6e.css>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Dockerized Omeka-S: Starting Over">
-<meta name=twitter:description content="Attention!     The Docksal portion of this discussion DID NOT WORK PROPERLY so I&rsquo;ve hidden it from public view. Don&rsquo;t use this project with Docksal (fin commands) until further notice!    I&rsquo;ve created a new fork of dodeeric/omeka-s-docker at DigitalGrinnell/omeka-s-docker, and it introduces a new docker-compose.yml file for spinning Omeka-S up locally, but WITHOUT Docksal (due to problems with the integration originally documented here).
-System requirements for local development of this project currently include:">
-<meta property="og:title" content="Dockerized Omeka-S: Starting Over">
-<meta property="og:description" content="Attention!     The Docksal portion of this discussion DID NOT WORK PROPERLY so I&rsquo;ve hidden it from public view. Don&rsquo;t use this project with Docksal (fin commands) until further notice!    I&rsquo;ve created a new fork of dodeeric/omeka-s-docker at DigitalGrinnell/omeka-s-docker, and it introduces a new docker-compose.yml file for spinning Omeka-S up locally, but WITHOUT Docksal (due to problems with the integration originally documented here).
-System requirements for local development of this project currently include:">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/030-dockerized-omeka-s-starting-over/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2019-07-25T00:00:00+00:00">
-<meta property="article:modified_time" content="2019-09-03T15:14:12-05:00">
-</head>
-<body>
-<header class=app-header>
-<a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a>
-<h2>The Grinnell College Digital Library Application Developer's Blog</h2>
-<div class=author-block>
-<p class=site-rev>
-Compiled: Feb 18, 2022 at 1:46pm CST<br>
-Content Updated: 2022-Feb-18 00:00 UTC
-</p>
-<div class=name>by
-<strong>Mark A. McFate</strong></div>
-<div class=address>Grinnell College Libraries</div>
-<div class=link><a href=mailto:></a></div>
-<br>
-</div>
-<nav class=sidebar-nav>
-<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
-<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a>
-</nav>
-<p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
-<div class=app-header-social>
-<a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a>
-<a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a>
-</div>
-<p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
-</header>
-<main class=app-container>
-<div class=breadcrumbs>
-<a href=https://static.grinnell.edu/dlad-blog/>Home</a>
+<!doctype html><html lang=en-us><head><title>Dockerized Omeka-S: Starting Over // The Grinnell College Digital Library Application Developer's Blog</title><meta charset=utf-8><meta name=generator content="Hugo 0.96.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Mark A. McFate"><meta name=description content><link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.ec5c8abc0625bee34a87b8624d3c683035583f8314d537f8d266c9f01ad58d83.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Dockerized Omeka-S: Starting Over"><meta name=twitter:description content="Attention!     The Docksal portion of this discussion DID NOT WORK PROPERLY so I&rsquo;ve hidden it from public view. Don&rsquo;t use this project with Docksal (fin commands) until further notice!    I&rsquo;ve created a new fork of dodeeric/omeka-s-docker at DigitalGrinnell/omeka-s-docker, and it introduces a new docker-compose.yml file for spinning Omeka-S up locally, but WITHOUT Docksal (due to problems with the integration originally documented here).
+System requirements for local development of this project currently include:"><meta property="og:title" content="Dockerized Omeka-S: Starting Over"><meta property="og:description" content="Attention!     The Docksal portion of this discussion DID NOT WORK PROPERLY so I&rsquo;ve hidden it from public view. Don&rsquo;t use this project with Docksal (fin commands) until further notice!    I&rsquo;ve created a new fork of dodeeric/omeka-s-docker at DigitalGrinnell/omeka-s-docker, and it introduces a new docker-compose.yml file for spinning Omeka-S up locally, but WITHOUT Docksal (due to problems with the integration originally documented here).
+System requirements for local development of this project currently include:"><meta property="og:type" content="article"><meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/030-dockerized-omeka-s-starting-over/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-07-25T00:00:00+00:00"><meta property="article:modified_time" content="2019-09-03T15:14:12-05:00"></head><body><header class=app-header><a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a><h2>The Grinnell College Digital Library Application Developer's Blog</h2><div class=author-block><p class=site-rev>Compiled: Mar 29, 2022 at 1:35pm CDT<br>Content Updated: 2022-Mar-24 00:00 UTC</p><div class=name>by
+<strong>Mark A. McFate</strong></div><div class=address>Grinnell College Libraries</div><div class=link><a href=mailto:></a></div><br></div><nav class=sidebar-nav><a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a></nav><p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p><div class=app-header-social><a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a></div><p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p></header><main class=app-container><div class=breadcrumbs><a href=https://static.grinnell.edu/dlad-blog/>Home</a>
 &bull; <a href=https://static.grinnell.edu/dlad-blog/posts/>Posts</a>
-&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/030-dockerized-omeka-s-starting-over/>030 dockerized omeka s starting over</a>
-</div>
-<article class=post>
-<header class=post-header>
-<h1 class=post-title>Dockerized Omeka-S: Starting Over</h1>
-<div class=post-meta>
-<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-6 min read
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/030-dockerized-omeka-s-starting-over/>030 dockerized omeka s starting over</a></div><article class=post><header class=post-header><h1 class=post-title>Dockerized Omeka-S: Starting Over</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>6 min read
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
 Jul 25, 2019
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;Updated: Sep 3, 2019 - 15:14
-&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
-<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-<a class=tag href=https://static.grinnell.edu/dlad-blog/tags/omeka-s/>Omeka-S</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/docker/>docker</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/docker-compose/>docker-compose</a></div></div>
-</header>
-<div class=post-content>
-<table>
-<thead>
-<tr>
-<th>Attention!</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>The Docksal portion of this discussion DID NOT WORK PROPERLY so I&rsquo;ve hidden it from public view. <strong>Don&rsquo;t use this project with Docksal (<code>fin</code> commands) until further notice!</strong></td>
-</tr>
-</tbody>
-</table>
-<p>I&rsquo;ve created a new fork of <a href=https://github.com/dodeeric/omeka-s-docker>dodeeric/omeka-s-docker</a> at <a href=https://github.com/DigitalGrinnell/omeka-s-docker>DigitalGrinnell/omeka-s-docker</a>, and it introduces a new <code>docker-compose.yml</code> file for spinning <a href=https://omeka.org/s/>Omeka-S</a> up locally, but WITHOUT Docksal (due to problems with the integration originally documented <a href=https://static.grinnell.edu/dlad-blog/posts/019-dockerized-omeka-s/>here</a>).</p>
-<p>System requirements for local development of this project currently include:</p>
-<ul>
-<li><a href=https://docs.docker.com/install/>Docker (Community Edition)</a></li>
-<li><a href=https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>Git</a></li>
-</ul>
-<h2 id=local-development-and-testing>Local Development and Testing</h2>
-<p>If your workstation is able to run the aforementioned required components then the following steps can be used to launch and develop a local instance. Assuming your workstation is Linux or a Mac, you&rsquo;ll need to edit your <code>/etc/hosts</code> with an editor of your choice, and <code>sudo</code> privileges might be required. For me this was&mldr;</p>
-<pre tabindex=0><code>sudo nano /etc/hosts
-</code></pre><p>In the <code>/etc/hosts</code> file comment out any line beginning with <code>127.0.0.1</code> and add the following two lines just above it&mldr;</p>
-<pre tabindex=0><code>### For omeka-s-docker
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/omeka-s/>Omeka-S</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/docker/>docker</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/docker-compose/>docker-compose</a></div></div></header><div class=post-content><table><thead><tr><th>Attention!</th></tr></thead><tbody><tr><td>The Docksal portion of this discussion DID NOT WORK PROPERLY so I&rsquo;ve hidden it from public view. <strong>Don&rsquo;t use this project with Docksal (<code>fin</code> commands) until further notice!</strong></td></tr></tbody></table><p>I&rsquo;ve created a new fork of <a href=https://github.com/dodeeric/omeka-s-docker>dodeeric/omeka-s-docker</a> at <a href=https://github.com/DigitalGrinnell/omeka-s-docker>DigitalGrinnell/omeka-s-docker</a>, and it introduces a new <code>docker-compose.yml</code> file for spinning <a href=https://omeka.org/s/>Omeka-S</a> up locally, but WITHOUT Docksal (due to problems with the integration originally documented <a href=https://static.grinnell.edu/dlad-blog/posts/019-dockerized-omeka-s/>here</a>).</p><p>System requirements for local development of this project currently include:</p><ul><li><a href=https://docs.docker.com/install/>Docker (Community Edition)</a></li><li><a href=https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>Git</a></li></ul><h2 id=local-development-and-testing>Local Development and Testing</h2><p>If your workstation is able to run the aforementioned required components then the following steps can be used to launch and develop a local instance. Assuming your workstation is Linux or a Mac, you&rsquo;ll need to edit your <code>/etc/hosts</code> with an editor of your choice, and <code>sudo</code> privileges might be required. For me this was&mldr;</p><pre tabindex=0><code>sudo nano /etc/hosts
+</code></pre><p>In the <code>/etc/hosts</code> file comment out any line beginning with <code>127.0.0.1</code> and add the following two lines just above it&mldr;</p><pre tabindex=0><code>### For omeka-s-docker
 127.0.0.1    localhost omeka.localdomain pma.localdomain gramps.localdomain
-</code></pre><p>The new <code>127.0.0.1...</code> line will enable you to use <code>http://omeka.localdomain</code> to open and work with your new Omeka-S instance in any browser on your workstation.</p>
-<p>Now to launch Omeka-S, return to your workstation terminal and&mldr;</p>
-<pre tabindex=0><code>cd ~/Projects    # or any path of your choice
+</code></pre><p>The new <code>127.0.0.1...</code> line will enable you to use <code>http://omeka.localdomain</code> to open and work with your new Omeka-S instance in any browser on your workstation.</p><p>Now to launch Omeka-S, return to your workstation terminal and&mldr;</p><pre tabindex=0><code>cd ~/Projects    # or any path of your choice
 git clone https://github.com/DigitalGrinnell/omeka-s-docker.git
 cd omeka-s-docker
 docker-compose up -d
-</code></pre><p>The <code>docker-compose up -d</code> command in this sequence should launch the project locally. Once it is complete you should be able to open any browser and visit <code>http://omeka.localdomain</code> to work with Omeka-S, or <code>http://pma.localdomain</code> if you want PHPMyAdmin.</p>
-<h2 id=adding-solr>Adding Solr</h2>
-<p>We don&rsquo;t need <code>gramps</code> in our configuration, but we do need <code>Solr</code>, so first step is to modify your <code>/etc/hosts</code> file entry to look like this:</p>
-<pre tabindex=0><code>### For omeka-s-docker
+</code></pre><p>The <code>docker-compose up -d</code> command in this sequence should launch the project locally. Once it is complete you should be able to open any browser and visit <code>http://omeka.localdomain</code> to work with Omeka-S, or <code>http://pma.localdomain</code> if you want PHPMyAdmin.</p><h2 id=adding-solr>Adding Solr</h2><p>We don&rsquo;t need <code>gramps</code> in our configuration, but we do need <code>Solr</code>, so first step is to modify your <code>/etc/hosts</code> file entry to look like this:</p><pre tabindex=0><code>### For omeka-s-docker
 127.0.0.1    localhost omeka.localdomain pma.localdomain solr.localdomain
-</code></pre><p><code>Solr</code> can easily be added to the current stack with some simple changes/additions in the <code>docker-compose.yml</code> file. I gleaned my changes largely from the <code>Using Docker Compose</code> example at <a href=https://docs.docker.com/samples/library/solr/>https://docs.docker.com/samples/library/solr/</a>.</p>
-<h2 id=a-new-branch>A New Branch</h2>
-<p>Next, we should create a new branch of our repo to work in, and since <code>Docksal</code> won&rsquo;t be a part of the new work I&rsquo;m going to take a bold step and remove it from the branch, like so:</p>
-<pre tabindex=0><code>cd ~/Projects/omeka-s-docker
+</code></pre><p><code>Solr</code> can easily be added to the current stack with some simple changes/additions in the <code>docker-compose.yml</code> file. I gleaned my changes largely from the <code>Using Docker Compose</code> example at <a href=https://docs.docker.com/samples/library/solr/>https://docs.docker.com/samples/library/solr/</a>.</p><h2 id=a-new-branch>A New Branch</h2><p>Next, we should create a new branch of our repo to work in, and since <code>Docksal</code> won&rsquo;t be a part of the new work I&rsquo;m going to take a bold step and remove it from the branch, like so:</p><pre tabindex=0><code>cd ~/Projects/omeka-s-docker
 git checkout master                 # This is just a precaution
 git checkout -b master-with-solr
 rm -fr .docksal
 atom .
-</code></pre><p>The new <code>docker-compose.yml</code> section for <code>Solr</code> looks like this:</p>
-<pre tabindex=0><code>  ## Adding solr per `Using Docker Compose` example at https://docs.docker.com/samples/library/solr/
+</code></pre><p>The new <code>docker-compose.yml</code> section for <code>Solr</code> looks like this:</p><pre tabindex=0><code>  ## Adding solr per `Using Docker Compose` example at https://docs.docker.com/samples/library/solr/
   solr:
     image: solr
     restart: always
     networks:
       - network1
-    # ports:           # MAM: `ports` is not required since we have traefik.port mapped to Solr's 8983 below.
-    #   - &quot;8983:8983&quot;
+    # ports:           # MAM: `ports` is not required since we have traefik.port mapped to Solr&#39;s 8983 below.
+    #   - &#34;8983:8983&#34;
     volumes:
       - solr-data:/opt/solr/server/solr/mycores
     entrypoint:
@@ -124,12 +37,10 @@ atom .
       - solr-precreate
       - mycore
     labels:
-      - &quot;traefik.backend=solr&quot;
-      - &quot;traefik.port=8983&quot;
-      - &quot;traefik.frontend.rule=Host:solr.localdomain&quot;
-</code></pre><h2 id=removing-gramps>Removing Gramps</h2>
-<p>I did a <code>docker-compose up -d</code> and see that this stack, complete with <code>Solr</code>, appears to be working nicely now. So I&rsquo;m taking steps to remove all references to <code>Gramps</code>, which is no longer needed here. That leaves us with these comments and explanatory text gleaned from the top of the new <code>docker-compose.yml</code> file:</p>
-<pre tabindex=0><code>## This is a modified copy of dodeeric's original docker-compose-traefik.yml with
+      - &#34;traefik.backend=solr&#34;
+      - &#34;traefik.port=8983&#34;
+      - &#34;traefik.frontend.rule=Host:solr.localdomain&#34;
+</code></pre><h2 id=removing-gramps>Removing Gramps</h2><p>I did a <code>docker-compose up -d</code> and see that this stack, complete with <code>Solr</code>, appears to be working nicely now. So I&rsquo;m taking steps to remove all references to <code>Gramps</code>, which is no longer needed here. That leaves us with these comments and explanatory text gleaned from the top of the new <code>docker-compose.yml</code> file:</p><pre tabindex=0><code>## This is a modified copy of dodeeric&#39;s original docker-compose-traefik.yml with
 ## localhost addresses of:
 ##
 ##   - omeka.localdomain
@@ -143,70 +54,37 @@ atom .
 ##    ### For omeka-s-docker
 ##    127.0.0.1    localhost omeka.localdomain pma.localdomain solr.localdomain
 ##
-</code></pre><h2 id=customizing-the-image-and-rebuilding>Customizing the Image and Rebuilding</h2>
-<p>Time to add the <code>centerrow-master</code> theme changes held in <a href=https://github.com/DigitalGrinnell/centerrow>https://github.com/DigitalGrinnell/centerrow</a>. So, I created a new .zip file from the aforementioned repo, and saved that to my local project as <code>centerrow-master.zip</code>, then I modified the project&rsquo;s <code>Dockerfile</code> to pull this .zip in place of the <code>centerrow-v1.4.0.zip</code> copy. To take advantage of that change I needed to build a new Docker image and employ it going forward. After making changes to the <code>Dockerfile</code> and <code>docker-compose.yml</code> files, the command history was:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>cd ~/Projects/omeka-s-docker
-git checkout master-with-solr
-sudo docker image build -t mcfatem/omeka-s:aug18 .
-sudo docker image tag mcfatem/omeka-s:aug18 mcfatem/omeka-s:latest
-sudo docker login --username<span style=color:#f92672>=</span>mcfatem
-sudo docker image push mcfatem/omeka-s:aug18
-sudo docker image push mcfatem/omeka-s:latest
-</code></pre></div><p>The <code>docker-compose.yml</code> change was from this:</p>
-<pre tabindex=0><code>omeka:
+</code></pre><h2 id=customizing-the-image-and-rebuilding>Customizing the Image and Rebuilding</h2><p>Time to add the <code>centerrow-master</code> theme changes held in <a href=https://github.com/DigitalGrinnell/centerrow>https://github.com/DigitalGrinnell/centerrow</a>. So, I created a new .zip file from the aforementioned repo, and saved that to my local project as <code>centerrow-master.zip</code>, then I modified the project&rsquo;s <code>Dockerfile</code> to pull this .zip in place of the <code>centerrow-v1.4.0.zip</code> copy. To take advantage of that change I needed to build a new Docker image and employ it going forward. After making changes to the <code>Dockerfile</code> and <code>docker-compose.yml</code> files, the command history was:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>cd ~/Projects/omeka-s-docker
+</span></span><span style=display:flex><span>git checkout master-with-solr
+</span></span><span style=display:flex><span>sudo docker image build -t mcfatem/omeka-s:aug18 .
+</span></span><span style=display:flex><span>sudo docker image tag mcfatem/omeka-s:aug18 mcfatem/omeka-s:latest
+</span></span><span style=display:flex><span>sudo docker login --username<span style=color:#f92672>=</span>mcfatem
+</span></span><span style=display:flex><span>sudo docker image push mcfatem/omeka-s:aug18
+</span></span><span style=display:flex><span>sudo docker image push mcfatem/omeka-s:latest
+</span></span></code></pre></div><p>The <code>docker-compose.yml</code> change was from this:</p><pre tabindex=0><code>omeka:
   ...
   image: dodeeric/omeka-s:latest
-</code></pre><p>&mldr;to this:</p>
-<pre tabindex=0><code>omeka:
+</code></pre><p>&mldr;to this:</p><pre tabindex=0><code>omeka:
   ...
   image: mcfatem/omeka-s:latest
-</code></pre><p>After these changes/additions my <code>docker-compose up -d</code> appears to work properly making all of the following local sites available:</p>
-<ul>
-<li><a href=http://omeka.localdomain/>http://omeka.localdomain/</a> &lt;&ndash; Omeka-S installer</li>
-<li><a href=http://omeka.localdomain:8080>http://omeka.localdomain:8080</a> &lt;&ndash; Traefik dashboard</li>
-<li><a href=http://pma.localdomain/>http://pma.localdomain/</a> &lt;&ndash; PHPMyAdmin</li>
-<li><a href=http://solr.localdomain>http://solr.localdomain</a> &lt;&ndash; Solr admin</li>
-</ul>
-<h2 id=adding-wmi-data>Adding WMI Data</h2>
-<p>A <code>wmi.sql</code> file dumped from Grinnell&rsquo;s Omeka-Classic <code>World Music Instruments</code> collection is now available in the project root. The file was dumped by opening an SSH session on Grinnell&rsquo;s <strong>omeka1</strong> server (<code>ssh vagrant@omeka1.grinnell.edu</code>) and running the following commands there:</p>
-<pre tabindex=0><code>cd /var/www/html/WorldMusicInstruments
+</code></pre><p>After these changes/additions my <code>docker-compose up -d</code> appears to work properly making all of the following local sites available:</p><ul><li><a href=http://omeka.localdomain/>http://omeka.localdomain/</a> &lt;&ndash; Omeka-S installer</li><li><a href=http://omeka.localdomain:8080>http://omeka.localdomain:8080</a> &lt;&ndash; Traefik dashboard</li><li><a href=http://pma.localdomain/>http://pma.localdomain/</a> &lt;&ndash; PHPMyAdmin</li><li><a href=http://solr.localdomain>http://solr.localdomain</a> &lt;&ndash; Solr admin</li></ul><h2 id=adding-wmi-data>Adding WMI Data</h2><p>A <code>wmi.sql</code> file dumped from Grinnell&rsquo;s Omeka-Classic <code>World Music Instruments</code> collection is now available in the project root. The file was dumped by opening an SSH session on Grinnell&rsquo;s <strong>omeka1</strong> server (<code>ssh vagrant@omeka1.grinnell.edu</code>) and running the following commands there:</p><pre tabindex=0><code>cd /var/www/html/WorldMusicInstruments
 mysqldump -h localhost -u wMIAdmin -p wmi &gt; wmi.sql
 rsync -aruvi wmi.sql markmcfate@132.161.249.239:/Users/markmcfate/Projects/omeka-s-docker/wmi.sql --progress
-</code></pre><p>Unfortunately, this dump was HUGE, like 1.2 gigabytes! So, I elected to try again but without the voluminous &ldquo;<em>sessions</em>&rdquo; table data, like so:</p>
-<pre tabindex=0><code>cd /var/www/html/WorldMusicInstruments
+</code></pre><p>Unfortunately, this dump was HUGE, like 1.2 gigabytes! So, I elected to try again but without the voluminous &ldquo;<em>sessions</em>&rdquo; table data, like so:</p><pre tabindex=0><code>cd /var/www/html/WorldMusicInstruments
 mysqldump -u wMIAdmin -p -h localhost wmi --ignore-table=database.sessions &gt; ./wmi-dump.sql \
   &amp;&amp; mysqldump -u wMIAdmin -p -h localhost -d wmi sessions &gt;&gt; ./wmi-dump.sql
 rsync -aruvi wmi-dump.sql markmcfate@132.161.249.239:/Users/markmcfate/Projects/omeka-s-docker/wmi-dump.sql --progress
-</code></pre><p>That did the trick. Now the <em>wmi-dump.sql</em> file is only 7.8 megabytes in size.</p>
-<p>There are a few ways to get our Omeka-S instance populated with data like this, perhaps the most popular is to mount the .sql file into the database container&rsquo;s <code>/docker-entrypoint-initdb.d/</code> directory. I could not get this to work, probably because we&rsquo;ve already mounted a Docker volume named <code>mariadb</code> in that container. No matter, I found a slick one-liner <a href=https://gist.github.com/zburgermeiszter/89a41467c80327c0bb550a2c7077d747>in this gist</a> that does the trick. My version of the command was:</p>
-<pre tabindex=0><code>╭─mark@Marks-Mac-Mini ~/Projects/omeka-s-docker ‹master-with-solr*›
-╰─$ docker exec -i omeka-s-docker_mariadb_1 /bin/bash -c &quot;export TERM=xterm &amp;&amp; mysql -uomeka -pomeka omeka&quot; &lt; wmi.sql  
-</code></pre><h2 id=image-updates>Image Updates</h2>
-<p>Since wrapping up the previous posting I&rsquo;ve made some additional changes to this branch. Specifically, my Omeka-S image has been upgraded to version 2.0.1, and I corrected the path that the <code>centerrow-master</code> theme gets unpacked into (it was <code>centerrow-master</code> but needs to be just <code>centerrow</code>). I also added some necessary packages to the <code>omeka</code> service Dockerfile in order to support <code>Solr</code>.</p>
-<p>Having made these changes I repeated the Docker image build process from above like so:</p>
-<pre tabindex=0><code>cd ~/Projects/omeka-s-docker
+</code></pre><p>That did the trick. Now the <em>wmi-dump.sql</em> file is only 7.8 megabytes in size.</p><p>There are a few ways to get our Omeka-S instance populated with data like this, perhaps the most popular is to mount the .sql file into the database container&rsquo;s <code>/docker-entrypoint-initdb.d/</code> directory. I could not get this to work, probably because we&rsquo;ve already mounted a Docker volume named <code>mariadb</code> in that container. No matter, I found a slick one-liner <a href=https://gist.github.com/zburgermeiszter/89a41467c80327c0bb550a2c7077d747>in this gist</a> that does the trick. My version of the command was:</p><pre tabindex=0><code>╭─mark@Marks-Mac-Mini ~/Projects/omeka-s-docker ‹master-with-solr*›
+╰─$ docker exec -i omeka-s-docker_mariadb_1 /bin/bash -c &#34;export TERM=xterm &amp;&amp; mysql -uomeka -pomeka omeka&#34; &lt; wmi.sql  
+</code></pre><h2 id=image-updates>Image Updates</h2><p>Since wrapping up the previous posting I&rsquo;ve made some additional changes to this branch. Specifically, my Omeka-S image has been upgraded to version 2.0.1, and I corrected the path that the <code>centerrow-master</code> theme gets unpacked into (it was <code>centerrow-master</code> but needs to be just <code>centerrow</code>). I also added some necessary packages to the <code>omeka</code> service Dockerfile in order to support <code>Solr</code>.</p><p>Having made these changes I repeated the Docker image build process from above like so:</p><pre tabindex=0><code>cd ~/Projects/omeka-s-docker
 git checkout master-with-solr
 sudo docker image build -t mcfatem/omeka-s:august .
 sudo docker image tag mcfatem/omeka-s:august mcfatem/omeka-s:latest
 sudo docker login --username=mcfatem
 sudo docker image push mcfatem/omeka-s:august
 sudo docker image push mcfatem/omeka-s:latest
-</code></pre><p>The <code>omeka</code> service portion of <code>docker-compose.yml</code> is still pulling and using <code>mcfatem/omeka-s:latest</code> from Docker Hub.</p>
-<h2 id=retrieving-wmi-content-or-files>Retrieving WMI Content or &ldquo;Files&rdquo;</h2>
-<p>The following is a reminder to myself&mldr; to retrieve the <code>/var/www/html/files</code> data from the <code>World Musical Instruments</code> (WMI) collection, try this on your host:</p>
-<pre tabindex=0><code>╭─markmcfate@ma8660 ~/Projects/omeka-s-docker ‹ruby-2.3.0› ‹master-with-solr*›
+</code></pre><p>The <code>omeka</code> service portion of <code>docker-compose.yml</code> is still pulling and using <code>mcfatem/omeka-s:latest</code> from Docker Hub.</p><h2 id=retrieving-wmi-content-or-files>Retrieving WMI Content or &ldquo;Files&rdquo;</h2><p>The following is a reminder to myself&mldr; to retrieve the <code>/var/www/html/files</code> data from the <code>World Musical Instruments</code> (WMI) collection, try this on your host:</p><pre tabindex=0><code>╭─markmcfate@ma8660 ~/Projects/omeka-s-docker ‹ruby-2.3.0› ‹master-with-solr*›
 ╰─$ rsync -aruvi vagrant@omeka1.grinnell.edu:/var/www/html/MusicalInstruments/files/. files/ --verbose
 ╭─markmcfate@ma8660 ~/Projects/omeka-s-docker ‹ruby-2.3.0› ‹master-with-solr*›
 ╰─$ docker cp ./files/. omeka-s-docker_omeka_1:/var/www/html/files/
-</code></pre><p>And that&rsquo;s a wrap&mldr;for now.</p>
-</div>
-<div class=post-footer>
-<div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//digital-library-applications-developer-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-</article>
-</main>
-</body>
-</html>
+</code></pre><p>And that&rsquo;s a wrap&mldr;for now.</p></div><div class=post-footer><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//digital-library-applications-developer-blog.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></main></body></html>

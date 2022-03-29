@@ -1,99 +1,30 @@
-<!doctype html><html lang=en-us>
-<head>
-<title>Debugging ISLE Local with PHPStorm // The Grinnell College Digital Library Application Developer's Blog</title>
-<meta charset=utf-8>
-<meta name=generator content="Hugo 0.92.2">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=author content="Mark A. McFate">
-<meta name=description content>
-<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.248190165c90ec9341e5c211c3fe84447860758c592f879758437e9a6145eb6e.css>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Debugging ISLE Local with PHPStorm">
-<meta name=twitter:description content="For the past couple of years I&rsquo;ve been working in Digital.Grinnell to remove as much &ldquo;customization&rdquo; as I can. The effort is coming along, but still, there&rsquo;s a long way to go. Every now and then I come across a feature that we just can&rsquo;t live without, and it&rsquo;s in times like those that I turn to PHPStorm for development and testing. Unfortunately, I&rsquo;ve been operating without PHPStorm in ISLE because I worried that configuring the PHPStorm debugger in a Docker environment would be a time-consuming, tall task.">
-<meta property="og:title" content="Debugging ISLE Local with PHPStorm">
-<meta property="og:description" content="For the past couple of years I&rsquo;ve been working in Digital.Grinnell to remove as much &ldquo;customization&rdquo; as I can. The effort is coming along, but still, there&rsquo;s a long way to go. Every now and then I come across a feature that we just can&rsquo;t live without, and it&rsquo;s in times like those that I turn to PHPStorm for development and testing. Unfortunately, I&rsquo;ve been operating without PHPStorm in ISLE because I worried that configuring the PHPStorm debugger in a Docker environment would be a time-consuming, tall task.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/103-debugging-isle-local-with-phpstorm/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2021-03-12T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-03-17T08:39:33-05:00">
-</head>
-<body>
-<header class=app-header>
-<a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a>
-<h2>The Grinnell College Digital Library Application Developer's Blog</h2>
-<div class=author-block>
-<p class=site-rev>
-Compiled: Feb 18, 2022 at 1:46pm CST<br>
-Content Updated: 2022-Feb-18 00:00 UTC
-</p>
-<div class=name>by
-<strong>Mark A. McFate</strong></div>
-<div class=address>Grinnell College Libraries</div>
-<div class=link><a href=mailto:></a></div>
-<br>
-</div>
-<nav class=sidebar-nav>
-<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
-<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a>
-</nav>
-<p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p>
-<div class=app-header-social>
-<a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a>
-<a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a>
-</div>
-<p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p>
-</header>
-<main class=app-container>
-<div class=breadcrumbs>
-<a href=https://static.grinnell.edu/dlad-blog/>Home</a>
+<!doctype html><html lang=en-us><head><title>Debugging ISLE Local with PHPStorm // The Grinnell College Digital Library Application Developer's Blog</title><meta charset=utf-8><meta name=generator content="Hugo 0.96.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Mark A. McFate"><meta name=description content><link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.ec5c8abc0625bee34a87b8624d3c683035583f8314d537f8d266c9f01ad58d83.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Debugging ISLE Local with PHPStorm"><meta name=twitter:description content="For the past couple of years I&rsquo;ve been working in Digital.Grinnell to remove as much &ldquo;customization&rdquo; as I can. The effort is coming along, but still, there&rsquo;s a long way to go. Every now and then I come across a feature that we just can&rsquo;t live without, and it&rsquo;s in times like those that I turn to PHPStorm for development and testing. Unfortunately, I&rsquo;ve been operating without PHPStorm in ISLE because I worried that configuring the PHPStorm debugger in a Docker environment would be a time-consuming, tall task."><meta property="og:title" content="Debugging ISLE Local with PHPStorm"><meta property="og:description" content="For the past couple of years I&rsquo;ve been working in Digital.Grinnell to remove as much &ldquo;customization&rdquo; as I can. The effort is coming along, but still, there&rsquo;s a long way to go. Every now and then I come across a feature that we just can&rsquo;t live without, and it&rsquo;s in times like those that I turn to PHPStorm for development and testing. Unfortunately, I&rsquo;ve been operating without PHPStorm in ISLE because I worried that configuring the PHPStorm debugger in a Docker environment would be a time-consuming, tall task."><meta property="og:type" content="article"><meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/103-debugging-isle-local-with-phpstorm/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-03-12T00:00:00+00:00"><meta property="article:modified_time" content="2021-03-17T08:39:33-05:00"></head><body><header class=app-header><a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a><h2>The Grinnell College Digital Library Application Developer's Blog</h2><div class=author-block><p class=site-rev>Compiled: Mar 29, 2022 at 1:35pm CDT<br>Content Updated: 2022-Mar-24 00:00 UTC</p><div class=name>by
+<strong>Mark A. McFate</strong></div><div class=address>Grinnell College Libraries</div><div class=link><a href=mailto:></a></div><br></div><nav class=sidebar-nav><a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a></nav><p class=site-description>Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure.</p><div class=app-header-social><a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a></div><p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p></header><main class=app-container><div class=breadcrumbs><a href=https://static.grinnell.edu/dlad-blog/>Home</a>
 &bull; <a href=https://static.grinnell.edu/dlad-blog/posts/>Posts</a>
-&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/103-debugging-isle-local-with-phpstorm/>103 debugging isle local with phpstorm</a>
-</div>
-<article class=post>
-<header class=post-header>
-<h1 class=post-title>Debugging ISLE Local with PHPStorm</h1>
-<div class=post-meta>
-<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-8 min read
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/103-debugging-isle-local-with-phpstorm/>103 debugging isle local with phpstorm</a></div><article class=post><header class=post-header><h1 class=post-title>Debugging ISLE Local with PHPStorm</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>8 min read
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
 Mar 12, 2021
 &nbsp;&nbsp;&bull;&nbsp;&nbsp;Updated: Mar 17, 2021 - 08:39
-&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong>
-<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-<a class=tag href=https://static.grinnell.edu/dlad-blog/tags/debug/>debug</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/xdebug/>XDebug</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/isle/>ISLE</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/local/>local</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/phpstorm/>PHPStorm</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/drush/>drush</a></div></div>
-</header>
-<div class=post-content>
-<p>For the past couple of years I&rsquo;ve been working in <a href=https://digital.grinnell.edu>Digital.Grinnell</a> to remove as much &ldquo;customization&rdquo; as I can. The effort is coming along, but still, there&rsquo;s a long way to go. Every now and then I come across a feature that we just can&rsquo;t live without, and it&rsquo;s in times like those that I turn to <a href=https://www.jetbrains.com/phpstorm/>PHPStorm</a> for development and testing. Unfortunately, I&rsquo;ve been operating without <em>PHPStorm</em> in <a href=https://github.com/Islandora-Collaboration-Group/ISLE>ISLE</a> because I worried that configuring the <em>PHPStorm</em> debugger in a Docker environment would be a time-consuming, tall task. It <strong>was</strong> tricky, but worry no more!</p>
-<h2 id=the-goal>The Goal</h2>
-<p>Simple: Get <em>PHPStorm</em> configured with <em>ISLE</em> and my <code>http://dg.localdomain</code> development instance of <em>Digital.Grinnell</em>, with real-time debugging. I do my development on any one of three Mac&rsquo;s, so making things work in an OS X environment was also a requirement. I searched, seemingly for days, through a host of blog posts, tutorials, and documents, for any applicable guidance that might get me to my goal. There is LOTS of advice and guidance available, but in many cases it&rsquo;s for a very specific environment, or written strictly from a &ldquo;How I Did It&rdquo; perspective, with little or no explanation of &ldquo;why&rdquo; certain things were done.</p>
-<p>This post is another &ldquo;How I Did It&rdquo; account, but the resources I used include some welcome explanations.</p>
-<h2 id=the-resources>The Resources</h2>
-<p>There was one key document that I came to rely on: <a href=https://dev.to/jump24/turbocharged-php-development-with-xdebug-docker-phpstorm-1n6c>Turbocharged PHP Development with Xdebug, Docker & PHPStorm</a>, a <a href=https://dev.to/>dev.to</a> blog post by <a href=https://dev.to/secondej>James Seconde</a>. Thank you, James! Excellent work, and thank you for sharing!</p>
-<p>The other document that&rsquo;s still open in my browser is <a href=https://www.jetbrains.com/help/phpstorm/creating-local-server-configuration.html>Create a local server configuration</a>, part of <em>JetBrains'</em> documentation suite. This document is linked in from James' post too.</p>
-<h2 id=a-summary-of-changes>A Summary of Changes</h2>
-<p><code>dg-isle</code> is my <em>Digital.Grinnell</em> copy of the project repository identifed as <code>yourprojectnamehere-isle</code> in the <em>ISLE</em> documentation. All of my changes were made in that repo, and they are summarized in the following <code>git status</code> result:</p>
-<pre tabindex=0><code>╭─mark@Marks-Mac-Mini ~/ISLE/dg-isle ‹main*›
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/debug/>debug</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/xdebug/>XDebug</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/isle/>ISLE</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/local/>local</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/phpstorm/>PHPStorm</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/drush/>drush</a></div></div></header><div class=post-content><p>For the past couple of years I&rsquo;ve been working in <a href=https://digital.grinnell.edu>Digital.Grinnell</a> to remove as much &ldquo;customization&rdquo; as I can. The effort is coming along, but still, there&rsquo;s a long way to go. Every now and then I come across a feature that we just can&rsquo;t live without, and it&rsquo;s in times like those that I turn to <a href=https://www.jetbrains.com/phpstorm/>PHPStorm</a> for development and testing. Unfortunately, I&rsquo;ve been operating without <em>PHPStorm</em> in <a href=https://github.com/Islandora-Collaboration-Group/ISLE>ISLE</a> because I worried that configuring the <em>PHPStorm</em> debugger in a Docker environment would be a time-consuming, tall task. It <strong>was</strong> tricky, but worry no more!</p><h2 id=the-goal>The Goal</h2><p>Simple: Get <em>PHPStorm</em> configured with <em>ISLE</em> and my <code>http://dg.localdomain</code> development instance of <em>Digital.Grinnell</em>, with real-time debugging. I do my development on any one of three Mac&rsquo;s, so making things work in an OS X environment was also a requirement. I searched, seemingly for days, through a host of blog posts, tutorials, and documents, for any applicable guidance that might get me to my goal. There is LOTS of advice and guidance available, but in many cases it&rsquo;s for a very specific environment, or written strictly from a &ldquo;How I Did It&rdquo; perspective, with little or no explanation of &ldquo;why&rdquo; certain things were done.</p><p>This post is another &ldquo;How I Did It&rdquo; account, but the resources I used include some welcome explanations.</p><h2 id=the-resources>The Resources</h2><p>There was one key document that I came to rely on: <a href=https://dev.to/jump24/turbocharged-php-development-with-xdebug-docker-phpstorm-1n6c>Turbocharged PHP Development with Xdebug, Docker & PHPStorm</a>, a <a href=https://dev.to/>dev.to</a> blog post by <a href=https://dev.to/secondej>James Seconde</a>. Thank you, James! Excellent work, and thank you for sharing!</p><p>The other document that&rsquo;s still open in my browser is <a href=https://www.jetbrains.com/help/phpstorm/creating-local-server-configuration.html>Create a local server configuration</a>, part of <em>JetBrains&rsquo;</em> documentation suite. This document is linked in from James&rsquo; post too.</p><h2 id=a-summary-of-changes>A Summary of Changes</h2><p><code>dg-isle</code> is my <em>Digital.Grinnell</em> copy of the project repository identifed as <code>yourprojectnamehere-isle</code> in the <em>ISLE</em> documentation. All of my changes were made in that repo, and they are summarized in the following <code>git status</code> result:</p><pre tabindex=0><code>╭─mark@Marks-Mac-Mini ~/ISLE/dg-isle ‹main*›
 ╰─$ git status
 On branch main
-Your branch is up to date with 'origin/main'.
+Your branch is up to date with &#39;origin/main&#39;.
 
 Changes not staged for commit:
-  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
-  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
+  (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)
+  (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)
 
 	modified:   docker-compose.local.yml
 	modified:   local.env
 
 Untracked files:
-  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)
+  (use &#34;git add &lt;file&gt;...&#34; to include in what will be committed)
 
 	xdebug-local.ini
 
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
-</code></pre><h3 id=contents-of-those-files>Contents of Those Files</h3>
-<h4 id=docker-composelocalyml>docker-compose.local.yml</h4>
-<p>In <code>docker-compose.local.yml</code> I added only the last line you see below, in the <code>volumes:</code> portion of the <code>apache:</code> container config.</p>
-<pre tabindex=0><code>apache:
+no changes added to commit (use &#34;git add&#34; and/or &#34;git commit -a&#34;)
+</code></pre><h3 id=contents-of-those-files>Contents of Those Files</h3><h4 id=docker-composelocalyml>docker-compose.local.yml</h4><p>In <code>docker-compose.local.yml</code> I added only the last line you see below, in the <code>volumes:</code> portion of the <code>apache:</code> container config.</p><pre tabindex=0><code>apache:
   image: islandoracollabgroup/isle-apache:1.5.4
   ...lines removed for clarity...
   volumes:
@@ -101,8 +32,7 @@ no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&q
     - ~/ISLE/dg-islandora:/var/www/html:cached
     ...lines removed for clarity...
     - ./xdebug-local.ini:/etc/php/7.1/apache2/conf.d/20-xdebug-local.ini
-</code></pre><p><strong>Attention!</strong> While the line I added above does work, it&rsquo;s a bit of a brute force approach and is probably not sustainable. I&rsquo;ve found a much better approach is to inject my debug config like so:</p>
-<pre tabindex=0><code>apache:
+</code></pre><p><strong>Attention!</strong> While the line I added above does work, it&rsquo;s a bit of a brute force approach and is probably not sustainable. I&rsquo;ve found a much better approach is to inject my debug config like so:</p><pre tabindex=0><code>apache:
   image: islandoracollabgroup/isle-apache:1.5.4
   ...lines removed for clarity...
   volumes:
@@ -110,9 +40,7 @@ no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&q
     - ~/ISLE/dg-islandora:/var/www/html:cached
     ...lines removed for clarity...
     - ./xdebug-local.ini:/etc/php/7.1/mods-available/xdebug.ini
-</code></pre><h4 id=localenv-and-env>local.env and .env</h4>
-<p>In <code>local.env</code> I added a comment followed by three lines of configuration, all near the top of the file, like so:</p>
-<pre tabindex=0><code>## ISLE Local
+</code></pre><h4 id=localenv-and-env>local.env and .env</h4><p>In <code>local.env</code> I added a comment followed by three lines of configuration, all near the top of the file, like so:</p><pre tabindex=0><code>## ISLE Local
 ## This local.env file is used with / for the docker-compose.local.yml
 
 ## Windows user should uncomment the following line:
@@ -120,11 +48,10 @@ no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&q
 
 ## Parameters for XDEBUG and PHPStorm
 ENABLE_XDEBUG=true
-PHP_MEMORY_LIMIT='128M'
-PHP_IDE_CONFIG='serverName=dg_local'
+PHP_MEMORY_LIMIT=&#39;128M&#39;
+PHP_IDE_CONFIG=&#39;serverName=dg_local&#39;
 ...remaining lines removed for clarity...
-</code></pre><p>Note that <code>dg_local</code> above is the same as the <code>COMPOSE_PROJECT_NAME</code> parameter from my <code>.env</code> file. The contents of <code>.env</code> remains unchanged:</p>
-<pre tabindex=0><code>#### Activated ISLE environment
+</code></pre><p>Note that <code>dg_local</code> above is the same as the <code>COMPOSE_PROJECT_NAME</code> parameter from my <code>.env</code> file. The contents of <code>.env</code> remains unchanged:</p><pre tabindex=0><code>#### Activated ISLE environment
 # To use an environment other than the default Demo, please change values below
 # from the default Demo to one of the following: Local, Test, Staging or Production
 # For more information, consult https://islandora-collaboration-group.github.io/ISLE/install/install-environments/
@@ -133,41 +60,14 @@ COMPOSE_PROJECT_NAME=dg_local
 BASE_DOMAIN=dg.localdomain
 CONTAINER_SHORT_ID=ld
 COMPOSE_FILE=docker-compose.local.yml
-</code></pre><h4 id=xdebug-localini>xdebug-local.ini</h4>
-<p>This is a new file, one not previously found in the <em>ISLE</em> configuration. James mapped this file into his configuration like so:</p>
-<pre tabindex=0><code>  - ./xdebug-local.ini:/usr/local/etc/php/conf.d/xdebug-local.ini
-</code></pre><p>Don&rsquo;t use that in <em>ISLE</em>! The <strong>correct</strong> config for <em>ISLE</em> is the line I added to <code>docker-compose.local.yml</code> which reads:</p>
-<pre tabindex=0><code>  - ./xdebug-local.ini:/etc/php/7.1/apache2/mods-available/xdebug.ini
-</code></pre><p>The <code>./</code> prefix in that line dictates that your <code>xdebug-local.ini</code> file should be in your project&rsquo;s root directory, the same directory where <code>docker-compose.local.yml</code> resides. In my case that&rsquo;s <code>~/ISLE/dg-isle</code>.</p>
-<p>The contents of your <code>xdebug-local.ini</code> file, assuming you&rsquo;re using OS X, should be identical to James' copy, and mine:</p>
-<pre tabindex=0><code>zend_extension=xdebug
+</code></pre><h4 id=xdebug-localini>xdebug-local.ini</h4><p>This is a new file, one not previously found in the <em>ISLE</em> configuration. James mapped this file into his configuration like so:</p><pre tabindex=0><code>  - ./xdebug-local.ini:/usr/local/etc/php/conf.d/xdebug-local.ini
+</code></pre><p>Don&rsquo;t use that in <em>ISLE</em>! The <strong>correct</strong> config for <em>ISLE</em> is the line I added to <code>docker-compose.local.yml</code> which reads:</p><pre tabindex=0><code>  - ./xdebug-local.ini:/etc/php/7.1/apache2/mods-available/xdebug.ini
+</code></pre><p>The <code>./</code> prefix in that line dictates that your <code>xdebug-local.ini</code> file should be in your project&rsquo;s root directory, the same directory where <code>docker-compose.local.yml</code> resides. In my case that&rsquo;s <code>~/ISLE/dg-isle</code>.</p><p>The contents of your <code>xdebug-local.ini</code> file, assuming you&rsquo;re using OS X, should be identical to James&rsquo; copy, and mine:</p><pre tabindex=0><code>zend_extension=xdebug
 xdebug.remote_enable=1
 xdebug.remote_autostart=1
 xdebug.remote_port=9001
 xdebug.remote_host=host.docker.internal
-</code></pre><h2 id=how-i-did-it>How I Did It</h2>
-<p>To be honest, I tried so many things, I am not absolutely certain which parts were necessary, and which were not. So, let me just explain what I did in each of the steps that James outlined.</p>
-<ul>
-<li>
-<p><strong>Step One: Installing Xdebug</strong><br>
-I did NOT create a new <code>Dockerfile</code> or new build of <em>ISLE</em>&rsquo;s Apache container. All that was required in that regard, I believe, was the inclusion of the <code>ENABLE_XDEBUG=true</code> line in <code>local.env</code>.</p>
-</li>
-<li>
-<p><strong>Step Two: Configuring Xdebug</strong><br>
-I followed James' guidance explicitly here. Please read his post!</p>
-</li>
-<li>
-<p><strong>Step Three: Inject Config to Docker</strong><br>
-Again, I followed James explicitly, but omitted the <code>DB_</code> parameters since I&rsquo;m only interested in debugging PHP code. As James suggests, the <code>serverName</code> parameter in <code>PHP_IDE_CONFIG:</code> is <strong>critical</strong>.</p>
-</li>
-<li>
-<p><strong>Step Four: Set up PHPStorm</strong><br>
-This is where things got a bit confusing, so I&rsquo;ll dispense with my recollection and just show you my end results in a series of screen grabs. Please DO give James' post a good read though, there&rsquo;s lots of helpful explanation within.</p>
-</li>
-</ul>
-<h4 id=my-project-structure>My Project Structure</h4>
-<p>Locally, my <em>ISLE</em> configuration and code live in a pair of repositories named <code>dg-isle</code> and <code>dg-islandora</code> inside an <code>~/ISLE</code> directory. That <code>~/ISLE</code> directory now includes a <code>.idea</code> hidden folder, and that&rsquo;s where all of my associated <em>PHPStorm</em> project info lives. It all looks like this:</p>
-<pre tabindex=0><code>╭─mark@Marks-Mac-Mini ~/ISLE
+</code></pre><h2 id=how-i-did-it>How I Did It</h2><p>To be honest, I tried so many things, I am not absolutely certain which parts were necessary, and which were not. So, let me just explain what I did in each of the steps that James outlined.</p><ul><li><p><strong>Step One: Installing Xdebug</strong><br>I did NOT create a new <code>Dockerfile</code> or new build of <em>ISLE</em>&rsquo;s Apache container. All that was required in that regard, I believe, was the inclusion of the <code>ENABLE_XDEBUG=true</code> line in <code>local.env</code>.</p></li><li><p><strong>Step Two: Configuring Xdebug</strong><br>I followed James&rsquo; guidance explicitly here. Please read his post!</p></li><li><p><strong>Step Three: Inject Config to Docker</strong><br>Again, I followed James explicitly, but omitted the <code>DB_</code> parameters since I&rsquo;m only interested in debugging PHP code. As James suggests, the <code>serverName</code> parameter in <code>PHP_IDE_CONFIG:</code> is <strong>critical</strong>.</p></li><li><p><strong>Step Four: Set up PHPStorm</strong><br>This is where things got a bit confusing, so I&rsquo;ll dispense with my recollection and just show you my end results in a series of screen grabs. Please DO give James&rsquo; post a good read though, there&rsquo;s lots of helpful explanation within.</p></li></ul><h4 id=my-project-structure>My Project Structure</h4><p>Locally, my <em>ISLE</em> configuration and code live in a pair of repositories named <code>dg-isle</code> and <code>dg-islandora</code> inside an <code>~/ISLE</code> directory. That <code>~/ISLE</code> directory now includes a <code>.idea</code> hidden folder, and that&rsquo;s where all of my associated <em>PHPStorm</em> project info lives. It all looks like this:</p><pre tabindex=0><code>╭─mark@Marks-Mac-Mini ~/ISLE
 ╰─$ ls -alh
 total 16
 drwxr-xr-x    6 mark  staff   192B Mar 11 13:08 .
@@ -175,131 +75,7 @@ drwxrwxr-x+ 137 mark  staff   4.3K Mar 12 12:18 ..
 drwxr-xr-x   13 mark  staff   416B Mar 12 12:14 .idea
 drwxr-x---@  36 mark  staff   1.1K Mar 11 14:18 dg-islandora
 drwxr-xr-x   42 mark  staff   1.3K Mar 11 12:41 dg-isle
-</code></pre><h2 id=first-steps-in-phpstorm>First Steps in PHPStorm</h2>
-<p>The first thing I remember doing in <em>PHPStorm</em> was creating my project. That process is probably best shown in this screen grab:</p>
-<link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/hugo-easy-gallery.css>
-<div class=box>
-<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
-<div class=img>
-<img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/new-phpstorm-project.png>
-</div>
-<a href=https://static.grinnell.edu/dlad-blog/images/post-103/new-phpstorm-project.png itemprop=contentUrl></a>
-<figcaption><h4>Creating My PHPStorm Project Structure</h4>
-</figcaption>
-</figure>
-</div>
-<p>I used the <code>New Project</code> button and <code>New Project from Existing Files...</code> pull-down option to get started. Be sure to choose the <code>Web server is installed locally...</code> scenario too.</p>
-<p>The resulting structure can be seen in this screen grab showing the upper-left corner of my <em>PHPStorm</em> application window.</p>
-<div class=box>
-<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
-<div class=img>
-<img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/my-project-structure.png>
-</div>
-<a href=https://static.grinnell.edu/dlad-blog/images/post-103/my-project-structure.png itemprop=contentUrl></a>
-<figcaption><h4>My PHPStorm Project Structure</h4>
-</figcaption>
-</figure>
-</div>
-<h2 id=next-steps>Next Steps</h2>
-<p>This is where things really get foggy, so, more screen grabs showing the results.</p>
-<p>My <code>Run/Debug Configurations</code> look like this:</p>
-<div class=box>
-<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
-<div class=img>
-<img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/phpstorm-run-debug-config.png>
-</div>
-<a href=https://static.grinnell.edu/dlad-blog/images/post-103/phpstorm-run-debug-config.png itemprop=contentUrl></a>
-<figcaption><h4>PHPStorm Run/Debug Configurations</h4>
-</figcaption>
-</figure>
-</div>
-<p>My <code>Preferences > Language & Frameworks > PHP > Servers</code> configuration looks like this:</p>
-<div class=box>
-<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
-<div class=img>
-<img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/servers-config.png>
-</div>
-<a href=https://static.grinnell.edu/dlad-blog/images/post-103/servers-config.png itemprop=contentUrl></a>
-<figcaption><h4>Preferences</h4>
-</figcaption>
-</figure>
-</div>
-<p>Please don&rsquo;t ask me to recall exactly how I created those configurations. Here&rsquo;s what I do remember&mldr;</p>
-<h2 id=let-the-magic-happen>Let the Magic Happen</h2>
-<p>The final pieces of this puzzle just seem to &ldquo;magically&rdquo; fall into place once you begin your first debugging session. In my case, after configuring most of what you&rsquo;ve seen above, I did this:</p>
-<ul>
-<li>Opened <em>PHPStorm</em> to the <code>ISLE</code> project.</li>
-<li>Opened <code>index.php</code> and set a breakpoint. I also elected to add a simple print statement like you see below.</li>
-</ul>
-<div class=box>
-<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
-<div class=img>
-<img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/set-breakpoint-index.php.png>
-</div>
-<a href=https://static.grinnell.edu/dlad-blog/images/post-103/set-breakpoint-index.php.png itemprop=contentUrl></a>
-<figcaption><h4>My Breakpoint in index.php</h4>
-</figcaption>
-</figure>
-</div>
-<ul>
-<li>Toggled the &ldquo;Start Listening&rdquo; button (the button with the phone and red circle) in the included image.</li>
-</ul>
-<div class=box>
-<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
-<div class=img>
-<img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/start-listening.png>
-</div>
-<a href=https://static.grinnell.edu/dlad-blog/images/post-103/start-listening.png itemprop=contentUrl></a>
-<figcaption><h4>Start Listening</h4>
-</figcaption>
-</figure>
-</div>
-<ul>
-<li>Opened my local <em>ISLE</em> instance, <code>http://dg.localdomain</code>, in the browser of my choice, <em>Firefox</em>, and clicked <code>Refresh</code>.
-The first time I did this with <em>PHPStorm</em> &ldquo;listening&rdquo;, I was prompted with some &ldquo;connection&rdquo; follow-up questions. That happens only once, and the questions are not too difficult to answer.</li>
-<li>Enjoyed debugging <em>ISLE</em> without a single <code>var_dump()</code> or <code>print_r()</code> statement!</li>
-</ul>
-<h2 id=but-what-about-debugging-in-drush>But What About Debugging in Drush?</h2>
-<p>I have a number of PHP scripts implemented in <a href=https://www.drush.org/latest/>drush</a> as part of a Drupal module I call <a href=https://github.com/DigitalGrinnell/idu>idu</a>, and I need to be able to debug those too. But the above configuration doesn&rsquo;t work properly with <em>drush</em> commands. So, what&rsquo;s missing?</p>
-<p>After considerable searching I found two critical changes were necessary&mldr;</p>
-<h3 id=export-the-servername-config>Export the serverName Config</h3>
-<p>Before making any <em>drush</em>-specific configruation changes I was seeing messages like this in <em>PHPStorm</em> when attempting to debug a script:</p>
-<div class=box>
-<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
-<div class=img>
-<img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/No-dg_local.png>
-</div>
-<a href=https://static.grinnell.edu/dlad-blog/images/post-103/No-dg_local.png itemprop=contentUrl></a>
-<figcaption><h4>Can't Find dg_local Server</h4>
-</figcaption>
-</figure>
-</div>
-<p>Turns out for <em>cli</em> debugging you have to explicitly &ldquo;export&rdquo; the <code>PHP_IDE_CONFIG</code> value inside the running container, like so:</p>
-<pre tabindex=0><code>root@7793f5d333fd:/var/www/html/sites/default# export PHP_IDE_CONFIG=&quot;serverName=dg_local&quot;
-</code></pre><p>But, hold on, that&rsquo;s still not right! The <code>dg_local</code> server isn&rsquo;t what I want for <em>cli</em> debugging. For that I have a <em>PHPStorm</em> server named <code>apache</code> that was automatically created for me. So the command I need to run in the container is:</p>
-<pre tabindex=0><code>root@7793f5d333fd:/var/www/html/sites/default# export PHP_IDE_CONFIG=&quot;serverName=apache&quot;
-</code></pre><h3 id=dont-use-automatic-breakpoints>Don&rsquo;t Use Automatic Breakpoints!</h3>
-<p>In my configuration, <em>drush</em> lives in my <em>Apache</em> container at <code>./opt/drush-8.x/vendor/drush/drush/drush</code>, but the source code I mapped to <em>PHPStorm</em> only includes the directories and file that live in and below <code>/var/www/html</code>. So, if you leave automatic breakpoints turned on in <em>PHPStorm</em> and run <em>drush</em>, the debugger will stop in a location that you can&rsquo;t &ldquo;see&rdquo;, making it nearly impossible to step through your code.</p>
-<p>The fix for this is to turn OFF the last two <em>PHPStorm</em> preferences checkboxes you see below. Turning those off will ensure that <em>PHPStorm</em> does not stop execution at the first line inside the <em>Apache</em> containers <em>drush</em> command script.</p>
-<div class=box>
-<figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject>
-<div class=img>
-<img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/No-auto-breakpoints.png>
-</div>
-<a href=https://static.grinnell.edu/dlad-blog/images/post-103/No-auto-breakpoints.png itemprop=contentUrl></a>
-<figcaption><h4>Do NOT Set Automatic Breakpoints</h4>
-</figcaption>
-</figure>
-</div>
-<p>And that&rsquo;s a wrap. Until next time, happy debugging!</p>
-</div>
-<div class=post-footer>
-<div id=disqus_thread></div>
-<script type=application/javascript>var disqus_config=function(){};(function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById('disqus_thread').innerHTML='Disqus comments not available by default when the website is previewed locally.';return}var b=document,a=b.createElement('script');a.async=!0,a.src='//digital-library-applications-developer-blog.disqus.com/embed.js',a.setAttribute('data-timestamp',+new Date),(b.head||b.body).appendChild(a)})()</script>
-<noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-<a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a>
-</div>
-</article>
-</main>
-</body>
-</html>
+</code></pre><h2 id=first-steps-in-phpstorm>First Steps in PHPStorm</h2><p>The first thing I remember doing in <em>PHPStorm</em> was creating my project. That process is probably best shown in this screen grab:</p><link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/hugo-easy-gallery.css><div class=box><figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject><div class=img><img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/new-phpstorm-project.png></div><a href=https://static.grinnell.edu/dlad-blog/images/post-103/new-phpstorm-project.png itemprop=contentUrl></a><figcaption><h4>Creating My PHPStorm Project Structure</h4></figcaption></figure></div><p>I used the <code>New Project</code> button and <code>New Project from Existing Files...</code> pull-down option to get started. Be sure to choose the <code>Web server is installed locally...</code> scenario too.</p><p>The resulting structure can be seen in this screen grab showing the upper-left corner of my <em>PHPStorm</em> application window.</p><div class=box><figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject><div class=img><img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/my-project-structure.png></div><a href=https://static.grinnell.edu/dlad-blog/images/post-103/my-project-structure.png itemprop=contentUrl></a><figcaption><h4>My PHPStorm Project Structure</h4></figcaption></figure></div><h2 id=next-steps>Next Steps</h2><p>This is where things really get foggy, so, more screen grabs showing the results.</p><p>My <code>Run/Debug Configurations</code> look like this:</p><div class=box><figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject><div class=img><img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/phpstorm-run-debug-config.png></div><a href=https://static.grinnell.edu/dlad-blog/images/post-103/phpstorm-run-debug-config.png itemprop=contentUrl></a><figcaption><h4>PHPStorm Run/Debug Configurations</h4></figcaption></figure></div><p>My <code>Preferences > Language & Frameworks > PHP > Servers</code> configuration looks like this:</p><div class=box><figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject><div class=img><img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/servers-config.png></div><a href=https://static.grinnell.edu/dlad-blog/images/post-103/servers-config.png itemprop=contentUrl></a><figcaption><h4>Preferences</h4></figcaption></figure></div><p>Please don&rsquo;t ask me to recall exactly how I created those configurations. Here&rsquo;s what I do remember&mldr;</p><h2 id=let-the-magic-happen>Let the Magic Happen</h2><p>The final pieces of this puzzle just seem to &ldquo;magically&rdquo; fall into place once you begin your first debugging session. In my case, after configuring most of what you&rsquo;ve seen above, I did this:</p><ul><li>Opened <em>PHPStorm</em> to the <code>ISLE</code> project.</li><li>Opened <code>index.php</code> and set a breakpoint. I also elected to add a simple print statement like you see below.</li></ul><div class=box><figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject><div class=img><img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/set-breakpoint-index.php.png></div><a href=https://static.grinnell.edu/dlad-blog/images/post-103/set-breakpoint-index.php.png itemprop=contentUrl></a><figcaption><h4>My Breakpoint in index.php</h4></figcaption></figure></div><ul><li>Toggled the &ldquo;Start Listening&rdquo; button (the button with the phone and red circle) in the included image.</li></ul><div class=box><figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject><div class=img><img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/start-listening.png></div><a href=https://static.grinnell.edu/dlad-blog/images/post-103/start-listening.png itemprop=contentUrl></a><figcaption><h4>Start Listening</h4></figcaption></figure></div><ul><li>Opened my local <em>ISLE</em> instance, <code>http://dg.localdomain</code>, in the browser of my choice, <em>Firefox</em>, and clicked <code>Refresh</code>.
+The first time I did this with <em>PHPStorm</em> &ldquo;listening&rdquo;, I was prompted with some &ldquo;connection&rdquo; follow-up questions. That happens only once, and the questions are not too difficult to answer.</li><li>Enjoyed debugging <em>ISLE</em> without a single <code>var_dump()</code> or <code>print_r()</code> statement!</li></ul><h2 id=but-what-about-debugging-in-drush>But What About Debugging in Drush?</h2><p>I have a number of PHP scripts implemented in <a href=https://www.drush.org/latest/>drush</a> as part of a Drupal module I call <a href=https://github.com/DigitalGrinnell/idu>idu</a>, and I need to be able to debug those too. But the above configuration doesn&rsquo;t work properly with <em>drush</em> commands. So, what&rsquo;s missing?</p><p>After considerable searching I found two critical changes were necessary&mldr;</p><h3 id=export-the-servername-config>Export the serverName Config</h3><p>Before making any <em>drush</em>-specific configruation changes I was seeing messages like this in <em>PHPStorm</em> when attempting to debug a script:</p><div class=box><figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject><div class=img><img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/No-dg_local.png></div><a href=https://static.grinnell.edu/dlad-blog/images/post-103/No-dg_local.png itemprop=contentUrl></a><figcaption><h4>Can't Find dg_local Server</h4></figcaption></figure></div><p>Turns out for <em>cli</em> debugging you have to explicitly &ldquo;export&rdquo; the <code>PHP_IDE_CONFIG</code> value inside the running container, like so:</p><pre tabindex=0><code>root@7793f5d333fd:/var/www/html/sites/default# export PHP_IDE_CONFIG=&#34;serverName=dg_local&#34;
+</code></pre><p>But, hold on, that&rsquo;s still not right! The <code>dg_local</code> server isn&rsquo;t what I want for <em>cli</em> debugging. For that I have a <em>PHPStorm</em> server named <code>apache</code> that was automatically created for me. So the command I need to run in the container is:</p><pre tabindex=0><code>root@7793f5d333fd:/var/www/html/sites/default# export PHP_IDE_CONFIG=&#34;serverName=apache&#34;
+</code></pre><h3 id=dont-use-automatic-breakpoints>Don&rsquo;t Use Automatic Breakpoints!</h3><p>In my configuration, <em>drush</em> lives in my <em>Apache</em> container at <code>./opt/drush-8.x/vendor/drush/drush/drush</code>, but the source code I mapped to <em>PHPStorm</em> only includes the directories and file that live in and below <code>/var/www/html</code>. So, if you leave automatic breakpoints turned on in <em>PHPStorm</em> and run <em>drush</em>, the debugger will stop in a location that you can&rsquo;t &ldquo;see&rdquo;, making it nearly impossible to step through your code.</p><p>The fix for this is to turn OFF the last two <em>PHPStorm</em> preferences checkboxes you see below. Turning those off will ensure that <em>PHPStorm</em> does not stop execution at the first line inside the <em>Apache</em> containers <em>drush</em> command script.</p><div class=box><figure itemprop=associatedMedia itemscope itemtype=http://schema.org/ImageObject><div class=img><img itemprop=thumbnail src=https://static.grinnell.edu/dlad-blog/images/post-103/No-auto-breakpoints.png></div><a href=https://static.grinnell.edu/dlad-blog/images/post-103/No-auto-breakpoints.png itemprop=contentUrl></a><figcaption><h4>Do NOT Set Automatic Breakpoints</h4></figcaption></figure></div><p>And that&rsquo;s a wrap. Until next time, happy debugging!</p></div><div class=post-footer><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//digital-library-applications-developer-blog.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></main></body></html>
