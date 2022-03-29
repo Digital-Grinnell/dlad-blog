@@ -1,6 +1,6 @@
----
-title: "Oral History Transcription Workflow"
-publishdate: 2020-06-01
+ ---
+title: "New Oral History Transcription Workflow"
+publishdate: 2022-03-24
 draft: false
 tags:
   - Digital.Grinnell
@@ -8,16 +8,26 @@ tags:
   - OHScribe
   - InqScribe
   - workflow
-superseded_by: posts/121-New-Oral-History-Transcription-Workflow.md
+supersedes: posts/077-Oral-History-Transcription-Workflow.md
 ---
 
-[Digital.Grinnell](https://digital.grinnell.edu) features a fair number of transcribed digital oral histories. Most are interviews conducted with Grinnelleans as they return to campus annualy for alumni [Reunion](https://alumni.grinnell.edu/events/reunion-and-alumni-college) or Grinnell's [Multicultural Reunion](http://magazine.grinnell.edu/news/evolution-multicultural-reunion).
+[Digital.Grinnell](https://digital.grinnell.edu) features a fair number of transcribed digital oral histories. Most are interviews conducted with Grinnelleans as they return to campus annually for alumni [Reunion](https://alumni.grinnell.edu/events/reunion-and-alumni-college) or Grinnell's [Multicultural Reunion](http://magazine.grinnell.edu/news/evolution-multicultural-reunion).
 
 > What follows is largely sharable "public" content lifted from a "private" GitHub repository at https://github.com/McFateM/OHScribe, the README.md and WORKFLOW.md files in particular.
 
 ## OHScribe!
 
-https://ohscribe.grinnell.edu   __Note: This link was disabled in the spring of 2020, but is working again as of July 1, 2020, on host DGDocker3.__
+{{% box %}}
+https://ohscribe.us.reclaim.cloud/  
+__Note: This above link is the new production home for **OHScribe!** as of March 2022.  It is now hosted on **Reclaim Cloud**. The old address, https://ohscribe.grinnell.edu, is no longer in service.__
+
+[OHScribe! code](https://github.com/DigitalGrinnell/OHScribe) resides in a private repository so a copy of its shared documents are also provided as public gists.  They are:
+
+  - [README.md](https://gist.github.com/Digital-Grinnell/3fe0bd79b9c4f786d2cda39225a7c92b),
+  - [DEV_HISTORY.md](https://gist.github.com/Digital-Grinnell/885f333c9794cfabc27ae15453738aff), and
+  - [WORKFLOW.md](https://gist.github.com/Digital-Grinnell/b562b56715734f2b3e660b6a46f35cde).
+  -
+{{% /box %}}
 
 This is a *Python 3* and *Flask* web application designed to transform oral history transcripts, presumably created using [InqScribe](https://www.inqscribe.com), into XML suitable for ingest into the **[Islandora Oral Histories Solution Pack](https://github.com/Islandora-Labs/islandora_solution_pack_oralhistories)** to populate a TRANSCRIPT datastream and its derivatives.  *Islandora Oral Histories* and the aforementioned solution pack are commonly referred to as **IOH** throughout this document.
 
@@ -33,11 +43,17 @@ Note that the names of speakers appear in different colors in the video window c
 
 ### InqScribe IOH Transcription Workflow
 
-A detailed description of the workflow intended for use with *OHScribe!* is provided in our [WORKFLOW.md](https://github.com/DigitalGrinnell/OHScribe/blob/master/WORKFLOW.md) document.
+A detailed description of the workflow intended for use with *OHScribe!* is provided in our [WORKFLOW.md](https://github.com/DigitalGrinnell/OHScribe/blob/main/WORKFLOW.md) document.
 
 ### Workflow Output
 
 The workflow documented in the aforementioned *WORKFLOW.md* should produce an XML formatted transcript which resembles the structure of the following example.
+
+
+{{% box %}}
+Note that a sample of transcript XML, suitable for testing, now exists in the _OHScribe!_ codebase at https://github.com/DigitalGrinnell/OHScribe/blob/reclaim/test/sample-from-InqScribe.xml.
+{{% /box %}}
+
 
 ~~~
  <transcript>
@@ -175,23 +191,27 @@ In this format each `<cue>` tag within the enclosing `<cues>` tag represents one
 
 ### Running OHScribe!
 
-**OHScribe!** is accessible at https://ohscribe.grinnell.edu and should run in any web browser.  It permits a user to upload an XML file (presumably this is output from the aforementioned workflow), and if successful, it provides an output file in IOH-compatible XML format as a download.  Since upload and download of content is provided the site will present the user with a required login screen like this:
+**OHScribe!** is accessible at https://ohscribe.us.reclaim.cloud and should run in any web browser.  It permits a user to upload an XML file (presumably this is output from the aforementioned workflow), and if successful, it provides an output file in IOH-compatible XML format as a download.  
 
-![Authentication Window](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribeAuthWindow.png)
+{{% obsolete "This feature is no longer necessary in __Reclaim Cloud__." %}}
+Since upload and download of content is provided the site will present the user with a required login screen like this:
+
+![Authentication Window](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/main/docs/OHScribeAuthWindow.png)
 
 Interested users of **OHScribe!** should [request credentials via email to *digital@grinnell.edu*](mailto:digital@grinnell.edu?subject=OHScribe Credentials).
+{{% /obsolete %}}
 
 #### Uploading XML
 
-Once authorized, **OHScribe!** presents the user with a file upload form like so:
+~~Once authorized,~~ **OHScribe!** presents the user with a file upload form like so:
 
-![Upload Window](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribeUpload.png)
+![Upload Window](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/main/docs/OHScribeUpload.png)
 
 Selecting the `Browse...` button will open a file-selection window on the local host.  The user should select a single .XML transcript file for upload and click the `Upload` key to send it to the *OHScribe!* server.
 
 A successful file upload produces `Main/Control` screen like this:
 
-![Main / Control After Upload](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribeMainControl.png)
+![Main / Control After Upload](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/main/docs/OHScribeMainControl.png)
 
 Note the message/status portion of the window just above the `Main / Control Screen` title.  The message here in green print indicates a successful upload.
 
@@ -231,23 +251,23 @@ Note that when a single action is performed the user must take steps to download
 
 A single action can be performed by clicking the radio button corresponding to the desired action, and clicking the `Do Single Action` button near the bottom of the *Main / Control Screen* as shown below.
 
-![Do Single Action](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribeOutputSingleAction.png)
+![Do Single Action](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/main/docs/OHScribeOutputSingleAction.png)
 
 #### Action Results
 
 Results of a `Do All of the Above` action typically include status output in a box at the top of the window, a *Message* box explaining the outcome, and a *Download your Output!* button with instructions.  The window typically looks something like this:
 
-![Do All Results](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribeOutputNoErrors.png)
+![Do All Results](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/main/docs/OHScribeOutputNoErrors.png)
 
 Single actions produce slightly different results which may also include `Details` of the output, and `Guidance` for follow-up actions as shown below.
 
-![Single Action Result](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribe-CleanUp.png)
+![Single Action Result](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/main/docs/OHScribe-CleanUp.png)
 
 #### Errors
 
 Processing errors are generally presented with red text appearing in the status box at the top of the window, like so:
 
-![Errors](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/OHScribeOutputErrors.png)
+![Errors](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/main/docs/OHScribeOutputErrors.png)
 
 Unexpected or unresolvable errors encountered in **OHScribe!** should be [reported to the author via email to *digital@grinnell.edu*](mailto:digital@grinnell.edu?subject=OHScribe Error) and/or added to the *Issue* queue at https://github.com/DigitalGrinnell/OHScribe/issues.
 
@@ -316,7 +336,7 @@ OHScribe creates a new cue every time it encounters a timecode, so every timecod
 
 [InqScribe](https://www.inqscribe.com) allows a transcriber to define and use [Snippets](http://docs.inqscribe.com/2.2/snippets.html), short bits of frequently-repeated text, with associated triggers or keyboard [Shortcuts](http://docs.inqscribe.com/2.2/keyboardshortcuts.html) that make it easy to quickly add key elements to a transcript.  The following are samples of *Snippets* and their corresponding *Triggers*/*Shortcuts* used in conjunction with our workflow.
 
-![file-inqscribesnippet1-png](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/InqScribeSnippet1.png)
+![file-inqscribesnippet1-png](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/main/docs/InqScribeSnippet1.png)
 
 The above image is an example of a *Snippet* we refer to as a 'Speaker Timecode'.  When triggered, this snippet will insert:
 
@@ -333,7 +353,7 @@ Any additional speakers can be represented in the same way by selecting 'Add' an
 
 Each time a new speaker is introduced, there must be `<speaker> FirstName LastName </speaker>` line added between the timecode and the `FirstName | `. Each speaker should only have one instance of speaker tags in the InqScribe file.
 
-![file-inqscribesnippet2-png](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/master/docs/InqScribeSnippet2.png)
+![file-inqscribesnippet2-png](https://raw.githubusercontent.com/DigitalGrinnell/OHScribe/main/docs/InqScribeSnippet2.png)
 
 The second image, immediately above, is an example of a *Snippet* we refer to as a 'Raw Timecode'.  When triggered, this snippet will insert:
 
