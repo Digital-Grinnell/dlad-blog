@@ -19,14 +19,15 @@ supersedes: posts/077-Oral-History-Transcription-Workflow.md
 
 {{% box %}}
 https://ohscribe.us.reclaim.cloud/  
-__Note: This above link is the new production home for **OHScribe!** as of March 2022.  It is now hosted on **Reclaim Cloud**. The old address, https://ohscribe.grinnell.edu, is no longer in service.__
 
-[OHScribe! code](https://github.com/DigitalGrinnell/OHScribe) resides in a private repository so a copy of its shared documents are also provided as public gists.  They are:
+__Note: This link is the new production home for **OHScribe!** as of March 2022.  It is now hosted on **Reclaim Cloud**. The old address, https://ohscribe.grinnell.edu, is no longer in service.__
+
+_OHScribe!_ code now resides in a [private repository](https://github.com/DigitalGrinnell/OHScribe) so a copy of its shared documents are also provided as public gists.  They are:
 
   - [README.md](https://gist.github.com/Digital-Grinnell/3fe0bd79b9c4f786d2cda39225a7c92b),
   - [DEV_HISTORY.md](https://gist.github.com/Digital-Grinnell/885f333c9794cfabc27ae15453738aff), and
   - [WORKFLOW.md](https://gist.github.com/Digital-Grinnell/b562b56715734f2b3e660b6a46f35cde).
-  
+
 {{% /box %}}
 
 This is a *Python 3* and *Flask* web application designed to transform oral history transcripts, presumably created using [InqScribe](https://www.inqscribe.com), into XML suitable for ingest into the **[Islandora Oral Histories Solution Pack](https://github.com/Islandora-Labs/islandora_solution_pack_oralhistories)** to populate a TRANSCRIPT datastream and its derivatives.  *Islandora Oral Histories* and the aforementioned solution pack are commonly referred to as **IOH** throughout this document.
