@@ -235,7 +235,7 @@ Total wall clock time: 18m 19s
 Downloaded: 94 files, 11M in 1m 13s (156 KB/s)
 ```
 
-## Second `wget`	 from iMac
+## Second `wget` from iMac
 
 ```
 wget --warc-file=living-and-learning-community-web-archive --recursive --level=10 --warc-cdx --page-requisites --html-extension --convert-links --execute robots=off --directory-prefix=. -x /solr-search --wait=10 --random-wait https://dg-dev.sites.grinnell.edu/
