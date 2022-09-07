@@ -46,69 +46,30 @@ I'm going to visit settings and try to point to a new address like `comm-clone.s
 
 Nope, no longer redirected but I got a big `SORRY` message saying the site could not be found.
 
-
-## First `wget` from My MacBook Pro
-
-```
-wget --warc-file=living-and-learning-community-web-archive --recursive --level=5 --warc-cdx --page-requisites --html-extension --convert-links --execute robots=off --directory-prefix=. -x /solr-search --wait=10 --random-wait https://dg-dev.sites.grinnell.edu/
-```
-
-```
-FINISHED --2022-08-01 12:08:09--
-Total wall clock time: 18m 19s
-Downloaded: 94 files, 11M in 1m 13s (156 KB/s)
-```
-
-## Second `wget`	 from iMac
-
-```
-wget --warc-file=living-and-learning-community-web-archive --recursive --level=10 --warc-cdx --page-requisites --html-extension --convert-links --execute robots=off --directory-prefix=. -x /solr-search --wait=10 --random-wait https://dg-dev.sites.grinnell.edu/
-```
-
-```
-FINISHED --2022-08-01 14:04:25--
-Total wall clock time: 16m 13s
-Downloaded: 94 files, 11M in 7.3s (1.54 MB/s)
-```
-
-## Outcome
-
-Since both `wget` operations returned 94 files it's safe to assume that constitutes a complete archive.  
-
-On the iMac the process produced the following `.cdx` index and `.warc.gz` compressed archive...
-
-```
-╭─markmcfate@MAD25W812UJ1G9 ~ ‹ruby-2.3.0›
-╰─$ ls -alh living*
--rw-r--r--  1 markmcfate  staff    35K Aug  1 14:04 living-and-learning-community-web-archive.cdx
--rw-r--r--  1 markmcfate  staff   9.1M Aug  1 14:04 living-and-learning-community-web-archive.warc.gz
-```
-
 # Enlisting Help from DLAC
 
-All attempts to "clone" the old comm site in a form that could be successfully archived had failed, so we turned to the `Digital Liberal Arts Collaborative` (DLAC) and their `Reclaim Hosting` admin powers.
+Clearly, my attempts to "clone" the old comm site in a form that could be successfully archived had failed, so I turned to the `Digital Liberal Arts Collaborative` (DLAC) and their `Reclaim Hosting` admin powers.
 
-The remainder of this document includes a thread of emails captured as a PDF document which was subsequently convered to Markdown format.
+The next section of this document is a thread of emails captured as a PDF document and  subsequently converted to Markdown format for publication here.
 
 ## DLAC Email Thread
 
-```
-Tuesday, September 6, 2022 at 19:45:31 Central Daylight Time
-```
-```
-Subject: Re: email  
-Date: Friday, July 29, 2022 at 3:09:11 PM Central Daylight Time  
-From: Pelzel, Morris  
-To: Rodrigues, Elizabeth, McFate, Mark  
-```
+Thread elements are in reverse-chronological order.
+
+---
+
+**Subject:** Re: email  
+**Date:** Friday, July 29, 2022 at 3:09:11 PM Central Daylight Time  
+**From:** Pelzel, Morris  
+**To:** Rodrigues, Elizabeth, McFate, Mark  
+
 OK, should be ready to go ... https://dg-dev.sites.grinnell.edu.  
 
 Mo  
 
 Dr. Morris Pelzel  
-Director of Academic Technology  
-The Digital Liberal Arts Collaborative  
-Grinnell College | Grinnell, IA 50112  
+ 
+---
 
 **From:** Rodrigues, Elizabeth <rodrigue8@grinnell.edu>  
 **Sent:** Friday, July 29, 2022 11:07 AM  
@@ -122,20 +83,8 @@ If we could clone the site to dg-dev directly, I think that would be our best be
 Basically, we want to be able to crawl the site as it was originally published in wordpress.  
 
 Elizabeth Rodrigues, PhD  
-Associate Professor, Humanities & Digital Scholarship Librarian  
-Grinnell College  
 
-
-# Home - Living and Learning Community  
-
-```
-Grinnell College is proud to be one of the nation’s top liberal arts colleges. Our advancements in
-global studies and digital liberal arts exemplify programming that will secure Grinnell’s future as a
-national and international leader in liberal arts education. Bold, well-executed investments in
-human and intellectual capital will allow Grinnell students to discover, grow, ... Continue reading
-"Home"
-dg-dev.sites.grinnell.edu
-```
+---
 
 **From:** Pelzel, Morris <pelzelmo@grinnell.edu>  
 **Sent:** Friday, July 29, 2022 11:04 AM  
@@ -170,14 +119,9 @@ Also ... I do not know (and perhaps do not need to know) what WARC is.
 
 Thanks,  
 
-
 Mo  
 
-Dr. Morris Pelzel  
-Director of Academic Technology  
-The Digital Liberal Arts Collaborative  
-Grinnell College | Grinnell, IA 50112  
-
+---
 **From:** Rodrigues, Elizabeth <rodrigue8@grinnell.edu>  
 **Sent:** Wednesday, July 27, 2022 4:50 PM  
 **To:** McFate, Mark <mcfatem@grinnell.edu>; Pelzel, Morris <pelzelmo@grinnell.edu>  
@@ -198,10 +142,7 @@ We have confirmed that the WP site has unique content, and on top of that, WARCi
 Thanks for any insight you have!  
 Liz  
 
-Elizabeth Rodrigues, PhD  
-Associate Professor, Humanities & Digital Scholarship Librarian  
-Grinnell College  
-
+---
 
 **From:** McFate, Mark <mcfatem@grinnell.edu>  
 **Sent:** Wednesday, July 27, 2022 2:57 PM  
@@ -250,6 +191,7 @@ Thanks for any advice you can offer. Take care.
 
 -Mark M.  
 
+---
 **From:** McFate, Mark <mcfatem@grinnell.edu>  
 **Date:** Monday, July 25, 2022 at 10:44 AM  
 **To:** Pelzel, Morris <pelzelmo@grinnell.edu>  
@@ -259,6 +201,7 @@ Ok, thanks Mo. No worries, and no rush. Take care.
 
 -Mark M.  
 
+---
 **From:** Pelzel, Morris <pelzelmo@grinnell.edu>  
 **Date:** Monday, July 25, 2022 at 10:42 AM  
 **To:** McFate, Mark <mcfatem@grinnell.edu>  
@@ -274,10 +217,46 @@ I'll send you more information in a moment.
 
 Mo  
 
-Dr. Morris Pelzel  
-Director of Academic Technology  
-The Digital Liberal Arts Collaborative  
-Grinnell College | Grinnell, IA 50112  
+---
 
+# Attempting to WARC `https://dg-dev.sites.grinnell.edu`
 
+DLAC was able to properly clone the old comm site into my https://dg-dev.sites.grinnell.edu Wordpress space, without redirection, so my hope was restored.  I set about creating a WARC of that site...
+
+## First `wget` from My MacBook Pro
+
+```
+wget --warc-file=living-and-learning-community-web-archive --recursive --level=5 --warc-cdx --page-requisites --html-extension --convert-links --execute robots=off --directory-prefix=. -x /solr-search --wait=10 --random-wait https://dg-dev.sites.grinnell.edu/
+```
+
+```
+FINISHED --2022-08-01 12:08:09--
+Total wall clock time: 18m 19s
+Downloaded: 94 files, 11M in 1m 13s (156 KB/s)
+```
+
+## Second `wget`	 from iMac
+
+```
+wget --warc-file=living-and-learning-community-web-archive --recursive --level=10 --warc-cdx --page-requisites --html-extension --convert-links --execute robots=off --directory-prefix=. -x /solr-search --wait=10 --random-wait https://dg-dev.sites.grinnell.edu/
+```
+
+```
+FINISHED --2022-08-01 14:04:25--
+Total wall clock time: 16m 13s
+Downloaded: 94 files, 11M in 7.3s (1.54 MB/s)
+```
+
+## Outcome
+
+Since both `wget` operations returned 94 files it's safe to assume that constitutes a complete archive.  
+
+On the iMac the process produced the following `.cdx` index and `.warc.gz` compressed archive...
+
+```
+╭─markmcfate@MAD25W812UJ1G9 ~ ‹ruby-2.3.0›
+╰─$ ls -alh living*
+-rw-r--r--  1 markmcfate  staff    35K Aug  1 14:04 living-and-learning-community-web-archive.cdx
+-rw-r--r--  1 markmcfate  staff   9.1M Aug  1 14:04 living-and-learning-community-web-archive.warc.gz
+```
 
