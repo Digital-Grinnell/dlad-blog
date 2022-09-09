@@ -260,3 +260,36 @@ On the iMac the process produced the following `.cdx` index and `.warc.gz` compr
 -rw-r--r--  1 markmcfate  staff   9.1M Aug  1 14:04 living-and-learning-community-web-archive.warc.gz
 ```
 
+# WARC is NOT Complete
+
+Unfortunately, the WARC mentioned above is woefully incomplete because **the WordPress reconstruction of the old site is also incomplete**.  A lot of the old content regarding projects like the HSSC, Adminssions Center, and campus Landscaping were still "published" in the site, but excluded from navigation so the `wget...` command used to produce the WARC was unable to "find" them.
+
+I enlisted the help of Donna D., an original author of the site, to reassemble things as best we could.  Now that that's done (8-Aug-2022) I'm kicking off a new WARC process on iMac 8660, like so...
+
+```
+╭─markmcfate@MAD25W812UJ1G9 ~/dg-dev.sites.grinnell.edu ‹ruby-2.3.0›
+╰─$ time wget --warc-file=living-and-learning-community-web-archive --recursive --level=10 --warc-cdx --page-requisites --html-extension --convert-links --execute robots=off --directory-prefix=. -x /solr-search --wait=10 --random-wait https://dg-dev.sites.grinnell.edu/
+Opening WARC file ‘living-and-learning-community-web-archive.warc.gz’.
+
+/solr-search: Scheme missing.
+--2022-09-08 13:00:47--  https://dg-dev.sites.grinnell.edu/
+Resolving dg-dev.sites.grinnell.edu (dg-dev.sites.grinnell.edu)... 165.227.97.167
+Connecting to dg-dev.sites.grinnell.edu (dg-dev.sites.grinnell.edu)|165.227.97.167|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘./dg-dev.sites.grinnell.edu/index.html’
+
+     0K .......... .......... .......... .......... ..........  314K
+    50K .......... .......... .......... .......... ....       6.78M=0.2s
+
+2022-09-08 13:00:48 (569 KB/s) - ‘./dg-dev.sites.grinnell.edu/index.html’ saved [96460] 
+...
+Converting links in ./dg-dev.sites.grinnell.edu/wp-content/themes/twentyseventeen/assets/css/blocks.css?ver=20220524.css... nothing to do.
+Converting links in ./dg-dev.sites.grinnell.edu/wp-content/plugins/cool-timeline/assets/css/ctl_styles.min.css?ver=2.4.4.css... nothing to do.
+Converting links in ./dg-dev.sites.grinnell.edu/wp-content/plugins/cool-timeline/assets/css/prettyPhoto.css?ver=2.4.4.css... 100.
+37-63
+Converted links in 198 files in 2.6 seconds.
+wget --warc-file=living-and-learning-community-web-archive --recursive         30.23s user 31.62s system 0% cpu 2:59:10.63 total
+```
+
+The output from this operation includes `/Users/markmcfate/dg-dev.sites.grinnell.edu/living-and-learning-community-web-archive.warc.gz` and a corresponding `.cdx` file both stored on iMac 8660.  Both files have also been copied to my OneDrive so the `.gz` file also exists at `/Users/markmcfate/Library/CloudStorage/OneDrive-GrinnellCollege/iMac-Home-Folder-07-Sep-2022/living-and-learning-community-web-archive.warc.gz`.
