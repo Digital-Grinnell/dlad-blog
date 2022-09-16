@@ -8,6 +8,10 @@ tags:
   - WARC
   - web archive
   - comm.sites.grinnell.edu
+  - //Storage
+  - ReplayWeb.page
+  - rootstalk-archive
+supersedes: posts/082-here-there-be-warcs/
 ---
 
 This blog post chronicles portions of a process used to restore and subsequently WARC (the creation of a web archive) a Communication Department website that had been retired.  The website content of interest included material describing plans for the recently-completed HSSC and Administration Building projects.
@@ -292,4 +296,64 @@ Converted links in 198 files in 2.6 seconds.
 wget --warc-file=living-and-learning-community-web-archive --recursive         30.23s user 31.62s system 0% cpu 2:59:10.63 total
 ```
 
-The output from this operation includes `/Users/markmcfate/dg-dev.sites.grinnell.edu/living-and-learning-community-web-archive.warc.gz` and a corresponding `.cdx` file both stored on iMac 8660.  Both files have also been copied to my OneDrive so the `.gz` file also exists at `/Users/markmcfate/Library/CloudStorage/OneDrive-GrinnellCollege/iMac-Home-Folder-07-Sep-2022/living-and-learning-community-web-archive.warc.gz`.
+## Success!
+
+The output from the above operation includes `/Users/markmcfate/dg-dev.sites.grinnell.edu/living-and-learning-community-web-archive.warc.gz` and a corresponding `.cdx` file both stored on iMac 8660.  ~~Both files have also been copied to my OneDrive so the `.gz` file also exists at `/Users/markmcfate/Library/CloudStorage/OneDrive-GrinnellCollege/iMac-Home-Folder-07-Sep-2022/living-and-learning-community-web-archive.warc.gz`.~~
+
+## Moving WARCs to //Storage
+
+I've striked the mention of _OneDrive_ above because on my Macs I just don't trust _OneDrive_ anymore.  Today I created a new `WARCs` folder in my _OneDrive_, or at least I thought I did, in order to consolidate my storage of WARC archives.  Well, the folder structure that I see in my _OneDrive_ on iMac 8660 doesn't look the same as on my GC MacBook, MA01713.  So, like I said, I just don't trust it.
+
+I do have a reliable home for WARCs in `//Storage`, the college's age-old network storage, so that's where I'm going to put these precious files, at least for now.  So I've mounted `//Storage/Library/mcfatem` on my MacBook as verified below...
+
+```
+╭─mcfatem@MAC02FK0XXQ05Q /Volumes/Library/mcfatem
+╰─$ pwd
+/Volumes/Library/mcfatem
+```
+
+_Note: I keep a mount link in `Finder` on every Mac I have, it reads something like this under the `Go | Connect to Server...` menu: `smb://storage/library/mcfatem`_.
+
+## Capturning a WARC of https://rootstalk-archive.grinnell.edu
+
+While working on this WARC process I discovered that a very old website, https://rootstalk-archive.grinnell.edu, was still "active" (although the site certificates were now invalid) but overdue to be retired.  So, I assumed it would be a good idea to capture a WARC.  Due to the expired certificate I used this command on iMac 8660 to capture the site:
+
+```
+time wget --warc-file=rootstalk-archive-WARC --recursive --level=10 --warc-cdx --page-requisites --html-extension --convert-links --execute robots=off --directory-prefix=. -x /solr-search --wait=10 --random-wait --no-check-certificate https://rootstalk-archive.grinnell.edu/
+```
+
+The result is a pair of files, almost 2.5 GB in size, named:
+
+```
+-rwx------@ 1 markmcfate  staff   1.0M Sep 14 23:48 rootstalk-archive-WARC.cdx
+-rwx------@ 1 markmcfate  staff   2.4G Sep 14 23:48 rootstalk-archive-WARC.warc.gz
+```
+
+### //Storage WARC Contents
+
+All of the aforementioned WARC capture files, and more, are now stored in `//Storage` as shown below...
+
+```
+╭─markmcfate@MAD25W812UJ1G9 /Volumes/mcfatem/warcs ‹ruby-2.3.0›
+╰─$ ls -alh
+total 6481568
+drwx------+ 1 markmcfate  GRIN\Domain Users    16K Sep 16 10:07 .
+drwx------+ 1 markmcfate  GRIN\Domain Users    16K Jul 13 10:23 ..
+-rwx------@ 1 markmcfate  staff               361K Sep  8 15:59 living-and-learning-community-web-archive.cdx
+-rwx------@ 1 markmcfate  staff               556M Sep  8 15:59 living-and-learning-community-web-archive.warc.gz
+-rwx------+ 1 markmcfate  staff                74K Oct 27  2021 mime-and-me.warc.cdx
+-rwx------+ 1 markmcfate  staff               101M Oct 27  2021 mime-and-me.warc.warc.gz
+-rwx------@ 1 markmcfate  staff               1.0M Sep 14 23:48 rootstalk-archive-WARC.cdx
+-rwx------@ 1 markmcfate  staff               2.4G Sep 14 23:48 rootstalk-archive-WARC.warc.gz
+-rwx------@ 1 markmcfate  staff               621K Sep 14 14:36 wget-log
+```
+
+## Verified Using https://replayweb.page
+
+I turned to [ReplayWeb](https://replayweb.page) in order to confirm the validity of the two "new" WARCs listed above.  Using that tool I was able to successfully load and subsequently browse both of the most recently captured WARCs, specifically...
+
+  - https://replayweb.page/?source=file%3A%2F%2Fliving-and-learning-community-web-archive.warc.gz#view=resources&urlSearchType=prefix&url=https%3A%2F%2Fdg-dev.sites.grinnell.edu%2F&ts=20220908180047, and
+  - https://replayweb.page/?source=file%3A%2F%2Frootstalk-archive-WARC.warc.gz#view=resources&urlSearchType=prefix&url=https%3A%2F%2Frootstalk-archive.grinnell.edu&ts=20220914203341
+   
+_Note that, because of its size, the `ReplayWeb` rendering of `rootstalk-archive-WARC.warc.gz` takes a very, very, very long time to load and even longer to render!_
+
