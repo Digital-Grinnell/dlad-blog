@@ -12,7 +12,7 @@ tags:
 
 This morning I needed to do some bulk "find and replace" operations in most of my [Rootstalk](https://rootstalk.grinnell.edu) content.  My first thought was to write and run a little Python script, but then I wondered what _VSCode_ might bring to the table.  Plenty, it brought plenty!
 
-To keep this post as brief as possible, I'm simply going to reference an instructional video that I created earlier: [VSCode-Find-and-Replace.mp4.](VSCode-Find-and-Replace.mp4)  
+To keep this post as brief as possible, I'm simply going to reference an instructional video that I created earlier: [VSCode-Find-and-Replace.mp4.](https://rootstalk.blob.core.windows.net/documentation/VSCode-Find-and-Replace.mp4)  
 
 A list of some links mentioned in the video is provided here:
 
