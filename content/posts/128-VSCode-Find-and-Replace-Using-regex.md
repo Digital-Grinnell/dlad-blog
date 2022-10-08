@@ -12,7 +12,7 @@ tags:
 
 This morning I needed to do some bulk "find and replace" operations in most of my [Rootstalk](https://rootstalk.grinnell.edu) content.  My first thought was to write and run a little Python script, but then I wondered what _VSCode_ might bring to the table.  Plenty, it brought plenty!
 
-To keep this post as brief as possible, I'm simply going to reference an instructional video that I created earlier: [VSCode-Find-and-Replace.mp4.](https://rootstalk.blob.core.windows.net/documentation/VSCode-Find-and-Replace.mp4)  
+To keep this post as brief as possible, I'm simply going to reference an instructional video that I created earlier: <a href="https://rootstalk.blob.core.windows.net/documentation/VSCode-Find-and-Replace.mp4" target="_blank">VSCode-Find-and-Replace.mp4</a>.  
 
 A list of some links mentioned in the video is provided here:
 
@@ -22,8 +22,9 @@ A list of some links mentioned in the video is provided here:
   - https://www.youtube.com/watch?v=xMhKstbdr3k
   - https://remisharrock.fr/post/regex-search-and-replace-visual-studio-code/
 
-If you're looking specifically to install and run the `regex-previewer` extension check out:
-
+If you're looking specifically to install and use the `regex-previewer` extension check out:
+  
+  - https://www.youtube.com/watch?v=u6Eesv7aqHo
   - https://marketplace.visualstudio.com/items?itemName=chrmarti.regex
   - https://stackoverflow.com/questions/51389446/using-the-vscode-regex-plugin
 
