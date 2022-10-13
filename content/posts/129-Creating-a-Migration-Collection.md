@@ -78,7 +78,9 @@ I subsequently visited the new collection at https://isle-stage.grinnell.edu/isl
 
 ## My Bag of Tricks
 
-This is not my first rodeo, so I turned to [my blog](https://static.grinnell.edu/dlad-blog/) in order to export the new collection.  Specifically, I turned to [Exporting, Editing & Replacing MODS Datastreams: Updated Technical Details](https://static.grinnell.edu/dlad-blog/posts/115-exporting-editing-replacing-mods-datastreams-updated-technical-details/).  Only steps 1 and 2 would be necessary, and `Step 1a` and `1b` were done long ago on the staging server that I'm using, so here's what I did, step-by-step.
+This is not my first rodeo, so I turned to [my blog](https://static.grinnell.edu/dlad-blog/) in order to export the new collection.  Specifically, I turned to [Exporting, Editing & Replacing MODS Datastreams: Updated Technical Details](https://static.grinnell.edu/dlad-blog/posts/115-exporting-editing-replacing-mods-datastreams-updated-technical-details/).  Only steps 1 and 2 would be necessary.  `Step 1a` and `1b` were done long ago on the staging server that I'm using, and `Step 1c` currently isn't even possible (another story) so here's what I did starting with `Step 1d`, step-by-step.
+
+<!--
 
 ## Step 1c - Mounting //STORAGE to DGDockerX
 
@@ -116,7 +118,7 @@ drwxr-xr-x. 3 islandora islandora 4096 Jan 21  2020 Bag-grinnell_6810/
 drwxrwxr-x. 2 islandora islandora 4096 Oct 13 14:05 migration-test-collection/
 ```
 
-Just what the doctor ordered!
+Just what the doctor ordered!  -->
 
 ## Step 1d - Using Drush islandora_datastream_export
 
