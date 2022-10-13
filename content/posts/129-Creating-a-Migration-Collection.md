@@ -313,5 +313,24 @@ total 80
 
 ## Finally... Step 2 - Map-MODS-to-MASTER Python 3 Script
 
-iMac 8660 is due to be retired/removed any day now, so I'm moving all components of this step to my Mac workstation, MA10713, soon...
+iMac 8660 is due to be retired/removed any day now, so I'm moving all components of this step to my Mac workstation, MA10713.  Since the project is stored in _GitHub_ I was able to do this:
 
+```sh
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub
+╰─$ git clone https://github.com/DigitalGrinnell/Map-MODS-to-MASTER
+Cloning into 'Map-MODS-to-MASTER'...
+remote: Enumerating objects: 597, done.
+remote: Counting objects: 100% (597/597), done.
+remote: Compressing objects: 100% (528/528), done.
+remote: Total 597 (delta 49), reused 587 (delta 42), pack-reused 0
+Receiving objects: 100% (597/597), 5.07 MiB | 8.50 MiB/s, done.
+Resolving deltas: 100% (49/49), done.
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub
+╰─$ ll
+total 32
+drwxr-xr-x  21 mcfatem  GRIN\Domain Users   672B Oct 12  2021 Digital-Grinnell.github.io
+drwxr-xr-x  12 mcfatem  GRIN\Domain Users   384B Oct 13 10:20 Map-MODS-to-MASTER
+...
+```
+
+More to come, soon...
