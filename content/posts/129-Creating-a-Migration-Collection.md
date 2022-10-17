@@ -42,7 +42,7 @@ root@db16bc9ff4c3:/var/www/html/sites/default# drush -u 1 iduF MigrateObject --h
 ...
 ```
 
-The `MigrateObject` command was executed a total of 9 times to populate the `migration-test` using the script shown here:
+The `MigrateObject` command was executed a total of 9 times to populate the `migration-test` collection using the script shown here:
 
 ```sh
 drush -u 1 iduF grinnell:1000 MigrateObject --share --source="grinnell:college-life" --replace="grinnell:migration-test"
@@ -262,7 +262,7 @@ drwx------. 22 islandora islandora 4.0K Oct 13 09:54 ..
 -rw-r--r--.  1 islandora islandora 5.2K Oct 13 09:43 grinnell_5593_MODS.xml
 ```
 
-And since `/mnt/storage` isn't accessible* let's copy them my Mac workstation which will be taking the place of iMac 8660 in the next step.  So, my workstation, MA10713.
+And since `/mnt/storage` isn't accessible* let's copy them to my Mac workstation, MA10713, which will be taking the place of iMac 8660 in the next step.  So, on my Mac workstation...
 
  \**Yes, I have an open ticket for ITS to remedy that...someday, maybe?*
 
@@ -333,4 +333,90 @@ drwxr-xr-x  12 mcfatem  GRIN\Domain Users   384B Oct 13 10:20 Map-MODS-to-MASTER
 ...
 ```
 
-More to come, soon...
+### Houston, We Have a Problem
+
+So, the `main.py` script in the `Map-MODS-to-MASTER` project does a lot of heavy lifting, and it's got lots of problems as a result.  Namely:
+
+  1) It's very tightly tied to a couple of `//storage` directories that I currently can't access,
+  2) It's meant to process a list of collections with very specific locations, not a single list of .xml documents, and
+  3) It was written using _PyCharm_ which I hardly use anymore because it promotes bad Python habits.
+
+### Houston, We Have a Solution
+
+Fortunately, the `process_collection` function inside `main.py` has all that we need.  So, I'm going to make a local copy of the project on MA10713 at `~/GitHub/migrate-MODS-xml` and keep just the parts of `process_collection` that I need.  It's also worth noting that I plan to do this using _VSCode_ instead of _PyCharm_ and I'll follow [Proper Python](https://blog.summittdweller.com/posts/2022/09/proper-python/) guidance too.
+
+## migrate-MODS-xml
+
+See the new project's [README.md](https://github.com/Digital-Grinnell/migrate-MODS-xml/blob/main/README.md) file for details.
+
+## Running the Script
+
+After some necessary modifications the script was easy to run.  From start to finish the process involved the command line sequence listed below.
+
+  - Copied the MODS `.xml` directory and files from `~/migration-test` to the new project like so:
+
+```sh
+╭─mcfatem@MAC02FK0XXQ05Q ~
+╰─$ cp -fr migration-test ~/GitHub/migrate-MODS-xml/.
+```
+
+  - Changed working directory to the project and activated the Python virtual environment there:
+
+```sh
+╭─mcfatem@MAC02FK0XXQ05Q ~
+╰─$ cd ~/GitHub/migrate-MODS-xml
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/migrate-MODS-xml
+╰─$ source .venv/bin/activate
+```
+
+  - Changed the working directory to the new copy of the `migration-test` directory and ran the script there:
+
+```
+(.venv) ╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/migrate-MODS-xml/migration-test
+╰─$ python3 ../main.py
+```
+
+## Outcomes
+
+After the first run of the script the `migration-test` directory looked like this:
+
+```sh
+(.venv) ╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/migrate-MODS-xml/migration-test ‹main›
+╰─$ ll
+total 312
+-rw-r--r--  1 mcfatem  1278142703    16K Oct 17 13:02 collection.log
+-rw-r--r--  1 mcfatem  1278142703   3.6K Oct 17 13:02 grinnell_10001_MODS.log
+-rw-r--r--  1 mcfatem  1278142703   270B Oct 17 13:02 grinnell_10001_MODS.remainder
+-rw-r--r--  1 mcfatem  1278142703   3.3K Oct 17 12:48 grinnell_10001_MODS.xml
+-rw-r--r--  1 mcfatem  1278142703   3.3K Oct 17 13:02 grinnell_1000_MODS.log
+-rw-r--r--  1 mcfatem  1278142703   125B Oct 17 13:02 grinnell_1000_MODS.remainder
+-rw-r--r--  1 mcfatem  1278142703   2.9K Oct 17 12:48 grinnell_1000_MODS.xml
+-rw-r--r--  1 mcfatem  1278142703   3.0K Oct 17 13:02 grinnell_13273_MODS.log
+-rw-r--r--  1 mcfatem  1278142703   225B Oct 17 13:02 grinnell_13273_MODS.remainder
+-rw-r--r--  1 mcfatem  1278142703   3.6K Oct 17 12:48 grinnell_13273_MODS.xml
+-rw-r--r--  1 mcfatem  1278142703   3.4K Oct 17 13:02 grinnell_16934_MODS.log
+-rw-r--r--  1 mcfatem  1278142703   495B Oct 17 13:02 grinnell_16934_MODS.remainder
+-rw-r--r--  1 mcfatem  1278142703   3.0K Oct 17 12:48 grinnell_16934_MODS.xml
+-rw-r--r--  1 mcfatem  1278142703   4.2K Oct 17 13:02 grinnell_17289_MODS.log
+-rw-r--r--  1 mcfatem  1278142703   970B Oct 17 13:02 grinnell_17289_MODS.remainder
+-rw-r--r--  1 mcfatem  1278142703   2.1K Oct 17 12:48 grinnell_17289_MODS.xml
+-rw-r--r--  1 mcfatem  1278142703   3.5K Oct 17 13:02 grinnell_19423_MODS.log
+-rw-r--r--  1 mcfatem  1278142703   594B Oct 17 13:02 grinnell_19423_MODS.remainder
+-rw-r--r--  1 mcfatem  1278142703   3.3K Oct 17 12:48 grinnell_19423_MODS.xml
+-rw-r--r--  1 mcfatem  1278142703   3.2K Oct 17 13:02 grinnell_23345_MODS.log
+-rw-r--r--  1 mcfatem  1278142703   190B Oct 17 13:02 grinnell_23345_MODS.remainder
+-rw-r--r--  1 mcfatem  1278142703   3.5K Oct 17 12:48 grinnell_23345_MODS.xml
+-rw-r--r--  1 mcfatem  1278142703   2.3K Oct 17 13:02 grinnell_23517_MODS.log
+-rw-r--r--  1 mcfatem  1278142703    37B Oct 17 13:02 grinnell_23517_MODS.remainder
+-rw-r--r--  1 mcfatem  1278142703   2.0K Oct 17 12:48 grinnell_23517_MODS.xml
+-rw-r--r--  1 mcfatem  1278142703   4.8K Oct 17 13:02 grinnell_5593_MODS.log
+-rw-r--r--  1 mcfatem  1278142703   314B Oct 17 13:02 grinnell_5593_MODS.remainder
+-rw-r--r--  1 mcfatem  1278142703   5.2K Oct 17 12:48 grinnell_5593_MODS.xml
+-rw-r--r--  1 mcfatem  1278142703    13K Oct 17 13:02 mods.csv
+```
+
+Note that there's an overall `collection.log` file and the all-important `mods.csv` file which is what we came here for.  Also, each object has an original `.xml` export file, a new `.log` file, and a `.remainder` file which lists those elements of the corresponding `.xml` that were NOT copied into `mods.csv`.
+
+The `mods.csv` file was to be shared with others who will assist with future migration efforts so I've copied it to a new shared folder on network storage at `//storage/library/all-staff/DG-migration-test`.  I made the copy using `Finder` on MA10713 where that folder was mounted using a `Connect to Server...` specification of `smb://storage/library/allstaff`.  
+
+That's all for now.  Soon I'll drop copies of the corresponding `OBJ` datastreams in the same directory and continue this document with additional migration test details.
