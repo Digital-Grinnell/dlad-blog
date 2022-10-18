@@ -419,4 +419,17 @@ Note that there's an overall `collection.log` file and the all-important `mods.c
 
 The `mods.csv` file was to be shared with others who will assist with future migration efforts so I've copied it to a new shared folder on network storage at `//storage/library/all-staff/DG-migration-test`.  I made the copy using `Finder` on MA10713 where that folder was mounted using a `Connect to Server...` specification of `smb://storage/library/allstaff`.  
 
+## Extracting the OBJ Datastreams
+
+This step should be a piece-of-cake since I've already done this for all of the MODS datastreams.  So, let's repeat [Step 1d - Using Drush islandora_datastream_export](posts/129-creating-a-migration-collection/#step-1d---using-drush-islandora_datastream_export) changing `dsid=MODS` to `dsid=OBJ`, and `exported-MODS` to `exported-OBJ`, in the `export.sh` script.  In order to preserve `export.sh` as-is I'm first going to make a new `export-OBJ.sh` script from it on _DGDockerX_.
+
+
+
+```
+```
+
+
+
+
+
 That's all for now.  Soon I'll drop copies of the corresponding `OBJ` datastreams in the same directory and continue this document with additional migration test details.
