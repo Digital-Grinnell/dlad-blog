@@ -101,6 +101,11 @@ All of the content in the new blob containers should be web-addressable, and a r
 
 Note that both the storage account name, `migrationtestcollection`, and the name of the parent blob container is present, and is consistently included in each URL.  
 
+## A New Jekyll Site in Azure or Reclaim Cloud?
+
+This afternoon I plan to take a big bite out of [Tutorial: Publish a Jekyll site to Azure Static Web Apps](https://learn.microsoft.com/en-us/azure/static-web-apps/publish-jekyll) and maybe a look at [Category: jekyll](https://reclaimhosting.com/category/jekyll/) as well. 
+
+
 ---
 
 That's a wrap for now.  Look for more content here as I continue to expand the role of _Azure_ across the [Digital.Grinnell](https://digital.grinnell.edu) landscape.
