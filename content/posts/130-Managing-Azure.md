@@ -92,6 +92,15 @@ At the time of this writing the container looked like the figure below when view
 
 I also created a new `migration-test-metadata` blob container and populated it with all of the other files from `smb://storage.grinnell.edu/library/allstaff/DG-migration-test`.   There are now 53 files stored in that container.
 
+## Web-Addressable Objects
+
+All of the content in the new blob containers should be web-addressable, and a right-click on any file will allow you to see/copy the object's URL and/or path.  For example:
+
+  - [grinnell_10020_OBJ.pdf](https://migrationtestcollection.blob.core.windows.net/migration-test/grinnell_10020_OBJ.pdf) has a URL of https://migrationtestcollection.blob.core.windows.net/migration-test/grinnell_10020_OBJ.pdf
+  - [grinnell_10020_MODS.xml](https://migrationtestcollection.blob.core.windows.net/migration-test-metadata/grinnell_10020_MODS.xml) has a URL of https://migrationtestcollection.blob.core.windows.net/migration-test-metadata/grinnell_10020_MODS.xml
+
+Note that both the storage account name, `migrationtestcollection`, and the name of the parent blob container is present, and is consistently included in each URL.  
+
 ---
 
 That's a wrap for now.  Look for more content here as I continue to expand the role of _Azure_ across the [Digital.Grinnell](https://digital.grinnell.edu) landscape.
