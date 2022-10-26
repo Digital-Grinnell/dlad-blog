@@ -750,6 +750,20 @@ total size is 760499540  speedup is 1.00
 
 I subsequently used _Finder_ on my Mac to copy all of these files to `//storage/library/all-staff/DG-migration-test`.
 
-## More To Come
+## Azure Storage
 
-That's all for now.  But very soon I hope to have _Azure Storage Explorer_ access to some new network, actually _Azure_, shares from my MacBook.  When that happens I'll take steps to copy all of the above files to a new web-accessible home there, I hope.  I'm also planning to make copies of the `mods.csv` with names like `mods-JSTOR.csv` and `mods-CB.csv`, where `CB` stands for _Collection Builder_.  These will hopefully be the `.csv` files that power some of our migration tests to various platforms.  Until then... take care.  
+Two weeks ago I wrote this... 
+
+"Very soon I hope to have _Azure Storage Explorer_ access to some new network, actually _Azure_, shares from my MacBook.  When that happens I'll take steps to copy all of the above files to a new web-accessible home there, I hope."
+
+Well, that hasn't happened yet so I've taken steps to create an _Azure Blog Storage_ container without the benefit of the new _ASE_ capability.  The process of copying our `migrgation-test` collection objects and metadata to _Azure_ is documented in another of my blog posts, [Managing Azure](/posts/130-managing-azure). 
+
+## Migration Target: JSTOR
+
+This morning I imported the `mods.csv` metadata into _Excel_ where I added two new columns, `FILE_OBJECT` and `FILE_EXTENSION`.  These columns, intended for use with [JSTOR](https://www.jstor.org/), document the name and extension of the object's content file.  
+
+The result, `mods-JSTOR.xlsx` is stored both in _Azure_ and in `//storage/library/all-staff/DG-migration-test`.  
+
+---
+
+I'm sure there will be more here soon, but for now... that's a wrap.
