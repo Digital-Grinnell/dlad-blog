@@ -2,6 +2,7 @@
 .out-of-the-way
 docs/
 public/
+content/.copy
 
 # WARC is NOT Complete
 

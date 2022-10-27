@@ -9,6 +9,7 @@ tags:
   - iduf
   - JSTOR
   - Collection Builder
+content_updated:   
 ---
 
 As we continue to look at potential migration paths for our [Digital.Grinnell](https://digital.grinnell.edu) (DG) content, it's become apparent that it would be nice to have a small "test" or "migration" collection of objects to play with.  The collection should have a small, but diverse, set of objects covering all of the popular content, or `CModel`, types that we currently have in DG. 
