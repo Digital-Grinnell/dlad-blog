@@ -7,7 +7,7 @@ tags:
   - hook
   - content_updated
   - clean
-last_modified_at: 2022-10-27T16:18:20
+last_modified_at: Thu Oct 27 16:27:20 2022
 ---
 
 I recently created [Hugo Front Matter Tools](https://github.com/Digital-Grinnell/hugo-front-matter-tools) which is described as...
@@ -116,6 +116,44 @@ Now, what happens if I `git add` and `git commit` more test files including:
   - `test1.md` - A `.md` file that has no `last_modified_at:` front matter key,
   - `test2.txt` - A `.txt` file that has an empty `last_modified_at:` front matter key, and
   - `test3.png` - A `.png` image file that, of course, has no `last_modified_at:` front matter key.
+
+```
+╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*› 
+╰─$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   content/posts/131-Creating-a-git-Hook.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        content/test1.md
+        content/test2.txt
+        content/test3.png
+
+no changes added to commit (use "git add" and/or "git commit -a")
+╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*› 
+╰─$ git add .
+╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*› 
+╰─$ git commit -m "Three-part pre-commit hook test"
+[main 1b20a2a8] Three-part pre-commit hook test
+ 4 files changed, 202 insertions(+), 1 deletion(-)
+ create mode 100644 content/test1.md
+ create mode 100644 content/test2.txt
+ create mode 100644 content/test3.png
+ ```
+
+ Looking at the three files (actually, four files including this blog post) and...  **BEAUTIMOUS!**  _Everything worked as it should!_  Now, let's see if I can improve on the rather cryptic format of the date/time that gets added.
+
+To do that, change the `git diff...` line in `.git/hooks/pre-commit` to use the `+%c` date format like so:
+
+```
+git diff --cached --name-status | egrep -i "^(A|M).*\.(md)$" | while read a b; do
+  cat $b | sed "/---.*/,/---.*/s/^last_modified_at:.*$/last_modified_at: $(date -u "+%c")/" > tmp
+```
 
 ---
 
