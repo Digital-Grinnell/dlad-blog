@@ -7,7 +7,6 @@ tags:
   - hook
   - content_updated
   - clean
-last_modified_at: 2022-10-27T16:18:20
 ---
 
 I recently created [Hugo Front Matter Tools](https://github.com/Digital-Grinnell/hugo-front-matter-tools) which is described as...
@@ -64,7 +63,6 @@ git diff --cached --name-status | egrep -i "^(A|M).*\.(md)$" | while read a b; d
   git add $b
 done
 ```
-
 I created the same `pre-commit` script in this project's `.git/hooks/` directory.  Now to test it...
 
 ### Initial Test
@@ -86,37 +84,3 @@ hint: You can disable this warning with `git config advice.ignoredHook false`.
 ```
 
 So, I changed the `pre-commit` hook permissions and tried again after adding a bit more to this `.md` file.
-
-```
-╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main› 
-╰─$ git status
-On branch main
-Your branch is up to date with 'origin/main'.
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-        modified:   content/posts/131-Creating-a-git-Hook.md
-
-no changes added to commit (use "git add" and/or "git commit -a")
-╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*› 
-╰─$ git add .
-╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*› 
-╰─$ git commit -m "2nd test of pre-commit hook"
-[main 49118af7] 2nd test of pre-commit hook
- 1 file changed, 23 insertions(+), 1 deletion(-)
- ```
-
-It worked!  The `.md` file for this post now includes a line of front matter that says `last_modified_at: 2022-10-27T16:02:09` in both my local AND _GitHub_ repository versions.  Hurrah!
-
-### More Testing
-
-Now, what happens if I `git add` and `git commit` more test files including:
-
-  - `test1.md` - A `.md` file that has no `last_modified_at:` front matter key,
-  - `test2.txt` - A `.txt` file that has an empty `last_modified_at:` front matter key, and
-  - `test3.png` - A `.png` image file that, of course, has no `last_modified_at:` front matter key.
-
----
-
-I'm sure there will be more here soon, but for now... that's a wrap.
