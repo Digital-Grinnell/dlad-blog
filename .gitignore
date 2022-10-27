@@ -3,9 +3,3 @@
 docs/
 public/
 content/.copy
-
-# WARC is NOT Complete
-
-I recently (7-Sep-2022) confirmed that the WARC captured earlier is NOT complete.  Much of the content that we wish to archive lives in the `./projects/` sub-folder of the site structure, specifically at `./projects/hssc`, `./projects/asfs` and `./projects/clew`.  
-All of these pages are still "published" in the site, but there's no navigation to them so they are effectively "hidden" from public view.  
-Today I used `https://replayweb.page/docs/loading_online` to open the `.warc.gz` archive and found none of these paths present in the mix. 

@@ -6,4 +6,4 @@ git diff --cached --name-status | egrep -i "^(A|M).*\.(md)$" | while read a b; d
   cat $b | sed "/---.*/,/---.*/s/^last_modified_at:.*$/last_modified_at: $(TZ=CST6CDT date "+%F %H.%M %Z")/" > tmp
   mv tmp $b
   git add $b
-done
+done 

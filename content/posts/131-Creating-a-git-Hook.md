@@ -7,7 +7,7 @@ tags:
   - hook
   - content_updated
   - clean
-last_modified_at: 2022-10-27 12.13 CDT
+last_modified_at: 2022-10-27 12.21 CDT
 ---
 
 I recently created [Hugo Front Matter Tools](https://github.com/Digital-Grinnell/hugo-front-matter-tools) which is described as...
@@ -146,7 +146,10 @@ no changes added to commit (use "git add" and/or "git commit -a")
  create mode 100644 content/test3.png
  ```
 
- Looking at the three files (actually, four files including this blog post) and...  **BEAUTIMOUS!**  _Everything worked as it should!_  Now, let's see if I can improve on the rather cryptic format of the date/time that gets added.
+ Looking at the three files (actually, four files including this blog post) and...  **BEAUTIMOUS!**   
+ 
+  _Everything worked as it should!_  
+  Now, let's see if I can improve on the rather cryptic format of the date/time that gets added.
 
 To do that, change the `git diff...` line in `.git/hooks/pre-commit` to use the `TZ` timezone setting and remove the `-u` flag so that we get local time like so:
 
@@ -159,7 +162,7 @@ Notice also that this format does not include ANY colons (I'm using a `.` betwee
 
 :drum:  **It works!**
 
-In fact, it works so well that I'm keeping a copy of the `pre-commit` script here in this blog's repo.
+In fact, it works so well that I'm keeping a copy of the `pre-commit` script [here](https://github.com/Digital-Grinnell/dlad-blog) in this blog's repo.
 
 ---
 
