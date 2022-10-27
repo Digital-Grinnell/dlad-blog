@@ -7,7 +7,7 @@ tags:
   - hook
   - content_updated
   - clean
-last_modified_at: 2022-10-27 16.53 UTC
+last_modified_at: 2022-10-27 16.54 UTC
 ---
 
 I recently created [Hugo Front Matter Tools](https://github.com/Digital-Grinnell/hugo-front-matter-tools) which is described as...
@@ -151,9 +151,9 @@ no changes added to commit (use "git add" and/or "git commit -a")
 To do that, change the `git diff...` line in `.git/hooks/pre-commit` to use the `+%c` date format like so:
 
 ```
-TZ=UTC-5:00
+TZ=America/Chicago
 git diff --cached --name-status | egrep -i "^(A|M).*\.(md)$" | while read a b; do
-  cat $b | sed "/---.*/,/---.*/s/^last_modified_at:.*$/last_modified_at: $(TZ=America/Chicago; date -u "+%F %H.%M %Z")/" > tmp
+  cat $b | sed "/---.*/,/---.*/s/^last_modified_at:.*$/last_modified_at: $(TZ=America/Chicago date -u "+%F %H.%M %Z")/" > tmp
 ```
 
 ---
