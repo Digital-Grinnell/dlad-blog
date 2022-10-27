@@ -5,9 +5,10 @@ draft: false
 tags:
   - git
   - hook
-  - content_updated
+  - last_modified_at
+  - pre-commit
   - clean
-last_modified_at: 2022-10-27 12.21 CDT
+last_modified_at: 2022-10-27 12.25 CDT
 ---
 
 I recently created [Hugo Front Matter Tools](https://github.com/Digital-Grinnell/hugo-front-matter-tools) which is described as...
