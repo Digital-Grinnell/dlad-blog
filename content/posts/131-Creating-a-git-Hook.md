@@ -7,7 +7,7 @@ tags:
   - hook
   - content_updated
   - clean
-last_modified_at:   
+last_modified_at: 2022-10-27T16:02:09
 ---
 
 I recently created [Hugo Front Matter Tools](https://github.com/Digital-Grinnell/hugo-front-matter-tools) which is described as...
@@ -64,6 +64,28 @@ git diff --cached --name-status | egrep -i "^(A|M).*\.(md)$" | while read a b; d
   git add $b
 done
 ```
+
+I created the same `pre-commit` script in this project's `.git/hooks/` directory.  Now to test it...
+
+### Initial Test
+
+```txt
+╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*› 
+╰─$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*› 
+╰─$ git add .
+╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*› 
+╰─$ git commit -m "Testing my pre-commit hook"
+hint: The '.git/hooks/pre-commit' hook was ignored because it's not set as executable.
+hint: You can disable this warning with `git config advice.ignoredHook false`.
+[main 0b9781d7] Testing my pre-commit hook
+ 3 files changed, 74 insertions(+)
+ create mode 100644 content/posts/131-Creating-a-git-Hook.md
+```
+
+So, I changed the `pre-commit` hook permissions and tried again after adding a bit more to this `.md` file.
 
 
 
