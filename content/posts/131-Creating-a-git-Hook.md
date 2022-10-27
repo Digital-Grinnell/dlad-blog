@@ -7,7 +7,7 @@ tags:
   - hook
   - content_updated
   - clean
-last_modified_at: 2022-10-27 12.06 CDT
+last_modified_at: 2022-10-27 12.13 CDT
 ---
 
 I recently created [Hugo Front Matter Tools](https://github.com/Digital-Grinnell/hugo-front-matter-tools) which is described as...
@@ -148,12 +148,18 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
  Looking at the three files (actually, four files including this blog post) and...  **BEAUTIMOUS!**  _Everything worked as it should!_  Now, let's see if I can improve on the rather cryptic format of the date/time that gets added.
 
-To do that, change the `git diff...` line in `.git/hooks/pre-commit` to use the `+%c` date format like so:
+To do that, change the `git diff...` line in `.git/hooks/pre-commit` to use the `TZ` timezone setting and remove the `-u` flag so that we get local time like so:
 
 ```
 git diff --cached --name-status | egrep -i "^(A|M).*\.(md)$" | while read a b; do
   cat $b | sed "/---.*/,/---.*/s/^last_modified_at:.*$/last_modified_at: $(TZ=CST6CDT date "+%F %H.%M %Z")/" > tmp
 ```
+
+Notice also that this format does not include ANY colons (I'm using a `.` between hour and minute instead) so there should be no need to quote the value.
+
+:drum:  **It works!**
+
+In fact, it works so well that I'm keeping a copy of the `pre-commit` script here in this blog's repo.
 
 ---
 
