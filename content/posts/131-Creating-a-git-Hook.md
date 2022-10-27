@@ -7,7 +7,7 @@ tags:
   - hook
   - content_updated
   - clean
-last_modified_at: 2022-10-27 17.00 +0000
+last_modified_at: 2022-10-27 12.06 CDT
 ---
 
 I recently created [Hugo Front Matter Tools](https://github.com/Digital-Grinnell/hugo-front-matter-tools) which is described as...
@@ -152,7 +152,7 @@ To do that, change the `git diff...` line in `.git/hooks/pre-commit` to use the 
 
 ```
 git diff --cached --name-status | egrep -i "^(A|M).*\.(md)$" | while read a b; do
-  cat $b | sed "/---.*/,/---.*/s/^last_modified_at:.*$/last_modified_at: $(TZ=CST6CDT date -u "+%F %H.%M %z")/" > tmp
+  cat $b | sed "/---.*/,/---.*/s/^last_modified_at:.*$/last_modified_at: $(TZ=CST6CDT date "+%F %H.%M %Z")/" > tmp
 ```
 
 ---
