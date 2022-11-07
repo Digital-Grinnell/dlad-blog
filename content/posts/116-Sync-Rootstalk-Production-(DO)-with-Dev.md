@@ -7,6 +7,7 @@ tags:
   - sync
   - production
   - DigitalOcean
+superseded_by: posts/132-Another-Sync-Rootstalk-Production-(DO)-with-Dev
 ---
 
 My goal for this morning, December 22, 2021, was to find a process I could reliably use to synchronize changes in the development copy of _Rootstalk_ (the `main` branch https://github.com/Digital-Grinnell/rootstalk) with our production deployment (the `main` branch of https://github.com/Digital-Grinnell/rootstalk-DO) to _DigitalOcean_.  I used guidance found in [How To Merge Between Two Local Repositories](https://stackoverflow.com/questions/21360077/how-to-merge-between-two-local-repositories) to accomplish this with mixed results.
