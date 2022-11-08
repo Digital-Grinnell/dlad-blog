@@ -1,5 +1,5 @@
 ---
-title: "Sync Rootstalk Production (DigitalOcean) with Dev"
+title: "Another Sync to Rootstalk Production (DigitalOcean) with Dev"
 publishdate: 2022-11-07
 draft: false
 tags:
