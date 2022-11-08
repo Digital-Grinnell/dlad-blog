@@ -289,11 +289,47 @@ Checking 2461 external links
 HTML-Proofer found 3374 failures!
 ```
 
+## Using `htmlproofer` with Docker
+
+Because of all the errors I was getting and all the headaches with trying to configure/manage a working `ruby` environment, I turned to the [klakegg/html-proofer](https://hub.docker.com/r/klakegg/html-proofer) project on DockerHub.  It works nicely! 
+
+I ran it like so on my M1 MacBook...
+
+```
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk/public ‹develop›
+╰─$ docker run --rm -it \
+  -v $(pwd):/src \
+  klakegg/html-proofer:3.19.2 \
+  --allow-hash-href --check-html --empty-alt-ignore
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+Running ["ScriptCheck", "LinkCheck", "ImageCheck", "HtmlCheck"] on ["."] on *.html...
 
 
+Checking 2445 external links...
+Ran on 430 files!
 
+...
 
+- ./volume-viii-issue-1/woodpeckers-of-the-prairie/index.html
+  *  External link https://www.linkedin.com/in/chelsea-steinbrecher-hoffmann-82723755 failed: 999 No error
 
+HTML-Proofer found 225 failures!
+```
+
+And I subsequently copied the `rootstalk-htmlproofer.out` file to _Azure_ blog storage so you'll find it available at https://rootstalk.blob.core.windows.net/documentation/rootstalk-htmlproofer.out.  Keep in mind that this version of the output used option flags `--allow-hash-href --check-html --empty-alt-ignore` to limit the output considerably.
+
+## A Better Docker `htmlproofer` Run
+
+```
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk/public ‹develop›
+╰─$ time docker run --rm -it \
+  -v $(pwd):/src \
+  klakegg/html-proofer:3.19.2 > /tmp/rootstalk-htmlproofer.out
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+docker run --rm -it -v $(pwd):/src klakegg/html-proofer:3.19.2 >   0.12s user 0.08s system 0% cpu 2:10.53 total
+```
+
+That run, without any limiting options, returned...  `HTML-Proofer found 1383 failures!`.  It also doesn't contain a timestamp of any kind, nor does it indicate which options were used.
 
 
 And that's a wrap.  Until next time, Keep Calm, Carry On, stay safe and wash your hands! :smile:
