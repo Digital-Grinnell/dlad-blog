@@ -329,7 +329,107 @@ WARNING: The requested image's platform (linux/amd64) does not match the detecte
 docker run --rm -it -v $(pwd):/src klakegg/html-proofer:3.19.2 >   0.12s user 0.08s system 0% cpu 2:10.53 total
 ```
 
-That run, without any limiting options, returned...  `HTML-Proofer found 1383 failures!`.  It also doesn't contain a timestamp of any kind, nor does it indicate which options were used.
+That run, without any limiting options, returned...  `HTML-Proofer found 1383 failures!`.  It also doesn't contain a timestamp of any kind, nor does it indicate which options were used, so I'd like to see if I can easily remedy that with a little more scripting.
 
+## Capture More Info: `./htmlproofer.sh`
+
+To better control and capture relevant output I constructed a small bash script, `htmlproofer.sh`, and you'll find it in the root directory of the _Rootstalk_ project repo.  Its contents:
+
+```bash
+#!/bin/bash
+##
+## Add options to the end of the COMMAND string to change html-proofer behavior.  For a list of available options run:
+##   docker run --rm -it -v $(pwd):/src klakegg/html-proofer:3.19.2 --help
+## Common options might include:
+##    --allow-hash-href
+##    --check-html
+##    --empty-alt-ignore
+##
+hugo         # generate a new site
+cd public    # move into the new site's files
+COMMAND="docker run --rm -it -v $(pwd):/src klakegg/html-proofer:3.19.2 --check-html"
+date > /tmp/rootstalk-htmlproofer.out
+echo $COMMAND >> /tmp/rootstalk-htmlproofer.out
+time $COMMAND | sed -e 's/\x1b\[[0-9;]*m//g' >> /tmp/rootstalk-htmlproofer.out
+mv -f /tmp/rootstalk-htmlproofer.out ~/Downloads/rootstalk-htmlproofer.out
+```
+
+Output from running the script should look something like this:
+
+```
+╭─mark@Marks-Mac-Mini ~/GitHub/rootstalk ‹main*›
+╰─$ ./htmlproofer.sh
+Start building sites …
+hugo v0.105.0+extended darwin/amd64 BuildDate=unknown
+WARN 2022/11/08 19:36:19 .File.UniqueID on zero object. Wrap it in if or with: {{ with .File }}{{ .UniqueID }}{{ end }}
+
+                   | EN
+-------------------+------
+  Pages            | 394
+  Paginator pages  |  23
+  Non-page files   | 114
+  Static files     |  30
+  Processed images |   0
+  Aliases          |  72
+  Sitemaps         |   1
+  Cleaned          |   0
+
+Total in 1289 ms
+
+real	0m57.285s
+user	0m0.068s
+sys	0m0.098s
+```
+
+The script creates a file, `~/Downloads/rootstalk-htmlproofer.out`, that should contain easily readable output like this:
+
+```
+Tue Nov  8 19:36:19 CST 2022
+docker run --rm -it -v /Users/mark/GitHub/rootstalk/public:/src klakegg/html-proofer:3.19.2 --check-html
+Running ["HtmlCheck", "ScriptCheck", "LinkCheck", "ImageCheck"] on ["."] on *.html... 
+
+
+Checking 2474 external links...
+Ran on 413 files!
+
+
+- ./about/index.html
+  *  External link https://ojs.grinnell.edu/index.php/prairiejournal/about/submissions#onlineSubmissions failed: 404 No error
+- ./admin/index.html
+  *  image /images/generic-01.png does not have an alt attribute (line 127)
+- ./admin/tags/index.html
+  *  image /images/generic-01.png does not have an alt attribute (line 129)
+- ./index.html
+  *  254:11: ERROR: Start tag of nonvoid HTML element ends with '/>', use '>'.
+      <h2><a href="/volume-viii-issue-1/" />Click here for full contents of "Volume VIII, Issue 1"</a></h2>
+          ^ (line 254)
+  *  internally linking to .., which does not exist (line 261)
+
+...many lines removed...
+
+- ./volume-viii-issue-1/trissell/index.html
+  *  External link https://www.alltrails.com/us/iowa/kellogg failed: 403 No error
+  *  External link https://www.nass.usda.gov/Publications/AgCensus/2017/Full_Report/Volume_1,_Chapter_2_County_LevelIowa/st19_2_0001_0001.pdf failed: 404 No error
+  *  image https://rootstalk.blob.core.windows.net/rootstalk-2022-spring/trissell-7.png does not have an alt attribute (line 210)
+- ./volume-viii-issue-1/woodpeckers-of-the-prairie/index.html
+  *  External link https://www.linkedin.com/in/chelsea-steinbrecher-hoffmann-82723755 failed: 999 No error
+  *  image https://rootstalk.blob.core.windows.net/rootstalk-2022-spring/Villatoro-2-volume-iii-issue-1-spring-2022.jpg does not have an alt attribute (line 177)
+  *  image https://rootstalk.blob.core.windows.net/rootstalk-2022-spring/Villatoro-8-moffett-volume-viii-issue-1-spring-2022.jpg does not have an alt attribute (line 330)
+
+HTML-Proofer found 1426 failures!
+```
+
+Again, I moved that `~/Downloads/rootstalk-htmlproofer.out` file to _Azure_ storage so that it's available at https://rootstalk.blob.core.windows.net/documentation/rootstalk-htmlproofer.out.
+
+## Next Steps
+
+Since most of the issues identified in https://rootstalk.blob.core.windows.net/documentation/rootstalk-htmlproofer.out are missing image `alt` attributes, I think it would be prudent to try and automate the generation of meaningful `alt` tags.  Since all of the _Rootstalk_ images are now stored in _Azure Blob Containers_, I think it would be prudent to look at things like:
+
+  - [Using Artificial Intelligence to Generate Alt Text on Images](https://css-tricks.com/using-artificial-intelligence-to-generate-alt-text-on-images/) and
+  - [Dynamically Generated Alt Text with Azure's Computer Vision API](https://codepen.io/sdras/details/jawPGa)
+
+Big fun!  
+
+---
 
 And that's a wrap.  Until next time, Keep Calm, Carry On, stay safe and wash your hands! :smile:
