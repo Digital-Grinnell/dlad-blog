@@ -1,6 +1,7 @@
 ---
 title: "Automated Proofreading with `htmlproofer`"
 publishdate: 2022-11-08
+last_modified_at: 2022-11-11 14.32 CST
 draft: false
 tags:
   - Rootstalk
@@ -176,9 +177,9 @@ htmlproofer ./public > htmlproofer-28-jan-2022.out 2>&1  7.77s user 1.68s system
 
 The process documented above worked very well, but making the output part of the _Rootstalk_ project repo is a problem, that repo isn't accessible to everyone on the project, but the `htmlproofer` output really should be!  So, I think a couple of improvements are needed:
 
-1) The output should reside in the _Rootstalk_ project `documentation` container in _Azure_ blob storage, where it will have a consistent and [publicly-accessible URL](https://rootstalk.blob.core.windows.net/documentation/rootstalk-htmlproofer.out).
+1) The output should reside in the _Rootstalk_ project `documentation` container in _Azure_ blob storage, where it will have a consistent and [publicly-accessible URL](https://rootstalk.blob.core.windows.net/documentation/rootstalk-html-proofer.out).
 
-2) Since the current output is always in a specific file, namely [rootstalk-htmlproofer.out,](https://rootstalk.blob.core.windows.net/documentation/rootstalk-htmlproofer.out) that file should contain a timestamp indicating when it was created/updated.
+2) Since the current output is always in a specific file, namely [rootstalk-html-proofer.out,](https://rootstalk.blob.core.windows.net/documentation/rootstalk-html-proofer.out) that file should contain a timestamp indicating when it was created/updated.
 
 ## First, An Updated Install
 
@@ -307,16 +308,14 @@ Running ["ScriptCheck", "LinkCheck", "ImageCheck", "HtmlCheck"] on ["."] on *.ht
 
 Checking 2445 external links...
 Ran on 430 files!
-
 ...
-
 - ./volume-viii-issue-1/woodpeckers-of-the-prairie/index.html
   *  External link https://www.linkedin.com/in/chelsea-steinbrecher-hoffmann-82723755 failed: 999 No error
 
 HTML-Proofer found 225 failures!
 ```
 
-And I subsequently copied the `rootstalk-htmlproofer.out` file to _Azure_ blog storage so you'll find it available at https://rootstalk.blob.core.windows.net/documentation/rootstalk-htmlproofer.out.  Keep in mind that this version of the output used option flags `--allow-hash-href --check-html --empty-alt-ignore` to limit the output considerably.
+And I subsequently copied the `rootstalk-html-proofer.out` file to _Azure_ blog storage so you'll find it available at https://rootstalk.blob.core.windows.net/documentation/rootstalk-html-proofer.out.  Keep in mind that this version of the output used option flags `--allow-hash-href --check-html --empty-alt-ignore` to limit the output considerably.
 
 ## A Better Docker `htmlproofer` Run
 
@@ -324,16 +323,16 @@ And I subsequently copied the `rootstalk-htmlproofer.out` file to _Azure_ blog s
 ╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk/public ‹develop›
 ╰─$ time docker run --rm -it \
   -v $(pwd):/src \
-  klakegg/html-proofer:3.19.2 > /tmp/rootstalk-htmlproofer.out
+  klakegg/html-proofer:3.19.2 > /tmp/rootstalk-html-proofer.out
 WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
 docker run --rm -it -v $(pwd):/src klakegg/html-proofer:3.19.2 >   0.12s user 0.08s system 0% cpu 2:10.53 total
 ```
 
 That run, without any limiting options, returned...  `HTML-Proofer found 1383 failures!`.  It also doesn't contain a timestamp of any kind, nor does it indicate which options were used, so I'd like to see if I can easily remedy that with a little more scripting.
 
-## Capture More Info: `./htmlproofer.sh`
+## Capture More Info: `./html-proofer.sh`
 
-To better control and capture relevant output I constructed a small bash script, `htmlproofer.sh`, and you'll find it in the root directory of the _Rootstalk_ project repo.  Its contents:
+To better control and capture relevant output I constructed a small bash script, `html-proofer.sh`, and you'll find it in the root directory of the _Rootstalk_ project repo.  Its initial contents:
 
 ```bash
 #!/bin/bash
@@ -348,10 +347,10 @@ To better control and capture relevant output I constructed a small bash script,
 hugo         # generate a new site
 cd public    # move into the new site's files
 COMMAND="docker run --rm -it -v $(pwd):/src klakegg/html-proofer:3.19.2 --check-html"
-date > /tmp/rootstalk-htmlproofer.out
-echo $COMMAND >> /tmp/rootstalk-htmlproofer.out
-time $COMMAND | sed -e 's/\x1b\[[0-9;]*m//g' >> /tmp/rootstalk-htmlproofer.out
-mv -f /tmp/rootstalk-htmlproofer.out ~/Downloads/rootstalk-htmlproofer.out
+date > /tmp/rootstalk-html-proofer.out
+echo $COMMAND >> /tmp/rootstalk-html-proofer.out
+time $COMMAND | sed -e 's/\x1b\[[0-9;]*m//g' >> /tmp/rootstalk-html-proofer.out
+mv -f /tmp/rootstalk-html-proofer.out ~/Downloads/rootstalk-html-proofer.out
 ```
 
 Output from running the script should look something like this:
@@ -381,7 +380,7 @@ user	0m0.068s
 sys	0m0.098s
 ```
 
-The script creates a file, `~/Downloads/rootstalk-htmlproofer.out`, that should contain easily readable output like this:
+The script creates a file, `~/Downloads/rootstalk-html-proofer.out`, that should contain easily readable output like this:
 
 ```
 Tue Nov  8 19:36:19 CST 2022
@@ -419,16 +418,130 @@ Ran on 413 files!
 HTML-Proofer found 1426 failures!
 ```
 
-Again, I moved that `~/Downloads/rootstalk-htmlproofer.out` file to _Azure_ storage so that it's available at https://rootstalk.blob.core.windows.net/documentation/rootstalk-htmlproofer.out.
+Again, I moved that `~/Downloads/rootstalk-html-proofer.out` file to _Azure_ storage so that it's available at https://rootstalk.blob.core.windows.net/documentation/rootstalk-html-proofer.out.
 
 ## Next Steps
 
-Since most of the issues identified in https://rootstalk.blob.core.windows.net/documentation/rootstalk-htmlproofer.out are missing image `alt` attributes, I think it would be prudent to try and automate the generation of meaningful `alt` tags.  Since all of the _Rootstalk_ images are now stored in _Azure Blob Containers_, I think it would be prudent to look at things like:
+Since most of the issues identified in https://rootstalk.blob.core.windows.net/documentation/rootstalk-html-proofer.out are missing image `alt` attributes, I think it would be prudent to try and automate the generation of meaningful `alt` tags.  Since all of the _Rootstalk_ images are now stored in _Azure Blob Containers_, I think it would be prudent to look at things like:
 
   - [Using Artificial Intelligence to Generate Alt Text on Images](https://css-tricks.com/using-artificial-intelligence-to-generate-alt-text-on-images/) and
   - [Dynamically Generated Alt Text with Azure's Computer Vision API](https://codepen.io/sdras/details/jawPGa)
 
 Big fun!  
+
+### Not So Much Fun
+
+A little research into automatic generation of `alt` tags leads me to believe it's not going to be worthwhile for _Rootstalk_ after all.  Many of our images are relatively complex so effectively training an auto-tag algorithm might take longer than it's worth, and the results are likely to be disappointment.  I think it's better if we try to eliminate all the "systemic" `html-proofer` issues that we can, and manually deal with the rest, perhaps with the aid of a student worker.
+
+## Scripting `html-proofer`
+
+After briefly focusing on eliminating all of the "easy", systemic issues that `html-proofer` flagged, I turned my attention to automating the process of running a new `html-proofer`.  The product of that work is the new `html-proofer.sh` script that's listed, complete with comments, here:
+
+```bash
+#!/bin/bash
+##
+## Add options to the end of the COMMAND string to change html-proofer behavior.  For a list of available options run:
+##   docker run --rm -it -v $(pwd):/src klakegg/html-proofer:3.19.2 --help
+## Common options might include:
+##    --allow-hash-href 
+##    --check-html 
+##    --empty-alt-ignore
+##
+hugo         # generate a new site
+cd public    # move into the new site's files
+COMMAND="docker run --rm -it -v $(pwd):/src klakegg/html-proofer:3.19.2 --check-html"
+date > /tmp/rootstalk-html-proofer.tmp
+echo $COMMAND >> /tmp/rootstalk-html-proofer.tmp
+time $COMMAND | sed -e 's/\x1b\[[0-9;]*m//g' >> /tmp/rootstalk-html-proofer.tmp
+tail -1 /tmp/rootstalk-html-proofer.tmp
+##
+## I'm unable to effectively control many of the bogus issues reported by html-proofer, things like:
+##     *  internally linking to .., which does not exist (line 682)
+##           <a href="..">Back</a>
+## So, let's try to implement some `grep` and `sed` commands that will automatically count and remove 
+## them from the output.
+##
+BOGUS=`grep -c 'internally linking to ..,' /tmp/rootstalk-html-proofer.tmp`
+echo "Removing ${BOGUS} false-negative errors from the output..."
+sed '/internally linking to \.\.,/,+1d' /tmp/rootstalk-html-proofer.tmp > ${HOME}/Downloads/rootstalk-html-proofer.out
+echo "${BOGUS} false-negative errors were removed from this output." >> ${HOME}/Downloads/rootstalk-html-proofer.out
+##
+## Successfully running scripted Azure CLI in a Docker container proved to be virtually
+## impossible, perhaps because the CLI login and commands are so "interative"?
+## So, the `az` commands that follow will require the Azure CLI be installed on the 
+## host.  See https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-macos?source=recommendations#install-with-homebrew
+## for doing that with Homebrew.  Also, you should run `az login` before attempting the 
+## `az storage blob upload...` command shown here.
+##
+az storage blob upload \
+     --account-name rootstalk \
+     --container-name documentation \
+     --name rootstalk-html-proofer.out \
+     --file ${HOME}/Downloads/rootstalk-html-proofer.out \
+     --overwrite \
+     --auth-mode key
+##
+## The output should be available now for download at https://rootstalk.blob.core.windows.net/documentation/rootstalk-html-proofer.out
+##
+echo "The output should be available now for download at https://rootstalk.blob.core.windows.net/documentation/rootstalk-html-proofer.out."
+##
+```
+
+The output from my latest run of `html-proofer.sh` looks like this:
+
+```html
+╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk ‹develop› 
+╰─$ ./html-proofer.sh                                                               
+Start building sites … 
+hugo v0.105.0+extended darwin/arm64 BuildDate=unknown
+WARN 2022/11/11 14:11:30 .File.UniqueID on zero object. Wrap it in if or with: {{ with .File }}{{ .UniqueID }}{{ end }}
+
+                   | EN   
+-------------------+------
+  Pages            | 391  
+  Paginator pages  |  23  
+  Non-page files   |  24  
+  Static files     |  32  
+  Processed images |   0  
+  Aliases          |  71  
+  Sitemaps         |   1  
+  Cleaned          |   0  
+
+Total in 558 ms
+WARNING: The requested image's platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+
+real    2m12.174s
+user    0m0.088s
+sys     0m0.080s
+HTML-Proofer found 316 failures!
+Removing 24 false-negative errors from the output...
+Argument '--overwrite' is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus
+
+There are no credentials provided in your command and environment, we will query for account key for your storage account.
+It is recommended to provide --connection-string, --account-key or --sas-token in your command as credentials.
+
+You also can add `--auth-mode login` in your command to use Azure Active Directory (Azure AD) for authorization if your login account is assigned required RBAC roles.
+For more information about RBAC roles in storage, visit https://docs.microsoft.com/azure/storage/common/storage-auth-aad-rbac-cli.
+
+In addition, setting the corresponding environment variables can avoid inputting credentials in your command. Please use --help to get more information about environment variable usage.
+Finished[#############################################################]  100.0000%
+{
+  "client_request_id": "57a1860a-61fd-11ed-a661-9aa213ed91f9",
+  "content_md5": "o6WZXPlD/W134hWMYo3XZQ==",
+  "date": "2022-11-11T20:13:43+00:00",
+  "encryption_key_sha256": null,
+  "encryption_scope": null,
+  "etag": "\"0x8DAC4213C06EEC8\"",
+  "lastModified": "2022-11-11T20:13:44+00:00",
+  "request_id": "4fa6aae2-b01e-0070-3c0a-f6f502000000",
+  "request_server_encrypted": true,
+  "version": "2021-06-08",
+  "version_id": null
+}
+The output should be available now for download at https://rootstalk.blob.core.windows.net/documentation/rootstalk-html-proofer.out.
+```
+
+So, 316 failures minus the 24 false-negatives we removed equals **292 failures yet to be examined**.  Not too bad for a site with seven years of content and 2400+ references to be checked!
 
 ---
 
