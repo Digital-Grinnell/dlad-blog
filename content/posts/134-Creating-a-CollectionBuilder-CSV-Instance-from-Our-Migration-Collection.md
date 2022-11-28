@@ -38,9 +38,9 @@ An ordered list of documentation sections I followed includes:
   - [GitHub](https://collectionbuilder.github.io/cb-docs/docs/software/github/#github)
     - I skipped this section because I am already familiar with _GitHub_ use.
   - [Git Setup](https://collectionbuilder.github.io/cb-docs/docs/software/git/#git-setup)
-    - I also skipped this section because _Git_ is already properly configured on my Mac.
+    - I skipped this section because _Git_ is already properly configured on my Mac.
   - [Get a Text Editor](https://collectionbuilder.github.io/cb-docs/docs/software/texteditor/#get-a-text-editor) 
-    - I also skipped this section because _Visual Studio Code_ is already installed and includes all of the extensions mentioned in the document.
+    - I skipped this section because _Visual Studio Code_ is already installed and includes all of the extensions mentioned in the document.
   - [Install Ruby](https://collectionbuilder.github.io/cb-docs/docs/software/ruby/#install-ruby)   
     - [Ruby on Mac](https://collectionbuilder.github.io/cb-docs/docs/software/ruby_mac/#ruby-on-mac) - I used all of the recommended commands with _Ruby_ version `3.1.3`.
   - [Install Jekyll](https://collectionbuilder.github.io/cb-docs/docs/software/jekyll/#install-jekyll)    
