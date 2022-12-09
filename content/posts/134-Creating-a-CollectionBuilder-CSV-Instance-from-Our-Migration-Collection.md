@@ -61,6 +61,16 @@ My first thought was to use [Open Refine](https://openrefine.org/) to manipulate
 
 Of course!  My intent is to create a Python script capable of reading and writing _Google Sheet_ data and structures so that I can create, manage, improve, and above all, _repeat_ my transforms.  _CollectionBuilder_ is Jekyll-based so it does not involve [Hugo](https://gohugo.io), but the Python scripts in my [Hugo Front Matter Tools](https://github.com/Digital-Grinnell/hugo-front-matter-tools) should still provide a good starting point for crafting scripts to help with this.  
 
+**Update**: I'm going to pivot the effort described above and take a little different approach.  My first efforts in Python produced [transform-mods-csv-to-ready-for-CB](https://github.com/Digital-Grinnell/transform-mods-csv-to-ready-for-CB) plus a new Google Sheet at https://docs.google.com/spreadsheets/d/1ic4PxHDbuzDrmf4YtauhC4vEQJxt3QSH8bYfLBCM3Gc/edit#gid=0.  The head of the `README.md` file describes where I "was" going with the effort:
+
+{{% original %}}
+This script, evolved from rootstalk-google-sheet-to-front-matter.py from my https://github.com/Digital-Grinnell/hugo-front-matter-tools project, is designed to read all exported MODS records from the mods.csv tab of https://docs.google.com/spreadsheets/d/1ic4PxHDbuzDrmf4YtauhC4vEQJxt3QSH8bYfLBCM3Gc/edit#gid=935629805 and transform that data into a new ready-for-CB tab of the same Google Sheet, but using the column heading/structure of the CollectionBuilder demo Sheet1 tab.
+{{% /original %}}
+
+#### The Pivot
+
+Essentially, rather than making the `ready-for-CB` tab conform to _CollectionBuilder_'s out-of-the-box metatdata schema, I'm going to make my initial _CollectionBuilder_ configuration conform to the schema reflected in the `mods.csv` tab of the aforementioned Google Sheet.  Wish me luck.
+
 ---
 
 I'm sure there will be more here soon, but for now... that's a wrap.
