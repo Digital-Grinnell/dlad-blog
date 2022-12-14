@@ -177,6 +177,95 @@ With those columns completed the site local site at http://127.0.0.1:4000/ is wo
 
 At this time I'm going to follow the guidance in [Tutorial: Publish a Jekyll site to Azure Static Web Apps](https://learn.microsoft.com/en-us/azure/static-web-apps/publish-jekyll) to create a shared/visible instance of the new _CB_ site.
 
+Done.  The process was super-simple and the results as-expected.  You can see the site from the `main` branch of https://github.com/Digital-Grinnell/CB-CSV_DG-01 at https://purple-river-002460310.2.azurestaticapps.net/.
+
+That address again:
+
+{{% box %}}
+https://purple-river-002460310.2.azurestaticapps.net/
+{{% /box %}}
+
+The _GitHub Action_ driving the build and deployment of the `main` branch reads like this:
+
+```json
+name: Azure Static Web Apps CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
+
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PURPLE_RIVER_002460310 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          action: "upload"
+          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
+          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
+          app_location: "/" # App source code path
+          api_location: "" # Api source code path - optional
+          output_location: "_site" # Built app content directory - optional
+          ###### End of Repository/Build Configurations ######
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_PURPLE_RIVER_002460310 }}
+          action: "close"
+```
+
+## We Need a 2nd _Azure_ Instance
+
+So, I've created a new `develop` branch with it's own _GitHub Action_ and deployment to _Azure_ at:  
+
+{{% box %}}
+https://gentle-pond-02af90f10.2.azurestaticapps.net
+{{% /box %}}
+
+## Introducing Oral Histories  
+
+So the convention in _CollectionBuilder_ is for every value of `display_template` there should be a corresponding `.html` template in `_layouts/item` with the same name, and that template will be used to render the object and control the object's individual page behavior.  The documentation also says that any `display_template` value that does not have a corresponding `_layouts/item` template will assume a type of `item`.  
+
+I decided to test that in the new `develop` branch.  So, I first changed the `display_template` or our "grinnell_19423" object, an oral history interview, from `audio` to `test`.  Sure enough, it rendered as an `item` as promised.  
+
+Next, I copied `_layouts/item/audio.html`, the `audio` template, and gave the copy a name of `_layouts/item/oral-history.html`.  I made no changes to the template.  Then I altered our `transformed.csv` data to give "grinnell_19423" a `display_template` value of `oral-history`, matching the name of the new template.  Did it work?  You betcha!  The object is now rendered like an `audio` object since that's what `oral-history.html` does.  
+
+Kudos to the authors of _CollectionBuilder_.  Well played!  
+
+## Will `.obj` Filename Extensions Work?
+
+There's evidence in the few tests I've run thus far that the extension on the end of a filename makes no difference in how, or if, the object is rendered.  Let's test that a little further by changing the extension on a couple of cloned objects stored in _Azure_ to `.obj`, and altering the `transformed.csv` file to point to them instead of to _Digital.Grinnell_.  The objects I'm going to alter are "grinnell_19423", an `oral-history` type with a `.mp3` extension, and "grinnell_16934", an `image` with a `.jpg` extension.  The new URLs for these cloned items are:
+
+  - https://migrationtestcollection.blob.core.windows.net/migration-test/grinnell_19423_OBJ.obj
+  - https://migrationtestcollection.blob.core.windows.net/migration-test/grinnell_16934_OBJ.obj
+
+{% box %}
+Huzzah, it works!  Beautimous!
+{% /box %}
+
+That solves the need for applying proper filename extensions to _Digital.Grinnell_ objects that have none!  The only problem with this `.obj` approach is that downloaded objects might not behave as expected, but we'll cross that bridge when we come to it.
+
 ---
 
 I'm sure there will be more here soon, but for now... that's a wrap.
