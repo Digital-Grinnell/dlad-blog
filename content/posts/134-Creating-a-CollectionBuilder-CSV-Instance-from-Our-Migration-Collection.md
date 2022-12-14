@@ -187,7 +187,7 @@ https://purple-river-002460310.2.azurestaticapps.net/
 
 The _GitHub Action_ driving the build and deployment of the `main` branch reads like this:
 
-```json
+```
 name: Azure Static Web Apps CI/CD
 
 on:
@@ -260,9 +260,9 @@ There's evidence in the few tests I've run thus far that the extension on the en
   - https://migrationtestcollection.blob.core.windows.net/migration-test/grinnell_19423_OBJ.obj
   - https://migrationtestcollection.blob.core.windows.net/migration-test/grinnell_16934_OBJ.obj
 
-{% box %}
+{{% box %}}
 Huzzah, it works!  Beautimous!
-{% /box %}
+{{% /box %}}
 
 That solves the need for applying proper filename extensions to _Digital.Grinnell_ objects that have none!  The only problem with this `.obj` approach is that downloaded objects might not behave as expected, but we'll cross that bridge when we come to it.
 
