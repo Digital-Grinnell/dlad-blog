@@ -1,13 +1,13 @@
 ---
 title: "Hugo: Attachments and Bundles"
-publishdate: 2023-01-11
+publishdate: 2023-01-12
 draft: false
 tags:
   - Hugo
   - attachments
   - page bundles
   - VSCode
-last_modified_at: 2023-01-12 09.22 CST
+last_modified_at: 2023-01-12 09.25 CST
 ---
 
 This post was written as follow-up to my [previous post](../135-migrating-catpaw-development-to-azure/) where I implemented a custom Hugo shortcode, `attachments.html`, documented in [attachments.html](#attachmentshtml) below.  The implementation of this shortcode required a Hugo [Page Bundles](https://gohugo.io/content-management/page-bundles/) content structure and the transition to such a structure is documented below in [Page Bundles Structure](#page-bundles-structure).  
