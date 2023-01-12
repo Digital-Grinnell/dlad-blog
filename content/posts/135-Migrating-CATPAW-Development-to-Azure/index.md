@@ -10,7 +10,7 @@ tags:
   - Python
   - Flask
   - VSCode
-last_modified_at: 2023-01-12 09.22 CST
+last_modified_at: 2023-01-12 12.45 CST
 ---
 
 Portions of this post build on concepts introduced in [Managing Azure](/posts/130-managing-azure/).  
@@ -49,9 +49,9 @@ Deployment to _Reclaim Cloud_ provided us with very few options, and all of them
 
 Our deployment to _Reclaim Cloud_ also encountered two technical challenges:  
 
-1) Due to the nature of _Flask_ and its built-in webserver, we had to maintain two different versions of the code, one for the _local_/_development_ websever, and a second copy for any _remote_/_deployed_ using a [wsgi](https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface) interface.  A pair of `.sh` scripts were created to manually switch between versions.  Specific differences between versions are documented in the aforementioned `README-original.pdf` shown above. 
+1) Due to the nature of _Flask_ and its built-in webserver, we had to maintain two different versions of the code, one for the _local_/_development_ websever, and a second copy for any _remote_/_deployed_ using a [wsgi](https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface) interface.  A pair of `.sh` scripts were created to manually switch between versions.  Specific differences between versions are documented in the aforementioned `README-original.pdf` provided below. 
 
-2) Recently, the addition of new _nltk_ elements and a [pandas.DataFrame](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) object introduced a configuration where the code would run _locally_, but the modified _wsgi_ version would not successfully deploy to _Reclaim Cloud_.   
+2) Recently, the addition of new [nltk](https://www.nltk.org/) elements and a [pandas.DataFrame](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) object introduced a configuration where the code would run _locally_, but the modified _wsgi_ version would not successfully deploy to _Reclaim Cloud_.   
 
 ## CATPAW-Azure
 
@@ -66,6 +66,16 @@ The original description of [https://github.com/Digital-Grinnell/catpaw-azure](h
 The `README.md` file from the _development_ branch of [https://github.com/Digital-Grinnell/catpaw-azure](https://github.com/Digital-Grinnell/catpaw-azure) explains some of the repositories' early history and it can be downloaded here as `README-catpaw-azure.pdf`.  
 
 {{% attachments %}}
+
+## Pandas vs Polars
+
+Also while addressing problem #2 (see above) we found that a successful _local_ build using the [Pandas dataframe](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html) class could not be successfully deployed to _Reclaim Cloud_, nor to _Azure_.  The _Azure_ error messages hinted at the platforms inability to "build" _Pandas_ due to a missing `python.h` file.  Also, the build time in _Azure_ with _Pandas_ included was 10x the time when building the app without _Pandas_.  
+
+I tried 8 different deployment configurations in hopes of making _Pandas_ work in _Azure_, but they all failed with the same error.  So, rather than perpetuating failures I elected to look for an alternative to _Pandas_ to determine if that was indeed the source of the error.  It was.
+
+Ultimately I choose to rewrite a small portion of the `app.py` code to remove _Pandas_ and replace it with "equivalent" code using the [Polars DataFrame Library](https://www.pola.rs/).  _Polars_ not only works, both _locally_ and in _Azure_, but its associated build-time is one tenth what _Pandas_ required.  
+
+At the time of this writing (2023-01-12T12:44:01-06:00) the `development` branch of [catpaw-azure](https://github.com/Digital-Grinnell/catpaw-azure) is using _Polars_, while the `main` branch still employs the broken _Pandas_ logic.  I expect a merge of these branches and adoption of _Polars_ soon.  
 
 ---
 
