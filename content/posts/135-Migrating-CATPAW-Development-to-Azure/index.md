@@ -41,9 +41,7 @@ CATPAW was created by [Professor Erik Simpson](https://www.grinnell.edu/user/sim
 
 The first CATPAW code repository is/was https://github.com/alinejg/catpaw.  This repo was initially deployed to the web via _Azure_ under a "trial" account owned by Alina.  When the trial subscription ended we took steps to move the deployment from _Azure_ to _Reclaim Cloud_ to avoid accumulating fees on Alina's _Azure_ account.  
 
-The `README.md` file from the aforementioned original project documents early development and the move to _Reclaim Cloud_.  That original `README.md` was exported to a file named `README-original.pdf` that's stored in our current development repo [CATPAW-Azure](#catpaw-azure) below.  The PDF is also reproduced here for convenience:  
-
-{{< embed-pdf url="pdfs/README-original.pdf" >}}
+The `README.md` file from the aforementioned original project documents early development and the move to _Reclaim Cloud_.  That original `README.md` was exported to a file named `README-original.pdf` that's stored in our current development repo [CATPAW-Azure](#catpaw-azure) below.  The PDF is available for download in this post's [Attachments](#attachments) section for convenience.  
 
 ## CATPAW Deployment to Reclaim Cloud
 
@@ -65,7 +63,7 @@ The original description of [https://github.com/Digital-Grinnell/catpaw-azure](h
 
   A restart of CATPAW work from 2022, this time destined for dev deployment in Azure App Service. 
 
-The `README.md` file from the _development_ branch of [https://github.com/Digital-Grinnell/catpaw-azure](https://github.com/Digital-Grinnell/catpaw-azure) explains some of the repositories' early history and it can be downloaded here:
+The `README.md` file from the _development_ branch of [https://github.com/Digital-Grinnell/catpaw-azure](https://github.com/Digital-Grinnell/catpaw-azure) explains some of the repositories' early history and it can be downloaded here as `README-catpaw-azure.pdf`.  
 
 {{% attachments %}}
 

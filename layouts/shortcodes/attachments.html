@@ -31,7 +31,7 @@
 </style>
 
 <section class="attachments">
-	<label>{{- (.Get "title") | default "Attachments" -}}{{ with (.Get "caption") }}  ({{- . -}}){{ end }} {{ partial "icon.html" (dict "ctx" $ "name" "paperclip") }}</label>
+	<label><a name="attachments">{{ partial "icon.html" (dict "ctx" $ "name" "paperclip") -}} &nbsp; {{ ((.Get "title") | default "Attachments") -}}{{ with (.Get "caption") }}  ({{- . -}}){{ end }}</a></label>
 	<div class="attachments-files">
 		{{- $folderName := default "files" (.Get "folder") -}}
 		{{- $hasPattern := false -}}
