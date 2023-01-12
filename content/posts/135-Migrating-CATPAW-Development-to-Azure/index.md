@@ -11,8 +11,6 @@ tags:
   - Flask
   - VSCode
 content_updated:   
-resource:
-  - Name: Test Attachment
 ---
 
 Portions of this post build on concepts introduced in [Managing Azure](/posts/130-Managing-Azure/).  
@@ -69,7 +67,7 @@ The original description of [https://github.com/Digital-Grinnell/catpaw-azure](h
 
 The `README.md` file from the _development_ branch of [https://github.com/Digital-Grinnell/catpaw-azure](https://github.com/Digital-Grinnell/catpaw-azure) explains some of the repositories' early history and it can be downloaded here:
 
-{{% attachments caption="Related Files" pattern="/*.pdf/" %}}
+{{% attachments %}}
 
 ---
 
