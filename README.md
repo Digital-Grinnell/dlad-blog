@@ -34,10 +34,7 @@ docker container run -d --name ${NAME} \
     ${IMAGE}
 ```
 
-<!--
 My `docker-bootstrap` [workflow diagram](https://github.com/McFateM/docker-bootstrap/blob/master/docker-bootstrap%20Diagram.pdf), exported as a PDF, just happens to use this blog as an example!
-
--->
 
 # Updating This Blog
 

@@ -1,6 +1,8 @@
 {{ define "main" }}
   <article>
     <h1>{{ .Title }}</h1>
+    <p style="margin-left: 20px">{{ .Site.Params.subtitle | markdownify }}</p>
+
     <ul class="posts-list">
       {{ range $index, $element := .Paginator.Pages.ByLastmod.Reverse }}
 

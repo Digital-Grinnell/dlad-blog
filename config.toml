@@ -69,11 +69,12 @@ enableEmoji = true
 
 [params]
   build = 314
+  subtitle = "_Call it **The GCDLADB** if you like._"
   # buildDate = '2021-01-26 10:43'
   author = "Mark A. McFate"
   author_email = "digital@grinnell.edu"
   location = "Grinnell College Libraries"
-  description = "Mark's first Hugo site, a blog, formerly at Static.Grinnell.edu, moved to DigitalOcean, and now hosted on Azure."
+  description = "Mark's first Hugo site, a blog, formerly on prem at Static.Grinnell.edu, moved to _DigitalOcean_, then to _Azure_, and now hosted on _GitHub Pages_."
   copyright = "The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College."
 
   [[params.social]]

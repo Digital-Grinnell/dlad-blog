@@ -7,6 +7,7 @@
   <head>
 
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} // {{ .Site.Title }}{{ end }}</title>
+   
     <meta charset="utf-8" />
     {{ hugo.Generator }}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,6 +42,7 @@
     -->
 
       <a href="{{ .Site.BaseURL }}"><img class="app-header-avatar" src="{{ "avatar.jpg" | relURL }}" alt="{{ .Site.Params.author | default "John Doe" }}" /></a>
+      
       <h2>{{ .Site.Title }}</h2>
 
       <div class="author-block">
@@ -66,7 +68,7 @@
         {{ end }}
       </nav>
 
-      <p class="site-description">{{ .Site.Params.description | default "Please provide a site params.description!" }}</p>
+      <p class="site-description">{{ (.Site.Params.description | default "Please provide a site params.description!") | markdownify }}</p>
       <div class="app-header-social">
         {{ range .Site.Params.social }}
           <a target="_blank" href="{{ .url }}">{{ partial "icon.html" (dict "ctx" $ "name" .name ) }}</a>
