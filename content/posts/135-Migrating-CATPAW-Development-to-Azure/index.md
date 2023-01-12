@@ -10,10 +10,10 @@ tags:
   - Python
   - Flask
   - VSCode
-content_updated:   
+last_modified_at: 2023-01-12 09.22 CST
 ---
 
-Portions of this post build on concepts introduced in [Managing Azure](/posts/130-Managing-Azure/).  
+Portions of this post build on concepts introduced in [Managing Azure](/posts/130-managing-azure/).  
 
 ## CATPAW - Computer-Aided Thinking, Primarily about Writing
 
@@ -69,4 +69,4 @@ The `README.md` file from the _development_ branch of [https://github.com/Digita
 
 ---
 
-I'm sure there will be more here soon, but for now... that's a wrap.
+There may be more to come, but for now... that's a wrap.

@@ -6,7 +6,8 @@ tags:
   - Hugo
   - attachments
   - page bundles
-last_modified_at:  2023-01-11T21:52:07-06:00
+  - VSCode
+last_modified_at: 2023-01-12 09.22 CST
 ---
 
 This post was written as follow-up to my [previous post](../135-migrating-catpaw-development-to-azure/) where I implemented a custom Hugo shortcode, `attachments.html`, documented in [attachments.html](#attachmentshtml) below.  The implementation of this shortcode required a Hugo [Page Bundles](https://gohugo.io/content-management/page-bundles/) content structure and the transition to such a structure is documented below in [Page Bundles Structure](#page-bundles-structure).  
@@ -39,6 +40,10 @@ done
 find ./ -iname '*.md' -execdir mv -i '{}' index.md \;
 ```
 
+## PDF Creation
+
+Before wrapping this up, it's worth mentioning that the `.pdf` attachments you see in my [previous post](../135-migrating-catpaw-development-to-azure/#attachments) were created from _Markdown_ (`.md`) files using _VSCode_.  Specifically, I installed and used the [Markdown PDF](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf) extension for _VSCode_.  It's really cool, so I suspect you'll be seeing more "attachments" in my posts now that I have it.  
+
 ---
 
-I'm sure there will be more here soon, but for now... that's a wrap.
+There will probably be more before long, but for now... that's a wrap.
