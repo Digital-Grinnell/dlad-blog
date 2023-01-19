@@ -1,0 +1,171 @@
+<!doctype html><html lang=en-us><head><title>Updating Digital.Grinnell (in Islandora) One More Time // The Grinnell College Digital Library Application Developer's Blog</title><meta charset=utf-8><meta name=generator content="Hugo 0.110.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Mark A. McFate"><meta name=description content><link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.ec5c8abc0625bee34a87b8624d3c683035583f8314d537f8d266c9f01ad58d83.css><script type=text/javascript src=https://static.grinnell.edu/dlad-blog/js/pdf-js/build/pdf.js></script><meta name=twitter:card content="summary"><meta name=twitter:title content="Updating Digital.Grinnell (in Islandora) One More Time"><meta name=twitter:description content="Digital.Grinnell&rsquo;s Islandora lifespan will most likely come to an end this year, or at least in the early part 2024. So, I&rsquo;m adopting a new, lean and mean process for updating it from this point forward. Basically the process will involve backing up the code that&rsquo;s already in place, then using drush up to upgrade the Drupal modules and core if necessary.
+That process on January 19, 2023, went something like this&mldr;
+vSphere Snapshot In case of catastrophic failure I first elected to open my VPN then a window into VMware® vSphere."><meta property="og:title" content="Updating Digital.Grinnell (in Islandora) One More Time"><meta property="og:description" content="Digital.Grinnell&rsquo;s Islandora lifespan will most likely come to an end this year, or at least in the early part 2024. So, I&rsquo;m adopting a new, lean and mean process for updating it from this point forward. Basically the process will involve backing up the code that&rsquo;s already in place, then using drush up to upgrade the Drupal modules and core if necessary.
+That process on January 19, 2023, went something like this&mldr;
+vSphere Snapshot In case of catastrophic failure I first elected to open my VPN then a window into VMware® vSphere."><meta property="og:type" content="article"><meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/137-updating-digital.grinnell-one-more-time.md/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-01-19T00:00:00+00:00"><meta property="article:modified_time" content="2023-01-19T00:00:00+00:00"></head><body><header class=app-header><a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a><h2>The Grinnell College Digital Library Application Developer's Blog</h2><div class=author-block><p class=site-rev>Compiled: Jan 19, 2023 at 5:37pm CST<br>Content Updated: 2023-Jan-19 00:00 UTC</p><div class=name>by
+<strong>Mark A. McFate</strong></div><div class=address>Grinnell College Libraries</div><div class=link><a href=mailto:></a></div><br></div><nav class=sidebar-nav><a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a></nav><p class=site-description>Mark&rsquo;s first Hugo site, a blog, formerly on prem at Static.Grinnell.edu, moved to <em>DigitalOcean</em>, then to <em>Azure</em>, and now hosted on <em>GitHub Pages</em>.</p><div class=app-header-social><a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a></div><p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p></header><main class=app-container><div class=breadcrumbs><a href=https://static.grinnell.edu/dlad-blog/>Home</a>
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/>Posts</a>
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/137-updating-digital.grinnell-one-more-time.md/>137 updating digital.grinnell one more time.md</a></div><article class=post><header class=post-header><h1 class=post-title>Updating Digital.Grinnell (in Islandora) One More Time</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>7 min read
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+Jan 19, 2023
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/digital.grinnell/>Digital.Grinnell</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/islandora/>Islandora</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/isle/>ISLE</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/drush/>drush</a></div></div></header><div class=post-content><p>Digital.Grinnell&rsquo;s Islandora lifespan will most likely come to an end this year, or at least in the early part 2024. So, I&rsquo;m adopting a new, lean and mean process for updating it from this point forward. Basically the process will involve backing up the code that&rsquo;s already in place, then using <code>drush up</code> to upgrade the Drupal modules and core if necessary.</p><p>That process on January 19, 2023, went something like this&mldr;</p><h1 id=vsphere-snapshot>vSphere Snapshot</h1><p>In case of catastrophic failure I first elected to open my VPN then a window into <a href=https://vcenter.grinnell.edu>VMware® vSphere</a>. Once inside I took a &ldquo;snapshot&rdquo; of the <em>DGDocker1</em> server to preserve as an emergency backup.</p><h1 id=backup-dgs-html-directory>Backup DG&rsquo;s <code>html</code> Directory</h1><p>Next, to safeguard the Drupal code at a module/file level I made a backup copy of the Apache container&rsquo;s <code>/var/www/html</code> directory and subdirs like so&mldr;</p><pre tabindex=0><code>╭─mcfatem@MAC02FK0XXQ05Q ~
+╰─$ ssh dgdocker1 
+... output removed for clarity ...         
+[islandora@dgdocker1 ~]$ docker exec -it isle-apache-dg bash
+root@df92a99d657a:/# cd /var/www/html
+root@df92a99d657a:/var/www/html# cp -fr . /mnt/storage/html-backup/. --verbose
+... output removed for clarity ...         
+</code></pre><h1 id=drush-up>drush up</h1><p>Next, the all-important <code>drush up</code> command, complete with unabridged output, from inside the Apache container&mldr;</p><pre tabindex=0><code>root@df92a99d657a:/var/www/html# cd /var/www/html/sites/default/
+root@df92a99d657a:/var/www/html/sites/default# drush up
+Update information last refreshed: Thu, 2023-01-19 11:15
+ Name                                           Installed Version  Proposed version  Message
+ Drupal                                         7.87               7.94              SECURITY UPDATE available
+ Views Bulk Operations (views_bulk_operations)  7.x-3.6            7.x-3.7           Update available
+ Colorbox (colorbox)                            7.x-2.15           7.x-2.17          SECURITY UPDATE available
+ Date (date)                                    7.x-2.12           7.x-2.14          Update available
+ Field Group (field_group)                      7.x-1.6            7.x-1.8           Update available
+ Link (link)                                    7.x-1.9            7.x-1.11          SECURITY UPDATE available
+ SMTP Authentication Support (smtp)             7.x-1.7            7.x-1.9           Update available
+ Views (views)                                  7.x-3.25           7.x-3.28          Update available
+
+
+NOTE: A security update for the Drupal core is available.
+Drupal core will be updated after all of the non-core projects are updated.
+
+Security and code updates will be made to the following projects: Views Bulk Operations (VBO) [views_bulk_operations-7.x-3.7], Colorbox [colorbox-7.x-2.17], Date [date-7.x-2.14], Field Group [field_group-7.x-1.8], Link [link-7.x-1.11], SMTP Authentication Support [smtp-7.x-1.9], Views (for Drupal 7) [views-7.x-3.28]
+
+Note: A backup of your project will be stored to backups directory if it is not managed by a supported version control system.
+Note: If you have made any modifications to any file that belongs to one of these projects, you will have to migrate those modifications after updating.
+Do you really want to continue with the update process? (y/n): y
+Project views_bulk_operations was updated successfully. Installed version is now 7.x-3.7.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20230119174513/modules/views_bulk_operations.                                                       [ok]
+Project colorbox was updated successfully. Installed version is now 7.x-2.17.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20230119174513/modules/colorbox.                                                                    [ok]
+Project date was updated successfully. Installed version is now 7.x-2.14.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20230119174513/modules/date.                                                                        [ok]
+Project field_group was updated successfully. Installed version is now 7.x-1.8.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20230119174513/modules/field_group.                                                                 [ok]
+Project link was updated successfully. Installed version is now 7.x-1.11.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20230119174513/modules/link.                                                                        [ok]
+Project smtp was updated successfully. Installed version is now 7.x-1.9.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20230119174513/modules/smtp.                                                                        [ok]
+Project views was updated successfully. Installed version is now 7.x-3.28.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20230119174513/modules/views.                                                                       [ok]
+
+Code updates will be made to drupal core.
+WARNING:  Updating core will discard any modifications made to Drupal core files, most noteworthy among these are .htaccess and robots.txt.  If you have made any modifications to these files, please back them up before updating so that you can re-create your modifications in the updated version of the file.
+Note: Updating core can potentially break your site. It is NOT recommended to update production sites without prior testing.
+
+Do you really want to continue? (y/n): y
+Project drupal was updated successfully. Installed version is now 7.94.
+Backups were saved into the directory /root/drush-backups/digital_grinnell/20230119174513/drupal.                                                                              [ok]
+ System  7085  Remove FLoC-blocking variable.
+ Link    7100  Rebuild the menu cache to make the settings page use the correct permission.
+ Smtp    7104  Add &#34;smtp_verify_peer&#34;, &#34;smtp_verify_peer_name&#34;, &#34;smtp_allow_self_signed&#34; variables  based on current running PHP version for most compatibility.
+Do you wish to run all pending updates? (y/n): y
+Performed update: system_update_7085                                                                                                                                           [ok]
+Performed update: link_update_7100                                                                                                                                             [ok]
+Performed update: smtp_update_7104                                                                                                                                             [ok]
+&#39;all&#39; cache was cleared.                                                                                                                                                       [success]
+Finished performing updates.                                                                                                                                                   [ok]
+root@df92a99d657a:/var/www/html/sites/default#
+</code></pre><h1 id=comparing-new-files-to-old>Comparing New Files to Old</h1><p>The process of updating Drupal <code>core</code> always introduces changes in a couple of files, namely <code>/var/www/html/.htaccess</code> and <code>/var/www/html/robots.txt</code>. It&rsquo;s prudent for check for differences and take steps to preserve critical portions of these files. In this instance that looked like this&mldr;</p><pre tabindex=0><code>root@df92a99d657a:/var/www/html/sites/default# cd ../../
+root@df92a99d657a:/var/www/html# diff .htaccess /mnt/storage/html-backup/.htaccess
+6c6
+&lt; &lt;FilesMatch &#34;\.(engine|inc|info|install|make|module|profile|test|po|sh|.*sql|theme|tpl(\.php)?|xtmpl)(~|\.sw[op]|\.bak|\.orig|\.save)?$|^(\.(?!well-known).*|Entries.*|Repository|Root|Tag|Template|composer\.(json|lock)|web\.config)$|^#.*#$|\.php(~|\.sw[op]|\.bak|\.orig|\.save)$&#34;&gt;
+---
+&gt; &lt;FilesMatch &#34;\.(engine|inc|info|install|make|module|profile|test|po|sh|.*sql|theme|tpl(\.php)?|xtmpl)(~|\.sw[op]|\.bak|\.orig|\.save)?$|^(\.(?!well-known).*|Entries.*|Repository|Root|Tag|Template|composer\.(json|lock)|web\.config)$|^#.*#$|\.php(~|\.sw[op]|\.bak|\.orig\.save)$&#34;&gt;
+116a117,127
+&gt;
+&gt;   ## The following rule lifted from https://www.drupal.org/node/38960
+&gt;   ## Implemented in April 2021 in order to redirect old object addresses of the form
+&gt;   ##   drupal/fedora/repository/grinnell:182, to a proper equivalent form like
+&gt;   ##   islandora/object/grinnell:182
+&gt;   ##
+&gt;   # custom redirects
+&gt;   RewriteRule ^drupal/fedora/repository/(.+)$ https://digital.grinnell.edu/islandora/object/$1 [R=301,L]
+&gt;   # end custom redirects
+&gt;
+&gt;
+156a168,169
+&gt;
+&gt; SetEnvIf X-Forwarded-Proto https HTTPS=on
+root@df92a99d657a:/var/www/html#
+</code></pre><p>Finding no real difference in the <code>6c6</code> block above, I elected to do this with <code>.htaccess</code>&mldr;</p><pre tabindex=0><code>root@df92a99d657a:/var/www/html#
+root@df92a99d657a:/var/www/html# mv -f .htaccess .htaccess-update-January-19-2023
+root@df92a99d657a:/var/www/html# cp -f /mnt/storage/html-backup/.htaccess .
+root@df92a99d657a:/var/www/html# diff .htaccess /mnt/storage/html-backup/.htaccess
+</code></pre><p>Likewise, looking at <code>/var/www/html/robots.txt</code> I elected to keep the old copy since no important changes had been introduced in the update. Like so&mldr;</p><pre tabindex=0><code>root@df92a99d657a:/var/www/html# diff robots.txt /mnt/storage/html-backup/robots.txt
+51a52
+&gt; Disallow: /sites/default/files/webform/
+root@df92a99d657a:/var/www/html# cp -f /mnt/storage/html-backup/robots.txt robots.txt
+root@df92a99d657a:/var/www/html# diff robots.txt /mnt/storage/html-backup/robots.txt
+</code></pre><h1 id=testing-the-update>Testing the Update</h1><p>First, a high-level look at the results&mldr;</p><pre tabindex=0><code>[islandora@dgdocker1 ~]$ cd ~/ISLE
+[islandora@dgdocker1 ISLE]$ ll
+total 12
+drwxrwxr-x.  4 islandora islandora 4096 Aug  2 15:04 DEPLOY
+drwxr-x---. 10 islandora        33 4096 Jan 19 11:51 dg-islandora
+drwxrwxr-x. 12 islandora islandora 4096 Sep 19 13:13 dg-isle
+[islandora@dgdocker1 ISLE]$ cd dg-islandora
+[islandora@dgdocker1 dg-islandora]$ ll
+total 296
+-rw-r--r--.  1 root      root   6604 Dec 14 10:08 authorize.php
+-rw-r--r--.  1 root      root 118636 Dec 14 10:08 CHANGELOG.txt
+-rw-r--r--.  1 root      root   1481 Dec 14 10:08 COPYRIGHT.txt
+-rw-r--r--.  1 root      root    720 Dec 14 10:08 cron.php
+-rw-r--r--.  1 root      root   2174 Jan 19 11:45 Digital-Grinnell-Migration-Mitigation-Script.sh
+-rw-r--r--.  1 root      root     53 Jan 19 11:45 google831161f3ec8e9a73.html
+drwxr-xr-x.  4 root      root   4096 Dec 14 10:08 includes
+-rw-r--r--.  1 root      root    529 Dec 14 10:08 index.php
+-rw-r--r--.  1 root      root   1717 Dec 14 10:08 INSTALL.mysql.txt
+-rw-r--r--.  1 root      root   1874 Dec 14 10:08 INSTALL.pgsql.txt
+-rw-r--r--.  1 root      root    722 Dec 14 10:08 install.php
+-rw-r--r--.  1 root      root   1143 Jan 19 11:45 install_solution_packs.sh
+-rw-r--r--.  1 root      root   1298 Dec 14 10:08 INSTALL.sqlite.txt
+-rw-r--r--.  1 root      root  18054 Dec 14 10:08 INSTALL.txt
+-rw-r--r--.  1 root      root  18092 Nov 16  2016 LICENSE.txt
+-rw-r--r--.  1 root      root   8522 Dec 14 10:08 MAINTAINERS.txt
+-rw-r--r--.  1 root      root   3554 Jan 19 11:45 migration_site_vsets.sh
+drwxr-xr-x.  6 root      root   4096 Dec 14 10:08 misc
+drwxr-xr-x. 42 root      root   4096 Dec 14 10:08 modules
+drwxr-xr-x.  5 root      root     66 Dec 14 10:08 profiles
+-rw-r--r--.  1 root      root   1173 Jan 19 11:45 README.md
+-rw-r--r--.  1 root      root   5382 Dec 14 10:08 README.txt
+-rw-r--r--.  1 root      root   2229 Jan 19 11:52 robots.txt
+drwxr-xr-x.  2 root      root   4096 Dec 14 10:08 scripts
+drwxr-x---.  4 islandora   33   4096 Sep 29  2021 sites
+drwxr-xr-x.  7 root      root     88 Dec 14 10:08 themes
+-rw-r--r--.  1 root      root  19890 Dec 14 10:08 update.php
+-rw-r--r--.  1 root      root  10123 Dec 14 10:08 UPGRADE.txt
+-rw-r--r--.  1 root      root   2774 Dec 14 10:08 web.config
+-rw-r--r--.  1 root      root    417 Dec 14 10:08 xmlrpc.php
+</code></pre><p>Then I brought the ISLE stack down and back up again&mldr;</p><pre tabindex=0><code>[islandora@dgdocker1 ISLE]$ cd /home/islandora/ISLE/dg-isle; docker-compose down
+Stopping isle-images-dg    ... done
+Stopping isle-apache-dg    ... done
+Stopping isle-fedora-dg    ... done
+Stopping isle-solr-dg      ... done
+Stopping isle-proxy-dg     ... done
+Stopping isle-mysql-dg     ... done
+Stopping isle-portainer-dg ... done
+Removing isle-images-dg    ... done
+Removing isle-apache-dg    ... done
+Removing isle-fedora-dg    ... done
+Removing isle-solr-dg      ... done
+Removing isle-proxy-dg     ... done
+Removing isle-mysql-dg     ... done
+Removing isle-portainer-dg ... done
+Removing network dg_isle-internal
+Removing network dg_isle-external
+[islandora@dgdocker1 dg-isle]$ cd /home/islandora/ISLE/dg-isle; docker-compose up -d
+Creating network &#34;dg_isle-internal&#34; with the default driver
+Creating network &#34;dg_isle-external&#34; with the default driver
+Creating isle-portainer-dg ... done
+Creating isle-mysql-dg     ... done
+Creating isle-proxy-dg     ... done
+Creating isle-solr-dg      ... done
+Creating isle-fedora-dg    ... done
+Creating isle-apache-dg    ... done
+Creating isle-images-dg    ... done
+[islandora@dgdocker1 dg-isle]$
+</code></pre><p>Checking on <a href=https://digital.grinnell.edu>https://digital.grinnell.edu</a> showed me that the site was &ldquo;working&rdquo;, but the theme was not properly in play. I&rsquo;ve seen this before and research showed that it was due to Drupal caching of <code>.htaccess</code> settings. Time to flush the cache, so I did that using the link provided on the Digital.Grinnell home page when one is logged in with proper administrative permissions.</p><p>The flush of the cache worked to clean up the theme, so I did a little search and facet testing to demonstrate that these operations were working, and with that I&rsquo;ll declare this update to be DONE!</p><hr><p>This probably isn&rsquo;t the last time for an Islandora update, but for now&mldr; that&rsquo;s a wrap.</p></div><div class=post-footer><div id=disqus_thread></div><script type=application/javascript>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//digital-library-applications-developer-blog.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></main></body></html>
