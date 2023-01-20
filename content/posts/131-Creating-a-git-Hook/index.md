@@ -8,7 +8,7 @@ tags:
   - last_modified_at
   - pre-commit
   - clean
-last_modified_at: 2023-01-20 13.49 CST
+last_modified_at: 2023-01-20T20:20:24
 ---
 
 I recently created [Hugo Front Matter Tools](https://github.com/Digital-Grinnell/hugo-front-matter-tools) which is described as...
@@ -196,7 +196,7 @@ git version 2.39.1
 ╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*›  
 ╰─$ **mv -f .git/hooks/pre-commit ~/gitconfig/hooks/.**  
 ╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*›   
-╰─$ **git config --global --edit**  
+╰─$ **git config \-\-global \-\-edit**  
 ╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*›  
 ╰─$ cd ~; pwd  
 /Users/mark  
