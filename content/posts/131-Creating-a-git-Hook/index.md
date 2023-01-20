@@ -8,7 +8,7 @@ tags:
   - last_modified_at
   - pre-commit
   - clean
-last_modified_at: 2023-01-20 13.31 CST
+last_modified_at: 2023-01-20 13.49 CST
 ---
 
 I recently created [Hugo Front Matter Tools](https://github.com/Digital-Grinnell/hugo-front-matter-tools) which is described as...
@@ -192,18 +192,21 @@ My relevant command history...
 ╰─$ git --version  
 git version 2.39.1  
 ╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*›  
-╰─$ mkdir -p ~/gitconfig/hooks   
+╰─$ **mkdir -p ~/gitconfig/hooks**  
 ╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*›  
-╰─$ mv -f .git/hooks/pre-commit ~/gitconfig/hooks/.  
+╰─$ **mv -f .git/hooks/pre-commit ~/gitconfig/hooks/.**  
 ╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*›   
-╰─$ git config --global --edit  
+╰─$ **git config --global --edit**  
+╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*›  
+╰─$ cd ~; pwd  
+/Users/mark  
 {{% /code %}}
 
-The last command above opened my global git configuration file, `/Users/mark/.gitconfig` in `nano` where I added this line to the `[core]` section:  
+The last `git` command above opened my global git configuration file, `/Users/mark/.gitconfig` in `nano`, where I added this line to the `[core]` section:  
 
   - `hooksPath = /Users/mark/gitconfig/hooks`
 
-Now it's time to commit all these changes to see if my new global git config works. :drum:  **Yup!** the frontmatter at the top of this `.md` file just changed to read `last_modified_at: 2023-01-20 13.29 CST`.  Bingo!  
+Now it's time to commit all these changes to see if my new global git config works. :drum:  **Yup!**  The frontmatter at the top of this `.md` file just changed to include the current date/time: `last_modified_at: 2023-01-20 13.29 CST`.  Bingo!  
 
 ---
 
