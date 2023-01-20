@@ -8,7 +8,7 @@ tags:
   - last_modified_at
   - pre-commit
   - clean
-last_modified_at: 2023-01-20 13.29 CST
+last_modified_at: 2023-01-20 13.31 CST
 ---
 
 I recently created [Hugo Front Matter Tools](https://github.com/Digital-Grinnell/hugo-front-matter-tools) which is described as...
@@ -203,8 +203,8 @@ The last command above opened my global git configuration file, `/Users/mark/.gi
 
   - `hooksPath = /Users/mark/gitconfig/hooks`
 
-Now it's time to commit all these changes to see if my new global git config works...  
+Now it's time to commit all these changes to see if my new global git config works. :drum:  **Yup!** the frontmatter at the top of this `.md` file just changed to read `last_modified_at: 2023-01-20 13.29 CST`.  Bingo!  
 
 ---
 
-I'm sure there will be more here soon, but for now... that's a wrap.
+There might be more to learn here, but for now... that's a wrap.  
