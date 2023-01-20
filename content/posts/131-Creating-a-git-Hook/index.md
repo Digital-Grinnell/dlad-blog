@@ -8,7 +8,7 @@ tags:
   - last_modified_at
   - pre-commit
   - clean
-last_modified_at: 2022-10-27 12.25 CDT
+last_modified_at: 2023-01-20 13.29 CST
 ---
 
 I recently created [Hugo Front Matter Tools](https://github.com/Digital-Grinnell/hugo-front-matter-tools) which is described as...
@@ -164,6 +164,46 @@ Notice also that this format does not include ANY colons (I'm using a `.` betwee
 :drum:  **It works!**
 
 In fact, it works so well that I'm keeping a copy of the `pre-commit` script [here](https://github.com/Digital-Grinnell/dlad-blog) in this blog's repo.
+
+# Now I Need An Install Script
+
+The `pre-commit` script works exceptionally well, but since it lives in each project's `/.git/hooks` directory, one that is NEVER pushed to the project's remote, it would be nice to have a semi-automatic way of creating it in a repo.  
+
+This notion got me wondering... is there already a suitable "git hook manager" (that is the phrase I Googled) that I can use for this?  Yes, I beleive there might very well be one based on these results from my Google search:
+
+  - https://github.com/aitemr/awesome-git-hooks - Just a list of cool hooks.  
+  - https://github.com/evilmartians/lefthook - Interesting, but perhaps more than I need?  
+  - https://pre-commit.com/ - Also interesting, but again it's perhaps too much.  
+  - https://stackoverflow.com/questions/427207/can-git-hook-scripts-be-managed-along-with-the-repository - A great discussion!
+  - https://githooks.com/ - The discussion above led me here, and from here, anything seems possible!
+  - https://github.com/sds/overcommit - Nice, but again, too complex.  
+  - https://github.com/boddenberg-it/.githooker - Maybe, but I found the sparse documentation a little confusing.
+
+  - https://medium.com/@ripoche.b/using-global-pre-commit-hook-to-prevent-committing-unwanted-code-edbbf957ad12 - **My choice because it's relatively simple with no unnecessary dependencies.**  See below.  
+
+# Implementing a Global Pre-Commit Hook
+
+Here we go, at 2023-01-20T13:13:17-06:00 I embarked on an effort to implement portions of [Using global pre-commit hook to prevent committing unwanted code](https://medium.com/@ripoche.b/using-global-pre-commit-hook-to-prevent-committing-unwanted-code-edbbf957ad12) on my Mac Mini in this [dlad-blog](https://github.com/Digital-Grinnell/dlad-blog) project using my existing `pre-commit` hook.   
+
+My relevant command history...  
+
+{{% code %}}
+╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*›  
+╰─$ git --version  
+git version 2.39.1  
+╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*›  
+╰─$ mkdir -p ~/gitconfig/hooks   
+╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*›  
+╰─$ mv -f .git/hooks/pre-commit ~/gitconfig/hooks/.  
+╭─mark@Marks-Mac-Mini ~/GitHub/dlad-blog ‹main*›   
+╰─$ git config --global --edit  
+{{% /code %}}
+
+The last command above opened my global git configuration file, `/Users/mark/.gitconfig` in `nano` where I added this line to the `[core]` section:  
+
+  - `hooksPath = /Users/mark/gitconfig/hooks`
+
+Now it's time to commit all these changes to see if my new global git config works...  
 
 ---
 
