@@ -42,7 +42,7 @@
       {{ $superseded := .Params.superseded_by | urlize }}
       {{ if $superseded }}
         <div class="annotation">
-          <p style="font-size:1.75em;">
+          <p style="font-size:1.6em;">
             <strong>Attention</strong>: This post has been superseded by <strong><a href="/{{ $superseded }}/"> {{ $superseded }}</a></strong>.
           </p>
         </div>
@@ -51,7 +51,7 @@
       {{ $supersed := .Params.supersedes | urlize }}
       {{ if $supersed }}
         <div class="annotation">
-          <p style="font-size:1.75em;">
+          <p style="font-size:1.6em;">
             <strong>Attention</strong>: This post supersedes <strong><a href="/{{ $supersed }}/"> {{ $supersed }}</a></strong>.
           </p>
         </div>
