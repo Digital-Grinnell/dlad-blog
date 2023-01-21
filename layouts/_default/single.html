@@ -22,7 +22,7 @@
           {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
           {{ .PublishDate.Format "Jan 2, 2006" }}
           {{ if $mod.After $pub }}
-            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: {{ $mod.Format "Jan 2, 2006" }}
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: {{ $mod.Format "Jan 2, 2006 15:04" }}
           {{ end }}  
           {{ if $.Param "author" }}
             &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong>{{ partial "icon.html" (dict "ctx" $ "name" "at-sign") }} {{ $.Param "author" }}</strong>

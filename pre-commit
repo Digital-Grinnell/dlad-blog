@@ -1,9 +1,9 @@
-# Contents of .git/hooks/pre-commit
+# Contents of ~/gitconfig/hooks/pre-commit
 # Replace `last_modified_at` timestamp with current time in the specified TZ for .md edits only
-# Note that this file should exist in your local as `.git/hooks/pre-commit` and the file must be executable!
+# Note that this file should exist on your workstation as `~/gitconfig/hooks/pre-commit` and the file must be executable!
 
 git diff --cached --name-status | egrep -i "^(A|M).*\.(md)$" | while read a b; do
-  cat $b | sed "/---.*/,/---.*/s/^last_modified_at:.*$/last_modified_at: $(TZ=CST6CDT date "+%F %H.%M %Z")/" > tmp
+  cat $b | sed "/---.*/,/---.*/s/^last_modified_at:.*$/last_modified_at: $(TZ=CST6CDT date "+%Y-%m-%dT%H:%M:%S")/" > tmp
   mv tmp $b
   git add $b
 done 
