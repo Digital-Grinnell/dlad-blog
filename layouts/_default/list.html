@@ -23,8 +23,14 @@
             <!-- <p> -->
               → <a target="_blank" rel="remote-article" href="{{ .Params.externalurl }}">{{ printf "OneTab: %s" .Title }}</a> <!-- <a href="{{ .Permalink }}"></a> -->
               <!-- <span class="postmeta"> -->
+              {{ $mod := .Lastmod }}
+              {{ if .Params.last_modified_at }}
+                {{ partial "console-log" .Params.last_modified_at }}
+                {{ $mod = time .Params.last_modified_at }}
+              {{ end }}  
+              {{ partial "console-log" $mod }}
               <span class="posts-list-item-description">
-                &nbsp;&nbsp;&nbsp;&nbsp;Updated: {{ .Lastmod.Format "Monday, 02 Jan 2006 15:04:05" }}
+                &nbsp;&nbsp;&nbsp;&nbsp;Updated: {{ $mod.Format "Monday, 02 Jan 2006 15:04:05" }}
                 {{ if isSet .Params "hostname" }}
                   from {{ .Params.hostname }}
                 {{ end }}
@@ -38,11 +44,17 @@
           <span class="posts-list-item-description">
             {{ $pub := .PublishDate.AddDate 0 0 1 }}
             {{ $mod := .Lastmod }}
+            {{ if .Params.last_modified_at }}
+              {{ partial "console-log" .Params.last_modified_at }}
+              {{ $mod = time .Params.last_modified_at }}
+            {{ end }}  
+            {{ partial "console-log" $mod }}
+
             {{ $superseded := .Params.superseded_by | urlize }}
             {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}&nbsp;{{ .ReadingTime }} min read &nbsp;
             {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }} {{ .PublishDate.Format "Jan 2, 2006" }}
             {{ if $mod.After $pub }}
-              &nbsp;&nbsp;|&nbsp;&nbsp;Updated: {{ .Lastmod.Format "Jan 2, 2006 - 15:04" }}
+              &nbsp;&nbsp;|&nbsp;&nbsp;Updated: {{ $mod.Format "Jan 2, 2006" }}
             {{ end }}
             {{ if $superseded }}
               &nbsp;&nbsp;<strong>{{ partial "icon.html" (dict "ctx" $ "name" "at-sign") }}Superseded by {{ $superseded }}</strong>

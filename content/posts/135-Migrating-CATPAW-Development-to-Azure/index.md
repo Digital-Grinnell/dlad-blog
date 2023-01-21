@@ -10,7 +10,7 @@ tags:
   - Python
   - Flask
   - VSCode
-last_modified_at: 2023-01-12 12.45 CST
+last_modified_at: 2023-01-12T18:45:00
 ---
 
 Portions of this post build on concepts introduced in [Managing Azure](/posts/130-managing-azure/).  

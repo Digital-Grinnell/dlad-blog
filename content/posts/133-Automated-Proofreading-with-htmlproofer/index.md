@@ -1,7 +1,7 @@
 ---
 title: "Automated Proofreading with `htmlproofer`"
 publishdate: 2022-11-08
-last_modified_at: 2022-11-11 14.32 CST
+last_modified_at: 2022-11-11T20:32:00
 draft: false
 tags:
   - Rootstalk

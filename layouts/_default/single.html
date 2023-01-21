@@ -5,7 +5,15 @@
       <div class="post-meta">
 
         {{ $pub := .PublishDate.AddDate 0 0 1 }}
+        {{ partial "console-log" $pub }}
+
         {{ $mod := .Lastmod }}
+        {{ partial "console-log" .Lastmod }}
+
+        {{ if .Params.last_modified_at }}
+          {{ $mod = time .Params.last_modified_at }}
+          {{ partial "console-log" $mod }}
+        {{ end }}  
 
         <div>
           {{ partial "icon.html" (dict "ctx" $ "name" "clock") }}
@@ -14,8 +22,8 @@
           {{ partial "icon.html" (dict "ctx" $ "name" "calendar") }}
           {{ .PublishDate.Format "Jan 2, 2006" }}
           {{ if $mod.After $pub }}
-            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: {{ .Lastmod.Format "Jan 2, 2006 - 15:04" }}
-          {{ end }}
+            &nbsp;&nbsp;&bullet;&nbsp;&nbsp;Updated: {{ $mod.Format "Jan 2, 2006" }}
+          {{ end }}  
           {{ if $.Param "author" }}
             &nbsp;&nbsp;&bullet;&nbsp;&nbsp;<strong>{{ partial "icon.html" (dict "ctx" $ "name" "at-sign") }} {{ $.Param "author" }}</strong>
           {{ end }}
