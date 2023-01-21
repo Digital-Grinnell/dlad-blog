@@ -7,7 +7,7 @@ tags:
   - Islandora
   - ISLE
   - drush
-last_modified_at: 2023-01-12T15:25:00 
+last_modified_at: 2023-01-20 19.06 CST
 ---
 
 Digital.Grinnell's Islandora lifespan will most likely come to an end this year, or at least in the early part 2024.  So, I'm adopting a new, lean and mean process for updating it from this point forward.  Basically the process will involve backing up the code that's already in place, then using `drush up` to upgrade the Drupal modules and core if necessary.  
@@ -219,9 +219,9 @@ Creating isle-images-dg    ... done
 [islandora@dgdocker1 dg-isle]$
 ```
 
-Checking on [https://digital.grinnell.edu](https://digital.grinnell.edu) showed me that the site was "working", but the theme was not properly in play.  I've seen this before and research showed that it was due to Drupal caching of `.htaccess` settings.  Time to flush the cache, so I did that using the link provided on the Digital.Grinnell home page when one is logged in with proper administrative permissions.  
+Checking on [https://digital.grinnell.edu](https://digital.grinnell.edu) showed me that the site was "working", but the theme was not properly in play.  I've seen this before and research showed that it was due to Drupal caching of `.htaccess` settings.  Time to flush the cache, so I did that using the link provided on the Digital.Grinnell home page when one is logged in with proper admin permissions.  
 
-The flush of the cache worked to clean up the theme, so I did a little search and facet testing to demonstrate that these operations were working, and with that I'll declare this update to be DONE!  
+The flush of the cache worked to clean up the theme, so I did a little search and facet testing to demonstrate that these operations were working, and with that I'll declare this update to be DONE!   
 
 ---
 
