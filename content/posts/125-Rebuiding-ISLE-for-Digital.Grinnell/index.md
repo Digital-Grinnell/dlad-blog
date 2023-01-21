@@ -5,8 +5,8 @@ draft: false
 tags:
   - ISLE
   - Digital.Grinnell
-superseded_by: posts/137-updating-digital.grinnell-one-more-time
-last_modified_at: 2023-01-20T22:09:41
+superseded_by: posts/137-updating-digital.grinnell-one-more-time.md
+last_modified_at: 2023-01-20T22:26:37
 ---
 
 This blog post will be used to chronicle a process I'm using to rebuild _Digital.Grinnell_ in _Legacy Islandora_ using [ISLE](https://github.com/Islandora-Collaboration-Group/ISLE).  This process was triggered by ITS' intent to move DG's FEDORA repository to a new server.  That new server is currently mounted on node _DGDockerX_, my staging server, as `/mnt/datastage` and it contains a copy of DG's production FEDORA repository made on or about June 15, 2020.
