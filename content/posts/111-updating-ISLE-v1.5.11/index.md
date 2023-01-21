@@ -8,6 +8,8 @@ tags:
   - update
   - v1.5.11
 supersedes: posts/107-updating-Digital-Grinnell-in-ISLE
+superseded_by: posts/137-updating-digital.grinnell-one-more-time
+last_modified_at: 2023-01-20T22:09:41
 ---
 
 {{% annotation %}}
