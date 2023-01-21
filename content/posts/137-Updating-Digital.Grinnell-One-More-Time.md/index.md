@@ -7,8 +7,8 @@ tags:
   - Islandora
   - ISLE
   - drush
-last_modified_at: 2023-01-20T22:26:37
-supersedes: posts/125-rebuiding-isle-for-digital.grinnell.md
+last_modified_at: 2023-01-20T22:33:36
+supersedes: posts/125-rebuiding-isle-for-digital.grinnell
 ---
 
 Digital.Grinnell's Islandora lifespan will most likely come to an end this year, or at least in the early part 2024.  So, I'm adopting a new, lean and mean process for updating it from this point forward.  Basically the process will involve backing up the code that's already in place, then using `drush up` to upgrade the Drupal modules and core if necessary.  
