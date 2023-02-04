@@ -1,7 +1,7 @@
 ---
 title: Creating Better Documentation
 publishDate: 2023-02-04T10:36:03-06:00
-last_modified_at: 2023-02-04T11:29:17
+last_modified_at: 2023-02-04T15:14:04
 draft: false
 description: A new approach to creating better documentation here.
 tags:
@@ -25,9 +25,41 @@ Embedding a raw `.mov` file into my documenation is possible, but more often tha
 
 The aformentioned Python code repository was forked from [github.com/anas-899/convert_videos_to_frames](https://github.com/anas-899/convert_videos_to_frames), and I made very few changes to that excellent starting point.  Honestly, all that I did was apply my preferred Python project process, namely [Proper Python](https://blog.summittdweller.com/posts/2022/09/proper-python/).  
 
-I used the tool to post-process the dynamic screen capture made while building this post.  Some of the images generated from that screen capture appear below, with a bit of explanation.  
+I used the tool to post-process the dynamic screen capture made while building portions of this post.  Some of the images generated from that screen capture may appear below, with a bit of explanation.  
 
-{{% figure title="Referencing a Documentation Image" src="https://sddocs.blob.core.windows.net/documentation/Creating-Azure-Static-Web-App%2F1030.png" %}}
+## Conversion Workflow
+
+This section will walk us through the workflow I've developed for turing a `.mov` into images, and then into _figure_ markdown like this example:
+
+```
+{{% figure title="Rename the Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F0.png" %}}
+```
+
+### 1) Rename the Screen Capture
+
+The first step is to change the screen capture `.mov` filename to something memorable as shown in the next two figures.  
+
+{{% figure title="Rename the Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F0.png" %}}
+
+{{% figure title="The Renamed Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F1.png" %}}
+
+### 2) Drag the Renamed `.mov` Into VSCode
+
+Drag the renamed `.mov` file into the _VSCode_ window and the _convert_to_video_frames_ project window as shown below.  
+
+{{% figure title="The Renamed Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F2.png" %}}
+
+### 3) Run the `main.py` Script
+
+Running the `main.py` script using a command of the form shown below processes the specified `.mov` file to create a large number of `.png` image frames.  The images are saved in a directory with the same name as the `.mov` file as shown in the figure below.  
+
+{{% figure title="Running the `main.py` Script" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F5.png" %}}
+
+
+
+
+
+
 
 
 
