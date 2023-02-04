@@ -1,7 +1,7 @@
 ---
 title: Creating Better Documentation
 publishDate: 2023-02-04T10:36:03-06:00
-last_modified_at: 2023-02-04T15:20:48
+last_modified_at: 2023-02-04T15:33:00
 draft: false
 description: A new approach to creating better documentation here.
 tags:
@@ -62,4 +62,42 @@ python main.py -p "Creating-Azure-Static-Web-App.mov" -r 50 -s ".png"
 ```
 
 That command syntax is documented in the [convert one video](https://github.com/SummittDweller/convert_videos_to_frames#convert-one-video) section of the _convert\_video\_to\_frames_ project `README.md` file.    
+
+### 4) Delete Unnecessary Images and Add Annotations in VSCode
+
+My configuration of _VSCode_ is equipped with a simple image editor extension, so in the next step in my workflow I use that extension to browse through the images.  While browsing I delete any images that I don't need.  I frequently add simple annotations -- like the red boxes and lines seen in the previous figure -- to those images I want to use.  
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F8.png" %}}  
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F13.png" %}}  
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F15.png" %}} 
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F16.png" %}} 
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F17.png" %}} 
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F18.png" %}} 
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F19.png" %}} 
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F24.png" %}} 
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F32.png" %}} 
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F170.png" %}}  
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F180.png" %}}  
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F189.png" %}}  
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F208.png" %}}
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F229.png" %}}
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F259.png" %}}  
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F264.png" %}}  
+
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F675.png" %}}  
 
