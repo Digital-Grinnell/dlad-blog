@@ -1,7 +1,7 @@
 ---
 title: Creating Better Documentation
 publishDate: 2023-02-04T10:36:03-06:00
-last_modified_at: 2023-02-04T15:14:04
+last_modified_at: 2023-02-04T15:20:48
 draft: false
 description: A new approach to creating better documentation here.
 tags:
@@ -29,44 +29,37 @@ I used the tool to post-process the dynamic screen capture made while building p
 
 ## Conversion Workflow
 
-This section will walk us through the workflow I've developed for turing a `.mov` into images, and then into _figure_ markdown like this example:
+This section will walk us through the workflow I've developed for turing a `.mov` into images, and then into _figure_ markdown like this example:  
 
 ```
 {{% figure title="Rename the Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F0.png" %}}
 ```
 
-### 1) Rename the Screen Capture
+### 1) Rename the Screen Capture  
 
 The first step is to change the screen capture `.mov` filename to something memorable as shown in the next two figures.  
 
-{{% figure title="Rename the Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F0.png" %}}
+{{% figure title="Rename the Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F0.png" %}}  
 
-{{% figure title="The Renamed Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F1.png" %}}
+{{% figure title="The Renamed Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F1.png" %}}  
 
-### 2) Drag the Renamed `.mov` Into VSCode
+### 2) Drag the Renamed `.mov` Into VSCode  
 
 Drag the renamed `.mov` file into the _VSCode_ window and the _convert_to_video_frames_ project window as shown below.  
 
-{{% figure title="The Renamed Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F2.png" %}}
+{{% figure title="The Renamed Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F2.png" %}}  
 
-### 3) Run the `main.py` Script
+### 3) Run the `main.py` Script  
 
 Running the `main.py` script using a command of the form shown below processes the specified `.mov` file to create a large number of `.png` image frames.  The images are saved in a directory with the same name as the `.mov` file as shown in the figure below.  
 
-{{% figure title="Running the `main.py` Script" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F5.png" %}}
+{{% figure title="Running the `main.py` Script" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F5.png" %}}  
 
-
-
-
-
-
-
-
-
+The command used in the above figure was:  
 
 ```
-(.venv) ╭─mark@Marks-Mac-Mini ~/GitHub/convert_videos_to_frames ‹main*› 
-╰─$ python main.py -p "Screen-Recording-01.mov" -r 20 -s ".png"                                
-processing:Screen-Recording-01.mov
-Screen-Recording-01/
+python main.py -p "Creating-Azure-Static-Web-App.mov" -r 50 -s ".png"  
 ```
+
+That command syntax is documented in the [convert one video](https://github.com/SummittDweller/convert_videos_to_frames#convert-one-video) section of the _convert\_video\_to\_frames_ project `README.md` file.    
+
