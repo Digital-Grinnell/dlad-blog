@@ -1,12 +1,15 @@
 ---
 title: Creating Better Documentation
 publishDate: 2023-02-04T10:36:03-06:00
-last_modified_at: 2023-02-04T20:33:36
+last_modified_at: 2023-02-04T21:21:23
 draft: false
 description: A new approach to creating better documentation here.
 tags:
   - documentation
   - Azure
+azure: 
+  dir: https://sddocs.blob.core.windows.net/documentation/
+  subdir: Better-Documentation  
 ---
 
 # We Need More <strike>Cow Bell</strike> Screen Capture!
@@ -40,6 +43,8 @@ This section will walk us through the workflow I've developed for turing a `.mov
 The first step is to change the screen capture `.mov` filename to something memorable as shown in the next two figures.  
 
 {{% figure title="Rename the Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0000.png" %}}  
+
+{{% figure title='Rename the Screen Capture' src='{{ .Params.azure.dir }}/{{ .Params.azure.subdir }}/0000.png %}}  
 
 {{% figure title="The Renamed Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0001.png" %}}  
 
