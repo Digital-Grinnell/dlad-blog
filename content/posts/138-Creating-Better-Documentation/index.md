@@ -1,7 +1,7 @@
 ---
 title: Creating Better Documentation
 publishDate: 2023-02-04T10:36:03-06:00
-last_modified_at: 2023-02-04T21:21:23
+last_modified_at: 2023-02-04T22:29:52
 draft: false
 description: A new approach to creating better documentation here.
 tags:
@@ -20,7 +20,9 @@ On a recent project I found myself following some development guidance provided 
 
 On my Mac I frequently use the `command - shift - 5` key sequence to launch _dynamic_ -- think movie, not image -- screen capture.  I did just that moments ago, so some of what you'll see below is a result of that maneuver.  :smile:  
 
-So, now when I begin a new bit of development I use `command - shift - 5` to open a capture control like you see in the image below, and I capture every keystroke, command, and click as I work.  When finished I use `command - shift - 5` again to re-open the control, click `stop` (the square block control), and presto, I have a new `.mov` file captured and ready for edting.  
+So, now when I begin a new bit of development I use `command - shift - 5` to open a capture control like you see in the image below, and I capture every keystroke, command, and click as I work.  When finished I use `command - shift - 5` again to re-open the control, click `stop` (the square block control shown in the figure below), and presto, I have a new `.mov` file captured and ready for edting.  
+
+{{% figure title="Use `Command - Shift - 5 to Stop Recording" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0675.png" %}}  
 
 # Convert Videos to Frames
 
@@ -38,13 +40,17 @@ This section will walk us through the workflow I've developed for turing a `.mov
 {{% figure title="Rename the Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0000.png" %}}
 ```
 
+{{% box %}}
+Note that while composing this document I found it's best if image files have zero-padded numeric names, so `123.png` should be `0123.png`.  This helps keep the images in numerical order everywhere.
+
+Some screen images in this document still appear in the old, unpadded naming convention.  
+{{% /box %}}  
+
 ### 1) Rename the Screen Capture  
 
 The first step is to change the screen capture `.mov` filename to something memorable as shown in the next two figures.  
 
 {{% figure title="Rename the Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0000.png" %}}  
-
-{{% figure title='Rename the Screen Capture' src='{{ .Params.azure.dir }}/{{ .Params.azure.subdir }}/0000.png %}}  
 
 {{% figure title="The Renamed Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0001.png" %}}  
 
@@ -72,27 +78,56 @@ That command syntax is documented in the [convert one video](https://github.com/
 
 My configuration of _VSCode_ is equipped with a simple image editor extension, so in the next step in my workflow I use that extension to browse through the images.  While browsing I delete any images that I don't need.  I frequently add simple annotations -- like the red boxes and lines seen in the previous figure -- to those images I want to use.  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0008.png" %}}  
+Sorry, I didn't capture any screen images from this culling and annotation process. :frowning:  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0013.png" %}}  
+### 5) Upload Necessary Images to Azure Storage
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0015.png" %}} 
+Lots of `.png` images should not be pushed to _GitHub_, so I typically push the images to _Azure Storage_ and reference them in _figure_ shortcodes like the one shown above in _Conversion Workflow_.  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0016.png" %}} 
+I've established a procedure that works nicely for adding a directory of images to _Azure Storage_.  It looks something like this:
+
+- In _VSCode_ navigate to the directory containing necessary images, right-click on that directory name, and choose `Upload to Azure Storage...` from the pop-up menu as illustrated in the figure below.
+
+{{% figure title="Right Click on the Directory and Choose Azure" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0008.png" %}}  
+
+- Again in _VSCode_, choose a _Storage Account_ -- this is usually `sddocs` for me -- from the drop-down list that appears at the top of the window.
+
+{{% figure title="Choose a Storage Account" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0013.png" %}}  
+
+- In the `Select resource type` drop-down at the top of the window, select `Blob Containers` as illustrated below.  
+
+{{% figure title="Select Blob Containers Resource Type" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0015.png" %}} 
+
+- Next, choose a _Blob Container_ -- this is usually `documentation` for me -- from the `Select Blob Container` drop-down list that appears at the top of the window as illustrated below.
+
+{{% figure title="Choose a Blob Container" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0016.png" %}} 
  
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0019.png" %}}  
+- In the `Enter the destination directory...` leave the `/` and press `Enter` to select it as illustrated below.  This will preserve the name of your selected local directory in _Azure Storage_.    
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0032.png" %}} 
+{{% figure title="Enter the Destination Directory" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0019.png" %}}  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0170.png" %}}  
+- The `Azure: Activity Log` screen in _VSCode_ should now reflect the status of the upload, and a pop-up message may appear in the lower-right corner of the window as illustrated below.  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0189.png" %}}  
+{{% figure title="Check the Azure Activity Log" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0032.png" %}} 
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0208.png" %}}
+- When the upload is complete the `Azure: Activity Log` screen in _VSCode_ should indicate this as will the pop-up message in the lower-right corner of the window.    
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0259.png" %}}  
+{{% figure title="Upload is Complete" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0060.png" %}}  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0264.png" %}}  
+- You can check the upload status using the `Azure` extension on the left side of the _VSCode_ window.  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0675.png" %}}  
+{{% figure title="Check the Upload Using the Azure Extension" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0170.png" %}}  
+
+- In the `Azure` extension navigation pane expand the `Resources` element, the subordinate `subscription` element, the `Storage accounts` element, and `Blob Container` + directory structure to find the destination directory.    
+
+{{% figure title="Select the Destination Directory" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0189.png" %}}  
+
+- You should be able to navigate and find the uploaded files to confirm that the upload was a success.  
+
+{{% figure title="Verifying the Upload" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0208.png" %}}
+
+- If needed, you can retrieve the URL of the _Azure_ resource by right-clicking on the filename and choosing the `Copy URL` element in the drop-down.  
+
+{{% figure title="Copy An Image's URL" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0229.png" %}}  
+
 
