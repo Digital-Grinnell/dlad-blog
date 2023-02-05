@@ -1,7 +1,7 @@
 ---
 title: Creating Better Documentation
 publishDate: 2023-02-04T10:36:03-06:00
-last_modified_at: 2023-02-04T15:33:00
+last_modified_at: 2023-02-04T20:33:36
 draft: false
 description: A new approach to creating better documentation here.
 tags:
@@ -32,28 +32,28 @@ I used the tool to post-process the dynamic screen capture made while building p
 This section will walk us through the workflow I've developed for turing a `.mov` into images, and then into _figure_ markdown like this example:  
 
 ```
-{{% figure title="Rename the Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F0.png" %}}
+{{% figure title="Rename the Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0000.png" %}}
 ```
 
 ### 1) Rename the Screen Capture  
 
 The first step is to change the screen capture `.mov` filename to something memorable as shown in the next two figures.  
 
-{{% figure title="Rename the Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F0.png" %}}  
+{{% figure title="Rename the Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0000.png" %}}  
 
-{{% figure title="The Renamed Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F1.png" %}}  
+{{% figure title="The Renamed Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0001.png" %}}  
 
 ### 2) Drag the Renamed `.mov` Into VSCode  
 
 Drag the renamed `.mov` file into the _VSCode_ window and the _convert_to_video_frames_ project window as shown below.  
 
-{{% figure title="The Renamed Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F2.png" %}}  
+{{% figure title="The Renamed Screen Capture" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0002.png" %}}  
 
 ### 3) Run the `main.py` Script  
 
 Running the `main.py` script using a command of the form shown below processes the specified `.mov` file to create a large number of `.png` image frames.  The images are saved in a directory with the same name as the `.mov` file as shown in the figure below.  
 
-{{% figure title="Running the `main.py` Script" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F5.png" %}}  
+{{% figure title="Running the `main.py` Script" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0005.png" %}}  
 
 The command used in the above figure was:  
 
@@ -67,37 +67,27 @@ That command syntax is documented in the [convert one video](https://github.com/
 
 My configuration of _VSCode_ is equipped with a simple image editor extension, so in the next step in my workflow I use that extension to browse through the images.  While browsing I delete any images that I don't need.  I frequently add simple annotations -- like the red boxes and lines seen in the previous figure -- to those images I want to use.  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F8.png" %}}  
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0008.png" %}}  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F13.png" %}}  
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0013.png" %}}  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F15.png" %}} 
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0015.png" %}} 
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F16.png" %}} 
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0016.png" %}} 
+ 
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0019.png" %}}  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F17.png" %}} 
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0032.png" %}} 
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F18.png" %}} 
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0170.png" %}}  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F19.png" %}} 
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0189.png" %}}  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F24.png" %}} 
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0208.png" %}}
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F32.png" %}} 
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0259.png" %}}  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F170.png" %}}  
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0264.png" %}}  
 
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F180.png" %}}  
-
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F189.png" %}}  
-
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F208.png" %}}
-
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F229.png" %}}
-
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F259.png" %}}  
-
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F264.png" %}}  
-
-{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation%2F675.png" %}}  
+{{% figure title="Needs a Title" src="https://sddocs.blob.core.windows.net/documentation/Better-Documentation/0675.png" %}}  
 
