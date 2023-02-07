@@ -1,7 +1,7 @@
 ---
 title: Gating My Content & More - Parts 1 and 2
 publishDate: 2023-02-06T18:19:53-06:00
-last_modified_at: 2023-02-06T20:22:30
+last_modified_at: 2023-02-07T15:56:40
 draft: false
 description: My second attempt at gating content in Wieting.TamaToledo.com, sort of.
 tags:
@@ -26,11 +26,15 @@ It's a new month, February 2023 that is, and this the first part of follow-up to
 
 I call this a "blended" approach because it will, at least initially, leverage and blend guidance and elements from many of the resources I've captured at https://www.one-tab.com/page/uZbS4FxhQeCpAdmpNjnHAw.  
 
+{{% box %}}
+This post originally documented the creation of an _11ty_ site based on the [NEAT Starter Template](https://github.com/surjithctly/neat-starter), and most of the illustrations here include references to it.  However, after the _11ty_ site was created I found a starter tutorial and site template better suited to my needs.  So, I have a [new OneTab page](https://www.one-tab.com/page/6DzScWRTSkaO5xr7YGC2Hg) which includes [A Deep Dive Into Eleventy Static Site Generator](https://www.smashingmagazine.com/2021/03/eleventy-static-site-generator/) with an associated starter/template that I'll be using in place of the [NEAT Starter Template](https://github.com/surjithctly/neat-starter).  
+{{% /box %}}
+
 ## Features
 
 As you'll see in the [OneTab](https://www.one-tab.com/) page listed above, the new site will feature:  
 
-  1)  An [11ty](https://www.11ty.dev/) site following this [NEAT Starter Template](https://github.com/surjithctly/neat-starter), 
+  1)  An [11ty](https://www.11ty.dev/) site following ~this [NEAT Starter Template](https://github.com/surjithctly/neat-starter)~ [A Deep Dive Into Eleventy Static Site Generator](https://www.smashingmagazine.com/2021/03/eleventy-static-site-generator/),
   2)  Deployed as an [Azure Static Web App](https://azure.microsoft.com/en-us/products/app-service/static),
   3)  Using [StatiCrypt CLI](https://robinmoisson.github.io/staticrypt/) to protect pages,
   4)  From a [GitHub Action](https://github.com/Jack-alope/staticrypt-github-actions/blob/main/.github/workflows/encrypt.yml), and
