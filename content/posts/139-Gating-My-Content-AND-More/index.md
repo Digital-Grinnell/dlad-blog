@@ -1,7 +1,7 @@
 ---
 title: Gating My Content & More - Parts 1 and 2
 publishDate: 2023-02-06T18:19:53-06:00
-last_modified_at: 2023-02-08T20:48:19
+last_modified_at: 2023-02-09T11:44:38
 draft: false
 description: My second attempt at gating content in Wieting.TamaToledo.com, sort of.
 tags:
@@ -24,10 +24,10 @@ azure:
 
 It's a new month, February 2023 that is, and this the first part of follow-up to last month's post in my personal blog, namely [Gating My Content](https://blog.summittdweller.com/posts/2023/01/gating-content/).  Now, rather than trying to "gate" some of the content in the [Wieting Theatre website](https://wieting.tamatoledo.com), I'm going to start a new site, with characteristics listed below, and include only the protected portion of the Wieting's content.  
 
-I call this a "blended" approach because it will, at least initially, leverage and blend guidance and elements from many of the resources I've captured at https://www.one-tab.com/page/uZbS4FxhQeCpAdmpNjnHAw.  
+I call this a "blended" approach because it will, at least initially, leverage and blend guidance and elements from many of the resources I've captured at https://www.one-tab.com/page/iyQVdlpSRICO67Mue7Cb_Q.  
 
 {{% box %}}
-This post originally documented the creation of an _11ty_ site based on the [NEAT Starter Template](https://github.com/surjithctly/neat-starter), and some of the illustrations here may include references to it.  However, after the _11ty_ site was created I found a starter tutorial and site template better suited to my needs.  So, I have a [new OneTab page](https://www.one-tab.com/page/6DzScWRTSkaO5xr7YGC2Hg) which includes [A Deep Dive Into Eleventy Static Site Generator](https://www.smashingmagazine.com/2021/03/eleventy-static-site-generator/) with an associated starter/template that I'll be using in place of the [NEAT Starter Template](https://github.com/surjithctly/neat-starter).  
+This post originally documented the creation of an _11ty_ site based on the [NEAT Starter Template](https://github.com/surjithctly/neat-starter), and some of the illustrations here may include references to it.  However, after the _11ty_ site was created I found a starter tutorial and site template better suited to my needs.  So, I have a [new OneTab page](https://www.one-tab.com/page/iyQVdlpSRICO67Mue7Cb_Q) which includes [A Deep Dive Into Eleventy Static Site Generator](https://www.smashingmagazine.com/2021/03/eleventy-static-site-generator/) with an associated starter/template that I'll be using in place of the [NEAT Starter Template](https://github.com/surjithctly/neat-starter).  
 {{% /box %}}
 
 ## Features
@@ -36,18 +36,19 @@ As you'll see in the [OneTab](https://www.one-tab.com/) page listed above, the n
 
   1)  An [11ty](https://www.11ty.dev/) site following <strike>this [NEAT Starter Template](https://github.com/surjithctly/neat-starter)</strike> [A Deep Dive Into Eleventy Static Site Generator](https://www.smashingmagazine.com/2021/03/eleventy-static-site-generator/),
   2)  Deployed as an [Azure Static Web App](https://azure.microsoft.com/en-us/products/app-service/static),
-  3)  Using [StatiCrypt CLI](https://robinmoisson.github.io/staticrypt/) to protect pages,
-  4)  From a [GitHub Action](https://github.com/Jack-alope/staticrypt-github-actions/blob/main/.github/workflows/encrypt.yml), and
-  5)  Perhaps some integration with [Netlify CMS in _Azure_](https://github.com/jahlen/hugo-azure-static-webapp) instead of _Netlify.com_.  
+  3)  Customization to populate the site with Wieting Theatre Guild information,
+  4)  Using [StatiCrypt CLI](https://robinmoisson.github.io/staticrypt/) to protect pages,
+  5)  From a [GitHub Action](https://github.com/Jack-alope/staticrypt-github-actions/blob/main/.github/workflows/encrypt.yml), and
+  6)  Perhaps some integration with [Netlify CMS in _Azure_](https://github.com/jahlen/hugo-azure-static-webapp) instead of _Netlify.com_.  
 
 # With Better Documentation
 
 As steps are taken, I'll try to capture what I used, and why, along with a detailed history of those steps.  In fact, I'm going to try using [Creating-Better-Documentation](/posts/138-creating-better-documentation/) to record everything I do on this screen from start-to-finish.  Wish me luck.     
 
 {{% box %}}
-This post will cover features 1 and 2 from the list above.  Subsequent posts in this blog will address features 3 through 5.
+This post will cover features 1 and 2 from the list above.  Subsequent posts in this blog will address features 3 through 6.
 
-In the figures below, yellow box annotations mark elements that need attention or need to be checked, while red box annotations mark elements that need input of some kind.   
+In the figures below, <span style="color:yellow; font-weight:bold">yellow</span> box annotations mark elements that need attention or need to be checked, while <span style="color:red; font-weight:bold;">red</span> box annotations mark elements that need input of some kind.   
 {{% /box %}}
 
 ## Building a Local 11ty Site
