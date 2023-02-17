@@ -1,7 +1,7 @@
 ---
 title: Adding a Custom 404 Page in Hugo
 publishDate: 2023-02-16T13:07:31-06:00
-last_modified_at: 2023-02-17T14:33:37
+last_modified_at: 2023-02-17T17:19:44
 draft: false
 description: "_Rootstalk_ could really use a custom 404 page.  So let's do it."
 tags:
@@ -12,6 +12,7 @@ tags:
   - Azure 
   - API
   - Hugo - Show ShortCode Markdown in Code Block
+  - URLSearchParams
 azure:
   dir: https://sddocs.blob.core.windows.net/documentation
   subdir: 
@@ -91,6 +92,14 @@ At this point, you can still use JavaScript (URLSearchParams) to interpret those
 
 I believe this is a static site problem worth solving, for _Rootstalk_ and much more, so let's dive into some JavaScript and [URLSearchParams.](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)  
 
+# The Fix
+
+My **successful** implementation of `URLSearchParams` can be seen in _Rootstalk_ with pertinent source code found in that project's repo and these files:
+
+  - `static/broken-external-link.html`  
+  - `layouts/shortcodes/broken.html`  
+  - `layouts/shortcodes/broken-endnote.html`
+  - Any article `.md` file with a broken external link, such as `content/past-issues/volume-i-issue-1/dean.md`.  
 
 ---
 
