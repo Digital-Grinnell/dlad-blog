@@ -1,7 +1,7 @@
 ---
 title: Adding a Custom 404 Page in Hugo
 publishDate: 2023-02-16T13:07:31-06:00
-last_modified_at: 2023-02-17T14:07:38
+last_modified_at: 2023-02-17T14:31:24
 draft: false
 description: "_Rootstalk_ could really use a custom 404 page.  So let's do it."
 tags:
@@ -66,7 +66,7 @@ The page at `./static/broken-external-link.html` reads like this:
 
 The new shortcode at `./layouts/shortcodes/broken.html` reads like this:  
 
-```html
+```
 {{ $link := .Get 1 }}
 {{ $dead := "dead" }}
 {{- "" -}}<a href="/broken-external-link.html?{{- (querify $dead $link) | safeURL -}}">{{- .Get 0 -}}</a>{{- "" -}}
@@ -74,15 +74,16 @@ The new shortcode at `./layouts/shortcodes/broken.html` reads like this:
 
 That shortcode is called using Markdown syntax like this example from _Rootstalk's_ `content/past-issues/volume-ii-issue-2/kincaid.md`:  
 
-```
-...He has published stories and poems in The Eclectic, {{% broken "Fiction Fix" "http://fictionfix.net" %}} and in the online journal {{% broken "deadpaper.org" "http://www.deadpaper.org" }}
-```
+{{% code %}}
+...He has published stories and poems in The Eclectic, {{%/* broken "Fiction Fix" "http://fictionfix.net" */%}} and in the online journal {{%/* broken "deadpaper.org" "http://www.deadpaper.org" */%}}
+{{% /code %}}
+
 
 Fortunately, the fourth paragraph in [this answer](https://stackoverflow.com/a/62495849) may hold the key.  It suggests that...
 
-```
+{{% code %}}
 At this point, you can still use JavaScript (URLSearchParams) to interpret those params and to modify the page on the spot. This means that you're adding complexity to your Hugo site, as well as more load on the clients (browsers). If you really need those query strings and Hugo, this is the way to go.
-```
+{{% /code %}}
 
 I believe this is a static site problem worth solving, for _Rootstalk_ and much more, so let's dive into some JavaScript and [URLSearchParams.](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)  
 
