@@ -1,17 +1,18 @@
 ---
 title: Adding a Custom 404 Page in Hugo
 publishDate: 2023-02-16T13:07:31-06:00
-last_modified_at: 2023-02-17T17:19:44
+last_modified_at: 2023-02-18T08:53:01
 draft: false
 description: "_Rootstalk_ could really use a custom 404 page.  So let's do it."
 tags:
   - Hugo
   - Rootstalk
   - custom
-  - 404
+  - "404"
   - Azure 
   - API
-  - Hugo - Show ShortCode Markdown in Code Block
+  - query
+  - comment
   - URLSearchParams
 azure:
   dir: https://sddocs.blob.core.windows.net/documentation
@@ -81,7 +82,7 @@ That shortcode is called using Markdown syntax like this example from _Rootstalk
 {{% /code %}}
 
 {{% box %}}
-Note that in order to "properly" display the block above I had to follow the advice found in [Hugo - Show ShortCode Markdown in Code Block](https://digitaldrummerj.me/hugo-show-shortcode-markdown-in-code-block/).  
+Note that in order to "properly" display the block above I had to effectively turn my shortcode references into "comments" by following the advice found in [Hugo - Show ShortCode Markdown in Code Block](https://digitaldrummerj.me/hugo-show-shortcode-markdown-in-code-block/).  
 {{% /box %}}
 
 Fortunately, the fourth paragraph in [this answer](https://stackoverflow.com/a/62495849) may hold the key.  It suggests that...
