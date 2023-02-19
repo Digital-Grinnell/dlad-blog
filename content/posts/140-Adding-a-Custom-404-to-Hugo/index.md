@@ -1,7 +1,7 @@
 ---
 title: Adding a Custom 404 Page in Hugo
 publishDate: 2023-02-16T13:07:31-06:00
-last_modified_at: 2023-02-18T08:53:01
+last_modified_at: 2023-02-18T20:28:30
 draft: false
 description: "_Rootstalk_ could really use a custom 404 page.  So let's do it."
 tags:
@@ -14,6 +14,7 @@ tags:
   - query
   - comment
   - URLSearchParams
+  - .RenderString
 azure:
   dir: https://sddocs.blob.core.windows.net/documentation
   subdir: 
@@ -70,9 +71,10 @@ The page at `./static/broken-external-link.html` reads like this:
 The new shortcode at `./layouts/shortcodes/broken.html` reads like this:  
 
 ```
-{{ $link := .Get 1 }}
-{{ $dead := "dead" }}
-{{- "" -}}<a href="/broken-external-link.html?{{- (querify $dead $link) | safeURL -}}">{{- .Get 0 -}}</a>{{- "" -}}
+{{- $s := .Get 1 -}}
+{{- $link := replaceRE "^https?://([^/]+)" "$1" $s -}}
+{{- $dead := "dead" -}}
+<a href="/broken-external-link.html?{{- (querify $dead $link) | safeURL -}}">{{- .Get 0 -}}</a>
 ```
 
 That shortcode is called using Markdown syntax like this example from _Rootstalk's_ `content/past-issues/volume-ii-issue-2/kincaid.md`:  
@@ -101,6 +103,72 @@ My **successful** implementation of `URLSearchParams` can be seen in _Rootstalk_
   - `layouts/shortcodes/broken.html`  
   - `layouts/shortcodes/broken-endnote.html`
   - Any article `.md` file with a broken external link, such as `content/past-issues/volume-i-issue-1/dean.md`.  
+
+# Oops, Another Problem
+
+The bits of code implemented above work perfectly in my local (via `hugo server`) instance of _Rootstalk_, but there's a problem with the `broken` shortcode when used inside front matter, as is the case in the article titled [My Prairie](https://thankful-flower-0a2308810.1.azurestaticapps.net/past-issues/volume-ii-issue-1/moffett-1/).  
+
+At the very bottom of that article there are three links in the author's "bio", and the last of those links is "broken".  The author's bio appears in the article front matter as you can see in the example shown here in abridged form:
+
+```yaml
+azure_dir: rootstalk-2015-fall
+contributors:
+- bio: '**Betty Moffett** taught for almost thirty years in Grinnell College’s Writing
+    Lab, where she learned a great deal from her students.  Her stories have appeared
+    in a number of journals and magazines, including [The MacGuffin,]
+    (http://www.schoolcraft.edu/a-z-index/the-macguffin#.VqAvnpNVhBc) 
+    [The Storyteller,](http://www.thestorytellermagazine.com/) and 
+    {{%/* broken "The Wapsipinicon Almanac" "http://www.wapsialmanac" */%}}.  She and her 
+    husband, Sandy, write songs for and play with The Too Many String Band.'
+  caption: Photo courtesy of Betty Moffett
+```
+
+Here the `contributors.bio` field is a mix of Markdown syntax with a call to the `broken` shortcode.  The snippet of code from `layouts/_default/single.html` that renders the bio reads like this:  
+
+```
+      {{ with .Params.contributors }}
+        {{ range . }}
+          {{ $bio := (index . "bio") }}
+            ...
+            {{ if not (eq $bio " ") }}
+              {{ $bio | markdownify }}
+            {{ end }}
+```
+
+Essentially, the `contributors.bio` value is filtered using ` | markdownify` and that, as I have come to understand, is the root of this problem.  When `$bio` is filtered using `markdownify` the rendered bio from our previous example looks like this:
+
+{{% box %}}
+<i><b>Betty Moffett</b> taught for almost thirty years in Grinnell College’s Writing
+Lab, where she learned a great deal from her students.  Her stories have appeared
+in a number of journals and magazines, including <u>The MacGuffin</u>, <u>The Storyteller</u>, and {{%/* broken "The Wapsipinicon Almanac" \"http://www.wapsialmanac.com\" */%}}.  She and her husband, Sandy, write songs for and play with The Too Many String Band.</i>
+{{% /box %}}
+
+Likewise, if the `$bio` is not filtered with `| markdownify` then the Markdown elements including bold text and links don't work, but the `broken` link does.  That output looks like this:  
+
+{{% box %}}
+<i>Betty Moffett taught for almost thirty years in Grinnell College’s Writing
+Lab, where she learned a great deal from her students.  Her stories have appeared
+in a number of journals and magazines, including \[The MacGuffin](http://www.schoolcraft.edu/a-z-index/the-macguffin#.VqAvnpNVhBc), \[The Storyteller](http://www.thestorytellermagazine.com), and <u>The Wapsipinicon Almanac</u>.  She and her husband, Sandy, write songs for and play with The Too Many String Band.</i>
+{{% /box %}}
+
+I found numerous posts involving similar problems when mising shortcodes with Markdown and/or front matter, and many of them tout _Hugo_ `.RenderString` as the solution.  However, I have yet to wrap my head around how `.RenderString` might be used in this instance.  So, I've simply backed off from using the `broken` shortcode inside of `contributors.bio`, and have instead replaced such shortcode calls to straight HTML as you see in our abridged front matter below:  
+
+```yaml
+contributors:
+- bio: '**Betty Moffett** taught for almost thirty years in Grinnell College’s Writing
+    Lab, where she learned a great deal from her students.  Her stories have appeared
+    in a number of journals and magazines, including 
+    [The MacGuffin,](http://www.schoolcraft.edu/a-z-index/the-macguffin#.VqAvnpNVhBc) 
+    [The Storyteller,](http://www.thestorytellermagazine.com/) and 
+    <a href="/broken-external-link.html?dead=http://www.wapsialmanac.com">The Wapsipinicon Almanac</a>.  
+    She and her husband, Sandy, write songs for and play with The Too Many String Band.'
+```
+
+Not a very elegant solution, but it works, and you can see a working example of it in the links near the end of [My Prairie](https://thankful-flower-0a2308810.1.azurestaticapps.net/past-issues/volume-ii-issue-1/moffett-1/).  
+
+## Failed Again
+
+As I was posting this update I came across [Questions about .RenderString](https://discourse.gohugo.io/t/questions-about-renderstring/22448/4?u=mcfatem) and the suggestion that replacing `{{ $bio | markdownify }}` with `{{ $.Page.RenderString $bio }}` might work.  It did not.  :frowning:  
 
 ---
 
