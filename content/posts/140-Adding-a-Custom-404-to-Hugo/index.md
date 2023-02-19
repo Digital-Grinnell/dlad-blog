@@ -1,7 +1,7 @@
 ---
 title: Adding a Custom 404 Page in Hugo
 publishDate: 2023-02-16T13:07:31-06:00
-last_modified_at: 2023-02-18T20:28:30
+last_modified_at: 2023-02-18T20:35:10
 draft: false
 description: "_Rootstalk_ could really use a custom 404 page.  So let's do it."
 tags:
@@ -146,7 +146,7 @@ in a number of journals and magazines, including <u>The MacGuffin</u>, <u>The St
 Likewise, if the `$bio` is not filtered with `| markdownify` then the Markdown elements including bold text and links don't work, but the `broken` link does.  That output looks like this:  
 
 {{% box %}}
-<i>Betty Moffett taught for almost thirty years in Grinnell College’s Writing
+<i>\*\*Betty Moffett\*\* taught for almost thirty years in Grinnell College’s Writing
 Lab, where she learned a great deal from her students.  Her stories have appeared
 in a number of journals and magazines, including \[The MacGuffin](http://www.schoolcraft.edu/a-z-index/the-macguffin#.VqAvnpNVhBc), \[The Storyteller](http://www.thestorytellermagazine.com), and <u>The Wapsipinicon Almanac</u>.  She and her husband, Sandy, write songs for and play with The Too Many String Band.</i>
 {{% /box %}}
