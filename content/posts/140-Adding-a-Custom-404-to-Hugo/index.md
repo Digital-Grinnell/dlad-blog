@@ -1,7 +1,7 @@
 ---
 title: Adding a Custom 404 Page in Hugo
 publishDate: 2023-02-16T13:07:31-06:00
-last_modified_at: 2023-02-18T20:35:10
+last_modified_at: 2023-02-21T10:39:23
 draft: false
 description: "_Rootstalk_ could really use a custom 404 page.  So let's do it."
 tags:
@@ -169,6 +169,16 @@ Not a very elegant solution, but it works, and you can see a working example of 
 ## Failed Again
 
 As I was posting this update I came across [Questions about .RenderString](https://discourse.gohugo.io/t/questions-about-renderstring/22448/4?u=mcfatem) and the suggestion that replacing `{{ $bio | markdownify }}` with `{{ $.Page.RenderString $bio }}` might work.  It did not.  :frowning:  
+
+## A Pair of Useful REGEX Replacements
+
+I've created a regular expression with two possible replacment patterns to help make substitutions where broken external links exist:
+
+  - Expression for matching: `^\[(.+)\]\((.+)\)$`
+  - The `broken` shortcode replacment is:  `{{%/* broken "$1" "$2" */%}}`.  
+  - The equivalent raw HTML replacement is: `<a href="/broken-external-link?dead=$2" target="_blank">$1</a>`  
+
+Use them wisely, and in good health!    
 
 ---
 
