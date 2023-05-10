@@ -1,7 +1,7 @@
 ---
 title: "A Pagefind Problem?" 
 publishDate: 2023-05-10T08:22:00-05:00
-last_modified_at: 2023-05-10T09:23:23
+last_modified_at: 2023-05-10T10:27:15
 draft: false
 description: Not really a Pagefind problem, more of an issue with Hugo and cloud deployment, especially in Azure.
 tags:
@@ -29,7 +29,7 @@ I can reasonably see three possible solutions to this dilema.  In order of simpl
 
 ## 1. Skip Azure and Deploy Only to DigitalOcean
 
-Ultimately, Rootstalk's production instance is a DigitalOcean (DO) static web app, Azure is only used for "staging" of a locally viable Rootstalk instance.  DO doesn't use GitHub Actions, a drawback in my book, so its build script, called an "App Spec" in DO, is a little more "open".  The critical parto of the App Spec I use to deploy Rootstalk in DO reads like this:
+Ultimately, Rootstalk's production instance is a DigitalOcean (DO) static web app, Azure is only used for "staging" of a locally viable Rootstalk instance.  DO doesn't use GitHub Actions, a drawback in my book, so its build script, called an "App Spec" in DO, is a little more "open".  The critical portion of the App Spec I use to deploy Rootstalk in DO reads like this:
 
 ```
 static_sites:
