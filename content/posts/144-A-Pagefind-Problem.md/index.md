@@ -1,14 +1,13 @@
 ---
-title: A Pagefind Problem? 
+title: "A Pagefind Problem?" 
 publishDate: 2023-05-10T08:22:00-05:00
-last_modified_at: 2023-05-10T09:13:44
+last_modified_at: 2023-05-10T09:23:23
 draft: false
 description: Not really a Pagefind problem, more of an issue with Hugo and cloud deployment, especially in Azure.
 tags:
   - Pagefind
   - Azure
   - Hugo
-  - GitHub Actions
 azure:
   dir: 
   subdir: 
