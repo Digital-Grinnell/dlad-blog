@@ -9,6 +9,7 @@ tags:
   - islandora_solution_pack_web_archive
   - islandora_datastream_replace
   - PDF
+superseded_by: posts/126-Creating-WARC-from-a-Wordpress-Clone  
 ---
 
 The term `WARC`, an abbreviation of [Web ARChive](https://en.wikipedia.org/wiki/Web_ARChive), always reminds me of things like hobbits, elves, dark lords, and orcs, of course.  But this post has nothing to do with those things so I need to clear my head and press on.

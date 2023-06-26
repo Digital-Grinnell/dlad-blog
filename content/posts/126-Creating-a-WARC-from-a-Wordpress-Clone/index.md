@@ -357,3 +357,18 @@ I turned to [ReplayWeb](https://replayweb.page) in order to confirm the validity
    
 _Note that, because of its size, the `ReplayWeb` rendering of `rootstalk-archive-WARC.warc.gz` takes a very, very, very long time to load and even longer to render!_
 
+# Update 
+
+After the COVID-19 pandemic was declared a thing of the past in June 2023, Grinnell College made the decision to archive the coronavirus portion of its website, https://www.grinnell.edu/campus-life/campus-living/health-wellness/coronavirus/.  
+
+My first attempts to capture that site caught way too much stuff, presumably because the _coronavirus_ page includes a global menu that opens up all of https://www.grinnell.edu.  So, I added the `--no-parent` option to my `wget` command, but in that form the command didn't catch much at all.  I found it necessary to also drop the trailing slash at the end of `https://www.grinnell.edu/campus-life/campus-living/health-wellness/coronavirus/` from my original command, and then the capture looked reasonable.  
+
+So, the `wget` that I ultimately used was this:  
+
+  ```
+  mcfatem@MAD25W812UJ1G9 ~ % wget --warc-file=coronavirus-pages-web-archive --recursive --level=10 --warc-cdx --page-requisites --html-extension --convert-links --execute robots=off --directory-prefix=. -x /solr-search --wait=10 --random-wait --no-parent https://www.grinnell.edu/campus-life/campus-living/health-wellness/coronavirus
+  ```
+
+Note that there's no trailing slash on the `https://...` specification!  
+
+Like the WARCs that came before, this capture has been copied to `//Storage/Library/mcfatem/warcs/` for safe-keeping.  
