@@ -1,7 +1,7 @@
 ---
 title: "A Pagefind Problem?" 
 publishDate: 2023-05-10T08:22:00-05:00
-last_modified_at: 2023-05-10T10:27:15
+last_modified_at: 2023-06-26T10:04:25
 draft: false
 description: Not really a Pagefind problem, more of an issue with Hugo and cloud deployment, especially in Azure.
 tags:
@@ -13,9 +13,9 @@ azure:
   subdir: 
 ---  
 
-# Not Just a Hugo Issue
+# Not Just a Pagefind Issue
 
-Take note of the question mark at the end of the title, otherwise it could be somewhat misleading.  This is not really a problem with Hugo, but one with cloud deployment of Hugo static apps, particularly as an Azure Static Web App.
+Take note of the question mark at the end of the title, otherwise it could be somewhat misleading.  This is not really a problem with Pagefind or Hugo, but one with cloud deployment of static apps, particularly as an Azure Static Web App or DigitalOcean static site.
 
 # The Nutshell
 
