@@ -1,7 +1,7 @@
 ---
 title: How to Add a Collection to Digital.Grinnell
 publishdate: 2020-06-25
-lastmod: 2020-07-05T15:28:47-05:00
+lastmod: 2023-09-11T13:54:15-05:00
 draft: false
 tags:
   - collection
@@ -11,6 +11,7 @@ tags:
   - title
   - abstract
   - Digital.Grinnell
+  - search
 ---
 
 So, you want to add a new collection or sub-collection (they are really the same thing) to [Digital.Grinnell](https://digital.grinnell.edu), eh?  It's easy, but there are some things to consider before I show you how.
@@ -55,5 +56,6 @@ So, there are a couple of things that the _Digital.Grinnell_ admins need to reme
     - dg7.module
     - dg7.views.inc   _Note: Editing this file is probably NOT necessary._
   - Perform the steps documented in [Updating DG's Collection Views](/posts/068-updating-dgs-collection-views/) to update DG's "collection view" and make the new collection display properly.
+  - Visit https://digital.grinnell.edu/admin/islandora/tools/collection_search and determine if the new collection should be added as a "Collection Search" target!  
 
 And it's time to do some real work... I'll be back to share more here, someday.  :smile:
