@@ -1,18 +1,23 @@
 ---
-title: "Updating Rootstalk - August 2023" 
-publishDate: 2023-08-15T09:57:57-05:00
+title: "Updating Rootstalk - February 2024" 
+publishDate: 2024-02-13T14:08:00-06:00
 last_modified_at: 2024-02-13T14:30:37
 draft: false
-description: Documents the process used to update _Rootstalk_, in development and production, in August (and September) 2023 with the publication of content from the Spring 2023 term as Volume IX, Issue 1.  
+description: Documents the process used to update _Rootstalk_, in development and production, in February 2024 with the publication of corrections made in the Fall 2023 term, and the addition of our new submissions portal.
+supersedes: posts/146-Updating-Rootstalk-August-2023.md
 tags:
   - Rootstalk
   - NPM
   - proofreading
-superseded_by: posts/147-Updating-Rootstalk-February-2024.md
+  - submissions
 azure:
   dir: 
   subdir: 
 ---  
+
+<div style="border:3px solid red; padding:10px; text-align:center; margin:10px;">This is an exact copy of https://static.grinnell.edu/dlad-blog/posts/146-updating-rootstalk-august-2023/ with the addition of an important note pertaining to the section titled `Pushing to Production`.  
+
+The `production` branch update of _Rootstalk_ in February 2024 resulted in a _Git_ error stating `Updates rejected because tip of current branch behind remote counterpart`.  Since my **local** `production` branch was correct after updates were applied, I used a `git push --force-with-lease` command from https://stackoverflow.com/posts/70300076/timeline to get things back in-sync.</div>
 
 In this document I will attempt to capture the ordered steps required to publish a new "issue" of _Rootstalk_ in it's newest environment.  
 
