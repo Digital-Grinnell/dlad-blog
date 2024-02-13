@@ -1,0 +1,294 @@
+<!doctype html><html lang=en><head><title>Updating Rootstalk - February 2024 // The Grinnell College Digital Library Application Developer's Blog</title>
+<meta charset=utf-8><meta name=generator content="Hugo 0.122.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Mark A. McFate"><meta name=description content="Documents the process used to update _Rootstalk_, in development and production, in February 2024 with the publication of corrections made in the Fall 2023 term, and the addition of our new submissions portal."><link rel=stylesheet href=https://static.grinnell.edu/dlad-blog/css/main.min.bc1abb622a656fb4c816fed09d36c15e272b31b7beae2e7113b2f9418bff0361.css><script type=text/javascript src=https://static.grinnell.edu/dlad-blog/js/pdf-js/build/pdf.js></script><meta name=twitter:card content="summary"><meta name=twitter:title content="Updating Rootstalk - February 2024"><meta name=twitter:description content="Documents the process used to update _Rootstalk_, in development and production, in February 2024 with the publication of corrections made in the Fall 2023 term, and the addition of our new submissions portal."><meta property="og:title" content="Updating Rootstalk - February 2024"><meta property="og:description" content="Documents the process used to update _Rootstalk_, in development and production, in February 2024 with the publication of corrections made in the Fall 2023 term, and the addition of our new submissions portal."><meta property="og:type" content="article"><meta property="og:url" content="https://static.grinnell.edu/dlad-blog/posts/147-updating-rootstalk-february-2024/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-02-13T14:08:00-06:00"><meta property="article:modified_time" content="2024-02-13T14:08:00-06:00"><script>var _paq=window._paq=window._paq||[];_paq.push(["trackPageView"]),_paq.push(["enableLinkTracking"]),function(){e="https://analytics.summittservices.com/",_paq.push(["setTrackerUrl",e+"matomo.php"]),_paq.push(["setSiteId","16"]);var e,n=document,t=n.createElement("script"),s=n.getElementsByTagName("script")[0];t.async=!0,t.src=e+"matomo.js",s.parentNode.insertBefore(t,s)}()</script></head><body><header class=app-header><a href=https://static.grinnell.edu/dlad-blog/><img class=app-header-avatar src=https://static.grinnell.edu/dlad-blog/avatar.jpg alt="Mark A. McFate"></a><h2>The Grinnell College Digital Library Application Developer's Blog</h2><div class=author-block><p class=site-rev>Compiled: Feb 13, 2024 at 2:30pm CST<br>Content Updated: 2024-Feb-13 14:08 CST</p><div class=name>by
+<strong>Mark A. McFate</strong></div><div class=address>Grinnell College Libraries</div><div class=link><a href=mailto:></a></div><br></div><nav class=sidebar-nav><a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/search/ title>Search This Blog</a>
+<a class=sidebar-nav-item href=https://static.grinnell.edu/dlad-blog/about/ title>About Me</a></nav><p class=site-description>Mark&rsquo;s first Hugo site, a blog, formerly on prem at Static.Grinnell.edu, moved to <em>DigitalOcean</em>, then to <em>Azure</em>, and now hosted on <em>GitHub Pages</em>.</p><div class=app-header-social><a target=_blank href=https://github.com/McFateM><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a>
+<a target=_blank href=https://twitter.com/gohugoio><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-twitter"><title>twitter</title><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg></a></div><p class=copyright>The views and opinions expressed on this site belong solely to the original author(s) and do not necessarily represent or reflect those of Grinnell College.</p></header><main class=app-container><div class=breadcrumbs><a href=https://static.grinnell.edu/dlad-blog/>Home</a>
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/>Posts</a>
+&bull; <a href=https://static.grinnell.edu/dlad-blog/posts/147-updating-rootstalk-february-2024/>147 updating rootstalk february 2024</a></div><article class=post><header class=post-header><h1 class=post-title>Updating Rootstalk - February 2024</h1><div class=post-meta><script>console.log("Hugo Debug: ",JSON.parse('"2024-02-14T14:08:00-06:00"'))</script><script>console.log("Hugo Debug: ",JSON.parse('"2024-02-13T14:08:00-06:00"'))</script><script>console.log("Hugo Debug: ",JSON.parse('"2024-02-13T14:30:37Z"'))</script><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+10 min read
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+Feb 13, 2024
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<strong><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-at-sign"><title>at-sign</title><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 006 0v-1a10 10 0 10-3.92 7.94"/></svg> Mark A. McFate</strong><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+<a class=tag href=https://static.grinnell.edu/dlad-blog/tags/rootstalk/>Rootstalk</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/npm/>NPM</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/proofreading/>proofreading</a><a class=tag href=https://static.grinnell.edu/dlad-blog/tags/submissions/>submissions</a></div></div><div class=annotation><p style=font-size:1.6em><strong>Attention</strong>: This post supersedes <strong><a href=https://static.grinnell.edu/dlad-blog/posts/146-updating-rootstalk-august-2023.md/>posts/146-updating-rootstalk-august-2023.md</a></strong>.</p></div></header><div class=post-content><div style="border:3px solid red;padding:10px;text-align:center;margin:10px">This is an exact copy of https://static.grinnell.edu/dlad-blog/posts/146-updating-rootstalk-august-2023/ with the addition of an important note pertaining to the section titled `Pushing to Production`.<p>The <code>production</code> branch update of <em>Rootstalk</em> in February 2024 resulted in a <em>Git</em> error stating <code>Updates rejected because tip of current branch behind remote counterpart</code>. Since my <strong>local</strong> <code>production</code> branch was correct after updates were applied, I used a <code>git push --force-with-lease</code> command from <a href=https://stackoverflow.com/posts/70300076/timeline>https://stackoverflow.com/posts/70300076/timeline</a> to get things back in-sync.</div></p><p>In this document I will attempt to capture the ordered steps required to publish a new &ldquo;issue&rdquo; of <em>Rootstalk</em> in it&rsquo;s newest environment.</p><p>The development of this blog post, and modifications to the <a href=https://github.com/Digital-Grinnell/rootstalk-issue-workflow>https://github.com/Digital-Grinnell/rootstalk-issue-workflow</a> repo, took place on my personal Mac Mini while simultaneous work on <em>Rootstalk</em> was completed in the <code>~/GitHub/npm-rootstalk</code> AND <code>~/GitHub/rootstalk-issue-workflow</code><sup>*</sup> local repositories on my Grinnell College MacBook Pro. The two machines shared a single keyboard and mouse, plus copy/paste capabilities, via Universal Control.</p><p><sup>*</sup>Note that work in <code>~/GitHub/roostalk-issue-workflow</code> must be completed on my GC-issued MacBook Pro as access to <code>InDesign</code> is only available on that college-owned machine.</p><h1 id=following-and-modifying-the-documented-workflow>Following (and Modifying) the Documented Workflow</h1><p>Following the <a href=https://github.com/Digital-Grinnell/rootstalk-issue-workflow#readme>Rootstalk New Issue Workflow</a> is the <strong>KEY</strong> to making this happen as smoothly as possible. Since <em>Rootstalk</em> has a new NPM wrapper it will probably be necessary to modify that document to reflect changes required by NPM.</p><p><em>Note that the effort documented here was interrupted by many things, including a week of COVID-19, and subsequently pushed from August into September 2023.</em></p><h1 id=working-locally-with-the-npm-rootstalkhttpsgithubcomdigital-grinnellnpm-rootstalk-repo>Working Locally With the <a href=https://github.com/Digital-Grinnell/npm-rootstalk>npm-rootstalk</a> Repo</h1><p>Rather than repeating a lot of documenation here, I&rsquo;ll simply mention that the <code>README.md</code> file in the <a href=https://github.com/Digital-Grinnell/npm-rootstalk>npm-rootstalk</a> repo has been updated to reflect the latest/greatest development and production workflows. A great deal of that document has been deemed obsolete but it remains visible to authorized project developers nonetheless.</p><h1 id=update---automated-proofreading>Update - Automated Proofreading</h1><p><em>Rootstalk</em> really needs an updated run of <code>htmlproofer</code> so I started re-visiting that tool by reading <a href=https://static.grinnell.edu/dlad-blog/posts/133-automated-proofreading-with-htmlproofer/#first-an-updated-install>https://static.grinnell.edu/dlad-blog/posts/133-automated-proofreading-with-htmlproofer/#first-an-updated-install</a>. I subsequently found a <code>~/GitHub/html-proofer-3.19.3</code> diretory on my Grinnell College MacBook, but I found that I could not run the <code>htmlproofer</code> command there as I witnessed the following&mldr;</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub
+</span></span><span style=display:flex><span>╰─$ htmlproofer -v
+</span></span><span style=display:flex><span>rbenv: htmlproofer: command not found
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>The <span style=color:#e6db74>`</span>htmlproofer<span style=color:#960050;background-color:#1e0010>&#39;</span> command exists in these Ruby versions:
+</span></span><span style=display:flex><span>  3.0.2
+</span></span></code></pre></div><p>So, following the workflow documented in <a href=https://static.grinnell.edu/dlad-blog/posts/133-automated-proofreading-with-htmlproofer/#first-an-updated-install>First, An Updated Install</a> went like this&mldr;</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub
+</span></span><span style=display:flex><span>╰─$ gem install html-proofer  
+</span></span><span style=display:flex><span>Fetching zeitwerk-2.6.11.gem
+</span></span><span style=display:flex><span>Fetching yell-2.2.2.gem
+</span></span><span style=display:flex><span>Fetching ethon-0.16.0.gem
+</span></span><span style=display:flex><span>Fetching typhoeus-1.4.0.gem
+</span></span><span style=display:flex><span>Fetching rainbow-3.1.1.gem
+</span></span><span style=display:flex><span>Fetching ttfunk-1.7.0.gem
+</span></span><span style=display:flex><span>Fetching ruby-rc4-0.1.5.gem
+</span></span><span style=display:flex><span>Fetching hashery-2.1.2.gem
+</span></span><span style=display:flex><span>Fetching Ascii85-1.1.0.gem
+</span></span><span style=display:flex><span>Fetching afm-0.2.2.gem
+</span></span><span style=display:flex><span>Fetching pdf-reader-2.11.0.gem
+</span></span><span style=display:flex><span>Fetching nokogiri-1.15.4-arm64-darwin.gem
+</span></span><span style=display:flex><span>Fetching timers-4.3.5.gem
+</span></span><span style=display:flex><span>Fetching io-event-1.3.2.gem
+</span></span><span style=display:flex><span>Fetching fiber-annotation-0.2.0.gem
+</span></span><span style=display:flex><span>Fetching fiber-local-1.0.0.gem
+</span></span><span style=display:flex><span>Fetching html-proofer-5.0.8.gem
+</span></span><span style=display:flex><span>Fetching console-1.23.2.gem
+</span></span><span style=display:flex><span>Fetching async-2.6.4.gem
+</span></span><span style=display:flex><span>Successfully installed zeitwerk-2.6.11
+</span></span><span style=display:flex><span>Successfully installed yell-2.2.2
+</span></span><span style=display:flex><span>Successfully installed ethon-0.16.0
+</span></span><span style=display:flex><span>Successfully installed typhoeus-1.4.0
+</span></span><span style=display:flex><span>Successfully installed rainbow-3.1.1
+</span></span><span style=display:flex><span>Successfully installed ttfunk-1.7.0
+</span></span><span style=display:flex><span>Successfully installed ruby-rc4-0.1.5
+</span></span><span style=display:flex><span>Successfully installed hashery-2.1.2
+</span></span><span style=display:flex><span>Successfully installed Ascii85-1.1.0
+</span></span><span style=display:flex><span>Successfully installed afm-0.2.2
+</span></span><span style=display:flex><span>Successfully installed pdf-reader-2.11.0
+</span></span><span style=display:flex><span>Successfully installed nokogiri-1.15.4-arm64-darwin
+</span></span><span style=display:flex><span>Successfully installed timers-4.3.5
+</span></span><span style=display:flex><span>Building native extensions. This could take a <span style=color:#66d9ef>while</span>...
+</span></span><span style=display:flex><span>Successfully installed io-event-1.3.2
+</span></span><span style=display:flex><span>Successfully installed fiber-annotation-0.2.0
+</span></span><span style=display:flex><span>Successfully installed fiber-local-1.0.0
+</span></span><span style=display:flex><span>Successfully installed console-1.23.2
+</span></span><span style=display:flex><span>Successfully installed async-2.6.4
+</span></span><span style=display:flex><span>Successfully installed html-proofer-5.0.8
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> zeitwerk-2.6.11
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> zeitwerk-2.6.11
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> yell-2.2.2
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> yell-2.2.2
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> ethon-0.16.0
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> ethon-0.16.0
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> typhoeus-1.4.0
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> typhoeus-1.4.0
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> rainbow-3.1.1
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> rainbow-3.1.1
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> ttfunk-1.7.0
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> ttfunk-1.7.0
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> ruby-rc4-0.1.5
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> ruby-rc4-0.1.5
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> hashery-2.1.2
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> hashery-2.1.2
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> Ascii85-1.1.0
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> Ascii85-1.1.0
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> afm-0.2.2
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> afm-0.2.2
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> pdf-reader-2.11.0
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> pdf-reader-2.11.0
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> nokogiri-1.15.4-arm64-darwin
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> nokogiri-1.15.4-arm64-darwin
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> timers-4.3.5
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> timers-4.3.5
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> io-event-1.3.2
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> io-event-1.3.2
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> fiber-annotation-0.2.0
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> fiber-annotation-0.2.0
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> fiber-local-1.0.0
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> fiber-local-1.0.0
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> console-1.23.2
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> console-1.23.2
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> async-2.6.4
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> async-2.6.4
+</span></span><span style=display:flex><span>Parsing documentation <span style=color:#66d9ef>for</span> html-proofer-5.0.8
+</span></span><span style=display:flex><span>Installing ri documentation <span style=color:#66d9ef>for</span> html-proofer-5.0.8
+</span></span><span style=display:flex><span>Done installing documentation <span style=color:#66d9ef>for</span> zeitwerk, yell, ethon, typhoeus, rainbow, ttfunk, ruby-rc4, hashery, Ascii85, afm, pdf-reader, nokogiri, timers, io-event, fiber-annotation, fiber-local, console, async, html-proofer after <span style=color:#ae81ff>3</span> seconds
+</span></span><span style=display:flex><span><span style=color:#ae81ff>19</span> gems installed
+</span></span><span style=display:flex><span>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub
+</span></span></code></pre></div><p>And following that&mldr;</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub
+</span></span><span style=display:flex><span>╰─$ htmlproofer -v
+</span></span><span style=display:flex><span>5.0.8
+</span></span></code></pre></div><p>&mldr;which looks good! So from there the process was&mldr;</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub
+</span></span><span style=display:flex><span>╰─$ cd npm-rootstalk
+</span></span><span style=display:flex><span>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/npm-rootstalk ‹main›
+</span></span><span style=display:flex><span>╰─$ ll
+</span></span><span style=display:flex><span>total <span style=color:#ae81ff>184</span>
+</span></span><span style=display:flex><span>-rw-r--r--   <span style=color:#ae81ff>1</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   1.1K Aug <span style=color:#ae81ff>18</span> 09:19 LICENSE
+</span></span><span style=display:flex><span>-rw-r--r--   <span style=color:#ae81ff>1</span> mcfatem  <span style=color:#ae81ff>1278142703</span>    16K Aug <span style=color:#ae81ff>30</span> 11:33 README.md
+</span></span><span style=display:flex><span>drwxr-xr-x   <span style=color:#ae81ff>3</span> mcfatem  <span style=color:#ae81ff>1278142703</span>    96B Aug <span style=color:#ae81ff>18</span> 09:19 archetypes
+</span></span><span style=display:flex><span>-rw-r--r--   <span style=color:#ae81ff>1</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   3.0K Aug <span style=color:#ae81ff>18</span> 09:19 config.yml
+</span></span><span style=display:flex><span>drwxr-xr-x  <span style=color:#ae81ff>12</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   384B Aug <span style=color:#ae81ff>18</span> 09:19 content
+</span></span><span style=display:flex><span>drwxr-xr-x   <span style=color:#ae81ff>7</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   224B Aug <span style=color:#ae81ff>18</span> 09:19 layouts
+</span></span><span style=display:flex><span>-rw-r--r--   <span style=color:#ae81ff>1</span> mcfatem  <span style=color:#ae81ff>1278142703</span>    64K Aug <span style=color:#ae81ff>18</span> 09:19 package-lock.json
+</span></span><span style=display:flex><span>-rw-r--r--   <span style=color:#ae81ff>1</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   937B Aug <span style=color:#ae81ff>18</span> 09:19 package.json
+</span></span><span style=display:flex><span>drwxr-xr-x  <span style=color:#ae81ff>29</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   928B Aug <span style=color:#ae81ff>23</span> 12:00 public
+</span></span><span style=display:flex><span>drwxr-xr-x   <span style=color:#ae81ff>3</span> mcfatem  <span style=color:#ae81ff>1278142703</span>    96B Aug <span style=color:#ae81ff>18</span> 09:20 resources
+</span></span><span style=display:flex><span>drwxr-xr-x   <span style=color:#ae81ff>9</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   288B Aug <span style=color:#ae81ff>18</span> 09:20 static
+</span></span><span style=display:flex><span>drwxr-xr-x   <span style=color:#ae81ff>3</span> mcfatem  <span style=color:#ae81ff>1278142703</span>    96B Aug <span style=color:#ae81ff>18</span> 09:19 themes
+</span></span><span style=display:flex><span>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/npm-rootstalk ‹main›
+</span></span><span style=display:flex><span>╰─$ hugo
+</span></span><span style=display:flex><span>Start building sites …
+</span></span><span style=display:flex><span>hugo v0.112.7+extended darwin/arm64 BuildDate<span style=color:#f92672>=</span>unknown
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                   | EN
+</span></span><span style=display:flex><span>-------------------+------
+</span></span><span style=display:flex><span>  Pages            | <span style=color:#ae81ff>431</span>
+</span></span><span style=display:flex><span>  Paginator pages  |   <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>  Non-page files   |   <span style=color:#ae81ff>6</span>
+</span></span><span style=display:flex><span>  Static files     | <span style=color:#ae81ff>632</span>
+</span></span><span style=display:flex><span>  Processed images |   <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>  Aliases          |   <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>  Sitemaps         |   <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  Cleaned          |   <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Total in <span style=color:#ae81ff>489</span> ms
+</span></span><span style=display:flex><span>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/npm-rootstalk ‹main›
+</span></span><span style=display:flex><span>╰─$ ll
+</span></span><span style=display:flex><span>total <span style=color:#ae81ff>184</span>
+</span></span><span style=display:flex><span>-rw-r--r--   <span style=color:#ae81ff>1</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   1.1K Aug <span style=color:#ae81ff>18</span> 09:19 LICENSE
+</span></span><span style=display:flex><span>-rw-r--r--   <span style=color:#ae81ff>1</span> mcfatem  <span style=color:#ae81ff>1278142703</span>    16K Aug <span style=color:#ae81ff>30</span> 11:33 README.md
+</span></span><span style=display:flex><span>drwxr-xr-x   <span style=color:#ae81ff>3</span> mcfatem  <span style=color:#ae81ff>1278142703</span>    96B Aug <span style=color:#ae81ff>18</span> 09:19 archetypes
+</span></span><span style=display:flex><span>-rw-r--r--   <span style=color:#ae81ff>1</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   3.0K Aug <span style=color:#ae81ff>18</span> 09:19 config.yml
+</span></span><span style=display:flex><span>drwxr-xr-x  <span style=color:#ae81ff>12</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   384B Aug <span style=color:#ae81ff>18</span> 09:19 content
+</span></span><span style=display:flex><span>drwxr-xr-x   <span style=color:#ae81ff>7</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   224B Aug <span style=color:#ae81ff>18</span> 09:19 layouts
+</span></span><span style=display:flex><span>-rw-r--r--   <span style=color:#ae81ff>1</span> mcfatem  <span style=color:#ae81ff>1278142703</span>    64K Aug <span style=color:#ae81ff>18</span> 09:19 package-lock.json
+</span></span><span style=display:flex><span>-rw-r--r--   <span style=color:#ae81ff>1</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   937B Aug <span style=color:#ae81ff>18</span> 09:19 package.json
+</span></span><span style=display:flex><span>drwxr-xr-x  <span style=color:#ae81ff>29</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   928B Sep <span style=color:#ae81ff>13</span> 11:28 public
+</span></span><span style=display:flex><span>drwxr-xr-x   <span style=color:#ae81ff>3</span> mcfatem  <span style=color:#ae81ff>1278142703</span>    96B Aug <span style=color:#ae81ff>18</span> 09:20 resources
+</span></span><span style=display:flex><span>drwxr-xr-x   <span style=color:#ae81ff>9</span> mcfatem  <span style=color:#ae81ff>1278142703</span>   288B Aug <span style=color:#ae81ff>18</span> 09:20 static
+</span></span><span style=display:flex><span>drwxr-xr-x   <span style=color:#ae81ff>3</span> mcfatem  <span style=color:#ae81ff>1278142703</span>    96B Aug <span style=color:#ae81ff>18</span> 09:19 themes
+</span></span><span style=display:flex><span>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/npm-rootstalk ‹main›
+</span></span><span style=display:flex><span>╰─$ htmlproofer ./public
+</span></span><span style=display:flex><span>Running <span style=color:#ae81ff>3</span> checks <span style=color:#f92672>(</span>Images, Links, Scripts<span style=color:#f92672>)</span> in <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;./public&#34;</span><span style=color:#f92672>]</span> on *.html files ...
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Checking <span style=color:#ae81ff>3177</span> external links
+</span></span><span style=display:flex><span>...
+</span></span><span style=display:flex><span>* At ./public/volume-ix-issue-1/tech-on-the-prarie/index.html:586:
+</span></span><span style=display:flex><span>  internally linking to <span style=color:#75715e>#ref14; the file exists, but the hash &#39;ref14&#39; does not</span>
+</span></span><span style=display:flex><span>* At ./public/volume-ix-issue-1/tech-on-the-prarie/index.html:591:
+</span></span><span style=display:flex><span>  internally linking to <span style=color:#75715e>#ref15; the file exists, but the hash &#39;ref15&#39; does not</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>HTML-Proofer found <span style=color:#ae81ff>3741</span> failures!
+</span></span></code></pre></div><p>The output from the <code>htmlproofer ./public</code> command was too big to use effectively so I turned back to <a href=https://static.grinnell.edu/dlad-blog/posts/133-automated-proofreading-with-htmlproofer/#using-htmlproofer-with-docker>Using <code>htmlproofer</code> with Docker</a> where I found that version <code>3.19.2</code> is still the latest. So I moved to the <code>Capture More Info: ./html-proofer.sh</code> section of the post 133 and found that the <code>html-proofer.sh</code> script was NOT part of the new <code>npm-rootstalk</code> repo. Time to get get that script back from a previous version of the repo&mldr;</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/npm-rootstalk ‹main›
+</span></span><span style=display:flex><span>╰─$ cp -f ~/GitHub/.out-of-the-way/rootstalk/html-proofer.sh .
+</span></span></code></pre></div><p>And now we have our <code>html-proofer.sh</code> script where it belongs again. It looks like this:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e>##</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Add options to the end of the COMMAND string to change html-proofer behavior.  For a list of available options run:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>##   docker run --rm -it -v $(pwd):/src klakegg/html-proofer:3.19.2 --help</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Common options might include:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>##    --allow-hash-href</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>##    --check-html</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>##    --empty-alt-ignore</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>##</span>
+</span></span><span style=display:flex><span>hugo         <span style=color:#75715e># generate a new site</span>
+</span></span><span style=display:flex><span>cd public    <span style=color:#75715e># move into the new site&#39;s files</span>
+</span></span><span style=display:flex><span>COMMAND<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;docker run --rm -it -v </span><span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span><span style=color:#e6db74>:/src klakegg/html-proofer:3.19.2 --check-html&#34;</span>
+</span></span><span style=display:flex><span>date &gt; /tmp/rootstalk-html-proofer.tmp
+</span></span><span style=display:flex><span>echo $COMMAND &gt;&gt; /tmp/rootstalk-html-proofer.tmp
+</span></span><span style=display:flex><span>time $COMMAND | sed -e <span style=color:#e6db74>&#39;s/\x1b\[[0-9;]*m//g&#39;</span> &gt;&gt; /tmp/rootstalk-html-proofer.tmp
+</span></span><span style=display:flex><span>tail -1 /tmp/rootstalk-html-proofer.tmp
+</span></span><span style=display:flex><span><span style=color:#75715e>##</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## I&#39;m unable to effectively control many of the bogus issues reported by html-proofer, things like:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>##     *  internally linking to .., which does not exist (line 682)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>##           &lt;a href=&#34;..&#34;&gt;Back&lt;/a&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## So, let&#39;s try to implement some `grep` and `sed` commands that will automatically count and remove</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## them from the output.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>##</span>
+</span></span><span style=display:flex><span>BOGUS<span style=color:#f92672>=</span><span style=color:#e6db74>`</span>grep -c <span style=color:#e6db74>&#39;internally linking to ..,&#39;</span> /tmp/rootstalk-html-proofer.tmp<span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;Removing </span><span style=color:#e6db74>${</span>BOGUS<span style=color:#e6db74>}</span><span style=color:#e6db74> false-negative errors from the output...&#34;</span>
+</span></span><span style=display:flex><span>sed <span style=color:#e6db74>&#39;/internally linking to \.\.,/,+1d&#39;</span> /tmp/rootstalk-html-proofer.tmp &gt; <span style=color:#e6db74>${</span>HOME<span style=color:#e6db74>}</span>/Downloads/rootstalk-html-proofer.out
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>BOGUS<span style=color:#e6db74>}</span><span style=color:#e6db74> false-negative errors were removed from this output.&#34;</span> &gt;&gt; <span style=color:#e6db74>${</span>HOME<span style=color:#e6db74>}</span>/Downloads/rootstalk-html-proofer.out
+</span></span><span style=display:flex><span><span style=color:#75715e>##</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Successfully running scripted Azure CLI in a Docker container proved to be virtually</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## impossible, perhaps because the CLI login and commands are so &#34;interative&#34;?</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## So, the `az` commands that follow will require the Azure CLI be installed on the</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## host.  See https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-macos?source=recommendations#install-with-homebrew</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## for doing that with Homebrew.  Also, you should run `az login` before attempting the</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## `az storage blob upload...` command shown here.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>##</span>
+</span></span><span style=display:flex><span>az storage blob upload <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>     --account-name rootstalk <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>     --container-name documentation <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>     --name rootstalk-html-proofer.out <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>     --file <span style=color:#e6db74>${</span>HOME<span style=color:#e6db74>}</span>/Downloads/rootstalk-html-proofer.out <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>     --overwrite <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>     --auth-mode key
+</span></span><span style=display:flex><span><span style=color:#75715e>##</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## The output should be available now for download at https://rootstalk.blob.core.windows.net/documentation/rootstalk-html-proofer.out</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>##</span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;The output should be available now for download at https://rootstalk.blob.core.windows.net/documentation/rootstalk-html-proofer.out.&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>##</span>
+</span></span></code></pre></div><p>It looks like it should work as-is, so let&rsquo;s give it a go&mldr;</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/npm-rootstalk ‹main●›
+</span></span><span style=display:flex><span>╰─$ ./html-proofer.sh
+</span></span><span style=display:flex><span>Start building sites …
+</span></span><span style=display:flex><span>hugo v0.112.7+extended darwin/arm64 BuildDate<span style=color:#f92672>=</span>unknown
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                   | EN
+</span></span><span style=display:flex><span>-------------------+------
+</span></span><span style=display:flex><span>  Pages            | <span style=color:#ae81ff>431</span>
+</span></span><span style=display:flex><span>  Paginator pages  |   <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>  Non-page files   |   <span style=color:#ae81ff>6</span>
+</span></span><span style=display:flex><span>  Static files     | <span style=color:#ae81ff>632</span>
+</span></span><span style=display:flex><span>  Processed images |   <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>  Aliases          |   <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>  Sitemaps         |   <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>  Cleaned          |   <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>Total in <span style=color:#ae81ff>456</span> ms
+</span></span><span style=display:flex><span>docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?.
+</span></span></code></pre></div><p>So, Docker isn&rsquo;t running on my Mac. Going to launch <em>Docker Desktop</em> and try again&mldr;</p><pre tabindex=0><code>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/npm-rootstalk ‹main●›
+╰─$ ./html-proofer.sh
+Start building sites …
+hugo v0.112.7+extended darwin/arm64 BuildDate=unknown
+
+                   | EN
+-------------------+------
+  Pages            | 431
+  Paginator pages  |   0
+  Non-page files   |   6
+  Static files     | 632
+  Processed images |   0
+  Aliases          |   0
+  Sitemaps         |   1
+  Cleaned          |   0
+
+Total in 492 ms
+WARNING: The requested image&#39;s platform (linux/amd64) does not match the detected host platform (linux/arm64/v8) and no specific platform was requested
+
+real	2m29.158s
+user	0m0.115s
+sys	0m0.122s
+HTML-Proofer found 848 failures!
+Removing 2 false-negative errors from the output...
+Argument &#39;--overwrite&#39; is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus
+
+There are no credentials provided in your command and environment, we will query for account key for your storage account.
+It is recommended to provide --connection-string, --account-key or --sas-token in your command as credentials.
+
+You also can add `--auth-mode login` in your command to use Azure Active Directory (Azure AD) for authorization if your login account is assigned required RBAC roles.
+For more information about RBAC roles in storage, visit https://docs.microsoft.com/azure/storage/common/storage-auth-aad-rbac-cli.
+
+In addition, setting the corresponding environment variables can avoid inputting credentials in your command. Please use --help to get more information about environment variable usage.
+
+Skip querying account key due to failure: AADSTS700082: The refresh token has expired due to inactivity.  The token was issued on 2022-12-02T17:43:57.4286890Z and was inactive for 90.00:00:00.
+Trace ID: 0c32ac0c-67e4-41cc-8b81-326161df2c00
+Correlation ID: d7fadcb4-51c1-421c-adf8-75f378294d9f
+Timestamp: 2023-09-13 16:51:51Z
+Server failed to authenticate the request. Please refer to the information in the www-authenticate header.
+RequestId:d1addbca-001e-002e-5b62-e67766000000
+Time:2023-09-13T16:51:52.1924115Z
+ErrorCode:NoAuthenticationInformation
+The output should be available now for download at https://rootstalk.blob.core.windows.net/documentation/rootstalk-html-proofer.out.
+</code></pre><p>So, it looks like <code>html-proofer</code> worked and found 846 (848 minus 2) probable failures. However, the <em>Azure</em> credentials I was using for remote storage have expired and/or changed so the script wasn&rsquo;t able to save the output in <em>Azure</em>. Fortunately, there is a local copy at <code>/tmp/rootstalk-html-proofer.tmp</code> so I&rsquo;m just going to copy that to BLOB storage using <em>Microsoft Azure Storage Explorer</em>.</p><p>Done. The new file is publicly available at <a href=https://rootstalk.blob.core.windows.net/documentation/rootstalk-html-proofer.out>https://rootstalk.blob.core.windows.net/documentation/rootstalk-html-proofer.out</a>.</p><h1 id=pushing-to-production>Pushing to Production</h1><p>I found a <code>git</code> command at <a href=https://stackoverflow.com/questions/13897717/push-commits-to-another-branch>https://stackoverflow.com/questions/13897717/push-commits-to-another-branch</a> to help me push the new <code>main</code> back to <code>production</code> to trigger a production update. However&mldr;</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>╭─mark@Marks-Mac-Mini ~/GitHub/npm-rootstalk ‹main› 
+</span></span><span style=display:flex><span>╰─$ git push origin main:production
+</span></span><span style=display:flex><span>To https://github.com/Digital-Grinnell/npm-rootstalk.git
+</span></span><span style=display:flex><span> ! <span style=color:#f92672>[</span>rejected<span style=color:#f92672>]</span>        main -&gt; production <span style=color:#f92672>(</span>non-fast-forward<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>error: failed to push some refs to <span style=color:#e6db74>&#39;https://github.com/Digital-Grinnell/npm-rootstalk.git&#39;</span>
+</span></span><span style=display:flex><span>hint: Updates were rejected because a pushed branch tip is behind its remote
+</span></span><span style=display:flex><span>hint: counterpart. Check out this branch and integrate the remote changes
+</span></span><span style=display:flex><span>hint: <span style=color:#f92672>(</span>e.g. <span style=color:#e6db74>&#39;git pull ...&#39;</span><span style=color:#f92672>)</span> before pushing again.
+</span></span><span style=display:flex><span>hint: See the <span style=color:#e6db74>&#39;Note about fast-forwards&#39;</span> in <span style=color:#e6db74>&#39;git push --help&#39;</span> <span style=color:#66d9ef>for</span> details.
+</span></span></code></pre></div><p>So, trying to remedy that&mldr;</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>╭─mark@Marks-Mac-Mini ~/GitHub/npm-rootstalk ‹main› 
+</span></span><span style=display:flex><span>╰─$ git checkout production
+</span></span><span style=display:flex><span>Switched to branch <span style=color:#e6db74>&#39;production&#39;</span>
+</span></span><span style=display:flex><span>Your branch is up to date with <span style=color:#e6db74>&#39;origin/production&#39;</span>.
+</span></span><span style=display:flex><span>╭─mark@Marks-Mac-Mini ~/GitHub/npm-rootstalk ‹production› 
+</span></span><span style=display:flex><span>╰─$ git pull origin main
+</span></span><span style=display:flex><span>From https://github.com/Digital-Grinnell/npm-rootstalk
+</span></span><span style=display:flex><span> * branch            main       -&gt; FETCH_HEAD
+</span></span><span style=display:flex><span>Successfully rebased and updated refs/heads/production.
+</span></span></code></pre></div><p>Now my <code>SOURCE CONTROL</code> tab in <em>VSCode</em> shows a status of <code>Sync Changes 1 &lt;down> 46 &lt;up></code>. Since my local <code>production</code> branch now looks just like <code>main</code>, that sounds like the right thing to do at this point so here goes&mldr; I clicked the <code>Sync...</code> button and got an email back indicating that <code>Azure Static Web Apps CI/CD: All jobs that ran were successful</code>.</p><p>Ok, so what about the production instance on <em>DigitalOcean</em>?</p><p>Well, rather than checking in at <em>DigitalOcean</em>, I decided to just have a look at <a href=https://rootstalk.grinnell.edu>https://rootstalk.grinnell.edu</a> and it looks GREAT!</p><p>A quick look at the footer on <a href=https://rootstalk.grinnell.edu/about>https://rootstalk.grinnell.edu/about</a> shows <code>Compiled: Sep 13, 2023 at 1:50pm CDT • GitHub Hash: f1dddf64</code> and that feels right too!</p><hr><p>That&rsquo;s all folks&mldr; until next time.</p></div><div class=post-footer><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//digital-library-applications-developer-blog.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div></article></main></body></html>
