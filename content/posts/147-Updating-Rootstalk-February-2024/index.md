@@ -1,10 +1,10 @@
 ---
 title: "Updating Rootstalk - February 2024" 
 publishDate: 2024-02-13T14:08:00-06:00
-last_modified_at: 2024-02-13T14:30:37
+last_modified_at: 2024-02-13T14:33:10
 draft: false
 description: Documents the process used to update _Rootstalk_, in development and production, in February 2024 with the publication of corrections made in the Fall 2023 term, and the addition of our new submissions portal.
-supersedes: posts/146-Updating-Rootstalk-August-2023.md
+supersedes: posts/146-Updating-Rootstalk-August-2023
 tags:
   - Rootstalk
   - NPM
