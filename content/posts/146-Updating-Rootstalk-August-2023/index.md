@@ -1,14 +1,14 @@
 ---
 title: "Updating Rootstalk - August 2023" 
 publishDate: 2023-08-15T09:57:57-05:00
-last_modified_at: 2024-02-13T14:30:37
+last_modified_at: 2024-02-13T14:51:40
 draft: false
 description: Documents the process used to update _Rootstalk_, in development and production, in August (and September) 2023 with the publication of content from the Spring 2023 term as Volume IX, Issue 1.  
 tags:
   - Rootstalk
   - NPM
   - proofreading
-superseded_by: posts/147-Updating-Rootstalk-February-2024.md
+superseded_by: posts/147-Updating-Rootstalk-February-2024
 azure:
   dir: 
   subdir: 
