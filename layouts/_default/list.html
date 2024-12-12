@@ -1,4 +1,11 @@
 {{ define "main" }}
+
+  <style>
+    a.posts-list-item-title {
+      font-size: 1.5em;
+    }
+  </style>
+
   <article>
     <h1>{{ .Title }}</h1>
     <p style="margin-left: 20px">{{ .Site.Params.subtitle | markdownify }}</p>
@@ -60,7 +67,8 @@
               &nbsp;&nbsp;<strong>{{ partial "icon.html" (dict "ctx" $ "name" "at-sign") }} {{ .Params.author }}</strong>
             {{ end }}
             <br/>
-            <span class="summary">{{ htmlUnescape .Summary }} ...</span>
+            <!-- span class="summary">{{ htmlUnescape .Summary | markdownify }} ...</span -->
+            <span class="summary">{{ htmlUnescape .Description | markdownify }}</span>
           </span>
         {{ end }}
 
