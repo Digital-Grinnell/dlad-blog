@@ -1,2 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>prune on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/prune/</link><description>Recent content in prune on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 31 Jul 2019 13:59:46 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/prune/index.xml" rel="self" type="application/rss+xml"/><item><title>Resetting Docker</title><link>https://static.grinnell.edu/dlad-blog/posts/031-resetting-docker/</link><pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/031-resetting-docker/</guid><description>This command snippet needs a blog post of its own! I typically use the following command stream to clean up any Docker cruft before I begin anew. Note: Uncomment the third line ONLY if you want to delete images and download new ones. If you do, be patient, it could take several minutes depending on connection speed.
-Workstation Commands docker stop $(docker ps -q) docker rm -v $(docker ps -qa) # docker image rm $(docker image ls -q) docker system prune &amp;ndash;force And that&amp;rsquo;s a wrap.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Prune on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/prune/</link><description>Recent content in Prune on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 31 Jul 2019 13:59:46 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/prune/index.xml" rel="self" type="application/rss+xml"/><item><title>Resetting Docker</title><link>https://static.grinnell.edu/dlad-blog/posts/031-resetting-docker/</link><pubDate>Sat, 27 Jul 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/031-resetting-docker/</guid><description>&lt;h2 id="this-command-snippet-needs-a-blog-post-of-its-own">This command snippet needs a blog post of its own!&lt;/h2>
+&lt;p>I typically use the following command stream to clean up any Docker cruft before I begin anew. Note: Uncomment the third line ONLY if you want to delete images and download new ones. If you do, be patient, it could take several minutes depending on connection speed.&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Workstation Commands&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>docker stop $(docker ps -q) &lt;br/> docker rm -v $(docker ps -qa) &lt;br/> # docker image rm $(docker image ls -q) &lt;br/> docker system prune &amp;ndash;force&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>And that&amp;rsquo;s a wrap. Until next time&amp;hellip;&lt;/p></description></item></channel></rss>

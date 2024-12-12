@@ -1,3 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OS X on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/os-x/</link><description>Recent content in OS X on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 12 Feb 2020 10:41:51 -0600</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/os-x/index.xml" rel="self" type="application/rss+xml"/><item><title>Installing ZSH in Catalina</title><link>https://static.grinnell.edu/dlad-blog/posts/063-installing-zsh-in-catalina/</link><pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/063-installing-zsh-in-catalina/</guid><description>These days I like to do all my terminal/command-line work in zsh, more specifically, with Oh My ZSH! and the bira theme. This previous post described the process I used on each of my Linux servers, and this post is similar, but written specifically for my Catalina (Macintosh OS X v10.15.x), workstations.
-This is how I installed and configured zsh, and some other goodies, on my student Mac Mini workstation, MA6879&amp;hellip;
-brew update brew install nano zsh chsh -s /bin/zsh mark exit # log back in after this echo $SHELL brew install wget git hugo docker # Docker and Hugo added just for good measure wget https://github.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OS X on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/os-x/</link><description>Recent content in OS X on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 12 Feb 2020 10:41:51 -0600</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/os-x/index.xml" rel="self" type="application/rss+xml"/><item><title>Installing ZSH in Catalina</title><link>https://static.grinnell.edu/dlad-blog/posts/063-installing-zsh-in-catalina/</link><pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/063-installing-zsh-in-catalina/</guid><description>&lt;p>These days I like to do all my terminal/command-line work in &lt;em>zsh&lt;/em>, more specifically, with &lt;a href="https://ohmyz.sh/">Oh My ZSH!&lt;/a> and the &lt;a href="https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/bira.zsh-theme">bira&lt;/a> theme. This &lt;a href="https://static.grinnell.edu/dlad-blog/posts/044-installing-zsh-in-centos/">previous post&lt;/a> described the process I used on each of my &lt;em>Linux&lt;/em> servers, and this post is similar, but written specifically for my &lt;em>Catalina&lt;/em> (&lt;em>Macintosh OS X v10.15.x&lt;/em>), workstations.&lt;/p>
+&lt;p>This is how I installed and configured &lt;em>zsh&lt;/em>, and some other goodies, on my student &lt;em>Mac Mini&lt;/em> workstation, &lt;code>MA6879&lt;/code>&amp;hellip;&lt;/p>
+&lt;pre tabindex="0">&lt;code>brew update
+brew install nano zsh
+chsh -s /bin/zsh mark
+exit # log back in after this
+echo $SHELL
+brew install wget git hugo docker # Docker and Hugo added just for good measure
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+source ~/.zshrc
+cd ~/.oh-my-zsh/themes/
+ls -a
+nano ~/.zshrc # In the editor add (or replace similar) the following lines but without the leading #
+ # ZSH_THEME=&amp;#39;bira&amp;#39;
+ # plugins=(git extract web-search yum git-extras docker)
+exit # log back in after this
+&lt;/code>&lt;/pre>&lt;p>And that&amp;rsquo;s a wrap&amp;hellip; until next time. &amp;#x1f604;&lt;/p></description></item></channel></rss>

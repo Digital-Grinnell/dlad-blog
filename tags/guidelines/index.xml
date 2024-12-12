@@ -1,2 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>guidelines on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/guidelines/</link><description>Recent content in guidelines on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 22 Nov 2019 15:53:28 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/guidelines/index.xml" rel="self" type="application/rss+xml"/><item><title>Granular ISLE Customization: Series Guidelines</title><link>https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customizations-the-series/</link><pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customizations-the-series/</guid><description>Granular ISLE Customization This post provides guidelines for a series of posts describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time. Using the Granular ISLE Customization Posts There are just a couple of notes regarding the subject posts that I&amp;rsquo;d like to pass along to make them more useful.
-Gists - You will find a few places in this series where I generated a gist to take the place of lengthy command output. Instead of a long stream of text you&amp;rsquo;ll find a simple link to a gist like this.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Guidelines on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/guidelines/</link><description>Recent content in Guidelines on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 22 Nov 2019 15:53:28 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/guidelines/index.xml" rel="self" type="application/rss+xml"/><item><title>Granular ISLE Customization: Series Guidelines</title><link>https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customizations-the-series/</link><pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customizations-the-series/</guid><description>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Granular ISLE Customization&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>This post provides guidelines for a series of posts describing &lt;a href="https://digital.grinnell.edu/">Digital.Grinnell&lt;/a> customizations to &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE/">ISLE&lt;/a>, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h1 id="using-the-_granular-isle-customization_-posts">Using the &lt;em>Granular ISLE Customization&lt;/em> Posts&lt;/h1>
+&lt;p>There are just a couple of notes regarding the subject posts that I&amp;rsquo;d like to pass along to make them more useful.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Gists&lt;/strong> - You will find a few places in this series where I generated a &lt;a href="https://help.github.com/en/articles/creating-gists/">gist&lt;/a> to take the place of lengthy command output. Instead of a long stream of text you&amp;rsquo;ll find a simple &lt;a href="https://gist.github.com/McFateM/98d09fdcc29f88ac88bf7b3cbfb8324d/">link to a gist&lt;/a> like this.&lt;/p></description></item></channel></rss>

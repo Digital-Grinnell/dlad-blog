@@ -1,4 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>htmlproofer on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/htmlproofer/</link><description>Recent content in htmlproofer on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 08 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/htmlproofer/index.xml" rel="self" type="application/rss+xml"/><item><title>Automated Proofreading with `htmlproofer`</title><link>https://static.grinnell.edu/dlad-blog/posts/133-automated-proofreading-with-htmlproofer/</link><pubDate>Tue, 08 Nov 2022 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/133-automated-proofreading-with-htmlproofer/</guid><description>What follows is a January 2022 excerpt from a piece of Rootstalk project documentation titled Automated-Testing.md&amp;hellip;
-Automated Testing Today I started a little side-project aimed at helping test or &amp;ldquo;proof&amp;rdquo; the Rootstalk structure and content. I&amp;rsquo;m attempting to use the package/process documented in this GitHub repo.
-I started on the command-line of my MacBook Pro like so:
-╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk ‹main› ╰─$ gem install html-proofer Fetching yell-2.2.2.gem Fetching nokogiri-1.13.1-arm64-darwin.gem Fetching rainbow-3.1.1.gem Fetching ethon-0.15.0.gem Fetching html-proofer-3.19.3.gem Fetching typhoeus-1.4.0.gem Fetching parallel-1.21.0.gem Successfully installed yell-2.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Htmlproofer on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/htmlproofer/</link><description>Recent content in Htmlproofer on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Tue, 08 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/htmlproofer/index.xml" rel="self" type="application/rss+xml"/><item><title>Automated Proofreading with `htmlproofer`</title><link>https://static.grinnell.edu/dlad-blog/posts/133-automated-proofreading-with-htmlproofer/</link><pubDate>Tue, 08 Nov 2022 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/133-automated-proofreading-with-htmlproofer/</guid><description>&lt;p>What follows is a January 2022 excerpt from a piece of &lt;em>Rootstalk&lt;/em> project documentation titled &lt;code>Automated-Testing.md&lt;/code>&amp;hellip;&lt;/p>
+
+&lt;div class="original">&lt;h1 id="automated-testing">Automated Testing&lt;/h1>
+&lt;p>Today I started a little side-project aimed at helping test or &amp;ldquo;proof&amp;rdquo; the &lt;em>Rootstalk&lt;/em> structure and content. I&amp;rsquo;m attempting to use the package/process documented in &lt;a href="https://github.com/gjtorikian/html-proofer">this GitHub repo&lt;/a>.&lt;/p>
+&lt;p>I started on the command-line of my MacBook Pro like so:&lt;/p>
+&lt;pre tabindex="0">&lt;code>╭─mcfatem@MAC02FK0XXQ05Q ~/GitHub/rootstalk ‹main›
+╰─$ gem install html-proofer
+Fetching yell-2.2.2.gem
+Fetching nokogiri-1.13.1-arm64-darwin.gem
+Fetching rainbow-3.1.1.gem
+Fetching ethon-0.15.0.gem
+Fetching html-proofer-3.19.3.gem
+Fetching typhoeus-1.4.0.gem
+Fetching parallel-1.21.0.gem
+Successfully installed yell-2.2.2
+Successfully installed ethon-0.15.0
+Successfully installed typhoeus-1.4.0
+Successfully installed rainbow-3.1.1
+Successfully installed parallel-1.21.0
+Successfully installed nokogiri-1.13.1-arm64-darwin
+Successfully installed html-proofer-3.19.3
+Parsing documentation for yell-2.2.2
+Installing ri documentation for yell-2.2.2
+Parsing documentation for ethon-0.15.0
+Installing ri documentation for ethon-0.15.0
+Parsing documentation for typhoeus-1.4.0
+Installing ri documentation for typhoeus-1.4.0
+Parsing documentation for rainbow-3.1.1
+Installing ri documentation for rainbow-3.1.1
+Parsing documentation for parallel-1.21.0
+Installing ri documentation for parallel-1.21.0
+Parsing documentation for nokogiri-1.13.1-arm64-darwin
+Installing ri documentation for nokogiri-1.13.1-arm64-darwin
+Parsing documentation for html-proofer-3.19.3
+Installing ri documentation for html-proofer-3.19.3
+Done installing documentation for yell, ethon, typhoeus, rainbow, parallel, nokogiri, html-proofer after 2 seconds
+7 gems installed
+&lt;/code>&lt;/pre>&lt;p>Then, as suggested in the tool&amp;rsquo;s &lt;code>README.md&lt;/code> file&amp;hellip;&lt;/p></description></item></channel></rss>

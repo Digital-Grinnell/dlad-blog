@@ -1,4 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GitHub Pages on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/github-pages/</link><description>Recent content in GitHub Pages on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 08 Oct 2021 11:15:16 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/github-pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog Migration Details</title><link>https://static.grinnell.edu/dlad-blog/posts/113-blog-migration-details/</link><pubDate>Fri, 08 Oct 2021 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/113-blog-migration-details/</guid><description>The Grinnell College Digital Library Application Developer&amp;rsquo;s Blog I&amp;rsquo;m getting really lazy in my old age, so what I&amp;rsquo;ve posted here is just the meager README.md file from my blog&amp;rsquo;s new GitHub repo.
-This project, my Grinnell College Digital Library Application Developer&amp;rsquo;s blog, is no longer a Docker &amp;ldquo;Multi-Stage&amp;rdquo; build.
-GitHub Pages I successfully moved this blog to GitHub Pages in October 2021, after creating instances of it on DigitalOcean and Azure. GH Pages, specifically https://static.grinnell.edu/dlad-blog/ seems like the right home for it, finally.</description></item><item><title>Moving Static Sites to GitHub Pages</title><link>https://static.grinnell.edu/dlad-blog/posts/112-moving-static-sites-to-github-pages/</link><pubDate>Tue, 05 Oct 2021 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/112-moving-static-sites-to-github-pages/</guid><description>Pertinent Resources This section simply tabluates the posts and documentation used to effect migration of all sites from the Grinnell College static host to GitHub Pages.
-Resource Address Hugo: Host on GitHub https://gohugo.io/hosting-and-deployment/hosting-on-github/ GitHub: Getting started with GitHub Pages https://docs.github.com/en/pages/getting-started-with-github-pages GitHub: Creating a GitHub Pages site https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site GitHub: Managing a custom domain for your GitHub Pages site https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain Customizations Do NOT Set publishDir = &amp;quot;docs&amp;quot; Do NOT change the publishDir parameter in your configuration, if you even have one! The default public setting is correct.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GitHub Pages on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/github-pages/</link><description>Recent content in GitHub Pages on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Fri, 08 Oct 2021 11:15:16 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/github-pages/index.xml" rel="self" type="application/rss+xml"/><item><title>Blog Migration Details</title><link>https://static.grinnell.edu/dlad-blog/posts/113-blog-migration-details/</link><pubDate>Fri, 08 Oct 2021 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/113-blog-migration-details/</guid><description>&lt;h1 id="the-grinnell-college-digital-library-application-developers-blog">The Grinnell College Digital Library Application Developer&amp;rsquo;s Blog&lt;/h1>
+
+&lt;div class="annotation">&lt;p>I&amp;rsquo;m getting really lazy in my old age, so what I&amp;rsquo;ve posted here is just the meager &lt;code>README.md&lt;/code> file from my blog&amp;rsquo;s new &lt;em>GitHub&lt;/em> repo.&lt;/p>
+&lt;/div>
+
+&lt;p>This project, my Grinnell College &lt;a href="https://static.grinnell.edu/dlad-blog/">Digital Library Application Developer&amp;rsquo;s blog&lt;/a>, is no longer a &lt;a href="https://docs.docker.com/develop/develop-images/multistage-build/">Docker &amp;ldquo;Multi-Stage&amp;rdquo; build&lt;/a>.&lt;/p>
+&lt;h2 id="github-pages">GitHub Pages&lt;/h2>
+&lt;p>I successfully moved this blog to &lt;em>GitHub Pages&lt;/em> in October 2021, after creating instances of it on &lt;em>DigitalOcean&lt;/em> and &lt;em>Azure&lt;/em>. &lt;em>GH Pages&lt;/em>, specifically &lt;a href="https://static.grinnell.edu/dlad-blog/">https://static.grinnell.edu/dlad-blog/&lt;/a> seems like the right home for it, finally.&lt;/p></description></item><item><title>Moving Static Sites to GitHub Pages</title><link>https://static.grinnell.edu/dlad-blog/posts/112-moving-static-sites-to-github-pages/</link><pubDate>Tue, 05 Oct 2021 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/112-moving-static-sites-to-github-pages/</guid><description>&lt;h1 id="pertinent-resources">Pertinent Resources&lt;/h1>
+&lt;p>This section simply tabluates the posts and documentation used to effect migration of all sites from the &lt;em>Grinnell College&lt;/em> &lt;code>static&lt;/code> host to &lt;em>GitHub Pages&lt;/em>.&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Resource&lt;/th>
+ &lt;th>Address&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Hugo: Host on GitHub&lt;/td>
+ &lt;td>&lt;a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>GitHub: Getting started with GitHub Pages&lt;/td>
+ &lt;td>&lt;a href="https://docs.github.com/en/pages/getting-started-with-github-pages">https://docs.github.com/en/pages/getting-started-with-github-pages&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>GitHub: Creating a GitHub Pages site&lt;/td>
+ &lt;td>&lt;a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site">https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>GitHub: Managing a custom domain for your GitHub Pages site&lt;/td>
+ &lt;td>&lt;a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain">https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain&lt;/a>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h1 id="customizations">Customizations&lt;/h1>
+&lt;h2 id="do-not-set-publishdir--docs">Do NOT Set &lt;code>publishDir = &amp;quot;docs&amp;quot;&lt;/code>&lt;/h2>
+&lt;p>Do &lt;em>NOT&lt;/em> change the &lt;code>publishDir&lt;/code> parameter in your configuration, if you even have one! The default &lt;code>public&lt;/code> setting is correct.&lt;/p></description></item></channel></rss>

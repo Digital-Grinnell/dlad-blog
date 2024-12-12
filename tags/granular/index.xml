@@ -1,6 +1,121 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>granular on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/granular/</link><description>Recent content in granular on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 25 Nov 2019 15:50:54 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/granular/index.xml" rel="self" type="application/rss+xml"/><item><title>Granular ISLE Customization: Install 'Backup and Migrate'</title><link>https://static.grinnell.edu/dlad-blog/posts/057-granular-isle-customization-instal-backup-and-migrate/</link><pubDate>Mon, 25 Nov 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/057-granular-isle-customization-instal-backup-and-migrate/</guid><description>Granular ISLE Customization This post is part of a series describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time. An index of all documents in this series is included at the end of Granular ISLE Customization: Series Guidelines. Goal Statement In this &amp;ldquo;granular&amp;rdquo; post we will install Backup and Migrate, a tremendous Drupal module that I use extensively for backup, restoration, migration and maintenance of Digital.Grinnell.
-Install and Enable the Backup and Migrate Module using Drush DG7 is installed and enabled in the same manner as most Drupal or Islandora contrib modules, like so:</description></item><item><title>Granular ISLE Customization: Installing the DG Theme</title><link>https://static.grinnell.edu/dlad-blog/posts/052-granular-isle-customization-installing-the-dg-theme/</link><pubDate>Thu, 07 Nov 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/052-granular-isle-customization-installing-the-dg-theme/</guid><description>Granular ISLE Customization This post is part of a series describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time. An index of all documents in this series is included at the end of Granular ISLE Customization: Series Guidelines. Goal Statement In this &amp;ldquo;granular&amp;rdquo; post we will install Digital.Grinnell&amp;rsquo;s custom-built theme, namely digital_grinnell_bootstrap. The experience documented here involves an existing ISLE instance created using Building ISLE 1.3.0 (ld) for Local Development.
-Commands The install and config process was simply this stream of commands entered directly into the running Apache container:</description></item><item><title>Granular ISLE Customization: Installing DG7</title><link>https://static.grinnell.edu/dlad-blog/posts/050-granular-isle-customization-installing-dg7/</link><pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/050-granular-isle-customization-installing-dg7/</guid><description>Warning! The DG7 module contains code with numerous dependencies, and the most sinister of these is a Grinnell-specific version of the Solr schema. Do NOT attempt to use this module early in a stack-building process, nor outside the Digital.Grinnell environment. Granular ISLE Customization This post is part of a series describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time. An index of all documents in this series is included at the end of Granular ISLE Customization: Series Guidelines.</description></item><item><title>Granular ISLE Customization: Implementing IMI Hooks</title><link>https://static.grinnell.edu/dlad-blog/posts/049-granular-isle-customization-implementing-imi-hooks/</link><pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/049-granular-isle-customization-implementing-imi-hooks/</guid><description>Granular ISLE Customization This post is part of a series describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time. An index of all documents in this series is included at the end of Granular ISLE Customization: Series Guidelines. Goal Statement In this &amp;ldquo;granular&amp;rdquo; post I&amp;rsquo;ll introduce two customizations to IMI that implement and engage Drupal &amp;ldquo;hook&amp;rdquo; functions, namely:
-hook_islandora_multi_importer_remote_file_get(), and hook_form_islandora_multi_importer_form_alter(). Drupal 7 Hooks See Understanding the hook system for Drupal modules to better understand what Drupal v7 hook functions are, and how they work.</description></item><item><title>Granular ISLE Customization: Installing IMI</title><link>https://static.grinnell.edu/dlad-blog/posts/048-granular-isle-customization-installing-imi/</link><pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/048-granular-isle-customization-installing-imi/</guid><description>Granular ISLE Customization This post is part of a series describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time. An index of all documents in this series is included at the end of Granular ISLE Customization: Series Guidelines. Goal Statement In this &amp;ldquo;granular&amp;rdquo; post we will install IMI, the Islandora Multi-Importer module, into an existing ISLE instance, for example: https://dg.localdomain/.
-Install the Islandora Multi-Importer (IMI) It&amp;rsquo;s important that we take this step BEFORE other customizations, otherwise the module may not install properly.</description></item><item><title>Granular ISLE Customization: Series Guidelines</title><link>https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customizations-the-series/</link><pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customizations-the-series/</guid><description>Granular ISLE Customization This post provides guidelines for a series of posts describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time. Using the Granular ISLE Customization Posts There are just a couple of notes regarding the subject posts that I&amp;rsquo;d like to pass along to make them more useful.
-Gists - You will find a few places in this series where I generated a gist to take the place of lengthy command output. Instead of a long stream of text you&amp;rsquo;ll find a simple link to a gist like this.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Granular on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/granular/</link><description>Recent content in Granular on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 25 Nov 2019 15:50:54 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/granular/index.xml" rel="self" type="application/rss+xml"/><item><title>Granular ISLE Customization: Install 'Backup and Migrate'</title><link>https://static.grinnell.edu/dlad-blog/posts/057-granular-isle-customization-instal-backup-and-migrate/</link><pubDate>Mon, 25 Nov 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/057-granular-isle-customization-instal-backup-and-migrate/</guid><description>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Granular ISLE Customization&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>This post is part of a series describing &lt;a href="https://digital.grinnell.edu/">Digital.Grinnell&lt;/a> customizations to &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE/">ISLE&lt;/a>, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>An index of all documents in this series is included at the end of &lt;a href="https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customization-series-guidelines/">Granular ISLE Customization: Series Guidelines&lt;/a>.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="goal-statement">Goal Statement&lt;/h2>
+&lt;p>In this &amp;ldquo;granular&amp;rdquo; post we will install &lt;em>&lt;em>Backup and Migrate&lt;/em>&lt;/em>, a tremendous &lt;em>Drupal&lt;/em> module that I use extensively for backup, restoration, migration and maintenance of &lt;em>Digital.Grinnell&lt;/em>.&lt;/p>
+&lt;h2 id="install-and-enable-the-_backup-and-migrate_-module-using-_drush_">Install and Enable the &lt;em>Backup and Migrate&lt;/em> Module using &lt;em>Drush&lt;/em>&lt;/h2>
+&lt;p>&lt;em>DG7&lt;/em> is installed and enabled in the same manner as most &lt;em>Drupal&lt;/em> or &lt;em>Islandora&lt;/em> contrib modules, like so:&lt;/p></description></item><item><title>Granular ISLE Customization: Installing the DG Theme</title><link>https://static.grinnell.edu/dlad-blog/posts/052-granular-isle-customization-installing-the-dg-theme/</link><pubDate>Thu, 07 Nov 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/052-granular-isle-customization-installing-the-dg-theme/</guid><description>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Granular ISLE Customization&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>This post is part of a series describing &lt;a href="https://digital.grinnell.edu">Digital.Grinnell&lt;/a> customizations to &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE">ISLE&lt;/a>, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>An index of all documents in this series is included at the end of &lt;a href="https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customizations-the-series/">Granular ISLE Customization: Series Guidelines&lt;/a>.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="goal-statement">Goal Statement&lt;/h2>
+&lt;p>In this &amp;ldquo;granular&amp;rdquo; post we will install &lt;em>Digital.Grinnell&lt;/em>&amp;rsquo;s custom-built theme, namely &lt;a href="https://github.com/DigitalGrinnell/digital_grinnell_bootstrap">digital_grinnell_bootstrap&lt;/a>. The experience documented here involves an existing ISLE instance created using &lt;a href="https://static.grinnell.edu/dlad-blog/posts/034-building-isle-1.3.0-ld/">Building ISLE 1.3.0 (ld) for Local Development&lt;/a>.&lt;/p>
+&lt;h2 id="commands">Commands&lt;/h2>
+&lt;p>The install and config process was simply this stream of commands entered directly into the running &lt;em>Apache&lt;/em> container:&lt;/p></description></item><item><title>Granular ISLE Customization: Installing DG7</title><link>https://static.grinnell.edu/dlad-blog/posts/050-granular-isle-customization-installing-dg7/</link><pubDate>Wed, 09 Oct 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/050-granular-isle-customization-installing-dg7/</guid><description>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Warning!&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>The DG7 module contains code with numerous dependencies, and the most sinister of these is a Grinnell-specific version of the Solr schema. Do NOT attempt to use this module early in a stack-building process, nor outside the Digital.Grinnell environment.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Granular ISLE Customization&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>This post is part of a series describing &lt;a href="https://digital.grinnell.edu">Digital.Grinnell&lt;/a> customizations to &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE">ISLE&lt;/a>, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>An index of all documents in this series is included at the end of &lt;a href="https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customization-series-guidelines">Granular ISLE Customization: Series Guidelines&lt;/a>.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="goal-statement">Goal Statement&lt;/h2>
+&lt;p>In this &amp;ldquo;granular&amp;rdquo; post we will install &lt;em>&lt;em>DG7&lt;/em>&lt;/em>, the &lt;a href="https://github.com/DigitalGrinnell/dg7.git">Digital Grinnell v7&lt;/a> module, into an existing ISLE instance created using the &lt;a href="https://github.com/DigitalGrinnell/public-isle">DigitalGrinnell/public-isle&lt;/a> project.&lt;/p></description></item><item><title>Granular ISLE Customization: Implementing IMI Hooks</title><link>https://static.grinnell.edu/dlad-blog/posts/049-granular-isle-customization-implementing-imi-hooks/</link><pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/049-granular-isle-customization-implementing-imi-hooks/</guid><description>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Granular ISLE Customization&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>This post is part of a series describing &lt;a href="https://digital.grinnell.edu">Digital.Grinnell&lt;/a> customizations to &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE">ISLE&lt;/a>, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>An index of all documents in this series is included at the end of &lt;a href="https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customization-series-guidelines">Granular ISLE Customization: Series Guidelines&lt;/a>.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="goal-statement">Goal Statement&lt;/h2>
+&lt;p>In this &amp;ldquo;granular&amp;rdquo; post I&amp;rsquo;ll introduce two customizations to IMI that implement and engage &lt;em>Drupal&lt;/em> &amp;ldquo;hook&amp;rdquo; functions, namely:&lt;/p>
+&lt;ul>
+&lt;li>hook_islandora_multi_importer_remote_file_get(), and&lt;/li>
+&lt;li>hook_form_islandora_multi_importer_form_alter().&lt;/li>
+&lt;/ul>
+&lt;h2 id="drupal-7-hooks">Drupal 7 Hooks&lt;/h2>
+&lt;p>See &lt;a href="https://www.drupal.org/docs/7/creating-custom-modules/understanding-the-hook-system-for-drupal-modules">Understanding the hook system for Drupal modules&lt;/a> to better understand what &lt;em>Drupal v7&lt;/em> hook functions are, and how they work. If you would like additional assistance with &amp;ldquo;hooks&amp;rdquo; do not hesitate to contact the author of this post using [this email link](mailto:digital@grinnell.edu?subject=Implementing IMI Hooks).&lt;/p></description></item><item><title>Granular ISLE Customization: Installing IMI</title><link>https://static.grinnell.edu/dlad-blog/posts/048-granular-isle-customization-installing-imi/</link><pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/048-granular-isle-customization-installing-imi/</guid><description>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Granular ISLE Customization&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>This post is part of a series describing &lt;a href="https://digital.grinnell.edu/">Digital.Grinnell&lt;/a> customizations to &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE/">ISLE&lt;/a>, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>An index of all documents in this series is included at the end of &lt;a href="https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customization-series-guidelines/">Granular ISLE Customization: Series Guidelines&lt;/a>.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="goal-statement">Goal Statement&lt;/h2>
+&lt;p>In this &amp;ldquo;granular&amp;rdquo; post we will install &lt;em>&lt;em>IMI&lt;/em>&lt;/em>, the &lt;a href="https://github.com/mnylc/islandora_multi_importer.git">Islandora Multi-Importer&lt;/a> module, into an existing ISLE instance, for example: &lt;a href="https://dg.localdomain/">https://dg.localdomain/&lt;/a>.&lt;/p>
+&lt;h2 id="install-the-islandora-multi-importer-imi">Install the Islandora Multi-Importer (IMI)&lt;/h2>
+&lt;p>It&amp;rsquo;s important that we take this step BEFORE other customizations, otherwise the module may not install properly. The result is captured in &lt;a href="https://gist.github.com/McFateM/d8e7694032298e0518a88b3370872db8/">this gist&lt;/a>.&lt;/p></description></item><item><title>Granular ISLE Customization: Series Guidelines</title><link>https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customizations-the-series/</link><pubDate>Fri, 27 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customizations-the-series/</guid><description>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Granular ISLE Customization&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>This post provides guidelines for a series of posts describing &lt;a href="https://digital.grinnell.edu/">Digital.Grinnell&lt;/a> customizations to &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE/">ISLE&lt;/a>, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h1 id="using-the-_granular-isle-customization_-posts">Using the &lt;em>Granular ISLE Customization&lt;/em> Posts&lt;/h1>
+&lt;p>There are just a couple of notes regarding the subject posts that I&amp;rsquo;d like to pass along to make them more useful.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Gists&lt;/strong> - You will find a few places in this series where I generated a &lt;a href="https://help.github.com/en/articles/creating-gists/">gist&lt;/a> to take the place of lengthy command output. Instead of a long stream of text you&amp;rsquo;ll find a simple &lt;a href="https://gist.github.com/McFateM/98d09fdcc29f88ac88bf7b3cbfb8324d/">link to a gist&lt;/a> like this.&lt;/p></description></item></channel></rss>

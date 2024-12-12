@@ -1,16 +1,269 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker-compose on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/docker-compose/</link><description>Recent content in docker-compose on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 28 Sep 2020 15:15:56 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/docker-compose/index.xml" rel="self" type="application/rss+xml"/><item><title>Traefik and Acme.sh for DG-STAGING</title><link>https://static.grinnell.edu/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</link><pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</guid><description>This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge and Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations, specifically Step 11 in the later document. It introduces a Digital.Grinnell-specific implementation of the Traefik with Acme.sh.
-Testing with McFateM/docker-traefik2-acme-host I started work on this implementation with a test, by cloning https://github.com/McFateM/docker-traefik2-acme-host and proceeding as directed in the repository&amp;rsquo;s README.md document, as user islandora on node DGDockerX, like so:
-DGDockerX Host Commands cd ~ git clone https://github.</description></item><item><title>New Host Config: Vulnerability Scan</title><link>https://static.grinnell.edu/dlad-blog/posts/081-new-host-config-vulnerability-scan/</link><pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/081-new-host-config-vulnerability-scan/</guid><description>Today I elected to run a vulnerability scan against our new instance of the docker-traefik2-acme-host configuration that&amp;rsquo;s running on static.grinnell.edu. The command I used, and the results, are posted below.
-╭─islandora@dgdockerx ~ ╰─$ /home/islandora/testssl.sh/testssl.sh static.grinnell.edu ########################################################### testssl.sh 3.0rc4 from https://testssl.sh/dev/ This program is free software. Distribution and modification under GPLv2 permitted. USAGE w/o ANY WARRANTY. USE IT AT YOUR OWN RISK! Please file bugs @ https://testssl.sh/bugs/ ########################################################### Using &amp;#34;OpenSSL 1.0.2-chacha (1.0.2k-dev)&amp;#34; [~183 ciphers] on dgdockerx:/home/islandora/testssl.sh/bin/openssl.Linux.x86_64 (built: &amp;#34;Jan 18 17:12:17 2019&amp;#34;, platform: &amp;#34;linux-x86_64&amp;#34;) Start 2020-06-11 17:33:25 --&amp;gt;&amp;gt; 132.</description></item><item><title>Host Config: docker-traefik2-acme-host</title><link>https://static.grinnell.edu/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</link><pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</guid><description>This post is celebrating the completion (really, is anything ever complete?) of a new server/host/stack deployment project: docker-traefik2-acme-host. In order to make this post really easy to read, I&amp;rsquo;m going to wrap it up in one bullet&amp;hellip;
-README.md Troubleshooting Should you ever encounter an error like the one below, be sure to ask your IT provider if they created the proper CNAME record when creating your DNS entry.
-[Tue Jun 30 20:53:50 UTC 2020] ohscribe.grinnell.edu:Verify error:DNS problem: NXDOMAIN looking up TXT for _acme-challenge.</description></item><item><title>Traefik and Acme.sh Instead of DNS-01</title><link>https://static.grinnell.edu/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</link><pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</guid><description>This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge. It introduces an alternative to the failed process that was proposed in that earlier post.
-Note that the following config-specific elements have been replaced below:
-6 occurances of ?.grinnell.edu now say example-1.grinnell.edu, and 2 occurances of ?.info now say example-2.info. New Proposal On June 1 my colleage, Matt, suggested the following&amp;hellip;
-As much as I would like to resolve the DNS-01 challenge using Traefik alone, I don&amp;rsquo;t believe it will support what we&amp;rsquo;re trying to do here.</description></item><item><title>Simplified Testing of Traefik 2 with ACME DNS-01 Challenge</title><link>https://static.grinnell.edu/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</link><pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</guid><description>This post is a simplified and focused follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge.
-Simplify Today, 19-May-2020, I&amp;rsquo;m going to take a shot at simplifying my testing on dgdocker3.grinnell.edu by removing unnecessary things and consolidating as much as possible to reduce clutter in the logs and get right to the point. I&amp;rsquo;m also going to have a look to see if there are additional logs that can tell give me more detail. Everything used here, and everything that takes place here, will be found in a new directory, /opt/containers/test on DGDocker3.</description></item><item><title>Dockerized Traefik Host Using ACME DNS-01 Challenge</title><link>https://static.grinnell.edu/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</link><pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</guid><description>This post builds on My dockerized-server Config and attempts to change what was a problematic ACME HTTP-01 or httpChallenge in Traefik and Let&amp;rsquo;s Encrypt to an ACME DNS-01 or dnsChallenge. The problem with the old HTTP-01 or httpChallenge is that it requires the creation of a valid and widely accessible &amp;ldquo;A&amp;rdquo; record in our DNS before the creation of a cert; the record has to be in place so that the Let&amp;rsquo;s Encrypt CA-server can find it to confirm that the request is valid.</description></item><item><title>Repairing Static.Grinnell.edu</title><link>https://static.grinnell.edu/dlad-blog/posts/045-repairing-static.grinnell.edu/</link><pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/045-repairing-static.grinnell.edu/</guid><description>This morning, Tuesday, September 17, 2019, I awoke to find our https://static.grinnell.edu server, and all of the services on it, unreachable via the web. I managed to open a shell on the host and found that the server was up-and-running as expected, but a quick docker ps command indicated that one of the key services on the server, namely Traefik, had stopped and then failed to restart, repeatedly. Traefik is the service that&amp;rsquo;s responsible for routing web traffic on the static host.</description></item><item><title>DG-FEDORA: A Portable FEDORA Repository</title><link>https://static.grinnell.edu/dlad-blog/posts/046-dg-fedora-a-portable-object-repository/</link><pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/046-dg-fedora-a-portable-object-repository/</guid><description>Teaser Late last night (don&amp;rsquo;t ask how late it was) I discovered a really slick trick, aka &amp;ldquo;feature&amp;rdquo;, of docker-compose. Full disclosure: I love docker-compose &amp;ldquo;overrides&amp;rdquo;, a feature I found a couple of months ago. However, implementing overrides in a granular fashion, as I&amp;rsquo;d like, and within a docker-compose hierarchy of environments like the ISLE stack, can be difficult and counter-productive. I may have found a workable compromise last night. If you&amp;rsquo;re interested, please, read on&amp;hellip;
-History About a year ago I created a &amp;ldquo;portable&amp;rdquo; FEDORA object repository &amp;ldquo;on a stick&amp;rdquo;, a USB stick.</description></item><item><title>Building Grocy in Docksal</title><link>https://static.grinnell.edu/dlad-blog/posts/036-building-grocy-in-docksal/</link><pubDate>Thu, 08 Aug 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/036-building-grocy-in-docksal/</guid><description>Grocy looks lika a great little PHP stack application for me. It&amp;rsquo;s aim is to help folks organize and inventory their &amp;ldquo;stuff&amp;rdquo;, with a slant toward food and groceries. I need this!
-Since I&amp;rsquo;m also a big fan of Docker and Docksal, naturally I wanted to spin Grocy up in one of these environments. Thankfully, the heavy lifting of getting this &amp;ldquo;Dockerized&amp;rdquo; has already been done, and that fine work is shared in GitHub at grocy/grocy-docker. So my quest last evening started with a fork of this GitHub project to SummittDweller/grocy-docker, where I&amp;rsquo;ve created a new docksal branch.</description></item><item><title>Dockerized Omeka-S: Starting Over</title><link>https://static.grinnell.edu/dlad-blog/posts/030-dockerized-omeka-s-starting-over/</link><pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/030-dockerized-omeka-s-starting-over/</guid><description>Attention! The Docksal portion of this discussion DID NOT WORK PROPERLY so I&amp;rsquo;ve hidden it from public view. Don&amp;rsquo;t use this project with Docksal (fin commands) until further notice! I&amp;rsquo;ve created a new fork of dodeeric/omeka-s-docker at DigitalGrinnell/omeka-s-docker, and it introduces a new docker-compose.yml file for spinning Omeka-S up locally, but WITHOUT Docksal (due to problems with the integration originally documented here).
-System requirements for local development of this project currently include:
-Docker (Community Edition) Git Local Development and Testing If your workstation is able to run the aforementioned required components then the following steps can be used to launch and develop a local instance.</description></item><item><title>Debugging ISLE-ld (Local Development) in PHPStorm</title><link>https://static.grinnell.edu/dlad-blog/posts/023-debugging-isle-ld-in-phpstorm/</link><pubDate>Fri, 12 Jul 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/023-debugging-isle-ld-in-phpstorm/</guid><description>Debugging ISLE on a Mac This guidance applies to debugging PHP code in a local ISLE-ld, that&amp;rsquo;s http://isle.localdomain, instance using PHPStorm.
-Modify ISLE&amp;rsquo;s docker-compose.override.yml Before engaging PHPStorm we need to make one change to our ISLE-ld configuration by running a docker cp command, making a change to our docker-compose.override.yml file, and restarting the stack. Here are the commands and procedure.
-Workstation Commands cd ~/Projects/ISLE mkdir -p persistent/html docker cp isle-apache-ld:/var/www/html/. ./persistent/html The above commands will make a new ./persistent/html directory on the host, if one does not already exist, and the docker cp command will copy the current contents of the Apache container&amp;rsquo;s /var/www/html directory to the host.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Docker-Compose on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/docker-compose/</link><description>Recent content in Docker-Compose on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 28 Sep 2020 15:15:56 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/docker-compose/index.xml" rel="self" type="application/rss+xml"/><item><title>Traefik and Acme.sh for DG-STAGING</title><link>https://static.grinnell.edu/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</link><pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</guid><description>&lt;p>This post is a follow-up to &lt;a href="https://static.grinnell.edu/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/">Dockerized Traefik Host Using ACME DNS-01 Challenge&lt;/a> and &lt;a href="https://static.grinnell.edu/dlad-blog/posts/092-staging-isle/">Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations&lt;/a>, specifically &lt;em>Step 11&lt;/em> in the later document. It introduces a &lt;em>Digital.Grinnell&lt;/em>-specific implementation of the &lt;em>Traefik&lt;/em> with &lt;em>Acme.sh&lt;/em>.&lt;/p>
+&lt;h2 id="testing-with-mcfatemdocker-traefik2-acme-host">Testing with McFateM/docker-traefik2-acme-host&lt;/h2>
+&lt;p>I started work on this implementation with a test, by cloning &lt;a href="https://github.com/McFateM/docker-traefik2-acme-host">https://github.com/McFateM/docker-traefik2-acme-host&lt;/a> and proceeding as directed in the repository&amp;rsquo;s &lt;a href="https://github.com/McFateM/docker-traefik2-acme-host/blob/master/README.md">README.md&lt;/a> document, as user &lt;code>islandora&lt;/code> on node &lt;em>DGDockerX&lt;/em>, like so:&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>DGDockerX Host Commands&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;code>cd ~&lt;/code> &lt;br/> &lt;code>git clone https://github.com/McFateM/docker-traefik2-acme-host host --recursive&lt;/code> &lt;br/> &lt;code>cd host&lt;/code>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="working-in-hostacme">Working in &lt;code>~/host/acme&lt;/code>&lt;/h3>
+&lt;p>As suggested, I made a copy of the &lt;code>.env&lt;/code> file from the corresponding &lt;code>acme&lt;/code> directory on Grinnell&amp;rsquo;s &lt;code>dgdocker3.grinnell.edu&lt;/code> server, something like this:&lt;/p></description></item><item><title>New Host Config: Vulnerability Scan</title><link>https://static.grinnell.edu/dlad-blog/posts/081-new-host-config-vulnerability-scan/</link><pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/081-new-host-config-vulnerability-scan/</guid><description>&lt;p>Today I elected to run a vulnerability scan against our new instance of the &lt;code>docker-traefik2-acme-host&lt;/code> configuration that&amp;rsquo;s running on &lt;a href="https://static.grinnell.edu/whoami/">static.grinnell.edu&lt;/a>. The command I used, and the results, are posted below.&lt;/p>
+&lt;pre tabindex="0">&lt;code>╭─islandora@dgdockerx ~
+╰─$ /home/islandora/testssl.sh/testssl.sh static.grinnell.edu
+
+###########################################################
+ testssl.sh 3.0rc4 from https://testssl.sh/dev/
+
+ This program is free software. Distribution and
+ modification under GPLv2 permitted.
+ USAGE w/o ANY WARRANTY. USE IT AT YOUR OWN RISK!
+
+ Please file bugs @ https://testssl.sh/bugs/
+
+###########################################################
+
+ Using &amp;#34;OpenSSL 1.0.2-chacha (1.0.2k-dev)&amp;#34; [~183 ciphers]
+ on dgdockerx:/home/islandora/testssl.sh/bin/openssl.Linux.x86_64
+ (built: &amp;#34;Jan 18 17:12:17 2019&amp;#34;, platform: &amp;#34;linux-x86_64&amp;#34;)
+
+
+ Start 2020-06-11 17:33:25 --&amp;gt;&amp;gt; 132.161.151.30:443 (static.grinnell.edu) &amp;lt;&amp;lt;--
+
+ rDNS (132.161.151.30): vaf.grinnell.edu. rootstalk.grinnell.edu. static.grinnell.edu. rootstalk-static.grinnell.edu.
+ Service detected: HTTP
+
+
+ Testing protocols via sockets except NPN+ALPN
+
+ SSLv2 not offered (OK)
+ SSLv3 not offered (OK)
+ TLS 1 offered
+ TLS 1.1 offered
+ TLS 1.2 offered (OK)
+ TLS 1.3 offered (OK): final
+ NPN/SPDY not offered
+ ALPN/HTTP2 h2, http/1.1 (offered)
+
+ Testing cipher categories
+
+ NULL ciphers (no encryption) not offered (OK)
+ Anonymous NULL Ciphers (no authentication) not offered (OK)
+ Export ciphers (w/o ADH+NULL) not offered (OK)
+ LOW: 64 Bit + DES, RC[2,4] (w/o export) not offered (OK)
+ Triple DES Ciphers / IDEA offered (NOT ok)
+ Average: SEED + 128+256 Bit CBC ciphers offered
+ Strong encryption (AEAD ciphers) offered (OK)
+
+
+ Testing robust (perfect) forward secrecy, (P)FS -- omitting Null Authentication/Encryption, 3DES, RC4
+
+ PFS is offered (OK) TLS_AES_256_GCM_SHA384 TLS_CHACHA20_POLY1305_SHA256 ECDHE-RSA-AES256-GCM-SHA384 ECDHE-RSA-AES256-SHA
+ ECDHE-RSA-CHACHA20-POLY1305 TLS_AES_128_GCM_SHA256 ECDHE-RSA-AES128-GCM-SHA256 ECDHE-RSA-AES128-SHA
+ Elliptic curves offered: prime256v1 secp384r1 secp521r1 X25519
+
+
+ Testing server preferences
+
+ Has server cipher order? yes (OK) -- only for &amp;lt; TLS 1.3
+ Negotiated protocol TLSv1.3
+ Negotiated cipher TLS_AES_256_GCM_SHA384, 253 bit ECDH (X25519)
+ Cipher order
+ TLSv1: ECDHE-RSA-AES256-SHA AES256-SHA ECDHE-RSA-AES128-SHA AES128-SHA ECDHE-RSA-DES-CBC3-SHA DES-CBC3-SHA
+ TLSv1.1: ECDHE-RSA-AES256-SHA AES256-SHA ECDHE-RSA-AES128-SHA AES128-SHA ECDHE-RSA-DES-CBC3-SHA DES-CBC3-SHA
+ TLSv1.2: ECDHE-RSA-AES256-GCM-SHA384 ECDHE-RSA-AES256-SHA ECDHE-RSA-CHACHA20-POLY1305 AES256-GCM-SHA384 AES256-SHA
+ ECDHE-RSA-AES128-GCM-SHA256 ECDHE-RSA-AES128-SHA AES128-GCM-SHA256 AES128-SHA ECDHE-RSA-DES-CBC3-SHA DES-CBC3-SHA
+ TLSv1.3: TLS_AES_256_GCM_SHA384 TLS_CHACHA20_POLY1305_SHA256 TLS_AES_128_GCM_SHA256
+
+
+ Testing server defaults (Server Hello)
+
+ TLS extensions (standard) &amp;#34;session ticket/#35&amp;#34; &amp;#34;renegotiation info/#65281&amp;#34; &amp;#34;EC point formats/#11&amp;#34; &amp;#34;supported versions/#43&amp;#34;
+ &amp;#34;key share/#51&amp;#34; &amp;#34;application layer protocol negotiation/#16&amp;#34;
+ Session Ticket RFC 5077 hint no -- no lifetime advertised
+ SSL Session ID support yes
+ Session Resumption Tickets no, ID: no
+ TLS clock skew Random values, no fingerprinting possible
+ Signature Algorithm SHA256 with RSA
+ Server key size RSA 2048 bits
+ Server key usage Digital Signature, Key Encipherment
+ Server extended key usage TLS Web Server Authentication, TLS Web Client Authentication
+ Serial / Fingerprints 035B28222F66FCE82AB86834D316C249EDB3 / SHA1 385FFF215983EFA46B2CAFCA6768356348475307
+ SHA256 F2A91B6B1BE83479550EE679AEA78B9551CA00D1D5BC0DA4B80D1FA1B4E3ED25
+ Common Name (CN) static.grinnell.edu (CN in response to request w/o SNI: TRAEFIK DEFAULT CERT)
+ subjectAltName (SAN) static.grinnell.edu
+ Issuer Let&amp;#39;s Encrypt Authority X3 (Let&amp;#39;s Encrypt from US)
+ Trust (hostname) Ok via SAN and CN (SNI mandatory)
+ Chain of trust NOT ok (chain incomplete)
+ EV cert (experimental) no
+ &amp;#34;eTLS&amp;#34; (visibility info) not present
+ Certificate Validity (UTC) 88 &amp;gt;= 30 days (2020-06-10 11:51 --&amp;gt; 2020-09-08 11:51)
+ # of certificates provided 1
+ Certificate Revocation List --
+ OCSP URI http://ocsp.int-x3.letsencrypt.org
+ OCSP stapling not offered
+ OCSP must staple extension --
+ DNS CAA RR (experimental) not offered
+ Certificate Transparency yes (certificate extension)
+
+
+ Testing HTTP header response @ &amp;#34;/&amp;#34;
+
+ HTTP Status Code 200 OK
+ HTTP clock skew 0 sec from localtime
+ Strict Transport Security not offered
+ Public Key Pinning --
+ Server banner nginx/1.17.10
+ Application banner --
+ Cookie(s) (none issued at &amp;#34;/&amp;#34;)
+ Security headers --
+ Reverse Proxy banner --
+
+
+ Testing vulnerabilities
+
+ Heartbleed (CVE-2014-0160) not vulnerable (OK), no heartbeat extension
+ CCS (CVE-2014-0224) not vulnerable (OK)
+ Ticketbleed (CVE-2016-9244), experiment. not vulnerable (OK), reply empty
+ ROBOT not vulnerable (OK)
+ Secure Renegotiation (CVE-2009-3555) not vulnerable (OK)
+ Secure Client-Initiated Renegotiation not vulnerable (OK)
+ CRIME, TLS (CVE-2012-4929) not vulnerable (OK)
+ BREACH (CVE-2013-3587) no HTTP compression (OK) - only supplied &amp;#34;/&amp;#34; tested
+ POODLE, SSL (CVE-2014-3566) not vulnerable (OK)
+ TLS_FALLBACK_SCSV (RFC 7507) Downgrade attack prevention supported (OK)
+ SWEET32 (CVE-2016-2183, CVE-2016-6329) VULNERABLE, uses 64 bit block ciphers
+ FREAK (CVE-2015-0204) not vulnerable (OK)
+ DROWN (CVE-2016-0800, CVE-2016-0703) not vulnerable on this host and port (OK)
+ make sure you don&amp;#39;t use this certificate elsewhere with SSLv2 enabled services
+ https://censys.io/ipv4?q=F2A91B6B1BE83479550EE679AEA78B9551CA00D1D5BC0DA4B80D1FA1B4E3ED25 could help you to find out
+ LOGJAM (CVE-2015-4000), experimental not vulnerable (OK): no DH EXPORT ciphers, no DH key detected with &amp;lt;= TLS 1.2
+ BEAST (CVE-2011-3389) TLS1: ECDHE-RSA-AES256-SHA AES256-SHA ECDHE-RSA-AES128-SHA AES128-SHA ECDHE-RSA-DES-CBC3-SHA
+ DES-CBC3-SHA
+ VULNERABLE -- but also supports higher protocols TLSv1.1 TLSv1.2 (likely mitigated)
+ LUCKY13 (CVE-2013-0169), experimental potentially VULNERABLE, uses cipher block chaining (CBC) ciphers with TLS. Check patches
+ RC4 (CVE-2013-2566, CVE-2015-2808) no RC4 ciphers detected (OK)
+
+
+ Testing 370 ciphers via OpenSSL plus sockets against the server, ordered by encryption strength
+
+Hexcode Cipher Suite Name (OpenSSL) KeyExch. Encryption Bits Cipher Suite Name (IANA/RFC)
+-----------------------------------------------------------------------------------------------------------------------------
+ x1302 TLS_AES_256_GCM_SHA384 ECDH 253 AESGCM 256 TLS_AES_256_GCM_SHA384
+ x1303 TLS_CHACHA20_POLY1305_SHA256 ECDH 253 ChaCha20 256 TLS_CHACHA20_POLY1305_SHA256
+ xc030 ECDHE-RSA-AES256-GCM-SHA384 ECDH 521 AESGCM 256 TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ xc014 ECDHE-RSA-AES256-SHA ECDH 521 AES 256 TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
+ xcca8 ECDHE-RSA-CHACHA20-POLY1305 ECDH 521 ChaCha20 256 TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+ x9d AES256-GCM-SHA384 RSA AESGCM 256 TLS_RSA_WITH_AES_256_GCM_SHA384
+ x35 AES256-SHA RSA AES 256 TLS_RSA_WITH_AES_256_CBC_SHA
+ x1301 TLS_AES_128_GCM_SHA256 ECDH 253 AESGCM 128 TLS_AES_128_GCM_SHA256
+ xc02f ECDHE-RSA-AES128-GCM-SHA256 ECDH 521 AESGCM 128 TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ xc013 ECDHE-RSA-AES128-SHA ECDH 521 AES 128 TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+ x9c AES128-GCM-SHA256 RSA AESGCM 128 TLS_RSA_WITH_AES_128_GCM_SHA256
+ x2f AES128-SHA RSA AES 128 TLS_RSA_WITH_AES_128_CBC_SHA
+ xc012 ECDHE-RSA-DES-CBC3-SHA ECDH 521 3DES 168 TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA
+ x0a DES-CBC3-SHA RSA 3DES 168 TLS_RSA_WITH_3DES_EDE_CBC_SHA
+
+
+ Running client simulations (HTTP) via sockets
+
+ Android 4.2.2 TLSv1.0 ECDHE-RSA-AES256-SHA, 521 bit ECDH (P-521)
+ Android 4.4.2 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 521 bit ECDH (P-521)
+ Android 5.0.0 TLSv1.2 ECDHE-RSA-AES256-SHA, 521 bit ECDH (P-521)
+ Android 6.0 TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256, 256 bit ECDH (P-256)
+ Android 7.0 TLSv1.2 ECDHE-RSA-CHACHA20-POLY1305, 253 bit ECDH (X25519)
+ Chrome 65 Win 7 TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256, 253 bit ECDH (X25519)
+ Chrome 70 Win 10 TLSv1.3 TLS_AES_128_GCM_SHA256, 253 bit ECDH (X25519)
+ Firefox 59 Win 7 TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256, 253 bit ECDH (X25519)
+ Firefox 62 Win 7 TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256, 253 bit ECDH (X25519)
+ IE 6 XP No connection
+ IE 7 Vista TLSv1.0 AES128-SHA, No FS
+ IE 8 Win 7 TLSv1.0 AES128-SHA, No FS
+ IE 8 XP TLSv1.0 DES-CBC3-SHA, No FS
+ IE 11 Win 7 TLSv1.2 ECDHE-RSA-AES256-SHA, 256 bit ECDH (P-256)
+ IE 11 Win 8.1 TLSv1.2 ECDHE-RSA-AES256-SHA, 256 bit ECDH (P-256)
+ IE 11 Win Phone 8.1 TLSv1.2 AES128-SHA, No FS
+ IE 11 Win 10 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Edge 13 Win 10 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Edge 13 Win Phone 10 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Edge 15 Win 10 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 253 bit ECDH (X25519)
+ Safari 9 iOS 9 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Safari 9 OS X 10.11 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Safari 10 OS X 10.12 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Apple ATS 9 iOS 9 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Tor 17.0.9 Win 7 TLSv1.0 ECDHE-RSA-AES256-SHA, 256 bit ECDH (P-256)
+ Java 6u45 No connection
+ Java 7u25 TLSv1.0 ECDHE-RSA-AES128-SHA, 256 bit ECDH (P-256)
+ Java 8u161 TLSv1.2 ECDHE-RSA-AES256-SHA, 256 bit ECDH (P-256)
+ Java 9.0.4 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ OpenSSL 1.0.1l TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 521 bit ECDH (P-521)
+ OpenSSL 1.0.2e TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+
+ Done 2020-06-11 17:34:48 [ 85s] --&amp;gt;&amp;gt; 132.161.151.30:443 (static.grinnell.edu) &amp;lt;&amp;lt;--
+&lt;/code>&lt;/pre>&lt;h2 id="controling-tls-ciphers">Controling TLS Ciphers&lt;/h2>
+&lt;p>In previous server configs that used &lt;em>Traefik v1.x&lt;/em> I was able to eliminate some potential vulnerabilities by removing old, weak ciphers. In that old environment I used a few &lt;em>command:&lt;/em> options in the &lt;code>docker-compose.yml&lt;/code> file along with a declaration of stronger ciphers in a &lt;code>traefik.toml&lt;/code> file. That config change is documented in &lt;a href="https://static.grinnell.edu/dlad-blog/en/posts/005-removing-traefik-weak-ciphers">Removing Traefik Weak Ciphers&lt;/a>.&lt;/p></description></item><item><title>Host Config: docker-traefik2-acme-host</title><link>https://static.grinnell.edu/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</link><pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</guid><description>&lt;p>This post is celebrating the completion (really, is anything ever complete?) of a new server/host/stack deployment project: &lt;a href="https://github.com/McFateM/docker-traefik2-acme-host">docker-traefik2-acme-host&lt;/a>. In order to make this post really easy to read, I&amp;rsquo;m going to wrap it up in one bullet&amp;hellip;&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/McFateM/docker-traefik2-acme-host/blob/master/README.md">README.md&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
+&lt;p>Should you ever encounter an error like the one below, be sure to ask your IT provider if they created the proper &lt;code>CNAME&lt;/code> record when creating your DNS entry.&lt;/p>
+&lt;pre tabindex="0">&lt;code>[Tue Jun 30 20:53:50 UTC 2020] ohscribe.grinnell.edu:Verify error:DNS problem: NXDOMAIN looking up TXT for _acme-challenge.ohscribe.grinnell.edu - check that a DNS record exists for this domain
+&lt;/code>&lt;/pre>&lt;p>That turned out to be the source of this error for me when I tried to obtain a cert for &lt;code>ohscribe.grinnell.edu&lt;/code> on node &lt;code>DGDocker3&lt;/code>.&lt;/p></description></item><item><title>Traefik and Acme.sh Instead of DNS-01</title><link>https://static.grinnell.edu/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</link><pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</guid><description>&lt;p>This post is a follow-up to &lt;a href="https://static.grinnell.edu/dlad-blog/en/posts/071-dockerized-traefik-using-acme-dns-01">Dockerized Traefik Host Using ACME DNS-01 Challenge&lt;/a>. It introduces an alternative to the failed process that was proposed in that earlier post.&lt;/p>
+&lt;blockquote>
+&lt;p>Note that the following config-specific elements have been replaced below:&lt;/p>
+&lt;ul>
+&lt;li>6 occurances of &lt;code>?.grinnell.edu&lt;/code> now say &lt;code>example-1.grinnell.edu&lt;/code>, and&lt;/li>
+&lt;li>2 occurances of &lt;code>?.info&lt;/code> now say &lt;code>example-2.info&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h2 id="new-proposal">New Proposal&lt;/h2>
+&lt;p>On June 1 my colleage, Matt, suggested the following&amp;hellip;&lt;/p>
+&lt;blockquote>
+&lt;p>As much as I would like to resolve the DNS-01 challenge using Traefik alone, I don&amp;rsquo;t believe it will support what we&amp;rsquo;re trying to do here. I&amp;rsquo;m a bit disappointed by that as Nginx makes this process very easy, and my reading through the Traefik documentation and my own tests lead me to believe that CNAME following is not currently supported in Traefik, and is basically impossible. Until the they allow for the verification domain to be specified as a provider option (in this case, specifying example-2.info as the domain for the Azure DNS provider), using the built-in ACME functionality in Traefik won&amp;rsquo;t work, no matter which DNS provider is in use.&lt;/p></description></item><item><title>Simplified Testing of Traefik 2 with ACME DNS-01 Challenge</title><link>https://static.grinnell.edu/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</link><pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</guid><description>&lt;p>This post is a simplified and focused follow-up to &lt;a href="https://static.grinnell.edu/dlad-blog/en/posts/071-dockerized-traefik-using-acme-dns-01/">Dockerized Traefik Host Using ACME DNS-01 Challenge&lt;/a>.&lt;/p>
+&lt;h2 id="simplify">Simplify&lt;/h2>
+&lt;p>Today, 19-May-2020, I&amp;rsquo;m going to take a shot at simplifying my testing on &lt;code>dgdocker3.grinnell.edu&lt;/code> by removing unnecessary things and consolidating as much as possible to reduce clutter in the logs and get right to the point. I&amp;rsquo;m also going to have a look to see if there are additional logs that can tell give me more detail. &lt;strong>Everything&lt;/strong> used here, and everything that takes place here, will be found in a new directory, &lt;code>/opt/containers/test&lt;/code> on &lt;em>DGDocker3&lt;/em>.&lt;/p></description></item><item><title>Dockerized Traefik Host Using ACME DNS-01 Challenge</title><link>https://static.grinnell.edu/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</link><pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</guid><description>&lt;p>This post builds on &lt;a href="https://dlad.summittdweller.com/en/posts/042-my-dockerized-server-config/">My dockerized-server Config&lt;/a> and attempts to change what was a problematic &lt;a href="https://docs.traefik.io/https/acme/#httpchallenge">ACME HTTP-01 or httpChallenge&lt;/a> in &lt;a href="https://traefik.io">Traefik&lt;/a> and &lt;a href="https://letsencrypt.org">Let&amp;rsquo;s Encrypt&lt;/a> to an &lt;a href="https://docs.traefik.io/https/acme/#dnschallenge">ACME DNS-01 or dnsChallenge&lt;/a>. The problem with the old &lt;em>HTTP-01&lt;/em> or &lt;em>httpChallenge&lt;/em> is that it requires the creation of a valid and widely accessible &amp;ldquo;A&amp;rdquo; record in our DNS &lt;em>before&lt;/em> the creation of a cert; the record has to be in place so that the &lt;em>Let&amp;rsquo;s Encrypt&lt;/em> CA-server can find it to confirm that the request is valid. However, doing this puts the cart-before-the-horse, so-to-speak, since we like to have a valid cert in place &lt;em>before&lt;/em> we add a new DNS record.&lt;/p></description></item><item><title>Repairing Static.Grinnell.edu</title><link>https://static.grinnell.edu/dlad-blog/posts/045-repairing-static.grinnell.edu/</link><pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/045-repairing-static.grinnell.edu/</guid><description>&lt;p>This morning, Tuesday, September 17, 2019, I awoke to find our &lt;a href="https://static.grinnell.edu">https://static.grinnell.edu&lt;/a> server, and all of the services on it, unreachable via the web. I managed to open a shell on the host and found that the server was up-and-running as expected, but a quick &lt;code>docker ps&lt;/code> command indicated that one of the key services on the server, namely &lt;em>Traefik&lt;/em>, had stopped and then failed to restart, repeatedly. &lt;em>Traefik&lt;/em> is the service that&amp;rsquo;s responsible for routing web traffic on the &lt;em>static&lt;/em> host. No wonder the web sites were not responding!&lt;/p></description></item><item><title>DG-FEDORA: A Portable FEDORA Repository</title><link>https://static.grinnell.edu/dlad-blog/posts/046-dg-fedora-a-portable-object-repository/</link><pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/046-dg-fedora-a-portable-object-repository/</guid><description>&lt;h2 id="teaser">Teaser&lt;/h2>
+&lt;p>Late last night (don&amp;rsquo;t ask how late it was) I discovered a really slick trick, aka &amp;ldquo;feature&amp;rdquo;, of &lt;em>docker-compose&lt;/em>. Full disclosure: I love &lt;em>docker-compose&lt;/em> &amp;ldquo;overrides&amp;rdquo;, a feature I found a couple of months ago. However, implementing overrides in a granular fashion, as I&amp;rsquo;d like, and within a &lt;em>docker-compose&lt;/em> hierarchy of environments like the &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE">ISLE&lt;/a> stack, can be difficult and counter-productive. I may have found a workable compromise last night. If you&amp;rsquo;re interested, please, read on&amp;hellip;&lt;/p>
+&lt;h2 id="history">History&lt;/h2>
+&lt;p>About a year ago I created a &amp;ldquo;portable&amp;rdquo; &lt;em>FEDORA&lt;/em> object repository &amp;ldquo;on a stick&amp;rdquo;, a USB stick. I call that &amp;ldquo;stick&amp;rdquo; &lt;em>DG-FEDORA&lt;/em>, because it contains a number of sample objects gleaned from &lt;a href="https://digital.grinnell.edu">Digital.Grinnell.edu&lt;/a>. Shortly after I created the &amp;ldquo;stick&amp;rdquo; I started using a &lt;em>docker-compose.override.yml&lt;/em> file (see &lt;a href="https://docs.docker.com/compose/extends#adding-and-overriding-configuration">Adding and overriding configuration&lt;/a> for details) to implement it in some of my &lt;em>ISLE&lt;/em> work. But there were lots of other &amp;ldquo;customizations&amp;rdquo; that I also wanted to implement, and over time my &lt;em>docker-compose.override.yml&lt;/em> grew too large to be easily maintained&amp;hellip;there was just too much stuff to squeeze into a file that was supposed to make life easier.&lt;/p></description></item><item><title>Building Grocy in Docksal</title><link>https://static.grinnell.edu/dlad-blog/posts/036-building-grocy-in-docksal/</link><pubDate>Thu, 08 Aug 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/036-building-grocy-in-docksal/</guid><description>&lt;p>&lt;a href="https://github.com/grocy/grocy">Grocy&lt;/a> looks lika a great little PHP stack application for me. It&amp;rsquo;s aim is to help folks organize and inventory their &amp;ldquo;stuff&amp;rdquo;, with a slant toward food and groceries. I need this!&lt;/p>
+&lt;p>Since I&amp;rsquo;m also a big fan of &lt;a href="https://docker.io">Docker&lt;/a> and &lt;a href="https://docksal.io">Docksal&lt;/a>, naturally I wanted to spin Grocy up in one of these environments. Thankfully, the heavy lifting of getting this &amp;ldquo;Dockerized&amp;rdquo; has already been done, and that fine work is shared in GitHub at &lt;a href="https://github.com/grocy/grocy-docker">grocy/grocy-docker&lt;/a>. So my quest last evening started with a fork of this GitHub project to &lt;a href="https://github.com/SummittDweller/grocy-docker">SummittDweller/grocy-docker&lt;/a>, where I&amp;rsquo;ve created a new &lt;code>docksal&lt;/code> branch.&lt;/p></description></item><item><title>Dockerized Omeka-S: Starting Over</title><link>https://static.grinnell.edu/dlad-blog/posts/030-dockerized-omeka-s-starting-over/</link><pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/030-dockerized-omeka-s-starting-over/</guid><description>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Attention!&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>The Docksal portion of this discussion DID NOT WORK PROPERLY so I&amp;rsquo;ve hidden it from public view. &lt;strong>Don&amp;rsquo;t use this project with Docksal (&lt;code>fin&lt;/code> commands) until further notice!&lt;/strong>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>I&amp;rsquo;ve created a new fork of &lt;a href="https://github.com/dodeeric/omeka-s-docker">dodeeric/omeka-s-docker&lt;/a> at &lt;a href="https://github.com/DigitalGrinnell/omeka-s-docker">DigitalGrinnell/omeka-s-docker&lt;/a>, and it introduces a new &lt;code>docker-compose.yml&lt;/code> file for spinning &lt;a href="https://omeka.org/s/">Omeka-S&lt;/a> up locally, but WITHOUT Docksal (due to problems with the integration originally documented &lt;a href="https://static.grinnell.edu/dlad-blog/posts/019-dockerized-omeka-s/">here&lt;/a>).&lt;/p>
+&lt;p>System requirements for local development of this project currently include:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.docker.com/install/">Docker (Community Edition)&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="local-development-and-testing">Local Development and Testing&lt;/h2>
+&lt;p>If your workstation is able to run the aforementioned required components then the following steps can be used to launch and develop a local instance. Assuming your workstation is Linux or a Mac, you&amp;rsquo;ll need to edit your &lt;code>/etc/hosts&lt;/code> with an editor of your choice, and &lt;code>sudo&lt;/code> privileges might be required. For me this was&amp;hellip;&lt;/p></description></item><item><title>Debugging ISLE-ld (Local Development) in PHPStorm</title><link>https://static.grinnell.edu/dlad-blog/posts/023-debugging-isle-ld-in-phpstorm/</link><pubDate>Fri, 12 Jul 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/023-debugging-isle-ld-in-phpstorm/</guid><description>&lt;h1 id="debugging-isle-on-a-mac">Debugging ISLE on a Mac&lt;/h1>
+&lt;p>This guidance applies to debugging PHP code in a local &lt;code>ISLE-ld&lt;/code>, that&amp;rsquo;s &lt;a href="http://isle.localdomain">http://isle.localdomain&lt;/a>, instance using &lt;a href="https://www.jetbrains.com/phpstorm/">PHPStorm&lt;/a>.&lt;/p>
+&lt;h2 id="modify-isles-docker-composeoverrideyml">Modify ISLE&amp;rsquo;s &lt;code>docker-compose.override.yml&lt;/code>&lt;/h2>
+&lt;p>Before engaging &lt;em>PHPStorm&lt;/em> we need to make one change to our &lt;code>ISLE-ld&lt;/code> configuration by running a &lt;code>docker cp&lt;/code> command, making a change to our &lt;code>docker-compose.override.yml&lt;/code> file, and restarting the stack. Here are the commands and procedure.&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Workstation Commands&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>cd ~/Projects/ISLE &lt;br/> mkdir -p persistent/html &lt;br/> docker cp isle-apache-ld:/var/www/html/. ./persistent/html&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;p>The above commands will make a new &lt;code>./persistent/html&lt;/code> directory on the host, if one does not already exist, and the &lt;code>docker cp&lt;/code> command will copy the current contents of the &lt;em>Apache&lt;/em> container&amp;rsquo;s &lt;code>/var/www/html&lt;/code> directory to the host. Next we need to modify &lt;code>docker-compose.override.yml&lt;/code> to map the &lt;code>./persistent/html&lt;/code> directory into the container.&lt;/p></description></item></channel></rss>

@@ -1,13 +1,246 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Traefik on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/traefik/</link><description>Recent content in Traefik on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 28 Sep 2020 15:15:56 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/traefik/index.xml" rel="self" type="application/rss+xml"/><item><title>Traefik and Acme.sh for DG-STAGING</title><link>https://static.grinnell.edu/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</link><pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</guid><description>This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge and Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations, specifically Step 11 in the later document. It introduces a Digital.Grinnell-specific implementation of the Traefik with Acme.sh.
-Testing with McFateM/docker-traefik2-acme-host I started work on this implementation with a test, by cloning https://github.com/McFateM/docker-traefik2-acme-host and proceeding as directed in the repository&amp;rsquo;s README.md document, as user islandora on node DGDockerX, like so:
-DGDockerX Host Commands cd ~ git clone https://github.</description></item><item><title>New Host Config: Vulnerability Scan</title><link>https://static.grinnell.edu/dlad-blog/posts/081-new-host-config-vulnerability-scan/</link><pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/081-new-host-config-vulnerability-scan/</guid><description>Today I elected to run a vulnerability scan against our new instance of the docker-traefik2-acme-host configuration that&amp;rsquo;s running on static.grinnell.edu. The command I used, and the results, are posted below.
-╭─islandora@dgdockerx ~ ╰─$ /home/islandora/testssl.sh/testssl.sh static.grinnell.edu ########################################################### testssl.sh 3.0rc4 from https://testssl.sh/dev/ This program is free software. Distribution and modification under GPLv2 permitted. USAGE w/o ANY WARRANTY. USE IT AT YOUR OWN RISK! Please file bugs @ https://testssl.sh/bugs/ ########################################################### Using &amp;#34;OpenSSL 1.0.2-chacha (1.0.2k-dev)&amp;#34; [~183 ciphers] on dgdockerx:/home/islandora/testssl.sh/bin/openssl.Linux.x86_64 (built: &amp;#34;Jan 18 17:12:17 2019&amp;#34;, platform: &amp;#34;linux-x86_64&amp;#34;) Start 2020-06-11 17:33:25 --&amp;gt;&amp;gt; 132.</description></item><item><title>Host Config: docker-traefik2-acme-host</title><link>https://static.grinnell.edu/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</link><pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</guid><description>This post is celebrating the completion (really, is anything ever complete?) of a new server/host/stack deployment project: docker-traefik2-acme-host. In order to make this post really easy to read, I&amp;rsquo;m going to wrap it up in one bullet&amp;hellip;
-README.md Troubleshooting Should you ever encounter an error like the one below, be sure to ask your IT provider if they created the proper CNAME record when creating your DNS entry.
-[Tue Jun 30 20:53:50 UTC 2020] ohscribe.grinnell.edu:Verify error:DNS problem: NXDOMAIN looking up TXT for _acme-challenge.</description></item><item><title>Traefik and Acme.sh Instead of DNS-01</title><link>https://static.grinnell.edu/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</link><pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</guid><description>This post is a follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge. It introduces an alternative to the failed process that was proposed in that earlier post.
-Note that the following config-specific elements have been replaced below:
-6 occurances of ?.grinnell.edu now say example-1.grinnell.edu, and 2 occurances of ?.info now say example-2.info. New Proposal On June 1 my colleage, Matt, suggested the following&amp;hellip;
-As much as I would like to resolve the DNS-01 challenge using Traefik alone, I don&amp;rsquo;t believe it will support what we&amp;rsquo;re trying to do here.</description></item><item><title>Simplified Testing of Traefik 2 with ACME DNS-01 Challenge</title><link>https://static.grinnell.edu/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</link><pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</guid><description>This post is a simplified and focused follow-up to Dockerized Traefik Host Using ACME DNS-01 Challenge.
-Simplify Today, 19-May-2020, I&amp;rsquo;m going to take a shot at simplifying my testing on dgdocker3.grinnell.edu by removing unnecessary things and consolidating as much as possible to reduce clutter in the logs and get right to the point. I&amp;rsquo;m also going to have a look to see if there are additional logs that can tell give me more detail. Everything used here, and everything that takes place here, will be found in a new directory, /opt/containers/test on DGDocker3.</description></item><item><title>Dockerized Traefik Host Using ACME DNS-01 Challenge</title><link>https://static.grinnell.edu/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</link><pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</guid><description>This post builds on My dockerized-server Config and attempts to change what was a problematic ACME HTTP-01 or httpChallenge in Traefik and Let&amp;rsquo;s Encrypt to an ACME DNS-01 or dnsChallenge. The problem with the old HTTP-01 or httpChallenge is that it requires the creation of a valid and widely accessible &amp;ldquo;A&amp;rdquo; record in our DNS before the creation of a cert; the record has to be in place so that the Let&amp;rsquo;s Encrypt CA-server can find it to confirm that the request is valid.</description></item><item><title>Repairing Static.Grinnell.edu</title><link>https://static.grinnell.edu/dlad-blog/posts/045-repairing-static.grinnell.edu/</link><pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/045-repairing-static.grinnell.edu/</guid><description>This morning, Tuesday, September 17, 2019, I awoke to find our https://static.grinnell.edu server, and all of the services on it, unreachable via the web. I managed to open a shell on the host and found that the server was up-and-running as expected, but a quick docker ps command indicated that one of the key services on the server, namely Traefik, had stopped and then failed to restart, repeatedly. Traefik is the service that&amp;rsquo;s responsible for routing web traffic on the static host.</description></item><item><title>My dockerized-server Config</title><link>https://static.grinnell.edu/dlad-blog/posts/042-my-dockerized-server-config/</link><pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/042-my-dockerized-server-config/</guid><description>This post picks up from where Configuring DGDocker2 left off. In it I will establish a workflow to setup a &amp;ldquo;Dockerized&amp;rdquo; server complete with Traefik, Portainer, and Who Am I. It should be relatively easy to add additional non-static services to any server that is initially configured using this package. For &amp;ldquo;static&amp;rdquo; servers have a look at post 008 docker-bootstrap Workflow .
-Capture As a Project Picking up from the end of Configuring DGDocker2, my first step on the dgdocker2 server was to move everything into a single subdirectory of /opt; I called the new directory dockerized-server, like so:</description></item><item><title>Configuring DGDocker2</title><link>https://static.grinnell.edu/dlad-blog/posts/041-configuring-dgdocker2/</link><pubDate>Tue, 03 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/041-configuring-dgdocker2/</guid><description>My mission today is to successfully migrate the images/containers/services chronicled in post 030, &amp;ldquo;Dockerized Omeka-S: Starting Over&amp;rdquo; to Docker-ready node dgdocker2 without compromising any of the services that already run there.
-Pushing WMI Omeka-S to Production on dgdocker2 Grinnell&amp;rsquo;s dgdocker2 server, specifically dgdocker2.grinnell.edu with an IP address of 132.161.132.143, is a Docker-ready CentOS 7 node that&amp;rsquo;s currently supporting the following containers and configuration:
-╭─root@dgdocker2 ~ ╰─# docker ps CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES ef20d71ffea8 mcfatem/ohscribe &amp;#34;./boot.sh&amp;#34; 6 days ago Up 6 days 5000/tcp ohscribe b525f4670cd2 mariadb:latest &amp;#34;docker-entrypoint.</description></item><item><title>Removing Traefik's Weak Cipher Suites</title><link>https://static.grinnell.edu/dlad-blog/posts/005-removing-traefik-weak-ciphers/</link><pubDate>Fri, 10 May 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/005-removing-traefik-weak-ciphers/</guid><description>Most of the servers I deploy to and manage here at Grinnell College are now &amp;ldquo;Dockerized&amp;rdquo;, and all of those use Traefik to manage traffic, of course. Before a web app or server can be opened for access to the world here, it has to pass a vulnerability scan, and I&amp;rsquo;m not privy to the specifics of that scan. However, I do know that &amp;ldquo;weak cipher suites&amp;rdquo; are a common source of failure among my newest servers. It took a couple of weeks of searching, and trial/error solution attempts to identify the nature and specific source of these weaknesses, and to eradicate them.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Traefik on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/traefik/</link><description>Recent content in Traefik on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 28 Sep 2020 15:15:56 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/traefik/index.xml" rel="self" type="application/rss+xml"/><item><title>Traefik and Acme.sh for DG-STAGING</title><link>https://static.grinnell.edu/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</link><pubDate>Tue, 15 Sep 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/093-traefik-and-acme.sh-for-dg-staging/</guid><description>&lt;p>This post is a follow-up to &lt;a href="https://static.grinnell.edu/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/">Dockerized Traefik Host Using ACME DNS-01 Challenge&lt;/a> and &lt;a href="https://static.grinnell.edu/dlad-blog/posts/092-staging-isle/">Staging ISLE Installation: Migrate Existing Islandora Site - with Annotations&lt;/a>, specifically &lt;em>Step 11&lt;/em> in the later document. It introduces a &lt;em>Digital.Grinnell&lt;/em>-specific implementation of the &lt;em>Traefik&lt;/em> with &lt;em>Acme.sh&lt;/em>.&lt;/p>
+&lt;h2 id="testing-with-mcfatemdocker-traefik2-acme-host">Testing with McFateM/docker-traefik2-acme-host&lt;/h2>
+&lt;p>I started work on this implementation with a test, by cloning &lt;a href="https://github.com/McFateM/docker-traefik2-acme-host">https://github.com/McFateM/docker-traefik2-acme-host&lt;/a> and proceeding as directed in the repository&amp;rsquo;s &lt;a href="https://github.com/McFateM/docker-traefik2-acme-host/blob/master/README.md">README.md&lt;/a> document, as user &lt;code>islandora&lt;/code> on node &lt;em>DGDockerX&lt;/em>, like so:&lt;/p>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>DGDockerX Host Commands&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>&lt;code>cd ~&lt;/code> &lt;br/> &lt;code>git clone https://github.com/McFateM/docker-traefik2-acme-host host --recursive&lt;/code> &lt;br/> &lt;code>cd host&lt;/code>&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h3 id="working-in-hostacme">Working in &lt;code>~/host/acme&lt;/code>&lt;/h3>
+&lt;p>As suggested, I made a copy of the &lt;code>.env&lt;/code> file from the corresponding &lt;code>acme&lt;/code> directory on Grinnell&amp;rsquo;s &lt;code>dgdocker3.grinnell.edu&lt;/code> server, something like this:&lt;/p></description></item><item><title>New Host Config: Vulnerability Scan</title><link>https://static.grinnell.edu/dlad-blog/posts/081-new-host-config-vulnerability-scan/</link><pubDate>Thu, 11 Jun 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/081-new-host-config-vulnerability-scan/</guid><description>&lt;p>Today I elected to run a vulnerability scan against our new instance of the &lt;code>docker-traefik2-acme-host&lt;/code> configuration that&amp;rsquo;s running on &lt;a href="https://static.grinnell.edu/whoami/">static.grinnell.edu&lt;/a>. The command I used, and the results, are posted below.&lt;/p>
+&lt;pre tabindex="0">&lt;code>╭─islandora@dgdockerx ~
+╰─$ /home/islandora/testssl.sh/testssl.sh static.grinnell.edu
+
+###########################################################
+ testssl.sh 3.0rc4 from https://testssl.sh/dev/
+
+ This program is free software. Distribution and
+ modification under GPLv2 permitted.
+ USAGE w/o ANY WARRANTY. USE IT AT YOUR OWN RISK!
+
+ Please file bugs @ https://testssl.sh/bugs/
+
+###########################################################
+
+ Using &amp;#34;OpenSSL 1.0.2-chacha (1.0.2k-dev)&amp;#34; [~183 ciphers]
+ on dgdockerx:/home/islandora/testssl.sh/bin/openssl.Linux.x86_64
+ (built: &amp;#34;Jan 18 17:12:17 2019&amp;#34;, platform: &amp;#34;linux-x86_64&amp;#34;)
+
+
+ Start 2020-06-11 17:33:25 --&amp;gt;&amp;gt; 132.161.151.30:443 (static.grinnell.edu) &amp;lt;&amp;lt;--
+
+ rDNS (132.161.151.30): vaf.grinnell.edu. rootstalk.grinnell.edu. static.grinnell.edu. rootstalk-static.grinnell.edu.
+ Service detected: HTTP
+
+
+ Testing protocols via sockets except NPN+ALPN
+
+ SSLv2 not offered (OK)
+ SSLv3 not offered (OK)
+ TLS 1 offered
+ TLS 1.1 offered
+ TLS 1.2 offered (OK)
+ TLS 1.3 offered (OK): final
+ NPN/SPDY not offered
+ ALPN/HTTP2 h2, http/1.1 (offered)
+
+ Testing cipher categories
+
+ NULL ciphers (no encryption) not offered (OK)
+ Anonymous NULL Ciphers (no authentication) not offered (OK)
+ Export ciphers (w/o ADH+NULL) not offered (OK)
+ LOW: 64 Bit + DES, RC[2,4] (w/o export) not offered (OK)
+ Triple DES Ciphers / IDEA offered (NOT ok)
+ Average: SEED + 128+256 Bit CBC ciphers offered
+ Strong encryption (AEAD ciphers) offered (OK)
+
+
+ Testing robust (perfect) forward secrecy, (P)FS -- omitting Null Authentication/Encryption, 3DES, RC4
+
+ PFS is offered (OK) TLS_AES_256_GCM_SHA384 TLS_CHACHA20_POLY1305_SHA256 ECDHE-RSA-AES256-GCM-SHA384 ECDHE-RSA-AES256-SHA
+ ECDHE-RSA-CHACHA20-POLY1305 TLS_AES_128_GCM_SHA256 ECDHE-RSA-AES128-GCM-SHA256 ECDHE-RSA-AES128-SHA
+ Elliptic curves offered: prime256v1 secp384r1 secp521r1 X25519
+
+
+ Testing server preferences
+
+ Has server cipher order? yes (OK) -- only for &amp;lt; TLS 1.3
+ Negotiated protocol TLSv1.3
+ Negotiated cipher TLS_AES_256_GCM_SHA384, 253 bit ECDH (X25519)
+ Cipher order
+ TLSv1: ECDHE-RSA-AES256-SHA AES256-SHA ECDHE-RSA-AES128-SHA AES128-SHA ECDHE-RSA-DES-CBC3-SHA DES-CBC3-SHA
+ TLSv1.1: ECDHE-RSA-AES256-SHA AES256-SHA ECDHE-RSA-AES128-SHA AES128-SHA ECDHE-RSA-DES-CBC3-SHA DES-CBC3-SHA
+ TLSv1.2: ECDHE-RSA-AES256-GCM-SHA384 ECDHE-RSA-AES256-SHA ECDHE-RSA-CHACHA20-POLY1305 AES256-GCM-SHA384 AES256-SHA
+ ECDHE-RSA-AES128-GCM-SHA256 ECDHE-RSA-AES128-SHA AES128-GCM-SHA256 AES128-SHA ECDHE-RSA-DES-CBC3-SHA DES-CBC3-SHA
+ TLSv1.3: TLS_AES_256_GCM_SHA384 TLS_CHACHA20_POLY1305_SHA256 TLS_AES_128_GCM_SHA256
+
+
+ Testing server defaults (Server Hello)
+
+ TLS extensions (standard) &amp;#34;session ticket/#35&amp;#34; &amp;#34;renegotiation info/#65281&amp;#34; &amp;#34;EC point formats/#11&amp;#34; &amp;#34;supported versions/#43&amp;#34;
+ &amp;#34;key share/#51&amp;#34; &amp;#34;application layer protocol negotiation/#16&amp;#34;
+ Session Ticket RFC 5077 hint no -- no lifetime advertised
+ SSL Session ID support yes
+ Session Resumption Tickets no, ID: no
+ TLS clock skew Random values, no fingerprinting possible
+ Signature Algorithm SHA256 with RSA
+ Server key size RSA 2048 bits
+ Server key usage Digital Signature, Key Encipherment
+ Server extended key usage TLS Web Server Authentication, TLS Web Client Authentication
+ Serial / Fingerprints 035B28222F66FCE82AB86834D316C249EDB3 / SHA1 385FFF215983EFA46B2CAFCA6768356348475307
+ SHA256 F2A91B6B1BE83479550EE679AEA78B9551CA00D1D5BC0DA4B80D1FA1B4E3ED25
+ Common Name (CN) static.grinnell.edu (CN in response to request w/o SNI: TRAEFIK DEFAULT CERT)
+ subjectAltName (SAN) static.grinnell.edu
+ Issuer Let&amp;#39;s Encrypt Authority X3 (Let&amp;#39;s Encrypt from US)
+ Trust (hostname) Ok via SAN and CN (SNI mandatory)
+ Chain of trust NOT ok (chain incomplete)
+ EV cert (experimental) no
+ &amp;#34;eTLS&amp;#34; (visibility info) not present
+ Certificate Validity (UTC) 88 &amp;gt;= 30 days (2020-06-10 11:51 --&amp;gt; 2020-09-08 11:51)
+ # of certificates provided 1
+ Certificate Revocation List --
+ OCSP URI http://ocsp.int-x3.letsencrypt.org
+ OCSP stapling not offered
+ OCSP must staple extension --
+ DNS CAA RR (experimental) not offered
+ Certificate Transparency yes (certificate extension)
+
+
+ Testing HTTP header response @ &amp;#34;/&amp;#34;
+
+ HTTP Status Code 200 OK
+ HTTP clock skew 0 sec from localtime
+ Strict Transport Security not offered
+ Public Key Pinning --
+ Server banner nginx/1.17.10
+ Application banner --
+ Cookie(s) (none issued at &amp;#34;/&amp;#34;)
+ Security headers --
+ Reverse Proxy banner --
+
+
+ Testing vulnerabilities
+
+ Heartbleed (CVE-2014-0160) not vulnerable (OK), no heartbeat extension
+ CCS (CVE-2014-0224) not vulnerable (OK)
+ Ticketbleed (CVE-2016-9244), experiment. not vulnerable (OK), reply empty
+ ROBOT not vulnerable (OK)
+ Secure Renegotiation (CVE-2009-3555) not vulnerable (OK)
+ Secure Client-Initiated Renegotiation not vulnerable (OK)
+ CRIME, TLS (CVE-2012-4929) not vulnerable (OK)
+ BREACH (CVE-2013-3587) no HTTP compression (OK) - only supplied &amp;#34;/&amp;#34; tested
+ POODLE, SSL (CVE-2014-3566) not vulnerable (OK)
+ TLS_FALLBACK_SCSV (RFC 7507) Downgrade attack prevention supported (OK)
+ SWEET32 (CVE-2016-2183, CVE-2016-6329) VULNERABLE, uses 64 bit block ciphers
+ FREAK (CVE-2015-0204) not vulnerable (OK)
+ DROWN (CVE-2016-0800, CVE-2016-0703) not vulnerable on this host and port (OK)
+ make sure you don&amp;#39;t use this certificate elsewhere with SSLv2 enabled services
+ https://censys.io/ipv4?q=F2A91B6B1BE83479550EE679AEA78B9551CA00D1D5BC0DA4B80D1FA1B4E3ED25 could help you to find out
+ LOGJAM (CVE-2015-4000), experimental not vulnerable (OK): no DH EXPORT ciphers, no DH key detected with &amp;lt;= TLS 1.2
+ BEAST (CVE-2011-3389) TLS1: ECDHE-RSA-AES256-SHA AES256-SHA ECDHE-RSA-AES128-SHA AES128-SHA ECDHE-RSA-DES-CBC3-SHA
+ DES-CBC3-SHA
+ VULNERABLE -- but also supports higher protocols TLSv1.1 TLSv1.2 (likely mitigated)
+ LUCKY13 (CVE-2013-0169), experimental potentially VULNERABLE, uses cipher block chaining (CBC) ciphers with TLS. Check patches
+ RC4 (CVE-2013-2566, CVE-2015-2808) no RC4 ciphers detected (OK)
+
+
+ Testing 370 ciphers via OpenSSL plus sockets against the server, ordered by encryption strength
+
+Hexcode Cipher Suite Name (OpenSSL) KeyExch. Encryption Bits Cipher Suite Name (IANA/RFC)
+-----------------------------------------------------------------------------------------------------------------------------
+ x1302 TLS_AES_256_GCM_SHA384 ECDH 253 AESGCM 256 TLS_AES_256_GCM_SHA384
+ x1303 TLS_CHACHA20_POLY1305_SHA256 ECDH 253 ChaCha20 256 TLS_CHACHA20_POLY1305_SHA256
+ xc030 ECDHE-RSA-AES256-GCM-SHA384 ECDH 521 AESGCM 256 TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ xc014 ECDHE-RSA-AES256-SHA ECDH 521 AES 256 TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
+ xcca8 ECDHE-RSA-CHACHA20-POLY1305 ECDH 521 ChaCha20 256 TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+ x9d AES256-GCM-SHA384 RSA AESGCM 256 TLS_RSA_WITH_AES_256_GCM_SHA384
+ x35 AES256-SHA RSA AES 256 TLS_RSA_WITH_AES_256_CBC_SHA
+ x1301 TLS_AES_128_GCM_SHA256 ECDH 253 AESGCM 128 TLS_AES_128_GCM_SHA256
+ xc02f ECDHE-RSA-AES128-GCM-SHA256 ECDH 521 AESGCM 128 TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+ xc013 ECDHE-RSA-AES128-SHA ECDH 521 AES 128 TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+ x9c AES128-GCM-SHA256 RSA AESGCM 128 TLS_RSA_WITH_AES_128_GCM_SHA256
+ x2f AES128-SHA RSA AES 128 TLS_RSA_WITH_AES_128_CBC_SHA
+ xc012 ECDHE-RSA-DES-CBC3-SHA ECDH 521 3DES 168 TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA
+ x0a DES-CBC3-SHA RSA 3DES 168 TLS_RSA_WITH_3DES_EDE_CBC_SHA
+
+
+ Running client simulations (HTTP) via sockets
+
+ Android 4.2.2 TLSv1.0 ECDHE-RSA-AES256-SHA, 521 bit ECDH (P-521)
+ Android 4.4.2 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 521 bit ECDH (P-521)
+ Android 5.0.0 TLSv1.2 ECDHE-RSA-AES256-SHA, 521 bit ECDH (P-521)
+ Android 6.0 TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256, 256 bit ECDH (P-256)
+ Android 7.0 TLSv1.2 ECDHE-RSA-CHACHA20-POLY1305, 253 bit ECDH (X25519)
+ Chrome 65 Win 7 TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256, 253 bit ECDH (X25519)
+ Chrome 70 Win 10 TLSv1.3 TLS_AES_128_GCM_SHA256, 253 bit ECDH (X25519)
+ Firefox 59 Win 7 TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256, 253 bit ECDH (X25519)
+ Firefox 62 Win 7 TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256, 253 bit ECDH (X25519)
+ IE 6 XP No connection
+ IE 7 Vista TLSv1.0 AES128-SHA, No FS
+ IE 8 Win 7 TLSv1.0 AES128-SHA, No FS
+ IE 8 XP TLSv1.0 DES-CBC3-SHA, No FS
+ IE 11 Win 7 TLSv1.2 ECDHE-RSA-AES256-SHA, 256 bit ECDH (P-256)
+ IE 11 Win 8.1 TLSv1.2 ECDHE-RSA-AES256-SHA, 256 bit ECDH (P-256)
+ IE 11 Win Phone 8.1 TLSv1.2 AES128-SHA, No FS
+ IE 11 Win 10 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Edge 13 Win 10 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Edge 13 Win Phone 10 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Edge 15 Win 10 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 253 bit ECDH (X25519)
+ Safari 9 iOS 9 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Safari 9 OS X 10.11 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Safari 10 OS X 10.12 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Apple ATS 9 iOS 9 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ Tor 17.0.9 Win 7 TLSv1.0 ECDHE-RSA-AES256-SHA, 256 bit ECDH (P-256)
+ Java 6u45 No connection
+ Java 7u25 TLSv1.0 ECDHE-RSA-AES128-SHA, 256 bit ECDH (P-256)
+ Java 8u161 TLSv1.2 ECDHE-RSA-AES256-SHA, 256 bit ECDH (P-256)
+ Java 9.0.4 TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+ OpenSSL 1.0.1l TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 521 bit ECDH (P-521)
+ OpenSSL 1.0.2e TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384, 256 bit ECDH (P-256)
+
+ Done 2020-06-11 17:34:48 [ 85s] --&amp;gt;&amp;gt; 132.161.151.30:443 (static.grinnell.edu) &amp;lt;&amp;lt;--
+&lt;/code>&lt;/pre>&lt;h2 id="controling-tls-ciphers">Controling TLS Ciphers&lt;/h2>
+&lt;p>In previous server configs that used &lt;em>Traefik v1.x&lt;/em> I was able to eliminate some potential vulnerabilities by removing old, weak ciphers. In that old environment I used a few &lt;em>command:&lt;/em> options in the &lt;code>docker-compose.yml&lt;/code> file along with a declaration of stronger ciphers in a &lt;code>traefik.toml&lt;/code> file. That config change is documented in &lt;a href="https://static.grinnell.edu/dlad-blog/en/posts/005-removing-traefik-weak-ciphers">Removing Traefik Weak Ciphers&lt;/a>.&lt;/p></description></item><item><title>Host Config: docker-traefik2-acme-host</title><link>https://static.grinnell.edu/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</link><pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/080-host-config-docker-traefik2-acme-host/</guid><description>&lt;p>This post is celebrating the completion (really, is anything ever complete?) of a new server/host/stack deployment project: &lt;a href="https://github.com/McFateM/docker-traefik2-acme-host">docker-traefik2-acme-host&lt;/a>. In order to make this post really easy to read, I&amp;rsquo;m going to wrap it up in one bullet&amp;hellip;&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/McFateM/docker-traefik2-acme-host/blob/master/README.md">README.md&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
+&lt;p>Should you ever encounter an error like the one below, be sure to ask your IT provider if they created the proper &lt;code>CNAME&lt;/code> record when creating your DNS entry.&lt;/p>
+&lt;pre tabindex="0">&lt;code>[Tue Jun 30 20:53:50 UTC 2020] ohscribe.grinnell.edu:Verify error:DNS problem: NXDOMAIN looking up TXT for _acme-challenge.ohscribe.grinnell.edu - check that a DNS record exists for this domain
+&lt;/code>&lt;/pre>&lt;p>That turned out to be the source of this error for me when I tried to obtain a cert for &lt;code>ohscribe.grinnell.edu&lt;/code> on node &lt;code>DGDocker3&lt;/code>.&lt;/p></description></item><item><title>Traefik and Acme.sh Instead of DNS-01</title><link>https://static.grinnell.edu/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</link><pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/079-traefik-and-acme.sh-instead-of-dns-01/</guid><description>&lt;p>This post is a follow-up to &lt;a href="https://static.grinnell.edu/dlad-blog/en/posts/071-dockerized-traefik-using-acme-dns-01">Dockerized Traefik Host Using ACME DNS-01 Challenge&lt;/a>. It introduces an alternative to the failed process that was proposed in that earlier post.&lt;/p>
+&lt;blockquote>
+&lt;p>Note that the following config-specific elements have been replaced below:&lt;/p>
+&lt;ul>
+&lt;li>6 occurances of &lt;code>?.grinnell.edu&lt;/code> now say &lt;code>example-1.grinnell.edu&lt;/code>, and&lt;/li>
+&lt;li>2 occurances of &lt;code>?.info&lt;/code> now say &lt;code>example-2.info&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;h2 id="new-proposal">New Proposal&lt;/h2>
+&lt;p>On June 1 my colleage, Matt, suggested the following&amp;hellip;&lt;/p>
+&lt;blockquote>
+&lt;p>As much as I would like to resolve the DNS-01 challenge using Traefik alone, I don&amp;rsquo;t believe it will support what we&amp;rsquo;re trying to do here. I&amp;rsquo;m a bit disappointed by that as Nginx makes this process very easy, and my reading through the Traefik documentation and my own tests lead me to believe that CNAME following is not currently supported in Traefik, and is basically impossible. Until the they allow for the verification domain to be specified as a provider option (in this case, specifying example-2.info as the domain for the Azure DNS provider), using the built-in ACME functionality in Traefik won&amp;rsquo;t work, no matter which DNS provider is in use.&lt;/p></description></item><item><title>Simplified Testing of Traefik 2 with ACME DNS-01 Challenge</title><link>https://static.grinnell.edu/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</link><pubDate>Tue, 19 May 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/074-simplified-testing-traefik-2-with-acme-dns-01/</guid><description>&lt;p>This post is a simplified and focused follow-up to &lt;a href="https://static.grinnell.edu/dlad-blog/en/posts/071-dockerized-traefik-using-acme-dns-01/">Dockerized Traefik Host Using ACME DNS-01 Challenge&lt;/a>.&lt;/p>
+&lt;h2 id="simplify">Simplify&lt;/h2>
+&lt;p>Today, 19-May-2020, I&amp;rsquo;m going to take a shot at simplifying my testing on &lt;code>dgdocker3.grinnell.edu&lt;/code> by removing unnecessary things and consolidating as much as possible to reduce clutter in the logs and get right to the point. I&amp;rsquo;m also going to have a look to see if there are additional logs that can tell give me more detail. &lt;strong>Everything&lt;/strong> used here, and everything that takes place here, will be found in a new directory, &lt;code>/opt/containers/test&lt;/code> on &lt;em>DGDocker3&lt;/em>.&lt;/p></description></item><item><title>Dockerized Traefik Host Using ACME DNS-01 Challenge</title><link>https://static.grinnell.edu/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</link><pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/071-dockerized-traefik-using-acme-dns-01/</guid><description>&lt;p>This post builds on &lt;a href="https://dlad.summittdweller.com/en/posts/042-my-dockerized-server-config/">My dockerized-server Config&lt;/a> and attempts to change what was a problematic &lt;a href="https://docs.traefik.io/https/acme/#httpchallenge">ACME HTTP-01 or httpChallenge&lt;/a> in &lt;a href="https://traefik.io">Traefik&lt;/a> and &lt;a href="https://letsencrypt.org">Let&amp;rsquo;s Encrypt&lt;/a> to an &lt;a href="https://docs.traefik.io/https/acme/#dnschallenge">ACME DNS-01 or dnsChallenge&lt;/a>. The problem with the old &lt;em>HTTP-01&lt;/em> or &lt;em>httpChallenge&lt;/em> is that it requires the creation of a valid and widely accessible &amp;ldquo;A&amp;rdquo; record in our DNS &lt;em>before&lt;/em> the creation of a cert; the record has to be in place so that the &lt;em>Let&amp;rsquo;s Encrypt&lt;/em> CA-server can find it to confirm that the request is valid. However, doing this puts the cart-before-the-horse, so-to-speak, since we like to have a valid cert in place &lt;em>before&lt;/em> we add a new DNS record.&lt;/p></description></item><item><title>Repairing Static.Grinnell.edu</title><link>https://static.grinnell.edu/dlad-blog/posts/045-repairing-static.grinnell.edu/</link><pubDate>Tue, 17 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/045-repairing-static.grinnell.edu/</guid><description>&lt;p>This morning, Tuesday, September 17, 2019, I awoke to find our &lt;a href="https://static.grinnell.edu">https://static.grinnell.edu&lt;/a> server, and all of the services on it, unreachable via the web. I managed to open a shell on the host and found that the server was up-and-running as expected, but a quick &lt;code>docker ps&lt;/code> command indicated that one of the key services on the server, namely &lt;em>Traefik&lt;/em>, had stopped and then failed to restart, repeatedly. &lt;em>Traefik&lt;/em> is the service that&amp;rsquo;s responsible for routing web traffic on the &lt;em>static&lt;/em> host. No wonder the web sites were not responding!&lt;/p></description></item><item><title>My dockerized-server Config</title><link>https://static.grinnell.edu/dlad-blog/posts/042-my-dockerized-server-config/</link><pubDate>Sat, 07 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/042-my-dockerized-server-config/</guid><description>&lt;p>This post picks up from where &lt;a href="https://static.grinnell.edu/dlad-blog/posts/041-configuring-dgdocker2">Configuring DGDocker2&lt;/a> left off. In it I will establish a workflow to setup a &amp;ldquo;Dockerized&amp;rdquo; server complete with &lt;em>Traefik&lt;/em>, &lt;em>Portainer&lt;/em>, and &lt;em>Who Am I&lt;/em>. It should be relatively easy to add additional non-static services to any server that is initially configured using this package. For &amp;ldquo;static&amp;rdquo; servers have a look at post &lt;a href="https://static.grinnell.edu/dlad-blog/posts/008-docker-bootstrap-workflow/">008 docker-bootstrap Workflow &lt;/a>.&lt;/p>
+&lt;h2 id="capture-as-a-project">Capture As a Project&lt;/h2>
+&lt;p>Picking up from the end of &lt;a href="https://static.grinnell.edu/dlad-blog/posts/041-configuring-dgdocker2">Configuring DGDocker2&lt;/a>, my first step on the &lt;em>dgdocker2&lt;/em> server was to move everything into a single subdirectory of &lt;em>/opt&lt;/em>; I called the new directory &lt;em>dockerized-server&lt;/em>, like so:&lt;/p></description></item><item><title>Configuring DGDocker2</title><link>https://static.grinnell.edu/dlad-blog/posts/041-configuring-dgdocker2/</link><pubDate>Tue, 03 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/041-configuring-dgdocker2/</guid><description>&lt;p>My mission today is to successfully migrate the images/containers/services chronicled in &lt;a href="https://static.grinnell.edu/dlad-blog/posts/030-dockerized-omeka-s-starting-over/">post 030, &amp;ldquo;Dockerized Omeka-S: Starting Over&amp;rdquo;&lt;/a> to Docker-ready node &lt;em>dgdocker2&lt;/em> without compromising any of the services that already run there.&lt;/p>
+&lt;h2 id="pushing-wmi-omeka-s-to-production-on-_dgdocker2_">Pushing WMI Omeka-S to Production on &lt;em>dgdocker2&lt;/em>&lt;/h2>
+&lt;p>Grinnell&amp;rsquo;s &lt;em>dgdocker2&lt;/em> server, specifically &lt;em>dgdocker2.grinnell.edu&lt;/em> with an IP address of 132.161.132.143, is a Docker-ready CentOS 7 node that&amp;rsquo;s currently supporting the following containers and configuration:&lt;/p>
+&lt;pre tabindex="0">&lt;code>╭─root@dgdocker2 ~
+╰─# docker ps
+CONTAINER ID IMAGE COMMAND CREATED STATUS PORTS NAMES
+ef20d71ffea8 mcfatem/ohscribe &amp;#34;./boot.sh&amp;#34; 6 days ago Up 6 days 5000/tcp ohscribe
+b525f4670cd2 mariadb:latest &amp;#34;docker-entrypoint.s…&amp;#34; 2 weeks ago Up 2 weeks 3306/tcp omekasdocker_mariadb_1
+7f107a24c204 traefik:latest &amp;#34;/traefik --docker -…&amp;#34; 2 weeks ago Up 2 weeks 0.0.0.0:80-&amp;gt;80/tcp, 0.0.0.0:443-&amp;gt;443/tcp, 0.0.0.0:8080-&amp;gt;8080/tcp traefik_proxy
+9282ab53ecc4 portainer/portainer:latest &amp;#34;/portainer --admin-…&amp;#34; 5 weeks ago Up 5 weeks 0.0.0.0:9000-&amp;gt;9000/tcp portainer
+60ce06301101 dodeeric/omeka-s:latest &amp;#34;docker-php-entrypoi…&amp;#34; 7 weeks ago Up 7 weeks 80/tcp omekasdocker_omeka_1
+54bd82694f3c phpmyadmin/phpmyadmin:latest &amp;#34;/docker-entrypoint.…&amp;#34; 2 months ago Up 2 months 80/tcp omekasdocker_pma_1
+0cd019c5456e emilevauge/whoami &amp;#34;/whoamI&amp;#34; 2 months ago Up 2 months 80/tcp omekasdocker_whoami_1
+7b3d4961ec21 v2tec/watchtower &amp;#34;/watchtower&amp;#34; 2 months ago Up 2 months watchtower
+&lt;/code>&lt;/pre>&lt;p>Grinnell&amp;rsquo;s DNS is configured with the following addresses pointed to &lt;em>dgdocker2&lt;/em>:&lt;/p></description></item><item><title>Removing Traefik's Weak Cipher Suites</title><link>https://static.grinnell.edu/dlad-blog/posts/005-removing-traefik-weak-ciphers/</link><pubDate>Fri, 10 May 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/005-removing-traefik-weak-ciphers/</guid><description>&lt;p>Most of the servers I deploy to and manage here at Grinnell College are now &amp;ldquo;Dockerized&amp;rdquo;, and all of those use &lt;a href="https://traefik.io/">Traefik&lt;/a> to manage traffic, of course. Before a web app or server can be opened for access to the world here, it has to pass a vulnerability scan, and I&amp;rsquo;m not privy to the specifics of that scan. However, I do know that &amp;ldquo;weak cipher suites&amp;rdquo; are a common source of failure among my newest servers. It took a couple of weeks of searching, and trial/error solution attempts to identify the nature and specific source of these weaknesses, and to eradicate them. In my case &lt;a href="https://traefik.io/">Traefik&lt;/a> was the &amp;ldquo;source&amp;rdquo; and the solution was/is to add the following configuration in the applicable &lt;em>docker-compose.yml&lt;/em> files, or &lt;em>docker run&amp;hellip;&lt;/em> command:&lt;/p></description></item></channel></rss>

@@ -1,5 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Reclaim Cloud on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/reclaim-cloud/</link><description>Recent content in Reclaim Cloud on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 11 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/reclaim-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Migrating CATPAW Development to Azure</title><link>https://static.grinnell.edu/dlad-blog/posts/135-migrating-catpaw-development-to-azure/</link><pubDate>Wed, 11 Jan 2023 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/135-migrating-catpaw-development-to-azure/</guid><description>Portions of this post build on concepts introduced in Managing Azure.
-CATPAW - Computer-Aided Thinking, Primarily about Writing From the CATPAW home screen&amp;hellip;
-In many ways, CATPAW is an online book about writing style&amp;ndash;a guide to the choices we make in writing that connect us to our readers.
-Rather than setting out rules to follow, CATPAW will help you make informed choices in context. The site accomplishes that goal in three ways:
-It explains the choices writers face. It uses computational tools to help you examine your own writing, letting you see what choices you have already made and what you might want to do differently.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Reclaim Cloud on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/reclaim-cloud/</link><description>Recent content in Reclaim Cloud on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 11 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/reclaim-cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Migrating CATPAW Development to Azure</title><link>https://static.grinnell.edu/dlad-blog/posts/135-migrating-catpaw-development-to-azure/</link><pubDate>Wed, 11 Jan 2023 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/135-migrating-catpaw-development-to-azure/</guid><description>&lt;p>Portions of this post build on concepts introduced in &lt;a href="https://static.grinnell.edu/dlad-blog/posts/130-managing-azure/">Managing Azure&lt;/a>.&lt;/p>
+&lt;h2 id="catpaw---computer-aided-thinking-primarily-about-writing">CATPAW - Computer-Aided Thinking, Primarily about Writing&lt;/h2>
+&lt;p>From the CATPAW home screen&amp;hellip;&lt;/p>
+
+&lt;div class="original">&lt;p>In many ways, CATPAW is an online book about writing style&amp;ndash;a guide to the choices we make in writing that connect us to our readers.&lt;/p>
+&lt;p>Rather than setting out rules to follow, CATPAW will help you make informed choices in context. The site accomplishes that goal in three ways:&lt;/p>
+&lt;ul>
+&lt;li>It explains the choices writers face.&lt;/li>
+&lt;li>It uses computational tools to help you examine your own writing, letting you see what choices you have already made and what you might want to do differently.&lt;/li>
+&lt;li>It places these choices in the context of advice from other prominent guides to writing.&lt;/li>
+&lt;/ul>
+&lt;/div>
+
+&lt;h3 id="technical-notes">Technical Notes&lt;/h3>
+&lt;p>CATPAW is a &lt;a href="https://flask.palletsprojects.com/en/2.2.x/#">Python Flask&lt;/a> web application that employs a number of Python packages including &lt;a href="https://www.nltk.org/">nltk: the Natural Language Toolkit&lt;/a>.&lt;/p></description></item></channel></rss>

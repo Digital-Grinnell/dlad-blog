@@ -1,2 +1,151 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>commit on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/commit/</link><description>Recent content in commit on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Wed, 27 Jan 2021 12:10:25 -0600</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/commit/index.xml" rel="self" type="application/rss+xml"/><item><title>Git Submodule Tips</title><link>https://static.grinnell.edu/dlad-blog/posts/100-git-submodule-tips/</link><pubDate>Wed, 27 Jan 2021 12:10:25 -0600</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/100-git-submodule-tips/</guid><description>I seem to have a never-ending struggle with git submodules. Today, I need to add some new features to one of my submodules in a non-ISLE project, but I&amp;rsquo;ve elected to post this here because this blog is relatively easy to search. I also feel fortunate to have found Mastering Git Submodules from Christophe Porteneuve.
-So, what I need to do now is update some submodule code, commit, and push that change back to its remote. I will also want to subsequentmly update a pair of projects that use the submodule so they are referencing the newest submodule code.</description></item><item><title>How to Work with Git</title><link>https://static.grinnell.edu/dlad-blog/posts/056-how-to-work-with-git/</link><pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/056-how-to-work-with-git/</guid><description>Credits: This document is an abstraction of some fine documentation authored and posted by my ICG colleague and friend, David Keiser-Clark. ICG Git Workflow: How to work with Git The examples in this document use my work with the Islandora Collaboration Group&amp;rsquo;s (ICG) ISLE-Drupal-Build-Tools repository, as well as my fork and local clone of that repository. I recommend having a look at the GitHub Glossary for a list of terms used frequently in this post, and many of the referenced documents.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Commit on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/commit/</link><description>Recent content in Commit on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Wed, 27 Jan 2021 12:10:25 -0600</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/commit/index.xml" rel="self" type="application/rss+xml"/><item><title>Git Submodule Tips</title><link>https://static.grinnell.edu/dlad-blog/posts/100-git-submodule-tips/</link><pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/100-git-submodule-tips/</guid><description>&lt;p>I seem to have a never-ending struggle with &lt;strong>git submodules&lt;/strong>. Today, I need to add some new features to one of my submodules in a non-ISLE project, but I&amp;rsquo;ve elected to post this here because this blog is relatively easy to search. I also feel fortunate to have found &lt;a href="https://medium.com/@porteneuve/mastering-git-submodules-34c65e940407">Mastering Git Submodules&lt;/a> from &lt;a href="https://medium.com/@porteneuve">Christophe Porteneuve&lt;/a>.&lt;/p>
+&lt;p>So, what I need to do now is update some submodule code, commit, and push that change back to its remote. I will also want to subsequentmly update a pair of projects that use the submodule so they are referencing the newest submodule code.&lt;/p></description></item><item><title>How to Work with Git</title><link>https://static.grinnell.edu/dlad-blog/posts/056-how-to-work-with-git/</link><pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/056-how-to-work-with-git/</guid><description>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Credits: This document is an abstraction of some &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE/wiki/How-to-Work-with-Git">fine documentation&lt;/a> authored and posted by my &lt;a href="https://github.com/Islandora-Collaboration-Group">ICG&lt;/a> colleague and friend, &lt;a href="https://github.com/dwk2">David Keiser-Clark&lt;/a>.&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="icg-git-workflow-how-to-work-with-git">ICG Git Workflow: How to work with Git&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>The examples in this document use my work with the Islandora Collaboration Group&amp;rsquo;s (ICG) &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools">ISLE-Drupal-Build-Tools&lt;/a> repository, as well as &lt;a href="https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools">my fork&lt;/a> and local clone of that repository.&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;/tbody>
+&lt;/table>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>I recommend having a look at the &lt;a href="https://help.github.com/en/github/getting-started-with-github/github-glossary">GitHub Glossary&lt;/a> for a list of terms used frequently in this post, and many of the referenced documents.&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>The terms &lt;code>original&lt;/code>, &lt;code>canonical&lt;/code>, and &lt;code>upstream&lt;/code> are also used in this post to describe the &lt;em>GitHub&lt;/em> repository at the root of the project being managed.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Configuration: In most cases you will do Steps 1-3 only once! If you move to a new machine execute Steps 2-3 only.&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Only &amp;ldquo;fork&amp;rdquo; once! Do not repeat Step 1 if you&amp;rsquo;ve already forked the original/canonical repo.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Only &amp;ldquo;clone&amp;rdquo; once! Do not repeat Step 2 if you already have a local clone of your fork.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Only add this remote once! Do not perform this step if your local repo already has an &lt;code>upstream&lt;/code> remote.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;ol>
+&lt;li>Always &lt;em>fork&lt;/em> the repo (repository) you are working on.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>This is accomplished by logging into your &lt;em>GitHub&lt;/em> account and selecting &lt;strong>Fork&lt;/strong> near the top right of the repo&amp;rsquo;s page.
+&lt;ul>
+&lt;li>Navigate your browser to the &lt;em>GitHub&lt;/em> project you wish to work on. Example: &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools">https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools&lt;/a>&lt;/li>
+&lt;li>Click the &lt;strong>Fork&lt;/strong> button near the top right of the repo&amp;rsquo;s &lt;em>GitHub&lt;/em> page.&lt;/li>
+&lt;li>This will either create a new fork in your own &lt;em>GitHub&lt;/em> account, or prompt you to choose an account if you have more than one. In either case, make a note of where the fork is created! In this document we&amp;rsquo;ll reference your fork&amp;rsquo;s URI as &lt;code>upstream&lt;/code>. Example: &lt;a href="https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools">https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;ol start="2">
+&lt;li>Clone your fork down to your local machine.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Navigate your browser to the fork. Example: &lt;a href="https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools">https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools&lt;/a>&lt;/li>
+&lt;li>Click on the &lt;strong>Clone&lt;/strong> button to copy the fork&amp;rsquo;s URI to your clipboard.&lt;/li>
+&lt;li>Open terminal/shell/powershell/cmd, navigate to your preferred project &amp;ldquo;parent&amp;rdquo; directory, and &lt;code>git clone &amp;lt;paste from clipboard&amp;gt;&lt;/code>.&lt;/li>
+&lt;li>Change into the directory (&lt;code>cd&lt;/code>) with the files you just cloned.&lt;/li>
+&lt;/ul>
+&lt;ol start="3">
+&lt;li>Before you start working, add an &lt;code>upstream&lt;/code> pointer to the original/canonical repo that you forked.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Navigate your browser back to the original/canonical &lt;em>GitHub&lt;/em> project. Example: &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools">https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools&lt;/a>&lt;/li>
+&lt;li>From this repo, NOT your fork or local clone, click on the &lt;strong>Clone&lt;/strong> button and copy the &lt;em>https&lt;/em> URI to your clipboard.&lt;/li>
+&lt;li>In terminal/shell/powershell/cmd enter &lt;code>git remote add upstream &amp;lt;paste from clipboard&amp;gt;&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Make certain your &lt;code>master&lt;/code> branches are even with the original/canonical &lt;code>master&lt;/code>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;/tbody>
+&lt;/table>
+&lt;ol start="4">
+&lt;li>STOP! Get up-to-date before you do anything, fetch your remotes so your local clone has the most recent commits.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Change into the directory (&lt;code>cd&lt;/code>) with the files you cloned.&lt;/li>
+&lt;li>In terminal/shell/powershell/cmd enter &lt;code>git fetch --all&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;ol start="5">
+&lt;li>Checkout and pull the &lt;code>upsteam master&lt;/code> to your local &lt;code>master&lt;/code> branch.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Checkout your master: &lt;code>git checkout master&lt;/code>&lt;/li>
+&lt;li>Pull the &lt;code>upstream&lt;/code> master into yours so your local is up-to-date: &lt;code>git pull upstream master&lt;/code>&lt;/li>
+&lt;li>Push your local &lt;code>master&lt;/code> branch BACK to your fork in &lt;em>GitHub&lt;/em>.
+&lt;ul>
+&lt;li>If all is well and your &lt;code>git pull...&lt;/code> resulted in a fast-forward or &amp;ldquo;Already up to date.&amp;rdquo;, then: &lt;code>git push origin master&lt;/code>&lt;/li>
+&lt;li>If your &lt;code>git pull...&lt;/code> did not fast-forward and a merge message appeared, then there were differences in your branches. Never work on &lt;code>master&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Create an &lt;em>issue&lt;/em> and a topic/fix/enhancement/document &lt;em>branch&lt;/em> for your work, and have at!&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;/tbody>
+&lt;/table>
+&lt;ol start="6">
+&lt;li>Create an &lt;em>issue&lt;/em> for your work.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Navigate your browser to the original/canonical &lt;em>GitHub&lt;/em> project you wish to work on. Example: &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools">https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools&lt;/a>&lt;/li>
+&lt;li>Find and open the &lt;code>Issues&lt;/code> tab (its icon is an exclamation point in a circle) near the top of the page.&lt;/li>
+&lt;li>Look through the list of all issues, both &lt;code>Open&lt;/code> and &lt;code>Closed&lt;/code>, for any mention of the problem you wish to solve.
+&lt;ul>
+&lt;li>If you find an existing issue, study it and determine if you can add your work to the existing issue.&lt;/li>
+&lt;li>If an appropriate existing issue is not found, click &lt;code>New issue&lt;/code> to create one and describe the problem you will be attacking.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Take note of the new, or existing, sequential number assigned to your issue. In subsequent steps you should refer to your issue using its number (Example: #20) in references like these examples: &lt;code>#20&lt;/code>, &lt;code>issue-20&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;ol start="7">
+&lt;li>Create your branch and check it out.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Create a branch with: &lt;code>git branch &amp;lt;helpful and identifying name&amp;gt;&lt;/code>. Example: &lt;code>git branch issue-20&lt;/code>&lt;/li>
+&lt;li>Checkout your new branch with &lt;code>git checkout &amp;lt;helpful and identifying name&amp;gt;&lt;/code>. Example: &lt;code>git checkout issue-20&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;ol start="8">
+&lt;li>Start your work and commit locally, aka &amp;ldquo;save your work&amp;rdquo;, at times (probably more than once) that feel logical.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Create logical checkpoints (i.e., commits) when you feel you&amp;rsquo;ve finished on a particular &amp;ldquo;part&amp;rdquo; of your work. Example: You&amp;rsquo;ve just created a new file and added some stubbed content: Commit it!
+&lt;ul>
+&lt;li>Commits are references in your work and can be helpful if you need to go back to an earlier version of your work, sort of like an &amp;ldquo;undo&amp;rdquo; command. By committing regularly, you give yourself utmost flexibility and it&amp;rsquo;s a good practice/habit.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;ol start="9">
+&lt;li>
+&lt;p>Creating commits.&lt;/p></description></item></channel></rss>

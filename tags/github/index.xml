@@ -1,10 +1,189 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GitHub on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/github/</link><description>Recent content in GitHub on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sat, 18 Feb 2023 22:03:49 -0600</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>Gating My Content &amp; More - Parts 3 and 4</title><link>https://static.grinnell.edu/dlad-blog/posts/141-gating-my-content-and-more-parts-34/</link><pubDate>Sat, 18 Feb 2023 22:03:49 -0600</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/141-gating-my-content-and-more-parts-34/</guid><description>See Gating My Content &amp;amp; More - Parts 1 and 2 for prerequsite and background info.
-Introducing Wieting Content Part 3 of this process, the introduction of Wieting Theatre Guild content, is described in the project repo&amp;rsquo;s README.md file. Since the project is in a private repo I&amp;rsquo;ll include the pertinent parts here from this gist.
-Part 4 - Protecting Pages with StatiCrypt CLI + More Let&amp;rsquo;s jump in with StatiCrypt CLI. The following experience is from the README.md file in my https://github.</description></item><item><title>Gating My Content &amp; More - Parts 1 and 2</title><link>https://static.grinnell.edu/dlad-blog/posts/139-gating-my-content-and-more/</link><pubDate>Mon, 06 Feb 2023 18:19:53 -0600</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/139-gating-my-content-and-more/</guid><description>A Blended Approach It&amp;rsquo;s a new month, February 2023 that is, and this the first part of follow-up to last month&amp;rsquo;s post in my personal blog, namely Gating My Content. Now, rather than trying to &amp;ldquo;gate&amp;rdquo; some of the content in the Wieting Theatre website, I&amp;rsquo;m going to start a new site, with characteristics listed below, and include only the protected portion of the Wieting&amp;rsquo;s content.
-I call this a &amp;ldquo;blended&amp;rdquo; approach because it will, at least initially, leverage and blend guidance and elements from many of the resources I&amp;rsquo;ve captured at https://www.</description></item><item><title>Pushing GitHub Notifications to Slack</title><link>https://static.grinnell.edu/dlad-blog/posts/127-github-notifications-to-slack/</link><pubDate>Wed, 05 Oct 2022 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/127-github-notifications-to-slack/</guid><description>Lately I&amp;rsquo;ve lamented that all incoming emails to @grinnell.edu addresses pass through a URLDefense / Proofpoint agent that sanitizes all clickable links as a safety/security precaution. In the case of emails automatically dispatched by GitHub the &amp;ldquo;butchering&amp;rdquo; of such messages leaves me with an almost useles notification, one that&amp;rsquo;s so badly bloated that I typically choose to ignore it. Clearly, that&amp;rsquo;s not how notifications are suppsoed to be handled.
-Example of a Butchered Email To help make my point I&amp;rsquo;ll share a small portion of a relatively small email notification below.</description></item><item><title>Archiving What Git Ignores</title><link>https://static.grinnell.edu/dlad-blog/posts/066-archiving-what-git-ignores/</link><pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/066-archiving-what-git-ignores/</guid><description>I love git and GitHub, and I can certainly appreciate the usefullness of .gitignore, but there are times when I&amp;rsquo;d really like to move an ENTIRE project to a new home. I have in my head a process that might play out like this&amp;hellip;
-Fetch a list of all the files and directories that .gitignore is ignoring. Pass that list to a tar or gzip command (maybe two of them) with encryption to create a secure, compressed archive. Commit the archive to the project repo in GitHub, or keep it in a safe place for restoration in the future.</description></item><item><title>How to Create a New GitHub Repo from an Existing Branch</title><link>https://static.grinnell.edu/dlad-blog/posts/065-create-new-github-project-from-a-branch/</link><pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/065-create-new-github-project-from-a-branch/</guid><description>I just found a handy git/GitHub workflow in a Quora post titled &amp;ldquo;How do I create a new GitHub repository from a branch in an existing repository?&amp;rdquo;. And I used it, successfully, to create a new GitHub repo for my updated Drupal 8 rendition of the Wieting Theatre&amp;rsquo;s website.
-The new GitHub repo is wieting-D8-DO and it was created from the wieting branch of docker-compose-drupal.
-The commands I used looked something like this:
-cd ~/GitHub git clone https://github.com/SummittDweller/docker-compose-drupal.git cd docker-compose-drupal git checkout master git reset --hard origin/wieting git checkout wieting git remote rm origin git remote add origin https://github.</description></item><item><title>How to Work with Git</title><link>https://static.grinnell.edu/dlad-blog/posts/056-how-to-work-with-git/</link><pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/056-how-to-work-with-git/</guid><description>Credits: This document is an abstraction of some fine documentation authored and posted by my ICG colleague and friend, David Keiser-Clark. ICG Git Workflow: How to work with Git The examples in this document use my work with the Islandora Collaboration Group&amp;rsquo;s (ICG) ISLE-Drupal-Build-Tools repository, as well as my fork and local clone of that repository. I recommend having a look at the GitHub Glossary for a list of terms used frequently in this post, and many of the referenced documents.</description></item><item><title>Easily Change GitHub User in OSX</title><link>https://static.grinnell.edu/dlad-blog/posts/055-easily-change-github-user-in-osx/</link><pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/055-easily-change-github-user-in-osx/</guid><description>The first step is to run git config -l to see what the current configuration is. If the user.name and/or user.email properties are incorrect, change them using something like this:
-git config --global user.name &amp;#34;Mark McFate&amp;#34; git config --global user.email &amp;#34;yourEMail@address.here&amp;#34; That&amp;rsquo;s only half the battle. I love OSX and the Keychain Access app is wonderful, except when I&amp;rsquo;m working with git and GitHub in a terminal, which I do quite often. The real problem is that I have 4 different identities in GitHub&amp;hellip; crazy, I know.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>GitHub on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/github/</link><description>Recent content in GitHub on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sat, 18 Feb 2023 22:03:49 -0600</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>Gating My Content &amp; More - Parts 3 and 4</title><link>https://static.grinnell.edu/dlad-blog/posts/141-gating-my-content-and-more-parts-34/</link><pubDate>Sat, 18 Feb 2023 22:03:49 -0600</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/141-gating-my-content-and-more-parts-34/</guid><description>&lt;div class="original">&lt;p>See &lt;a href="https://static.grinnell.edu/dlad-blog/posts/139-gating-my-content-and-more/">Gating My Content &amp;amp; More - Parts 1 and 2&lt;/a> for prerequsite and background info.&lt;/p>
+&lt;/div>
+
+&lt;h1 id="introducing-wieting-content">Introducing Wieting Content&lt;/h1>
+&lt;p>Part 3 of this process, the introduction of Wieting Theatre Guild content, is described in the project repo&amp;rsquo;s &lt;code>README.md&lt;/code> file. Since the project is in a &lt;em>private&lt;/em> repo I&amp;rsquo;ll include the pertinent parts here from &lt;a href="https://gist.github.com/SummittDweller/eb67aa53b3ec3c1d78e1d47d04399ee5">this gist&lt;/a>.&lt;/p>
+&lt;script src="https://gist.github.com/SummittDweller/eb67aa53b3ec3c1d78e1d47d04399ee5.js">&lt;/script>
+
+&lt;h1 id="part-4---protecting-pages-with-staticrypt-cli--more">Part 4 - Protecting Pages with StatiCrypt CLI + More&lt;/h1>
+&lt;p>Let&amp;rsquo;s jump in with &lt;a href="https://robinmoisson.github.io/staticrypt/">StatiCrypt CLI&lt;/a>. The following experience is from the &lt;code>README.md&lt;/code> file in my &lt;a href="https://github.com/SummittDweller/wieting-guild-pages">https://github.com/SummittDweller/wieting-guild-pages&lt;/a> project.&lt;/p>
+&lt;h2 id="displaying-embedded-pdfs">Displaying Embedded PDFs&lt;/h2>
+&lt;p>Some of the pages I added to &lt;a href="https://wieting-guild.tamatoledo.com">https://wieting-guild.tamatoledo.com&lt;/a> are intended to display &lt;code>.pdf&lt;/code> content. The old shortcode responsible for that feature will need to be ported from &lt;a href="https://github.com/SummittDweller/wieting-one-click-hugo-cms/tree/main/site/content/guild">wieting-one-click-hugo-cms&lt;/a> and made to function in &lt;code>Eleventy&lt;/code>.&lt;/p></description></item><item><title>Gating My Content &amp; More - Parts 1 and 2</title><link>https://static.grinnell.edu/dlad-blog/posts/139-gating-my-content-and-more/</link><pubDate>Mon, 06 Feb 2023 18:19:53 -0600</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/139-gating-my-content-and-more/</guid><description>&lt;h1 id="a-blended-approach">A Blended Approach&lt;/h1>
+&lt;p>It&amp;rsquo;s a new month, February 2023 that is, and this the first part of follow-up to last month&amp;rsquo;s post in my personal blog, namely &lt;a href="https://blog.summittdweller.com/posts/2023/01/gating-content/">Gating My Content&lt;/a>. Now, rather than trying to &amp;ldquo;gate&amp;rdquo; some of the content in the &lt;a href="https://wieting.tamatoledo.com">Wieting Theatre website&lt;/a>, I&amp;rsquo;m going to start a new site, with characteristics listed below, and include only the protected portion of the Wieting&amp;rsquo;s content.&lt;/p>
+&lt;p>I call this a &amp;ldquo;blended&amp;rdquo; approach because it will, at least initially, leverage and blend guidance and elements from many of the resources I&amp;rsquo;ve captured at &lt;a href="https://www.one-tab.com/page/iyQVdlpSRICO67Mue7Cb_Q">https://www.one-tab.com/page/iyQVdlpSRICO67Mue7Cb_Q&lt;/a>.&lt;/p></description></item><item><title>Pushing GitHub Notifications to Slack</title><link>https://static.grinnell.edu/dlad-blog/posts/127-github-notifications-to-slack/</link><pubDate>Wed, 05 Oct 2022 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/127-github-notifications-to-slack/</guid><description>&lt;p>Lately I&amp;rsquo;ve lamented that all incoming emails to @grinnell.edu addresses pass through a &lt;em>URLDefense&lt;/em> / &lt;em>Proofpoint&lt;/em> agent that sanitizes all clickable links as a safety/security precaution. In the case of emails automatically dispatched by &lt;em>GitHub&lt;/em> the &amp;ldquo;butchering&amp;rdquo; of such messages leaves me with an almost useles notification, one that&amp;rsquo;s so badly bloated that I typically choose to ignore it. Clearly, that&amp;rsquo;s not how notifications are suppsoed to be handled.&lt;/p>
+&lt;h2 id="example-of-a-butchered-email">Example of a Butchered Email&lt;/h2>
+&lt;p>To help make my point I&amp;rsquo;ll share a small portion of a relatively small email notification below. Yes, I used the term &amp;ldquo;small&amp;rdquo; more than once in that last sentence. Why? Because this is a tiny example compared to some that I&amp;rsquo;ve received lately.&lt;/p></description></item><item><title>Archiving What Git Ignores</title><link>https://static.grinnell.edu/dlad-blog/posts/066-archiving-what-git-ignores/</link><pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/066-archiving-what-git-ignores/</guid><description>&lt;p>I love &lt;em>git&lt;/em> and &lt;em>GitHub&lt;/em>, and I can certainly appreciate the usefullness of &lt;em>.gitignore&lt;/em>, but there are times when I&amp;rsquo;d really like to move an ENTIRE project to a new home. I have in my head a process that might play out like this&amp;hellip;&lt;/p>
+&lt;ol>
+&lt;li>Fetch a list of all the files and directories that &lt;em>.gitignore&lt;/em> is ignoring.&lt;/li>
+&lt;li>Pass that list to a &lt;em>tar&lt;/em> or &lt;em>gzip&lt;/em> command (maybe two of them) &lt;strong>with encryption&lt;/strong> to create a secure, compressed archive.&lt;/li>
+&lt;li>Commit the archive to the project repo in &lt;em>GitHub&lt;/em>, or keep it in a safe place for restoration in the future.&lt;/li>
+&lt;li>Navigate in your terminal to a target and restore the archive using the&lt;/li>
+&lt;/ol>
+&lt;h3 id="step-1">Step 1&lt;/h3>
+&lt;p>Ok, the first step looks pretty easy. According to &lt;a href="https://stackoverflow.com/a/1446609">this &lt;em>StackOverflow&lt;/em> answer&lt;/a> we can use one or two &lt;em>git&lt;/em> commands to do the trick, specifically:&lt;/p></description></item><item><title>How to Create a New GitHub Repo from an Existing Branch</title><link>https://static.grinnell.edu/dlad-blog/posts/065-create-new-github-project-from-a-branch/</link><pubDate>Wed, 26 Feb 2020 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/065-create-new-github-project-from-a-branch/</guid><description>&lt;p>I just found a handy &lt;em>git&lt;/em>/&lt;em>GitHub&lt;/em> workflow in a &lt;a href="https://www.quora.com">Quora&lt;/a> post titled &lt;a href="https://www.quora.com/How-do-I-create-a-new-GitHub-repository-from-a-branch-in-an-existing-repository">&amp;ldquo;How do I create a new GitHub repository from a branch in an existing repository?&amp;rdquo;&lt;/a>. And I used it, successfully, to create a new &lt;em>GitHub&lt;/em> repo for my updated &lt;em>Drupal 8&lt;/em> rendition of the &lt;a href="https://Wieting.TamaToledo.com">Wieting Theatre&amp;rsquo;s website&lt;/a>.&lt;/p>
+&lt;p>The new &lt;em>GitHub&lt;/em> repo is &lt;a href="https://github.com/SummittDweller/wieting-D8-DO">wieting-D8-DO&lt;/a> and it was created from the &lt;code>wieting&lt;/code> branch of &lt;a href="https://github.com/SummittDweller/docker-compose-drupal">docker-compose-drupal&lt;/a>.&lt;/p>
+&lt;p>The commands I used looked something like this:&lt;/p>
+&lt;pre tabindex="0">&lt;code>cd ~/GitHub
+git clone https://github.com/SummittDweller/docker-compose-drupal.git
+cd docker-compose-drupal
+git checkout master
+git reset --hard origin/wieting
+git checkout wieting
+git remote rm origin
+git remote add origin https://github.com/SummittDweller/wieting-D8-DO.git
+git config user.name &amp;#34;SummittDweller&amp;#34;
+git config user.email summitt.dweller@gmail.com
+git push -u origin master
+&lt;/code>&lt;/pre>&lt;p>And that&amp;rsquo;s a wrap&amp;hellip; until next time. &amp;#x1f604;&lt;/p></description></item><item><title>How to Work with Git</title><link>https://static.grinnell.edu/dlad-blog/posts/056-how-to-work-with-git/</link><pubDate>Tue, 19 Nov 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/056-how-to-work-with-git/</guid><description>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Credits: This document is an abstraction of some &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE/wiki/How-to-Work-with-Git">fine documentation&lt;/a> authored and posted by my &lt;a href="https://github.com/Islandora-Collaboration-Group">ICG&lt;/a> colleague and friend, &lt;a href="https://github.com/dwk2">David Keiser-Clark&lt;/a>.&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="icg-git-workflow-how-to-work-with-git">ICG Git Workflow: How to work with Git&lt;/h2>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>The examples in this document use my work with the Islandora Collaboration Group&amp;rsquo;s (ICG) &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools">ISLE-Drupal-Build-Tools&lt;/a> repository, as well as &lt;a href="https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools">my fork&lt;/a> and local clone of that repository.&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;/tbody>
+&lt;/table>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>I recommend having a look at the &lt;a href="https://help.github.com/en/github/getting-started-with-github/github-glossary">GitHub Glossary&lt;/a> for a list of terms used frequently in this post, and many of the referenced documents.&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>The terms &lt;code>original&lt;/code>, &lt;code>canonical&lt;/code>, and &lt;code>upstream&lt;/code> are also used in this post to describe the &lt;em>GitHub&lt;/em> repository at the root of the project being managed.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Configuration: In most cases you will do Steps 1-3 only once! If you move to a new machine execute Steps 2-3 only.&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>Only &amp;ldquo;fork&amp;rdquo; once! Do not repeat Step 1 if you&amp;rsquo;ve already forked the original/canonical repo.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Only &amp;ldquo;clone&amp;rdquo; once! Do not repeat Step 2 if you already have a local clone of your fork.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>Only add this remote once! Do not perform this step if your local repo already has an &lt;code>upstream&lt;/code> remote.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;ol>
+&lt;li>Always &lt;em>fork&lt;/em> the repo (repository) you are working on.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>This is accomplished by logging into your &lt;em>GitHub&lt;/em> account and selecting &lt;strong>Fork&lt;/strong> near the top right of the repo&amp;rsquo;s page.
+&lt;ul>
+&lt;li>Navigate your browser to the &lt;em>GitHub&lt;/em> project you wish to work on. Example: &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools">https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools&lt;/a>&lt;/li>
+&lt;li>Click the &lt;strong>Fork&lt;/strong> button near the top right of the repo&amp;rsquo;s &lt;em>GitHub&lt;/em> page.&lt;/li>
+&lt;li>This will either create a new fork in your own &lt;em>GitHub&lt;/em> account, or prompt you to choose an account if you have more than one. In either case, make a note of where the fork is created! In this document we&amp;rsquo;ll reference your fork&amp;rsquo;s URI as &lt;code>upstream&lt;/code>. Example: &lt;a href="https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools">https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;ol start="2">
+&lt;li>Clone your fork down to your local machine.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Navigate your browser to the fork. Example: &lt;a href="https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools">https://github.com/Digital-Grinnell/ISLE-Drupal-Build-Tools&lt;/a>&lt;/li>
+&lt;li>Click on the &lt;strong>Clone&lt;/strong> button to copy the fork&amp;rsquo;s URI to your clipboard.&lt;/li>
+&lt;li>Open terminal/shell/powershell/cmd, navigate to your preferred project &amp;ldquo;parent&amp;rdquo; directory, and &lt;code>git clone &amp;lt;paste from clipboard&amp;gt;&lt;/code>.&lt;/li>
+&lt;li>Change into the directory (&lt;code>cd&lt;/code>) with the files you just cloned.&lt;/li>
+&lt;/ul>
+&lt;ol start="3">
+&lt;li>Before you start working, add an &lt;code>upstream&lt;/code> pointer to the original/canonical repo that you forked.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Navigate your browser back to the original/canonical &lt;em>GitHub&lt;/em> project. Example: &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools">https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools&lt;/a>&lt;/li>
+&lt;li>From this repo, NOT your fork or local clone, click on the &lt;strong>Clone&lt;/strong> button and copy the &lt;em>https&lt;/em> URI to your clipboard.&lt;/li>
+&lt;li>In terminal/shell/powershell/cmd enter &lt;code>git remote add upstream &amp;lt;paste from clipboard&amp;gt;&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Make certain your &lt;code>master&lt;/code> branches are even with the original/canonical &lt;code>master&lt;/code>&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;/tbody>
+&lt;/table>
+&lt;ol start="4">
+&lt;li>STOP! Get up-to-date before you do anything, fetch your remotes so your local clone has the most recent commits.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Change into the directory (&lt;code>cd&lt;/code>) with the files you cloned.&lt;/li>
+&lt;li>In terminal/shell/powershell/cmd enter &lt;code>git fetch --all&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;ol start="5">
+&lt;li>Checkout and pull the &lt;code>upsteam master&lt;/code> to your local &lt;code>master&lt;/code> branch.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Checkout your master: &lt;code>git checkout master&lt;/code>&lt;/li>
+&lt;li>Pull the &lt;code>upstream&lt;/code> master into yours so your local is up-to-date: &lt;code>git pull upstream master&lt;/code>&lt;/li>
+&lt;li>Push your local &lt;code>master&lt;/code> branch BACK to your fork in &lt;em>GitHub&lt;/em>.
+&lt;ul>
+&lt;li>If all is well and your &lt;code>git pull...&lt;/code> resulted in a fast-forward or &amp;ldquo;Already up to date.&amp;rdquo;, then: &lt;code>git push origin master&lt;/code>&lt;/li>
+&lt;li>If your &lt;code>git pull...&lt;/code> did not fast-forward and a merge message appeared, then there were differences in your branches. Never work on &lt;code>master&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Create an &lt;em>issue&lt;/em> and a topic/fix/enhancement/document &lt;em>branch&lt;/em> for your work, and have at!&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;/tbody>
+&lt;/table>
+&lt;ol start="6">
+&lt;li>Create an &lt;em>issue&lt;/em> for your work.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Navigate your browser to the original/canonical &lt;em>GitHub&lt;/em> project you wish to work on. Example: &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools">https://github.com/Islandora-Collaboration-Group/ISLE-Drupal-Build-Tools&lt;/a>&lt;/li>
+&lt;li>Find and open the &lt;code>Issues&lt;/code> tab (its icon is an exclamation point in a circle) near the top of the page.&lt;/li>
+&lt;li>Look through the list of all issues, both &lt;code>Open&lt;/code> and &lt;code>Closed&lt;/code>, for any mention of the problem you wish to solve.
+&lt;ul>
+&lt;li>If you find an existing issue, study it and determine if you can add your work to the existing issue.&lt;/li>
+&lt;li>If an appropriate existing issue is not found, click &lt;code>New issue&lt;/code> to create one and describe the problem you will be attacking.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Take note of the new, or existing, sequential number assigned to your issue. In subsequent steps you should refer to your issue using its number (Example: #20) in references like these examples: &lt;code>#20&lt;/code>, &lt;code>issue-20&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;ol start="7">
+&lt;li>Create your branch and check it out.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Create a branch with: &lt;code>git branch &amp;lt;helpful and identifying name&amp;gt;&lt;/code>. Example: &lt;code>git branch issue-20&lt;/code>&lt;/li>
+&lt;li>Checkout your new branch with &lt;code>git checkout &amp;lt;helpful and identifying name&amp;gt;&lt;/code>. Example: &lt;code>git checkout issue-20&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;ol start="8">
+&lt;li>Start your work and commit locally, aka &amp;ldquo;save your work&amp;rdquo;, at times (probably more than once) that feel logical.&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>Create logical checkpoints (i.e., commits) when you feel you&amp;rsquo;ve finished on a particular &amp;ldquo;part&amp;rdquo; of your work. Example: You&amp;rsquo;ve just created a new file and added some stubbed content: Commit it!
+&lt;ul>
+&lt;li>Commits are references in your work and can be helpful if you need to go back to an earlier version of your work, sort of like an &amp;ldquo;undo&amp;rdquo; command. By committing regularly, you give yourself utmost flexibility and it&amp;rsquo;s a good practice/habit.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;ol start="9">
+&lt;li>
+&lt;p>Creating commits.&lt;/p></description></item><item><title>Easily Change GitHub User in OSX</title><link>https://static.grinnell.edu/dlad-blog/posts/055-easily-change-github-user-in-osx/</link><pubDate>Mon, 18 Nov 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/055-easily-change-github-user-in-osx/</guid><description>&lt;p>The first step is to run &lt;code>git config -l&lt;/code> to see what the current configuration is. If the &lt;code>user.name&lt;/code> and/or &lt;code>user.email&lt;/code> properties are incorrect, change them using something like this:&lt;/p>
+&lt;pre tabindex="0">&lt;code>git config --global user.name &amp;#34;Mark McFate&amp;#34;
+git config --global user.email &amp;#34;yourEMail@address.here&amp;#34;
+&lt;/code>&lt;/pre>&lt;p>That&amp;rsquo;s only half the battle. I love &lt;em>OSX&lt;/em> and the &lt;em>Keychain Access&lt;/em> app is wonderful, except when I&amp;rsquo;m working with &lt;em>git&lt;/em> and &lt;em>GitHub&lt;/em> in a terminal, which I do quite often. The real problem is that I have 4 different identities in &lt;em>GitHub&lt;/em>&amp;hellip; crazy, I know. Changing from one identity to another has been a real pain-in-the-a$$, up until I found &lt;a href="https://docs.github.com/en/github/using-git/updating-credentials-from-the-osx-keychain#updating-your-credentials-via-keychain-access">this gem of a post&lt;/a>.&lt;/p></description></item></channel></rss>

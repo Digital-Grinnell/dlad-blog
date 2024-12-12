@@ -1,2 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>islandora_multi_importer_form on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/islandora_multi_importer_form/</link><description>Recent content in islandora_multi_importer_form on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 21 Nov 2019 20:38:30 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/islandora_multi_importer_form/index.xml" rel="self" type="application/rss+xml"/><item><title>Granular ISLE Customization: Implementing IMI Hooks</title><link>https://static.grinnell.edu/dlad-blog/posts/049-granular-isle-customization-implementing-imi-hooks/</link><pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/049-granular-isle-customization-implementing-imi-hooks/</guid><description>Granular ISLE Customization This post is part of a series describing Digital.Grinnell customizations to ISLE, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time. An index of all documents in this series is included at the end of Granular ISLE Customization: Series Guidelines. Goal Statement In this &amp;ldquo;granular&amp;rdquo; post I&amp;rsquo;ll introduce two customizations to IMI that implement and engage Drupal &amp;ldquo;hook&amp;rdquo; functions, namely:
-hook_islandora_multi_importer_remote_file_get(), and hook_form_islandora_multi_importer_form_alter(). Drupal 7 Hooks See Understanding the hook system for Drupal modules to better understand what Drupal v7 hook functions are, and how they work.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Islandora_multi_importer_form on The Grinnell College Digital Library Application Developer's Blog</title><link>https://static.grinnell.edu/dlad-blog/tags/islandora_multi_importer_form/</link><description>Recent content in Islandora_multi_importer_form on The Grinnell College Digital Library Application Developer's Blog</description><generator>Hugo</generator><language>en</language><lastBuildDate>Thu, 21 Nov 2019 20:38:30 -0500</lastBuildDate><atom:link href="https://static.grinnell.edu/dlad-blog/tags/islandora_multi_importer_form/index.xml" rel="self" type="application/rss+xml"/><item><title>Granular ISLE Customization: Implementing IMI Hooks</title><link>https://static.grinnell.edu/dlad-blog/posts/049-granular-isle-customization-implementing-imi-hooks/</link><pubDate>Sun, 29 Sep 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/049-granular-isle-customization-implementing-imi-hooks/</guid><description>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th>Granular ISLE Customization&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td>This post is part of a series describing &lt;a href="https://digital.grinnell.edu">Digital.Grinnell&lt;/a> customizations to &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE">ISLE&lt;/a>, in a &amp;ldquo;granular&amp;rdquo; format&amp;hellip; one small customization at a time.&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td>An index of all documents in this series is included at the end of &lt;a href="https://static.grinnell.edu/dlad-blog/posts/047-granular-isle-customization-series-guidelines">Granular ISLE Customization: Series Guidelines&lt;/a>.&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="goal-statement">Goal Statement&lt;/h2>
+&lt;p>In this &amp;ldquo;granular&amp;rdquo; post I&amp;rsquo;ll introduce two customizations to IMI that implement and engage &lt;em>Drupal&lt;/em> &amp;ldquo;hook&amp;rdquo; functions, namely:&lt;/p>
+&lt;ul>
+&lt;li>hook_islandora_multi_importer_remote_file_get(), and&lt;/li>
+&lt;li>hook_form_islandora_multi_importer_form_alter().&lt;/li>
+&lt;/ul>
+&lt;h2 id="drupal-7-hooks">Drupal 7 Hooks&lt;/h2>
+&lt;p>See &lt;a href="https://www.drupal.org/docs/7/creating-custom-modules/understanding-the-hook-system-for-drupal-modules">Understanding the hook system for Drupal modules&lt;/a> to better understand what &lt;em>Drupal v7&lt;/em> hook functions are, and how they work. If you would like additional assistance with &amp;ldquo;hooks&amp;rdquo; do not hesitate to contact the author of this post using [this email link](mailto:digital@grinnell.edu?subject=Implementing IMI Hooks).&lt;/p></description></item></channel></rss>
