@@ -1,7 +1,7 @@
 ---
 title: "`dg_timestamp` Google Sheet Apps Script" 
 publishDate: 2024-12-12T16:10:55-06:00
-last_modified_at: 2024-12-12T16:52:32
+last_modified_at: 2024-12-12T16:53:10
 draft: false
 description: Inserts a static/permanent "dg_<timestamp>" value into a Google Sheets cell when any other cell in the corresponding Google Sheet row is edited.  This UNIX epoch timestamp (with "dg_" prepended) becomes the identifier of a "new" object -- one that has no legacy identifier -- Digital.Grinnell object.  
 supersedes: 
@@ -33,7 +33,7 @@ function onEdit(e){
 }
 ```
 
-This script assumes that our "timestampCell" will be in column `A`, the FIRST column, and performing an edit in column `B`, the SECOND column, will trigger the "timestampCell" to be populated with a static/pernament identifier as descibed above.  
+This script assumes that our "timestampCell" will be in column `A`, the FIRST column, and performing an edit in column `B`, the SECOND column, will trigger the "timestampCell" to be populated with a static/permanent identifier as described above.  
 
 ## Adding and Managing the `dg_timestamp` Script
 
