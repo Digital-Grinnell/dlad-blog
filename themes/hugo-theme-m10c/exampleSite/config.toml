@@ -2,7 +2,7 @@ baseURL = "https://example.com"
 title = "Your title"
 themesDir = "../.."
 theme = "m10c"
-paginate = 8
+pagination.pagerSize = 8
 
 [menu]
   [[menu.main]]
