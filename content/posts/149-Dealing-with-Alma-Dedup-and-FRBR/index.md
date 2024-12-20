@@ -1,7 +1,7 @@
 ---
 title: "Dealing with Alma Dedup and FRBR" 
 publishDate: 2024-12-19 12:48:37
-last_modified_at: 2024-12-19 12:48:46
+last_modified_at: 2024-12-20T08:45:33
 draft: false
 description: A public blog post copied from `Dealing-with-Alma-Dedup-and-FRBR.md` in my private repo at https://github.com/Digital-Grinnell/Migration-to-Alma-D.
 supersedes: 
@@ -18,8 +18,6 @@ azure:
 # Dealing with Alma/Primo Dedup and FRBR
 
 Together, Alma and Primo (mostly Primo) apply "dedup" and "FRBR" (Functional Requirements for Bibliographic Records) rules that unexpectedly "group" similar titles together.  Since the objects migrating from Islandora to Alma are all intended to be single and un-grouped (unless they are parts of a compound object where we expect and an intentional "grouping" of records), we need to take action to deal with these rules.  Unfortunately, we cannot just turn the rules off or universally modify them since those rules also apply to ALL bib records, not just digital items.
-
-When records are "grouped" together 
 
 # Understanding the Rules
 
@@ -70,6 +68,10 @@ The following email and Slack excerpts chronicle steps taken to deal specificall
 ### Outcome
 
 Eventually, after about an hour the targeted group of bibs was "disolved" yielding two distinct records as was intended, rather than a group with two "versions". 
+
+{{% alert %}}
+Experience with PHPP Community Contribution objects having identical titles of "411 First Avenue" suggests that DIP records --see post [Discovery Import Profile (DIP) Record Removal](../150-discovery-import-profile-dip-record-removal/)-- **MUST be removed BEFORE running the dedup suppression** job, otherwise the dedup may not be successfully suppressed.
+{{% /alert %}}
 
 ## Suppressing Dedup and FRBR Rules
 

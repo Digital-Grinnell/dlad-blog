@@ -1,2 +1,7 @@
 {{ $_hugo_config := `{ "version": 1 }` }}
-<div class="original">{{ .Inner }}</div>
+<style>
+  .alert {
+    border: 2px red solid;
+    }
+</style>
+<div class="original alert">{{ .Inner }}</div>

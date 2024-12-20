@@ -4,3 +4,4 @@ docs/
 public/
 content/.copy
 .post-*/
+content/.DS_Store
