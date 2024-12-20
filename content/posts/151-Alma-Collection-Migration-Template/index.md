@@ -1,7 +1,7 @@
 ---
 title: "Collection Migration Template" 
 publishDate: 2024-12-20T09:47:59-06:00
-last_modified_at: 2024-12-20T10:00:39
+last_modified_at: 2024-12-20T10:04:10
 draft: false
 description: A public blog post copied from `Collection-Migration-Template.md` in my private repo at https://github.com/Digital-Grinnell/Migration-to-Alma-D.
 supersedes: 
@@ -72,7 +72,7 @@ _Note: The above was inserted as step 10 on 2024-Dec-18._
 time python3 expand-csv.py --collection_name __target-collection__
 ```
 
-**Attention!  The `expand-csv.py` script now accepts optional parameters `--first_row` (or `-f`) and `--last_row` (or `-l`) that can be used to limit the rows of the `__target-collection__` Google Sheet that the `values.csv` file contains.  
+**Attention!**  The `expand-csv.py` script now accepts optional parameters `--first_row` (or `-f`) and `--last_row` (or `-l`) that can be used to limit the rows of the `__target-collection__` Google Sheet that the `values.csv` file contains.  
 
 ```zsh
 time python3 expand-csv.py --collection_name __target-collection__ --first_row 50 --last_row 500
