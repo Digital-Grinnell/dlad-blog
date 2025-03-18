@@ -121,7 +121,7 @@ $ sudo docker ps -a
 &lt;/table>
 &lt;h2 id="goal-statement">Goal Statement&lt;/h2>
 &lt;p>In this &amp;ldquo;granular&amp;rdquo; post we will install &lt;em>&lt;em>Backup and Migrate&lt;/em>&lt;/em>, a tremendous &lt;em>Drupal&lt;/em> module that I use extensively for backup, restoration, migration and maintenance of &lt;em>Digital.Grinnell&lt;/em>.&lt;/p>
-&lt;h2 id="install-and-enable-the-_backup-and-migrate_-module-using-_drush_">Install and Enable the &lt;em>Backup and Migrate&lt;/em> Module using &lt;em>Drush&lt;/em>&lt;/h2>
+&lt;h2 id="install-and-enable-the-backup-and-migrate-module-using-drush">Install and Enable the &lt;em>Backup and Migrate&lt;/em> Module using &lt;em>Drush&lt;/em>&lt;/h2>
 &lt;p>&lt;em>DG7&lt;/em> is installed and enabled in the same manner as most &lt;em>Drupal&lt;/em> or &lt;em>Islandora&lt;/em> contrib modules, like so:&lt;/p></description></item><item><title>DG's ISLE Git Workflow</title><link>https://static.grinnell.edu/dlad-blog/posts/053-dgs-isle-git-workflow/</link><pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/053-dgs-isle-git-workflow/</guid><description>&lt;p>For some time now &lt;em>Digital.Grinnell&lt;/em> has been using &lt;em>ISLE&lt;/em> in production, with an instance that was built from a &amp;ldquo;non-standard&amp;rdquo; workflow, one that was a little different than the &lt;em>Git&lt;/em> workflow established in the &lt;a href="https://github.com/Islandora-Collaboration-Group/ISLE/tree/master/docs/install">&lt;em>ISLE&lt;/em> install docs&lt;/a>. Consequently, &lt;em>DG&amp;rsquo;s&lt;/em> situation is a little different than what&amp;rsquo;s documented for &lt;em>ISLE&lt;/em>, so my mission here is to describe and execute the steps I&amp;rsquo;m taking to get back into the documented workflow.&lt;/p>
 &lt;p>The steps will involve and achieve the following:&lt;/p>
 &lt;ul>
@@ -229,7 +229,7 @@ $ sudo docker ps -a
  &lt;/tr>
  &lt;/tbody>
 &lt;/table>
-&lt;h1 id="using-the-_granular-isle-customization_-posts">Using the &lt;em>Granular ISLE Customization&lt;/em> Posts&lt;/h1>
+&lt;h1 id="using-the-granular-isle-customization-posts">Using the &lt;em>Granular ISLE Customization&lt;/em> Posts&lt;/h1>
 &lt;p>There are just a couple of notes regarding the subject posts that I&amp;rsquo;d like to pass along to make them more useful.&lt;/p>
 &lt;ul>
 &lt;li>

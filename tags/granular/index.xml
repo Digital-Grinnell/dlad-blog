@@ -15,7 +15,7 @@
 &lt;/table>
 &lt;h2 id="goal-statement">Goal Statement&lt;/h2>
 &lt;p>In this &amp;ldquo;granular&amp;rdquo; post we will install &lt;em>&lt;em>Backup and Migrate&lt;/em>&lt;/em>, a tremendous &lt;em>Drupal&lt;/em> module that I use extensively for backup, restoration, migration and maintenance of &lt;em>Digital.Grinnell&lt;/em>.&lt;/p>
-&lt;h2 id="install-and-enable-the-_backup-and-migrate_-module-using-_drush_">Install and Enable the &lt;em>Backup and Migrate&lt;/em> Module using &lt;em>Drush&lt;/em>&lt;/h2>
+&lt;h2 id="install-and-enable-the-backup-and-migrate-module-using-drush">Install and Enable the &lt;em>Backup and Migrate&lt;/em> Module using &lt;em>Drush&lt;/em>&lt;/h2>
 &lt;p>&lt;em>DG7&lt;/em> is installed and enabled in the same manner as most &lt;em>Drupal&lt;/em> or &lt;em>Islandora&lt;/em> contrib modules, like so:&lt;/p></description></item><item><title>Granular ISLE Customization: Installing the DG Theme</title><link>https://static.grinnell.edu/dlad-blog/posts/052-granular-isle-customization-installing-the-dg-theme/</link><pubDate>Thu, 07 Nov 2019 00:00:00 +0000</pubDate><guid>https://static.grinnell.edu/dlad-blog/posts/052-granular-isle-customization-installing-the-dg-theme/</guid><description>&lt;table>
  &lt;thead>
  &lt;tr>
@@ -114,7 +114,7 @@
  &lt;/tr>
  &lt;/tbody>
 &lt;/table>
-&lt;h1 id="using-the-_granular-isle-customization_-posts">Using the &lt;em>Granular ISLE Customization&lt;/em> Posts&lt;/h1>
+&lt;h1 id="using-the-granular-isle-customization-posts">Using the &lt;em>Granular ISLE Customization&lt;/em> Posts&lt;/h1>
 &lt;p>There are just a couple of notes regarding the subject posts that I&amp;rsquo;d like to pass along to make them more useful.&lt;/p>
 &lt;ul>
 &lt;li>

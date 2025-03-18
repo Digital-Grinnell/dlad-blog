@@ -48,5 +48,5 @@
 &lt;/table>
 &lt;h2 id="goal-statement">Goal Statement&lt;/h2>
 &lt;p>In this &amp;ldquo;granular&amp;rdquo; post we will install &lt;em>&lt;em>Backup and Migrate&lt;/em>&lt;/em>, a tremendous &lt;em>Drupal&lt;/em> module that I use extensively for backup, restoration, migration and maintenance of &lt;em>Digital.Grinnell&lt;/em>.&lt;/p>
-&lt;h2 id="install-and-enable-the-_backup-and-migrate_-module-using-_drush_">Install and Enable the &lt;em>Backup and Migrate&lt;/em> Module using &lt;em>Drush&lt;/em>&lt;/h2>
+&lt;h2 id="install-and-enable-the-backup-and-migrate-module-using-drush">Install and Enable the &lt;em>Backup and Migrate&lt;/em> Module using &lt;em>Drush&lt;/em>&lt;/h2>
 &lt;p>&lt;em>DG7&lt;/em> is installed and enabled in the same manner as most &lt;em>Drupal&lt;/em> or &lt;em>Islandora&lt;/em> contrib modules, like so:&lt;/p></description></item></channel></rss>
