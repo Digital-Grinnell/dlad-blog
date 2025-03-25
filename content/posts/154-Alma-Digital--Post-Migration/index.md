@@ -1,7 +1,7 @@
 ---
 title: "Alma-Digital: Post Migration" 
 publishDate: 2025-03-25T10:19:54-05:00
-last_modified_at: 2025-03-25T11:15:10
+last_modified_at: 2025-03-25T11:24:50
 draft: false
 description: "Migration of Digital.Grinnell to Alma-D is 'complete'.  It's time now to reconfigure for future bulk import of new content."
 supersedes: 
@@ -25,27 +25,27 @@ The migration import profile mentioned above was named `DigitalGrinnell Qualifie
 
 Before making modifications to `dcap01`, we felt compelled to capture the migration version of the profile for eternity, so here it is in a series of configuration screen grabs...  
 
-![](../../../documents/images/2025-03-25-10-39-56.png)
+![](https://dgdocumentation.blob.core.windows.net/alma-digital/2025-03-25-10-39-56.png)
 
-![](../../../documents/images/2025-03-25-10-40-38.png)
+![](https://dgdocumentation.blob.core.windows.net/alma-digital/2025-03-25-10-40-38.png)
 
-![](../../../documents/images/2025-03-25-10-41-10.png)
+![](https://dgdocumentation.blob.core.windows.net/alma-digital/2025-03-25-10-41-10.png)
 
-![](../../../documents/images/2025-03-25-10-41-52.png)
+![](https://dgdocumentation.blob.core.windows.net/alma-digital/2025-03-25-10-41-52.png)
 
-![](../../../documents/images/2025-03-25-10-42-14.png)
+![](https://dgdocumentation.blob.core.windows.net/alma-digital/2025-03-25-10-42-14.png)
 
 ### DigitalGrinnell Qualified DC
 
 This is the qualified DC metadata schema that was used for migration.  As mentioned, it was derived from the `dcap01` profile and will keep that internal name going forward.  It's name, `DigitalGrinnell Qualified DC` will also remain the same going forward, but some of the migration-specific fields/columns will be dropped.  
 
-![](../../../documents/images/2025-03-25-10-45-18.png)
+![](https://dgdocumentation.blob.core.windows.net/alma-digital/2025-03-25-10-45-18.png)
 
-![](../../../documents/images/2025-03-25-10-48-17.png)
+![](https://dgdocumentation.blob.core.windows.net/alma-digital/2025-03-25-10-48-17.png)
 
-![](../../../documents/images/2025-03-25-10-48-41.png)
+![](https://dgdocumentation.blob.core.windows.net/alma-digital/2025-03-25-10-48-41.png)
 
-![](../../../documents/images/2025-03-25-10-49-05.png)
+![](https://dgdocumentation.blob.core.windows.net/alma-digital/2025-03-25-10-49-05.png)
 
 
 
